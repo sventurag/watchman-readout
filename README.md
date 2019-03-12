@@ -1,5 +1,7 @@
-# WATCHMAN Project Repository
-Date : 20th September 2018 - 11:51
+# watchman-readout repository
+Vivado, SDK and Python files for the development of the readout for WATCHMAN project at the IDLAB.
+
+# March, 2019
 
 ## Collaborators :
 #### Jose Duron
@@ -7,14 +9,17 @@ Date : 20th September 2018 - 11:51
 #### Anthony Schluchin
 #### Hendriks Jonathan
 #### Vasiliy Shebalin
+#### Salvador Ventura
 
 ## Folder Structure
 
 #### Documentation
-Contains the documentation of the project and tutorials
+Documentation of the project and tutorials
 
-#### Python
-Contains the script for sending/receiving UDP packets
+#### GUI
+Main interface based on Python 3.
 
 #### Vivado Projects
-Contains all the Vivado Projects for implementing the WATCHMAN Project.
+Vivado Projects for implementing the watchman-readout project.
+
+This repository was created from the original repository [WATCHMAN](https://github.com/WMidlab/WATCHMAN).
