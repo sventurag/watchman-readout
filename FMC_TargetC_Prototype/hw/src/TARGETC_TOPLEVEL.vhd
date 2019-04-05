@@ -569,7 +569,7 @@ begin
 
 	TC_RoundBuffer : RoundBufferV6
 		generic map(
-			NBRWINDOWS => 256
+			NBRWINDOWS => 16
 		)
 		port map(
 			--nrst 		=> CtrlBusOut_intl.SW_nRST,
