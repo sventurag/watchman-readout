@@ -70,14 +70,14 @@ set files [list \
  [file normalize "${origin_dir}/hw/src/Round_Buffer/TRIGGER_CONTROLLER.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/SingleTrigger.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/LookupTable_LE.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/Window_BrainV2.vhd"]\
+# [file normalize "${origin_dir}/hw/src/Round_Buffer/Window_BrainV2.vhd"]\
+# [file normalize "${origin_dir}/hw/src/Round_Buffer/BitSelector.vhd"]\
+# [file normalize "${origin_dir}/hw/src/Round_Buffer/HammingDecoderV2.vhd"]\#
  [file normalize "${origin_dir}/hw/src/Round_Buffer/BlockDelay.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/BitSelector.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/HammingDecoderV2.vhd"]\
  [file normalize "${origin_dir}/hw/src/TargetC_Control/TARGETC_Control.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayEncoder.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayDecoder.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/nextAddressCnt.vhd"]\
+ [file normalize "${origin_dir}/hw/src/Round_Buffer/nextAddressCnt.vhdl"]\
  [file normalize "${origin_dir}/hw/src/99_Packages/WindowCPU_pkg.vhd"]\
 
 
