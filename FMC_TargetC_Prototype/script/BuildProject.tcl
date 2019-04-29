@@ -72,7 +72,7 @@ set files [list \
  [file normalize "${origin_dir}/hw/src/Round_Buffer/LookupTable_LE.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/Window_BrainV2.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/BlockDelay.vhd"]\
-# [file normalize "${origin_dir}/hw/src/Round_Buffer/BitSelector.vhd"]\#
+ [file normalize "${origin_dir}/hw/src/Round_Buffer/BitSelector.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/HammingDecoderV2.vhd"]\
  [file normalize "${origin_dir}/hw/src/TargetC_Control/TARGETC_Control.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayEncoder.vhd"]\
