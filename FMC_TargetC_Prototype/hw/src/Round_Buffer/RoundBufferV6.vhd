@@ -184,6 +184,18 @@ end component CPU_CONTROLLERV3;
 			addr :		out	std_logic_vector(7 downto 0)
 			);
 	end component BIT_SELECTOR;
+    
+    component nextAddressCnt is
+     
+     Port ( 
+               clk : in STD_LOGIC;
+               rst : in STD_LOGIC;
+               Ctrl : in STD_LOGIC;
+               nextAddress : out STD_LOGIC_vector(7 downto 0);
+               nextAddressValid : out STD_LOGIC
+               );
+ 
+     end component nextAddressCnt;
 
 	-- -------------------------------------------------------------
 	-- SIGNALS
@@ -280,122 +292,122 @@ begin
 	-- PREVBus_intl_Delay <= transport PREVBus_intl after 10 ns;
 
 
-	GEN_CPU : for I in 1 to (NBRWINDOWS-2) generate
-		CPUX : WindowBrainV2
-			generic map(
-				ADDRESS => I
-			)
-			Port map(
-			nrst			=> CtrlBus_IxSL.SW_nRST,
-			nclr				=> ValidReal_s,
-			CLK				=> ClockBus.CLK250MHz,
-			CPUBus 			=> Bus_intl,
+--	GEN_CPU : for I in 1 to (NBRWINDOWS-2) generate
+--		CPUX : WindowBrainV2
+--			generic map(
+--				ADDRESS => I
+--			)
+--			Port map(
+--			nrst			=> CtrlBus_IxSL.SW_nRST,
+--			nclr				=> ValidReal_s,
+--			CLK				=> ClockBus.CLK250MHz,
+--			CPUBus 			=> Bus_intl,
 
-			-- wr1_en 			=> wr1_en_bus(I),
-			-- wr2_en			=> wr2_en_bus(I),
+--			-- wr1_en 			=> wr1_en_bus(I),
+--			-- wr2_en			=> wr2_en_bus(I),
 
-			--CurAddr			=> CurWindowCnt,
-			RealAddrBit			=> RealAddrBit_s(I),
-			--OldAddr			=> OldWindowCnt,
-			--OldAddrBit			=> OldAddrBit_s(I),
-			-- Previous Side
-			PREVBus_OUT 	=> PREVBus_intl(I),
-			NEXTBus_IN 		=> NEXTBus_intl(I-1),
-			--NEXTBus_IN 		=> NEXTBus_intl_delay(I-1),
+--			--CurAddr			=> CurWindowCnt,
+--			RealAddrBit			=> RealAddrBit_s(I),
+--			--OldAddr			=> OldWindowCnt,
+--			--OldAddrBit			=> OldAddrBit_s(I),
+--			-- Previous Side
+--			PREVBus_OUT 	=> PREVBus_intl(I),
+--			NEXTBus_IN 		=> NEXTBus_intl(I-1),
+--			--NEXTBus_IN 		=> NEXTBus_intl_delay(I-1),
 
-			-- Next Side
-			PREVBus_IN 		=> PREVBus_intl(I+1),
-			--PREVBus_IN 		=> PREVBus_intl_delay(I+1),
-			NEXTBus_OUT 	=> NEXTBus_intl(I),
-			NextAddr		=> NextAddrBus(I),
-			PrevAddr		=> PrevAddrBus(I)
-			);
+--			-- Next Side
+--			PREVBus_IN 		=> PREVBus_intl(I+1),
+--			--PREVBus_IN 		=> PREVBus_intl_delay(I+1),
+--			NEXTBus_OUT 	=> NEXTBus_intl(I),
+--			NextAddr		=> NextAddrBus(I),
+--			PrevAddr		=> PrevAddrBus(I)
+--			);
 
-	end generate;
+--	end generate;
 
-	CPU0 : WindowBrainV2
-		generic map(
-			ADDRESS => 0
-		)
-		Port map(
-		nrst			=> CtrlBus_IxSL.SW_nRST,
-		nclr			=> ValidReal_s,
-		CLK				=> ClockBus.CLK250MHz,
-		CPUBus 			=> Bus_intl,
+--	CPU0 : WindowBrainV2
+--		generic map(
+--			ADDRESS => 0
+--		)
+--		Port map(
+--		nrst			=> CtrlBus_IxSL.SW_nRST,
+--		nclr			=> ValidReal_s,
+--		CLK				=> ClockBus.CLK250MHz,
+--		CPUBus 			=> Bus_intl,
 
-		-- wr1_en 			=> wr1_en_bus(0),
-		-- wr2_en			=> wr2_en_bus(0),
+--		-- wr1_en 			=> wr1_en_bus(0),
+--		-- wr2_en			=> wr2_en_bus(0),
 
-		--CurAddr			=> CurWindowCnt,
-		RealAddrBit			=> RealAddrBit_s(0),
-		--OldAddr			=> OldWindowCnt,
-		--OldAddrBit			=> OldAddrBit_s(0),
+--		--CurAddr			=> CurWindowCnt,
+--		RealAddrBit			=> RealAddrBit_s(0),
+--		--OldAddr			=> OldWindowCnt,
+--		--OldAddrBit			=> OldAddrBit_s(0),
 
-		-- Previous Side
-		PREVBus_OUT 	=> PREVBus_intl(0),
-		NEXTBus_IN 		=> NEXTBus_intl(NBRWINDOWS-1),
-		--NEXTBus_IN 		=> NEXTBus_intl_delay(NBRWINDOWS-1),
+--		-- Previous Side
+--		PREVBus_OUT 	=> PREVBus_intl(0),
+--		NEXTBus_IN 		=> NEXTBus_intl(NBRWINDOWS-1),
+--		--NEXTBus_IN 		=> NEXTBus_intl_delay(NBRWINDOWS-1),
 
-		-- Next Side
-		PREVBus_IN 		=> PREVBus_intl(1),
-		--PREVBus_IN 		=> PREVBus_intl_delay(1),
-		NEXTBus_OUT 	=> NEXTBus_intl(0),
+--		-- Next Side
+--		PREVBus_IN 		=> PREVBus_intl(1),
+--		--PREVBus_IN 		=> PREVBus_intl_delay(1),
+--		NEXTBus_OUT 	=> NEXTBus_intl(0),
 
-		NextAddr		=> NextAddrBus(0),
-		PrevAddr		=> PrevAddrBus(0)
-		);
+--		NextAddr		=> NextAddrBus(0),
+--		PrevAddr		=> PrevAddrBus(0)
+--		);
 
-	CPULAST : WindowBrainV2
-		generic map(
-			ADDRESS => NBRWINDOWS-1
-		)
-		Port map(
-		nrst			=> CtrlBus_IxSL.SW_nRST,
-		nclr			=> ValidReal_s,
-		CLK				=> ClockBus.CLK250MHz,
+--	CPULAST : WindowBrainV2
+--		generic map(
+--			ADDRESS => NBRWINDOWS-1
+--		)
+--		Port map(
+--		nrst			=> CtrlBus_IxSL.SW_nRST,
+--		nclr			=> ValidReal_s,
+--		CLK				=> ClockBus.CLK250MHz,
 
-		CPUBus 			=> Bus_intl,
+--		CPUBus 			=> Bus_intl,
 
-		-- wr1_en 			=> wr1_en_bus(NBRWINDOWS-1),
-		-- wr2_en			=> wr2_en_bus(NBRWINDOWS-1),
+--		-- wr1_en 			=> wr1_en_bus(NBRWINDOWS-1),
+--		-- wr2_en			=> wr2_en_bus(NBRWINDOWS-1),
 
-		--CurAddr			=> CurWindowCnt,
-		RealAddrBit			=> RealAddrBit_s(NBRWINDOWS-1),
-		--OldAddr			=> OldWindowCnt,
-		--OldAddrBit			=> OldAddrBit_s(NBRWINDOWS-1),
-		-- Previous Side
-		PREVBus_OUT 	=> PREVBus_intl(NBRWINDOWS-1),
-		NEXTBus_IN 		=> NEXTBus_intl(NBRWINDOWS-2),
-		--NEXTBus_IN 		=> NEXTBus_intl_delay(NBRWINDOWS-2),
+--		--CurAddr			=> CurWindowCnt,
+--		RealAddrBit			=> RealAddrBit_s(NBRWINDOWS-1),
+--		--OldAddr			=> OldWindowCnt,
+--		--OldAddrBit			=> OldAddrBit_s(NBRWINDOWS-1),
+--		-- Previous Side
+--		PREVBus_OUT 	=> PREVBus_intl(NBRWINDOWS-1),
+--		NEXTBus_IN 		=> NEXTBus_intl(NBRWINDOWS-2),
+--		--NEXTBus_IN 		=> NEXTBus_intl_delay(NBRWINDOWS-2),
 
-		-- Next Side
-		PREVBus_IN 		=> PREVBus_intl(0),
-		--PREVBus_IN 		=> PREVBus_intl_delay(0),
-		NEXTBus_OUT 	=> NEXTBus_intl(NBRWINDOWS-1),
+--		-- Next Side
+--		PREVBus_IN 		=> PREVBus_intl(0),
+--		--PREVBus_IN 		=> PREVBus_intl_delay(0),
+--		NEXTBus_OUT 	=> NEXTBus_intl(NBRWINDOWS-1),
 
-		NextAddr		=> NextAddrBus(NBRWINDOWS-1),
-		PrevAddr		=> PrevAddrBus(NBRWINDOWS-1)
-		);
+--		NextAddr		=> NextAddrBus(NBRWINDOWS-1),
+--		PrevAddr		=> PrevAddrBus(NBRWINDOWS-1)
+--		);
 
-	NEXTADDR_ints : BIT_SELECTOR
-		Port map(
-		nrst 	=> CtrlBus_IxSL.SW_nRST,
-		nclr	=> ValidReal_s,
-		clk 	=> ClockBus.CLK250MHz,
-		data 	=> NextAddrBus,
-		valid 	=> NextValid_s,
-		addr 	=> NextAddr_s
-		);
+--	NEXTADDR_ints : BIT_SELECTOR
+--		Port map(
+--		nrst 	=> CtrlBus_IxSL.SW_nRST,
+--		nclr	=> ValidReal_s,
+--		clk 	=> ClockBus.CLK250MHz,
+--		data 	=> NextAddrBus,
+--		valid 	=> NextValid_s,
+--		addr 	=> NextAddr_s
+--		);
 
-	PREVADDR_ints : BIT_SELECTOR
-		Port map(
-		nrst 	=> CtrlBus_IxSL.SW_nRST,
-		nclr	=> ValidReal_s,
-		clk 	=> ClockBus.CLK250MHz,
-		data 	=> PrevAddrBus,
-		valid 	=> PREVValid_s,
-		addr 	=> PREVAddr_s
-		);
+--	PREVADDR_ints : BIT_SELECTOR
+--		Port map(
+--		nrst 	=> CtrlBus_IxSL.SW_nRST,
+--		nclr	=> ValidReal_s,
+--		clk 	=> ClockBus.CLK250MHz,
+--		data 	=> PrevAddrBus,
+--		valid 	=> PREVValid_s,
+--		addr 	=> PREVAddr_s
+--		);
 
 
 	-- wr1_en_single <= wr1_en_bus(to_integer(unsigned(OldWindowCnt)));
@@ -474,5 +486,15 @@ begin
 		AXI_Spare_DataOut 		=> AXI_Spare_DataOut,
 		AXI_Empty	=> AXI_Empty
 		);
+
+ nextAddressCnt_inst : nextAddressCnt
+        Port map(
+        clk => ClockBus.CLK250MHz,
+        rst => CtrlBus_IxSL.SW_nRST,            
+        Ctrl => ValidReal_s,
+        nextAddress => NextAddr_s,
+        nextAddressValid => NextValid_s
+        ); 
+
 
 end implementation;
