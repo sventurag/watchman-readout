@@ -77,7 +77,7 @@ set files [list \
  [file normalize "${origin_dir}/hw/src/TargetC_Control/TARGETC_Control.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayEncoder.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayDecoder.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/nextAddressCnt.vhdl"]\
+ [file normalize "${origin_dir}/hw/src/Round_Buffer/nextAddressCnt.vhd"]\
  [file normalize "${origin_dir}/hw/src/99_Packages/WindowCPU_pkg.vhd"]\
 
 
