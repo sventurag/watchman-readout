@@ -60,6 +60,77 @@ architecture Behavioral of WindowStoreV4 is
     );
 	end component aFifoV2;
 
+COMPONENT RDAD_STO_AFIFO
+  PORT (
+    rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+COMPONENT AXI_CMD_AFIFO
+  PORT (
+    rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(10 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+
+COMPONENT AXI_Time_AFIFO
+  PORT (
+    rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+COMPONENT AXI_WdoAddr_AFIFO
+  PORT (
+    rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+ COMPONENT AXI_Trig_AFIFO
+  PORT (
+    rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
 	type T_storestate is(
 		IDLE,
 		STABILIZE,
@@ -234,104 +305,206 @@ begin
 	-- end process;
 
 	-- RDAD and Storage FIFO
-	RDAD_STO_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 9,
-        ADDR_WIDTH => 4	--Maybe more ?
-    )
-    port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => RDAD_DataOut,
-        Empty_out   => RDAD_Empty,
-        ReadEn_in   => RDAD_ReadEn,
-        RClk        => ClockBus.RDAD_CLK,
+--	RDAD_STO_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 9,
+--        ADDR_WIDTH => 4	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => RDAD_DataOut,
+--        Empty_out   => RDAD_Empty,
+--        ReadEn_in   => RDAD_ReadEn,
+--        RClk        => ClockBus.RDAD_CLK,
+--        -- Writing port.
+--        Data_in     => Wdo1,
+--        Full_out    => Full_out_intl,
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK250MHz
+--    );
+
+rdad_sto_afifo_inst : RDAD_STO_AFIFO
+      PORT MAP (
+        rst => nrst,
+     --Reading port
+        dout => RDAD_DataOut,
+        empty => RDAD_Empty,
+        rd_en => RDAD_ReadEn,
+        rd_clk => ClockBus.RDAD_CLK,
+
         -- Writing port.
-        Data_in     => Wdo1,
-        Full_out    => Full_out_intl,
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
+        din => Wdo1,
+        wr_en => Full_out_intl,
+        full => WriteEn_intl,
+        wr_clk => ClockBus.CLK250MHz
 
-	-- RDAD and Storage FIFO
-	AXI_CMD_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 11,
-        ADDR_WIDTH => 5	--Maybe more ?
-    )
-    port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => AXI_Spare_DataOut,
-        Empty_out   => axi_empty_s(0),
-        ReadEn_in   => AXI_ReadEn,
-        RClk        => ClockBus.AXI_CLK,
-        -- Writing port.
-        Data_in     => Cmd_s,
-        Full_out    => axi_full_s(0),
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
+        
+      );
 
-	-- RDAD and Storage FIFO
-	AXI_Time_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 64,
-        ADDR_WIDTH => 5	--Maybe more ?
-    )
-    port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => AXI_Time_DataOut,
-        Empty_out   => axi_empty_s(1),
-        ReadEn_in   => AXI_ReadEn,
-        RClk        => ClockBus.AXI_CLK,
-        -- Writing port.
-        Data_in     => Counter,
-        Full_out    => axi_full_s(1),
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
 
-	-- RDAD and Storage FIFO
-	AXI_WdoAddr_AFIFO :  aFifoV2
-	generic map(
-		DATA_WIDTH => 9,
-		ADDR_WIDTH => 5	--Maybe more ?
-	)
-	port map (
-		rst 	=> nrst,
-		-- Reading port.
-		Data_out    => AXI_WdoAddr_DataOut,
-		Empty_out   => axi_empty_s(2),
-		ReadEn_in   => AXI_ReadEn,
-		RClk        => ClockBus.AXI_CLK,
-		-- Writing port.
-		Data_in     => Wdo1,
-		Full_out    => axi_full_s(2),
-		WriteEn_in  => WriteEn_intl,
-		WClk        => ClockBus.CLK250MHz
-	);
+--	-- RDAD and Storage FIFO
+--	AXI_CMD_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 11,
+--        ADDR_WIDTH => 5	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => AXI_Spare_DataOut,
+--        Empty_out   => axi_empty_s(0),
+--        ReadEn_in   => AXI_ReadEn,
+--        RClk        => ClockBus.AXI_CLK,
+--        -- Writing port.
+--        Data_in     => Cmd_s,
+--        Full_out    => axi_full_s(0),
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK250MHz
+--    );
 
-	-- RDAD and Storage FIFO
-	AXI_Trig_AFIFO :  aFifoV2
-	generic map(
-		DATA_WIDTH => 12,
-		ADDR_WIDTH => 5	--Maybe more ?
-	)
-	port map (
-		rst 	=> nrst,
-		-- Reading port.
-		Data_out    => AXI_TrigInfo_DataOut,
-		Empty_out   => axi_empty_s(3),
-		ReadEn_in   => AXI_ReadEn,
-		RClk        => ClockBus.AXI_CLK,
-		-- Writing port.
-		Data_in     => Trig,
-		Full_out    => axi_full_s(3),
-		WriteEn_in  => WriteEn_intl,
-		WClk        => ClockBus.CLK250MHz
-	);
+
+axi_cmd_afifo_inst: AXI_CMD_AFIFO
+  PORT MAP (
+      rst => nrst,
+ --Reading port
+    dout => AXI_Spare_DataOut,
+    empty =>  axi_empty_s(0),
+    rd_en => AXI_ReadEn,
+    rd_clk => ClockBus.AXI_CLK,
+
+    -- Writing port.
+    din => Cmd_s,
+    wr_en =>axi_full_s(0),
+    full => WriteEn_intl,
+    wr_clk => ClockBus.CLK250MHz
+    
+  );
+
+
+
+
+
+--	-- RDAD and Storage FIFO
+--	AXI_Time_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 64,
+--        ADDR_WIDTH => 5	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => AXI_Time_DataOut,
+--        Empty_out   => axi_empty_s(1),
+--        ReadEn_in   => AXI_ReadEn,
+--        RClk        => ClockBus.AXI_CLK,
+--        -- Writing port.
+--        Data_in     => Counter,
+--        Full_out    => axi_full_s(1),
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK250MHz
+--    );
+
+
+        axi_time_afifo_inst : AXI_Time_AFIFO
+              port map (
+        
+           rst => nrst,
+        --Reading port
+         dout => AXI_Time_DataOut,
+         empty =>  axi_empty_s(1),
+         rd_en => AXI_ReadEn,
+         rd_clk => ClockBus.AXI_CLK,
+        
+         -- Writing port.
+         din => Counter,
+         wr_en =>axi_full_s(1),
+         full => WriteEn_intl,
+         wr_clk => ClockBus.CLK250MHz
+         
+        );
+
+
+--	-- RDAD and Storage FIFO
+--	AXI_WdoAddr_AFIFO :  aFifoV2
+--	generic map(
+--		DATA_WIDTH => 9,
+--		ADDR_WIDTH => 5	--Maybe more ?
+--	)
+--	port map (
+--		rst 	=> nrst,
+--		-- Reading port.
+--		Data_out    => AXI_WdoAddr_DataOut,
+--		Empty_out   => axi_empty_s(2),
+--		ReadEn_in   => AXI_ReadEn,
+--		RClk        => ClockBus.AXI_CLK,
+--		-- Writing port.
+--		Data_in     => Wdo1,
+--		Full_out    => axi_full_s(2),
+--		WriteEn_in  => WriteEn_intl,
+--		WClk        => ClockBus.CLK250MHz
+--	);
+
+
+    axi_wdoaddr_afifo_inst : AXI_WdoAddr_AFIFO
+      PORT MAP (
+          
+ 
+       rst => nrst,
+             --Reading port
+      dout => AXI_WdoAddr_DataOut,
+      empty =>  axi_empty_s(2),
+      rd_en => AXI_ReadEn,
+      rd_clk => ClockBus.AXI_CLK,
+             
+              -- Writing port.
+      din => Wdo1,
+      wr_en => axi_full_s(2),
+      full => WriteEn_intl,
+      wr_clk => ClockBus.CLK250MHz
+              
+             );
+      
+
+--	-- RDAD and Storage FIFO
+--	AXI_Trig_AFIFO :  aFifoV2
+--	generic map(
+--		DATA_WIDTH => 12,
+--		ADDR_WIDTH => 5	--Maybe more ?
+--	)
+--	port map (
+--		rst 	=> nrst,
+--		-- Reading port.
+--		Data_out    => AXI_TrigInfo_DataOut,
+--		Empty_out   => axi_empty_s(3),
+--		ReadEn_in   => AXI_ReadEn,
+--		RClk        => ClockBus.AXI_CLK,
+--		-- Writing port.
+--		Data_in     => Trig,
+--		Full_out    => axi_full_s(3),
+--		WriteEn_in  => WriteEn_intl,
+--		WClk        => ClockBus.CLK250MHz
+--	);
+
+
+
+axi_trig_afifo_inst : AXI_Trig_AFIFO
+  PORT MAP (
+  
+         rst => nrst,
+               --Reading port
+        dout => AXI_TrigInfo_DataOut,
+        empty =>  axi_empty_s(3),
+        rd_en => AXI_ReadEn,
+        rd_clk => ClockBus.AXI_CLK,
+               
+                -- Writing port.
+        din => Trig,
+        wr_en => axi_full_s(3),
+        full => WriteEn_intl,
+        wr_clk => ClockBus.CLK250MHz
+                
+               );
 
 	--AXI_Empty	<=
 	AXI_empty <= '0' when axi_empty_s = "0000" else '1';
