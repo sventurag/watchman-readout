@@ -190,6 +190,7 @@ end component CPU_CONTROLLERV3;
      Port ( 
                clk : in STD_LOGIC;
                rst : in STD_LOGIC;
+               usrRst : in STD_LOGIC;
                Ctrl : in STD_LOGIC;
                nextAddress : out STD_LOGIC_vector(7 downto 0);
                nextAddressValid : out STD_LOGIC
@@ -490,7 +491,8 @@ begin
  nextAddressCnt_inst : nextAddressCnt
         Port map(
         clk => ClockBus.CLK250MHz,
-        rst => CtrlBus_IxSL.SW_nRST,            
+        rst => CtrlBus_IxSL.SW_nRST,   
+        usrRst => CtrlBus_IxSL.WindowStorage,                   
         Ctrl => ValidReal_s,
         nextAddress => NextAddr_s,
         nextAddressValid => NextValid_s
