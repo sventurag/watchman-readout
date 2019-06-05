@@ -21,10 +21,10 @@ use work.TARGETC_pkg.all;
 
 --Entity
 entity CPU_CONTROLLERV3 is
-	Generic(
+--	Generic(
 		-- NBR of windows menaing the number of CPUs
-		NBRWINDOWS : integer := 16
-	);
+--		NBRWINDOWS : integer := 16
+--	);
 	Port (
 	nrst : 			in	STD_Logic;
 
@@ -53,7 +53,7 @@ entity CPU_CONTROLLERV3 is
 	ValidData:		out std_logic;
 	ValidReal:		out std_logic;
 	--CurAddr:		out	std_logic_vector(7 downto 0);
-	RealAddrBit:		out std_logic_vector(NBRWINDOWS-1 downto 0);
+	-- RealAddrBit:		out std_logic_vector(NBRWINDOWS-1 downto 0);
 	--OldAddr:		out	std_logic_vector(7 downto 0);
 	--OldAddrBit:		out std_logic_vector(NBRWINDOWS-1 downto 0);
 
@@ -661,7 +661,7 @@ begin
 			RealTimeAddr <= (others => '0');
 			-- Init the CPUs
 			CurAddr_s <= (others => '0');
-			RealAddrBit <= (0 => '1', others => '0');
+		--	RealAddrBit <= (0 => '1', others => '0');
 
 			--OldAddr_intl <= x"FF";
 			--OldAddrBit <= (255 => '1', others => '0');
@@ -684,8 +684,8 @@ begin
 						if NextValid_in = '1' then
 							validReal_s <= '0';
 							RealTimeAddr <= NextAddr_in;
-							RealAddrBit <= (others => '0');
-							RealAddrBit(to_integer(unsigned(NextAddr_in))) <= '1';
+		--					RealAddrBit <= (others => '0');
+		--					RealAddrBit(to_integer(unsigned(NextAddr_in))) <= '1';
 						end if;
 
 
@@ -753,7 +753,7 @@ begin
 	--Update TARGET C pins
 	WR_RS_S <= CurAddr_s(1 downto 0);
 	WR_CS_S <= CurAddr_s(7 downto 2);
-
+-----------------------------------------------------------------------------------------WR_CS_S
 
 
     -- Digitizing and Storage FIFO
@@ -909,23 +909,29 @@ begin
 
 								--Ctrl_OldAddr_intl <= OldAddr_intl;
 
-								if FstWindow512(0) = '0' then
+								if FstWindow512(0) = '0' then                              --  If the window number is even
 
 									--Optimization for LUT reduction
 									--if CntWindow512 = "000000001" then
-									if Cmp_s = '1' then
+									if Cmp_s = '1' then  --                                   If not the last one
 										-- CTRL_CPUBUS.cmd <= CMD_WR1_MARKED;
 										-- CTRL_CPUBUS.addr <= OldAddr_intl;
 										--CTRL_CPUBUS <= CMD_WR1_MARKED & OldAddr_intl;
-										CTRL_CPUBUS(10 downto 8) <= CMD_WR1_MARKED;
-										CntWindow512 <= std_logic_vector(unsigned(CntWindow512) - 1);
+										
+	--									CTRL_CPUBUS(10 downto 8) <= CMD_WR1_MARKED;
+									    CTRL_CPUBUS(10 downto 8) <= CMD_WR1_MARKED;                      
+
+										CntWindow512 <= std_logic_vector(unsigned(CntWindow512) - 1);              ---Count just one
 									else
 										-- CTRL_CPUBUS.cmd <= CMD_BOTH_MARKED;
 										-- CTRL_CPUBUS.addr <= OldAddr_intl;
-
 										--CTRL_CPUBUS <= CMD_BOTH_MARKED & OldAddr_intl;
+										
+										
+--										CTRL_CPUBUS(10 downto 8) <= CMD_BOTH_MARKED;
 										CTRL_CPUBUS(10 downto 8) <= CMD_BOTH_MARKED;
-										CntWindow512 <= std_logic_vector(unsigned(CntWindow512) - 2);
+
+										CntWindow512 <= std_logic_vector(unsigned(CntWindow512) - 2);                 -- Count two 
 									end if;
 								else
 
@@ -933,7 +939,12 @@ begin
 									-- CTRL_CPUBUS.cmd <= CMD_WR2_MARKED;
 									-- CTRL_CPUBUS.addr <= OldAddr_intl;
 									--CTRL_CPUBUS <= CMD_WR2_MARKED & OldAddr_intl;
+									
+									
+--									CTRL_CPUBUS(10 downto 8) <= CMD_WR2_MARKED;
 									CTRL_CPUBUS(10 downto 8) <= CMD_WR2_MARKED;
+
+
 									CntWindow512 <= std_logic_vector(unsigned(CntWindow512) - 1);
 
 								end if;
@@ -958,7 +969,7 @@ begin
 								if (valid_1dly = '1') then
 								--Ctrl_OldAddr_intl <= OldAddr_intl;
 
-									if Cmp_s = '1' then
+									if Cmp_s = '1' then                                        --- if it is the last window
 										-- CTRL_CPUBUS.cmd <= CMD_WR1_MARKED;
 										-- CTRL_CPUBUS.addr <= OldAddr_intl;
 										--CTRL_CPUBUS <= CMD_WR1_MARKED & OldAddr_intl;
@@ -969,7 +980,7 @@ begin
 										CTRL_CPUBUS(10 downto 8) <= CMD_BOTH_MARKED;
 										CntWindow512 <= std_logic_vector(unsigned(CntWindow512) - 2);
 									end if;
-									CTRL_CPUBUS(7 downto 0) <= OldAddr_intl;
+									CTRL_CPUBUS(7 downto 0) <= OldAddr_intl;     
 									storage_stm <= STABLE_MARK;
 								else
 									--CTRL_CPUBUS <= CMD_NOP & x"00";
