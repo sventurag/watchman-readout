@@ -6,9 +6,9 @@ use work.TARGETC_pkg.all;
 use work.WindowCPU_pkg.all;
 
 entity WindowStoreV4 is
-	Generic(
-		NBRWINDOWS : integer := 16
-	);
+--	Generic(
+--		NBRWINDOWS : integer := 16
+--	);
 	Port (
 	nrst : 			in	std_Logic;
 	ClockBus:		in T_ClockBus;
