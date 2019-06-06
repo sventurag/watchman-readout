@@ -28,6 +28,11 @@ extern volatile bool flag_ttcps_timer;
 extern volatile bool flag_scu_timer;
 /** @brief Instance of the device watchdog */
 extern XScuWdt WdtScuInstance;
+/** Value from the GUI for first window   */
+extern int fstWindowValue;
+
+/** Value from the GUI for the number of windows   */
+extern int nmbrWindows;
 
 /****************************************************************************/
 /**
@@ -41,7 +46,7 @@ extern XScuWdt WdtScuInstance;
 *
 ****************************************************************************/
 int get_15_windows_fct(void){
-	int window_start, window_nbr;
+	int window_start;
 	int timeout;
 	int window,i,j,index;
 	uint16_t data_tmp;
@@ -56,24 +61,26 @@ int get_15_windows_fct(void){
 	tmp_ptr->previous = NULL;
 
 	/* First window */
-	window_start = 0;
+	window_start = fstWindowValue;
+
 	/* Number of windows */
-	window_nbr = 15;
+	//nmbrWindows = 16;
 
 	/* Give the element's address to the DMA */
 	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 	/* Initiate transfer and measure */
-	regptr[TC_FSTWINDOW_REG] = window_start;
-	regptr[TC_NBRWINDOW_REG] = window_nbr;
+	regptr[TC_FSTWINDOW_REG] = fstWindowValue;
+	regptr[TC_NBRWINDOW_REG] = nmbrWindows;
 	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 	ControlRegisterWrite(WINDOW_MASK,ENABLE);
 	usleep(50);
 	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
 
-	for(window =0; window<window_nbr; window++){
-		if(window != 0) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	for(window =window_start ; window<nmbrWindows+window_start; window++){
+
+		if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 		/* Wait on DMA transfer to be done */
 		timeout = 200000; // Timeout of 10 sec
@@ -100,8 +107,11 @@ int get_15_windows_fct(void){
 			timeout--;
 		}while(timeout && !flag_axidma_rx_done);
 
+
+
 		/* Update the cache with the data written by the DMA */
 		Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	//	printf("window = %d | wdo_id = %d\r\n", window, (uint)tmp_ptr->data.data_struct.wdo_id);
 
 		/* DMA did not respond */
 		if(timeout <= 0){
@@ -159,4 +169,165 @@ int get_15_windows_fct(void){
 
 	return XST_SUCCESS;
 }
+/****************************************************************************/
+/**
+* @brief	Recover 20 consecutive windows and send them to the computer RAW
+*
+* @param	-
+*
+* @return	XST_SUCCESS or XST_FAILURE (defined in xstatus.h)
+*
+* @note		-
+*
+****************************************************************************/
+int get_15_windows_raw(void){
+	int window_start;
+	int timeout;
+	int window,i,j,index;
+	uint16_t data_tmp;
+
+	/* Create an element for the DMA */
+	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
+	if(!tmp_ptr){
+		printf("malloc for tmp_ptr failed in function, %s!\r\n", __func__);
+		return XST_FAILURE;
+	}
+	tmp_ptr->next = NULL;
+	tmp_ptr->previous = NULL;
+
+	/* First window */
+	window_start = fstWindowValue;
+
+	/* Number of windows */
+	//nmbrWindows = 16;
+
+	/* Give the element's address to the DMA */
+	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+
+	/* Initiate transfer and measure */
+	regptr[TC_FSTWINDOW_REG] = fstWindowValue;
+	regptr[TC_NBRWINDOW_REG] = nmbrWindows;
+	ControlRegisterWrite(SMODE_MASK ,ENABLE);
+	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
+	ControlRegisterWrite(WINDOW_MASK,ENABLE);
+	usleep(50);
+	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+
+	for(window =window_start ; window<nmbrWindows+window_start; window++){
+
+		if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+
+		/* Wait on DMA transfer to be done */
+		timeout = 200000; // Timeout of 10 sec
+		do{
+			/* If needed, update timefile */
+			if(flag_ttcps_timer){
+				update_timefile();
+				flag_ttcps_timer = false;
+			}
+
+			/* If needed, reload watchdog's counter */
+			if(flag_scu_timer){
+				XScuWdt_RestartWdt(&WdtScuInstance);
+				flag_scu_timer = false;
+			}
+
+			/* The DMA had a problem */
+			if(flag_axidma_error){
+				printf("Error with DMA interrupt: TPG !\r\n");
+				return XST_FAILURE;
+			}
+
+			usleep(50);
+			timeout--;
+		}while(timeout && !flag_axidma_rx_done);
+
+
+
+		/* Update the cache with the data written by the DMA */
+		Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	//	printf("window = %d | wdo_id = %d\r\n", window, (uint)tmp_ptr->data.data_struct.wdo_id);
+
+		/* DMA did not respond */
+		if(timeout <= 0){
+			printf("\r\nwindow = %d\r\n", window);
+			printf("wdo_time: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time);
+			printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
+			printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
+			printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
+			for(j=0; j<32; j++){
+				for(i=0; i<16; i++){
+					printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
+				}
+				printf("\r\n");
+			}
+			printf("Timeout on window %d: get 20 windows failed!\r\n", window);
+			return XST_FAILURE;
+		}
+		else flag_axidma_rx_done = false;
+
+		/* Test the returned values */
+		if(tmp_ptr->data.data_struct.wdo_id != window){
+			printf("window id is wrong! window = %d | wdo_id = %d\r\n", window, (uint)tmp_ptr->data.data_struct.wdo_id);
+			return XST_FAILURE;
+		}
+		else{
+			/* If data valid, send them to computer */
+			index = 0;
+			frame_buf[index++] = 0x55;
+			frame_buf[index++] = 0xAA;
+			frame_buf[index++] = (char)window;
+			frame_buf[index++] = (char)(window >> 8);
+			//printf("\r\n window = %d\r\n",window);
+			for(i=0; i<16; i++){
+				for(j=0; j<32; j++){
+					/* Pedestal subtraction */
+					data_tmp = (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);
+					/* Transfer function correction */
+					if(data_tmp > 2047) data_tmp = 2047;
+					frame_buf[index++] = (char)data_tmp;
+					frame_buf[index++] = (char)(data_tmp) >> 8;
+
+					//frame_buf[index++] = (char)lookup_table[data_tmp];
+					// frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
+
+					 //printf("%d ", lookup_table[data_tmp]);
+				}
+				//printf("\r\n");
+			}
+			//printf("\r\n");
+			frame_buf[index++] = 0x33;
+			frame_buf[index++] = 0xCC;
+			transfer_data(frame_buf, index);
+		}
+		/* Release the DMA */
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+	}
+
+	free(tmp_ptr);
+
+	return XST_SUCCESS;
+}
+
+/*
+**************************************************************************
+*
+* @brief	512 Windows for the entire TARGETC buffer
+*
+* @param	-
+*
+* @return	XST_SUCCESS or XST_FAILURE (defined in xstatus.h)
+*
+* @note		-
+*
+***************************************************************************
+
+
+int get_512_windows_raw(void){
+
+	 get_15_windows()==XST_SUCCESS)
+
+		for(j=0; j<511; j+=4){
+
+			get_15_windows()==XST_SUCCESS)*/
 
