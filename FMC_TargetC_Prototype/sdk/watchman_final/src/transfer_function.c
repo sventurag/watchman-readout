@@ -157,8 +157,8 @@ int init_transfer_function(void){
 //	printf("%.17g]\r\n", data_tmp[10]);
 	/* Prepare data for polynomial fitting */
 	for(int i=range_min; i<range_max; i++) DataX.element[i-range_min] = data_tmp[i];
-	DataX.size = range_max-range_min;
-	DataY.size = range_max-range_min;
+	DataX.size = range_max-range_min;// 6
+	DataY.size = range_max-range_min; // 6
 	for(int i=range_min; i<range_max; i++) DataY.element[i-range_min] = i*0.25;
 //	printf("DataX:\r\n[");
 //	for(int i=0; i<(DataX.size-1); i++) printf("%.17g, ", DataX.element[i]);
