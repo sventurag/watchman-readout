@@ -7,16 +7,16 @@ based on https://github.com/samdejong86/Agilent33600
 import visa
 from time import sleep
 
-class waveform_gen_33600(object):
+class wave_gen(object):
     def __init__(self):
         self.address =  "192.168.153.214"
         #load the VISA resource manager
         rm = visa.ResourceManager('@py')
         
         #connect to the device
-        inst = rm.open_resource("TCPIP::"+address+"::INSTR")
+        self.inst = rm.open_resource("TCPIP::"+self.address+"::INSTR")
         
-        print(inst.query("*IDN?"))
+        print(self.inst.query("*IDN?"))
  
     def Output1(self,out=True):
         if out == True:
@@ -25,31 +25,31 @@ class waveform_gen_33600(object):
             cmd = "OUTPUT1 OFF"
             
         message="Controlling\nRemotely"
-        inst.write("DISP:TEXT '"+message+"'")
+        self.inst.write("DISP:TEXT '"+message+"'")
         
         #sent commands to device
-        inst.write(cmd)
+        self.inst.write(cmd)
         print(cmd)
         #
         #clear message
-        inst.write("DISP:TEXT ''")
+        self.inst.write("DISP:TEXT ''")
         #close device connection
-        inst.close()
+        self.inst.close()
     
     def trigDelay(self,trig_delay):
         cmd = "TRIG1:DEL {:.9f}".format(trig_delay)
         
         message="Controlling\nRemotely"
-        inst.write("DISP:TEXT '"+message+"'")
+        self.inst.write("DISP:TEXT '"+message+"'")
         
         #sent commands to device
         
-        inst.write(cmd)
+        self.inst.write(cmd)
         print(cmd)
         
         #clear message
-        inst.write("DISP:TEXT ''")
+        self.inst.write("DISP:TEXT ''")
         
         #close device connection
-        inst.close()
+        self.inst.close()
     

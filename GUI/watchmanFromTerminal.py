@@ -10,7 +10,8 @@ import binary2text as b2t
 import numpy as np
 #from watchman_nogui import Watchman_main_window
 import matplotlib.pyplot as plt
-from waveform_gen_33600 import Output1, trigDelay
+import waveform_gen_33600 as wv_gen
+from waveform_gen_33600 import wave_gen
 
     ## Socket object used to established the UDP connection with the zynq
 def init_UDP_connection_data():
@@ -265,31 +266,31 @@ def get_512_windows(nmbrWindows):
 
 #############################################
 
-Output1(out=False)
+wave_gen().Output1(out=False)
 nmbrWindows = 4
 pedestalVoltage = 1
 pedestalNmbrWindows= nmbrWindows
 send_command(9)
 time.sleep(5)
 
-Output1(out=True)
+wave_gen().Output1(out=True)
 
 Windows512 = np.zeros((512*32))
 Windows512_delays= list()
 
-delays = list((range(9,10,1)))
+delays = list((range(0,2,1)))
 #delays = list((range(1)))
 
 #Windows512_delays.append(delays)
 
 for i in delays:
-   trigDelay(i*2*.000000001)
+   wave_gen().trigDelay(i*2*.000000001)
    time.sleep(2)
    Windows512 = get_512_windows(nmbrWindows)      
    Windows512_delays.append(Windows512)
    time.sleep(1)
 
 
-np.savetxt('/home/idlab-52/data/Windows15_delays_amplifier_targetC_Adrian2_w9_ful.txt', np.array(Windows512_delays).T)
-Output1(out=False)
+np.savetxt('/home/idlab-52/data/Windows15_delays_test.txt', np.array(Windows512_delays).T)
+wave_gen().Output1(out=False)
 
