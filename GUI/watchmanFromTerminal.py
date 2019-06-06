@@ -10,7 +10,6 @@ import binary2text as b2t
 import numpy as np
 #from watchman_nogui import Watchman_main_window
 import matplotlib.pyplot as plt
-from AgilentControl_def import trigDelay, Output1
 from waveform_gen_33600 import Output1, trigDelay
 
     ## Socket object used to established the UDP connection with the zynq
