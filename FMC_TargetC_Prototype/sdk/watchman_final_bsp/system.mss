@@ -6,6 +6,7 @@ BEGIN OS
  PARAMETER OS_NAME = standalone
  PARAMETER OS_VER = 6.7
  PARAMETER PROC_INSTANCE = ps7_cortexa9_0
+ PARAMETER sleep_timer = ps7_globaltimer_0
  PARAMETER stdin = ps7_uart_1
  PARAMETER stdout = ps7_uart_1
 END
@@ -241,6 +242,13 @@ BEGIN LIBRARY
  PARAMETER PROC_INSTANCE = ps7_cortexa9_0
  PARAMETER dhcp_does_arp_check = true
  PARAMETER lwip_dhcp = true
+ PARAMETER mem_size = 262144
+ PARAMETER memp_n_pbuf = 1024
+ PARAMETER memp_n_tcp_seg = 1024
+ PARAMETER n_rx_descriptors = 256
+ PARAMETER n_tx_descriptors = 256
+ PARAMETER pbuf_pool_size = 8192
+ PARAMETER temac_use_jumbo_frames = true
 END
 
 

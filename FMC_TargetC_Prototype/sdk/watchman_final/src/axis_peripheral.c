@@ -255,6 +255,7 @@ int test_TPG(void){
 
 	/* Update the cache with the data written by the DMA */
 	Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+    printf("window id= %d\r\n",(uint)tmp_ptr->data.data_struct.wdo_id);
 
 	/* Test the returned values */
 	if(tmp_ptr->data.data_struct.wdo_id == 10){
