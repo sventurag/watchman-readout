@@ -305,6 +305,7 @@ int get_15_windows_raw(void){
 	}
 
 	free(tmp_ptr);
+	// test git from sdk
 
 	return XST_SUCCESS;
 }
