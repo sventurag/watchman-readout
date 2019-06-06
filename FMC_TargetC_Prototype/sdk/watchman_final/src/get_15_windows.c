@@ -306,8 +306,6 @@ int get_15_windows_raw(void){
 
 	free(tmp_ptr);
 
-	//checking commit
-
 	return XST_SUCCESS;
 }
 
