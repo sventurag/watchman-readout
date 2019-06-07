@@ -16,7 +16,7 @@ class wave_gen(object):
         #connect to the device
         self.inst = rm.open_resource("TCPIP::"+self.address+"::INSTR")
         
-        print(self.inst.query("*IDN?"))
+#        print(self.inst.query("*IDN?"))
  
     def Output1(self,out=True):
         if out == True:

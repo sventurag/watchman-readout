@@ -5,14 +5,13 @@ import sys
 import socket
 import optparse
 import random
-import receive
 import binary2text as b2t
 import numpy as np
 #from watchman_nogui import Watchman_main_window
 import matplotlib.pyplot as plt
 import waveform_gen_33600 as wv_gen
 from waveform_gen_33600 import wave_gen
-
+import os
     ## Socket object used to established the UDP connection with the zynq
 def init_UDP_connection_data():
     global sock_data
@@ -242,7 +241,7 @@ def get_512_windows(nmbrWindows):
     
     WindowsData = list()
     regValue=0
-    for j in range(0,511,nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windows
+    for j in range(0,28,nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windows
         WindowsData_toSave= np.zeros((32*nmbrWindows))
         # for i in range(0,nmbrAvg,1):
         regValue= j
@@ -260,8 +259,7 @@ def get_512_windows(nmbrWindows):
     #print(avgWindowsData[0:5])
     flatWindowsData = [item for sublist in WindowsData for item in sublist   ]
     windowsData= windowsData*0
-    #np.savetxt('/home/idlab-52/data/avg.txt', np.transpose(WindowsData)  )
-    np.savetxt('/home/idlab-52/data/avg255.txt', np.array(flatWindowsData).T)
+#    np.savetxt('/home/idlab-52/data/avg255.txt', np.array(flatWindowsData).T)
     return flatWindowsData 
 
 #############################################
@@ -278,7 +276,7 @@ wave_gen().Output1(out=True)
 Windows512 = np.zeros((512*32))
 Windows512_delays= list()
 
-delays = list((range(0,2,1)))
+delays = list((range(0,25,1)))
 #delays = list((range(1)))
 
 #Windows512_delays.append(delays)
@@ -291,6 +289,6 @@ for i in delays:
    time.sleep(1)
 
 
-np.savetxt('/home/idlab-52/data/Windows15_delays_test.txt', np.array(Windows512_delays).T)
+np.savetxt(os.path.abspath('./data/test.txt'), np.array(Windows512_delays).T)
 wave_gen().Output1(out=False)
 
