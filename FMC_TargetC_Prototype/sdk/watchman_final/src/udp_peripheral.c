@@ -35,6 +35,9 @@ extern volatile bool get_transfer_fct_flag;
 /** @brief Flag raised when the user send the command "get 20 windows" */
 extern volatile bool get_20_windows_flag;
 /** @brief Array containing registers of AXI-lite */
+/** @brief Flag raised when a pedestal value is required by the user */
+extern volatile bool pedestal_flag;
+
 extern int* regptr;
 /** @brief Buffer used to send the command (50 bytes above it reserved for protocol header) */
 extern char* frame_buf_cmd;
@@ -48,6 +51,13 @@ extern volatile bool simul_err_function_prob_flag;
 extern volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 extern volatile bool simul_err_assertion_flag;
+
+
+/** Value from the GUI for first window   */
+extern int fstWindowValue;
+
+/** Value from the GUI for the number of windows   */
+extern int nmbrWindows;
 
 /****************************************************************************/
 /**
@@ -159,6 +169,10 @@ int command_parser(struct pbuf *p, char* return_buf){
 	int i, regID;
 	time_cplt offset_time;
 	int regVal;
+	int regVal_one_reg;
+	int regID_one_reg;
+	int pedestaVoltage;
+	int pedestalNmbrWindows;
 
 	while((start < (length-1)) && (flag_start == false)){
 		if((payload[start] == 0x55) && (payload[start+1] == 0xAA)) flag_start = true;
@@ -178,13 +192,21 @@ int command_parser(struct pbuf *p, char* return_buf){
 				if(start + 4 + 2*REGMAP_SIZE_UDP == end){
 					regID = 1;
 					for(i = 4; i < (4 + 2*REGMAP_SIZE_UDP); i += 2){
-						if(regID <= TC_MISCDIG_REG || regID == TC_TPG_REG){
+				//		if(regID <= TC_MISCDIG_REG || regID == TC_TPG_REG){
+						if(regID <= 127){
 							regVal = payload[i]*256 + payload[i+1];
-							WriteRegister(regID, regVal);
+				//			WriteRegister(regID, regVal);
+							WriteRegister(TC_FSTWINDOW_REG, regVal);
+
 						}
+
 						regID++;
 					}
+					fstWindowValue = regVal;
 					xil_printf("Command write_all_reg received\r\n");
+	//				xil_printf("regVal = %d\r\n", regVal);
+					xil_printf("FSTWINDOW = %d\r\n", regptr[151]);
+
 					return 6;
 				}
 				else return -1;
@@ -251,7 +273,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				break;
 			case 6: // get data for the transfer function
 				if(start + 4 == end){
-					xil_printf("Command get_transfer_fct received\r\n");
+					//xil_printf("Command get_transfer_fct received\r\n");
 					get_transfer_fct_flag = true;
 					return 6;
 				}
@@ -259,13 +281,48 @@ int command_parser(struct pbuf *p, char* return_buf){
 				break;
 			case 7: // get 15 windows
 				if(start + 4 == end){
-					xil_printf("Command get_15_windows received\r\n");
+				//	xil_printf("Command get_15_windows received\r\n");
 					get_20_windows_flag = true;
 					return 6;
 				}
 				else return -1;
 				break;
-			case 8:	// error watchdog asked
+			case 8: // cmd write ONE reg.
+				if(start + 4 + 3 == end){
+					i = 4;
+				    regID_one_reg = payload[i];
+	//				regVal = payload[i]*256 + payload[i+1];
+				    regVal_one_reg = payload[i+1]*256 + payload[i+2];
+			//        xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
+				//    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
+				    if(regID_one_reg <= TC_FSTWINDOW_REG){
+				    	fstWindowValue = regVal_one_reg;
+				         }
+				    else if(regID_one_reg <= TC_NBRWINDOW_REG){
+				    	nmbrWindows = regVal_one_reg;
+								         }
+					return 6;
+					}
+
+				      else return -1;
+										break;
+
+			case 9:	// Pedestal
+				if(start + 4 + 2 == end){
+					i = 4;
+					pedestaVoltage = payload[i];
+					pedestalNmbrWindows = payload[i+1];
+					xil_printf("pedestaVoltage = %d\r\n", pedestaVoltage);
+					xil_printf("pedestalNmbrWindows = %d\r\n", pedestalNmbrWindows);
+					pedestal_flag = true;
+
+					return 6;
+					}
+
+						else return -1;
+						break;
+
+			case 10:	// error watchdog asked
 				if(start + 4 == end){
 					xil_printf("Command err_watchdog received\r\n");
 					simul_err_watchdog_flag = true;
@@ -273,7 +330,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 9:	// error function problem asked
+			case 11:	// error function problem asked
 				if(start + 4 == end){
 					xil_printf("Command err_function_prob received\r\n");
 					simul_err_function_prob_flag = true;
@@ -281,7 +338,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 10:	// error exception asked
+			case 12:	// error exception asked
 				if(start + 4 == end){
 					xil_printf("Command err_exception received\r\n");
 					simul_err_exception_flag = true;
@@ -289,7 +346,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 11:	// error assertion asked
+			case 13:	// error assertion asked
 				if(start + 4 == end){
 					xil_printf("Command err_assertion received\r\n");
 					simul_err_assertion_flag = true;
@@ -297,6 +354,11 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
+
+
+
+
+
 			default:
 				return -1;
 
