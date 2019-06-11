@@ -131,13 +131,23 @@ entity TARGET_C_TopLevel_System is
 		-- Interrupt SIGNALS
 		SSVALID_INTR:	out	std_logic;
 
+
+
 		-- DEBUG OUTPUTs
 		BB1 :	out std_logic;
 		BB2 :	out std_logic;
 		BB3 :	out std_logic;
 		BB4 :	out std_logic;
 		BB5 :	out std_logic
+	
+	
+		
 	);
+	
+	
+	     
+	      
+	      
 end TARGET_C_TopLevel_System;
 
 -------------------------------------------------------
@@ -226,9 +236,9 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 	end component TARGETX_DAC_CONTROL;
 
 	component RoundBufferV6 is
-		generic(
-			NBRWINDOWS : integer := 128
-		);
+--		generic(
+--			NBRWINDOWS : integer := 128
+--		);
 		port(
 			--nrst : 			in	std_Logic;
 			ClockBus:		in T_ClockBus;
@@ -260,7 +270,11 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 			-- FIFO IN for Digiting
 		    DIG_Full	: out	std_logic;
 		    DIG_DataIn	: in	std_logic_vector(8 downto 0);
-		    DIG_WriteEn	: in	std_logic
+		    DIG_WriteEn	: in	std_logic;
+		   
+	    -- Signal for trigger the acquisition for debugging
+		    address_is_zero_out : out std_logic
+		 
 		);
 	end component RoundBufferV6;
 
@@ -472,7 +486,9 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 	signal MONTIMING_s : std_logic;
 	signal Debug_intl : std_logic_vector(7 downto 0);
 	signal Debug_RoundBuffer : std_logic_vector(7 downto 0);
-
+    -- Signal for trigger the acquisition for debugging
+    
+    signal address_is_zero_intl :  std_logic;
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -568,9 +584,9 @@ begin
 	);
 
 	TC_RoundBuffer : RoundBufferV6
-		generic map(
-			NBRWINDOWS => 256
-		)
+--		generic map(
+--			NBRWINDOWS => 256
+--		)
 		port map(
 			--nrst 		=> CtrlBusOut_intl.SW_nRST,
 			ClockBus	=> 	ClockBus_intl,
@@ -602,7 +618,10 @@ begin
 			-- FIFO IN for Digiting
 			DIG_Full	=> DIG_Full_intl,
 			DIG_DataIn	=> DIG_DataIn_intl,
-			DIG_WriteEn	=> DIG_WriteEn_intl
+			DIG_WriteEn	=> DIG_WriteEn_intl,
+			
+	  -- Signal for trigger the acquisition for debugging
+            address_is_zero_out => address_is_zero_intl
 		);
 
 	TC_RDAD_WL_SS :	 TARGETC_RDAD_WL_SMPL
@@ -773,11 +792,60 @@ begin
 
 	TestStream <= CtrlBusOut_intl.TestStream;
 
-	-- Debug pins
+
+ -- Debug pins
+
+-- For triggering a signal every time WR_CS and WR_RS are equal to zero 
+
+
+-- Debug pins
+
+process (WR_CS_S_intl, WR_RS_S_intl)
+begin
+      if (WR_CS_S_intl = "000000" and WR_RS_S_intl= "00") then
+              BB2 <= '0';
+      else
+              BB2 <= '1';
+      end if;
+end process;
+
+
+
+
+
+
+
+process (address_is_zero_intl)
+begin
+	if (address_is_zero_intl = '1' ) then
+		BB3 <= '0';
+--		BB2 <= '0';
+	else
+		BB3 <= '1';
+	--	BB2 <= '1';
+	end if;
+end process;
+
+	
 	BB1 <= ClockBus_intl.SSTIN;
-	BB2 <= DO(0);
-	BB3 <= CtrlBusIn_intl.RAMP_CNT;
+   -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 	BB4 <= CtrlBusIn_intl.SSvalid;
 	BB5 <= MONTIMING_s;
+
+
+
+
+
+
+
+--	-- Debug pins
+--	BB1 <= ClockBus_intl.SSTIN;
+----	BB2 <= DO(0);
+--	BB3 <= CtrlBusIn_intl.RAMP_CNT;
+--	BB4 <= CtrlBusIn_intl.SSvalid;
+--	BB5 <= MONTIMING_s;
+
+
+
 
 end arch_imp;
