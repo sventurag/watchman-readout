@@ -107,6 +107,11 @@
 #define TC_CMPBIASIN_REG		91
 /** @brief  Miscellanous register */
 #define TC_MISCDIG_REG			92
+
+/** @brief  Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge) */
+#define TC_Delay_UpdateWR		93
+
+
 /** @brief  Test pattern generator Register */
 #define TC_TPG_REG				128
 

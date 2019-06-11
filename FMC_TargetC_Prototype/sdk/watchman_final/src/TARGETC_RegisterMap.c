@@ -40,7 +40,7 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_WR2_ADDR_TE_REG,	6);
 
 	WriteRegister(TC_WR_STRB1_LE_REG,	25);
-	WriteRegister(TC_WR_STRB1_TE_REG,	10);
+	WriteRegister(TC_WR_STRB1_TE_REG,	27); //
 
 	WriteRegister(TC_WR1_ADDR_LE_REG,	55);
 	WriteRegister(TC_WR1_ADDR_TE_REG,	6);

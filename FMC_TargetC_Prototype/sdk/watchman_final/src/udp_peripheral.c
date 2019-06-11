@@ -59,6 +59,10 @@ extern int fstWindowValue;
 /** Value from the GUI for the number of windows   */
 extern int nmbrWindows;
 
+/** Value from the GUI for delay in update WR   */
+extern int  delay_UpdateWR;
+
+
 /****************************************************************************/
 /**
 * @brief	Send a frame trought UDP
@@ -300,7 +304,10 @@ int command_parser(struct pbuf *p, char* return_buf){
 				         }
 				    else if(regID_one_reg <= TC_NBRWINDOW_REG){
 				    	nmbrWindows = regVal_one_reg;
-								         }
+				   			         }
+				    else if(regID_one_reg <= TC_Delay_UpdateWR){
+				    	delay_UpdateWR = regVal_one_reg;
+				  				   			         }
 					return 6;
 					}
 
