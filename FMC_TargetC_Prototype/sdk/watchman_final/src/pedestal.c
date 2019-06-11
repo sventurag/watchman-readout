@@ -36,12 +36,16 @@ extern XScuWdt WdtScuInstance;
 *
 ****************************************************************************/
 int init_pedestals(void){
-	uint64_t sqr_val[2][16][32];
-	double rms[2][16][32];
-	uint32_t data[2][16][32];
+
+	uint64_t sqr_val[4][16][32];
+	//double rms[4][16][32];
+	uint32_t data[4][16][32];
 	int window, window_index;
 	int timeout;
-	int i,j,count,pair;
+	int i,j,count,pair, nmbrwindows;
+	int ped_sample;
+	int ped_channel;
+	int avg = 20;
 
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
@@ -51,10 +55,10 @@ int init_pedestals(void){
 	}
 	tmp_ptr->next = NULL;
 	tmp_ptr->previous = NULL;
-
+    nmbrwindows = 4;
 	/* To avoid small offset problem , read window by pair, so the address change every time */
-	for(window_index=0; window_index<512; window_index+=2){
-		for(pair=0; pair<2; pair++){
+	for(window_index=0; window_index<512; window_index+=nmbrwindows){
+		for(pair=0; pair<nmbrwindows; pair++){
 			for(i=0; i<16; i++){
 				for(j=0; j<32; j++){
 					data[pair][i][j] = 0;
@@ -62,10 +66,10 @@ int init_pedestals(void){
 				}
 			}
 		}
-		for(count=0; count<10; count++){
-			window = window_index;
-			for(pair=0; pair<2; pair++){		// do the pedestal on pair of window to avoid the small offset
-				window += pair;
+		for(count=0; count< avg; count++){
+			//window = window_index;
+			for(pair=0; pair<nmbrwindows; pair++){		// do the pedestal on pair of window to avoid the small offset
+				window =  window_index + pair;
 				/* Give the element's address to the DMA */
 				XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
@@ -125,8 +129,10 @@ int init_pedestals(void){
 				}
 				else flag_axidma_rx_done = false;
 
+    //           printf("window id= %d\r\n",(uint)tmp_ptr->data.data_struct.wdo_id);
+
 				/* Test the returned values */
-				if(tmp_ptr->data.data_struct.wdo_id != window){
+                if(tmp_ptr->data.data_struct.wdo_id != window){
 					printf("window id is wrong! window = %d | wdo_id = %d | pair = %d | count = %d\r\n", window, (uint)tmp_ptr->data.data_struct.wdo_id, pair, count);
 					return XST_FAILURE;
 				}
@@ -144,15 +150,15 @@ int init_pedestals(void){
 			}
 		}
 
-		window = window_index;
-		for(pair=0; pair<2; pair++){
-			window += pair;
+		//window = window_index;
+		for(pair=0; pair<nmbrwindows; pair++){
+			window = window_index + pair;
 			for(i=0; i<16; i++){
 				for(j=0; j<32; j++){
-					/* Divide the average by 10 to have the pedestal value */
-					pedestal[window][i][j]= data[pair][i][j]/10;
-					sqr_val[pair][i][j] = sqr_val[pair][i][j]/10;
-					rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
+					/* Divide the average by avg to have the pedestal value */
+					pedestal[window][i][j]= data[pair][i][j]/avg;
+					sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
+				//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
 					//printf("%d, ",pedestal[window][i][j]);
 				}
 			}
@@ -165,6 +171,18 @@ int init_pedestals(void){
 //			}
 		}
 	}
+
+	for (ped_channel = 0; ped_channel <16; ped_channel++ ){
+        printf("channel = %d,", ped_channel);
+		for (ped_sample=0; ped_sample<32; ped_sample++ ){
+			printf("%d,",pedestal[0][ped_channel][ped_sample]);
+
+		}
+		printf("\r\n");
+
+	}
+
+
 	free(tmp_ptr);
 
 	return XST_SUCCESS;

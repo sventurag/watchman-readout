@@ -49,6 +49,12 @@ extern int* regptr;
 extern volatile bool get_transfer_fct_flag;
 /** @brief Flag raised when the user send the command "get 20 windows" */
 extern volatile bool get_20_windows_flag;
+
+
+/** @brief Flag raised when a pedestal value is required by the user */
+extern volatile bool pedestal_flag;
+
+
 /** @brief Flag true when the list is empty (first_element = last_element) */
 extern volatile bool empty_flag;
 /** @brief Pointer on the first element of the list used in trigger mode */
@@ -92,6 +98,7 @@ typedef enum dma_stm_enum{
 	STREAM,				/**< System in mode streaming */
 	GET_TRANSFER_FCT, 	/**< System sending the data for the transfer function in response to the corresponding command */
 	GET_15_WINDOWS,		/**< System sending the data 15 consecutive windows in response to the corresponding command */
+	GET_PEDESTAL,      /**< System getting the pedestal for an specific voltage and nmbr of windows, data saved into the pedestal variable */
 } dma_stm_en;
 
 
@@ -316,6 +323,10 @@ int main()
 					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
 					state_main = GET_15_WINDOWS;
 				}
+				if(pedestal_flag && (!stream_flag) && empty_flag){
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+					state_main = GET_PEDESTAL;
+				}
 				break;
 			case STREAM:
 				if((!stream_flag) && empty_flag){
@@ -341,12 +352,21 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_15_WINDOWS:
-				if(get_15_windows_fct() == XST_SUCCESS) printf("Get a 15 windows pass!\r\n");
-				else{
+				if(get_15_windows_fct() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
-					return -1;
+				return -1;
 				}
 				get_20_windows_flag = false;
+				state_main = IDLE;
+				break;
+			case GET_PEDESTAL:
+				if(init_pedestals() == XST_SUCCESS) printf("Pedestal pass!\r\n");
+				else{
+					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get pedestal failed!");
+					return -1;
+				}
+				pedestal_flag = false;
 				state_main = IDLE;
 				break;
 			default:

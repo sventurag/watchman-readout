@@ -24,6 +24,11 @@ volatile bool get_transfer_fct_flag;
 /** @brief Flag raised when the user send the command "get 20 windows" */
 volatile bool get_20_windows_flag;
 /** @brief Flag true when the list is empty (first_element = last_element) */
+
+/** @brief Flag raised when a pedestal value is required by the user */
+volatile bool pedestal_flag;
+
+
 volatile bool empty_flag;
 /** @brief Flag raised when the Triple Timer Counter overflows */
 volatile bool flag_ttcps_timer;
@@ -62,6 +67,11 @@ uint16_t pedestal[512][16][32];
 /** @brief Lookup table to correct the transfer function */
 uint16_t lookup_table[2048];
 
+/** Value from the GUI for first window   */
+int fstWindowValue;
+/** Value from the GUI for the number of windows   */
+int nmbrWindows;
+
 //******** To test the error detection********************/
 /** @brief Flag raised when the user want to test the autonomous side of the system with a watchdog */
 volatile bool simul_err_watchdog_flag;
@@ -71,6 +81,8 @@ volatile bool simul_err_function_prob_flag;
 volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 volatile bool simul_err_assertion_flag;
+
+
 
 /****************************************************************************/
 /**
