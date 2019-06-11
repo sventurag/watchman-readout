@@ -24,6 +24,7 @@ extern volatile bool flag_scu_timer;
 /** @brief Instance of the device watchdog */
 extern XScuWdt WdtScuInstance;
 
+
 /****************************************************************************/
 /**
 * @brief	Calculate the pedestal value for every memory location in the TARGET C
@@ -76,6 +77,7 @@ int init_pedestals(void){
 				/* Initiate transfer and measure */
 				regptr[TC_FSTWINDOW_REG] = window;
 				regptr[TC_NBRWINDOW_REG] = 1;
+				regptr[TC_Delay_UpdateWR] = 0;
 				ControlRegisterWrite(SMODE_MASK ,ENABLE);
 				ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 				ControlRegisterWrite(WINDOW_MASK,ENABLE);

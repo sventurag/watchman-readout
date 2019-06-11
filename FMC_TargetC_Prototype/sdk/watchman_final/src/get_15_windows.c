@@ -30,10 +30,10 @@ extern volatile bool flag_scu_timer;
 extern XScuWdt WdtScuInstance;
 /** Value from the GUI for first window   */
 extern int fstWindowValue;
-
 /** Value from the GUI for the number of windows   */
 extern int nmbrWindows;
-
+/** Value from the GUI for delay in update WR   */
+extern int  delay_UpdateWR;
 /****************************************************************************/
 /**
 * @brief	Recover 20 consecutive windows and send them to the computer
@@ -72,6 +72,7 @@ int get_15_windows_fct(void){
 	/* Initiate transfer and measure */
 	regptr[TC_FSTWINDOW_REG] = fstWindowValue;
 	regptr[TC_NBRWINDOW_REG] = nmbrWindows;
+	regptr[TC_Delay_UpdateWR] = delay_UpdateWR;
 	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 	ControlRegisterWrite(WINDOW_MASK,ENABLE);

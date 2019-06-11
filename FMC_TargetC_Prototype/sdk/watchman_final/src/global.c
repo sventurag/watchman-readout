@@ -71,6 +71,8 @@ uint16_t lookup_table[2048];
 int fstWindowValue;
 /** Value from the GUI for the number of windows   */
 int nmbrWindows;
+/** Value from the GUI for delay in update WR   */
+int  delay_UpdateWR;
 
 //******** To test the error detection********************/
 /** @brief Flag raised when the user want to test the autonomous side of the system with a watchdog */
