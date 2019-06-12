@@ -52,6 +52,9 @@ extern volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 extern volatile bool simul_err_assertion_flag;
 
+/** @brief Flag raised for UDP connection restart */
+extern volatile bool restart_UDP_flag;
+
 
 /** Value from the GUI for first window   */
 extern int fstWindowValue;
@@ -297,17 +300,21 @@ int command_parser(struct pbuf *p, char* return_buf){
 				    regID_one_reg = payload[i];
 	//				regVal = payload[i]*256 + payload[i+1];
 				    regVal_one_reg = payload[i+1]*256 + payload[i+2];
-			//        xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
-				//    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
-				    if(regID_one_reg <= TC_FSTWINDOW_REG){
+			        xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
+				    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
+				    if(regID_one_reg == TC_FSTWINDOW_REG){
 				    	fstWindowValue = regVal_one_reg;
 				         }
-				    else if(regID_one_reg <= TC_NBRWINDOW_REG){
+				    else if((regID_one_reg == TC_NBRWINDOW_REG)){
 				    	nmbrWindows = regVal_one_reg;
 				   			         }
-				    else if(regID_one_reg <= TC_Delay_UpdateWR){
+				    else if((regID_one_reg == TC_Delay_UpdateWR))
+				    {
 				    	delay_UpdateWR = regVal_one_reg;
-				  				   			         }
+						xil_printf("delay_UpdateWR = %d\r\n", delay_UpdateWR);
+
+								   			         }
+
 					return 6;
 					}
 
@@ -329,7 +336,22 @@ int command_parser(struct pbuf *p, char* return_buf){
 						else return -1;
 						break;
 
-			case 10:	// error watchdog asked
+			case 10:	// restart UDP
+						if(start + 4 + 1 == end){
+						xil_printf("Command reset UDP received\r\n");
+
+						restart_UDP_flag = true ;
+							return 6;
+						}
+						else return -1;
+						break;
+
+
+
+
+
+
+			case 11:	// error watchdog asked
 				if(start + 4 == end){
 					xil_printf("Command err_watchdog received\r\n");
 					simul_err_watchdog_flag = true;
@@ -337,7 +359,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 11:	// error function problem asked
+			case 12:	// error function problem asked
 				if(start + 4 == end){
 					xil_printf("Command err_function_prob received\r\n");
 					simul_err_function_prob_flag = true;
@@ -345,7 +367,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 12:	// error exception asked
+			case 13:	// error exception asked
 				if(start + 4 == end){
 					xil_printf("Command err_exception received\r\n");
 					simul_err_exception_flag = true;
@@ -353,7 +375,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 13:	// error assertion asked
+			case 14:	// error assertion asked
 				if(start + 4 == end){
 					xil_printf("Command err_assertion received\r\n");
 					simul_err_assertion_flag = true;
