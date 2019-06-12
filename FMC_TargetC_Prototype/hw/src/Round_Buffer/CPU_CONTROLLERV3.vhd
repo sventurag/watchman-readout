@@ -201,6 +201,8 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 	signal digsto_stm : digstoragestate;
 
 	signal CurAddr_s : std_logic_vector(7 downto 0);
+    signal updateWR : std_logic_vector(7 downto 0);
+
 	signal RealTimeAddr : std_logic_vector(7 downto 0);
 	--signal busy_intl : std_logic;
 
@@ -272,6 +274,11 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 	signal TrigInfo0: std_logic_vector(11 downto 0);
 	signal TrigInfo1: std_logic_vector(11 downto 0);
 	signal TrigInfo2: std_logic_vector(11 downto 0);
+
+	signal Delay_UpdateWR : std_logic_vector(3 downto 0);
+	signal counterWR : std_logic_vector(3 downto 0);
+
+
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -624,7 +631,9 @@ begin
 	end process;
 
 	process(ClockBus.CLK250MHz,nrst)	-- Every 64 ns
+
 	begin
+
 		if nRST = '0' then
 			TrigRead <= '0';
 			Trig_stm <= IDLE;
@@ -657,6 +666,8 @@ begin
 		if nRST = '0' then
 			validData_s <= '0';
 			validReal_s <= '0';
+			counterWR  <= (others=>'0');
+
 
 			RealTimeAddr <= (others => '0');
 			-- Init the CPUs
@@ -709,17 +720,30 @@ begin
 
 					when "0000" => --Time 1
 						validReal_s <= '1'; -- After this the data is correct, time to stabilize
-					when "0111"	=> --Half way
+					when "0111"	=> --Half way // Falling edge
 						validData_s <= '0';
 
 						--CurAddr_s 		<= NextAddr_intl;
 						CurAddr_s		<= RealTimeAddr;
 						OldAddr_intl 	<= CurAddr_s;
+                        Delay_UpdateWR <= CtrlBus_IxSL.Delay_UpdateWR(3 downto 0); -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
 
 						--OldAddrBit <= (others => '0');
 						--OldAddrBit(to_integer(unsigned(CurAddr_s))) <= '1';
 						--OldAddrBit <= (oldidx => '1', others => '0');
 
+                    when "1000"=>
+                         
+                          if counterWR < std_logic_vector(unsigned(Delay_UpdateWR)) then  -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
+                             counterWR <= std_logic_vector(unsigned(Delay_UpdateWR) + 1) ; 
+
+                          else 
+                              updateWR   <= CurAddr_s;   
+                              counterWR  <= (others=>'0');
+
+                          end if;
+                      
+                        
 
 						--RealAddrBit <= (curidx => '1', others => '0');
 
@@ -728,7 +752,7 @@ begin
 						CPUTime <= prev_TimeStamp;
 						Old_TrigInfo_copy <= Old_TrigInfo;
 
-					when "1000" =>
+					when "1001" =>
 						validData_s <= '1'; -- After this the data is correct, time to stabilize
 
 					when others =>
@@ -749,10 +773,30 @@ begin
 
 	--CurAddr	<= CurAddr_s;
 	--OldAddr <= OldAddr_intl;
-
+	
+	
 	--Update TARGET C pins
-	WR_RS_S <= CurAddr_s(1 downto 0);
-	WR_CS_S <= CurAddr_s(7 downto 2);
+
+  WR_RS_S <= updateWR(1 downto 0);
+  WR_CS_S <= updateWR(7 downto 2);
+
+    
+--    process(ClockBus.CLK250MHz,nrst)
+--        begin
+--            if nrst = '0' then
+--            countWR <= (others=>'0');
+            
+--            elsif rising_edge(ClockBus.CLK250MHz) then
+--                 if countWR = delay_250MHz-1 then
+--                     countWR  <= (others=>'0');
+--                 else 
+--                 counterWR <= counterWR+1;
+               
+--                 end if;
+--            end if;     
+--  end process;
+             
+
 -----------------------------------------------------------------------------------------WR_CS_S
 
 
