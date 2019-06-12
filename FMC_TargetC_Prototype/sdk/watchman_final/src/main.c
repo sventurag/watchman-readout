@@ -70,6 +70,9 @@ extern volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 extern volatile bool simul_err_assertion_flag;
 /** @brief UDP Protocol Control Block for command communication */
+/** @brief Flag raised for UDP connection restart */
+extern volatile bool restart_UDP_flag;
+
 extern struct udp_pcb *pcb_cmd;
 /** @brief Buffer structure used to send command packet */
 extern struct pbuf *buf_cmd;
