@@ -45,7 +45,7 @@ package TARGETC_pkg is
 	constant TC_PUBIAS_REG: 		integer := 90;
 	constant TC_CMPBIASIN_REG: 		integer := 91;
 	constant TC_MISC_REG: 			integer := 92;
-
+    
 	constant TC_TPG_REG:			integer := 128;
 	--constant C_MONTIMING_SEL_REG: 	integer :=  + C_TARGET_REG_OFFSET;
 
@@ -147,6 +147,8 @@ package TARGETC_pkg is
 
 	constant TC_FSTWINDOW_REG:	integer := 151;
 	constant TC_NBRWINDOW_REG:	integer := 152;
+	constant TC_Delay_UpdateWR: integer := 93; --  value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+
 
 	constant TC_WL_DIV_REG:		integer := 153;
 
@@ -202,7 +204,8 @@ package TARGETC_pkg is
 		WindowStorage:	std_logic;
 		FSTWINDOW:		std_logic_vector(31 downto 0);
 		NBRWINDOW:		std_logic_vector(31 downto 0);
-
+        Delay_UpdateWR: std_logic_vector(31 downto 0);
+        
 		SAMPLEMODE:		std_logic;
 		TestStream:		std_logic;
 		TestFiFo:		std_logic;
