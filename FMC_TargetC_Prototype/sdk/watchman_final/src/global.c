@@ -83,6 +83,8 @@ volatile bool simul_err_function_prob_flag;
 volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 volatile bool simul_err_assertion_flag;
+/** @brief Flag raised for UDP connection restart */
+ volatile bool restart_UDP_flag;
 
 
 
