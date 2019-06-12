@@ -241,7 +241,7 @@ def get_512_windows(nmbrWindows):
     
     WindowsData = list()
     regValue=0
-    for j in range(0,28,nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windows
+    for j in range(0,12,nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windows
         WindowsData_toSave= np.zeros((32*nmbrWindows))
         # for i in range(0,nmbrAvg,1):
         regValue= j
@@ -264,12 +264,20 @@ def get_512_windows(nmbrWindows):
 
 #############################################
 
+
+
+
 wave_gen().Output1(out=False)
 nmbrWindows = 4
 pedestalVoltage = 1
 pedestalNmbrWindows= nmbrWindows
 send_command(9)
 time.sleep(5)
+
+regValue= 16 #  is  8 ns befor rising
+regID = 93
+send_command(8)
+time.sleep(1)
 
 wave_gen().Output1(out=True)
 
@@ -289,6 +297,10 @@ for i in delays:
    time.sleep(1)
 
 
-np.savetxt(os.path.abspath('./data/test.txt'), np.array(Windows512_delays).T)
+np.savetxt(os.path.abspath('./data/delayWR/0_25_16ns.txt'), np.array(Windows512_delays).T)
 wave_gen().Output1(out=False)
+
+#regValue= 7 #  is  8 ns befor rising
+#regID = 93
+#send_command(8)
 
