@@ -721,6 +721,7 @@ begin
 					when "0000" => --Time 1
 						validReal_s <= '1'; -- After this the data is correct, time to stabilize
 					when "0111"	=> --Half way // Falling edge
+				--	when "0001"	=>
 						validData_s <= '0';
 
 						--CurAddr_s 		<= NextAddr_intl;
@@ -731,8 +732,8 @@ begin
 						--OldAddrBit <= (others => '0');
 						--OldAddrBit(to_integer(unsigned(CurAddr_s))) <= '1';
 						--OldAddrBit <= (oldidx => '1', others => '0');
-
                     when "1000"=>
+        --            when "0010"=>
                          
                           if counterWR < std_logic_vector(unsigned(Delay_UpdateWR)) then  -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
                              counterWR <= std_logic_vector(unsigned(Delay_UpdateWR) + 1) ; 
@@ -777,7 +778,7 @@ begin
 	
 	--Update TARGET C pins
 
-  WR_RS_S <= updateWR(1 downto 0);
+  WR_RS_S <= not (updateWR(1)) & updateWR(0);
   WR_CS_S <= updateWR(7 downto 2);
 
     
