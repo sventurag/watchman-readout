@@ -364,7 +364,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_PEDESTAL:
-				if(init_pedestals() == XST_SUCCESS) printf("Pedestal pass!\r\n");
+				if(get_windows_raw() == XST_SUCCESS) printf("Pedestal pass!\r\n");
 				else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get pedestal failed!");
 					return -1;
