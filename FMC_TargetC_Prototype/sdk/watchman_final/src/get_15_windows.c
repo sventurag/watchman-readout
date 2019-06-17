@@ -33,7 +33,7 @@ extern int fstWindowValue;
 /** Value from the GUI for the number of windows   */
 extern int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
-extern int  delay_UpdateWR;
+//extern int  delay_UpdateWR;
 /****************************************************************************/
 /**
 * @brief	Recover 20 consecutive windows and send them to the computer
@@ -72,7 +72,6 @@ int get_15_windows_fct(void){
 	/* Initiate transfer and measure */
 	regptr[TC_FSTWINDOW_REG] = fstWindowValue;
 	regptr[TC_NBRWINDOW_REG] = nmbrWindows;
-	regptr[TC_Delay_UpdateWR] = delay_UpdateWR;
 	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 	ControlRegisterWrite(WINDOW_MASK,ENABLE);
@@ -181,12 +180,12 @@ int get_15_windows_fct(void){
 * @note		-
 *
 ****************************************************************************/
-int get_windows_raw(){
+int get_windows_raw(void){
 	int window_start;
 	int timeout;
 	int window,i,j,index;
-	uint16_t data_tmp;
-	static int data_temp[16][32];
+	//uint16_t data_tmp;
+	static uint16_t data_tmp[16][32];
 
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
@@ -276,31 +275,31 @@ int get_windows_raw(){
 		else{
 			/* If data valid, send them to computer */
 			index = 0;
-//			frame_buf[index++] = 0x55;
-//			frame_buf[index++] = 0xAA;
-//			frame_buf[index++] = (char)window;
-//			frame_buf[index++] = (char)(window >> 8);
+			frame_buf[index++] = 0x55;
+			frame_buf[index++] = 0xAA;
+			frame_buf[index++] = (char)window;
+			frame_buf[index++] = (char)(window >> 8);
 			//printf("\r\n window = %d\r\n",window);
 			for(i=0; i<16; i++){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);
+					data_tmp[i][j] = (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);
 					/* Transfer function correction */
-	//				if(data_tmp > 2047) data_tmp = 2047;
-		//			frame_buf[index++] = (char)data_tmp;
-		//			frame_buf[index++] = (char)(data_tmp) >> 8;
+					//cd if(data_tmp > 2047) data_tmp = 2047;
+			     	frame_buf[index++] = (char)data_tmp;
+					frame_buf[index++] = (char)(data_tmp) >> 8;
 
-					//frame_buf[index++] = (char)lookup_table[data_tmp];
-					// frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
+			//		frame_buf[index++] = (char)lookup_table[data_tmp];
+				//	frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
 
 					 //printf("%d ", lookup_table[data_tmp]);
 				}
 				//printf("\r\n");
 			}
 			//printf("\r\n");
-	//		frame_buf[index++] = 0x33;
-	//		frame_buf[index++] = 0xCC;
-//			transfer_data(frame_buf, index);
+			frame_buf[index++] = 0x33;
+			frame_buf[index++] = 0xCC;
+			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
 		ControlRegisterWrite(PSBUSY_MASK,DISABLE);

@@ -241,7 +241,7 @@ def get_512_windows(nmbrWindows):
     
     WindowsData = list()
     regValue=0
-    for j in range(0,12,nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windows
+    for j in range(0,12,nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windowsi # last test 12
         WindowsData_toSave= np.zeros((32*nmbrWindows))
         # for i in range(0,nmbrAvg,1):
         regValue= j
@@ -251,7 +251,7 @@ def get_512_windows(nmbrWindows):
         send_command(7) # get windows
         time.sleep(.5) #.5
        # print(windowsData[:,2][0:5])
-        WindowsData_toSave = windowsData[:,3]
+        WindowsData_toSave = windowsData[:,2]
         #print('WindowsData_toSave[0:3]:',WindowsData_toSave[0:3]) 
         WindowsData.append(WindowsData_toSave) 
         #print(type(WindowsData))
@@ -274,7 +274,7 @@ pedestalNmbrWindows= nmbrWindows
 send_command(9)
 time.sleep(5)
 
-regValue= 16 #  is  8 ns befor rising
+regValue= 0 #
 regID = 93
 send_command(8)
 time.sleep(1)
@@ -290,17 +290,21 @@ delays = list((range(0,25,1)))
 #Windows512_delays.append(delays)
 
 for i in delays:
-   wave_gen().trigDelay(i*2*.000000001)
+   wave_gen().trigDelay(i*4*.000000001)
    time.sleep(2)
    Windows512 = get_512_windows(nmbrWindows)      
    Windows512_delays.append(Windows512)
    time.sleep(1)
 
 
-np.savetxt(os.path.abspath('./data/delayWR/0_25_16ns.txt'), np.array(Windows512_delays).T)
+np.savetxt(os.path.abspath('./data/not0.txt'), np.array(Windows512_delays).T)
 wave_gen().Output1(out=False)
 
-#regValue= 7 #  is  8 ns befor rising
-#regID = 93
+#regValue= 8 #  is  8 ns befor rising
+#regID = 151
+#nmbrWindows = 4
 #send_command(8)
+#time.sleep(1)
+#send_command(7)
+
 
