@@ -16,3 +16,4 @@ set_property ALLOW_COMBINATORIAL_LOOPS true [get_nets {base_zynq_i/TARGETC_IP_Pr
 set_property ALLOW_COMBINATORIAL_LOOPS true [get_nets {base_zynq_i/TARGETC_IP_Prototype_0/U0/TC_RoundBuffer/CPULAST/NEXTBus_intl*}]
 set_property ALLOW_COMBINATORIAL_LOOPS true [get_nets base_zynq_i/TARGETC_IP_Prototype_0/U0/TC_RoundBuffer/WDOCONTROL/PREVBus_intl*]
 
+

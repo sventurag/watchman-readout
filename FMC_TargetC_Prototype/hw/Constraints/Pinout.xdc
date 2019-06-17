@@ -191,3 +191,4 @@ set_property IOSTANDARD LVCMOS25 [get_ports SHOUT]
 set_property IOSTANDARD LVCMOS25 [get_ports PCLK]
 set_property IOSTANDARD LVCMOS25 [get_ports SCLK]
 set_property IOSTANDARD LVCMOS25 [get_ports SIN]
+
