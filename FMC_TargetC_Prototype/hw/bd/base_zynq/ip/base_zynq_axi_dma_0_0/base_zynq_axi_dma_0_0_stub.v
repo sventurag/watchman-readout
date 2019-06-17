@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Thu Jun  6 13:14:34 2019
+// Date        : Thu Jun 13 11:11:31 2019
 // Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home/idlab-52/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axi_dma_0_0/base_zynq_axi_dma_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top base_zynq_axi_dma_0_0 -prefix
+//               base_zynq_axi_dma_0_0_ base_zynq_axi_dma_0_0_stub.v
 // Design      : base_zynq_axi_dma_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z010clg400-1

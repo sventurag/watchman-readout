@@ -30,7 +30,7 @@ class binary2text():
 #        print(self.numberofWindows)
         payload = [self.int_array[x:x + 512] for x in range( 2,len(self.int_array), int(self.windowSize/2) ) ] # get the data from each window asumming a self.windowSize, payload[window][data]
     
-        windows_and_channels = [ [ payload[i][ x:x + 32] for x in range(0,len(payload[i]),32) ] for i in range(self.numberofWindows)] # create a nested list from the payload, windows_and_channels[window][channel][sample]
+        windows_and_channels = [ [ payload[self.numberofWindows- i-1][ x:x + 32] for x in range(0,len(payload[i]),32) ] for i in range(self.numberofWindows)] # create a nested list from the payload, windows_and_channels[window][channel][sample]
         self.data_by_channel = list()
         for i in range(len(windows_and_channels[0])): 
             self.data_by_channel.append( self.same_channel(i,self.numberofWindows,windows_and_channels).tolist() ) 
