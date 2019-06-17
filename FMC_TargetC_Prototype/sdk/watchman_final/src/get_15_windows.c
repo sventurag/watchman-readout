@@ -181,11 +181,12 @@ int get_15_windows_fct(void){
 * @note		-
 *
 ****************************************************************************/
-int get_15_windows_raw(void){
+int get_windows_raw(){
 	int window_start;
 	int timeout;
 	int window,i,j,index;
 	uint16_t data_tmp;
+	static int data_temp[16][32];
 
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
@@ -197,7 +198,7 @@ int get_15_windows_raw(void){
 	tmp_ptr->previous = NULL;
 
 	/* First window */
-	window_start = fstWindowValue;
+	window_start = fstWindowValue ;
 
 	/* Number of windows */
 	//nmbrWindows = 16;
@@ -275,19 +276,19 @@ int get_15_windows_raw(void){
 		else{
 			/* If data valid, send them to computer */
 			index = 0;
-			frame_buf[index++] = 0x55;
-			frame_buf[index++] = 0xAA;
-			frame_buf[index++] = (char)window;
-			frame_buf[index++] = (char)(window >> 8);
+//			frame_buf[index++] = 0x55;
+//			frame_buf[index++] = 0xAA;
+//			frame_buf[index++] = (char)window;
+//			frame_buf[index++] = (char)(window >> 8);
 			//printf("\r\n window = %d\r\n",window);
 			for(i=0; i<16; i++){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
 					data_tmp = (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);
 					/* Transfer function correction */
-					if(data_tmp > 2047) data_tmp = 2047;
-					frame_buf[index++] = (char)data_tmp;
-					frame_buf[index++] = (char)(data_tmp) >> 8;
+	//				if(data_tmp > 2047) data_tmp = 2047;
+		//			frame_buf[index++] = (char)data_tmp;
+		//			frame_buf[index++] = (char)(data_tmp) >> 8;
 
 					//frame_buf[index++] = (char)lookup_table[data_tmp];
 					// frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
@@ -297,9 +298,9 @@ int get_15_windows_raw(void){
 				//printf("\r\n");
 			}
 			//printf("\r\n");
-			frame_buf[index++] = 0x33;
-			frame_buf[index++] = 0xCC;
-			transfer_data(frame_buf, index);
+	//		frame_buf[index++] = 0x33;
+	//		frame_buf[index++] = 0xCC;
+//			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
 		ControlRegisterWrite(PSBUSY_MASK,DISABLE);
