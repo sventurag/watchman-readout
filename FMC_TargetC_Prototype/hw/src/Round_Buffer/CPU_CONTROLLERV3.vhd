@@ -774,12 +774,12 @@ begin
 
 	--CurAddr	<= CurAddr_s;
 	--OldAddr <= OldAddr_intl;
-	
+
 	
 	--Update TARGET C pins
 
   -- WR_RS_S <= updateWR(1 downto 0);  
-  WR_RS_S  <=  updateWR(1) & not(updateWR(0));
+  WR_RS_S  <=  updateWR(1 downto 0);
  
  
   WR_CS_S <= updateWR(7 downto 2);

@@ -87,6 +87,7 @@ for i in strb2LE:
                                time.sleep(0.5)
                                Windows512 = tc.get_512_windows(nmbrWindows)      
                                Windows512_delays.append(Windows512)
+                               print(i,j,k,l,m,n,o,p)
                                time.sleep(0.5)
                         
 
