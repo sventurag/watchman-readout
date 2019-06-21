@@ -67,6 +67,7 @@ void SetTargetCRegisters(void){
 
 	WriteRegister(TC_DBBIAS_REG,	0x690);
 
+
 	// Initial Base Value
 	WriteRegister(TC_CMPBIAS2_REG,	0x2D6); //726
 	WriteRegister(TC_PUBIAS_REG,	0xBCA);	//3018
