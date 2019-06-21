@@ -27,6 +27,7 @@ volatile bool get_20_windows_flag;
 
 /** @brief Flag raised when a pedestal value is required by the user */
 volatile bool pedestal_flag;
+volatile bool restart_flag;
 
 
 volatile bool empty_flag;
@@ -117,6 +118,8 @@ int init_global_var(void){
 	flag_ttcps_timer = false;
 	flag_scu_timer = false;
 	first_element = (data_list *)malloc(sizeof(data_list));
+
+
 	if(!first_element){
 		xil_printf("malloc for first_element failed in function, %s!\r\n", __func__);
 		return XST_FAILURE;

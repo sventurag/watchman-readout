@@ -50,6 +50,8 @@ extern volatile bool get_transfer_fct_flag;
 /** @brief Flag raised when the user send the command "get 20 windows" */
 extern volatile bool get_20_windows_flag;
 
+extern volatile bool restart_flag;
+
 
 /** @brief Flag raised when a pedestal value is required by the user */
 extern volatile bool pedestal_flag;
@@ -102,14 +104,18 @@ typedef enum dma_stm_enum{
 	GET_TRANSFER_FCT, 	/**< System sending the data for the transfer function in response to the corresponding command */
 	GET_15_WINDOWS,		/**< System sending the data 15 consecutive windows in response to the corresponding command */
 	GET_PEDESTAL,      /**< System getting the pedestal for an specific voltage and nmbr of windows, data saved into the pedestal variable */
+	RESTART,           /**< Restart main() */
 } dma_stm_en;
 
 
 /*** Function prototypes *********************************************/
 void end_main(clean_state_en state, char* error_txt);
+void restart(void);
+
 
 int main()
 {
+
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
 	int pmt;
@@ -330,6 +336,10 @@ int main()
 					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
 					state_main = GET_PEDESTAL;
 				}
+				if(restart_flag && (!stream_flag) && empty_flag){
+								ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+								state_main = RESTART;
+							}
 				break;
 			case STREAM:
 				if((!stream_flag) && empty_flag){
@@ -372,10 +382,17 @@ int main()
 				pedestal_flag = false;
 				state_main = IDLE;
 				break;
+			case RESTART:
+			    if(restart_flag) {
+				restart_flag = false;
+			    restart();
+
+			    printf("Restarting");
+			    }
+				break;
 			default:
 				state_main = IDLE;
 				break;
-
 		}
 	}
 
@@ -405,5 +422,14 @@ void end_main(clean_state_en state, char* error_txt){
 	sleep(1); // to see the xil_printf
 	// SYSTEM RESET
 	system_reset_hm();
+	main();
 }
 
+
+void restart(void){
+    printf("restarting");
+	usleep(1);
+	end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Restart!");
+	main();
+
+}
