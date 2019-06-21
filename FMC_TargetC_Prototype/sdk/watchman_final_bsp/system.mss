@@ -242,12 +242,13 @@ BEGIN LIBRARY
  PARAMETER PROC_INSTANCE = ps7_cortexa9_0
  PARAMETER dhcp_does_arp_check = true
  PARAMETER lwip_dhcp = true
- PARAMETER mem_size = 262144
- PARAMETER memp_n_pbuf = 1024
+ PARAMETER mem_size = 20000000
+ PARAMETER memp_n_pbuf = 60000
  PARAMETER memp_n_tcp_seg = 1024
  PARAMETER n_rx_descriptors = 256
  PARAMETER n_tx_descriptors = 256
- PARAMETER pbuf_pool_size = 8192
+ PARAMETER pbuf_pool_bufsize = 15000
+ PARAMETER pbuf_pool_size = 60000
  PARAMETER temac_use_jumbo_frames = true
 END
 
