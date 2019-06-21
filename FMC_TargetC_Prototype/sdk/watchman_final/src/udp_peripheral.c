@@ -38,6 +38,9 @@ extern volatile bool get_20_windows_flag;
 /** @brief Flag raised when a pedestal value is required by the user */
 extern volatile bool pedestal_flag;
 
+/** @brief Flag raised when a restart is required by the user */
+extern volatile bool restart_flag;
+
 extern int* regptr;
 /** @brief Buffer used to send the command (50 bytes above it reserved for protocol header) */
 extern char* frame_buf_cmd;
@@ -200,7 +203,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 					regID = 1;
 					for(i = 4; i < (4 + 2*REGMAP_SIZE_UDP); i += 2){
 				//		if(regID <= TC_MISCDIG_REG || regID == TC_TPG_REG){
-						if(regID <= 127){
+						if(regID == 127){
 							regVal = payload[i]*256 + payload[i+1];
 				//			WriteRegister(regID, regVal);
 							WriteRegister(TC_FSTWINDOW_REG, regVal);
@@ -314,12 +317,15 @@ int command_parser(struct pbuf *p, char* return_buf){
 						xil_printf("delay_UpdateWR = %d\r\n", delay_UpdateWR);
 
 								   			         }
-
-					return 6;
+				    else
+				    {
+				        WriteRegister(regID_one_reg, regVal_one_reg);
+				    			                     }
+								return 6;
 					}
-
 				      else return -1;
 										break;
+
 
 			case 9:	// Pedestal
 				if(start + 4 + 2 == end){
@@ -346,12 +352,17 @@ int command_parser(struct pbuf *p, char* return_buf){
 						else return -1;
 						break;
 
+			case 11:	// restart ALL
+						if(start + 4 == end){
+						xil_printf("Command RESTART received\r\n");
 
+						restart_flag = true ;
+							return 6;
+						}
+						else return -1;
+						break;
 
-
-
-
-			case 11:	// error watchdog asked
+			case 12:	// error watchdog asked
 				if(start + 4 == end){
 					xil_printf("Command err_watchdog received\r\n");
 					simul_err_watchdog_flag = true;
@@ -359,7 +370,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 12:	// error function problem asked
+			case 13:	// error function problem asked
 				if(start + 4 == end){
 					xil_printf("Command err_function_prob received\r\n");
 					simul_err_function_prob_flag = true;
@@ -367,7 +378,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 13:	// error exception asked
+			case 14:	// error exception asked
 				if(start + 4 == end){
 					xil_printf("Command err_exception received\r\n");
 					simul_err_exception_flag = true;
@@ -375,7 +386,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 14:	// error assertion asked
+			case 15:	// error assertion asked
 				if(start + 4 == end){
 					xil_printf("Command err_assertion received\r\n");
 					simul_err_assertion_flag = true;
