@@ -29,7 +29,7 @@ class targetc():
     ## Contain the zynq's ip
     ## List of all the commands
     ## Flag which indicates if the streaming is running
-        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'start_stop_stream', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'restartUDP', 'restartAll']
+        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'start_stop_stream', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'get_windows_raw', 'restartAll']
     
         self.stream_flag = False
         ## Flag which indicates that the user want to close the GUI (to avoid problem when accessing graphical object after "WM_DELETE_WINDOW" event)
@@ -95,80 +95,103 @@ class targetc():
        if(self.cmd[comando] == 'write_register'): # if the command is write register, add the register's value
                                                 
            payload.append(param1) # regID
-          # payload.append(regValue)
            payload.append(int(param2 / 256)) # regValue
            payload.append(int(param2 % 256))
-    #payload.append(0)
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
+  #payload.append(0)
        if(self.cmd[comando] == 'pedestal'): # if the command is write register, add the register's value
                                                 
            payload.append(param1) # pedestal Voltage not tested yet 06/19/2019
            payload.append(param2) # number of windows
-           #payload.append(0)
-       if(self.cmd[comando] == 'settime'): # if the command is set the time, add the time
-           t = time.localtime() # Get the the UTC time with the time zone correction
-           payload.append(t.tm_year - 2000)
-           payload.append(t.tm_mon)
-           payload.append(t.tm_mday)
-           payload.append(t.tm_hour)
-           payload.append(t.tm_min)
-           payload.append(t.tm_sec)
-       payload.append(int("0x33", 0)) # frame's end code 0x33CC
-       payload.append(int("0xCC", 0))
-        # show in the listbox the command to be send and send it
-       
-       if(self.cmd[comando] == 'get_windows'):
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
+   
+        #payload.append(0)
+      
+       if(self.cmd[comando] == 'get_windows' or self.cmd[comando] == 'get_windows_raw'):
+   #       payload.append(param1)
+   #       payload.append(int(param2 / 256)) 
+   #       payload.append(int(param2 % 256))
+          payload.append(int("0x33", 0)) # frame's end code 0x33CC
+          payload.append(int("0xCC", 0))
           self.init_UDP_connection_data()
           self.thread_data_2=Thread(target=self.thread_data_int_2, args=())
           #thread_timer_2=Timer(10,thread_timer_int_2)
           self.thread_data_2.start()
           self.get_windows_flag = True
       # print("Tx: " + cmd[comando] + " rand=" + str(payload[3])) 
+       #payload.append(int("0x33", 0)) # frame's end code 0x33CC
+       #payload.append(int("0xCC", 0))
        self.sock.sendto(payload, (self.UDP_IP, self.UDP_PORT)) 
        #print(payload)
-      
+ 
+    def get_sorted_data(self,binData):
+        data = [item for sublist in binData for item in sublist] 
+        self.windowSize = int(len(data[0])/2)
+               
+        self.int_array =  np.zeros((self.totalWindows-self.startWindow, self.windowSize  ))
+
+        for i in range(len(data)):
+            self.int_array[i] = np.fromstring(data[i],dtype=np.uint16)
+        
+        print('lEN', len(self.int_array))
+        print(self.int_array)
+        self.Vped=0 
+        self.windowsNumbers = [self.int_array[x][1] for x in range(0,len(self.int_array)) ] # create a list with the window numbers, byte 1 from each window
+        print('windowsNumbers',self.windowsNumbers) 
+        self.numberofWindows = len(self.windowsNumbers)
+        
+        payload = [self.int_array[i][2:514] for i in range(0,len(self.int_array))]
+        windows_and_channels = [ [ payload[i][ x:x + 32] for x in range(0,len(payload[i]),32) ] for i in range(self.numberofWindows)] # create a nested list from the payload, windows_and_channels[window][channel][sample]
+        self.data_by_channel = list()
+        for i in range(len(windows_and_channels[0])): 
+            self.data_by_channel.append( self.same_channel(i,self.numberofWindows,windows_and_channels).tolist() ) 
+        self.windowsData = np.array(self.data_by_channel).T-self.Vped
+        return self.windowsData
     
+    def same_channel(self, channel, numberWindows,list_to_flat):
+        """
+         Get the same channel from different windows
+        """
+        sameChannel=np.array([])
+        for i in range(numberWindows):
+            sameChannel = np.concatenate((sameChannel,list_to_flat[i][channel] ),axis = None  )
+        return sameChannel
+        
     def thread_data_int_2(self):  
-        #global windowsData
         flag_tmp = True
         self.timer_thread_flag_2 = False
-        file_name = "15windows.bin"
-        file_data = open(file_name, "wb")
-        maxWindows = self.nmbrWindows
-        cnt_15_windows = 0
-        while(cnt_15_windows < maxWindows):
+        maxWindows = self.stepWindows
+        cntWindows = 0
+        windowsList= list()
+        #window_array = np.zeros((32*16))
+        while(cntWindows < maxWindows):
             try:
-                
-               # dataTmp = np.zeros(1030,dtype=np.uint8)
-               # data = np.zeros(1030,dtype=np.uint8)
-                
-                #dataTmp=list()
-                data=bytearray()                
-                #dataTmp=bytearray()                
                 data, adress = self.sock_data.recvfrom(1030) # wait on data
                 # process the data received
                 if(adress[0] == self.UDP_IP): # test the emitter's ip
                     if((data[0] == int("0x55", 0)) and (data[1] == int("0xAA", 0))): # for every command look for start code
                         if((data[1028] == int("0x33", 0)) and (data[1029] == int("0xCC", 0))):
-                            cnt_15_windows += 1
-                            file_data.write(data)
                             
-                           # print(len(data))
-                           # y = [ data[i] for i in range(0,10,1)]
-                           # print(y)
+                            self.data=data
+                            windowsList.append(data)
+                            #print('DATA[2]',data[2])                           
+                            cntWindows += 1
                         else:
                             # error: no end code
                             print("Rx: ERROR end of data")
-                            cnt_15_windows = maxWindows
+                            cntWindows = maxWindows
                             flag_tmp = False
                     else:
                         # error: no start code
                         print("Rx: ERROR start of data")
-                        cnt_15_windows = maxWindows
+                        cntWindows = maxWindows
                         flag_tmp = False
                 else:
                     # error: wrong emitter's ip
                     print("Rx: ERROR ip of data")
-                    cnt_15_windows = maxWindows
+                    cntWindows = maxWindows
                     flag_tmp = False
             # socket exception: no data for received before timeout
             except socket.timeout:
@@ -177,22 +200,13 @@ class targetc():
             except socket.error:
                 dummy = 0 # dummy execution to catch the exception
         
-        file_data.close()
-        windowsData_init = b2t.binary2text('15windows.bin')
-        self.windowsData = windowsData_init.savetxt()
-       # print(windowsData[:,2][0:3])
-        #print('WRITING DATA TXT')
+#        self.get_sorted_data(np.array(windowsList))
+        self.allWindows.append(windowsList)
+        windowsList = windowsList*0 
+       # windowsData_int = np.zeros((32*4))
         self.close_UDP_connection_data()
-        #return
-      #  self.thread_data_2.exit()
-    #    if(flag_tmp and (timer_thread_flag_2 == True)):
-            #print("Get 15 windows: passed!")
-    #        print("Get 15 windows: passed!")
-    #    else:
-    #        print("Get 15 windows: failed!")
-    #    print("end of windows data thread", file=sys.stderr)
         
-    
+
     ## Method thread to process the command received by UDP (running all the time)
     # @param : The object pointer
     def thread_cmd_int(self):
@@ -258,84 +272,34 @@ class targetc():
     
     
     
-    def get_512_windows(self,nWindows):
-        self.nmbrWindows = nWindows 
-        #regID = 151
-        #regValue = 0
-        #self.send_command(8,regID,regValue) # first window
-        #time.sleep(1)
-        
-       # regID = 152
-        #regValue = self.nmbrWindows
-        #self.send_command(8, regID, regValue)
-        #time.sleep(0.5)
+    def get_512_windows(self, startWindow,totalWindows,stepWindows):
+        self.allWindows=list()
+        self.stepWindows = stepWindows 
+        self.startWindow = startWindow
+        self.totalWindows= totalWindows
         regID = 151    
-        
-        WindowsData = list()
+        nmbrIterations= len(range(startWindow,totalWindows+ stepWindows,stepWindows))
+        WindowsData_toSave= np.zeros(( nmbrIterations, 32*self.stepWindows))
+        #count=0
         regValue=0
-        for j in range(0,4,self.nmbrWindows):#change to 511 for the whole ASIC buffer # change t0 28 for 25 windowsi # last test 12
-            WindowsData_toSave= np.zeros((32*self.nmbrWindows))
-            # for i in range(0,nmbrAvg,1):
+        for j in range(startWindow,totalWindows,self.stepWindows):#change totalWindows to 511 for the whole ASIC buffer # change t0 28 for 25 windowsi # last test 12
             regValue= j
-           # print (regValue)
+          #  print('START WINDOW', regValue)         
+#   count = count
             self.send_command(8,regID,regValue) # change the start window
-            time.sleep(.5)
-            self.send_command(7,0,0) # get windows
-            time.sleep(.5) #.5
-           # print(windowsData[:,2][0:5])
-            WindowsData_toSave = self.windowsData[:,2]
-            #print('WindowsData_toSave[0:3]:',WindowsData_toSave[0:3]) 
-            WindowsData.append(WindowsData_toSave) 
-            #print(type(WindowsData))
-            self.windowsData= self.windowsData*0
-        #print(avgWindowsData[0:5])
-        flatWindowsData = [item for sublist in WindowsData for item in sublist   ]
-        self.windowsData= self.windowsData*0
-    #    np.savetxt('/home/idlab-52/data/avg255.txt', np.array(flatWindowsData).T)
-        return flatWindowsData 
+            time.sleep(.2)
+            self.send_command(7,self.stepWindows,0) # get windows
+            time.sleep(.2) #.5
+           
+
+        #WindowsData_toSave[count]= self.windowsData[:,2]
+        #self.windowsData= self.windowsData*0
+        #count+=1
+        WindowsData_toSave = self.get_sorted_data(self.allWindows)[:,2]       
+   
+#     self.windowsData= self.windowsData*0
+        return WindowsData_toSave.flatten() 
     
     #############################################
     
 
-    
-    
-#    wave_gen().Output1(out=False)
-#    nmbrWindows = 4
-#    send_command(9,1,nmbrWindows)
-#    time.sleep(5)
-#    
-#    regValue= 0 #
-#    regID = 93 
-#    send_command(8,regID,regValue) # delay from rising edge WR update
-#    time.sleep(1)
-#    
-#    wave_gen().Output1(out=True)
-#    
-#    Windows512 = np.zeros((512*32))
-#    Windows512_delays= list()
-#    
-#    delays = list((range(0,1,1)))
-#    #delays = list((range(1)))
-#    
-#    #Windows512_delays.append(delays)
-#    
-#    for i in delays:
-#       wave_gen().trigDelay(i*1*.000000001)
-#       time.sleep(2)
-#       Windows512 = get_512_windows(nmbrWindows)      
-#       Windows512_delays.append(Windows512)
-#       time.sleep(1)
-#    
-#    
-#    np.savetxt(os.path.abspath('./data/STRB1_2_ADCB_1windows_50_30WR1.txt'), np.array(Windows512_delays).T)
-#    wave_gen().Output1(out=False)
-#    
-#    #regValue= 8 #  is  8 ns befor rising
-#    #regID = 151
-#    #nmbrWindows = 4
-#    #send_command(8)
-#    #time.sleep(1)
-#    #send_command(7)
-#    
-#    close_UDP_connection_cmd()
-#    

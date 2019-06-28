@@ -21,10 +21,10 @@ volatile bool run_flag;
 volatile bool stream_flag;
 /** @brief Flag raised when the user send the command "get transfer function" */
 volatile bool get_transfer_fct_flag;
-/** @brief Flag raised when the user send the command "get 20 windows" */
-volatile bool get_20_windows_flag;
-/** @brief Flag true when the list is empty (first_element = last_element) */
-
+/** @brief Flag raised when the user send the command "get  windows" */
+volatile bool get_windows_flag;
+/** @brief Flag raised when the user send the command "get windows raw" */
+volatile bool get_windows_raw_flag;
 /** @brief Flag raised when a pedestal value is required by the user */
 volatile bool pedestal_flag;
 volatile bool restart_flag;
@@ -108,7 +108,8 @@ int init_global_var(void){
 	run_flag = true;
 	stream_flag = false;
 	get_transfer_fct_flag = false;
-	get_20_windows_flag = false;
+	get_windows_flag = false;
+	get_windows_raw_flag = false;
 	simul_err_watchdog_flag = false;
 	simul_err_function_prob_flag = false;
 	simul_err_exception_flag = false;
