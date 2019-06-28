@@ -9,7 +9,7 @@ plt.rcParams.update({'font.size': 16})
 TARGETX = [51,7,56,12,33,53,20,40,5,25]
 TARGETC = [51,7,25,35,5,15,57,3,37,47]
 Adrian = [46,61,61,7,55,6,25,10,55,6]
-Rigth = [51,7,3,12,5,25,20,40,33,53]
+Rigth = [51,7,56,12,5,25,20,40,33,53]
 
 print (list(range(0,len(TARGETX))))
 print (range(0,len(TARGETX)))

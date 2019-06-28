@@ -49,17 +49,39 @@ Windows512_delays= list()
 
 wave_gen().trigDelay(18*.000000001)
 
-strb2LE = list((range(0,63,30)))
-strb2TE = list((range(0,63,30)))
-wr2LE = list((range(0,63,30)))
-wr2TE = list((range(0,63,30)))
-strb1LE = list((range(0,63,30)))
-strb1TE = list((range(0,63,30)))
-wr1LE = list((range(0,63,30)))
-wr1TE = list((range(0,63,30)))
+LE= 63  
+TE = int((LE+1)/2)
+step=30
+start = 1
 
+strb2LE = list((range(start,LE,step)))
+strb2TE = list((range(start,TE,step)))
+
+wr2LE = list((range(start,LE,step)))
+wr2TE = list((range(start,TE,step)))
+
+strb1LE = list((range(start,LE,step)))
+strb1TE = list((range(start,TE,step)))
+
+wr1LE = list((range(start,LE,step)))
+wr1TE = list((range(start,TE,step)))
+
+"""
+strb2LE = list((range(2,63,30)))
+strb2TE = list((range(2,63,30)))
+wr2LE = list((range(2,63,30)))
+wr2TE = list((range(2,63,30)))
+strb1LE = list((range(2,63,30)))
+strb1TE = list((range(2,63,30)))
+wr1LE = list((range(2,63,30)))
+wr1TE = list((range(2,63,30)))
+"""
+print("Register loop running")
 
 for i in strb2LE:
+    if i> start: 
+        np.savetxt(os.path.abspath('./data/testBruteForce/bruteForce_i{}_j{}_k{}_l{}_m{}_n{}_o{}_p{}.txt'.format(i,j,k,l,m,n,o,p)), np.array(Windows512_delays).T)
+ 
     tc.send_command(8,68,i)
     time.sleep(.5)
     for j in strb2TE:
@@ -83,15 +105,18 @@ for i in strb2LE:
                            for p in wr1TE:
                                tc.send_command(8,75,p)
                 
-                               time.sleep(.5)
                                time.sleep(0.5)
-                               Windows512 = tc.get_512_windows(nmbrWindows)      
-                               Windows512_delays.append(Windows512)
-                               print(i,j,k,l,m,n,o,p)
+                               Windows512 = tc.get_512_windows(nmbrWindows)       
+                               Windows512 = [i,j,k,l,m,n,o,p] + Windows512
+                               if max(Windows512) in range(10,100):
+                                   if min(Windows512) in range(10,100):
+                                       if max(Windows512[50:70]) in range(20,100):
+                                           Windows512_delays.append(Windows512)
+                                           print(i,j,k,l,m,n,o,p)
                                time.sleep(0.5)
                         
 
-np.savetxt(os.path.abspath('./data/bruteForce.txt'), np.array(Windows512_delays).T)
+np.savetxt(os.path.abspath('./data/testBruteForce/bruteForceLast_i{}_j{}_k{}_l{}_m{}_n{}_o{}_p{}.txt'.format(i,j,k,l,m,n,o,p)), np.array(Windows512_delays).T)
 wave_gen().Output1(out=False)
 
 #regValue= 8 #  is  8 ns befor rising

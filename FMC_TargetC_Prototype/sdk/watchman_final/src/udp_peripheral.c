@@ -32,8 +32,12 @@ extern volatile bool run_flag;
 extern volatile bool stream_flag;
 /** @brief Flag raised when the user send the command "get transfer function" */
 extern volatile bool get_transfer_fct_flag;
-/** @brief Flag raised when the user send the command "get 20 windows" */
-extern volatile bool get_20_windows_flag;
+/** @brief Flag raised when the user send the command "get windows" */
+extern volatile bool get_windows_flag;
+/** @brief Flag raised when the user send the command "get windows raw" */
+extern volatile bool get_windows_raw_flag;
+
+
 /** @brief Array containing registers of AXI-lite */
 /** @brief Flag raised when a pedestal value is required by the user */
 extern volatile bool pedestal_flag;
@@ -56,7 +60,7 @@ extern volatile bool simul_err_exception_flag;
 extern volatile bool simul_err_assertion_flag;
 
 /** @brief Flag raised for UDP connection restart */
-extern volatile bool restart_UDP_flag;
+extern volatile bool get_windows_raw_flag;
 
 
 /** Value from the GUI for first window   */
@@ -150,7 +154,7 @@ void udp_cmd_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_
     		frame_buf_cmd[length-1] = 0xCC;
     		transfer_cmd(frame_buf_cmd, length);
 		}
-    	else xil_printf("ERROR with the command received\r\n");
+    	else xil_printf("ERROR with the command received,payloadLast = %04x,%04x,%04x,%04x,%04x,%04x \r\n", frame_buf_cmd[0],frame_buf_cmd[1],frame_buf_cmd[2],frame_buf_cmd[3],frame_buf_cmd[4],frame_buf_cmd[5] );
     }
     //free(p);
     //pbuf_free(p);
@@ -292,7 +296,19 @@ int command_parser(struct pbuf *p, char* return_buf){
 			case 7: // get 15 windows
 				if(start + 4 == end){
 				//	xil_printf("Command get_15_windows received\r\n");
-					get_20_windows_flag = true;
+	//				i = 4;
+			//		nmbrWindows = payload[i];
+			//		fstWindowValue = payload[i+1]*256 + payload[i+2];
+
+				//	usleep(50);
+		//			WriteRegister(TC_NBRWINDOW_REG, payload[i]);
+			//		WriteRegister(TC_FSTWINDOW_REG, payload[i+1]*256 + payload[i+2]);
+				//	usleep(150);
+
+
+			//		xil_printf("%d,%d\r\n",payload[i], payload[i+1]*256 + payload[i+2]);
+				    get_windows_flag = true;
+
 					return 6;
 				}
 				else return -1;
@@ -303,13 +319,17 @@ int command_parser(struct pbuf *p, char* return_buf){
 				    regID_one_reg = payload[i];
 	//				regVal = payload[i]*256 + payload[i+1];
 				    regVal_one_reg = payload[i+1]*256 + payload[i+2];
-			        xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
-				    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
+			  //      xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
+				//    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
 				    if(regID_one_reg == TC_FSTWINDOW_REG){
 				    	fstWindowValue = regVal_one_reg;
+						//xil_printf("FSTWINDOW = %d\r\n", regID_one_reg);
+
 				         }
 				    else if((regID_one_reg == TC_NBRWINDOW_REG)){
 				    	nmbrWindows = regVal_one_reg;
+						//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+
 				   			         }
 				    else if((regID_one_reg == TC_Delay_UpdateWR))
 				    {
@@ -342,11 +362,21 @@ int command_parser(struct pbuf *p, char* return_buf){
 						else return -1;
 						break;
 
-			case 10:	// restart UDP
-						if(start + 4 + 1 == end){
-						xil_printf("Command reset UDP received\r\n");
+			case 10:	// get RAW data
+				if(start + 4 == end){
+						//	xil_printf("Command get_15_windows received\r\n");
+/*
+						i = 4;
+						WriteRegister(TC_NBRWINDOW_REG, payload[i]);
+						WriteRegister(TC_FSTWINDOW_REG, payload[i+1]*256+ payload[i+2]);
+						usleep(50);
 
-						restart_UDP_flag = true ;
+						nmbrWindows = payload[i];
+						fstWindowValue = payload[i+1]*256 + payload[i+2];
+						xil_printf("%d,%d\r\n",payload[i], payload[i+1]*256 + payload[i+2]);
+						usleep(150);
+*/
+						get_windows_raw_flag = true;
 							return 6;
 						}
 						else return -1;

@@ -135,6 +135,7 @@ class targetc():
         file_data = open(file_name, "wb")
         maxWindows = self.nmbrWindows
         cnt_15_windows = 0
+        print ('inicia')
         while(cnt_15_windows < maxWindows):
             try:
                 data = bytearray()
@@ -144,7 +145,8 @@ class targetc():
                     if((data[0] == int("0x55", 0)) and (data[1] == int("0xAA", 0))): # for every command look for start code
                         if((data[1028] == int("0x33", 0)) and (data[1029] == int("0xCC", 0))):
                             cnt_15_windows += 1
-                            file_data.write(data)
+                            file_data.wriite(data)
+                            print('test',int(data[0]))
                         else:
                             # error: no end code
                             print("Rx: ERROR end of data")

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.use('Tkagg')
-import itertools
+#import itertools
 import matplotlib.gridspec as gridspec
 from pylab import *
 import matplotlib.animation as animation
@@ -21,11 +21,12 @@ class binary2text():
         self.file = file
         self.int_array = np.fromfile(self.file, dtype = np.uint16) # asumes 16-bit data and create an integers array
         self.windowSize = 1030
-        self.Vped = 1427
+       # self.Vped = 1427
+        self.Vped = 0
 
     def savetxt(self):        
         self.windowsNumbers = [self.int_array[x] for x in range(1,len(self.int_array), int(self.windowSize/2)) ] # create a list with the window numbers, byte 1 from each window
-        print('windowsNumbers',self.windowsNumbers) 
+#        print('windowsNumbers',self.windowsNumbers) 
         self.numberofWindows = len(self.windowsNumbers)
 #        print(self.numberofWindows)
         payload = [self.int_array[x:x + 512] for x in range( 2,len(self.int_array), int(self.windowSize/2) ) ] # get the data from each window asumming a self.windowSize, payload[window][data]
@@ -34,8 +35,8 @@ class binary2text():
         self.data_by_channel = list()
         for i in range(len(windows_and_channels[0])): 
             self.data_by_channel.append( self.same_channel(i,self.numberofWindows,windows_and_channels).tolist() ) 
-      #  out_file_name ='/home/idlab-52/data/'+'%s.txt'%(self.file.split('.')[0])
-      # np.savetxt(out_file_name,np.array(self.data_by_channel).T-self.Vped, fmt='%s')
+        #out_file_name ='/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/'+'%s.txt'%(self.file.split('.')[0])
+        #np.savetxt(out_file_name,np.array(self.data_by_channel).T-self.Vped, fmt='%s')
         
       #  with open(out_file_name, 'a') as out_file: 
             #for item in self.windowsNumbers:
