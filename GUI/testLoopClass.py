@@ -37,7 +37,7 @@ for i in strb2LE:
 #                       for o in wr1LE:
 #                           for p in wr1TE:
                 Windows512 = np.zeros((512*32))+1
-                if np.max(Windows512)< 200:
+                if np.max(Windows512)< 100:
                     Windows512_delays.append(Windows512)
        #             Windows512_delays.append([i,j,k,l])#,m,n,o,p)
                     #print(i,j,k)#l)#,m,n,o,p)

@@ -20,5 +20,5 @@
 
 /*** Function prototypes *********************************************/
 int get_15_windows_fct(void);
-
+int get_windows_raw(void);
 #endif /* SRC_GET_15_WINDOWS_H_ */

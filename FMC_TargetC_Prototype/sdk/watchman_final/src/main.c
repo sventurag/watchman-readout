@@ -47,8 +47,11 @@ extern int flag_axidma_rx[4];
 extern int* regptr;
 /** @brief Flag raised when the user send the command "get transfer function" */
 extern volatile bool get_transfer_fct_flag;
-/** @brief Flag raised when the user send the command "get 20 windows" */
-extern volatile bool get_20_windows_flag;
+/** @brief Flag raised when the user send the command "get windows" */
+extern volatile bool get_windows_flag;
+
+/** @brief Flag raised when the user send the command "get windows raw data" */
+extern volatile bool get_windows_raw_flag;
 
 extern volatile bool restart_flag;
 
@@ -102,8 +105,9 @@ typedef enum dma_stm_enum{
 	IDLE, 				/**< No data to send, waiting on a command */
 	STREAM,				/**< System in mode streaming */
 	GET_TRANSFER_FCT, 	/**< System sending the data for the transfer function in response to the corresponding command */
-	GET_15_WINDOWS,		/**< System sending the data 15 consecutive windows in response to the corresponding command */
+	GET_WINDOWS,		/**< System sending the data of consecutive windows in response to the corresponding command */
 	GET_PEDESTAL,      /**< System getting the pedestal for an specific voltage and nmbr of windows, data saved into the pedestal variable */
+	GET_WINDOWS_RAW,   /**< System getting the pedestal for an specific voltage and nmbr of windows, dat */
 	RESTART,           /**< Restart main() */
 } dma_stm_en;
 
@@ -319,27 +323,31 @@ int main()
 		}
 		switch(state_main){
 			case IDLE:
-				if(stream_flag && (!get_transfer_fct_flag) && (!get_20_windows_flag)){
+				if(stream_flag && (!get_transfer_fct_flag) && (!get_windows_flag)){
 					XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 					ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger
 					state_main = STREAM;
 				}
 				if(get_transfer_fct_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 					state_main = GET_TRANSFER_FCT;
 				}
-				if(get_20_windows_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
-					state_main = GET_15_WINDOWS;
+				if(get_windows_flag && (!stream_flag) && empty_flag){
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+					state_main = GET_WINDOWS;
 				}
 				if(pedestal_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 					state_main = GET_PEDESTAL;
 				}
 				if(restart_flag && (!stream_flag) && empty_flag){
-								ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+								ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 								state_main = RESTART;
 							}
+				if(get_windows_raw_flag && (!stream_flag) && empty_flag){
+						ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+						state_main = GET_WINDOWS_RAW;
+					}
 				break;
 			case STREAM:
 				if((!stream_flag) && empty_flag){
@@ -364,13 +372,22 @@ int main()
 				get_transfer_fct_flag = false;
 				state_main = IDLE;
 				break;
-			case GET_15_WINDOWS:
+			case GET_WINDOWS:
 				if(get_15_windows_fct() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
 				return -1;
 				}
-				get_20_windows_flag = false;
+				get_windows_flag = false;
+				state_main = IDLE;
+				break;
+			case GET_WINDOWS_RAW:
+				if(get_windows_raw() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				//else{
+					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
+				return -1;
+				}
+				get_windows_flag = false;
 				state_main = IDLE;
 				break;
 			case GET_PEDESTAL:
