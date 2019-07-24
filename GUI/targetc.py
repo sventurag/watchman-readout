@@ -150,7 +150,7 @@ class targetc():
         #payload = [ [float('{}.{}'.format(int(payload_integers[i][j*2]), int(payload_integers[i][j*2+1]))) for j in range(int(len(payload_integers[i])/2))] for i in range(len(payload_integers)) ]
         # Subtracting offset for UINT32_T in PS
         payload = [ [ (payload[i][j] ) for j in range(len(payload[i]))] for i in range(len(payload)) ]
-        windows_and_channels = [ [ payload[i][ x:x + 32] for x in range(0,len(payload[i]),32) ] for i in range(self.numberofWindows)] # create a nested list from the payload, windows_and_channels[window][channel][sample]
+        windows_and_channels = [ [ payload[i][ x:x + 31] for x in range(0,len(payload[i]),31) ] for i in range(self.numberofWindows)] # create a nested list from the payload, windows_and_channels[window][channel][sample]
         self.data_by_channel = list()
         for i in range(len(windows_and_channels[0])): 
             self.data_by_channel.append( self.same_channel(i,self.numberofWindows,windows_and_channels).tolist() ) 
@@ -175,19 +175,19 @@ class targetc():
         #window_array = np.zeros((32*16))
         while(cntWindows < maxWindows):
             try:
-                data, adress = self.sock_data.recvfrom(1031) # wait on data
+                data, adress = self.sock_data.recvfrom(999) # wait on data, 16channels*32samples*2charactersize + 5startEndNmbrwindow + 2?, 1031 for 32 samples, 999 for 31 samples
                 # process the data received
                 if(adress[0] == self.UDP_IP): # test the emitter's ip
                     if((data[0] == int("0x55", 0)) and (data[1] == int("0xAA", 0))): # for every command look for start code
                         # if((data[2052] == int("0x33", 0)) and (data[2053] == int("0xCC", 0))):
-                         if((data[1028] == int("0x33", 0)) and (data[1029] == int("0xCC", 0))):
+                         if((data[996] == int("0x33", 0)) and (data[997] == int("0xCC", 0))): # data[1028], data[1029] for 32 samples
                             #self.data=data
                             windowsList.append(data)
                            # print('DATA',data)                           
                             cntWindows += 1
                          else:
                             # error: no end code
-                            print(data[0],data[1020:1030], len(data))
+                            print(data[0],data[990:997], len(data))
                             print("Rx: ERROR end of data")
                             cntWindows = maxWindows
                             flag_tmp = False
@@ -290,7 +290,7 @@ class targetc():
         self.totalWindows= totalWindows
         regID = 151    
         nmbrIterations= len(range(startWindow,totalWindows+ stepWindows,stepWindows))
-        WindowsData_toSave= np.zeros(( nmbrIterations, 32*self.stepWindows))
+        WindowsData_toSave= np.zeros(( nmbrIterations, 31*self.stepWindows))
         #count=0
         regValue=0
         for j in range(startWindow,totalWindows,self.stepWindows):#change totalWindows to 511 for the whole ASIC buffer # change t0 28 for 25 windowsi # last test 12
