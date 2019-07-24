@@ -18,6 +18,10 @@
 
 /*** Function prototypes *********************************************/
 int init_pedestals(void);
+int get_pedestal(int avg, int nmbrofWindows);
+int get_windowsRaw(int startWindow, int nmbrofWindows);
+int get_15_windows_fct(void);
+
 
 
 #endif /* SRC_PEDESTAL_H_ */

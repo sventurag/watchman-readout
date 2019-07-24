@@ -16,7 +16,7 @@ extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
 extern volatile bool flag_axidma_rx_done;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t pedestal[512][16][32];
+extern uint16_t  pedestal[512][16][32];
 /** @brief Lookup table to correct the transfer function */
 extern uint16_t lookup_table[2048];
 /** @brief Flag raised when the Triple Timer Counter overflows */
@@ -45,7 +45,11 @@ int init_transfer_function(void){
 	GMtype_Polynomial Polynomial;
 	int range_min = 3;
 	int range_max = 9;
-	double y_voltage[2048];
+	int size_lookup_table = 2048;
+	double y_voltage[size_lookup_table];
+    int offset_avoid_negative=500;
+//	int pedestal_avg = 1;
+
 
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
@@ -138,7 +142,8 @@ int init_transfer_function(void){
 					/* ignore channel 3,7,11,15 they are broken on board 3 */
 					if((channel != 3) && (channel != 7) && (channel != 11) && (channel != 15)){	// these channels are not working correctly on the prototype board 3
 						for(sample=0; sample<32; sample++){
-							data_tmp[voltage] += (double)(tmp_ptr->data.data_struct.data[channel][sample] + VPED_DIGITAL - pedestal[window][channel][sample]);
+							data_tmp[voltage] += (double)(tmp_ptr->data.data_struct.data[channel][sample] - pedestal[window][channel][sample]+ offset_avoid_negative);
+;
 						}
 					}
 				}
@@ -175,9 +180,9 @@ int init_transfer_function(void){
 //	printf("%.17g]\r\n",Polynomial.coef[3]);
 //	printf("lookup table:\r\n[");
 	/* Generate the lookup table */
-	for(int i=0; i<2048; i++){
+	for(int i=0; i<size_lookup_table; i++){
 		y_voltage[i] = GM_SolvePolynomial(Polynomial, (double)i);
-		lookup_table[i] = (uint16_t)(y_voltage[i]*2048/2.5);
+		lookup_table[i] = (uint16_t)(y_voltage[i]*size_lookup_table/2.5);
 	}
 //	for(int i=0; i<2047; i++) printf("%d, ", lookup_table[i]);
 //	printf("%d]\r\n", lookup_table[2047]);
@@ -190,3 +195,4 @@ int init_transfer_function(void){
 
 	return XST_SUCCESS;
 }
+
