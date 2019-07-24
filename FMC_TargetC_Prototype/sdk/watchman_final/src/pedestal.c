@@ -12,7 +12,9 @@
 /** @brief Array containing registers of AXI-lite */
 extern int* regptr;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t pedestal[512][16][32];
+extern uint16_t  pedestal[512][16][32];
+/** @brief Array containing raw data of the whole array */
+extern uint16_t  data_raw[512][16][32];
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -46,7 +48,7 @@ int init_pedestals(void){
 	int i,j,count,pair, nmbrwindows;
 	int ped_sample;
 	int ped_channel;
-	int avg = 20;
+	int avg = 10;
 
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
@@ -191,5 +193,85 @@ int init_pedestals(void){
 }
 
 
+/*
+**************************************************************************
+*
+* @brief	Get pedestals using get_windowsRaw
+*
+* @param	number of average, avg; number of windows for step, nmbrofWindows
+*
+* @return	Void function, updating data_raw and pedestal global variables
+*
+* @note		-
+*
+***************************************************************************
+*/
 
+
+int get_pedestal(int avg, int nmbrofWindows){
+
+int i,j,window,channel,sample;
+
+printf("Arrays Initialization\r\n");
+for(window = 0; window< 512; window++ ){
+	for(channel = 0; channel< 16; channel++ ){
+		for(sample = 0; sample< 32; sample++ ){
+			data_raw[window][channel][sample] = 0;
+     //       usleep(10);
+	//		printf("%d\r\n", data_raw[window][channel][sample]);
+
+	}
+}
+}
+
+
+
+for(window = 0; window< 512; window++ ){
+	for(channel = 0; channel< 16; channel++ ){
+		for(sample = 0; sample< 32; sample++ ){
+			pedestal[window][channel][sample] = 0;
+		//	usleep(10);
+		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
+
+	}
+}
+}
+
+
+printf("Getting data");
+
+for (i=0; i<avg; i++ ){
+	for(j=0; j<512; j+=4){
+
+         if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
+             else { printf("get Windows raw failed\r\n");
+    //     usleep(300);
+         }
+
+	}
+  //  printf("avg %d of  %d\r\n", i, avg);
+
+}
+
+	 for(window=0; window<512; window++){
+			for(channel=0; channel<16; channel++){
+				for(sample = 0; sample <32;sample++){
+					pedestal[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+
+	     		}
+	     	}
+	     }
+
+
+	 for(sample = 0; sample <32;sample++){
+	 	printf("%d\r\n",data_raw[0][2][sample]);
+	 }
+	 for(sample = 0; sample <32;sample++){
+	 	printf("%d\r\n",pedestal[0][2][sample]);
+	 }
+
+	 return XST_SUCCESS;
+
+
+}
 
