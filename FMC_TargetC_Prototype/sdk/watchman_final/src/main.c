@@ -47,8 +47,13 @@ extern int flag_axidma_rx[4];
 extern int* regptr;
 /** @brief Flag raised when the user send the command "get transfer function" */
 extern volatile bool get_transfer_fct_flag;
-/** @brief Flag raised when the user send the command "get 20 windows" */
-extern volatile bool get_20_windows_flag;
+/** @brief Flag raised when the user send the command "get windows" */
+extern volatile bool get_windows_flag;
+
+/** @brief Flag raised when the user send the command "get windows raw data" */
+extern volatile bool get_windows_raw_flag;
+
+extern volatile bool restart_flag;
 
 
 /** @brief Flag raised when a pedestal value is required by the user */
@@ -70,9 +75,21 @@ extern volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 extern volatile bool simul_err_assertion_flag;
 /** @brief UDP Protocol Control Block for command communication */
+/** @brief Flag raised for UDP connection restart */
+extern volatile bool restart_UDP_flag;
+
 extern struct udp_pcb *pcb_cmd;
 /** @brief Buffer structure used to send command packet */
 extern struct pbuf *buf_cmd;
+
+/** Number of iterations for the average in pedestal calculation**/
+extern int pedestalAvg;
+
+/** Number of iterations for the average in pedestal calculation**/
+extern int pedestalAvg;
+
+/** Value from the GUI for the number of windows for pedestal calculation   */
+extern int nmbrWindowsPed;
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -97,16 +114,21 @@ typedef enum dma_stm_enum{
 	IDLE, 				/**< No data to send, waiting on a command */
 	STREAM,				/**< System in mode streaming */
 	GET_TRANSFER_FCT, 	/**< System sending the data for the transfer function in response to the corresponding command */
-	GET_15_WINDOWS,		/**< System sending the data 15 consecutive windows in response to the corresponding command */
+	GET_WINDOWS,		/**< System sending the data of consecutive windows in response to the corresponding command */
 	GET_PEDESTAL,      /**< System getting the pedestal for an specific voltage and nmbr of windows, data saved into the pedestal variable */
+	GET_WINDOWS_RAW,   /**< System getting the pedestal for an specific voltage and nmbr of windows, dat */
+	RESTART,           /**< Restart main() */
 } dma_stm_en;
 
 
 /*** Function prototypes *********************************************/
 void end_main(clean_state_en state, char* error_txt);
+void restart(void);
+
 
 int main()
 {
+
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
 	int pmt;
@@ -253,7 +275,9 @@ int main()
 	}
 
 	/* Initialize pedestal */
-	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+	if(get_pedestal(10, 4) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+//	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal initialization failed!");
 		return -1;
@@ -266,7 +290,9 @@ int main()
 		return -1;
 	}
 
+	//get_pedestal(100,4);
 	flag_while_loop = true;
+
 	printf("Start while loop\r\n");
 	while (run_flag){
 		/* Simulate a infinity loop to trigger the watchdog  */
@@ -310,23 +336,31 @@ int main()
 		}
 		switch(state_main){
 			case IDLE:
-				if(stream_flag && (!get_transfer_fct_flag) && (!get_20_windows_flag)){
+				if(stream_flag && (!get_transfer_fct_flag) && (!get_windows_flag)){
 					XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 					ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger
 					state_main = STREAM;
 				}
 				if(get_transfer_fct_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 					state_main = GET_TRANSFER_FCT;
 				}
-				if(get_20_windows_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
-					state_main = GET_15_WINDOWS;
+				if(get_windows_flag && (!stream_flag) && empty_flag){
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+					state_main = GET_WINDOWS;
 				}
 				if(pedestal_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 					state_main = GET_PEDESTAL;
 				}
+				if(restart_flag && (!stream_flag) && empty_flag){
+								ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+								state_main = RESTART;
+							}
+				if(get_windows_raw_flag && (!stream_flag) && empty_flag){
+						ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+						state_main = GET_WINDOWS_RAW;
+					}
 				break;
 			case STREAM:
 				if((!stream_flag) && empty_flag){
@@ -351,17 +385,27 @@ int main()
 				get_transfer_fct_flag = false;
 				state_main = IDLE;
 				break;
-			case GET_15_WINDOWS:
+			case GET_WINDOWS:
 				if(get_15_windows_fct() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
 				return -1;
 				}
-				get_20_windows_flag = false;
+				get_windows_flag = false;
+				state_main = IDLE;
+				break;
+			case GET_WINDOWS_RAW:
+				xil_printf("NADA\r\n");
+				//if(get_windows_raw() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				//else{
+				//	end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
+				//return -1;
+				//}
+				get_windows_flag = false;
 				state_main = IDLE;
 				break;
 			case GET_PEDESTAL:
-				if(init_pedestals() == XST_SUCCESS) printf("Pedestal pass!\r\n");
+				if(get_pedestal(pedestalAvg,nmbrWindowsPed) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);
 				else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get pedestal failed!");
 					return -1;
@@ -369,10 +413,17 @@ int main()
 				pedestal_flag = false;
 				state_main = IDLE;
 				break;
+			case RESTART:
+			    if(restart_flag) {
+				restart_flag = false;
+			    restart();
+
+			    printf("Restarting");
+			    }
+				break;
 			default:
 				state_main = IDLE;
 				break;
-
 		}
 	}
 
@@ -402,5 +453,14 @@ void end_main(clean_state_en state, char* error_txt){
 	sleep(1); // to see the xil_printf
 	// SYSTEM RESET
 	system_reset_hm();
+	main();
 }
 
+
+void restart(void){
+    printf("restarting");
+	usleep(1);
+	end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Restart!");
+	main();
+
+}
