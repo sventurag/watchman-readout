@@ -135,14 +135,21 @@ class targetc():
         for i in range(len(data)):
             self.int_array[i] = np.fromstring(data[i],dtype=np.uint16)
         
-        print('lEN', len(self.int_array))
+        #print('lEN', len(self.int_array))
         print(self.int_array)
-        self.Vped=0 
+        self.Vped=500
         self.windowsNumbers = [self.int_array[x][1] for x in range(0,len(self.int_array)) ] # create a list with the window numbers, byte 1 from each window
         print('windowsNumbers',self.windowsNumbers) 
         self.numberofWindows = len(self.windowsNumbers)
-        
-        payload = [self.int_array[i][2:514] for i in range(0,len(self.int_array))]
+        pedestal_avg = 1000.
+        offset_avoid_negative=1000.
+        #payload = [self.int_array[x:x + 512] for x in range( 2,len(self.int_array), int(self.windowSize/2) ) ] # get the data from each window asumming a self.windowSize, payload[window][data]
+ 
+        payload = [self.int_array[i][2:514]  for i in range(0,len(self.int_array))]
+        #print("payload len",len(payload_integers))
+        #payload = [ [float('{}.{}'.format(int(payload_integers[i][j*2]), int(payload_integers[i][j*2+1]))) for j in range(int(len(payload_integers[i])/2))] for i in range(len(payload_integers)) ]
+        # Subtracting offset for UINT32_T in PS
+        payload = [ [ (payload[i][j] ) for j in range(len(payload[i]))] for i in range(len(payload)) ]
         windows_and_channels = [ [ payload[i][ x:x + 32] for x in range(0,len(payload[i]),32) ] for i in range(self.numberofWindows)] # create a nested list from the payload, windows_and_channels[window][channel][sample]
         self.data_by_channel = list()
         for i in range(len(windows_and_channels[0])): 
@@ -168,18 +175,19 @@ class targetc():
         #window_array = np.zeros((32*16))
         while(cntWindows < maxWindows):
             try:
-                data, adress = self.sock_data.recvfrom(1030) # wait on data
+                data, adress = self.sock_data.recvfrom(1031) # wait on data
                 # process the data received
                 if(adress[0] == self.UDP_IP): # test the emitter's ip
                     if((data[0] == int("0x55", 0)) and (data[1] == int("0xAA", 0))): # for every command look for start code
-                        if((data[1028] == int("0x33", 0)) and (data[1029] == int("0xCC", 0))):
-                            
-                            self.data=data
+                        # if((data[2052] == int("0x33", 0)) and (data[2053] == int("0xCC", 0))):
+                         if((data[1028] == int("0x33", 0)) and (data[1029] == int("0xCC", 0))):
+                            #self.data=data
                             windowsList.append(data)
-                            #print('DATA[2]',data[2])                           
+                           # print('DATA',data)                           
                             cntWindows += 1
-                        else:
+                         else:
                             # error: no end code
+                            print(data[0],data[1020:1030], len(data))
                             print("Rx: ERROR end of data")
                             cntWindows = maxWindows
                             flag_tmp = False
@@ -202,6 +210,9 @@ class targetc():
         
 #        self.get_sorted_data(np.array(windowsList))
         self.allWindows.append(windowsList)
+        #print("windowsList", windowsList[1])
+        
+       # print("windowsList", windowsList[1][0])
         windowsList = windowsList*0 
        # windowsData_int = np.zeros((32*4))
         self.close_UDP_connection_data()
@@ -272,7 +283,7 @@ class targetc():
     
     
     
-    def get_512_windows(self, startWindow,totalWindows,stepWindows):
+    def get_512_windows(self, startWindow,totalWindows,stepWindows, channel):
         self.allWindows=list()
         self.stepWindows = stepWindows 
         self.startWindow = startWindow
@@ -287,15 +298,15 @@ class targetc():
           #  print('START WINDOW', regValue)         
 #   count = count
             self.send_command(8,regID,regValue) # change the start window
-            time.sleep(.2)
+            time.sleep(.5)
             self.send_command(7,self.stepWindows,0) # get windows
-            time.sleep(.2) #.5
+            time.sleep(.5) #.5
            
 
         #WindowsData_toSave[count]= self.windowsData[:,2]
         #self.windowsData= self.windowsData*0
         #count+=1
-        WindowsData_toSave = self.get_sorted_data(self.allWindows)[:,2]       
+        WindowsData_toSave = self.get_sorted_data(self.allWindows)[:,channel]       
    
 #     self.windowsData= self.windowsData*0
         return WindowsData_toSave.flatten() 
