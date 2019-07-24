@@ -1,2 +1,2 @@
    text	   data	    bss	    dec	    hex	filename
- 310260	   4528	17078624	17393412	1096704	watchman_final.elf
+ 312252	   4528	933534048	933850828	37a96ecc	watchman_final.elf
