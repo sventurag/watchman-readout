@@ -21,12 +21,13 @@ volatile bool run_flag;
 volatile bool stream_flag;
 /** @brief Flag raised when the user send the command "get transfer function" */
 volatile bool get_transfer_fct_flag;
-/** @brief Flag raised when the user send the command "get 20 windows" */
-volatile bool get_20_windows_flag;
-/** @brief Flag true when the list is empty (first_element = last_element) */
-
+/** @brief Flag raised when the user send the command "get  windows" */
+volatile bool get_windows_flag;
+/** @brief Flag raised when the user send the command "get windows raw" */
+volatile bool get_windows_raw_flag;
 /** @brief Flag raised when a pedestal value is required by the user */
 volatile bool pedestal_flag;
+volatile bool restart_flag;
 
 
 volatile bool empty_flag;
@@ -63,7 +64,13 @@ char* frame_buf_cmd;
 /** @brief Array containing registers of AXI-lite */
 int* regptr;
 /** @brief Array containing the pedestal correction for every sample */
-uint16_t pedestal[512][16][32];
+uint16_t  pedestal[512][16][32];
+
+
+/** @brief Array containing raw data of the whole array */
+
+uint16_t  data_raw[512][16][32];
+
 /** @brief Lookup table to correct the transfer function */
 uint16_t lookup_table[2048];
 
@@ -71,6 +78,13 @@ uint16_t lookup_table[2048];
 int fstWindowValue;
 /** Value from the GUI for the number of windows   */
 int nmbrWindows;
+/** Value from the GUI for delay in update WR   */
+int  delay_UpdateWR;
+
+/** Number of iterations for the average in pedestal calculation**/
+int pedestalAvg;
+/** Value from the GUI for the number of windows for pedestal calculation   */
+int nmbrWindowsPed;
 
 //******** To test the error detection********************/
 /** @brief Flag raised when the user want to test the autonomous side of the system with a watchdog */
@@ -81,6 +95,8 @@ volatile bool simul_err_function_prob_flag;
 volatile bool simul_err_exception_flag;
 /** @brief Flag raised when the user want to test the autonomous side of the system with a assertion */
 volatile bool simul_err_assertion_flag;
+/** @brief Flag raised for UDP connection restart */
+ volatile bool restart_UDP_flag;
 
 
 
@@ -103,7 +119,8 @@ int init_global_var(void){
 	run_flag = true;
 	stream_flag = false;
 	get_transfer_fct_flag = false;
-	get_20_windows_flag = false;
+	get_windows_flag = false;
+	get_windows_raw_flag = false;
 	simul_err_watchdog_flag = false;
 	simul_err_function_prob_flag = false;
 	simul_err_exception_flag = false;
@@ -113,6 +130,8 @@ int init_global_var(void){
 	flag_ttcps_timer = false;
 	flag_scu_timer = false;
 	first_element = (data_list *)malloc(sizeof(data_list));
+
+
 	if(!first_element){
 		xil_printf("malloc for first_element failed in function, %s!\r\n", __func__);
 		return XST_FAILURE;

@@ -214,6 +214,8 @@ int test_TPG(void){
 	/* Initiate the test */
 	regptr[TC_FSTWINDOW_REG] = 10;
 	regptr[TC_NBRWINDOW_REG] = 1;
+	regptr[TC_Delay_UpdateWR] = 0;
+
 	WriteRegister(TC_TPG_REG,	0x50A);	// TPG value
 
 	ControlRegisterWrite(SMODE_MASK ,ENABLE);

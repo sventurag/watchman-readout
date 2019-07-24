@@ -780,6 +780,19 @@ begin
 			ClkB	=> ClockBus.CLK250MHz
 		);
 
+
+BUF_Delay_UpdateWR : clkcrossing_buf
+		generic map(
+			NBITS => 32
+		)
+		port map(
+			nrst	=>	AxiBusIn.ARESETN,
+			DA		=>	TCReg(TC_Delay_UpdateWR),
+			QB		=> 	CtrlBus_OxMS.Delay_UpdateWR, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+			ClkA	=> 	AxiBusIn.ACLK,
+			ClkB	=> ClockBus.CLK250MHz
+		);
+
 	-- STATUS Register Update
     process(AxiBusIn.ACLK)
     variable tmp : std_logic_vector(31 downto 0) := (others => '0');

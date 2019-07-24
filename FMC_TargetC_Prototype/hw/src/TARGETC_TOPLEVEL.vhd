@@ -818,10 +818,10 @@ end process;
 process (address_is_zero_intl)
 begin
 	if (address_is_zero_intl = '1' ) then
-		BB3 <= '0';
+		BB5 <= '0';
 --		BB2 <= '0';
 	else
-		BB3 <= '1';
+		BB5 <= '1';
 	--	BB2 <= '1';
 	end if;
 end process;
@@ -830,7 +830,7 @@ end process;
 	BB1 <= ClockBus_intl.SSTIN;
    -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 	BB4 <= CtrlBusIn_intl.SSvalid;
-	BB5 <= MONTIMING_s;
+	BB3 <= MONTIMING_s;
 
 
 
