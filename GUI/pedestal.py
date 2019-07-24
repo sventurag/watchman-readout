@@ -12,6 +12,15 @@ import os
 import targetc as targetc
 import datetime as dt
 
+"""
+Script to get the pedestals offline
+The aim was to get raw data for the pedestal in the same way
+we are taking pulse data. 
+Used for few weeks on june 2019
+
+Deprecated on 11th July 2019 due to the implementation of the pedestals
+in PS in C. 
+"""
 tc = targetc.targetc()
 
 nmbrWindows = 4
@@ -49,7 +58,7 @@ Windows = np.zeros((averageNumber,  16384   ))
 
 for i in range (averageNumber):
 
-    Windows[i]=tc.get_512_windows(startWindow,totalWindows,nmbrWindows)
+    Windows[i]=tc.get_512_windows(startWindow,totalWindows,nmbrWindows,3)
     print('Ciclo:' ,i)
     time.sleep(1)
     
@@ -60,7 +69,7 @@ print(avgData[0:10])
 print(Windows[0])
 Windows = np.append(Windows, [avgData], axis=0)
 
-np.savetxt(os.path.abspath('./data/pedestal_calculation'), Windows.T)
+np.savetxt(os.path.abspath('./data/pedestals'), Windows.T)
 
 time.sleep(1)
 
@@ -70,5 +79,5 @@ test = tc.get_512_windows(startTest,totalTest, nmbrWindows)
 
 ped_sub_data = np.subtract(test,avgData[startTest:totalTest*32])
 
-np.savetxt(os.path.abspath('./data/ped_sub_data'), ped_sub_data.T)
+np.savetxt(os.path.abspath('./data/ped_sub_dataTest'), ped_sub_data.T)
 print('Done')
