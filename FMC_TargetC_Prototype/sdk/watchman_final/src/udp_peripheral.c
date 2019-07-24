@@ -32,11 +32,18 @@ extern volatile bool run_flag;
 extern volatile bool stream_flag;
 /** @brief Flag raised when the user send the command "get transfer function" */
 extern volatile bool get_transfer_fct_flag;
-/** @brief Flag raised when the user send the command "get 20 windows" */
-extern volatile bool get_20_windows_flag;
+/** @brief Flag raised when the user send the command "get windows" */
+extern volatile bool get_windows_flag;
+/** @brief Flag raised when the user send the command "get windows raw" */
+extern volatile bool get_windows_raw_flag;
+
+
 /** @brief Array containing registers of AXI-lite */
 /** @brief Flag raised when a pedestal value is required by the user */
 extern volatile bool pedestal_flag;
+
+/** @brief Flag raised when a restart is required by the user */
+extern volatile bool restart_flag;
 
 extern int* regptr;
 /** @brief Buffer used to send the command (50 bytes above it reserved for protocol header) */
@@ -53,7 +60,7 @@ extern volatile bool simul_err_exception_flag;
 extern volatile bool simul_err_assertion_flag;
 
 /** @brief Flag raised for UDP connection restart */
-extern volatile bool restart_UDP_flag;
+extern volatile bool get_windows_raw_flag;
 
 
 /** Value from the GUI for first window   */
@@ -65,6 +72,11 @@ extern int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
 extern int  delay_UpdateWR;
 
+/** Number of iterations for the average in pedestal calculation**/
+extern int pedestalAvg;
+
+/** Value from the GUI for the number of windows for pedestal calculation   */
+extern int nmbrWindowsPed;
 
 /****************************************************************************/
 /**
@@ -147,7 +159,7 @@ void udp_cmd_recv(void *arg, struct udp_pcb *pcb, struct pbuf *p, const ip_addr_
     		frame_buf_cmd[length-1] = 0xCC;
     		transfer_cmd(frame_buf_cmd, length);
 		}
-    	else xil_printf("ERROR with the command received\r\n");
+    	else xil_printf("ERROR with the command received,payloadLast = %04x,%04x,%04x,%04x,%04x,%04x \r\n", frame_buf_cmd[0],frame_buf_cmd[1],frame_buf_cmd[2],frame_buf_cmd[3],frame_buf_cmd[4],frame_buf_cmd[5] );
     }
     //free(p);
     //pbuf_free(p);
@@ -178,8 +190,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 	int regVal;
 	int regVal_one_reg;
 	int regID_one_reg;
-	int pedestaVoltage;
-	int pedestalNmbrWindows;
+	//int pedestalNmbrWindows;
 
 	while((start < (length-1)) && (flag_start == false)){
 		if((payload[start] == 0x55) && (payload[start+1] == 0xAA)) flag_start = true;
@@ -200,7 +211,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 					regID = 1;
 					for(i = 4; i < (4 + 2*REGMAP_SIZE_UDP); i += 2){
 				//		if(regID <= TC_MISCDIG_REG || regID == TC_TPG_REG){
-						if(regID <= 127){
+						if(regID == 127){
 							regVal = payload[i]*256 + payload[i+1];
 				//			WriteRegister(regID, regVal);
 							WriteRegister(TC_FSTWINDOW_REG, regVal);
@@ -289,7 +300,19 @@ int command_parser(struct pbuf *p, char* return_buf){
 			case 7: // get 15 windows
 				if(start + 4 == end){
 				//	xil_printf("Command get_15_windows received\r\n");
-					get_20_windows_flag = true;
+	//				i = 4;
+			//		nmbrWindows = payload[i];
+			//		fstWindowValue = payload[i+1]*256 + payload[i+2];
+
+				//	usleep(50);
+		//			WriteRegister(TC_NBRWINDOW_REG, payload[i]);
+			//		WriteRegister(TC_FSTWINDOW_REG, payload[i+1]*256 + payload[i+2]);
+				//	usleep(150);
+
+
+			//		xil_printf("%d,%d\r\n",payload[i], payload[i+1]*256 + payload[i+2]);
+				    get_windows_flag = true;
+
 					return 6;
 				}
 				else return -1;
@@ -300,13 +323,17 @@ int command_parser(struct pbuf *p, char* return_buf){
 				    regID_one_reg = payload[i];
 	//				regVal = payload[i]*256 + payload[i+1];
 				    regVal_one_reg = payload[i+1]*256 + payload[i+2];
-			        xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
-				    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
+			  //      xil_printf("regID_one_reg = %d\r\n", regID_one_reg);
+				//    xil_printf("regVal_one_reg = %d\r\n", regVal_one_reg);
 				    if(regID_one_reg == TC_FSTWINDOW_REG){
 				    	fstWindowValue = regVal_one_reg;
+						//xil_printf("FSTWINDOW = %d\r\n", regID_one_reg);
+
 				         }
 				    else if((regID_one_reg == TC_NBRWINDOW_REG)){
 				    	nmbrWindows = regVal_one_reg;
+						//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+
 				   			         }
 				    else if((regID_one_reg == TC_Delay_UpdateWR))
 				    {
@@ -314,20 +341,23 @@ int command_parser(struct pbuf *p, char* return_buf){
 						xil_printf("delay_UpdateWR = %d\r\n", delay_UpdateWR);
 
 								   			         }
-
-					return 6;
+				    else
+				    {
+				        WriteRegister(regID_one_reg, regVal_one_reg);
+				    			                     }
+								return 6;
 					}
-
 				      else return -1;
 										break;
+
 
 			case 9:	// Pedestal
 				if(start + 4 + 2 == end){
 					i = 4;
-					pedestaVoltage = payload[i];
-					pedestalNmbrWindows = payload[i+1];
-					xil_printf("pedestaVoltage = %d\r\n", pedestaVoltage);
-					xil_printf("pedestalNmbrWindows = %d\r\n", pedestalNmbrWindows);
+					pedestalAvg = payload[i];
+					nmbrWindowsPed = payload[i+1];
+					xil_printf("pedestaAvg = %d\r\n", pedestalAvg);
+					xil_printf("pedestalNmbrWindows = %d\r\n", nmbrWindowsPed);
 					pedestal_flag = true;
 
 					return 6;
@@ -336,22 +366,37 @@ int command_parser(struct pbuf *p, char* return_buf){
 						else return -1;
 						break;
 
-			case 10:	// restart UDP
-						if(start + 4 + 1 == end){
-						xil_printf("Command reset UDP received\r\n");
+			case 10:	// get RAW data
+				if(start + 4 == end){
+						//	xil_printf("Command get_15_windows received\r\n");
+/*
+						i = 4;
+						WriteRegister(TC_NBRWINDOW_REG, payload[i]);
+						WriteRegister(TC_FSTWINDOW_REG, payload[i+1]*256+ payload[i+2]);
+						usleep(50);
 
-						restart_UDP_flag = true ;
+						nmbrWindows = payload[i];
+						fstWindowValue = payload[i+1]*256 + payload[i+2];
+						xil_printf("%d,%d\r\n",payload[i], payload[i+1]*256 + payload[i+2]);
+						usleep(150);
+*/
+						get_windows_raw_flag = true;
 							return 6;
 						}
 						else return -1;
 						break;
 
+			case 11:	// restart ALL
+						if(start + 4 == end){
+						xil_printf("Command RESTART received\r\n");
 
+						restart_flag = true ;
+							return 6;
+						}
+						else return -1;
+						break;
 
-
-
-
-			case 11:	// error watchdog asked
+			case 12:	// error watchdog asked
 				if(start + 4 == end){
 					xil_printf("Command err_watchdog received\r\n");
 					simul_err_watchdog_flag = true;
@@ -359,7 +404,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 12:	// error function problem asked
+			case 13:	// error function problem asked
 				if(start + 4 == end){
 					xil_printf("Command err_function_prob received\r\n");
 					simul_err_function_prob_flag = true;
@@ -367,7 +412,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 13:	// error exception asked
+			case 14:	// error exception asked
 				if(start + 4 == end){
 					xil_printf("Command err_exception received\r\n");
 					simul_err_exception_flag = true;
@@ -375,7 +420,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 				}
 				else return -1;
 				break;
-			case 14:	// error assertion asked
+			case 15:	// error assertion asked
 				if(start + 4 == end){
 					xil_printf("Command err_assertion received\r\n");
 					simul_err_assertion_flag = true;
