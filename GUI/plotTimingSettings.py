@@ -2,14 +2,14 @@ import numpy as np
 import matplotlib.pyplot as plt
 from operator import itemgetter
 
-plt.rcParams.update({'font.size': 20})
+plt.rcParams.update({'font.size': 16})
 
 
 
 TARGETX = [51,7,56,12,33,53,20,40,5,25]
 TARGETC = [51,7,25,35,5,15,57,3,37,47]
 Adrian = [46,61,61,7,55,6,25,10,55,6]
-
+Rigth = [51,7,56,12,5,25,20,40,33,53]
 
 print (list(range(0,len(TARGETX))))
 print (range(0,len(TARGETX)))
@@ -22,10 +22,12 @@ parameters = ['sspinLE', 'sspinTE', 'wrstrb2LE', 'wrstrb2TE', 'wr2addrLE', 'wr2a
 TARGETXdic = dict(zip(parameters,TARGETX)) 
 TARGETCdic = dict(zip(parameters,TARGETC)) 
 Adriandic = dict(zip(parameters,Adrian)) 
+Rigthdic = dict(zip(parameters,Rigth)) 
 
 print(TARGETXdic)
 print(TARGETCdic)
 print(Adriandic)
+print(Rigthdic)
 
 print(TARGETXdic['sspinLE'])
 
@@ -68,8 +70,9 @@ axs[0].set_xlim(0,128)
 for i in range(2,7,1):
     axs[i-1].step(x,strobeplot(numbCycles,TARGETXdic[parameters[(i-2)*2]],TARGETXdic[parameters[(2*i)-3]]), label= 'TARGETX', linewidth=2)
    # print(Adriandic[parameters[(i-2)*2]], Adriandic[parameters[(2*i)-3]])
-    axs[i-1].step(x,strobeplot(numbCycles,TARGETCdic[parameters[(i-2)*2]],TARGETCdic[parameters[(2*i)-3]]), label='TARGETC', linewidth=2)
+#    axs[i-1].step(x,strobeplot(numbCycles,TARGETCdic[parameters[(i-2)*2]],TARGETCdic[parameters[(2*i)-3]]), label='TARGETC', linewidth=2)
     axs[i-1].step(x,strobeplot(numbCycles,Adriandic[parameters[(i-2)*2]],Adriandic[parameters[(2*i)-3]]), label= 'Adrian',linewidth=2)
+    axs[i-1].step(x,strobeplot(numbCycles,Rigthdic[parameters[(i-2)*2]],Rigthdic[parameters[(2*i)-3]]), label= 'Rigth order',linewidth=2)
     axs[i-1].set_ylim(-1,2)    
     axs[i-1].set_xlim(0,numbCycles)    
     axs[i-1].set_ylabel('{}'.format(parameters2[i-2]))    
