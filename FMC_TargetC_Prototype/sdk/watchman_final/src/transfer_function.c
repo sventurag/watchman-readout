@@ -16,7 +16,7 @@ extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
 extern volatile bool flag_axidma_rx_done;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t  pedestal[512][16][32];
+extern uint16_t  pedestal[512][16][31];
 /** @brief Lookup table to correct the transfer function */
 extern uint16_t lookup_table[2048];
 /** @brief Flag raised when the Triple Timer Counter overflows */
@@ -117,7 +117,7 @@ int init_transfer_function(void){
 				printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
 				printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
 				printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
-				for(sample=0; sample<32; sample++){
+				for(sample=0; sample<31; sample++){
 					for(channel=0; channel<16; channel++){
 						printf("%d\t", (uint)tmp_ptr->data.data_struct.data[channel][sample]);
 					}
@@ -141,7 +141,7 @@ int init_transfer_function(void){
 				for(channel=0; channel<16; channel++){
 					/* ignore channel 3,7,11,15 they are broken on board 3 */
 					if((channel != 3) && (channel != 7) && (channel != 11) && (channel != 15)){	// these channels are not working correctly on the prototype board 3
-						for(sample=0; sample<32; sample++){
+						for(sample=0; sample<31; sample++){
 							data_tmp[voltage] += (double)(tmp_ptr->data.data_struct.data[channel][sample] - pedestal[window][channel][sample]+ offset_avoid_negative);
 ;
 						}
@@ -153,7 +153,7 @@ int init_transfer_function(void){
 			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 		}
 		//data_tmp[voltage] = data_tmp[voltage]/(512*16*32);
-		data_tmp[voltage] = data_tmp[voltage]/(512*12*32);	// because 4 channels are not taken into account
+		data_tmp[voltage] = data_tmp[voltage]/(512*12*31);	// because 4 channels are not taken into account
 	}
 	free(tmp_ptr);
 

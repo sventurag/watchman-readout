@@ -64,12 +64,12 @@ char* frame_buf_cmd;
 /** @brief Array containing registers of AXI-lite */
 int* regptr;
 /** @brief Array containing the pedestal correction for every sample */
-uint16_t  pedestal[512][16][32];
+uint16_t  pedestal[512][16][31];
 
 
 /** @brief Array containing raw data of the whole array */
 
-uint16_t  data_raw[512][16][32];
+uint16_t  data_raw[512][16][31];
 
 /** @brief Lookup table to correct the transfer function */
 uint16_t lookup_table[2048];

@@ -17,7 +17,7 @@ extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
 extern volatile bool flag_axidma_rx_done;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t  pedestal[512][16][32];
+extern uint16_t  pedestal[512][16][31];
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
 /** @brief Lookup table to correct the transfer function */
@@ -34,7 +34,7 @@ extern int fstWindowValue;
 extern int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
 //extern int  delay_UpdateWR;
-extern uint16_t  data_raw[512][16][32];
+extern uint16_t  data_raw[512][16][31];
 
 /****************************************************************************/
 /**
@@ -126,7 +126,7 @@ int get_15_windows_fct(void){
 			printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
 			printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
 			printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
-			for(j=0; j<32; j++){
+			for(j=0; j<31; j++){
 				for(i=0; i<16; i++){
 					printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
 				}
@@ -152,7 +152,7 @@ int get_15_windows_fct(void){
 
 			//printf("\r\n window = %d\r\n",window);
 			for(i=0; i<16; i++){
-				for(j=0; j<32; j++){
+				for(j=0; j<31; j++){
 					/* Pedestal subtraction */
 					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
                      // get int part
@@ -299,7 +299,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 				printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
 				printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
 				printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
-				for(j=0; j<32; j++){
+				for(j=0; j<31; j++){
 					for(i=0; i<16; i++){
 						printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
 					}
@@ -319,7 +319,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 
 				for(i=0; i<16; i++){
-					for(j=0; j<32; j++){
+					for(j=0; j<31; j++){
 						/* Pedestal subtraction */
 						data_raw[window][i][j] += (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
                         if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){

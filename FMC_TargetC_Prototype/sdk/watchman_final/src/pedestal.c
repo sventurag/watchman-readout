@@ -12,9 +12,9 @@
 /** @brief Array containing registers of AXI-lite */
 extern int* regptr;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t  pedestal[512][16][32];
+extern uint16_t  pedestal[512][16][31];
 /** @brief Array containing raw data of the whole array */
-extern uint16_t  data_raw[512][16][32];
+extern uint16_t  data_raw[512][16][31];
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -40,9 +40,9 @@ extern XScuWdt WdtScuInstance;
 ****************************************************************************/
 int init_pedestals(void){
 
-	uint64_t sqr_val[4][16][32];
+	uint64_t sqr_val[4][16][31];
 	//double rms[4][16][32];
-	uint32_t data[4][16][32];
+	uint32_t data[4][16][31];
 	int window, window_index;
 	int timeout;
 	int i,j,count,pair, nmbrwindows;
@@ -63,7 +63,7 @@ int init_pedestals(void){
 	for(window_index=0; window_index<512; window_index+=nmbrwindows){
 		for(pair=0; pair<nmbrwindows; pair++){
 			for(i=0; i<16; i++){
-				for(j=0; j<32; j++){
+				for(j=0; j<31; j++){
 					data[pair][i][j] = 0;
 					sqr_val[pair][i][j] = 0;
 				}
@@ -122,7 +122,7 @@ int init_pedestals(void){
 					printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
 					printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
 					printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
-					for(j=1; j<32; j++){
+					for(j=1; j<31; j++){
 						for(i=0; i<16; i++){
 							printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
 						}
@@ -143,7 +143,7 @@ int init_pedestals(void){
 				else{
 					/* If data valid, calculate the average */
 					for(i=0; i<16; i++){
-						for(j=0; j<32; j++) {
+						for(j=0; j<31; j++) {
 							data[pair][i][j] += tmp_ptr->data.data_struct.data[i][j];
 							sqr_val[pair][i][j] += tmp_ptr->data.data_struct.data[i][j]*tmp_ptr->data.data_struct.data[i][j];
 						}
@@ -158,7 +158,7 @@ int init_pedestals(void){
 		for(pair=0; pair<nmbrwindows; pair++){
 			window = window_index + pair;
 			for(i=0; i<16; i++){
-				for(j=0; j<32; j++){
+				for(j=0; j<31; j++){
 					/* Divide the average by avg to have the pedestal value */
 					pedestal[window][i][j]= data[pair][i][j]/avg;
 					sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
@@ -178,7 +178,7 @@ int init_pedestals(void){
 
 	for (ped_channel = 0; ped_channel <16; ped_channel++ ){
         printf("channel = %d,", ped_channel);
-		for (ped_sample=0; ped_sample<32; ped_sample++ ){
+		for (ped_sample=0; ped_sample<31; ped_sample++ ){
 			printf("%d,",pedestal[0][ped_channel][ped_sample]);
 
 		}
@@ -215,7 +215,7 @@ int i,j,window,channel,sample;
 printf("Arrays Initialization\r\n");
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
-		for(sample = 0; sample< 32; sample++ ){
+		for(sample = 0; sample< 31; sample++ ){
 			data_raw[window][channel][sample] = 0;
      //       usleep(10);
 	//		printf("%d\r\n", data_raw[window][channel][sample]);
@@ -228,7 +228,7 @@ for(window = 0; window< 512; window++ ){
 
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
-		for(sample = 0; sample< 32; sample++ ){
+		for(sample = 0; sample< 31; sample++ ){
 			pedestal[window][channel][sample] = 0;
 		//	usleep(10);
 		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
@@ -255,7 +255,7 @@ for (i=0; i<avg; i++ ){
 
 	 for(window=0; window<512; window++){
 			for(channel=0; channel<16; channel++){
-				for(sample = 0; sample <32;sample++){
+				for(sample = 0; sample <31;sample++){
 					pedestal[window][channel][sample] = data_raw[window][channel][sample] /avg ;
 
 	     		}
@@ -263,10 +263,10 @@ for (i=0; i<avg; i++ ){
 	     }
 
 
-	 for(sample = 0; sample <32;sample++){
+	 for(sample = 0; sample <31;sample++){
 	 	printf("%d\r\n",data_raw[0][2][sample]);
 	 }
-	 for(sample = 0; sample <32;sample++){
+	 for(sample = 0; sample <31;sample++){
 	 	printf("%d\r\n",pedestal[0][2][sample]);
 	 }
 
