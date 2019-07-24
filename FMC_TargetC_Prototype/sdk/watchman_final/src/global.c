@@ -64,7 +64,13 @@ char* frame_buf_cmd;
 /** @brief Array containing registers of AXI-lite */
 int* regptr;
 /** @brief Array containing the pedestal correction for every sample */
-uint16_t pedestal[512][16][32];
+uint16_t  pedestal[512][16][32];
+
+
+/** @brief Array containing raw data of the whole array */
+
+uint16_t  data_raw[512][16][32];
+
 /** @brief Lookup table to correct the transfer function */
 uint16_t lookup_table[2048];
 
@@ -74,6 +80,11 @@ int fstWindowValue;
 int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
 int  delay_UpdateWR;
+
+/** Number of iterations for the average in pedestal calculation**/
+int pedestalAvg;
+/** Value from the GUI for the number of windows for pedestal calculation   */
+int nmbrWindowsPed;
 
 //******** To test the error detection********************/
 /** @brief Flag raised when the user want to test the autonomous side of the system with a watchdog */
