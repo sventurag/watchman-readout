@@ -17,7 +17,7 @@ extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
 extern volatile bool flag_axidma_rx_done;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t pedestal[512][16][32];
+extern uint16_t  pedestal[512][16][32];
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
 /** @brief Lookup table to correct the transfer function */
@@ -34,6 +34,8 @@ extern int fstWindowValue;
 extern int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
 //extern int  delay_UpdateWR;
+extern uint16_t  data_raw[512][16][32];
+
 /****************************************************************************/
 /**
 * @brief	Recover 20 consecutive windows and send them to the computer
@@ -50,7 +52,11 @@ int get_15_windows_fct(void){
 	int timeout;
 	int window,i,j,index;
 	uint16_t data_tmp;
-
+	//uint16_t int_number;
+	//float float_decimal;
+	//uint16_t int_decimal;
+	//int pedestal_avg = 1;
+    int offset_avoid_negative=500;
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
 	if(!tmp_ptr){
@@ -148,19 +154,54 @@ int get_15_windows_fct(void){
 			for(i=0; i<16; i++){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t)(tmp_ptr->data.data_struct.data[i][j] + VPED_DIGITAL - pedestal[window][i][j]);
-					/* Transfer function correction */
-					if(data_tmp > 2047) data_tmp = 2047;
-					frame_buf[index++] = (char)lookup_table[data_tmp];
-					frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
+					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
+                     // get int part
 
-					//printf("%d ", lookup_table[data_tmp]);
+			//		int_number= (uint16_t) data_tmp;
+			//		float_decimal = round(data_tmp*100)/100 - int_number; //rounding to the second decimal position
+			//	    int_decimal = (uint16_t)float_decimal*100;
+					//printf("data_tmp = %d\r\n",data_tmp);
+					/* Transfer function correction */
+
+			//		if(data_tmp > 2047) {
+			//			data_tmp = 2047;
+			//		    printf("%" PRIu16 "\n",data_tmp);
+			//		}
+
+			  //      printf( "data_tmp = %.2f\r\n" , data_tmp);
+
+			//		frame_buf[index++] = (char)lookup_table[data_tmp];
+			//		frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
+
+					frame_buf[index++] = (char)data_tmp;
+				    //printf("int_number = %d\r\n ", (char)(int_number));
+
+					frame_buf[index++] = (char)(data_tmp >> 8);
+					//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
+
+		     //		frame_buf[index++] = (char)int_decimal;
+				//	printf("int_decimal = %d \r\n", (char)(int_decimal));
+
+				//	frame_buf[index++] = (char)(int_decimal >> 8);
+				//	printf("int_decimal >> 8 = %d\r\n ", (char)((int_decimal >> 8)));
+
+					//			printf("%d ", (char)(data_tmp >> 8));
+
+
+				//	printf("%d ", data_tmp>>8);
+
+					//frame_buf[index++] = (char)lookup_table[data_tmp];
+					//frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
+
 				}
+
 				//printf("\r\n");
 			}
 			//printf("\r\n");
 			frame_buf[index++] = 0x33;
+		//    printf("Test\r\n");
 			frame_buf[index++] = 0xCC;
+		//	printf("%d\r\n", index);
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
@@ -182,11 +223,12 @@ int get_15_windows_fct(void){
 * @note		-
 *
 ****************************************************************************/
-int get_windows_raw(void){
+int get_windowsRaw(int startWindow, int nmbrofWindows){
 	int window_start;
 		int timeout;
-		int window,i,j,index;
-		uint16_t data_tmp;
+		int window,i,j;
+
+
 
 		/* Create an element for the DMA */
 		data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
@@ -198,7 +240,7 @@ int get_windows_raw(void){
 		tmp_ptr->previous = NULL;
 
 		/* First window */
-		window_start = fstWindowValue;
+		window_start = startWindow;
 
 		/* Number of windows */
 		//nmbrWindows = 16;
@@ -207,15 +249,15 @@ int get_windows_raw(void){
 		XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 		/* Initiate transfer and measure */
-		regptr[TC_FSTWINDOW_REG] = fstWindowValue;
-		regptr[TC_NBRWINDOW_REG] = nmbrWindows;
+		regptr[TC_FSTWINDOW_REG] = startWindow;
+		regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
 		ControlRegisterWrite(SMODE_MASK ,ENABLE);
 		ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 		ControlRegisterWrite(WINDOW_MASK,ENABLE);
 		usleep(50);
 		ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
 
-		for(window =window_start ; window<nmbrWindows+window_start; window++){
+		for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
 			if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
@@ -274,29 +316,19 @@ int get_windows_raw(void){
 				return XST_FAILURE;
 			}
 			else{
-				/* If data valid, send them to computer */
-				index = 0;
-				frame_buf[index++] = 0x55;
-				frame_buf[index++] = 0xAA;
-				frame_buf[index++] = (char)window;
-				frame_buf[index++] = (char)(window >> 8);
-				//printf("\r\n window = %d\r\n",window);
+
+
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t)(tmp_ptr->data.data_struct.data[i][j]); //+ VPED_DIGITAL - pedestal[window][i][j]);
-						/* Transfer function correction */
-						if(data_tmp > 2047) data_tmp = 2047;
-						frame_buf[index++] = (char)data_tmp;
-						frame_buf[index++] = (char)data_tmp >> 8;
-						//printf("%d ", lookup_table[data_tmp]);
+						data_raw[window][i][j] += (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
+                        if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
+                        	printf("Value= 0");
+                        	usleep(300);
+                        }
 					}
-					//printf("\r\n");
 				}
-				//printf("\r\n");
-				frame_buf[index++] = 0x33;
-				frame_buf[index++] = 0xCC;
-				transfer_data(frame_buf, index);
+
 			}
 			/* Release the DMA */
 			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
@@ -306,26 +338,3 @@ int get_windows_raw(void){
 
 		return XST_SUCCESS;
 	}
-
-/*
-**************************************************************************
-*
-* @brief	512 Windows for the entire TARGETC buffer
-*
-* @param	-
-*
-* @return	XST_SUCCESS or XST_FAILURE (defined in xstatus.h)
-*
-* @note		-
-*
-***************************************************************************
-
-
-int get_512_windows_raw(void){
-
-	 get_15_windows()==XST_SUCCESS)
-
-		for(j=0; j<511; j+=4){
-
-			get_15_windows()==XST_SUCCESS)*/
-

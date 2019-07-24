@@ -82,6 +82,15 @@ extern struct udp_pcb *pcb_cmd;
 /** @brief Buffer structure used to send command packet */
 extern struct pbuf *buf_cmd;
 
+/** Number of iterations for the average in pedestal calculation**/
+extern int pedestalAvg;
+
+/** Number of iterations for the average in pedestal calculation**/
+extern int pedestalAvg;
+
+/** Value from the GUI for the number of windows for pedestal calculation   */
+extern int nmbrWindowsPed;
+
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Network interface */
@@ -266,7 +275,9 @@ int main()
 	}
 
 	/* Initialize pedestal */
-	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+	if(get_pedestal(10, 4) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+//	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal initialization failed!");
 		return -1;
@@ -279,7 +290,9 @@ int main()
 		return -1;
 	}
 
+	//get_pedestal(100,4);
 	flag_while_loop = true;
+
 	printf("Start while loop\r\n");
 	while (run_flag){
 		/* Simulate a infinity loop to trigger the watchdog  */
@@ -382,16 +395,17 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS_RAW:
-				if(get_windows_raw() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				xil_printf("NADA\r\n");
+				//if(get_windows_raw() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
-					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
-				return -1;
-				}
+				//	end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
+				//return -1;
+				//}
 				get_windows_flag = false;
 				state_main = IDLE;
 				break;
 			case GET_PEDESTAL:
-				if(init_pedestals() == XST_SUCCESS) printf("Pedestal pass!\r\n");
+				if(get_pedestal(pedestalAvg,nmbrWindowsPed) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);
 				else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get pedestal failed!");
 					return -1;

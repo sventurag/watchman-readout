@@ -72,6 +72,11 @@ extern int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
 extern int  delay_UpdateWR;
 
+/** Number of iterations for the average in pedestal calculation**/
+extern int pedestalAvg;
+
+/** Value from the GUI for the number of windows for pedestal calculation   */
+extern int nmbrWindowsPed;
 
 /****************************************************************************/
 /**
@@ -185,8 +190,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 	int regVal;
 	int regVal_one_reg;
 	int regID_one_reg;
-	int pedestaVoltage;
-	int pedestalNmbrWindows;
+	//int pedestalNmbrWindows;
 
 	while((start < (length-1)) && (flag_start == false)){
 		if((payload[start] == 0x55) && (payload[start+1] == 0xAA)) flag_start = true;
@@ -350,10 +354,10 @@ int command_parser(struct pbuf *p, char* return_buf){
 			case 9:	// Pedestal
 				if(start + 4 + 2 == end){
 					i = 4;
-					pedestaVoltage = payload[i];
-					pedestalNmbrWindows = payload[i+1];
-					xil_printf("pedestaVoltage = %d\r\n", pedestaVoltage);
-					xil_printf("pedestalNmbrWindows = %d\r\n", pedestalNmbrWindows);
+					pedestalAvg = payload[i];
+					nmbrWindowsPed = payload[i+1];
+					xil_printf("pedestaAvg = %d\r\n", pedestalAvg);
+					xil_printf("pedestalNmbrWindows = %d\r\n", nmbrWindowsPed);
 					pedestal_flag = true;
 
 					return 6;

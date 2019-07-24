@@ -26,7 +26,7 @@
 /** @brief Length of protocol header (in bytes) */
 #define BUF_HEADER_SIZE 	50 // frame's header: ethernet (14) + Ipv4(20) + UDP(8) = 42 -> 50
 /** @brief Length maximum of frame data (in bytes) */
-#define MAX_DATA_SIZE 		CHANNEL*SAMPLE*2+15 // payload int16_t is 2 bytes + header + frame's header
+#define MAX_DATA_SIZE 		CHANNEL*SAMPLE*2+15+512 // payload int16_t is 2 bytes + header + frame's header
 /** @brief Number of register send/received by UDP */
 #define REGMAP_SIZE_UDP	128
 /** @brief Length maximum of frame command (in bytes) */

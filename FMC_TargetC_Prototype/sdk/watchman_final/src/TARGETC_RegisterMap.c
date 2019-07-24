@@ -45,33 +45,42 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_WR1_ADDR_LE_REG,	33);
 	WriteRegister(TC_WR1_ADDR_TE_REG,	53);
 
-	WriteRegister(TC_VQBUFF_REG,	1100);
+	WriteRegister(TC_VQBUFF_REG,	1100); ///// 1100
 	WriteRegister(TC_QBIAS_REG,		0);
 	WriteRegister(TC_VTRIMT_REG,	0x4d8);
-
 	WriteRegister(TC_VBIAS_REG,		0x4B0);	//
-
 	WriteRegister(TC_VAPBUFF_REG,	0x3D9);	// 985(10)
 	//WriteRegister(TC_VADJP_REG,		0x480);	// 1152
 	WriteRegister(TC_VADJP_REG,		1020);
-
 	WriteRegister(TC_VANBUFF_REG,	0x426);	// 1062
 	//WriteRegister(TC_VADJN_REG,		0x8BB);	// 2235
-	WriteRegister(TC_VADJN_REG,		2430);	//2420 - 2450
+//	xil_printf("VADJN=0 \r\n");
 
+	WriteRegister(TC_VADJN_REG,		2430);	//2420 - 2450  2430
 	WriteRegister(TC_SBBIAS_REG,	0x78E);
-	
 	WriteRegister(TC_VDISCH_REG,	0);
 	//WriteRegister(TC_ISEL_REG,		2600);
 	WriteRegister(TC_ISEL_REG,	0x8fc);	// 2300 good for Vped around 512
 
 	WriteRegister(TC_DBBIAS_REG,	0x690);
 
-
 	// Initial Base Value
 	WriteRegister(TC_CMPBIAS2_REG,	0x2D6); //726
 	WriteRegister(TC_PUBIAS_REG,	0xBCA);	//3018
 	WriteRegister(TC_CMPBIASIN_REG,	0x654); //1620
+
+//	usleep(5000000);
+
+    // To operate DLL
+	xil_printf("Turning DLL ON \r\n");
+	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019
+	WriteRegister(TC_VANBUFF_REG,	0x426);	// 1,300 Meeting 07/02/2019
+	usleep(100);
+
+	WriteRegister(TC_QBIAS_REG,	0x514);    // 1300, // 1,300 Meeting 07/02/2019 0x426
+	WriteRegister(TC_VANBUFF_REG,	0);	// // 1,300 Meeting 07/02/2019
+ //	usleep(20);
+
 
 	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
 	WriteRegister(TC_MONTIMING_REG,	0);		//INIT MonTiming PASS disable
