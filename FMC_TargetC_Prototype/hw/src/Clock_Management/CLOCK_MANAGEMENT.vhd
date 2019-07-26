@@ -138,21 +138,22 @@ begin
 	rst <= not nrst;
 
 	  -- MMCM to generate base and fast clocks
+	  -- fout = Fclkin x M/(D*O)
 	TC_CLK_MNG_inst : MMCME2_ADV
 	generic map(
 		BANDWIDTH			=> "OPTIMIZED",
 		COMPENSATION         => "BUF_IN",
 		STARTUP_WAIT         => false,
-		DIVCLK_DIVIDE        => 1,
-		CLKFBOUT_MULT_F      => 10.0,
+		DIVCLK_DIVIDE        => 1,     -- D
+		CLKFBOUT_MULT_F      => 10.0,  -- M
 		CLKFBOUT_PHASE       => 0.000,
 		CLKFBOUT_USE_FINE_PS => false,
-		CLKOUT0_DIVIDE_F       => 10.0, -- 169
+		CLKOUT0_DIVIDE_F       => 10.0, -- 169  M CLKO
 		CLKOUT0_PHASE        => 0.000,
 		CLKOUT0_DUTY_CYCLE   => 0.500,
 		CLKOUT0_USE_FINE_PS  => false,
 		--
-		CLKOUT1_DIVIDE      => 4, -- 169
+		CLKOUT1_DIVIDE      => 8, -- 169   -- O  changed from 4 to 10 to get 100MHz, 8 to get 125
 		CLKOUT1_PHASE        => 0.000,
 		CLKOUT1_DUTY_CYCLE   => 0.500,
 		CLKOUT1_USE_FINE_PS  => false,
@@ -165,9 +166,11 @@ begin
 		-- Output clocks
 		CLKFBOUT     => clkFbOut,
 		CLKFBOUTB    => open,
+		
 		CLKOUT0      => Clk100MHzRaw,
 		CLKOUT0B     => open,
 		CLKOUT1      => CLK250MHzRaw,
+		
 		CLKOUT1B     => open,
 		CLKOUT2      => open,
 		CLKOUT2B     => open,
@@ -262,11 +265,11 @@ begin
 
 	-- Timestamp
 	Timestamp.graycnt <= GrayCounter_intl;
-	Timestamp.samplecnt <= Timecounter_intl(3 downto 0);
+	Timestamp.samplecnt <= Timecounter_intl(2 downto 0);
 
 	TimeCounter <= Timecounter_intl;
 
-	SSTIN_bufg	<= not Timecounter_intl(3);
+	SSTIN_bufg	<= not Timecounter_intl(2);
 
 	ClockBus.SCLK 	<= SCLK_intl;
 	ClockBus.HSCLK	<= HSCLK_intl;

@@ -122,15 +122,15 @@ begin
 					case writeEn_stm is
 						when IDLE =>
 							case CPUBus(10 downto 8) is
-								when CMD_WR1_MARKED =>
+								when CMD_WR1_MARKED => -- ODD WINDOW
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+1);
-									counter <= CPUTime.graycnt & "0000";
+									counter <= CPUTime.graycnt & "0000"; -- gray counter is a timestamp for the window
 									--trig <= TrigInfoDly;
 									trig <= TriggerInfo;
 									Wdo1 <= CPUBus(7 downto 0) & '0';
 									cmd_s <= CPUBus;
 									writeEn_stm <= STABILIZE;
-								when CMD_WR2_MARKED =>
+								when CMD_WR2_MARKED =>-- EVEN WINDOW
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+1);
 									--counter <= CPUTime;
 									counter <= CPUTime.graycnt & "1000";

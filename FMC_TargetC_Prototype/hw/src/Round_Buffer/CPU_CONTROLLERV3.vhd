@@ -83,7 +83,7 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 		nclr :		in	std_logic;
 		clk:		in std_logic;
 
-		Scnt:		in	std_logic_vector(3 downto 0);
+		Scnt:		in	std_logic_vector(2 downto 0);
 
 		D : 		in	std_logic;
 		Q:			out	std_logic
@@ -154,7 +154,7 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 		);
 		Port (
 			Clk:		in 	std_logic;
-			SCnt:		in 	std_logic_vector(3 downto 0);
+			SCnt:		in 	std_logic_vector(2 downto 0);
 			prevWdo :	out	std_logic
 		);
 	end component LookupTable_LE;
@@ -240,7 +240,7 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 
 	signal validreal_s, validdata_s, valid_1dly : std_logic;
 	signal LE_intl, LE_intr, TE_intl : std_logic;
-	signal notsamplecnt : std_logic_vector(3 downto 0);
+	signal notsamplecnt : std_logic_vector(2 downto 0);
 	signal prev_TimeStamp:	T_Timestamp;
 
 	signal Ctrl_Busy_s : std_logic;
@@ -379,7 +379,7 @@ begin
 		   );
 	end generate;
 
-	notsamplecnt <= not(TimeStamp.samplecnt(3)) & TimeStamp.samplecnt(2 downto 0);
+	notsamplecnt <= not(TimeStamp.samplecnt(2)) & TimeStamp.samplecnt(1 downto 0);
 
 	-- TE_LUT_inst : 	LookupTable_TE
 	-- generic map(
@@ -488,7 +488,7 @@ begin
 			wr1_en_dly <= '0';
 		else
 			if rising_edge(ClockBus.CLK250MHz) then
-				if TimeStamp.samplecnt = "1111" then
+				if TimeStamp.samplecnt = "111" then
 					wr1_en_dly <= D_wr1_en;
 				else
 					wr1_en_dly <= D_wr1_en or wr1_en_dly;
@@ -503,7 +503,7 @@ begin
 			wr2_en_dly <= '0';
 		else
 			if rising_edge(ClockBus.CLK250MHz) then
-				if TimeStamp.samplecnt = "0111" then
+				if TimeStamp.samplecnt = "011" then
 					wr2_en_dly <= D_wr2_en;
 				else
 					wr2_en_dly <= D_wr2_en or wr2_en_dly;
@@ -527,7 +527,7 @@ begin
 				prevTrigger <= Trig_intl;
 
 				if prevTrigger = '1' or Trig_intl = '1' then
-					if TimeStamp.samplecnt(3) = '0' then
+					if TimeStamp.samplecnt(2) = '0' then
 						D_wr1_en <= '1';
 						--add on
 						D_wr2_en <= '0';
@@ -549,8 +549,8 @@ begin
 
 	TrigAddr <= D_wr2_dly & D_wr1_dly & LE_RealAddr;
 
-	D_wr1_dly <= '1' when (((TimeStamp.samplecnt(3) = '0') or (LE_intr = '1')) and (LE_intl = '0')) else '0';
-	D_wr2_dly <= '1' when (((TimeStamp.samplecnt(3) = '1') or (LE_intl = '1')) and (LE_intr = '0')) else '0';
+	D_wr1_dly <= '1' when (((TimeStamp.samplecnt(2) = '0') or (LE_intr = '1')) and (LE_intl = '0')) else '0';
+	D_wr2_dly <= '1' when (((TimeStamp.samplecnt(2) = '1') or (LE_intl = '1')) and (LE_intr = '0')) else '0';
 
 
 	TRIG0FIFO : aFifoV2
@@ -688,7 +688,7 @@ begin
 				valid_1dly <= not(validData_s);
 
 				case TimeStamp.samplecnt is
-					when "1111" => --Time 0
+					when "111" => --Time 0
 						--valid <= '0';
 
 						--RealTimeAddr <= NextAddr_intl;
@@ -718,9 +718,9 @@ begin
 						Old_TrigInfo <= TrigInfo_intl_dly;
 						Old_Wr_en	<= not(wr2_en_dly) & not(wr1_en_dly);
 
-					when "0000" => --Time 1
+					when "000" => --Time 1
 						validReal_s <= '1'; -- After this the data is correct, time to stabilize
-					when "0111"	=> --Half way // Falling edge
+					when "011"	=> --Half way // Falling edge
 				--	when "0001"	=>
 						validData_s <= '0';
 
@@ -732,7 +732,7 @@ begin
 						--OldAddrBit <= (others => '0');
 						--OldAddrBit(to_integer(unsigned(CurAddr_s))) <= '1';
 						--OldAddrBit <= (oldidx => '1', others => '0');
-                    when "1000"=>
+                    when "100"=>
         --            when "0010"=>
                          
                           if counterWR < std_logic_vector(unsigned(Delay_UpdateWR)) then  -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
@@ -753,7 +753,7 @@ begin
 						CPUTime <= prev_TimeStamp;
 						Old_TrigInfo_copy <= Old_TrigInfo;
 
-					when "1001" =>
+					when "101" =>
 						validData_s <= '1'; -- After this the data is correct, time to stabilize
 
 					when others =>
