@@ -365,7 +365,7 @@ begin
 
 					when WDO_SET_RDAD_ADDR =>
 						--Set Window Address to be digitized
-						RDAD_Addr_s <= RDAD_DataOut;
+						RDAD_Addr_s <= RDAD_DataOut; --RDAD_DataOut is the DATA COMING FROM WINDOW STORE, window number
 						if(WL.ready = '1') then
 							RDAD.response <= '0';
 							rdad_stm <= WDO_LOW_SET0;
