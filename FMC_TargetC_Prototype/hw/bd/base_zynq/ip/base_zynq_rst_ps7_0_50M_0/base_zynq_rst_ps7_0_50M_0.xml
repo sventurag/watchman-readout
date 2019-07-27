@@ -308,7 +308,11 @@
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
+<<<<<<< HEAD
             <spirit:value>8:0215c953</spirit:value>
+=======
+            <spirit:value>8:6e49eee4</spirit:value>
+>>>>>>> parent of 116d521... omit sample 32
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -316,10 +320,20 @@
         <spirit:name>xilinx_synthesisconstraints</spirit:name>
         <spirit:displayName>Synthesis Constraints</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
+<<<<<<< HEAD
+=======
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+>>>>>>> parent of 116d521... omit sample 32
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
+<<<<<<< HEAD
             <spirit:value>8:0215c953</spirit:value>
+=======
+            <spirit:value>8:6e49eee4</spirit:value>
+>>>>>>> parent of 116d521... omit sample 32
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -358,11 +372,19 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
+<<<<<<< HEAD
             <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>8:576945e4</spirit:value>
+=======
+            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>8:9e48e9a2</spirit:value>
+>>>>>>> parent of 116d521... omit sample 32
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -378,11 +400,19 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
+<<<<<<< HEAD
             <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>8:576945e4</spirit:value>
+=======
+            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
+          </spirit:parameter>
+          <spirit:parameter>
+            <spirit:name>outputProductCRC</spirit:name>
+            <spirit:value>8:9e48e9a2</spirit:value>
+>>>>>>> parent of 116d521... omit sample 32
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -396,7 +426,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
+<<<<<<< HEAD
             <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
+=======
+            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
+>>>>>>> parent of 116d521... omit sample 32
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -414,7 +448,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
+<<<<<<< HEAD
             <spirit:value>Fri Jul 26 21:30:16 UTC 2019</spirit:value>
+=======
+            <spirit:value>Tue Jun 18 20:46:17 UTC 2019</spirit:value>
+>>>>>>> parent of 116d521... omit sample 32
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -677,6 +715,7 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
+<<<<<<< HEAD
       <spirit:name>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>synth/base_zynq_rst_ps7_0_50M_0.vhd</spirit:name>
@@ -685,6 +724,26 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
+=======
+      <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>base_zynq_rst_ps7_0_50M_0_ooc.xdc</spirit:name>
+        <spirit:userFileType>xdc</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>synth/base_zynq_rst_ps7_0_50M_0.vhd</spirit:name>
+        <spirit:fileType>vhdlSource</spirit:fileType>
+        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+>>>>>>> parent of 116d521... omit sample 32
       <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>../../ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd</spirit:name>

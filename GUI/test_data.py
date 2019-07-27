@@ -52,14 +52,14 @@ wave_gen().Output1(out=True)
 startWindow=0
 totalWindows=8
 
-Windows512 = np.zeros((totalWindows*31))
+Windows512 = np.zeros((totalWindows*32))
 Windows512_delays= list()
 
 #tc.send_command(7,0,0)
 delays = list((range(0,10,1)))
 
 #de`lays = list((range(18,19,1)))
-WindowsSum = np.zeros((totalWindows*31))
+WindowsSum = np.zeros((totalWindows*32))
 
 
 ##for j in range(50,63,1):
