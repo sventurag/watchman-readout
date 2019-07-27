@@ -1,8 +1,13 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+<<<<<<< HEAD
 -- Date        : Fri Jul 26 10:15:37 2019
 -- Host        : negra running 64-bit Ubuntu 18.04.2 LTS
+=======
+-- Date        : Tue Jun 18 10:48:32 2019
+-- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
+>>>>>>> parent of 116d521... omit sample 32
 -- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_xbar_0 -prefix
 --               base_zynq_xbar_0_ base_zynq_xbar_0_sim_netlist.vhdl
 -- Design      : base_zynq_xbar_0
@@ -3748,6 +3753,107 @@ entity base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar is
     s_axi_araddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
     s_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 )
   );
+<<<<<<< HEAD
+=======
+  attribute C_AXI_ADDR_WIDTH : integer;
+  attribute C_AXI_ADDR_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 32;
+  attribute C_AXI_ARUSER_WIDTH : integer;
+  attribute C_AXI_ARUSER_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_AXI_AWUSER_WIDTH : integer;
+  attribute C_AXI_AWUSER_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_AXI_BUSER_WIDTH : integer;
+  attribute C_AXI_BUSER_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_AXI_DATA_WIDTH : integer;
+  attribute C_AXI_DATA_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 32;
+  attribute C_AXI_ID_WIDTH : integer;
+  attribute C_AXI_ID_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_AXI_PROTOCOL : integer;
+  attribute C_AXI_PROTOCOL of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 2;
+  attribute C_AXI_RUSER_WIDTH : integer;
+  attribute C_AXI_RUSER_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_AXI_SUPPORTS_USER_SIGNALS : integer;
+  attribute C_AXI_SUPPORTS_USER_SIGNALS of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 0;
+  attribute C_AXI_WUSER_WIDTH : integer;
+  attribute C_AXI_WUSER_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_CONNECTIVITY_MODE : integer;
+  attribute C_CONNECTIVITY_MODE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 0;
+  attribute C_DEBUG : integer;
+  attribute C_DEBUG of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_FAMILY : string;
+  attribute C_FAMILY of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "zynq";
+  attribute C_M_AXI_ADDR_WIDTH : string;
+  attribute C_M_AXI_ADDR_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000100000000000000000000000000000001000000000000000000000000000000011101";
+  attribute C_M_AXI_BASE_ADDR : string;
+  attribute C_M_AXI_BASE_ADDR of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "192'b000000000000000000000000000000000100000001000000000000000000000000000000000000000000000000000000010000010110000000000000000000000000000000000000000000000000000001100000000000000000000000000000";
+  attribute C_M_AXI_READ_CONNECTIVITY : string;
+  attribute C_M_AXI_READ_CONNECTIVITY of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001";
+  attribute C_M_AXI_READ_ISSUING : string;
+  attribute C_M_AXI_READ_ISSUING of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001";
+  attribute C_M_AXI_SECURE : string;
+  attribute C_M_AXI_SECURE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+  attribute C_M_AXI_WRITE_CONNECTIVITY : string;
+  attribute C_M_AXI_WRITE_CONNECTIVITY of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001";
+  attribute C_M_AXI_WRITE_ISSUING : string;
+  attribute C_M_AXI_WRITE_ISSUING of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000000010000000000000000000000000000000100000000000000000000000000000001";
+  attribute C_NUM_ADDR_RANGES : integer;
+  attribute C_NUM_ADDR_RANGES of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_NUM_MASTER_SLOTS : integer;
+  attribute C_NUM_MASTER_SLOTS of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 3;
+  attribute C_NUM_SLAVE_SLOTS : integer;
+  attribute C_NUM_SLAVE_SLOTS of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_R_REGISTER : integer;
+  attribute C_R_REGISTER of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_S_AXI_ARB_PRIORITY : integer;
+  attribute C_S_AXI_ARB_PRIORITY of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 0;
+  attribute C_S_AXI_BASE_ID : integer;
+  attribute C_S_AXI_BASE_ID of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 0;
+  attribute C_S_AXI_READ_ACCEPTANCE : integer;
+  attribute C_S_AXI_READ_ACCEPTANCE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_S_AXI_SINGLE_THREAD : integer;
+  attribute C_S_AXI_SINGLE_THREAD of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute C_S_AXI_THREAD_ID_WIDTH : integer;
+  attribute C_S_AXI_THREAD_ID_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 0;
+  attribute C_S_AXI_WRITE_ACCEPTANCE : integer;
+  attribute C_S_AXI_WRITE_ACCEPTANCE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute DowngradeIPIdentifiedWarnings : string;
+  attribute DowngradeIPIdentifiedWarnings of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "yes";
+  attribute P_ADDR_DECODE : integer;
+  attribute P_ADDR_DECODE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute P_AXI3 : integer;
+  attribute P_AXI3 of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute P_AXI4 : integer;
+  attribute P_AXI4 of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 0;
+  attribute P_AXILITE : integer;
+  attribute P_AXILITE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 2;
+  attribute P_AXILITE_SIZE : string;
+  attribute P_AXILITE_SIZE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "3'b010";
+  attribute P_FAMILY : string;
+  attribute P_FAMILY of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "zynq";
+  attribute P_INCR : string;
+  attribute P_INCR of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "2'b01";
+  attribute P_LEN : integer;
+  attribute P_LEN of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 8;
+  attribute P_LOCK : integer;
+  attribute P_LOCK of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute P_M_AXI_ERR_MODE : string;
+  attribute P_M_AXI_ERR_MODE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "96'b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+  attribute P_M_AXI_SUPPORTS_READ : string;
+  attribute P_M_AXI_SUPPORTS_READ of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "3'b111";
+  attribute P_M_AXI_SUPPORTS_WRITE : string;
+  attribute P_M_AXI_SUPPORTS_WRITE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "3'b111";
+  attribute P_ONES : string;
+  attribute P_ONES of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "65'b11111111111111111111111111111111111111111111111111111111111111111";
+  attribute P_RANGE_CHECK : integer;
+  attribute P_RANGE_CHECK of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 1;
+  attribute P_S_AXI_BASE_ID : string;
+  attribute P_S_AXI_BASE_ID of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "64'b0000000000000000000000000000000000000000000000000000000000000000";
+  attribute P_S_AXI_HIGH_ID : string;
+  attribute P_S_AXI_HIGH_ID of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "64'b0000000000000000000000000000000000000000000000000000000000000000";
+  attribute P_S_AXI_SUPPORTS_READ : string;
+  attribute P_S_AXI_SUPPORTS_READ of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "1'b1";
+  attribute P_S_AXI_SUPPORTS_WRITE : string;
+  attribute P_S_AXI_SUPPORTS_WRITE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "1'b1";
+>>>>>>> parent of 116d521... omit sample 32
 end base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar;
 
 architecture STRUCTURE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar is
