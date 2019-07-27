@@ -26248,23 +26248,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jul 27 00:17:15 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>8:bd578cfa</spirit:value>
-=======
             <spirit:value>8:f5377303</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:f5377303</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:f5377303</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -26272,18 +26260,13 @@
         <spirit:name>xilinx_synthesisconstraints</spirit:name>
         <spirit:displayName>Synthesis Constraints</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
         <spirit:fileSetRef>
           <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
         </spirit:fileSetRef>
->>>>>>> Stashed changes
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jul 27 00:17:15 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -26299,83 +26282,14 @@
         <spirit:modelName>base_zynq_xbar_0</spirit:modelName>
         <spirit:fileSetRef>
           <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
-=======
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
->>>>>>> parent of 116d521... omit sample 32
-=======
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
->>>>>>> parent of 116d521... omit sample 32
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jul 27 00:17:15 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:44 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>8:bd578cfa</spirit:value>
-=======
-            <spirit:value>8:f5377303</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:f5377303</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-          </spirit:parameter>
-        </spirit:parameters>
-      </spirit:view>
-      <spirit:view>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        <spirit:name>xilinx_verilogbehavioralsimulation</spirit:name>
-        <spirit:displayName>Verilog Simulation</spirit:displayName>
-        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation</spirit:envIdentifier>
-        <spirit:language>verilog</spirit:language>
-        <spirit:modelName>axi_crossbar_v2_1_18_axi_crossbar</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogbehavioralsimulation_xilinx_com_ip_generic_baseblocks_2_1__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogbehavioralsimulation_xilinx_com_ip_axi_infrastructure_1_1__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogbehavioralsimulation_xilinx_com_ip_axi_register_slice_2_1__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogbehavioralsimulation_xilinx_com_ip_fifo_generator_13_2__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogbehavioralsimulation_xilinx_com_ip_axi_data_fifo_2_1__ref_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:fileSetRef>
-=======
-        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
-        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
-        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
-        <spirit:language>verilog</spirit:language>
-=======
-        <spirit:name>xilinx_verilogsynthesiswrapper</spirit:name>
-        <spirit:displayName>Verilog Synthesis Wrapper</spirit:displayName>
-        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
-        <spirit:language>verilog</spirit:language>
->>>>>>> parent of 116d521... omit sample 32
-        <spirit:modelName>base_zynq_xbar_0</spirit:modelName>
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_verilogsynthesiswrapper_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
-        <spirit:parameters>
-          <spirit:parameter>
-            <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Jun 18 20:44:44 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-=======
->>>>>>> Stashed changes
             <spirit:value>8:f5377303</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
@@ -26402,44 +26316,16 @@
           <spirit:localName>xilinx_verilogbehavioralsimulation_xilinx_com_ip_axi_data_fifo_2_1__ref_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:fileSetRef>
-<<<<<<< HEAD
->>>>>>> parent of 116d521... omit sample 32
-=======
->>>>>>> parent of 116d521... omit sample 32
           <spirit:localName>xilinx_verilogbehavioralsimulation_view_fileset</spirit:localName>
         </spirit:fileSetRef>
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:26794541</spirit:value>
-=======
-            <spirit:value>Tue Jun 18 20:44:44 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>8:03e816ea</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jun 18 20:44:44 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:03e816ea</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:15 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:03e816ea</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -26455,35 +26341,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:26794541</spirit:value>
-=======
-            <spirit:value>Tue Jun 18 20:44:44 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:44 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>8:03e816ea</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jun 18 20:44:44 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:03e816ea</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:15 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:03e816ea</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -26497,19 +26359,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:17 UTC 2019</spirit:value>
-=======
-            <spirit:value>Tue Jul 23 21:15:17 UTC 2019</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jul 23 21:15:17 UTC 2019</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:19 UTC 2019</spirit:value>
->>>>>>> Stashed changes
+            <spirit:value>Sat Jul 27 01:48:46 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -28881,10 +28731,6 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
       <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>base_zynq_xbar_0_ooc.xdc</spirit:name>
@@ -28895,30 +28741,8 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
->>>>>>> Stashed changes
       <spirit:name>xilinx_verilogsynthesiswrapper_view_fileset</spirit:name>
       <spirit:file>
-=======
-      <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
-      <spirit:file>
-=======
-      <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
-      <spirit:file>
->>>>>>> parent of 116d521... omit sample 32
-        <spirit:name>base_zynq_xbar_0_ooc.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
-        <spirit:userFileType>USED_IN_out_of_context</spirit:userFileType>
-        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-      <spirit:name>xilinx_verilogsynthesiswrapper_view_fileset</spirit:name>
-      <spirit:file>
-<<<<<<< HEAD
->>>>>>> parent of 116d521... omit sample 32
-=======
->>>>>>> parent of 116d521... omit sample 32
         <spirit:name>synth/base_zynq_xbar_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
@@ -29035,8 +28859,6 @@
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
-<<<<<<< HEAD
-<<<<<<< HEAD
       <spirit:file>
         <spirit:name>sim/base_zynq_xbar_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
@@ -29046,21 +28868,8 @@
     <spirit:fileSet>
       <spirit:name>xilinx_externalfiles_view_fileset</spirit:name>
       <spirit:file>
-<<<<<<< Updated upstream
-        <spirit:name>base_zynq_xbar_0_stub.v</spirit:name>
-=======
-      <spirit:file>
-        <spirit:name>sim/base_zynq_xbar_0.v</spirit:name>
->>>>>>> parent of 116d521... omit sample 32
-=======
-      <spirit:file>
-        <spirit:name>sim/base_zynq_xbar_0.v</spirit:name>
->>>>>>> parent of 116d521... omit sample 32
-        <spirit:fileType>verilogSource</spirit:fileType>
-=======
         <spirit:name>base_zynq_xbar_0_stub.vhdl</spirit:name>
         <spirit:fileType>vhdlSource</spirit:fileType>
->>>>>>> Stashed changes
         <spirit:userFileType>USED_IN_synth_blackbox_stub</spirit:userFileType>
         <spirit:logicalName>xil_defaultlib</spirit:logicalName>
       </spirit:file>

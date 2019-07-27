@@ -1,23 +1,8 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
--- Date        : Fri Jul 26 10:15:37 2019
--- Host        : negra running 64-bit Ubuntu 18.04.2 LTS
-=======
 -- Date        : Tue Jun 18 10:48:32 2019
 -- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
->>>>>>> parent of 116d521... omit sample 32
-=======
--- Date        : Tue Jun 18 10:48:32 2019
--- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
->>>>>>> parent of 116d521... omit sample 32
-=======
--- Date        : Tue Jun 18 10:48:32 2019
--- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
->>>>>>> Stashed changes
 -- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_xbar_0 -prefix
 --               base_zynq_xbar_0_ base_zynq_xbar_0_sim_netlist.vhdl
 -- Design      : base_zynq_xbar_0
@@ -3819,11 +3804,6 @@ entity base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar is
     m_axi_rvalid : in STD_LOGIC_VECTOR ( 2 downto 0 );
     m_axi_rready : out STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-=======
-=======
->>>>>>> Stashed changes
   attribute C_AXI_ADDR_WIDTH : integer;
   attribute C_AXI_ADDR_WIDTH of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is 32;
   attribute C_AXI_ARUSER_WIDTH : integer;
@@ -3922,10 +3902,6 @@ entity base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar is
   attribute P_S_AXI_SUPPORTS_READ of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "1'b1";
   attribute P_S_AXI_SUPPORTS_WRITE : string;
   attribute P_S_AXI_SUPPORTS_WRITE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar : entity is "1'b1";
-<<<<<<< Updated upstream
->>>>>>> parent of 116d521... omit sample 32
-=======
->>>>>>> Stashed changes
 end base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar;
 
 architecture STRUCTURE of base_zynq_xbar_0_axi_crossbar_v2_1_18_axi_crossbar is
