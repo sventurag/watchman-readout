@@ -5,7 +5,7 @@ import sys
 import socket
 import optparse
 import random
-import binary2text as b2t
+#import binary2text as b2t
 import numpy as np
 #from watchman_nogui import Watchman_main_window
 import matplotlib.pyplot as plt

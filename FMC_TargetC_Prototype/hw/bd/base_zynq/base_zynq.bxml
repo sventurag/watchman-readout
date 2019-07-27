@@ -2,6 +2,7 @@
 <Root MajorVersion="0" MinorVersion="36">
   <CompositeFile CompositeFileTopName="base_zynq" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
+<<<<<<< Updated upstream
 <<<<<<< HEAD
 <<<<<<< HEAD
     <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1564176615"/>
@@ -19,6 +20,12 @@
 >>>>>>> parent of 116d521... omit sample 32
 =======
 >>>>>>> parent of 116d521... omit sample 32
+=======
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1564186636"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1564186636"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1564186636"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1564186636"/>
+>>>>>>> Stashed changes
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/base_zynq_processing_system7_0_0/base_zynq_processing_system7_0_0.xci" Type="IP">
         <Instance HierarchyPath="processing_system7_0"/>
