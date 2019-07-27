@@ -304,23 +304,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jul 27 00:17:14 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>8:0215c953</spirit:value>
-=======
             <spirit:value>8:6e49eee4</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:6e49eee4</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:6e49eee4</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -328,41 +316,17 @@
         <spirit:name>xilinx_synthesisconstraints</spirit:name>
         <spirit:displayName>Synthesis Constraints</spirit:displayName>
         <spirit:envIdentifier>:vivado.xilinx.com:synthesis.constraints</spirit:envIdentifier>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> parent of 116d521... omit sample 32
         <spirit:fileSetRef>
           <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
         </spirit:fileSetRef>
->>>>>>> parent of 116d521... omit sample 32
-=======
-        <spirit:fileSetRef>
-          <spirit:localName>xilinx_synthesisconstraints_view_fileset</spirit:localName>
-        </spirit:fileSetRef>
->>>>>>> Stashed changes
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jul 27 00:17:14 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>8:0215c953</spirit:value>
-=======
             <spirit:value>8:6e49eee4</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:6e49eee4</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>8:6e49eee4</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -378,7 +342,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Sat Jul 27 00:17:14 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -401,35 +365,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:576945e4</spirit:value>
-=======
-            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>8:9e48e9a2</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:9e48e9a2</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:14 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:9e48e9a2</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -445,35 +385,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:576945e4</spirit:value>
-=======
-            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
             <spirit:value>8:9e48e9a2</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:9e48e9a2</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:14 UTC 2019</spirit:value>
-          </spirit:parameter>
-          <spirit:parameter>
-            <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:9e48e9a2</spirit:value>
->>>>>>> Stashed changes
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -487,19 +403,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:14 UTC 2019</spirit:value>
-=======
-            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jun 18 20:44:43 UTC 2019</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:14 UTC 2019</spirit:value>
->>>>>>> Stashed changes
+            <spirit:value>Sat Jul 27 01:48:43 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -517,19 +421,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-<<<<<<< HEAD
-            <spirit:value>Fri Jul 26 21:30:16 UTC 2019</spirit:value>
-=======
-            <spirit:value>Tue Jun 18 20:46:17 UTC 2019</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Tue Jun 18 20:46:17 UTC 2019</spirit:value>
->>>>>>> parent of 116d521... omit sample 32
-=======
-            <spirit:value>Sat Jul 27 00:17:18 UTC 2019</spirit:value>
->>>>>>> Stashed changes
+            <spirit:value>Sat Jul 27 01:48:46 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
@@ -786,34 +678,12 @@
         <spirit:fileType>vhdlSource</spirit:fileType>
         <spirit:logicalName>proc_sys_reset_v5_0_12</spirit:logicalName>
       </spirit:file>
-<<<<<<< HEAD
       <spirit:file>
         <spirit:name>base_zynq_rst_ps7_0_50M_0.xdc</spirit:name>
         <spirit:userFileType>xdc</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-      <spirit:name>xilinx_vhdlsynthesiswrapper_view_fileset</spirit:name>
-      <spirit:file>
-        <spirit:name>synth/base_zynq_rst_ps7_0_50M_0.vhd</spirit:name>
-        <spirit:fileType>vhdlSource</spirit:fileType>
-        <spirit:logicalName>xil_defaultlib</spirit:logicalName>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
-=======
-=======
-      <spirit:file>
-        <spirit:name>base_zynq_rst_ps7_0_50M_0.xdc</spirit:name>
-        <spirit:userFileType>xdc</spirit:userFileType>
-      </spirit:file>
-    </spirit:fileSet>
-    <spirit:fileSet>
->>>>>>> parent of 116d521... omit sample 32
-=======
->>>>>>> Stashed changes
       <spirit:name>xilinx_synthesisconstraints_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>base_zynq_rst_ps7_0_50M_0_ooc.xdc</spirit:name>
@@ -832,10 +702,6 @@
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
-<<<<<<< HEAD
->>>>>>> parent of 116d521... omit sample 32
-=======
->>>>>>> parent of 116d521... omit sample 32
       <spirit:name>xilinx_vhdlbehavioralsimulation_xilinx_com_ip_lib_cdc_1_0__ref_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>../../ipshared/ef1e/hdl/lib_cdc_v1_0_rfs.vhd</spirit:name>
