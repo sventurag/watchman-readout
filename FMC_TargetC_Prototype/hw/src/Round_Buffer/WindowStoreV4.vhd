@@ -233,25 +233,30 @@ begin
 	-- 	end if;
 	-- end process;
 
-	-- RDAD and Storage FIFO
-	RDAD_STO_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 9,
-        ADDR_WIDTH => 4	--Maybe more ?
-    )
-    port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => RDAD_DataOut,
-        Empty_out   => RDAD_Empty,
-        ReadEn_in   => RDAD_ReadEn,
-        RClk        => ClockBus.RDAD_CLK,
-        -- Writing port.
-        Data_in     => Wdo1,
-        Full_out    => Full_out_intl,
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
+
+----PONER AQUI IP FIFO
+----------------------------------------------------------------------------------------------------------
+--	-- RDAD and Storage FIFO
+--	RDAD_STO_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 9,
+--        ADDR_WIDTH => 4	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => RDAD_DataOut,
+--        Empty_out   => RDAD_Empty,
+--        ReadEn_in   => RDAD_ReadEn,
+--        RClk        => ClockBus.RDAD_CLK,
+--        -- Writing port.
+--        Data_in     => Wdo1,
+--        Full_out    => Full_out_intl,
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK250MHz
+--    );
+
+
 
 	-- RDAD and Storage FIFO
 	AXI_CMD_AFIFO :  aFifoV2
