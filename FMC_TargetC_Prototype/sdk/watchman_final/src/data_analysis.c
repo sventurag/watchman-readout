@@ -45,7 +45,7 @@ int correct_data(uint16_t* data, int pmt, char nbr_wdo, uint32_t* info, data_lis
 		ptr = tmp_first_element;
 		index = 0;
 		for(wdo=0; wdo<nbr_wdo; wdo++){
-			for(sample=0; sample<31; sample++){
+			for(sample=0; sample<32; sample++){
 				// Pedestal subtraction
 				data_tmp = (uint16_t)ptr->data.data_struct.data[ch][sample] + VPED_DIGITAL - pedestal[ptr->data.data_struct.wdo_id][ch][sample];
 				// Transfer function correction
@@ -56,7 +56,7 @@ int correct_data(uint16_t* data, int pmt, char nbr_wdo, uint32_t* info, data_lis
 					if(ch > ch_last){
 						ch--;
 						gain_good = false;
-						sample = 31;
+						sample = 32;
 						wdo = nbr_wdo;
 					}
 					else too_long = true;	// Amplitude too high with all gain stage -> consider pulse as "too long"
