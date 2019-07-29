@@ -103,7 +103,7 @@ for i in delays:
 #Windows512_delays.append(WindowsAvg)
 
 #np.savetxt(os.path.abspath('./data/bb5_qBIAS1300_beforandafter_window17_SweepFB_10times2.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
-np.savetxt(os.path.abspath('./data/bb5No32.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
+np.savetxt(os.path.abspath('./data/test_125MHzNoDLL.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
 
 Windows512_delays = Windows512_delays * 0 
 
