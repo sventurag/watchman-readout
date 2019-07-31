@@ -52,14 +52,14 @@ wave_gen().Output1(out=True)
 startWindow=0
 totalWindows=8
 
-Windows512 = np.zeros((totalWindows*32))
+Windows512 = np.zeros((totalWindows*31))
 Windows512_delays= list()
 
 #tc.send_command(7,0,0)
-delays = list((range(0,25,1)))
+delays = list((range(0,5,1)))
 
 #de`lays = list((range(18,19,1)))
-WindowsSum = np.zeros((totalWindows*32))
+WindowsSum = np.zeros((totalWindows*31))
 
 
 #for j in range(50,63,1):
@@ -103,7 +103,7 @@ for i in delays:
 #Windows512_delays.append(WindowsAvg)
 
 #np.savetxt(os.path.abspath('./data/bb5_qBIAS1300_beforandafter_window17_SweepFB_10times2.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
-np.savetxt(os.path.abspath('./data/test_125MHzNoDLL.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
+np.savetxt(os.path.abspath('./data/noDLL_.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
 
 Windows512_delays = Windows512_delays * 0 
 

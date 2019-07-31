@@ -2,7 +2,6 @@
 # PINOUT Constraint File
 # ----------------------------------------------------------------------------
 
-set_property PACKAGE_PIN G20 [get_ports {PB1}];  			# "G20.JX2_LVDS_16_N.JX2.69.PB1"
 
 set_property PULLUP true [get_ports SDA]
 set_property PULLUP true [get_ports SCL]
@@ -12,7 +11,6 @@ set_property PULLUP true [get_ports SCL]
 
 set_property PACKAGE_PIN Y14 [get_ports BB3]
 set_property PACKAGE_PIN U14 [get_ports BB4]
-set_property PACKAGE_PIN U20 [get_ports {BB6}];     #{LA08_N}];  # "U20.JX1_LVDS_14_N.JX1.55.LA08_N"
 
 set_property PACKAGE_PIN P19 [get_ports {HCMPB[0]}]
 set_property PACKAGE_PIN N18 [get_ports {HCMPA[0]}]
@@ -134,8 +132,6 @@ set_property IOSTANDARD LVCMOS25 [get_ports SS_LD_DIR]
 set_property IOSTANDARD LVCMOS25 [get_ports REGCLR]
 set_property IOSTANDARD LVCMOS25 [get_ports BB4]
 set_property IOSTANDARD LVCMOS25 [get_ports TRIGB]
-set_property IOSTANDARD LVCMOS25 [get_ports {LDAC}];            #{LA08_N}];  # "U20.JX1_LVDS_14_N.JX1.55.LA08_N"
-set_property IOSTANDARD LVCMOS25 [get_ports {BB6}];             #{LA08_P}];  # "T20.JX1_LVDS_14_P.JX1.53.LA08_P"
 set_property IOSTANDARD LVCMOS25 [get_ports DO_5]
 set_property IOSTANDARD LVCMOS25 [get_ports DO_7]
 set_property IOSTANDARD LVCMOS25 [get_ports DO_8]
@@ -191,4 +187,6 @@ set_property IOSTANDARD LVCMOS25 [get_ports SHOUT]
 set_property IOSTANDARD LVCMOS25 [get_ports PCLK]
 set_property IOSTANDARD LVCMOS25 [get_ports SCLK]
 set_property IOSTANDARD LVCMOS25 [get_ports SIN]
+
+
 

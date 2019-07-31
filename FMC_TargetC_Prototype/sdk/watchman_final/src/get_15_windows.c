@@ -155,43 +155,12 @@ int get_15_windows_fct(void){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
 					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
-                     // get int part
-
-			//		int_number= (uint16_t) data_tmp;
-			//		float_decimal = round(data_tmp*100)/100 - int_number; //rounding to the second decimal position
-			//	    int_decimal = (uint16_t)float_decimal*100;
-					//printf("data_tmp = %d\r\n",data_tmp);
-					/* Transfer function correction */
-
-			//		if(data_tmp > 2047) {
-			//			data_tmp = 2047;
-			//		    printf("%" PRIu16 "\n",data_tmp);
-			//		}
-
-			  //      printf( "data_tmp = %.2f\r\n" , data_tmp);
-
-			//		frame_buf[index++] = (char)lookup_table[data_tmp];
-			//		frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));
 
 					frame_buf[index++] = (char)(data_tmp >> 8);
 					//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
-
-		     //		frame_buf[index++] = (char)int_decimal;
-				//	printf("int_decimal = %d \r\n", (char)(int_decimal));
-
-				//	frame_buf[index++] = (char)(int_decimal >> 8);
-				//	printf("int_decimal >> 8 = %d\r\n ", (char)((int_decimal >> 8)));
-
-					//			printf("%d ", (char)(data_tmp >> 8));
-
-
-				//	printf("%d ", data_tmp>>8);
-
-					//frame_buf[index++] = (char)lookup_table[data_tmp];
-					//frame_buf[index++] = (char)(lookup_table[data_tmp] >> 8);
 
 				}
 
@@ -320,7 +289,6 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
-						/* Pedestal subtraction */
 						data_raw[window][i][j] += (uint16_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
                         if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
                         	printf("Value= 0");
