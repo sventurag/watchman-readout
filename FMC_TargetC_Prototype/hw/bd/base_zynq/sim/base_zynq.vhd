@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Fri Jul 26 15:48:22 2019
+--Date        : Tue Jul 30 13:25:24 2019
 --Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.6 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -1803,6 +1803,150 @@ entity base_zynq is
 end base_zynq;
 
 architecture STRUCTURE of base_zynq is
+  component base_zynq_xlconcat_0_0 is
+  port (
+    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In3 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In4 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In5 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In6 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In7 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In8 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In9 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In10 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In11 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In12 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In13 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In14 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In15 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
+  );
+  end component base_zynq_xlconcat_0_0;
+  component base_zynq_xlconcat_1_0 is
+  port (
+    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
+  );
+  end component base_zynq_xlconcat_1_0;
+  component base_zynq_xlconstant_0_0 is
+  port (
+    dout : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component base_zynq_xlconstant_0_0;
+  component base_zynq_iobuf_0_1 is
+  port (
+    O : out STD_LOGIC;
+    IO : inout STD_LOGIC;
+    I : in STD_LOGIC;
+    T : in STD_LOGIC
+  );
+  end component base_zynq_iobuf_0_1;
+  component base_zynq_iobuf_0_0 is
+  port (
+    O : out STD_LOGIC;
+    IO : inout STD_LOGIC;
+    I : in STD_LOGIC;
+    T : in STD_LOGIC
+  );
+  end component base_zynq_iobuf_0_0;
+  component base_zynq_axistream_0_0 is
+  port (
+    SW_nRST : in STD_LOGIC;
+    TestStream : in STD_LOGIC;
+    FIFOvalid : in STD_LOGIC;
+    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : out STD_LOGIC;
+    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : in STD_LOGIC;
+    M_AXIS_ACLK : in STD_LOGIC;
+    M_AXIS_ARESETN : in STD_LOGIC;
+    M_AXIS_TVALID : out STD_LOGIC;
+    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXIS_TLAST : out STD_LOGIC;
+    M_AXIS_TREADY : in STD_LOGIC
+  );
+  end component base_zynq_axistream_0_0;
+  component base_zynq_axi_dma_0_0 is
+  port (
+    s_axi_lite_aclk : in STD_LOGIC;
+    m_axi_s2mm_aclk : in STD_LOGIC;
+    axi_resetn : in STD_LOGIC;
+    s_axi_lite_awvalid : in STD_LOGIC;
+    s_axi_lite_awready : out STD_LOGIC;
+    s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    s_axi_lite_wvalid : in STD_LOGIC;
+    s_axi_lite_wready : out STD_LOGIC;
+    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_lite_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_lite_bvalid : out STD_LOGIC;
+    s_axi_lite_bready : in STD_LOGIC;
+    s_axi_lite_arvalid : in STD_LOGIC;
+    s_axi_lite_arready : out STD_LOGIC;
+    s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    s_axi_lite_rvalid : out STD_LOGIC;
+    s_axi_lite_rready : in STD_LOGIC;
+    s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_lite_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_s2mm_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    m_axi_s2mm_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_s2mm_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_s2mm_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_s2mm_awvalid : out STD_LOGIC;
+    m_axi_s2mm_awready : in STD_LOGIC;
+    m_axi_s2mm_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_s2mm_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_s2mm_wlast : out STD_LOGIC;
+    m_axi_s2mm_wvalid : out STD_LOGIC;
+    m_axi_s2mm_wready : in STD_LOGIC;
+    m_axi_s2mm_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_bvalid : in STD_LOGIC;
+    m_axi_s2mm_bready : out STD_LOGIC;
+    s2mm_prmry_reset_out_n : out STD_LOGIC;
+    s_axis_s2mm_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axis_s2mm_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axis_s2mm_tvalid : in STD_LOGIC;
+    s_axis_s2mm_tready : out STD_LOGIC;
+    s_axis_s2mm_tlast : in STD_LOGIC;
+    s2mm_introut : out STD_LOGIC
+  );
+  end component base_zynq_axi_dma_0_0;
+  component base_zynq_axi_iic_0_0 is
+  port (
+    s_axi_aclk : in STD_LOGIC;
+    s_axi_aresetn : in STD_LOGIC;
+    iic2intc_irpt : out STD_LOGIC;
+    s_axi_awaddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    s_axi_awvalid : in STD_LOGIC;
+    s_axi_awready : out STD_LOGIC;
+    s_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_wvalid : in STD_LOGIC;
+    s_axi_wready : out STD_LOGIC;
+    s_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_bvalid : out STD_LOGIC;
+    s_axi_bready : in STD_LOGIC;
+    s_axi_araddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    s_axi_arvalid : in STD_LOGIC;
+    s_axi_arready : out STD_LOGIC;
+    s_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_rvalid : out STD_LOGIC;
+    s_axi_rready : in STD_LOGIC;
+    sda_i : in STD_LOGIC;
+    sda_o : out STD_LOGIC;
+    sda_t : out STD_LOGIC;
+    scl_i : in STD_LOGIC;
+    scl_o : out STD_LOGIC;
+    scl_t : out STD_LOGIC;
+    gpo : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component base_zynq_axi_iic_0_0;
   component base_zynq_processing_system7_0_0 is
   port (
     TTC0_WAVE0_OUT : out STD_LOGIC;
@@ -1932,150 +2076,6 @@ architecture STRUCTURE of base_zynq is
     peripheral_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
   end component base_zynq_rst_ps7_0_50M_0;
-  component base_zynq_xlconcat_0_0 is
-  port (
-    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In3 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In4 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In5 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In6 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In7 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In8 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In9 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In10 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In11 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In12 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In13 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In14 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In15 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
-  );
-  end component base_zynq_xlconcat_0_0;
-  component base_zynq_axi_iic_0_0 is
-  port (
-    s_axi_aclk : in STD_LOGIC;
-    s_axi_aresetn : in STD_LOGIC;
-    iic2intc_irpt : out STD_LOGIC;
-    s_axi_awaddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    s_axi_awvalid : in STD_LOGIC;
-    s_axi_awready : out STD_LOGIC;
-    s_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axi_wvalid : in STD_LOGIC;
-    s_axi_wready : out STD_LOGIC;
-    s_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_bvalid : out STD_LOGIC;
-    s_axi_bready : in STD_LOGIC;
-    s_axi_araddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    s_axi_arvalid : in STD_LOGIC;
-    s_axi_arready : out STD_LOGIC;
-    s_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_rvalid : out STD_LOGIC;
-    s_axi_rready : in STD_LOGIC;
-    sda_i : in STD_LOGIC;
-    sda_o : out STD_LOGIC;
-    sda_t : out STD_LOGIC;
-    scl_i : in STD_LOGIC;
-    scl_o : out STD_LOGIC;
-    scl_t : out STD_LOGIC;
-    gpo : out STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  end component base_zynq_axi_iic_0_0;
-  component base_zynq_axi_dma_0_0 is
-  port (
-    s_axi_lite_aclk : in STD_LOGIC;
-    m_axi_s2mm_aclk : in STD_LOGIC;
-    axi_resetn : in STD_LOGIC;
-    s_axi_lite_awvalid : in STD_LOGIC;
-    s_axi_lite_awready : out STD_LOGIC;
-    s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    s_axi_lite_wvalid : in STD_LOGIC;
-    s_axi_lite_wready : out STD_LOGIC;
-    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_lite_bvalid : out STD_LOGIC;
-    s_axi_lite_bready : in STD_LOGIC;
-    s_axi_lite_arvalid : in STD_LOGIC;
-    s_axi_lite_arready : out STD_LOGIC;
-    s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    s_axi_lite_rvalid : out STD_LOGIC;
-    s_axi_lite_rready : in STD_LOGIC;
-    s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_s2mm_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    m_axi_s2mm_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_s2mm_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_s2mm_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_s2mm_awvalid : out STD_LOGIC;
-    m_axi_s2mm_awready : in STD_LOGIC;
-    m_axi_s2mm_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_s2mm_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_s2mm_wlast : out STD_LOGIC;
-    m_axi_s2mm_wvalid : out STD_LOGIC;
-    m_axi_s2mm_wready : in STD_LOGIC;
-    m_axi_s2mm_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_bvalid : in STD_LOGIC;
-    m_axi_s2mm_bready : out STD_LOGIC;
-    s2mm_prmry_reset_out_n : out STD_LOGIC;
-    s_axis_s2mm_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axis_s2mm_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axis_s2mm_tvalid : in STD_LOGIC;
-    s_axis_s2mm_tready : out STD_LOGIC;
-    s_axis_s2mm_tlast : in STD_LOGIC;
-    s2mm_introut : out STD_LOGIC
-  );
-  end component base_zynq_axi_dma_0_0;
-  component base_zynq_xlconcat_1_0 is
-  port (
-    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
-  );
-  end component base_zynq_xlconcat_1_0;
-  component base_zynq_xlconstant_0_0 is
-  port (
-    dout : out STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  end component base_zynq_xlconstant_0_0;
-  component base_zynq_iobuf_0_1 is
-  port (
-    O : out STD_LOGIC;
-    IO : inout STD_LOGIC;
-    I : in STD_LOGIC;
-    T : in STD_LOGIC
-  );
-  end component base_zynq_iobuf_0_1;
-  component base_zynq_iobuf_0_0 is
-  port (
-    O : out STD_LOGIC;
-    IO : inout STD_LOGIC;
-    I : in STD_LOGIC;
-    T : in STD_LOGIC
-  );
-  end component base_zynq_iobuf_0_0;
-  component base_zynq_axistream_0_0 is
-  port (
-    SW_nRST : in STD_LOGIC;
-    TestStream : in STD_LOGIC;
-    FIFOvalid : in STD_LOGIC;
-    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady : out STD_LOGIC;
-    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR : in STD_LOGIC;
-    M_AXIS_ACLK : in STD_LOGIC;
-    M_AXIS_ARESETN : in STD_LOGIC;
-    M_AXIS_TVALID : out STD_LOGIC;
-    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    M_AXIS_TLAST : out STD_LOGIC;
-    M_AXIS_TREADY : in STD_LOGIC
-  );
-  end component base_zynq_axistream_0_0;
   component base_zynq_TARGET_C_TopLevel_Sy_0_0 is
   port (
     SW_nRST : out STD_LOGIC;
