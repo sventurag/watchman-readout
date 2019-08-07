@@ -436,25 +436,25 @@ begin
 --		addr 	=> PREVAddr_s
 --		);
 
---SyncBitNrst: SyncBit
---       generic map (
---          SYNC_STAGES_G  => 2,
---          CLK_POL_G      => '1',
---          RST_POL_G      => '1',
---          INIT_STATE_G   => '0',
---          GATE_DELAY_G   => 1 ns
---       )
+SyncBitNrst: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
        
---       port map ( 
---          -- Clock and reset
---          clk  => ClockBus.CLK250MHz,
---          rst   => '0',
---          -- Incoming bit, asynchronous
---          asyncBit =>  CtrlBus_IxSL.SW_nRST,
---          -- Outgoing bit, synced to clk
---          syncBit   => nrst
---       ); 
-nrst <= CtrlBus_IxSL.SW_nRST;
+       port map ( 
+          -- Clock and reset
+          clk  => ClockBus.CLK250MHz,
+          rst   => '0',
+          -- Incoming bit, asynchronous
+          asyncBit =>  CtrlBus_IxSL.SW_nRST,
+          -- Outgoing bit, synced to clk
+          syncBit   => nrst
+       ); 
+--nrst <= CtrlBus_IxSL.SW_nRST;
 
 
 
