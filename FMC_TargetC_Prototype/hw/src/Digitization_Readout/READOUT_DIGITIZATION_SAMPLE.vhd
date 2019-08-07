@@ -268,74 +268,74 @@ component SyncBuffer is
 
 begin
 
---	--Clock Domain Handshake
---	ACK_CLKBUF : clkcrossing_buf
---		generic map(
---			NBITS => 1
---		)
---		port map (
---			nrst	=> CtrlBus_IxSL.SW_nRST,
---			DA(0)	=> Handshake_IxSEND.ACK,
---			QB(0)	=> acknowledge_intl,
---			ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
---			ClkB	=> ClockBus.HSCLK
---		);
+	--Clock Domain Handshake
+	ACK_CLKBUF : clkcrossing_buf
+		generic map(
+			NBITS => 1
+		)
+		port map (
+			nrst	=> CtrlBus_IxSL.SW_nRST,
+			DA(0)	=> Handshake_IxSEND.ACK,
+			QB(0)	=> acknowledge_intl,
+			ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
+			ClkB	=> ClockBus.HSCLK
+		);
 		
 
 	--Clock Domain Handshake
 
-SyncBitACKNOWLEDGE: SyncBit
-       generic map (
-          SYNC_STAGES_G  => 2,
-          CLK_POL_G      => '1',
-          RST_POL_G      => '1',
-          INIT_STATE_G   => '0',
-          GATE_DELAY_G   => 1 ns
-       )
+--SyncBitACKNOWLEDGE: SyncBit
+--       generic map (
+--          SYNC_STAGES_G  => 2,
+--          CLK_POL_G      => '1',
+--          RST_POL_G      => '1',
+--          INIT_STATE_G   => '0',
+--          GATE_DELAY_G   => 1 ns
+--       )
        
-       port map ( 
-          -- Clock and reset
-          clk  => ClockBus.HSCLK,
-          rst   => CtrlBus_IxSL.SW_nRST,
-          -- Incoming bit, asynchronous
-          asyncBit =>  Handshake_IxSEND.ACK,
-          -- Outgoing bit, synced to clk
-          syncBit   => acknowledge_intl
-       ); 
+--       port map ( 
+--          -- Clock and reset
+--          clk  => ClockBus.HSCLK,
+--          rst   => CtrlBus_IxSL.SW_nRST,
+--          -- Incoming bit, asynchronous
+--          asyncBit =>  Handshake_IxSEND.ACK,
+--          -- Outgoing bit, synced to clk
+--          syncBit   => acknowledge_intl
+--       ); 
 
 
 
---	BUSY_CLKBUF : clkcrossing_buf
---			generic map(
---				NBITS => 1
---			)
---			port map (
---				nrst	=> CtrlBus_IxSL.SW_nRST,
---				DA(0)	=> Handshake_IxSEND.BUSY,
---				QB(0)	=> busy_intl,
---				ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
---				ClkB	=> ClockBus.HSCLK
---			);
+	BUSY_CLKBUF : clkcrossing_buf
+			generic map(
+				NBITS => 1
+			)
+			port map (
+				nrst	=> CtrlBus_IxSL.SW_nRST,
+				DA(0)	=> Handshake_IxSEND.BUSY,
+				QB(0)	=> busy_intl,
+				ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
+				ClkB	=> ClockBus.HSCLK
+			);
 
 
-  SyncBitBUSY: SyncBit
-       generic map (
-          SYNC_STAGES_G  => 2,
-          CLK_POL_G      => '1',
-          RST_POL_G      => '1',
-          INIT_STATE_G   => '0',
-          GATE_DELAY_G   => 1 ns
-       )
+--  SyncBitBUSY: SyncBit
+--       generic map (
+--          SYNC_STAGES_G  => 2,
+--          CLK_POL_G      => '1',
+--          RST_POL_G      => '1',
+--          INIT_STATE_G   => '0',
+--          GATE_DELAY_G   => 1 ns
+--       )
        
-       port map ( 
-          -- Clock and reset
-          clk  => ClockBus.HSCLK,
-          rst   => CtrlBus_IxSL.SW_nRST,
-          -- Incoming bit, asynchronous
-          asyncBit =>  Handshake_IxSEND.BUSY,
-          -- Outgoing bit, synced to clk
-          syncBit   => busy_intl
-       ); 
+--       port map ( 
+--          -- Clock and reset
+--          clk  => ClockBus.HSCLK,
+--          rst   => CtrlBus_IxSL.SW_nRST,
+--          -- Incoming bit, asynchronous
+--          asyncBit =>  Handshake_IxSEND.BUSY,
+--          -- Outgoing bit, synced to clk
+--          syncBit   => busy_intl
+--       ); 
 
 
 
