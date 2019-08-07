@@ -915,28 +915,28 @@ begin
 
 
 
---BUF_Delay_UpdateWR : clkcrossing_buf
---		generic map(
---			NBITS => 32
---		)
---		port map(
---			nrst	=>	AxiBusIn.ARESETN,
---			DA		=>	TCReg(TC_Delay_UpdateWR),
---			QB		=> 	CtrlBus_OxMS.Delay_UpdateWR, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
---			ClkA	=> 	AxiBusIn.ACLK,
---			ClkB	=> ClockBus.CLK250MHz
---		);
-
-SyncBuffer_Delay_UpdateWR : SyncBuffer
+BUF_Delay_UpdateWR : clkcrossing_buf
 		generic map(
 			NBITS => 32
 		)
 		port map(
-			clk	=>	ClockBus.CLK250MHz,
-			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
-			asyncBuffer	=> 	TCReg(TC_Delay_UpdateWR),
-			syncBUffer	=> CtrlBus_OxMS.Delay_UpdateWR
+			nrst	=>	AxiBusIn.ARESETN,
+			DA		=>	TCReg(TC_Delay_UpdateWR),
+			QB		=> 	CtrlBus_OxMS.Delay_UpdateWR, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+			ClkA	=> 	AxiBusIn.ACLK,
+			ClkB	=> ClockBus.CLK250MHz
 		);
+
+--SyncBuffer_Delay_UpdateWR : SyncBuffer
+--		generic map(
+--			NBITS => 32
+--		)
+--		port map(
+--			clk	=>	ClockBus.CLK250MHz,
+--			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+--			asyncBuffer	=> 	TCReg(TC_Delay_UpdateWR),
+--			syncBUffer	=> CtrlBus_OxMS.Delay_UpdateWR
+--		);
 
 
 

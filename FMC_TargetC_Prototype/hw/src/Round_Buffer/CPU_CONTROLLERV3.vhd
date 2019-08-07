@@ -107,25 +107,25 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 		);
 	end component;
 
---	component aFifoV2 is
---    generic (
---        DATA_WIDTH :integer := 8;
---        ADDR_WIDTH :integer := 4
---    );
---    port (
---    	rst :		in std_logic;
---        -- Reading port.
---        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
---        Empty_out   :out std_logic;
---        ReadEn_in   :in  std_logic;
---        RClk        :in  std_logic;
---        -- Writing port.
---        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
---        Full_out    :out std_logic;
---        WriteEn_in  :in  std_logic;
---        WClk        :in  std_logic
---    );
---	end component aFifoV2;
+	component aFifoV2 is
+    generic (
+        DATA_WIDTH :integer := 8;
+        ADDR_WIDTH :integer := 4
+    );
+    port (
+    	rst :		in std_logic;
+        -- Reading port.
+        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
+        Empty_out   :out std_logic;
+        ReadEn_in   :in  std_logic;
+        RClk        :in  std_logic;
+        -- Writing port.
+        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
+        Full_out    :out std_logic;
+        WriteEn_in  :in  std_logic;
+        WClk        :in  std_logic
+    );
+	end component aFifoV2;
 
 	component module_fifo_regs_no_flags is
 	  generic (
@@ -610,7 +610,7 @@ begin
 --		        ADDR_WIDTH => 4
 --		    )
 --		    port map(
---		 --   	rst => nrst,
+--		    	rst => nrst,
 --		        -- Reading port.
 --		        Data_out   => TrigData,
 --		        Empty_out   => TrigEmpty,
