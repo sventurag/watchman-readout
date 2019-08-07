@@ -88,13 +88,35 @@ architecture arch_imp of TC_ClockManagementV3 is
 		BIN_IN:		in	std_logic_vector(NBITS-1 downto 0)
 		);
 	end component GRAY_ENCODER;
+	
+	
+    component SyncBit is 
+       generic (
+          SYNC_STAGES_G  : integer := 2;
+          CLK_POL_G      : std_logic := '1';
+          RST_POL_G      : std_logic := '1';
+          INIT_STATE_G   : std_logic := '0';
+          GATE_DELAY_G   : time := 1 ns
+       );
+       port ( 
+          -- Clock and reset
+          clk         : in  std_logic;
+          rst         : in  std_logic := '0';
+          -- Incoming bit, asynchronous
+          asyncBit    : in  std_logic;
+          -- Outgoing bit, synced to clk
+          syncBit     : out std_logic
+       ); 
+    end component;
+	
+	
 	-- --------------------------------------------------------------------------------
 	-- Signal Declaration
 
 	signal locked_WL:	std_logic;
-	signal locked_general,locked_general2:	std_logic;
-	signal locked_intl:	std_logic;
-
+	signal locked_general,locked_general2, locked_general_sync250MHz, locked_general_sync100MHz:	std_logic;
+	signal locked_intl, locked_intl250MHz, locked_intl100MHz:	std_logic;
+    signal nrst_250MHz: std_logic;
 	-- Internal Clock signals (intl)
 
 	signal SCLKraw :		std_logic;
@@ -224,6 +246,45 @@ begin
     	O => CLK250MHz_bufg
 	);
 
+--SyncBitLocked250MHz: SyncBit
+--       generic map (
+--          SYNC_STAGES_G  => 2,
+--          CLK_POL_G      => '1',
+--          RST_POL_G      => '1',
+--          INIT_STATE_G   => '0',
+--          GATE_DELAY_G   => 1 ns
+--       )
+       
+--       port map ( 
+--          -- Clock and reset
+--          clk  => CLK250MHz_bufg,
+--          rst   => rst,
+--          -- Incoming bit, asynchronous
+--          asyncBit =>  locked_general,
+--          -- Outgoing bit, synced to clk
+--          syncBit   => locked_general_sync250MHz
+--       ); 
+	
+	
+--	SyncBitLocked100MHz: SyncBit
+--              generic map (
+--                 SYNC_STAGES_G  => 2,
+--                 CLK_POL_G      => '1',
+--                 RST_POL_G      => '1',
+--                 INIT_STATE_G   => '0',
+--                 GATE_DELAY_G   => 1 ns
+--              )
+              
+--              port map ( 
+--                 -- Clock and reset
+--                 clk  => Clk100MHz_bufg,
+--                 rst   => rst,
+--                 -- Incoming bit, asynchronous
+--                 asyncBit =>  locked_general,
+--                 -- Outgoing bit, synced to clk
+--                 syncBit   => locked_general_sync100MHz
+--              ); 
+           
 
 	locked_intl <= 	'0' when locked_general = '0' else
 					'1';
@@ -241,8 +302,52 @@ begin
 
 	SSTIN_intl <= '0' when locked_intl = '0' else SSTIN_bufg;
 
+
+
+
+
+
+
+--	locked_intl250MHz <= 	'0' when locked_general_sync250MHz = '0' else '1';
+--	locked_intl100MHz <= 	'0' when locked_general_sync100MHz = '0' else '1';
+
+
+--	--CLK500MHz_intl <= '0' when locked_intl = '0' else CLK500MHzraw;
+--	CLK250MHz_intl <= '0' when locked_intl250MHz = '0' else CLK250MHz_bufg;
+
+--	RDAD_CLK_intl <= '0' when locked_intl100MHz = '0' else Clk100MHz_bufg;
+
+--	SCLK_intl <= '0' when locked_intl100MHz = '0' else Clk100MHz_bufg;
+
+--	HSCLK_intl <= '0' when locked_intl100MHz = '0' else Clk100MHz_bufg;
+
+--	WL_CLK_intl <= '0' when locked_intl100MHz = '0' else Clk100MHz_bufg;
+
+--	SSTIN_intl <= '0' when locked_intl100MHz = '0' else SSTIN_bufg;
+
 	--	------------------------------------------------------------
 	-- Output For Standard and LVDS
+
+    
+--SyncBit_reset250MHz: SyncBit
+--       generic map (
+--          SYNC_STAGES_G  => 2,
+--          CLK_POL_G      => '1',
+--          RST_POL_G      => '1',
+--          INIT_STATE_G   => '0',
+--          GATE_DELAY_G   => 1 ns
+--       )
+       
+--       port map ( 
+--          -- Clock and reset
+--          clk  => CLK250MHz_bufg,
+--          rst   => '0',
+--          -- Incoming bit, asynchronous
+--          asyncBit =>  nrst,
+--          -- Outgoing bit, synced to clk
+--          syncBit   => nrst_250MHz
+--       ); 
+	
 
 	TimeCnt_inst : counter
 	generic map(
@@ -250,7 +355,7 @@ begin
 	)
 	port map(
 		CLK 	=> CLK250MHz_intl,
-		RST => nrst,
+		RST => nrst, --nrst_250MHz, 
 		Q 	=> Timecounter_intl
 	);
 
@@ -280,7 +385,7 @@ begin
 	ClockBus.AXI_CLK <= AXI_Clk;
 
 
-	PLL_LOCKED <= locked_intl;
+	PLL_LOCKED <= locked_intl; -- signal to use in TARGETC_Control.vhd for registers
 
 	OBUFDF_SSTIN : OBUFDS
 	generic map(

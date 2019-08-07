@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Mon Jul 29 15:45:59 2019
+// Date        : Tue Aug  6 11:30:23 2019
 // Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.6 LTS
 // Command     : write_verilog -force -mode synth_stub -rename_top base_zynq_processing_system7_0_0 -prefix
 //               base_zynq_processing_system7_0_0_ base_zynq_processing_system7_0_0_stub.v
