@@ -92,6 +92,45 @@ architecture Behavioral of TARGETC_RDAD_WL_SMPL is
 		);
 	end component clkcrossing_buf;
 
+
+      component SyncBit is 
+           generic (
+              SYNC_STAGES_G  : integer := 2;
+              CLK_POL_G      : std_logic := '1';
+              RST_POL_G      : std_logic := '1';
+              INIT_STATE_G   : std_logic := '0';
+              GATE_DELAY_G   : time := 1 ns
+           );
+           port ( 
+              -- Clock and reset
+              clk         : in  std_logic;
+              rst         : in  std_logic := '0';
+              -- Incoming bit, asynchronous
+              asyncBit    : in  std_logic;
+              -- Outgoing bit, synced to clk
+              syncBit     : out std_logic
+           ); 
+        end component;
+
+
+component SyncBuffer is 
+ generic(
+		NBITS : integer := 32
+	);
+	port (
+	      -- Clock and reset
+		Clk:	in	std_logic;
+		nrst:	in	std_logic;
+      -- Incoming buffer, asynchronous
+		asyncBuffer:	in	std_logic_vector(NBITS-1 downto 0);
+      -- Outgoing buffer, synced to clk
+		syncBuffer:     out	std_logic_vector(NBITS-1 downto 0)
+--		ClkA:	in	std_logic;
+	);
+           end component;
+
+
+
 	--State
 	type state_type is (
 		IDLE,
@@ -229,30 +268,79 @@ architecture Behavioral of TARGETC_RDAD_WL_SMPL is
 
 begin
 
-	--Clock Domain Handshake
-	ACK_CLKBUF : clkcrossing_buf
-		generic map(
-			NBITS => 1
-		)
-		port map (
-			nrst	=> CtrlBus_IxSL.SW_nRST,
-			DA(0)	=> Handshake_IxSEND.ACK,
-			QB(0)	=> acknowledge_intl,
-			ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
-			ClkB	=> ClockBus.HSCLK
-		);
+--	--Clock Domain Handshake
+--	ACK_CLKBUF : clkcrossing_buf
+--		generic map(
+--			NBITS => 1
+--		)
+--		port map (
+--			nrst	=> CtrlBus_IxSL.SW_nRST,
+--			DA(0)	=> Handshake_IxSEND.ACK,
+--			QB(0)	=> acknowledge_intl,
+--			ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
+--			ClkB	=> ClockBus.HSCLK
+--		);
+		
 
-	BUSY_CLKBUF : clkcrossing_buf
-			generic map(
-				NBITS => 1
-			)
-			port map (
-				nrst	=> CtrlBus_IxSL.SW_nRST,
-				DA(0)	=> Handshake_IxSEND.BUSY,
-				QB(0)	=> busy_intl,
-				ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
-				ClkB	=> ClockBus.HSCLK
-			);
+	--Clock Domain Handshake
+
+SyncBitACKNOWLEDGE: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
+       
+       port map ( 
+          -- Clock and reset
+          clk  => ClockBus.HSCLK,
+          rst   => CtrlBus_IxSL.SW_nRST,
+          -- Incoming bit, asynchronous
+          asyncBit =>  Handshake_IxSEND.ACK,
+          -- Outgoing bit, synced to clk
+          syncBit   => acknowledge_intl
+       ); 
+
+
+
+--	BUSY_CLKBUF : clkcrossing_buf
+--			generic map(
+--				NBITS => 1
+--			)
+--			port map (
+--				nrst	=> CtrlBus_IxSL.SW_nRST,
+--				DA(0)	=> Handshake_IxSEND.BUSY,
+--				QB(0)	=> busy_intl,
+--				ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
+--				ClkB	=> ClockBus.HSCLK
+--			);
+
+
+  SyncBitBUSY: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
+       
+       port map ( 
+          -- Clock and reset
+          clk  => ClockBus.HSCLK,
+          rst   => CtrlBus_IxSL.SW_nRST,
+          -- Incoming bit, asynchronous
+          asyncBit =>  Handshake_IxSEND.BUSY,
+          -- Outgoing bit, synced to clk
+          syncBit   => busy_intl
+       ); 
+
+
+
+
+
 
 	Handshake_OxSEND.Req	<= Handshake_SEND_intl.REQ;
 	Handshake_OxSEND.RClk	<= ClockBus.HSCLK;
@@ -279,6 +367,19 @@ begin
 			ClkA	=> 	ClockBus.CLK250MHz,
 			ClkB	=> ClockBus.HSCLK
 		);
+		
+		
+--        SyncBuffer_NBRWINDOWS : SyncBuffer
+--                generic map(
+--                    NBITS => 32
+--                )
+--                port map(
+--                    clk    =>    ClockBus.HSCLK,
+--                    nrst        =>     CtrlBus_IxSL.SW_nRST, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+--                    asyncBuffer    =>     CtrlBus_IxSL.NBRWINDOW,
+--                    syncBUffer    => NBRWINDOW_clkd
+--                );
+
 	--counter process
 	process (ClockBus.WL_CLK,WL_CNT_EN) begin
 		if (WL_CNT_EN = '0') then
@@ -289,6 +390,14 @@ begin
 			end if;
 		end if;
 	end process;
+
+
+
+
+
+
+
+
 
 
 	process(CtrlBus_IxSL.SW_nRST,ClockBus.RDAD_CLK)

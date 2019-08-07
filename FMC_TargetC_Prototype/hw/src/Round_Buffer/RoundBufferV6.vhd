@@ -204,6 +204,25 @@ end component CPU_CONTROLLERV3;
                );
  
      end component nextAddressCnt;
+     
+      component SyncBit is 
+           generic (
+              SYNC_STAGES_G  : integer := 2;
+              CLK_POL_G      : std_logic := '1';
+              RST_POL_G      : std_logic := '1';
+              INIT_STATE_G   : std_logic := '0';
+              GATE_DELAY_G   : time := 1 ns
+           );
+           port ( 
+              -- Clock and reset
+              clk         : in  std_logic;
+              rst         : in  std_logic := '0';
+              -- Incoming bit, asynchronous
+              asyncBit    : in  std_logic;
+              -- Outgoing bit, synced to clk
+              syncBit     : out std_logic
+           ); 
+        end component;
 
 	-- -------------------------------------------------------------
 	-- SIGNALS
@@ -248,7 +267,7 @@ end component CPU_CONTROLLERV3;
 	signal clr_intl : std_logic;
 	signal ValidData_s, ValidReal_s : std_logic;
 	signal time_intl:			T_timestamp;
-
+    signal nrst : std_logic;
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -417,6 +436,27 @@ begin
 --		addr 	=> PREVAddr_s
 --		);
 
+--SyncBitNrst: SyncBit
+--       generic map (
+--          SYNC_STAGES_G  => 2,
+--          CLK_POL_G      => '1',
+--          RST_POL_G      => '1',
+--          INIT_STATE_G   => '0',
+--          GATE_DELAY_G   => 1 ns
+--       )
+       
+--       port map ( 
+--          -- Clock and reset
+--          clk  => ClockBus.CLK250MHz,
+--          rst   => '0',
+--          -- Incoming bit, asynchronous
+--          asyncBit =>  CtrlBus_IxSL.SW_nRST,
+--          -- Outgoing bit, synced to clk
+--          syncBit   => nrst
+--       ); 
+nrst <= CtrlBus_IxSL.SW_nRST;
+
+
 
 	-- wr1_en_single <= wr1_en_bus(to_integer(unsigned(OldWindowCnt)));
 	-- wr2_en_single <= wr2_en_bus(to_integer(unsigned(OldWindowCnt)));
@@ -427,7 +467,7 @@ begin
 ----				NBRWINDOWS => 256
 --			)
 			Port map(
-			nrst			=> CtrlBus_IxSL.SW_nRST,
+			nrst			=> nrst,
 			ClockBus		=> ClockBus,
 			--timecounter		=> timecounter,
 			timestamp  => timestamp,
@@ -469,7 +509,7 @@ begin
 ----		NBRWINDOWS => NBRWINDOWS
 --		)
 		Port map(
-		nrst			=> CtrlBus_IxSL.SW_nRST,
+		nrst			=> nrst,
 		ClockBus	=> ClockBus,
 		ValidData	=> ValidData_s,
 
@@ -498,7 +538,7 @@ begin
  nextAddressCnt_inst : nextAddressCnt
         Port map(
         clk => ClockBus.CLK250MHz,
-        rst => CtrlBus_IxSL.SW_nRST,   
+        rst => nrst,   
         usrRst => CtrlBus_IxSL.WindowStorage,                   
         Ctrl => ValidReal_s,
         nextAddress => NextAddr_s,
