@@ -40,25 +40,25 @@ entity WindowStoreV4 is
 end WindowStoreV4;
 
 architecture Behavioral of WindowStoreV4 is
-	component aFifoV2 is
-    generic (
-        DATA_WIDTH :integer := 8;
-        ADDR_WIDTH :integer := 4
-    );
-    port (
-    	rst :		in std_logic;
-        -- Reading port.
-        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
-        Empty_out   :out std_logic;
-        ReadEn_in   :in  std_logic;
-        RClk        :in  std_logic;
-        -- Writing port.
-        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
-        Full_out    :out std_logic;
-        WriteEn_in  :in  std_logic;
-        WClk        :in  std_logic
-    );
-	end component aFifoV2;
+--	component aFifoV2 is
+--    generic (
+--        DATA_WIDTH :integer := 8;
+--        ADDR_WIDTH :integer := 4
+--    );
+--    port (
+--    	rst :		in std_logic;
+--        -- Reading port.
+--        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
+--        Empty_out   :out std_logic;
+--        ReadEn_in   :in  std_logic;
+--        RClk        :in  std_logic;
+--        -- Writing port.
+--        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
+--        Full_out    :out std_logic;
+--        WriteEn_in  :in  std_logic;
+--        WClk        :in  std_logic
+--    );
+--	end component aFifoV2;
 
 COMPONENT axi_wdo_addr_fifo
   PORT (

@@ -107,25 +107,25 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 		);
 	end component;
 
-	component aFifoV2 is
-    generic (
-        DATA_WIDTH :integer := 8;
-        ADDR_WIDTH :integer := 4
-    );
-    port (
-    	rst :		in std_logic;
-        -- Reading port.
-        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
-        Empty_out   :out std_logic;
-        ReadEn_in   :in  std_logic;
-        RClk        :in  std_logic;
-        -- Writing port.
-        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
-        Full_out    :out std_logic;
-        WriteEn_in  :in  std_logic;
-        WClk        :in  std_logic
-    );
-	end component aFifoV2;
+--	component aFifoV2 is
+--    generic (
+--        DATA_WIDTH :integer := 8;
+--        ADDR_WIDTH :integer := 4
+--    );
+--    port (
+--    	rst :		in std_logic;
+--        -- Reading port.
+--        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
+--        Empty_out   :out std_logic;
+--        ReadEn_in   :in  std_logic;
+--        RClk        :in  std_logic;
+--        -- Writing port.
+--        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
+--        Full_out    :out std_logic;
+--        WriteEn_in  :in  std_logic;
+--        WClk        :in  std_logic
+--    );
+--	end component aFifoV2;
 
 	component module_fifo_regs_no_flags is
 	  generic (
@@ -168,7 +168,58 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 	      nrst : in std_logic
 	   );
    end component RisingEdge_DFlipFlop;
-
+   COMPONENT dig_sto_fifo_9W_16D
+     PORT (
+       wr_clk : IN STD_LOGIC;
+       rd_clk : IN STD_LOGIC;
+       din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+       wr_en : IN STD_LOGIC;
+       rd_en : IN STD_LOGIC;
+       dout : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+       full : OUT STD_LOGIC;
+       empty : OUT STD_LOGIC
+     );
+   END COMPONENT;
+   
+--   COMPONENT axi_wdo_addr_fifo
+--     PORT (
+--      -- rst : IN STD_LOGIC;
+--       wr_clk : IN STD_LOGIC;
+--       rd_clk : IN STD_LOGIC;
+--       din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+--       wr_en : IN STD_LOGIC;
+--       rd_en : IN STD_LOGIC;
+--       dout : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+--       full : OUT STD_LOGIC;
+--       empty : OUT STD_LOGIC
+--     );
+--   END COMPONENT;
+   
+   
+COMPONENT trig0_fifo_10W_16D
+     PORT (
+       wr_clk : IN STD_LOGIC;
+       rd_clk : IN STD_LOGIC;
+       din : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
+       wr_en : IN STD_LOGIC;
+       rd_en : IN STD_LOGIC;
+       dout : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
+       full : OUT STD_LOGIC;
+       empty : OUT STD_LOGIC
+     );
+   END COMPONENT;
+  COMPONENT axi_trig_afifo_12W_32D
+     PORT (
+       wr_clk : IN STD_LOGIC;
+       rd_clk : IN STD_LOGIC;
+       din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+       wr_en : IN STD_LOGIC;
+       rd_en : IN STD_LOGIC;
+       dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+       full : OUT STD_LOGIC;
+       empty : OUT STD_LOGIC
+     );
+   END COMPONENT;
 	-- component LookupTable_TE is
 	-- 	generic(
 	-- 		MIN_TE_TIME : integer := 1
@@ -553,43 +604,85 @@ begin
 	D_wr2_dly <= '1' when (((TimeStamp.samplecnt(2) = '1') or (LE_intl = '1')) and (LE_intr = '0')) else '0';
 
 
-	TRIG0FIFO : aFifoV2
-		    generic map(
-		        DATA_WIDTH  => 10,
-		        ADDR_WIDTH => 4
-		    )
-		    port map(
-		    	rst => nrst,
-		        -- Reading port.
-		        Data_out   => TrigData,
-		        Empty_out   => TrigEmpty,
-		        ReadEn_in   => TrigRead,
-		        RClk        => ClockBus.CLK250MHz,
-		        -- Writing port.
-		        Data_in    => TrigAddr,
-		        Full_out    => TrigFull,
-		        WriteEn_in  => TrigWrite,
-		        WClk        => ClockBus.CLK250MHz
-		    );
+--	TRIG0FIFO : aFifoV2
+--		    generic map(
+--		        DATA_WIDTH  => 10,
+--		        ADDR_WIDTH => 4
+--		    )
+--		    port map(
+--		 --   	rst => nrst,
+--		        -- Reading port.
+--		        Data_out   => TrigData,
+--		        Empty_out   => TrigEmpty,
+--		        ReadEn_in   => TrigRead,
+--		        RClk        => ClockBus.CLK250MHz,
+--		        -- Writing port.
+--		        Data_in    => TrigAddr,
+--		        Full_out    => TrigFull,
+--		        WriteEn_in  => TrigWrite,
+--		        WClk        => ClockBus.CLK250MHz
+--		    );
 
-	TRIG1FIFO : aFifoV2
-	    generic map(
-	        DATA_WIDTH  => 12,
-	        ADDR_WIDTH => 4
-	    )
-	    port map(
-	    	rst => nrst,
-	        -- Reading port.
-	        Data_out   => TrigInfo,
-	        Empty_out   => open,
-	        ReadEn_in   => TrigRead,
-	        RClk        => ClockBus.CLK250MHz,
-	        -- Writing port.
-	        Data_in    => TrigInfo1,
-	        Full_out    => open,
-	        WriteEn_in  => TrigWrite,
-	        WClk        => ClockBus.CLK250MHz
-	    );
+
+
+
+    TRIG0FIFO : trig0_fifo_10W_16D
+      PORT MAP (
+      --  rst => nrst,
+        
+        dout => TrigData,
+        empty => TrigEmpty,
+        rd_en => TrigRead,
+        rd_clk => ClockBus.CLK250MHz,
+
+        
+        din => TrigAddr,
+        full => TrigFull,
+        wr_en => TrigWrite,
+        wr_clk => ClockBus.CLK250MHz
+
+      );
+
+
+--	TRIG1FIFO : aFifoV2
+--	    generic map(
+--	        DATA_WIDTH  => 12,
+--	        ADDR_WIDTH => 4
+--	    )
+--	    port map(
+--	    	rst => nrst,
+--	        -- Reading port.
+--	        Data_out   => TrigInfo,
+--	        Empty_out   => open,
+--	        ReadEn_in   => TrigRead,
+--	        RClk        => ClockBus.CLK250MHz,
+--	        -- Writing port.
+--	        Data_in    => TrigInfo1,
+--	        Full_out    => open,
+--	        WriteEn_in  => TrigWrite,
+--	        WClk        => ClockBus.CLK250MHz
+--	    );
+
+
+
+    TRIG1FIFO : axi_trig_afifo_12W_32D
+      PORT MAP (
+      --  rst => nrst,
+        
+        dout => TrigInfo,
+        empty => open,
+        rd_en => TrigRead,
+        rd_clk => ClockBus.CLK250MHz,
+
+        
+        din => TrigInfo1,
+        full => open,
+        wr_en => TrigWrite,
+        wr_clk => ClockBus.CLK250MHz
+
+      );
+    
+
 
 	process(ClockBus.CLK250MHz,nrst)	-- Every 64 ns
 	begin
@@ -804,25 +897,47 @@ begin
 -----------------------------------------------------------------------------------------WR_CS_S
 
 
-    -- Digitizing and Storage FIFO
-	DIG_STO_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 9,
-        ADDR_WIDTH => 4	--Maybe more ?
-    )
-    port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => DIG_DataOut_intl,
-        Empty_out   => DIG_Empty_intl,
-        ReadEn_in   => STO_ReadEn,
-        RClk        => ClockBus.CLK250MHz,
-        -- Writing port.
-        Data_in     => DIG_DataIn,
-        Full_out    => DIG_Full,
-        WriteEn_in  => DIG_WriteEn,
-        WClk        => ClockBus.WL_CLK
-    );
+--    -- Digitizing and Storage FIFO
+--	DIG_STO_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 9,
+--        ADDR_WIDTH => 4	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => DIG_DataOut_intl,
+--        Empty_out   => DIG_Empty_intl,
+--        ReadEn_in   => STO_ReadEn,
+--        RClk        => ClockBus.CLK250MHz,
+--        -- Writing port.
+--        Data_in     => DIG_DataIn,
+--        Full_out    => DIG_Full,
+--        WriteEn_in  => DIG_WriteEn,
+--        WClk        => ClockBus.WL_CLK
+--    );
+
+
+
+    DIG_STO_AFIFO : dig_sto_fifo_9W_16D
+      PORT MAP (
+      --  rst => nrst,
+        
+        dout => DIG_DataOut_intl,
+        empty => DIG_Empty_intl,
+        rd_en => STO_ReadEn,
+        rd_clk => ClockBus.CLK250MHz,
+
+        
+        din => DIG_DataIn,
+        full => DIG_Full,
+        wr_en => DIG_WriteEn,
+        wr_clk => ClockBus.WL_CLK
+
+      );
+    
+
+
 
 	-- Process for Next and Prev Address
 	process(ClockBus.CLK250MHz,nrst)
