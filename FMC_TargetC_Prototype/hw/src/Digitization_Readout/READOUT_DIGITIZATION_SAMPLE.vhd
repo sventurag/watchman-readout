@@ -268,6 +268,7 @@ component SyncBuffer is
 
 begin
 
+
 	--Clock Domain Handshake
 	ACK_CLKBUF : clkcrossing_buf
 		generic map(
@@ -281,7 +282,7 @@ begin
 			ClkB	=> ClockBus.HSCLK
 		);
 		
-
+-- CHECK: WHEN THE CDC IS DONE FOR ACK WITH  SYNCBIT MODULE, TPG FAILS IN PS.
 	--Clock Domain Handshake
 
 --SyncBitACKNOWLEDGE: SyncBit
@@ -305,37 +306,37 @@ begin
 
 
 
-	BUSY_CLKBUF : clkcrossing_buf
-			generic map(
-				NBITS => 1
-			)
-			port map (
-				nrst	=> CtrlBus_IxSL.SW_nRST,
-				DA(0)	=> Handshake_IxSEND.BUSY,
-				QB(0)	=> busy_intl,
-				ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
-				ClkB	=> ClockBus.HSCLK
-			);
+--	BUSY_CLKBUF : clkcrossing_buf
+--			generic map(
+--				NBITS => 1
+--			)
+--			port map (
+--				nrst	=> CtrlBus_IxSL.SW_nRST,
+--				DA(0)	=> Handshake_IxSEND.BUSY,
+--				QB(0)	=> busy_intl,
+--				ClkA	=> Handshake_IxSEND.ACLK, --foreign clock
+--				ClkB	=> ClockBus.HSCLK
+--			);
 
 
---  SyncBitBUSY: SyncBit
---       generic map (
---          SYNC_STAGES_G  => 2,
---          CLK_POL_G      => '1',
---          RST_POL_G      => '1',
---          INIT_STATE_G   => '0',
---          GATE_DELAY_G   => 1 ns
---       )
+  SyncBitBUSY: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
        
---       port map ( 
---          -- Clock and reset
---          clk  => ClockBus.HSCLK,
---          rst   => CtrlBus_IxSL.SW_nRST,
---          -- Incoming bit, asynchronous
---          asyncBit =>  Handshake_IxSEND.BUSY,
---          -- Outgoing bit, synced to clk
---          syncBit   => busy_intl
---       ); 
+       port map ( 
+          -- Clock and reset
+          clk  => ClockBus.HSCLK,
+          rst   => CtrlBus_IxSL.SW_nRST,
+          -- Incoming bit, asynchronous
+          asyncBit =>  Handshake_IxSEND.BUSY,
+          -- Outgoing bit, synced to clk
+          syncBit   => busy_intl
+       ); 
 
 
 
@@ -356,29 +357,29 @@ begin
 	--
 	-- -- --------------------------------------------------------------------------------
 
-	BUF_NBRWINDOWS : clkcrossing_buf
-		generic map(
-			NBITS => 32
-		)
-		port map(
-			nrst	=>	CtrlBus_IxSL.SW_nRST,
-			DA		=>	CtrlBus_IxSL.NBRWINDOW,
-			QB		=> 	NBRWINDOW_clkd,
-			ClkA	=> 	ClockBus.CLK250MHz,
-			ClkB	=> ClockBus.HSCLK
-		);
+--	BUF_NBRWINDOWS : clkcrossing_buf
+--		generic map(
+--			NBITS => 32
+--		)
+--		port map(
+--			nrst	=>	CtrlBus_IxSL.SW_nRST,
+--			DA		=>	CtrlBus_IxSL.NBRWINDOW,
+--			QB		=> 	NBRWINDOW_clkd,
+--			ClkA	=> 	ClockBus.CLK250MHz,
+--			ClkB	=> ClockBus.HSCLK
+--		);
 		
 		
---        SyncBuffer_NBRWINDOWS : SyncBuffer
---                generic map(
---                    NBITS => 32
---                )
---                port map(
---                    clk    =>    ClockBus.HSCLK,
---                    nrst        =>     CtrlBus_IxSL.SW_nRST, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
---                    asyncBuffer    =>     CtrlBus_IxSL.NBRWINDOW,
---                    syncBUffer    => NBRWINDOW_clkd
---                );
+        SyncBuffer_NBRWINDOWS : SyncBuffer
+                generic map(
+                    NBITS => 32
+                )
+                port map(
+                    clk    =>    ClockBus.HSCLK,
+                    nrst        =>     CtrlBus_IxSL.SW_nRST, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+                    asyncBuffer    =>     CtrlBus_IxSL.NBRWINDOW,
+                    syncBUffer    => NBRWINDOW_clkd
+                );
 
 	--counter process
 	process (ClockBus.WL_CLK,WL_CNT_EN) begin
