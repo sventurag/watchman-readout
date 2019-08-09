@@ -37,7 +37,7 @@ architecture arch_imp of TC_Control is
 
  component SyncBit is 
               generic (
-                 SYNC_STAGES_G  : integer := 2;
+                 SYNC_STAGES_G  : integer := 3;
                  CLK_POL_G      : std_logic := '1';
                  RST_POL_G      : std_logic := '1';
                  INIT_STATE_G   : std_logic := '0';
@@ -757,12 +757,14 @@ begin
 	--
 	-- CtrlBus_OxMS.SAMPLEMODE		<= TCReg(TC_CONTROL_REG)(C_SMODE_BIT);
 	-- CtrlBus_OxMS.CPUMODE		<= TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT);
+	
+	
 	BUF_WINDOWMODE : clkcrossing_buf
 		generic map(
 			NBITS => 1
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA(0)	=>	 WindowStorage_intl,
 			QB(0)	=> 	CtrlBus_OxMS.WindowStorage,
 			ClkA	=> 	AxiBusIn.ACLK,
@@ -771,7 +773,7 @@ begin
 	
 --	SyncBitWINDOWMODE: SyncBit
 --               generic map (
---                  SYNC_STAGES_G  => 2,
+--                  SYNC_STAGES_G  => 3,
 --                  CLK_POL_G      => '1',
 --                  RST_POL_G      => '1',
 --                  INIT_STATE_G   => '0',
@@ -796,7 +798,7 @@ begin
 			NBITS => 1
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA(0)		=>	 TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT),
 			QB(0)		=> 	CtrlBus_OxMS.CPUMODE,
 			ClkA	=> 	AxiBusIn.ACLK,
@@ -830,7 +832,7 @@ begin
 			NBITS => 1
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA(0)		=>	 TCReg(TC_CONTROL_REG)(C_SMODE_BIT),
 			QB(0)		=> 	CtrlBus_OxMS.SAMPLEMODE	,
 			ClkA	=> 	AxiBusIn.ACLK,
@@ -866,7 +868,7 @@ begin
 			NBITS => 32
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA		=>	TCReg(TC_NBRWINDOW_REG),
 			QB		=> 	CtrlBus_OxMS.NBRWINDOW,
 			ClkA	=> 	AxiBusIn.ACLK,
@@ -893,7 +895,7 @@ begin
 			NBITS => 32
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=> '1',
 			DA		=>	TCReg(TC_FSTWINDOW_REG),
 			QB		=> 	CtrlBus_OxMS.FSTWINDOW,
 			ClkA	=> 	AxiBusIn.ACLK,
@@ -920,7 +922,7 @@ BUF_Delay_UpdateWR : clkcrossing_buf
 			NBITS => 32
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA		=>	TCReg(TC_Delay_UpdateWR),
 			QB		=> 	CtrlBus_OxMS.Delay_UpdateWR, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
 			ClkA	=> 	AxiBusIn.ACLK,

@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Wed Aug  7 16:12:50 2019
+--Date        : Fri Aug  9 11:14:59 2019
 --Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.6 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
