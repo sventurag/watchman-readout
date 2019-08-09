@@ -329,24 +329,24 @@ begin
 	-- Output For Standard and LVDS
 
     
---SyncBit_reset250MHz: SyncBit
---       generic map (
---          SYNC_STAGES_G  => 2,
---          CLK_POL_G      => '1',
---          RST_POL_G      => '1',
---          INIT_STATE_G   => '0',
---          GATE_DELAY_G   => 1 ns
---       )
+SyncBit_reset250MHz: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
        
---       port map ( 
---          -- Clock and reset
---          clk  => CLK250MHz_bufg,
---          rst   => '0',
---          -- Incoming bit, asynchronous
---          asyncBit =>  nrst,
---          -- Outgoing bit, synced to clk
---          syncBit   => nrst_250MHz
---       ); 
+       port map ( 
+          -- Clock and reset
+          clk  => CLK250MHz_bufg,
+          rst   => '0',
+          -- Incoming bit, asynchronous
+          asyncBit =>  nrst,
+          -- Outgoing bit, synced to clk
+          syncBit   => nrst_250MHz
+       ); 
 	
 
 	TimeCnt_inst : counter
@@ -355,7 +355,7 @@ begin
 	)
 	port map(
 		CLK 	=> CLK250MHz_intl,
-		RST => nrst, --nrst_250MHz, 
+		RST => nrst_250MHz, 
 		Q 	=> Timecounter_intl
 	);
 

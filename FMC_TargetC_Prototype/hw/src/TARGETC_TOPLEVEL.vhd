@@ -785,26 +785,26 @@ begin
 
 	CtrlBusIn_intl.Cnt_AXIS <= Cnt_AXIS_DATA;
 
-	CNT_CLR <= CtrlBusOut_intl.WindowStorage;
+	cnt_clr_intl <= CtrlBusOut_intl.WindowStorage;
 	
---SyncBitCNT_CLR: SyncBit
---       generic map (
---          SYNC_STAGES_G  => 2,
---          CLK_POL_G      => '1',
---          RST_POL_G      => '1',
---          INIT_STATE_G   => '0',
---          GATE_DELAY_G   => 1 ns
---       )
+SyncBitCNT_CLR: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
        
---       port map ( 
---          -- Clock and reset
---          clk  => tc_axi_aclk,
---          rst   => tc_axi_aresetn,
---          -- Incoming bit, asynchronous
---          asyncBit =>  cnt_clr_intl,
---          -- Outgoing bit, synced to clk
---          syncBit   => CNT_CLR
---       );     
+       port map ( 
+          -- Clock and reset
+          clk  => tc_axi_aclk,
+          rst   => tc_axi_aresetn,
+          -- Incoming bit, asynchronous
+          asyncBit =>  cnt_clr_intl,
+          -- Outgoing bit, synced to clk
+          syncBit   => CNT_CLR
+       );     
 
     
     
