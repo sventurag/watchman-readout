@@ -1,14 +1,140 @@
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[0].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[0].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[10].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[10].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[11].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[11].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[12].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[12].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[13].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[13].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[14].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[14].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[15].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[15].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[16].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[16].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[17].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[17].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[18].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[18].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[19].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[19].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[1].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[1].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[20].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[20].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[21].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[21].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[22].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[22].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[23].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[23].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[24].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[24].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[25].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[25].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[26].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[26].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[27].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[27].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[28].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[28].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[29].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[29].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[2].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[2].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[30].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[30].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[31].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[31].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[3].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[3].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[4].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[4].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[5].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[5].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[6].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[6].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[7].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[7].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[8].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[8].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[9].DFF/G_RisingEdgeClock.cdc_reg1]
+#set_property ASYNC_REG true [get_cells base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[9].DFF/G_RisingEdgeClock.cdc_reg2]
+#set_false_path -from [get_clocks [list clk_fpga_0 clkFbOut CLK100MHzraw CLK125MHzraw]] -to [get_cells [list base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/SyncBitCNT_CLR/G_RisingEdgeClock.cdc_reg1 \
+#          base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/SyncBitCNT_CLR/G_RisingEdgeClock.cdc_reg2 \
+#          base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_ClockMgmt_inst/SyncBit_reset125MHz/G_RisingEdgeClock.cdc_reg1 \
+#          base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_ClockMgmt_inst/SyncBit_reset125MHz/G_RisingEdgeClock.cdc_reg2 \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[0].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[0].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[10].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[10].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[11].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[11].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[12].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[12].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[13].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[13].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[14].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[14].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[15].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[15].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[16].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[16].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[17].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[17].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[18].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[18].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[19].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[19].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[1].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[1].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[20].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[20].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[21].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[21].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[22].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[22].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[23].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[23].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[24].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[24].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[25].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[25].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[26].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[26].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[27].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[27].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[28].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[28].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[29].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[29].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[2].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[2].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[30].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[30].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[31].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[31].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[3].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[3].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[4].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[4].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[5].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[5].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[6].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[6].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[7].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[7].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[8].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[8].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[9].DFF/G_RisingEdgeClock.cdc_reg1} \
+#          {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/SyncBuffer_NBRWINDOWS/SyncBuffer_GEN[9].DFF/G_RisingEdgeClock.cdc_reg2} \
+#          base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/SyncBitNrst/G_RisingEdgeClock.cdc_reg1 \
+#          base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/SyncBitNrst/G_RisingEdgeClock.cdc_reg2]]
 # ----------------------------------------------------------------------------
 # TIMING Constraint File
 # ----------------------------------------------------------------------------
-
-
-
-
-
-
-#set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks -of_objects [get_pins base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_ClockMgmt_inst/TC_CLK_MNG_inst/CLKOUT1]]
-#set_false_path -from [get_clocks clk_fpga_0] -to [get_clocks -of_objects [get_pins base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_ClockMgmt_inst/TC_CLK_MNG_inst/CLKOUT0]]
 
 
 set_property async_reg true [get_cells -hierarchical *cdc_reg*]
@@ -18,520 +144,9 @@ set_property async_reg true [get_cells -hierarchical *DFF_AB*]
 #set_false_path -from [get_clocks *] -to [get_cells -hierarchical *DFF_AB*]
 
 set_property async_reg true [get_cells -hierarchical *DFF_B*]
-set_false_path -from [get_clocks *] -to [get_pins -hierarchical -filter {Name=~*DFF_AB/Q_reg/D}]
+set_false_path -from [get_clocks *] -to [get_pins -hierarchical -filter Name=~*DFF_AB/Q_reg/D]
 
-##  clk_fpga_0 to 125MHz   check RST_PS7 IP
-
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[0].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[1].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[2].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[3].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[4].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[5].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[6].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[7].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[8].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[9].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[10].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[11].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[12].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[13].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[14].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[15].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[16].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[17].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[18].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[19].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[20].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[21].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[22].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[23].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[24].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[25].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[26].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[27].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[28].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[29].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[30].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[31].DFF_A/Q_reg/CLR}]
-
-
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[0].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[1].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[2].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[3].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[4].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[5].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[6].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[7].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[8].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[9].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[10].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[11].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[12].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[13].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[14].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[15].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[16].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[17].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[18].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[19].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[20].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[21].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[22].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[23].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[24].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[25].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[26].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[27].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[28].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[29].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[30].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[31].DFF_B/Q_reg/CLR}]
-
-
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[0].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[1].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[2].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[3].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[4].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[5].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[6].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[7].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[8].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[9].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[10].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[11].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[12].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[13].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[14].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[15].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[16].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[17].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[18].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[19].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[20].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[21].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[22].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[23].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[24].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[25].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[26].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[27].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[28].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[29].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[30].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[31].DFF_AB/Q_reg/CLR}]
-
-
-
-
-
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[0].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[1].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[2].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[3].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[4].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[5].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[6].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[7].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[8].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[9].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[10].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[11].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[12].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[13].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[14].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[15].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[16].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[17].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[18].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[19].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[20].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[21].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[22].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[23].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[24].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[25].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[26].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[27].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[28].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[29].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[30].DFF_A/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[31].DFF_A/Q_reg/CLR}]
-
-
-
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[0].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[1].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[2].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[3].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[4].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[5].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[6].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[7].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[8].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[9].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[10].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[11].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[12].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[13].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[14].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[15].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[16].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[17].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[18].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[19].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[20].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[21].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[22].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[23].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[24].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[25].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[26].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[27].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[28].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[29].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[30].DFF_B/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[31].DFF_B/Q_reg/CLR}]
-
-
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[0].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[1].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[2].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[3].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[4].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[5].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[6].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[7].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[8].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[9].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[10].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[11].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[12].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[13].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[14].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[15].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[16].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[17].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[18].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[19].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[20].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[21].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[22].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[23].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[24].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[25].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[26].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[27].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[28].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[29].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[30].DFF_AB/Q_reg/CLR}]
-#set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[31].DFF_AB/Q_reg/CLR}]
-
-
-
-
-
-
-##  update delay
-
-
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_A/Q_reg/CLR}]
-
-
-
-
-
-
-
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[0].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[1].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[2].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[3].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[4].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[5].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[7].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[8].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[9].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[10].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[11].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[12].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[13].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[14].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[15].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[16].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[17].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[18].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[19].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[20].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[21].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[22].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[23].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[24].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[25].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[26].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[27].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[28].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[30].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[31].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_A/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_A/Q_reg/CLR}]
-
-
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[0].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[1].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[2].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[3].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[4].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[5].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[7].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[8].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[9].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[10].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[11].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[12].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[13].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[14].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[15].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[16].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[17].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[18].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[19].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[20].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[21].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[22].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[23].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[24].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[25].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[26].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[27].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[28].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[30].DFF_B/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[31].DFF_B/Q_reg/CLR}]
-
-
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[0].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[1].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[2].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[3].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[4].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[5].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[7].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[8].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[9].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[10].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[11].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[12].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[13].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[14].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[15].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[16].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[17].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[18].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[19].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[20].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[21].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[22].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[23].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[24].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[25].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[26].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[27].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[28].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[30].DFF_AB/Q_reg/CLR}]
-##set_false_path -from [get_pins {base_zynq_i/rst_ps7_0_50M/U0/ACTIVE_LOW_PR_OUT_DFF[0].FDRE_PER_N/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[31].DFF_AB/Q_reg/CLR}]
-
-
-
-##clk150MHz to clk100MHz
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[0].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[0].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[1].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[1].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[2].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[2].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[3].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[3].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[4].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[4].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[5].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[5].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[6].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[6].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[7].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[7].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[8].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[8].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[9].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[9].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[10].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[10].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[11].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[11].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[12].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[12].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[13].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[13].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[14].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[14].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[15].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[15].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[16].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[16].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[17].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[17].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[18].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[18].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[19].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[19].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[20].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[20].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[21].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[21].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[22].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[22].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[23].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[23].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[24].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[24].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[25].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[25].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[26].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[26].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[27].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[27].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[28].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[28].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[29].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[29].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[30].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[30].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[31].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RDAD_WL_SS/BUF_NBRWINDOWS/DFF_GEN[31].DFF_AB/Q_reg/D}]
-
-
-
-
-
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[0].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[0].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[1].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[1].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[2].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[2].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[3].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[3].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[4].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[4].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[5].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[5].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[6].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[7].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[7].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[8].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[8].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[9].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[9].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[10].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[10].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[11].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[11].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[12].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[12].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[13].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[13].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[14].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[14].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[15].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[15].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[16].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[16].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[17].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[17].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[18].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[18].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[19].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[19].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[20].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[20].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[21].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[21].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[22].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[22].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[23].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[23].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[24].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[24].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[25].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[25].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[26].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[26].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[27].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[27].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[28].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[28].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[29].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[30].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[3].DFF_AB/Q_reg/D}]
-###set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[31].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_Delay_UpdateWR/DFF_GEN[1].DFF_AB/Q_reg/D}]
-
-
-
-
-
-
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[0].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[0].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[1].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[1].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[2].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[2].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[3].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[3].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[4].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[4].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[5].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[5].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[6].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[6].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[7].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[7].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[8].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[8].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[9].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[9].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[10].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[10].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[11].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[11].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[12].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[12].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[13].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[13].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[14].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[14].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[15].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[15].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[16].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[16].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[17].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[17].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[18].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[18].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[19].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[19].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[20].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[20].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[21].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[21].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[22].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[22].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[23].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[23].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[24].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[24].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[25].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[25].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[26].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[26].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[27].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[27].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[28].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[28].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[29].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[29].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[30].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[30].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[31].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_FSTWINDOWS/DFF_GEN[31].DFF_AB/Q_reg/D}]
-
-
-
-
-
-
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[0].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[0].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[1].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[1].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[2].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[2].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[3].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[3].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[4].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[4].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[5].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[5].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[6].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[6].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[7].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[7].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[8].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[8].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[9].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[9].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[10].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[10].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[11].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[11].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[12].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[12].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[13].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[13].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[14].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[14].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[15].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[15].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[16].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[16].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[17].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[17].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[18].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[18].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[19].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[19].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[20].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[20].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[21].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[21].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[22].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[22].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[23].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[23].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[24].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[24].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[25].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[25].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[26].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[26].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[27].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[27].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[28].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[28].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[29].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[29].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[30].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[30].DFF_AB/Q_reg/D}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[31].DFF_A/Q_reg/C}] -to [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_NBRWINDOWS/DFF_GEN[31].DFF_AB/Q_reg/D}]
-
-
-
-
-
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[0]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[1]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[2]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[3]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[4]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[5]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[6]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[7]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[8]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[9]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[10]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[11]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[12]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[13]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[14]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[15]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[16]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[17]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[18]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[19]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[20]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[21]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[22]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[23]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[24]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[25]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[26]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[27]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[28]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[29]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[30]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[31]/CE}]
-##set_false_path -from [get_pins {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_Control_inst/BUF_WINDOWMODE/DFF_GEN[0].DFF_B/Q_reg/C}] -to [get_pins {base_zynq_i/axistream_0/U0/cnt_stream_out_reg[0]/CE}]
+#set_property DRIVE 16 [get_ports BB3]
+#set_property SLEW FAST [get_ports BB3]
+set_property DIFF_TERM TRUE [get_ports MONTIMING_N]
+set_property DIFF_TERM TRUE [get_ports MONTIMING_P]

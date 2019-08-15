@@ -327,7 +327,7 @@ begin
 --			Port map(
 --			nrst			=> CtrlBus_IxSL.SW_nRST,
 --			nclr				=> ValidReal_s,
---			CLK				=> ClockBus.CLK250MHz,
+--			CLK				=> ClockBus.CLK125MHz,
 --			CPUBus 			=> Bus_intl,
 
 --			-- wr1_en 			=> wr1_en_bus(I),
@@ -359,7 +359,7 @@ begin
 --		Port map(
 --		nrst			=> CtrlBus_IxSL.SW_nRST,
 --		nclr			=> ValidReal_s,
---		CLK				=> ClockBus.CLK250MHz,
+--		CLK				=> ClockBus.CLK125MHz,
 --		CPUBus 			=> Bus_intl,
 
 --		-- wr1_en 			=> wr1_en_bus(0),
@@ -391,7 +391,7 @@ begin
 --		Port map(
 --		nrst			=> CtrlBus_IxSL.SW_nRST,
 --		nclr			=> ValidReal_s,
---		CLK				=> ClockBus.CLK250MHz,
+--		CLK				=> ClockBus.CLK125MHz,
 
 --		CPUBus 			=> Bus_intl,
 
@@ -420,7 +420,7 @@ begin
 --		Port map(
 --		nrst 	=> CtrlBus_IxSL.SW_nRST,
 --		nclr	=> ValidReal_s,
---		clk 	=> ClockBus.CLK250MHz,
+--		clk 	=> ClockBus.CLK125MHz,
 --		data 	=> NextAddrBus,
 --		valid 	=> NextValid_s,
 --		addr 	=> NextAddr_s
@@ -430,7 +430,7 @@ begin
 --		Port map(
 --		nrst 	=> CtrlBus_IxSL.SW_nRST,
 --		nclr	=> ValidReal_s,
---		clk 	=> ClockBus.CLK250MHz,
+--		clk 	=> ClockBus.CLK125MHz,
 --		data 	=> PrevAddrBus,
 --		valid 	=> PREVValid_s,
 --		addr 	=> PREVAddr_s
@@ -447,7 +447,7 @@ SyncBitNrst: SyncBit
        
        port map ( 
           -- Clock and reset
-          clk  => ClockBus.CLK250MHz,
+          clk  => ClockBus.CLK125MHz,
           rst   => '0',
           -- Incoming bit, asynchronous
           asyncBit =>  CtrlBus_IxSL.SW_nRST,
@@ -537,7 +537,7 @@ SyncBitNrst: SyncBit
 
  nextAddressCnt_inst : nextAddressCnt
         Port map(
-        clk => ClockBus.CLK250MHz,
+        clk => ClockBus.CLK125MHz,
         rst => nrst,   
         usrRst => CtrlBus_IxSL.WindowStorage,                   
         Ctrl => ValidReal_s,

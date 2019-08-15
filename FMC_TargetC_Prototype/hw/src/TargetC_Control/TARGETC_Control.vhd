@@ -54,21 +54,24 @@ architecture arch_imp of TC_Control is
               ); 
            end component;
 
-component SyncBuffer is 
- generic(
-		NBITS : integer := 32
-	);
-	port (
-	      -- Clock and reset
-		Clk:	in	std_logic;
-		nrst:	in	std_logic;
-      -- Incoming buffer, asynchronous
-		asyncBuffer:	in	std_logic_vector(NBITS-1 downto 0);
-      -- Outgoing buffer, synced to clk
-		syncBuffer:     out	std_logic_vector(NBITS-1 downto 0)
---		ClkA:	in	std_logic;
-	);
-           end component;
+--component SyncBuffer is 
+-- generic(
+--		NBITS : integer := 32
+--	);
+--	port (
+--	      -- Clock and reset
+--		Clk:	in	std_logic;
+--		nrst:	in	std_logic;
+--      -- Incoming buffer, asynchronous
+--		asyncBuffer:	in	std_logic_vector(NBITS-1 downto 0);
+--      -- Outgoing buffer, synced to clk
+--		syncBuffer:     out	std_logic_vector(NBITS-1 downto 0)
+----		ClkA:	in	std_logic;
+--	);
+--           end component;
+
+
+
 
 
 
@@ -768,7 +771,7 @@ begin
 			DA(0)	=>	 WindowStorage_intl,
 			QB(0)	=> 	CtrlBus_OxMS.WindowStorage,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
 	
 --	SyncBitWINDOWMODE: SyncBit
@@ -782,7 +785,7 @@ begin
                
 --               port map ( 
 --                  -- Clock and reset
---                  clk  => ClockBus.CLK250MHz,
+--                  clk  => ClockBus.CLK125MHz,
 --                  rst   => AxiBusIn.ARESETN,
 --                  -- Incoming bit, asynchronous
 --                  asyncBit =>  WindowStorage_intl,
@@ -802,7 +805,7 @@ begin
 			DA(0)		=>	 TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT),
 			QB(0)		=> 	CtrlBus_OxMS.CPUMODE,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
 
 
@@ -817,7 +820,7 @@ begin
                
 --               port map ( 
 --                  -- Clock and reset
---                  clk  => ClockBus.CLK250MHz,
+--                  clk  => ClockBus.CLK125MHz,
 --                  rst   => AxiBusIn.ARESETN,
 --                  -- Incoming bit, asynchronous
 --                  asyncBit =>  TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT),
@@ -872,7 +875,7 @@ begin
 			DA		=>	TCReg(TC_NBRWINDOW_REG),
 			QB		=> 	CtrlBus_OxMS.NBRWINDOW,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
 		
 
@@ -881,7 +884,7 @@ begin
 --			NBITS => 32
 --		)
 --		port map(
---			clk	=>	ClockBus.CLK250MHz,
+--			clk	=>	ClockBus.CLK125MHz,
 --			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
 --			asyncBuffer	=> 	TCReg(TC_NBRWINDOW_REG),
 --			syncBUffer	=> CtrlBus_OxMS.NBRWINDOW
@@ -899,7 +902,7 @@ begin
 			DA		=>	TCReg(TC_FSTWINDOW_REG),
 			QB		=> 	CtrlBus_OxMS.FSTWINDOW,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
 
 
@@ -908,7 +911,7 @@ begin
 --			NBITS => 32
 --		)
 --		port map(
---			clk	=>	ClockBus.CLK250MHz,
+--			clk	=>	ClockBus.CLK125MHz,
 --			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
 --			asyncBuffer	=> 	TCReg(TC_FSTWINDOW_REG),
 --			syncBUffer	=> CtrlBus_OxMS.FSTWINDOW
@@ -926,7 +929,7 @@ BUF_Delay_UpdateWR : clkcrossing_buf
 			DA		=>	TCReg(TC_Delay_UpdateWR),
 			QB		=> 	CtrlBus_OxMS.Delay_UpdateWR, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
 
 --SyncBuffer_Delay_UpdateWR : SyncBuffer
@@ -934,7 +937,7 @@ BUF_Delay_UpdateWR : clkcrossing_buf
 --			NBITS => 32
 --		)
 --		port map(
---			clk	=>	ClockBus.CLK250MHz,
+--			clk	=>	ClockBus.CLK125MHz,
 --			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
 --			asyncBuffer	=> 	TCReg(TC_Delay_UpdateWR),
 --			syncBUffer	=> CtrlBus_OxMS.Delay_UpdateWR

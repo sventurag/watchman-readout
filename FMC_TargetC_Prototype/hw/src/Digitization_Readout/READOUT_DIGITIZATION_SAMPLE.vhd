@@ -365,7 +365,7 @@ begin
 --			nrst	=>	CtrlBus_IxSL.SW_nRST,
 --			DA		=>	CtrlBus_IxSL.NBRWINDOW,
 --			QB		=> 	NBRWINDOW_clkd,
---			ClkA	=> 	ClockBus.CLK250MHz,
+--			ClkA	=> 	ClockBus.CLK125MHz,
 --			ClkB	=> ClockBus.HSCLK
 --		);
 		
