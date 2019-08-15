@@ -87,8 +87,13 @@ set_property PACKAGE_PIN N15 [get_ports SHOUT]
 set_property PACKAGE_PIN L15 [get_ports SIN]
 set_property PACKAGE_PIN L14 [get_ports SCLK]
 
+set_property PACKAGE_PIN P14 [get_ports SSTIN_P]
+set_property PACKAGE_PIN R14 [get_ports SSTIN_N]
+set_property PACKAGE_PIN M19 [get_ports WL_CLK_P]
+set_property PACKAGE_PIN M20 [get_ports WL_CLK_N]
 
-
+set_property PACKAGE_PIN K14 [get_ports HSCLK_P]
+set_property PACKAGE_PIN J14 [get_ports HSCLK_N]
 # ----------------------------------------------------------------------------
 # IOSTANDARD Constraints
 #
@@ -119,12 +124,7 @@ set_property IOSTANDARD LVCMOS25 [get_ports {HCMPA[0]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {HCMPB[0]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {HCMPC[0]}]
 set_property IOSTANDARD LVCMOS25 [get_ports {HCMPD[0]}]
-set_property IOSTANDARD LVDS_25 [get_ports SSTIN_P]
-set_property IOSTANDARD LVDS_25 [get_ports SSTIN_N]
-set_property PACKAGE_PIN P14 [get_ports SSTIN_P]
-set_property PACKAGE_PIN R14 [get_ports SSTIN_N]
-set_property IOSTANDARD LVDS_25 [get_ports MONTIMING_P]
-set_property IOSTANDARD LVDS_25 [get_ports MONTIMING_N]
+
 set_property IOSTANDARD LVCMOS25 [get_ports TRIGA]
 set_property IOSTANDARD LVCMOS25 [get_ports BB3]
 set_property IOSTANDARD LVCMOS25 [get_ports SS_LD_SIN]
@@ -148,6 +148,12 @@ set_property IOSTANDARD LVCMOS25 [get_ports DO_2]
 set_property IOSTANDARD LVCMOS25 [get_ports DONE]
 set_property IOSTANDARD LVCMOS25 [get_ports DO_3]
 
+set_property IOSTANDARD LVDS_25 [get_ports SSTIN_P]
+set_property IOSTANDARD LVDS_25 [get_ports SSTIN_N]
+set_property IOSTANDARD LVDS_25 [get_ports MONTIMING_P]
+set_property IOSTANDARD LVDS_25 [get_ports MONTIMING_N]
+
+
 #BANK 35
 set_property IOSTANDARD LVCMOS25 [get_ports DO_11]
 set_property IOSTANDARD LVCMOS25 [get_ports BB2]
@@ -163,10 +169,6 @@ set_property IOSTANDARD LVCMOS25 [get_ports DO_9]
 set_property IOSTANDARD LVCMOS25 [get_ports DO_16]
 set_property IOSTANDARD LVCMOS25 [get_ports RDAD_DIR]
 set_property IOSTANDARD LVCMOS25 [get_ports WR_CS_S4]
-set_property IOSTANDARD LVDS_25 [get_ports WL_CLK_P]
-set_property IOSTANDARD LVDS_25 [get_ports WL_CLK_N]
-set_property PACKAGE_PIN M19 [get_ports WL_CLK_P]
-set_property PACKAGE_PIN M20 [get_ports WL_CLK_N]
 set_property IOSTANDARD LVCMOS25 [get_ports SAMPLESEL_ANY]
 set_property IOSTANDARD LVCMOS25 [get_ports TRIGD]
 set_property IOSTANDARD LVCMOS25 [get_ports WR_CS_S2]
@@ -177,10 +179,6 @@ set_property IOSTANDARD LVCMOS25 [get_ports WR_CS_S5]
 set_property IOSTANDARD LVCMOS25 [get_ports GCC_RESET]
 set_property IOSTANDARD LVCMOS25 [get_ports WR_RS_S1]
 set_property IOSTANDARD LVCMOS25 [get_ports WR_RS_S0]
-set_property IOSTANDARD LVDS_25 [get_ports HSCLK_P]
-set_property IOSTANDARD LVDS_25 [get_ports HSCLK_N]
-set_property PACKAGE_PIN K14 [get_ports HSCLK_P]
-set_property PACKAGE_PIN J14 [get_ports HSCLK_N]
 set_property IOSTANDARD LVCMOS25 [get_ports SCL]
 set_property IOSTANDARD LVCMOS25 [get_ports SDA]
 set_property IOSTANDARD LVCMOS25 [get_ports SHOUT]
@@ -189,5 +187,11 @@ set_property IOSTANDARD LVCMOS25 [get_ports SCLK]
 set_property IOSTANDARD LVCMOS25 [get_ports SIN]
 
 
+set_property IOSTANDARD LVDS_25 [get_ports HSCLK_P]
+set_property IOSTANDARD LVDS_25 [get_ports HSCLK_N]
+set_property IOSTANDARD LVDS_25 [get_ports WL_CLK_P]
+set_property IOSTANDARD LVDS_25 [get_ports WL_CLK_N]
 
+set_property DIFF_TERM TRUE [get_ports MONTIMING_N]
+set_property DIFF_TERM TRUE [get_ports MONTIMING_P]
 

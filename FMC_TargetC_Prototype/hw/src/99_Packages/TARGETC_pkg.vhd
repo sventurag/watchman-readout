@@ -251,7 +251,7 @@ package TARGETC_pkg is
 		RDAD_CLK:		std_logic;		-- Pin#61
 		SSTIN:			std_logic;
 		--CLK500MHz:		std_logic;
-		CLK250MHz:		std_logic;
+		CLK125MHz:		std_logic;
         AXI_clk:        std_logic;
 	end record;
 

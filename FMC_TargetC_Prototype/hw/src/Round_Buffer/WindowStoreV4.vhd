@@ -154,7 +154,7 @@ begin
 
 	NbrOfPackets <= NbrOfPackets_intl;
 
-	process(ClockBus.CLK250MHz)
+	process(ClockBus.CLK125MHz)
 	begin
 		if nrst = '0' then
 			--RDAD_WriteEn_intl <= '0';
@@ -165,7 +165,7 @@ begin
 			counter <= (others => '0');
 			cmd_s <= (others => '0');
 		else
-			if rising_edge(ClockBus.Clk250Mhz) then
+			if rising_edge(ClockBus.Clk125MHz) then
 
 				if Reg_CLR = '1' then
 					NbrOfPackets_intl <= (others => '0');
@@ -242,12 +242,12 @@ begin
 		end if;
 	end process;
 
-	process(ClockBus.CLK250MHz)
+	process(ClockBus.CLK125MHz)
 	begin
 		if nrst = '0' then
 			WriteEn_intl <= '0';
 		else
-			if rising_edge(ClockBus.Clk250Mhz) then
+			if rising_edge(ClockBus.Clk125MHz) then
 
 				if ValidData = '1' then
 					case writeEn_stm is
@@ -268,12 +268,12 @@ begin
 			end if;
 		end if;
 	end process;
-	-- process(ClockBus.Clk250Mhz,nRST)
+	-- process(ClockBus.Clk125MHz,nRST)
 	-- begin
 	-- 	if nrst = '0' then
 	-- 		TrigInfoBuf <= (others => '0');
 	-- 	else
-	-- 		if rising_edge(ClockBus.Clk250Mhz) then
+	-- 		if rising_edge(ClockBus.Clk125MHz) then
 	--
 	-- 			TrigInfoDly <= TrigInfoBuf;
 	--
@@ -304,7 +304,7 @@ begin
 --        Data_in     => Wdo1,
 --        Full_out    => Full_out_intl,
 --        WriteEn_in  => WriteEn_intl,
---        WClk        => ClockBus.CLK250MHz
+--        WClk        => ClockBus.CLK125MHz
 --    );
 
 
@@ -322,7 +322,7 @@ begin
         din => Wdo1,
         full => Full_out_intl,
         wr_en => WriteEn_intl,
-        wr_clk => ClockBus.CLK250MHz
+        wr_clk => ClockBus.CLK125MHz
 
       );
     
@@ -347,7 +347,7 @@ begin
 --        Data_in     => Cmd_s,
 --        Full_out    => axi_full_s(0),
 --        WriteEn_in  => WriteEn_intl,
---        WClk        => ClockBus.CLK250MHz
+--        WClk        => ClockBus.CLK125MHz
 --    );
     
     
@@ -365,7 +365,7 @@ begin
      din => Cmd_s,
      full => axi_full_s(0),
      wr_en => WriteEn_intl,
-     wr_clk => ClockBus.CLK250MHz
+     wr_clk => ClockBus.CLK125MHz
      );
      
     
@@ -389,7 +389,7 @@ begin
 --        Data_in     => Counter,
 --        Full_out    => axi_full_s(1),
 --        WriteEn_in  => WriteEn_intl,
---        WClk        => ClockBus.CLK250MHz
+--        WClk        => ClockBus.CLK125MHz
 --    );
 
 
@@ -408,7 +408,7 @@ begin
      din => Counter,
      full => axi_full_s(1),
      wr_en => WriteEn_intl,
-     wr_clk => ClockBus.CLK250MHz
+     wr_clk => ClockBus.CLK125MHz
      );
      
     
@@ -439,7 +439,7 @@ begin
 --		Data_in     => Wdo1,
 --		Full_out    => axi_full_s(2),
 --		WriteEn_in  => WriteEn_intl,
---		WClk        => ClockBus.CLK250MHz
+--		WClk        => ClockBus.CLK125MHz
 --	);
 
 
@@ -456,7 +456,7 @@ begin
         din => Wdo1,
         full => axi_full_s(2),
         wr_en => WriteEn_intl,
-        wr_clk => ClockBus.CLK250MHz
+        wr_clk => ClockBus.CLK125MHz
 
       );
     
@@ -478,7 +478,7 @@ begin
 --		Data_in     => Trig,
 --		Full_out    => axi_full_s(3),
 --		WriteEn_in  => WriteEn_intl,
---		WClk        => ClockBus.CLK250MHz
+--		WClk        => ClockBus.CLK125MHz
 --	);
 
 
@@ -497,7 +497,7 @@ begin
      din => Trig,
      full => axi_full_s(3),
      wr_en => WriteEn_intl,
-     wr_clk => ClockBus.CLK250MHz
+     wr_clk => ClockBus.CLK125MHz
      );
      
 

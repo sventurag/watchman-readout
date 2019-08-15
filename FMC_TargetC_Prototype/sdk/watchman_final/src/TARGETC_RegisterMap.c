@@ -70,18 +70,18 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_CMPBIASIN_REG,	0x654); //1620
 
 //	usleep(5000000);
-
+/*
     // To operate DLL
 	xil_printf("Turning DLL ON \r\n");
 	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019
 	WriteRegister(TC_VANBUFF_REG,	0x426);	// 1,300 Meeting 07/02/2019, 1062  0x44C
-	usleep(50);
+	usleep(100);
 
 	WriteRegister(TC_QBIAS_REG,	0x514);    // 1300, // 1,300 Meeting 07/02/2019 0x426
 	WriteRegister(TC_VANBUFF_REG,	0);	// // 1,300 Meeting 07/02/2019
  //	usleep(20);
 
-
+// */
 	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
 	WriteRegister(TC_MONTIMING_REG,	0);		//INIT MonTiming PASS disable
 

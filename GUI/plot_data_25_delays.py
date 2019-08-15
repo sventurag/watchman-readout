@@ -2,8 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-fileName = '/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/SSTOUTFB_45.txt'
-
+fileName = '/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/test_notimingviolations_nodllEdge4.txt'
 #vadjn = list(range(40,62,1))
 vadjn = list(np.zeros(10))
 
@@ -12,7 +11,7 @@ sstoutfb = pd.read_csv ( fileName, sep=" ", header=None,nrows=1 )
 print(df)
 print(sstoutfb[0][0])
 #print(len(sstoutfb[0]))
-repeticiones=2
+repeticiones=4
 
 #print(pd.DataFrame(df, columns=[0,3]))
 nmbrWindows = 12
@@ -21,8 +20,8 @@ fig= plt.figure(num=None, figsize=(8,6), dpi=80)
 fig.subplots_adjust(hspace=0.7, wspace=0.4)
 fontsizeAxis=16
 std3windowsList = list()
-for i in range(0,5,1):
-    ax = fig.add_subplot(4,2,1+i)
+for i in range(0,1,1):
+    ax = fig.add_subplot(1,2,1+i)
     ax.set_ylabel('ADC counts', fontsize=fontsizeAxis)
     ax.set_xlabel('Time [ns]', fontsize=fontsizeAxis)
     ax.set_title('SSTOUTFB={}'.format(vadjn[i]))
@@ -32,7 +31,7 @@ for i in range(0,5,1):
         std_3windows = 0
         suma=int(i*repeticiones+k)
    # print(suma)
-        df[suma].plot(xlim=(100,150), ylim=(-10,80), ax=ax, xticks = np.arange(0,250,32), yticks = np.arange(-10,100,10), grid=True,legend=False,label='std 3 windows={:10.2f}'.format(std_3windows), marker= 'o', markersize=2, markerfacecolor='black', markeredgecolor='black')
+        df[suma].plot(xlim=(0,200), ylim=(-10,80), ax=ax, xticks = np.arange(0,250,32), yticks = np.arange(-10,100,10), grid=True,legend=False,label='std 3 windows={:10.2f}'.format(std_3windows), marker= 'o', markersize=2, markerfacecolor='black', markeredgecolor='black')
         std_3windows += np.std(df[suma][0:96])
        # df[i+k].plot( ax=ax, grid=True,legend=False,label='dly={} ns'.format(i), marker= 'o', markersize=1, markerfacecolor='black', markeredgecolor='black')
 #        if i<13: 
