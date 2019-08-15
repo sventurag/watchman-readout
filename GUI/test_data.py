@@ -77,36 +77,37 @@ Windows512 = np.zeros((totalWindows*31))
 Windows512_delays= list()
 
 #tc.send_command(7,0,0)I
-delays = list((range(56,58,1)))
+#delays = list((range(56,58,1))) #edge
+delays = list((range(60,64,1))) #i
 
 #de`lays = list((range(18,19,1)))
 WindowsSum = np.zeros((totalWindows*31))
 
+wave_gen().Output1(out=False)
+time.sleep(1)
+tc.send_command(9,10,nmbrWindows) # pedestal
+time.sleep(1)
+wave_gen().Output1(out=True)
 
 #for j in range(50,63,1):
-for j in range(0,5,1):
+for j in range(0,1,1):
 #for k in range(0,5,1):
-    regID = 65
-    regValue = 45
+    #regID = 65
+   # regValue = 45
     
     
-    tc.send_command(8, regID, regValue) #SSTOUTFB
-    time.sleep(2)
+    #tc.send_command(8, regID, regValue) #SSTOUTFB
+    #time.sleep(2)
     # """
     
-    wave_gen().Output1(out=False)
-    time.sleep(1)
-    tc.send_command(9,10,nmbrWindows) # pedestal
-    time.sleep(1)
-    wave_gen().Output1(out=True)
 
     for i in delays:
     
-    #   regID = 65
-    #   regValue = j
-    #   tc.send_command(8, regID, regValue) 
-    #   time.sleep(1)
-    #   for k in range(0,10,1):
+     # regID = 65
+     # regValue = j
+     # tc.send_command(8, regID, regValue) # get windows
+     # time.sleep(1)
+         #for k in range(0,10,1):
        wave_gen().trigDelay(i*.000000001)
        time.sleep(1)
        Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,2)       
@@ -141,7 +142,8 @@ for j in range(0,5,1):
 #Windows512_delays.append(WindowsAvg)
 
 #np.savetxt(os.path.abspath('./data/bb5_qBIAS1300_beforandater_window17_SweepFB_10times2.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
-np.savetxt(os.path.abspath('./data/SSTOUTFB_45.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
+np.savetxt(os.path.abspath('./data/test_notimingviolations_nodllEdge4.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
+#np.savetxt(os.path.abspath('./data/triggerOsc.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
 
 Windows512_delays = Windows512_delays * 0 
 
