@@ -506,6 +506,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 
 	--DEBUG Signals
 	signal MONTIMING_s : std_logic;
+    signal MONTIMING_inverted : std_logic;
 	signal Debug_intl : std_logic_vector(7 downto 0);
 	signal Debug_RoundBuffer : std_logic_vector(7 downto 0);
     -- Signal for trigger the acquisition for debugging
@@ -826,6 +827,9 @@ SyncBitCNT_CLR: SyncBit
 
 		O	=> MONTIMING_s
 	);
+-- MONTIMING INVERTED ON THE TARGETC, changed in firmware on 08/15/2019
+    MONTIMING_inverted <= not MONTIMING_s;
+
 
 	-- Trigger signal to RoundBuffer
 	nTrigA <= not TrigA;
@@ -870,7 +874,7 @@ end process;
 	BB5 <= ClockBus_intl.SSTIN;
    -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 	BB4 <= CtrlBusIn_intl.SSvalid;
-	BB3 <= MONTIMING_s;
+	BB3 <= MONTIMING_inverted;
 
 
 

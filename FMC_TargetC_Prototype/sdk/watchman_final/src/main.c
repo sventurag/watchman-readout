@@ -124,7 +124,7 @@ typedef enum dma_stm_enum{
 /*** Function prototypes *********************************************/
 void end_main(clean_state_en state, char* error_txt);
 void restart(void);
-
+int s;
 
 int main()
 {
@@ -290,6 +290,14 @@ int main()
 		return -1;
 	}
 
+///*
+	// Sweep over SSTOUTFB to get 1.6V in VADJN
+	for (s=59;s<125;s++){
+    	WriteRegister(TC_SSTOUTFB_REG, s);
+    	sleep(.1);
+    }
+	usleep(100);
+//*/
 	//get_pedestal(100,4);
 	flag_while_loop = true;
 
