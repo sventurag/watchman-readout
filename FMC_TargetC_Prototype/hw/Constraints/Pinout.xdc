@@ -27,8 +27,11 @@ set_property PACKAGE_PIN U15 [get_ports TRIGB]
 set_property PACKAGE_PIN R16 [get_ports TRIGC]
 set_property PACKAGE_PIN M18 [get_ports TRIGD]
 
+
+
 set_property PACKAGE_PIN Y16 [get_ports MONTIMING_P]
 set_property PACKAGE_PIN Y17 [get_ports MONTIMING_N]
+
 
 
 set_property PACKAGE_PIN U17 [get_ports SS_LD_DIR]

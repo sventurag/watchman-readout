@@ -2,53 +2,58 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-fileName = '/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/test_notimingviolations_nodllEdge4.txt'
-#vadjn = list(range(40,62,1))
-vadjn = list(np.zeros(10))
+fileName = '/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/test_notimingviolations_dllON_SSTOUTFBsweep.txt'
+vadjn = list(range(2600,2700,5))
+#vadjn = list(np.zeros(10))
 
 df = pd.read_csv ( fileName, sep=" ", header=None, skiprows=1 )
-sstoutfb = pd.read_csv ( fileName, sep=" ", header=None,nrows=1 )
+Isstoutfb = pd.read_csv ( fileName, sep=" ", header=None,nrows=1 )
 print(df)
-print(sstoutfb[0][0])
+#print(sstoutfb[0][0])
 #print(len(sstoutfb[0]))
-repeticiones=4
+repeticiones=1
 
 #print(pd.DataFrame(df, columns=[0,3]))
 nmbrWindows = 12
 fig= plt.figure(num=None, figsize=(8,6), dpi=80)
 #fig(num=None, figsize=(8,6), dpi=80)
-fig.subplots_adjust(hspace=0.7, wspace=0.4)
-fontsizeAxis=16
+fig.subplots_adjust(hspace=1, wspace=0.4)
+fontsizeAxis=28
 std3windowsList = list()
-for i in range(0,1,1):
-    ax = fig.add_subplot(1,2,1+i)
-    ax.set_ylabel('ADC counts', fontsize=fontsizeAxis)
-    ax.set_xlabel('Time [ns]', fontsize=fontsizeAxis)
-    ax.set_title('SSTOUTFB={}'.format(vadjn[i]))
+maxList = list()
+for i in range(0,40,1):
+    ax = fig.add_subplot(10,4,1+i)
+   # ax.set_ylabel('Counts', fontsize=10)
+   # ax.set_xlabel('Time [ns]', fontsize=fontsizeAxis)
+   # ax.set_title('VADJN={}'.format(vadjn[i]))
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5) 
 #plt.:figure()
     for k in range(0,repeticiones,1):
         std_3windows = 0
         suma=int(i*repeticiones+k)
-   # print(suma)
-        df[suma].plot(xlim=(0,200), ylim=(-10,80), ax=ax, xticks = np.arange(0,250,32), yticks = np.arange(-10,100,10), grid=True,legend=False,label='std 3 windows={:10.2f}'.format(std_3windows), marker= 'o', markersize=2, markerfacecolor='black', markeredgecolor='black')
+   # priInt(suma)
+        df[suma].plot(xlim=(140,210), ylim=(-10,80), ax=ax, xticks = np.arange(0,250,10), yticks = np.arange(-10,80,25), grid=True,legend=False,label='dly={}'.format(i), marker= 'o', markersize=4, markerfacecolor='black', markeredgecolor='black', lw=3)
+      #  plt.legend(loc='upper left', fontsize=10)
         std_3windows += np.std(df[suma][0:96])
+        plt.title('dly = {}'.format(i), fontsize=14, color='b')
+        maxList.append( df[suma].max())
        # df[i+k].plot( ax=ax, grid=True,legend=False,label='dly={} ns'.format(i), marker= 'o', markersize=1, markerfacecolor='black', markeredgecolor='black')
 #        if i<13: 
 #            ax.legend(loc = 'upper right', markerscale=0,handletextpad=-2.0, handlelength=0,frameon=False )
 #        else:
 #            ax.legend(loc = 'upper center', markerscale=0,handletextpad=-2.0, handlelength=0,frameon=False )
         for j in range(0,int(32*nmbrWindows),32):
-            plt.axvline(j, color='k')
+            plt.axvline(j-1, color='k')
     std3windowsList.append(std_3windows/repeticiones)
     textstr = 'std3windows={:10.2f}'.format(std_3windows/repeticiones)
-    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
+#    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 print('std3list={}'.format(np.asarray(std3windowsList).T))
-#fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=16)
-#fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=16)
-fig.text(.4, .95, 'Pedestal substracted data, same delay, 10 times', ha='center', fontsize=16)
+fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=fontsizeAxis)
+fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=fontsizeAxis)
+#fig.text(.4, .95, 'Pedestal substracted data, same delay, 10 times', ha='center', fontsize=16)
 # Option 2
 # TkAgg backend
+
 manager = plt.get_current_fig_manager()
 manager.resize(*manager.window.maxsize())
 #plt.savefig('/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/vadjnBoundary2400_2500.png')
@@ -60,7 +65,18 @@ manager.resize(*manager.window.maxsize())
 #plt.plot(vadjn2,std3windowsList2, '-o')
 #plt.ylabel('std 3 first windows', fontsize=fontsizeAxis)
 #plt.ylim(0.3,0.42)
-#plt.xlabel('VADJN value', fontsize=fontsizeAxis)
+#plt.xlabel('VADJN value', fontsize=fontsizeAxis)i
+
+
+#dlyList = np.arange(0,30,1)
+#plt.figure()
+#plt.plot(dlyList,maxList, '-o', lw=3)
+#plt.yticks(fontsize=18)
+#plt.xticks(np.arange(0,30,1), fontsize=18)
+#plt.title('Max(Pulse)')
+#plt.xlabel('Delay', fontsize=fontsizeAxis)
+#plt.ylabel('max(Pulse) [Counts]', fontsize=fontsizeAxis)
+#plt.grid(True)
 plt.show() 
 
 
