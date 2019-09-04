@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-fileName = '/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/test_notimingviolations_dllON_SSTOUTFBsweep.txt'
+fileName = '/home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/GUI/data/test_notimingviolations_dllON_SSTOUTFBsweep_3_100times_10_SSTOUT123.txt'
 vadjn = list(range(2600,2700,5))
 #vadjn = list(np.zeros(10))
 
@@ -11,29 +11,38 @@ Isstoutfb = pd.read_csv ( fileName, sep=" ", header=None,nrows=1 )
 print(df)
 #print(sstoutfb[0][0])
 #print(len(sstoutfb[0]))
-repeticiones=1
+rango=2
+repeticiones = 100
+total= int(rango*repeticiones)
 
 #print(pd.DataFrame(df, columns=[0,3]))
-nmbrWindows = 12
+nmbrWindows = 8
 fig= plt.figure(num=None, figsize=(8,6), dpi=80)
 #fig(num=None, figsize=(8,6), dpi=80)
 fig.subplots_adjust(hspace=1, wspace=0.4)
 fontsizeAxis=28
 std3windowsList = list()
 maxList = list()
-for i in range(0,40,1):
-    ax = fig.add_subplot(10,4,1+i)
+
+for i in range(0,rango,1):
+    ax = fig.add_subplot(2,1,1+i)
    # ax.set_ylabel('Counts', fontsize=10)
    # ax.set_xlabel('Time [ns]', fontsize=fontsizeAxis)
    # ax.set_title('VADJN={}'.format(vadjn[i]))
     props = dict(boxstyle='round', facecolor='wheat', alpha=0.5) 
 #plt.:figure()
-    for k in range(0,repeticiones,1):
+    for	k in range(i,total,rango):
         std_3windows = 0
-        suma=int(i*repeticiones+k)
+        suma=k
+       # suma=int(i*repeticiones+k)
    # priInt(suma)
-        df[suma].plot(xlim=(140,210), ylim=(-10,80), ax=ax, xticks = np.arange(0,250,10), yticks = np.arange(-10,80,25), grid=True,legend=False,label='dly={}'.format(i), marker= 'o', markersize=4, markerfacecolor='black', markeredgecolor='black', lw=3)
-      #  plt.legend(loc='upper left', fontsize=10)
+   
+        df[suma].plot(xlim=(140,210), ylim=(-10,80), ax=ax, xticks = np.arange(0,250,32), yticks = np.arange(-10,80,25), grid=True,legend=False,label='dly={}'.format(i), marker= 'o', markersize=4, markerfacecolor='black', markeredgecolor='black', lw=3)
+        maximo= df[suma].idxmax()
+     #   if maximo < 166+10*i:
+    #        print(k, maximo)
+     #   print(df[suma].idxmax())        
+#plt.legend(loc='upper left', fontsize=10)
         std_3windows += np.std(df[suma][0:96])
         plt.title('dly = {}'.format(i), fontsize=14, color='b')
         maxList.append( df[suma].max())
