@@ -28,7 +28,7 @@ void SetTargetCRegisters(void){
 		WriteRegister(TC_VDLYTUNE_REG + i,	0);
 	}
 //	*** TARGETC Register Initial Values
-	WriteRegister(TC_SSTOUTFB_REG,		58); //0x03a
+	WriteRegister(TC_SSTOUTFB_REG,		60); //0x03a
 
 	WriteRegister(TC_SSPIN_LE_REG,		51);	//TEST with SSPIN
 	WriteRegister(TC_SSPIN_TE_REG,		7);
@@ -47,12 +47,13 @@ void SetTargetCRegisters(void){
 
 	WriteRegister(TC_VQBUFF_REG,	1100); ///// 1100
 	WriteRegister(TC_QBIAS_REG,		0);
-	WriteRegister(TC_VTRIMT_REG,	0x9c4); ///  0x4d8
+	WriteRegister(TC_VTRIMT_REG,	2500); ///  0x4d8
 	WriteRegister(TC_VBIAS_REG,		0x4B0);	//
 	WriteRegister(TC_VAPBUFF_REG,	0x3D9);	// 985(10)
 	//WriteRegister(TC_VADJP_REG,		0x480);	// 1152
 	WriteRegister(TC_VADJP_REG,		1020);  //1020
-	WriteRegister(TC_VANBUFF_REG,	0x426);	// 1062
+	WriteRegister(TC_VANBUFF_REG,	1042);	// 1062
+
 	//WriteRegister(TC_VADJN_REG,		0x8BB);	// 2235
 //	xil_printf("VADJN=0 \r\n");
 //
@@ -70,20 +71,22 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_CMPBIASIN_REG,	0x654); //1620
 
 //	usleep(5000000);
-// /*
+ // /*
     // To operate DLL
 	xil_printf("Turning DLL ON \r\n");
 	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019
-	WriteRegister(TC_VANBUFF_REG,	2500);	// 1,300 Meeting 07/02/2019, 1062  0x44C
-	usleep(100);
+	WriteRegister(TC_VANBUFF_REG,	1042);	// 1,300 Meeting 07/02/2019, 1062  0x44C
+	sleep(30);
 
-	WriteRegister(TC_QBIAS_REG,	2500);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
+	WriteRegister(TC_QBIAS_REG,	1500);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
 	WriteRegister(TC_VANBUFF_REG,	0);	// // 1,300 Meeting 07/02/2019
  //	usleep(20);
 
-// */
+
+
+ // */
 	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
-	WriteRegister(TC_MONTIMING_REG,	0);		//INIT MonTiming PASS disable
+	WriteRegister(TC_MONTIMING_REG, 128);		//INIT MonTiming PASS disable
 
 	xil_printf("TragetC's registers initialized!\r\n");
 }
