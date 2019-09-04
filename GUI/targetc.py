@@ -298,9 +298,9 @@ class targetc():
           #  print('START WINDOW', regValue)         
 #   count = count
             self.send_command(8,regID,regValue) # change the start window
-            time.sleep(.5)
+            time.sleep(0.5)
             self.send_command(7,self.stepWindows,0) # get windows
-            time.sleep(.5) #.5
+            time.sleep(0.5) #.5
            
 
         #WindowsData_toSave[count]= self.windowsData[:,2]
