@@ -13,7 +13,7 @@ entity BlockDelay is
 	nclr :		in	std_logic;
 	clk:		in std_logic;
 
-	Scnt:		in	std_logic_vector(3 downto 0);
+	Scnt:		in	std_logic_vector(2 downto 0);
 
 	D : 		in	std_logic;
 	Q:			out	std_logic
@@ -85,22 +85,22 @@ begin
 	-- 			(15=> D, others => '0')	when SCnt = "1111" else
 	-- 			(others => '0');
 
-	ClkInter <= (0=> '1', others => '0')	when SCnt = "0000" else
-				(1=> '1', others => '0')	when SCnt = "0001" else
-				(2=> '1', others => '0')	when SCnt = "0010" else
-				(3=> '1', others => '0')	when SCnt = "0011" else
-				(4=> '1', others => '0')	when SCnt = "0100" else
-				(5=> '1', others => '0')	when SCnt = "0101" else
-				(6=> '1', others => '0')	when SCnt = "0110" else
-				(7=> '1', others => '0')	when SCnt = "0111" else
-				(8=> '1', others => '0')	when SCnt = "1000" else
-				(9=> '1', others => '0')	when SCnt = "1001" else
-				(10=> '1', others => '0')	when SCnt = "1010" else
-				(11=> '1', others => '0')	when SCnt = "1011" else
-				(12=> '1', others => '0')	when SCnt = "1100" else
-				(13=> '1', others => '0')	when SCnt = "1101" else
-				(14=> '1', others => '0')	when SCnt = "1110" else
-				(15=> '1', others => '0')	when SCnt = "1111" else
+	ClkInter <= (0=> '1', others => '0')	when SCnt = "000" else
+				(1=> '1', others => '0')	when SCnt = "001" else
+				(2=> '1', others => '0')	when SCnt = "010" else
+				(3=> '1', others => '0')	when SCnt = "011" else
+				(4=> '1', others => '0')	when SCnt = "100" else
+				(5=> '1', others => '0')	when SCnt = "101" else
+				(6=> '1', others => '0')	when SCnt = "110" else
+				(7=> '1', others => '0')	when SCnt = "111" else
+				(8=> '1', others => '0')	when SCnt = "000" else
+				(9=> '1', others => '0')	when SCnt = "001" else
+				(10=> '1', others => '0')	when SCnt = "010" else
+				(11=> '1', others => '0')	when SCnt = "011" else
+				(12=> '1', others => '0')	when SCnt = "100" else
+				(13=> '1', others => '0')	when SCnt = "101" else
+				(14=> '1', others => '0')	when SCnt = "110" else
+				(15=> '1', others => '0')	when SCnt = "111" else
 				(others => '0');
 
 end Behavioral;

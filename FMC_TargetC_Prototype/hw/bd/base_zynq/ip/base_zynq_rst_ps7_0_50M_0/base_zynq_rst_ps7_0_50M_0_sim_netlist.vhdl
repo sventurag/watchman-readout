@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
 -- Date        : Tue Jun 18 10:46:17 2019
 -- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_rst_ps7_0_50M_0/base_zynq_rst_ps7_0_50M_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_rst_ps7_0_50M_0 -prefix
+--               base_zynq_rst_ps7_0_50M_0_ base_zynq_rst_ps7_0_50M_0_sim_netlist.vhdl
 -- Design      : base_zynq_rst_ps7_0_50M_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -25,8 +25,6 @@ entity base_zynq_rst_ps7_0_50M_0_cdc_sync is
     aux_reset_in : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_cdc_sync : entity is "cdc_sync";
 end base_zynq_rst_ps7_0_50M_0_cdc_sync;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_cdc_sync is
@@ -235,8 +233,6 @@ entity base_zynq_rst_ps7_0_50M_0_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_upcnt_n : entity is "upcnt_n";
 end base_zynq_rst_ps7_0_50M_0_upcnt_n;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_upcnt_n is
@@ -401,8 +397,6 @@ entity base_zynq_rst_ps7_0_50M_0_lpf is
     ext_reset_in : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_lpf : entity is "lpf";
 end base_zynq_rst_ps7_0_50M_0_lpf;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_lpf is
@@ -584,8 +578,6 @@ entity base_zynq_rst_ps7_0_50M_0_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_sequence_psr : entity is "sequence_psr";
 end base_zynq_rst_ps7_0_50M_0_sequence_psr;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_sequence_psr is
@@ -924,8 +916,6 @@ entity base_zynq_rst_ps7_0_50M_0_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of base_zynq_rst_ps7_0_50M_0_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of base_zynq_rst_ps7_0_50M_0_proc_sys_reset : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_proc_sys_reset : entity is "proc_sys_reset";
 end base_zynq_rst_ps7_0_50M_0_proc_sys_reset;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_proc_sys_reset is
