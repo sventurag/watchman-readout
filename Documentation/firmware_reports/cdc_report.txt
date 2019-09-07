@@ -1,0 +1,22 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+| Date         : Wed Aug 14 15:03:22 2019
+| Host         : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.6 LTS
+| Command      : report_cdc -name cdc_1 -file /home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/Documentation/firmware_reports/cdc_report.txt
+| Design       : base_zynq_wrapper
+| Device       : 7z010-clg400
+| Speed File   : -1  PRODUCTION 1.11 2014-09-11
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
+CDC Report
+
+Severity  Source Clock  Destination Clock  CDC Type      Exceptions               Endpoints  Safe  Unsafe  Unknown  No ASYNC_REG  
+--------  ------------  -----------------  ------------  -----------------------  ---------  ----  ------  -------  ------------  
+Critical  clk_fpga_0    CLK125MHzraw       Safely Timed  Max Delay Datapath Only        121   119       2        0            98  
+Warning   CLK125MHzraw  CLK100MHzraw       Safely Timed  Max Delay Datapath Only          9     9       0        0             0  
+Warning   CLK100MHzraw  CLK125MHzraw       Safely Timed  Max Delay Datapath Only          9     9       0        0             0  
+Warning   CLK125MHzraw  clk_fpga_0         Safely Timed  Max Delay Datapath Only         22    22       0        0             0  
+Info      clk_fpga_0    CLK100MHzraw       Safely Timed  None                           648   648       0        0             0  
+Info      CLK100MHzraw  clk_fpga_0         Safely Timed  None                           194   194       0        0             0  
+

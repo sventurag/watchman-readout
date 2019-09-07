@@ -5,11 +5,11 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity LookupTable_LE is
 	generic(
-		MIN_LE_TIME : integer := 3	-- All times are x4 ns so 2 is equal to 8ns = 12 samples before rise of trigger
+		MIN_LE_TIME : integer := 2	-- All times are x4 ns so 2 is equal to 8ns = 12 samples before rise of trigger
 	);
 	Port (
 		Clk:		in 	std_logic;
-		SCnt:		in 	std_logic_vector(3 downto 0);
+		SCnt:		in 	std_logic_vector(2 downto 0);
 		prevWdo :	out	std_logic
 	);
 end LookupTable_LE;

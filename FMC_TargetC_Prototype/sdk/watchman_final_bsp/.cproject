@@ -10,4 +10,10 @@
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="org.eclipse.cdt.core.LanguageSettingsProviders"/>
+	<storageModule moduleId="scannerConfiguration"/>
+	<storageModule moduleId="org.eclipse.cdt.core.pathentry">
+		<pathentry base-path="watchman_final_bsp" include="ps7_cortexa9_0/include" kind="inc" path="" system="true"/>
+		<pathentry kind="src" path=""/>
+		<pathentry kind="out" path=""/>
+	</storageModule>
 </cproject>
