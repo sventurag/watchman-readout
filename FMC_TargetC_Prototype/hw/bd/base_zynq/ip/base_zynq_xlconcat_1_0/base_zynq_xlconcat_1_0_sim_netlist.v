@@ -1,10 +1,10 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Tue Jun 18 10:49:00 2019
+// Date        : Tue Jun 18 10:48:59 2019
 // Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xlconcat_1_0/base_zynq_xlconcat_1_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top base_zynq_xlconcat_1_0 -prefix
+//               base_zynq_xlconcat_1_0_ base_zynq_xlconcat_1_0_sim_netlist.v
 // Design      : base_zynq_xlconcat_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
