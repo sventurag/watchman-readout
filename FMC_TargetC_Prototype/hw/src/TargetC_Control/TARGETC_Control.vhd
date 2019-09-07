@@ -35,6 +35,46 @@ architecture arch_imp of TC_Control is
 		);
 	end component clkcrossing_buf;
 
+ component SyncBit is 
+              generic (
+                 SYNC_STAGES_G  : integer := 3;
+                 CLK_POL_G      : std_logic := '1';
+                 RST_POL_G      : std_logic := '1';
+                 INIT_STATE_G   : std_logic := '0';
+                 GATE_DELAY_G   : time := 1 ns
+              );
+              port ( 
+                 -- Clock and reset
+                 clk         : in  std_logic;
+                 rst         : in  std_logic := '0';
+                 -- Incoming bit, asynchronous
+                 asyncBit    : in  std_logic;
+                 -- Outgoing bit, synced to clk
+                 syncBit     : out std_logic
+              ); 
+           end component;
+
+--component SyncBuffer is 
+-- generic(
+--		NBITS : integer := 32
+--	);
+--	port (
+--	      -- Clock and reset
+--		Clk:	in	std_logic;
+--		nrst:	in	std_logic;
+--      -- Incoming buffer, asynchronous
+--		asyncBuffer:	in	std_logic_vector(NBITS-1 downto 0);
+--      -- Outgoing buffer, synced to clk
+--		syncBuffer:     out	std_logic_vector(NBITS-1 downto 0)
+----		ClkA:	in	std_logic;
+--	);
+--           end component;
+
+
+
+
+
+
 	-- AXI4LITE signals
 	signal axi_awaddr	: std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
 	signal axi_awready	: std_logic;
@@ -720,65 +760,164 @@ begin
 	--
 	-- CtrlBus_OxMS.SAMPLEMODE		<= TCReg(TC_CONTROL_REG)(C_SMODE_BIT);
 	-- CtrlBus_OxMS.CPUMODE		<= TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT);
+	
+	
 	BUF_WINDOWMODE : clkcrossing_buf
 		generic map(
 			NBITS => 1
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA(0)	=>	 WindowStorage_intl,
 			QB(0)	=> 	CtrlBus_OxMS.WindowStorage,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
+	
+--	SyncBitWINDOWMODE: SyncBit
+--               generic map (
+--                  SYNC_STAGES_G  => 3,
+--                  CLK_POL_G      => '1',
+--                  RST_POL_G      => '1',
+--                  INIT_STATE_G   => '0',
+--                  GATE_DELAY_G   => 1 ns
+--               )
+               
+--               port map ( 
+--                  -- Clock and reset
+--                  clk  => ClockBus.CLK125MHz,
+--                  rst   => AxiBusIn.ARESETN,
+--                  -- Incoming bit, asynchronous
+--                  asyncBit =>  WindowStorage_intl,
+--                  -- Outgoing bit, synced to clk
+--                  syncBit   => CtrlBus_OxMS.WindowStorage
+--               ); 	
+		
+		
+		
 
 	BUF_CPUMODE : clkcrossing_buf
 		generic map(
 			NBITS => 1
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA(0)		=>	 TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT),
 			QB(0)		=> 	CtrlBus_OxMS.CPUMODE,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
+
+
+--SyncBitCPUMODE: SyncBit
+--               generic map (
+--                  SYNC_STAGES_G  => 2,
+--                  CLK_POL_G      => '1',
+--                  RST_POL_G      => '1',
+--                  INIT_STATE_G   => '0',
+--                  GATE_DELAY_G   => 1 ns
+--               )
+               
+--               port map ( 
+--                  -- Clock and reset
+--                  clk  => ClockBus.CLK125MHz,
+--                  rst   => AxiBusIn.ARESETN,
+--                  -- Incoming bit, asynchronous
+--                  asyncBit =>  TCReg(TC_CONTROL_REG)(C_CPUMODE_BIT),
+--                  -- Outgoing bit, synced to clk
+--                  syncBit   => CtrlBus_OxMS.CPUMODE
+--               ); 	
+		
+
 
 	BUF_SAMPLEMODE : clkcrossing_buf
 		generic map(
 			NBITS => 1
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA(0)		=>	 TCReg(TC_CONTROL_REG)(C_SMODE_BIT),
 			QB(0)		=> 	CtrlBus_OxMS.SAMPLEMODE	,
 			ClkA	=> 	AxiBusIn.ACLK,
 			ClkB	=> ClockBus.HSCLK
 		);
+		
+
+--SyncBitSAMPLEMODE: SyncBit
+--           generic map (
+--              SYNC_STAGES_G  => 2,
+--              CLK_POL_G      => '1',
+--              RST_POL_G      => '1',
+--              INIT_STATE_G   => '0',
+--              GATE_DELAY_G   => 1 ns
+--           )
+           
+--           port map ( 
+--              -- Clock and reset
+--              clk  => ClockBus.HSCLK,
+--              rst   => AxiBusIn.ARESETN,
+--              -- Incoming bit, asynchronous
+--              asyncBit =>  TCReg(TC_CONTROL_REG)(C_SMODE_BIT),
+--              -- Outgoing bit, synced to clk
+--              syncBit   => CtrlBus_OxMS.SAMPLEMODE
+--           );     
+    
+		
+		
+		
 
 	BUF_NBRWINDOWS : clkcrossing_buf
 		generic map(
 			NBITS => 32
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA		=>	TCReg(TC_NBRWINDOW_REG),
 			QB		=> 	CtrlBus_OxMS.NBRWINDOW,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
+		
+
+--SyncBuffer_NMBRWINDOWS : SyncBuffer
+--		generic map(
+--			NBITS => 32
+--		)
+--		port map(
+--			clk	=>	ClockBus.CLK125MHz,
+--			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+--			asyncBuffer	=> 	TCReg(TC_NBRWINDOW_REG),
+--			syncBUffer	=> CtrlBus_OxMS.NBRWINDOW
+--		);
+
+
+
 
 	BUF_FSTWINDOWS : clkcrossing_buf
 		generic map(
 			NBITS => 32
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=> '1',
 			DA		=>	TCReg(TC_FSTWINDOW_REG),
 			QB		=> 	CtrlBus_OxMS.FSTWINDOW,
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
+
+
+--SyncBuffer_FSTWINDOWS : SyncBuffer
+--		generic map(
+--			NBITS => 32
+--		)
+--		port map(
+--			clk	=>	ClockBus.CLK125MHz,
+--			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+--			asyncBuffer	=> 	TCReg(TC_FSTWINDOW_REG),
+--			syncBUffer	=> CtrlBus_OxMS.FSTWINDOW
+--		);
+
+
 
 
 BUF_Delay_UpdateWR : clkcrossing_buf
@@ -786,12 +925,27 @@ BUF_Delay_UpdateWR : clkcrossing_buf
 			NBITS => 32
 		)
 		port map(
-			nrst	=>	AxiBusIn.ARESETN,
+			nrst	=>	'1',
 			DA		=>	TCReg(TC_Delay_UpdateWR),
 			QB		=> 	CtrlBus_OxMS.Delay_UpdateWR, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
 			ClkA	=> 	AxiBusIn.ACLK,
-			ClkB	=> ClockBus.CLK250MHz
+			ClkB	=> ClockBus.CLK125MHz
 		);
+
+--SyncBuffer_Delay_UpdateWR : SyncBuffer
+--		generic map(
+--			NBITS => 32
+--		)
+--		port map(
+--			clk	=>	ClockBus.CLK125MHz,
+--			nrst		=> 	AxiBusIn.ARESETN, --Value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
+--			asyncBuffer	=> 	TCReg(TC_Delay_UpdateWR),
+--			syncBUffer	=> CtrlBus_OxMS.Delay_UpdateWR
+--		);
+
+
+
+
 
 	-- STATUS Register Update
     process(AxiBusIn.ACLK)

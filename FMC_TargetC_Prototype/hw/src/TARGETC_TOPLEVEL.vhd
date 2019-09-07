@@ -277,6 +277,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		 
 		);
 	end component RoundBufferV6;
+	
 
 	component TARGETC_RDAD_WL_SMPL is
 		Port (
@@ -417,6 +418,27 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		I : 		in std_logic_vector(7 downto 0)
 		);
 	end component;
+	
+	component SyncBit is 
+                  generic (
+                     SYNC_STAGES_G  : integer := 2;
+                     CLK_POL_G      : std_logic := '1';
+                     RST_POL_G      : std_logic := '1';
+                     INIT_STATE_G   : std_logic := '0';
+                     GATE_DELAY_G   : time := 1 ns
+                  );
+                  port ( 
+                     -- Clock and reset
+                     clk         : in  std_logic;
+                     rst         : in  std_logic := '0';
+                     -- Incoming bit, asynchronous
+                     asyncBit    : in  std_logic;
+                     -- Outgoing bit, synced to clk
+                     syncBit     : out std_logic
+                  ); 
+               end component;
+
+
 	-------------------------------------------------------
 	-- Signal Declaration
 	-------------------------------------------------------
@@ -484,11 +506,13 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 
 	--DEBUG Signals
 	signal MONTIMING_s : std_logic;
+    signal MONTIMING_inverted : std_logic;
 	signal Debug_intl : std_logic_vector(7 downto 0);
 	signal Debug_RoundBuffer : std_logic_vector(7 downto 0);
     -- Signal for trigger the acquisition for debugging
     
     signal address_is_zero_intl :  std_logic;
+    signal cnt_clr_intl :  std_logic;
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -762,8 +786,30 @@ begin
 
 	CtrlBusIn_intl.Cnt_AXIS <= Cnt_AXIS_DATA;
 
-	CNT_CLR <= CtrlBusOut_intl.WindowStorage;
+	cnt_clr_intl <= CtrlBusOut_intl.WindowStorage;
+	
+SyncBitCNT_CLR: SyncBit
+       generic map (
+          SYNC_STAGES_G  => 2,
+          CLK_POL_G      => '1',
+          RST_POL_G      => '1',
+          INIT_STATE_G   => '0',
+          GATE_DELAY_G   => 1 ns
+       )
+       
+       port map ( 
+          -- Clock and reset
+          clk  => tc_axi_aclk,
+          rst   => tc_axi_aresetn,
+          -- Incoming bit, asynchronous
+          asyncBit =>  cnt_clr_intl,
+          -- Outgoing bit, synced to clk
+          syncBit   => CNT_CLR
+       );     
 
+    
+    
+    
 	--NbrWindow	<= CtrlBusOut_intl.NBRWINDOW;
 	SW_nRST <= CtrlBusOut_intl.SW_nRST;
 
@@ -781,6 +827,9 @@ begin
 
 		O	=> MONTIMING_s
 	);
+-- MONTIMING INVERTED ON THE TARGETC, changed in firmware on 08/15/2019
+    MONTIMING_inverted <= not MONTIMING_s;
+
 
 	-- Trigger signal to RoundBuffer
 	nTrigA <= not TrigA;
@@ -810,27 +859,22 @@ begin
 end process;
 
 
-
-
-
-
-
-process (address_is_zero_intl)
-begin
-	if (address_is_zero_intl = '1' ) then
-		BB5 <= '0';
---		BB2 <= '0';
-	else
-		BB5 <= '1';
-	--	BB2 <= '1';
-	end if;
-end process;
+--process (address_is_zero_intl)
+--begin
+--	if (address_is_zero_intl = '1' ) then
+--		BB5 <= '0';
+----		BB2 <= '0';
+--	else
+--		BB5 <= '1';
+--	--	BB2 <= '1';
+--	end if;
+--end process;
 
 	
-	BB1 <= ClockBus_intl.SSTIN;
+	BB5 <= ClockBus_intl.SSTIN;
    -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 	BB4 <= CtrlBusIn_intl.SSvalid;
-	BB3 <= MONTIMING_s;
+	BB3 <= MONTIMING_inverted;
 
 
 

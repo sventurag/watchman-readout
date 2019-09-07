@@ -1,8 +1,8 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Tue Jun 18 10:49:12 2019
--- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.5 LTS
+-- Date        : Sat Aug 10 15:06:16 2019
+-- Host        : idlab52-OptiPlex-790 running 64-bit Ubuntu 14.04.6 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/idlab-52/salvador_fork/fix_WR_address/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xlconstant_0_0/base_zynq_xlconstant_0_0_sim_netlist.vhdl
 -- Design      : base_zynq_xlconstant_0_0
@@ -29,11 +29,11 @@ entity base_zynq_xlconstant_0_0 is
 end base_zynq_xlconstant_0_0;
 
 architecture STRUCTURE of base_zynq_xlconstant_0_0 is
-  signal \<const0>\ : STD_LOGIC;
+  signal \<const1>\ : STD_LOGIC;
 begin
-  dout(0) <= \<const0>\;
-GND: unisim.vcomponents.GND
+  dout(0) <= \<const1>\;
+VCC: unisim.vcomponents.VCC
      port map (
-      G => \<const0>\
+      P => \<const1>\
     );
 end STRUCTURE;
