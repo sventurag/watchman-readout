@@ -5,7 +5,7 @@ import sys
 import socket
 import optparse
 import random
-import binary2text as b2t
+#import binary2text as b2t
 import numpy as np
 #from watchman_nogui import Watchman_main_window
 import matplotlib.pyplot as plt
@@ -298,9 +298,9 @@ class targetc():
           #  print('START WINDOW', regValue)         
 #   count = count
             self.send_command(8,regID,regValue) # change the start window
-            time.sleep(.5)
+            time.sleep(0.5)
             self.send_command(7,self.stepWindows,0) # get windows
-            time.sleep(.5) #.5
+            time.sleep(0.5) #.5
            
 
         #WindowsData_toSave[count]= self.windowsData[:,2]

@@ -40,25 +40,78 @@ entity WindowStoreV4 is
 end WindowStoreV4;
 
 architecture Behavioral of WindowStoreV4 is
-	component aFifoV2 is
-    generic (
-        DATA_WIDTH :integer := 8;
-        ADDR_WIDTH :integer := 4
-    );
-    port (
-    	rst :		in std_logic;
-        -- Reading port.
-        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
-        Empty_out   :out std_logic;
-        ReadEn_in   :in  std_logic;
-        RClk        :in  std_logic;
-        -- Writing port.
-        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
-        Full_out    :out std_logic;
-        WriteEn_in  :in  std_logic;
-        WClk        :in  std_logic
-    );
-	end component aFifoV2;
+--	component aFifoV2 is
+--    generic (
+--        DATA_WIDTH :integer := 8;
+--        ADDR_WIDTH :integer := 4
+--    );
+--    port (
+--    	rst :		in std_logic;
+--        -- Reading port.
+--        Data_out    :out std_logic_vector (DATA_WIDTH-1 downto 0);
+--        Empty_out   :out std_logic;
+--        ReadEn_in   :in  std_logic;
+--        RClk        :in  std_logic;
+--        -- Writing port.
+--        Data_in     :in  std_logic_vector (DATA_WIDTH-1 downto 0);
+--        Full_out    :out std_logic;
+--        WriteEn_in  :in  std_logic;
+--        WClk        :in  std_logic
+--    );
+--	end component aFifoV2;
+
+COMPONENT axi_wdo_addr_fifo
+  PORT (
+   -- rst : IN STD_LOGIC;
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+
+COMPONENT axi_cmd_fifo_11W_5D
+  PORT (
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(10 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
+COMPONENT axi_time_fifo_64W_32D
+  PORT (
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(63 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+COMPONENT axi_trig_afifo_12W_32D
+  PORT (
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
 
 	type T_storestate is(
 		IDLE,
@@ -101,7 +154,7 @@ begin
 
 	NbrOfPackets <= NbrOfPackets_intl;
 
-	process(ClockBus.CLK250MHz)
+	process(ClockBus.CLK125MHz)
 	begin
 		if nrst = '0' then
 			--RDAD_WriteEn_intl <= '0';
@@ -112,7 +165,7 @@ begin
 			counter <= (others => '0');
 			cmd_s <= (others => '0');
 		else
-			if rising_edge(ClockBus.Clk250Mhz) then
+			if rising_edge(ClockBus.Clk125MHz) then
 
 				if Reg_CLR = '1' then
 					NbrOfPackets_intl <= (others => '0');
@@ -122,15 +175,15 @@ begin
 					case writeEn_stm is
 						when IDLE =>
 							case CPUBus(10 downto 8) is
-								when CMD_WR1_MARKED =>
+								when CMD_WR1_MARKED => -- ODD WINDOW
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+1);
-									counter <= CPUTime.graycnt & "0000";
+									counter <= CPUTime.graycnt & "0000"; -- gray counter is a timestamp for the window
 									--trig <= TrigInfoDly;
 									trig <= TriggerInfo;
 									Wdo1 <= CPUBus(7 downto 0) & '0';
 									cmd_s <= CPUBus;
 									writeEn_stm <= STABILIZE;
-								when CMD_WR2_MARKED =>
+								when CMD_WR2_MARKED =>-- EVEN WINDOW
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+1);
 									--counter <= CPUTime;
 									counter <= CPUTime.graycnt & "1000";
@@ -189,12 +242,12 @@ begin
 		end if;
 	end process;
 
-	process(ClockBus.CLK250MHz)
+	process(ClockBus.CLK125MHz)
 	begin
 		if nrst = '0' then
 			WriteEn_intl <= '0';
 		else
-			if rising_edge(ClockBus.Clk250Mhz) then
+			if rising_edge(ClockBus.Clk125MHz) then
 
 				if ValidData = '1' then
 					case writeEn_stm is
@@ -215,12 +268,12 @@ begin
 			end if;
 		end if;
 	end process;
-	-- process(ClockBus.Clk250Mhz,nRST)
+	-- process(ClockBus.Clk125MHz,nRST)
 	-- begin
 	-- 	if nrst = '0' then
 	-- 		TrigInfoBuf <= (others => '0');
 	-- 	else
-	-- 		if rising_edge(ClockBus.Clk250Mhz) then
+	-- 		if rising_edge(ClockBus.Clk125MHz) then
 	--
 	-- 			TrigInfoDly <= TrigInfoBuf;
 	--
@@ -233,105 +286,224 @@ begin
 	-- 	end if;
 	-- end process;
 
+
 	-- RDAD and Storage FIFO
-	RDAD_STO_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 9,
-        ADDR_WIDTH => 4	--Maybe more ?
-    )
+--	RDAD_STO_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 9,
+--        ADDR_WIDTH => 4	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => RDAD_DataOut,
+--        Empty_out   => RDAD_Empty,
+--        ReadEn_in   => RDAD_ReadEn,
+--        RClk        => ClockBus.RDAD_CLK,
+--        -- Writing port.
+--        Data_in     => Wdo1,
+--        Full_out    => Full_out_intl,
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK125MHz
+--    );
+
+
+
+    RDAD_STO_AFIFO : axi_wdo_addr_fifo
+      PORT MAP (
+      --  rst => nrst,
+        
+        dout => RDAD_DataOut,
+        empty => RDAD_Empty,
+        rd_en => RDAD_ReadEn,
+        rd_clk => ClockBus.RDAD_CLK,
+
+        
+        din => Wdo1,
+        full => Full_out_intl,
+        wr_en => WriteEn_intl,
+        wr_clk => ClockBus.CLK125MHz
+
+      );
+    
+
+
+
+
+--	-- RDAD and Storage FIFO
+--	AXI_CMD_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 11,
+--        ADDR_WIDTH => 5	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => AXI_Spare_DataOut,
+--        Empty_out   => axi_empty_s(0),
+--        ReadEn_in   => AXI_ReadEn,
+--        RClk        => ClockBus.AXI_CLK,
+--        -- Writing port.
+--        Data_in     => Cmd_s,
+--        Full_out    => axi_full_s(0),
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK125MHz
+--    );
+    
+    
+    
+    
+    AXI_CMD_AFIFO :  axi_cmd_fifo_11W_5D
     port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => RDAD_DataOut,
-        Empty_out   => RDAD_Empty,
-        ReadEn_in   => RDAD_ReadEn,
-        RClk        => ClockBus.RDAD_CLK,
-        -- Writing port.
-        Data_in     => Wdo1,
-        Full_out    => Full_out_intl,
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
 
-	-- RDAD and Storage FIFO
-	AXI_CMD_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 11,
-        ADDR_WIDTH => 5	--Maybe more ?
-    )
+     dout => AXI_Spare_DataOut,
+     empty => axi_empty_s(0),
+     rd_en => AXI_ReadEn,
+     rd_clk => ClockBus.AXI_CLK,
+
+     
+     din => Cmd_s,
+     full => axi_full_s(0),
+     wr_en => WriteEn_intl,
+     wr_clk => ClockBus.CLK125MHz
+     );
+     
+    
+    
+    
+
+--	-- RDAD and Storage FIFO
+--	AXI_Time_AFIFO :  aFifoV2
+--    generic map(
+--        DATA_WIDTH => 64,
+--        ADDR_WIDTH => 5	--Maybe more ?
+--    )
+--    port map (
+--    	rst 	=> nrst,
+--        -- Reading port.
+--        Data_out    => AXI_Time_DataOut,
+--        Empty_out   => axi_empty_s(1),
+--        ReadEn_in   => AXI_ReadEn,
+--        RClk        => ClockBus.AXI_CLK,
+--        -- Writing port.
+--        Data_in     => Counter,
+--        Full_out    => axi_full_s(1),
+--        WriteEn_in  => WriteEn_intl,
+--        WClk        => ClockBus.CLK125MHz
+--    );
+
+
+
+
+    
+    AXI_Time_AFIFO :  axi_time_fifo_64W_32D
     port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => AXI_Spare_DataOut,
-        Empty_out   => axi_empty_s(0),
-        ReadEn_in   => AXI_ReadEn,
-        RClk        => ClockBus.AXI_CLK,
-        -- Writing port.
-        Data_in     => Cmd_s,
-        Full_out    => axi_full_s(0),
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
 
-	-- RDAD and Storage FIFO
-	AXI_Time_AFIFO :  aFifoV2
-    generic map(
-        DATA_WIDTH => 64,
-        ADDR_WIDTH => 5	--Maybe more ?
-    )
+     dout => AXI_Time_DataOut,
+     empty => axi_empty_s(1),
+     rd_en => AXI_ReadEn,
+     rd_clk => ClockBus.AXI_CLK,
+
+     
+     din => Counter,
+     full => axi_full_s(1),
+     wr_en => WriteEn_intl,
+     wr_clk => ClockBus.CLK125MHz
+     );
+     
+    
+
+
+
+
+
+
+
+
+
+
+--	-- RDAD and Storage FIFO
+--	AXI_WdoAddr_AFIFO :  aFifoV2
+--	generic map(
+--		DATA_WIDTH => 9,
+--		ADDR_WIDTH => 5	--Maybe more ?
+--	)
+--	port map (
+--		rst 	=> nrst,
+--		-- Reading port.
+--		Data_out    => AXI_WdoAddr_DataOut,
+--		Empty_out   => axi_empty_s(2),
+--		ReadEn_in   => AXI_ReadEn,
+--		RClk        => ClockBus.AXI_CLK,
+--		-- Writing port.
+--		Data_in     => Wdo1,
+--		Full_out    => axi_full_s(2),
+--		WriteEn_in  => WriteEn_intl,
+--		WClk        => ClockBus.CLK125MHz
+--	);
+
+
+    AXI_WdoAddr_AFIFO : axi_wdo_addr_fifo
+      PORT MAP (
+      --  rst => nrst,
+        
+        dout => AXI_WdoAddr_DataOut,
+        empty => axi_empty_s(2),
+        rd_en => AXI_ReadEn,
+        rd_clk => ClockBus.AXI_CLK,
+
+        
+        din => Wdo1,
+        full => axi_full_s(2),
+        wr_en => WriteEn_intl,
+        wr_clk => ClockBus.CLK125MHz
+
+      );
+    
+       
+--	-- RDAD and Storage FIFO
+--	AXI_Trig_AFIFO :  aFifoV2
+--	generic map(
+--		DATA_WIDTH => 12,
+--		ADDR_WIDTH => 5	--Maybe more ?
+--	)
+--	port map (
+--		rst 	=> nrst,
+--		-- Reading port.
+--		Data_out    => AXI_TrigInfo_DataOut,
+--		Empty_out   => axi_empty_s(3),
+--		ReadEn_in   => AXI_ReadEn,
+--		RClk        => ClockBus.AXI_CLK,
+--		-- Writing port.
+--		Data_in     => Trig,
+--		Full_out    => axi_full_s(3),
+--		WriteEn_in  => WriteEn_intl,
+--		WClk        => ClockBus.CLK125MHz
+--	);
+
+
+
+
+    
+    AXI_Trig_AFIFO :  axi_trig_afifo_12W_32D
     port map (
-    	rst 	=> nrst,
-        -- Reading port.
-        Data_out    => AXI_Time_DataOut,
-        Empty_out   => axi_empty_s(1),
-        ReadEn_in   => AXI_ReadEn,
-        RClk        => ClockBus.AXI_CLK,
-        -- Writing port.
-        Data_in     => Counter,
-        Full_out    => axi_full_s(1),
-        WriteEn_in  => WriteEn_intl,
-        WClk        => ClockBus.CLK250MHz
-    );
 
-	-- RDAD and Storage FIFO
-	AXI_WdoAddr_AFIFO :  aFifoV2
-	generic map(
-		DATA_WIDTH => 9,
-		ADDR_WIDTH => 5	--Maybe more ?
-	)
-	port map (
-		rst 	=> nrst,
-		-- Reading port.
-		Data_out    => AXI_WdoAddr_DataOut,
-		Empty_out   => axi_empty_s(2),
-		ReadEn_in   => AXI_ReadEn,
-		RClk        => ClockBus.AXI_CLK,
-		-- Writing port.
-		Data_in     => Wdo1,
-		Full_out    => axi_full_s(2),
-		WriteEn_in  => WriteEn_intl,
-		WClk        => ClockBus.CLK250MHz
-	);
+     dout => AXI_TrigInfo_DataOut,
+     empty => axi_empty_s(3),
+     rd_en => AXI_ReadEn,
+     rd_clk => ClockBus.AXI_CLK,
 
-	-- RDAD and Storage FIFO
-	AXI_Trig_AFIFO :  aFifoV2
-	generic map(
-		DATA_WIDTH => 12,
-		ADDR_WIDTH => 5	--Maybe more ?
-	)
-	port map (
-		rst 	=> nrst,
-		-- Reading port.
-		Data_out    => AXI_TrigInfo_DataOut,
-		Empty_out   => axi_empty_s(3),
-		ReadEn_in   => AXI_ReadEn,
-		RClk        => ClockBus.AXI_CLK,
-		-- Writing port.
-		Data_in     => Trig,
-		Full_out    => axi_full_s(3),
-		WriteEn_in  => WriteEn_intl,
-		WClk        => ClockBus.CLK250MHz
-	);
+     
+     din => Trig,
+     full => axi_full_s(3),
+     wr_en => WriteEn_intl,
+     wr_clk => ClockBus.CLK125MHz
+     );
+     
+
+
+
+
 
 	--AXI_Empty	<=
 	AXI_empty <= '0' when axi_empty_s = "0000" else '1';

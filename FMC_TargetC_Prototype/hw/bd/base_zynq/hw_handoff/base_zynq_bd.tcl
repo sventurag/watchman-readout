@@ -344,7 +344,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_CAN_PERIPHERAL_CLKSRC {IO PLL} \
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_CAN_PERIPHERAL_DIVISOR1 {1} \
-   CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ {23.8095} \
+   CONFIG.PCW_CAN_PERIPHERAL_FREQMHZ {100} \
    CONFIG.PCW_CAN_PERIPHERAL_VALID {0} \
    CONFIG.PCW_CLK0_FREQ {100000000} \
    CONFIG.PCW_CLK1_FREQ {10000000} \
@@ -493,6 +493,14 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_FPGA_FCLK1_ENABLE {0} \
    CONFIG.PCW_FPGA_FCLK2_ENABLE {0} \
    CONFIG.PCW_FPGA_FCLK3_ENABLE {0} \
+   CONFIG.PCW_FTM_CTI_IN0 {<Select>} \
+   CONFIG.PCW_FTM_CTI_IN1 {<Select>} \
+   CONFIG.PCW_FTM_CTI_IN2 {<Select>} \
+   CONFIG.PCW_FTM_CTI_IN3 {<Select>} \
+   CONFIG.PCW_FTM_CTI_OUT0 {<Select>} \
+   CONFIG.PCW_FTM_CTI_OUT1 {<Select>} \
+   CONFIG.PCW_FTM_CTI_OUT2 {<Select>} \
+   CONFIG.PCW_FTM_CTI_OUT3 {<Select>} \
    CONFIG.PCW_GP0_EN_MODIFIABLE_TXN {1} \
    CONFIG.PCW_GP0_NUM_READ_THREADS {4} \
    CONFIG.PCW_GP0_NUM_WRITE_THREADS {4} \
@@ -511,8 +519,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_I2C0_HIGHADDR {0xE0004FFF} \
    CONFIG.PCW_I2C0_I2C0_IO {<Select>} \
    CONFIG.PCW_I2C0_PERIPHERAL_ENABLE {0} \
-   CONFIG.PCW_I2C0_RESET_ENABLE {1} \
-   CONFIG.PCW_I2C0_RESET_IO {MIO 13} \
+   CONFIG.PCW_I2C0_RESET_ENABLE {0} \
+   CONFIG.PCW_I2C0_RESET_IO {<Select>} \
    CONFIG.PCW_I2C1_BASEADDR {0xE0005000} \
    CONFIG.PCW_I2C1_GRP_INT_ENABLE {0} \
    CONFIG.PCW_I2C1_HIGHADDR {0xE0005FFF} \
@@ -529,7 +537,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_IO_IO_PLL_FREQMHZ {1000.000} \
    CONFIG.PCW_IRQ_F2P_INTR {1} \
    CONFIG.PCW_IRQ_F2P_MODE {DIRECT} \
-   CONFIG.PCW_MIO_0_DIRECTION {in} \
+   CONFIG.PCW_MIO_0_DIRECTION {inout} \
    CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 2.5V} \
    CONFIG.PCW_MIO_0_PULLUP {enabled} \
    CONFIG.PCW_MIO_0_SLEW {slow} \
@@ -545,7 +553,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_12_IOTYPE {LVCMOS 2.5V} \
    CONFIG.PCW_MIO_12_PULLUP {enabled} \
    CONFIG.PCW_MIO_12_SLEW {slow} \
-   CONFIG.PCW_MIO_13_DIRECTION {out} \
+   CONFIG.PCW_MIO_13_DIRECTION {inout} \
    CONFIG.PCW_MIO_13_IOTYPE {LVCMOS 2.5V} \
    CONFIG.PCW_MIO_13_PULLUP {enabled} \
    CONFIG.PCW_MIO_13_SLEW {slow} \
@@ -553,7 +561,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_14_IOTYPE {LVCMOS 2.5V} \
    CONFIG.PCW_MIO_14_PULLUP {enabled} \
    CONFIG.PCW_MIO_14_SLEW {slow} \
-   CONFIG.PCW_MIO_15_DIRECTION {in} \
+   CONFIG.PCW_MIO_15_DIRECTION {inout} \
    CONFIG.PCW_MIO_15_IOTYPE {LVCMOS 2.5V} \
    CONFIG.PCW_MIO_15_PULLUP {enabled} \
    CONFIG.PCW_MIO_15_SLEW {slow} \
@@ -1050,8 +1058,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_USB0_HIGHADDR {0xE0102fff} \
    CONFIG.PCW_USB0_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_USB0_PERIPHERAL_FREQMHZ {60} \
-   CONFIG.PCW_USB0_RESET_ENABLE {1} \
-   CONFIG.PCW_USB0_RESET_IO {MIO 7} \
+   CONFIG.PCW_USB0_RESET_ENABLE {0} \
+   CONFIG.PCW_USB0_RESET_IO {<Select>} \
    CONFIG.PCW_USB0_USB0_IO {<Select>} \
    CONFIG.PCW_USB1_BASEADDR {0xE0103000} \
    CONFIG.PCW_USB1_HIGHADDR {0xE0103fff} \
@@ -1123,7 +1131,7 @@ proc create_root_design { parentCell } {
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
   set_property -dict [ list \
-   CONFIG.CONST_VAL {0} \
+   CONFIG.CONST_VAL {1} \
    CONFIG.CONST_WIDTH {1} \
  ] $xlconstant_0
 

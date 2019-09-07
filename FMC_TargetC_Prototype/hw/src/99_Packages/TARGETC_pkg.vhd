@@ -251,7 +251,7 @@ package TARGETC_pkg is
 		RDAD_CLK:		std_logic;		-- Pin#61
 		SSTIN:			std_logic;
 		--CLK500MHz:		std_logic;
-		CLK250MHz:		std_logic;
+		CLK125MHz:		std_logic;
         AXI_clk:        std_logic;
 	end record;
 
@@ -262,7 +262,7 @@ package TARGETC_pkg is
     -- Timestamp
     type T_Timestamp is Record
         graycnt : std_logic_vector(59 downto 0);    --63 downto 0 - 4
-        samplecnt:  std_logic_vector(3 downto 0);
+        samplecnt:  std_logic_vector(2 downto 0);
     end record;
     -- --------------------------------------------------------------------------
     -- HANDSHAKE

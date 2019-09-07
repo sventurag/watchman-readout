@@ -44,7 +44,7 @@ begin
 
 	TrigA_inst : SingleTrigger
 	generic map(
-		LONG_TRIGGER => LONG_TRIGGER	-- 250MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
+		LONG_TRIGGER => LONG_TRIGGER	-- 125MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
 	)
 	Port map(
 		nrst => nrst,
@@ -56,7 +56,7 @@ begin
 
 	TrigB_inst : SingleTrigger
 	generic map(
-		LONG_TRIGGER => LONG_TRIGGER	-- 250MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
+		LONG_TRIGGER => LONG_TRIGGER	-- 125MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
 	)
 	Port map(
 		nrst => nrst,
@@ -68,7 +68,7 @@ begin
 
 	TrigC_inst : SingleTrigger
 	generic map(
-		LONG_TRIGGER => LONG_TRIGGER	-- 250MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
+		LONG_TRIGGER => LONG_TRIGGER	-- 125MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
 	)
 	Port map(
 		nrst => nrst,
@@ -80,7 +80,7 @@ begin
 
 	TrigD_inst : SingleTrigger
 	generic map(
-		LONG_TRIGGER => LONG_TRIGGER	-- 250MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
+		LONG_TRIGGER => LONG_TRIGGER	-- 125MHz = 4ns for 64 ns = 16 counts = 2 windows, max is 4 windows = 32 counts
 	)
 	Port map(
 		nrst => nrst,
