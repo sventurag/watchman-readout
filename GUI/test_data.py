@@ -124,7 +124,7 @@ for k in range(124,125,1):
        
     #for j in range(0,2,1):
     #   print(j)
-    for j in range(0,100,1):
+    for j in range(0,10,1):
     #   regID = 84
     #   regValue = j
     #   tc.send_command(8, regID, regValue) #VADJN
