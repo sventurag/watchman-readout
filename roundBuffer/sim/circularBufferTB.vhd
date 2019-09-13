@@ -39,7 +39,9 @@ architecture sim of circular_buffer_tb is
   
   signal ptr_sub : std_logic_vector(8 downto 0) := (others => '0');
   signal ptr_int : std_logic := '0';
- 
+  signal counter: std_logic_vector(2 downto 0):= (others => '0');
+  signal sstin : std_logic := '0';
+  signal ptr_sub_sstin : std_logic_vector(8 downto 0) := (others=> '0');
 begin
 
   DUT : entity work.circular_buffer(rtl)
@@ -50,7 +52,10 @@ begin
       trigger => trigger,
       full_fifo => full_fifo,
       ptr_sub => ptr_sub,
-      ptr_int => ptr_int
+      ptr_sub_sstin => ptr_sub_sstin,
+      ptr_int => ptr_int,
+      sstin => sstin,
+      counter => counter
      
     );
 
@@ -63,20 +68,20 @@ begin
       rst <= '1';
       wait until rising_edge(clk);
       
-      wait for 5 * clock_period;
+      wait for 10 * clock_period;
       
       trigger <= '1';
       
-      wait for 2 * clock_period;
+      wait for 3 * clock_period;
 
       trigger<= '0';
       
-      wait for 5 * clock_period;
+      wait for 20 * clock_period;
            
  
       trigger <= '1';
            
-      wait for 2 * clock_period;
+      wait for 3 * clock_period;
      
       trigger<= '0';
  
@@ -84,28 +89,28 @@ begin
 
       trigger <= '1';
                  
-      wait for 2 * clock_period;
+      wait for 3 * clock_period;
            
       trigger<= '0';
  
  
- -----------------------------------------
+ ---------------------------------------
 
---      wait for 5 * clock_period;
+      wait for 5 * clock_period;
       
---      full_fifo <= '1' ;
+      full_fifo <= '1' ;
       
---      wait for 1 * clock_period;
+      wait for 1 * clock_period;
       
---      trigger<= '1';
+      trigger<= '1';
       
---      wait for 1 * clock_period;
+      wait for 1 * clock_period;
 
---      trigger<= '0';
+      trigger<= '0';
      
---      wait for 5 * clock_period;
+      wait for 5 * clock_period;
 
---      full_fifo <= '0' ;
+      full_fifo <= '0' ;
      
 --      wait for 1 * clock_period;
      
