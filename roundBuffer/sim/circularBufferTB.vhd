@@ -28,7 +28,7 @@ end circular_buffer_tb;
 
 architecture sim of circular_buffer_tb is
 
-  constant clock_period : time := 4 ns;
+  constant clock_period : time := 8 ns;
 
 
   -- DUT signals
@@ -37,7 +37,7 @@ architecture sim of circular_buffer_tb is
   signal trigger : std_logic := '0';
   signal full_fifo : std_logic := '0';
   
-  signal ptr_sub : std_logic_vector(7 downto 0) := (others => '0');
+  signal ptr_sub : std_logic_vector(8 downto 0) := (others => '0');
   signal ptr_int : std_logic := '0';
  
 begin
@@ -59,41 +59,61 @@ begin
     PROC_SEQUENCER : process
     begin
       
-      wait for 10 * clock_period;
+      wait for 5 * clock_period;
       rst <= '1';
       wait until rising_edge(clk);
       
-      wait for 10 * clock_period;
+      wait for 5 * clock_period;
       
       trigger <= '1';
       
-      wait for 5 * clock_period;
+      wait for 2 * clock_period;
 
       trigger<= '0';
-
-      wait for 5 * clock_period;
-      
-      full_fifo <= '1' ;
       
       wait for 5 * clock_period;
-      
-      trigger<= '1';
-      
-      wait for 5 * clock_period;
-
+           
+ 
+      trigger <= '1';
+           
+      wait for 2 * clock_period;
+     
       trigger<= '0';
-     
-      wait for 5 * clock_period;
+ 
+      wait for 2 * clock_period;
 
-      full_fifo <= '0' ;
-     
-      wait for 5 * clock_period;
-     
-      trigger<= '1';
+      trigger <= '1';
+                 
+      wait for 2 * clock_period;
+           
+      trigger<= '0';
+ 
+ 
+ -----------------------------------------
+
+--      wait for 5 * clock_period;
       
-      wait for 1 * clock_period;
+--      full_fifo <= '1' ;
+      
+--      wait for 1 * clock_period;
+      
+--      trigger<= '1';
+      
+--      wait for 1 * clock_period;
+
+--      trigger<= '0';
+     
+--      wait for 5 * clock_period;
+
+--      full_fifo <= '0' ;
+     
+--      wait for 1 * clock_period;
+     
+--      trigger<= '1';
+      
+--      wait for 1 * clock_period;
          
-      trigger<= '0';
+--      trigger<= '0';
           
       
 
