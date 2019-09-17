@@ -67,6 +67,13 @@ signal flag5 : boolean;
 signal flag6 : boolean;
 signal flag7 : boolean;
 signal flag8 : boolean;
+signal flag9 : boolean;
+signal flag10 : boolean;
+signal flag11 : boolean;
+signal flag12 : boolean;
+signal flag13 : boolean;
+signal flag14 : boolean;
+signal flag15 : boolean;
 
 
 signal flag_nextSub_i: std_logic;
@@ -75,7 +82,7 @@ signal flag_full: std_logic;
 
 
 
- type stmachine is ( wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7);
+ type stmachine is ( wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14, hit15);
  
 
 
@@ -158,15 +165,84 @@ signal flag_full: std_logic;
            else
               flag7 <= false;          
            end if;
-             stm <= wr_add;
+             stm <= hit8;
+       
+   when hit8 =>      
+            flag_nextSub_i <= '0';
+  
+            if trigger = '1' then
+               flag8 <= true;
+            else
+               flag8 <= false;
+            end if;
+            stm <= hit9;
+  
+       when hit9 =>      
+             if trigger = '1' then
+                flag9<= true;
+             else
+                flag9<= false;          
+            end if;
+             stm <= hit10;
+           
+        when hit10 =>      
+              if trigger = '1' then
+                 flag10 <= true;
+              else
+                 flag10 <= false;          
+             end if;
+          stm <= hit11;
+              
              
+         when hit11 =>      
+               if trigger = '1' then
+                  flag11 <= true;
+               else
+                  flag11<= false;          
+              end if;
+             stm <= hit12;
+                       
+         
+          when hit12 =>      
+                if trigger = '1' then
+                   flag12 <= true;
+                else
+                   flag12 <= false;          
+               end if;
+             stm <= hit13;
+          
+          when hit13 =>      
+             if trigger = '1' then
+                flag13 <= true;
+             else
+                flag13 <= false;          
+             end if;
+               stm <= hit14;
+  
+     
+          when hit14 =>      
+             if trigger = '1' then
+                flag14 <= true;
+             else
+                flag14 <= false;          
+             end if;
+               stm <= hit15;             
+
+     
+          when hit15 =>      
+             if trigger = '1' then
+                flag15 <= true;
+             else
+                flag15 <= false;          
+             end if;
+               stm <= wr_add;             
              
           when wr_add =>
           if trigger = '1' then
 
                if full_fifo = '0' then
 
-                   ptr_sub_i <= std_logic_vector(unsigned(ptr_sub_i) + 2);
+                   ptr_sub_i <= std_logic_vector(unsigned(ptr_sub_i) + 4);
                    ptr_int_i <= sstin_i;
                    stm<= hit;
                else 
@@ -179,10 +255,10 @@ signal flag_full: std_logic;
            
            else  
            
-             if flag1 or flag2 or flag3 or flag4 or flag5 or flag6  or flag7 = true then
+             if flag1 or flag2 or flag3 or flag4 or flag5 or flag6  or flag7 or flag8 or flag9 or flag10 or flag11 or flag12 or flag13  or flag14 or flag15 = true then
                  if full_fifo = '0' then
 
-                     ptr_sub_i <= std_logic_vector(unsigned(ptr_sub_i) + 2);
+                     ptr_sub_i <= std_logic_vector(unsigned(ptr_sub_i) + 4);
                      ptr_int_i <= sstin_i;
                      stm<= hit;
                  else 
