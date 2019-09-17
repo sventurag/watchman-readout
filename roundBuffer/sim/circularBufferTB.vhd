@@ -76,7 +76,7 @@ begin
 
       trigger<= '0';
       
-      wait for 20 * clock_period;
+      wait for 50 * clock_period;
            
  
       trigger <= '1';
