@@ -96,9 +96,9 @@ begin
  
  ---------------------------------------
 
-      wait for 5 * clock_period;
+--      wait for 5 * clock_period;
       
-      full_fifo <= '1' ;
+--      full_fifo <= '1' ;
       
       wait for 1 * clock_period;
       
@@ -108,9 +108,9 @@ begin
 
       trigger<= '0';
      
-      wait for 5 * clock_period;
+--      wait for 5 * clock_period;
 
-      full_fifo <= '0' ;
+--      full_fifo <= '0' ;
      
 --      wait for 1 * clock_period;
      
