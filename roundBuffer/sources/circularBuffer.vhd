@@ -35,13 +35,12 @@ entity circular_buffer is
           full_fifo : in std_logic;
           
           
-          ptr_sub : out std_logic_vector(8 downto 0);
-     --     ptr_sub_sstin : out std_logic_vector(8 downto 0);
+          ptr_window : out std_logic_vector(8 downto 0);
 
-          ptr_int : out std_logic;
           sstin :  out std_logic;
+          wr:     out unsigned(7 downto 0);
           counter :  out std_logic_vector(2 downto 0)
-   --       WR_RS: out std_logic_vector(6 downto 0);
+   --        WR_RS: out std_logic_vector(6 downto 0);
    --       WR_CS: out std_logic_vector(2 downto 0);
     --      RD_add : out std_logic_vector(8 downto 0)
   );
@@ -49,69 +48,46 @@ end circular_buffer;
  
 architecture rtl of circular_buffer is
  
-  signal ptr_sub_i : std_logic_vector(8 downto 0);
-  signal ptr_sub_sstin_i : std_logic_vector(8 downto 0);
-  signal ptr_int_i : std_logic;
-  signal counter_i: std_logic_vector(2 downto 0);
-  signal counter2_i: std_logic_vector(2 downto 0);
- 
- -- signal counter_copy_i: std_logic_vector(2 downto 0);
-
+signal ptr_window_i : std_logic_vector(8 downto 0);
+signal counter_i: std_logic_vector(2 downto 0);
 signal sstin_i : std_logic;
-signal flag : boolean;
-signal flag1 : boolean;
-signal flag2 : boolean;
-signal flag3 : boolean;
-signal flag4 : boolean;
-signal flag5 : boolean;
-signal flag6 : boolean;
-signal flag7 : boolean;
-signal flag8 : boolean;
-signal flag9 : boolean;
-signal flag10 : boolean;
-signal flag11 : boolean;
-signal flag12 : boolean;
-signal flag13 : boolean;
-signal flag14 : boolean;
-signal flag15 : boolean;
-
-
+signal flag, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, flag13, flag14, flag15 : boolean;
 signal flag_full: std_logic;
 signal window2read: std_logic_vector(8 downto 0);
+signal wr_shifted: unsigned(7 downto 0);
+signal ptr_window_trans_i: std_logic_vector(8 downto 0);
+signal ptr_sub_i: unsigned(8 downto 0);
 
-
-
- type stmachine is ( wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14, hit15);
- 
-
-
-  signal stm: stmachine;
+type stmachine is ( wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14, hit15);
+signal stm: stmachine;
   
   begin
-  
   p_sm:  process(clk,RST, trigger, full_fifo)
   begin 
  if RST = '0' then
       stm <= hit;
+      ptr_window_i  <= (others=> '0');
       ptr_sub_i  <= (others=> '0');
-      ptr_int_i <= 'X';
+
       flag_full <= '0';
       window2read <= (others=> 'X');
-      
- --     ptr_ <= (others=> '0');           
   else 
       if rising_edge(clk) then
       case stm is
---      when start =>
---          stm <= hit;
-      
     
       when hit =>      
-
+          
+          if unsigned(ptr_window_i) /= 0 then
+          wr_shifted <= shift_right(unsigned(ptr_window_i(7 downto 0)), 1  );
+          
+          else
+          wr_shifted <= unsigned(ptr_window_i(7 downto 0));
+          end if;
+          
           if trigger = '1' then
              flag1 <= true;
-             window2read <= std_logic_vector(unsigned(ptr_sub_i) + 0) ;
-
+            window2read <= std_logic_vector(ptr_window_i);
+             
           else
              flag1 <= false;
              window2read <= (others=>'X') ;         
@@ -122,7 +98,7 @@ signal window2read: std_logic_vector(8 downto 0);
      when hit2 =>      
            if trigger = '1' then
               flag2 <= true;
-              window2read <= std_logic_vector(unsigned(ptr_sub_i) + 0) ;
+             window2read <= std_logic_vector(ptr_window_i);
 
            else
               flag2 <= false;          
@@ -133,7 +109,7 @@ signal window2read: std_logic_vector(8 downto 0);
       when hit3 =>      
             if trigger = '1' then
                flag3 <= true;
-               window2read <= std_logic_vector(unsigned(ptr_sub_i) + 0) ;
+              window2read <= std_logic_vector(ptr_window_i);
 
             else
                flag3 <= false;          
@@ -145,7 +121,7 @@ signal window2read: std_logic_vector(8 downto 0);
        when hit4 =>      
              if trigger = '1' then
                 flag4 <= true;
-                window2read <= std_logic_vector(unsigned(ptr_sub_i) + 0) ;
+              window2read <= std_logic_vector(ptr_window_i);
 
              else
                 flag4 <= false;          
@@ -157,7 +133,7 @@ signal window2read: std_logic_vector(8 downto 0);
         when hit5 =>      
               if trigger = '1' then
                  flag5 <= true;
-                 window2read <= std_logic_vector(unsigned(ptr_sub_i) + 1) ;
+               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
               else
                  flag5 <= false;          
                 window2read <= (others=>'X') ;         
@@ -167,7 +143,7 @@ signal window2read: std_logic_vector(8 downto 0);
         when hit6 =>      
            if trigger = '1' then
               flag6 <= true;
-              window2read <= std_logic_vector(unsigned(ptr_sub_i) + 1) ;
+               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
            else
               flag6 <= false;          
                 window2read <= (others=>'X') ;         
@@ -175,21 +151,28 @@ signal window2read: std_logic_vector(8 downto 0);
              stm <= hit7;
 
    
-        when hit7 =>      
+        when hit7 => 
            if trigger = '1' then
               flag7 <= true;
-              window2read <= std_logic_vector(unsigned(ptr_sub_i) + 1) ;
+               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
           else
               flag7 <= false;          
                 window2read <= (others=>'X') ;         
            end if;
              stm <= hit8;
        
-   when hit8 =>      
-  
+       when hit8 =>      
+             
+              if unsigned(ptr_window_i) /=  0 then
+            
+              wr_shifted <= shift_right(unsigned(ptr_window_i(7 downto 0)), 1  ) +1;
+
+              else
+              wr_shifted <= unsigned(ptr_window_i(7 downto 0) )  + 1 ;
+              end if;
             if trigger = '1' then
                flag8 <= true;
-              window2read <= std_logic_vector(unsigned(ptr_sub_i) + 1) ;
+               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
            else
                flag8 <= false;
                 window2read <= (others=>'X') ;         
@@ -199,7 +182,7 @@ signal window2read: std_logic_vector(8 downto 0);
        when hit9 =>      
              if trigger = '1' then
                 flag9<= true;
-              window2read <= std_logic_vector(unsigned(ptr_sub_i) + 2) ;
+              window2read <= std_logic_vector(unsigned(ptr_window_i) +2); 
             else
                 flag9<= false;          
                 window2read <= (others=>'X') ;         
@@ -209,30 +192,28 @@ signal window2read: std_logic_vector(8 downto 0);
         when hit10 =>      
               if trigger = '1' then
                  flag10 <= true;
-             window2read <= std_logic_vector(unsigned(ptr_sub_i) + 2) ;
+             window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
               else
                  flag10 <= false;          
                 window2read <= (others=>'X') ;         
              end if;
           stm <= hit11;
-              
-             
+          
          when hit11 =>      
                if trigger = '1' then
                   flag11 <= true;
-                  window2read <= std_logic_vector(unsigned(ptr_sub_i) + 2) ;
+                  window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
                else
                   flag11<= false;          
                 window2read <= (others=>'X') ;         
 
               end if;
              stm <= hit12;
-                       
-         
+                      
           when hit12 =>      
                 if trigger = '1' then
                    flag12 <= true;
-                   window2read <= std_logic_vector(unsigned(ptr_sub_i) + 2) ;      
+                   window2read <= std_logic_vector(unsigned(ptr_window_i)+2);    
                    else
                    flag12 <= false; 
                window2read <= (others=>'X') ;         
@@ -243,7 +224,7 @@ signal window2read: std_logic_vector(8 downto 0);
           when hit13 =>      
              if trigger = '1' then
                 flag13 <= true;
-             window2read <= std_logic_vector(unsigned(ptr_sub_i) + 3) ;
+            window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
              else
                 flag13 <= false;
                 window2read <= (others=>'X') ;         
@@ -251,79 +232,73 @@ signal window2read: std_logic_vector(8 downto 0);
              end if;
                stm <= hit14;
   
-     
           when hit14 =>      
              if trigger = '1' then
                 flag14 <= true;
-             window2read <= std_logic_vector(unsigned(ptr_sub_i) + 3) ;
+            window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
              else
                 flag14 <= false; 
                 window2read <= (others=>'X') ;         
              end if;
                stm <= hit15;             
 
-     
           when hit15 =>      
+             ptr_window_trans_i <= ptr_window_i;
              if trigger = '1' then
                 flag15 <= true;
-             window2read <= std_logic_vector(unsigned(ptr_sub_i) + 3) ;
+            window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
              else
                 flag15 <= false;          
              end if;
-               stm <= wr_add;             
-             
+               stm <= wr_add;
+                 
           when wr_add =>
+   
           if trigger = '1' then
-               window2read <= std_logic_vector(unsigned(ptr_sub_i) + 3) ;  
+               window2read <= std_logic_vector(unsigned(ptr_window_i)+3) ; 
                if full_fifo = '0' then
-
-                   ptr_sub_i <= std_logic_vector(unsigned(ptr_sub_i) + 4);
-                   ptr_int_i <= sstin_i;
+                   ptr_window_i <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);       
+                     wr_shifted <= unsigned(wr_shifted+1);
+                   if unsigned(ptr_window_trans_i) /= 0 then
+                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
+                   else
+                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;                
+                   end if;                          
                    stm<= hit;
                else 
-
-                   ptr_int_i <= 'X';
                    stm<= hit;
-
-               end if;    
-           
-           
+               end if;              
            else  
            
              if flag1 or flag2 or flag3 or flag4 or flag5 or flag6  or flag7 or flag8 or flag9 or flag10 or flag11 or flag12 or flag13  or flag14 or flag15 = true then
                  if full_fifo = '0' then
 
-                     ptr_sub_i <= std_logic_vector(unsigned(ptr_sub_i) + 4);
-                     ptr_int_i <= sstin_i;
+                     ptr_window_i <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);
+                     wr_shifted <= unsigned(wr_shifted+1);
+           
+                   if unsigned(ptr_window_trans_i) /= 0 then
+                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
+                   else
+                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;
+                   end if;                  
                      stm<= hit;
-                 else 
-  
-                     ptr_int_i <= 'X';
-                     stm<= hit;
-  
-                 
+                 else   
+                     stm<= hit;                 
                  end if;
              else 
-                 ptr_int_i <= 'X';
                  stm<= hit;
-  
-             end if;    
-             
-           
-           stm <= hit;
+                 wr_shifted <= unsigned(wr_shifted-1);
 
-        end if;
-        
-        
-            end case;
+             end if;             
+           stm <= hit;
+        end if;       
+           end case;
    end if;
       
 end if;
 
-
- end process p_sm;
-ptr_sub <= ptr_sub_i;
-ptr_int <= ptr_int_i;
+end process p_sm;
+ptr_window <= ptr_window_i;
 
 -------------------
 
@@ -346,7 +321,7 @@ else
 end process p_counter;
 
 counter <= counter_i;
-counter2_i <= counter_i;
+wr <= wr_shifted;
 
 ----------------------------------
 
