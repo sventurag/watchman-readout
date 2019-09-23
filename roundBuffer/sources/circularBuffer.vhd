@@ -38,7 +38,9 @@ entity circular_buffer is
           ptr_window : out std_logic_vector(8 downto 0);
 
           sstin :  out std_logic;
-          wr:     out unsigned(7 downto 0);
+          wr:     out unsigned(8 downto 0);
+          addressOut: out unsigned(8 downto 0);
+          enable_write :  out std_logic;
           counter :  out std_logic_vector(2 downto 0)
    --        WR_RS: out std_logic_vector(6 downto 0);
    --       WR_CS: out std_logic_vector(2 downto 0);
@@ -54,14 +56,25 @@ signal sstin_i : std_logic;
 signal flag, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, flag13, flag14, flag15 : boolean;
 signal flag_full: std_logic;
 signal window2read: std_logic_vector(8 downto 0);
-signal wr_shifted: unsigned(7 downto 0);
+signal wr_shifted: unsigned(8 downto 0);
 signal ptr_window_trans_i: std_logic_vector(8 downto 0);
 signal ptr_sub_i: unsigned(8 downto 0);
 
 type stmachine is ( wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14, hit15);
 signal stm: stmachine;
+
+
+type stmachine_comp is ( A, B, C, D);
+
+
+signal stm_comp: stmachine_comp;
+signal saved_i: std_logic_vector(8 downto 0);
+signal enable_write_i: std_logic;
+
   
   begin
+  
+ 
   p_sm:  process(clk,RST, trigger, full_fifo)
   begin 
  if RST = '0' then
@@ -71,6 +84,8 @@ signal stm: stmachine;
 
       flag_full <= '0';
       window2read <= (others=> 'X');
+      wr_shifted <= (others=> '0');
+      
   else 
       if rising_edge(clk) then
       case stm is
@@ -78,10 +93,10 @@ signal stm: stmachine;
       when hit =>      
           
           if unsigned(ptr_window_i) /= 0 then
-          wr_shifted <= shift_right(unsigned(ptr_window_i(7 downto 0)), 1  );
+          wr_shifted <= shift_right(unsigned(ptr_window_i), 1  );
           
           else
-          wr_shifted <= unsigned(ptr_window_i(7 downto 0));
+          wr_shifted <= unsigned(ptr_window_i);
           end if;
           
           if trigger = '1' then
@@ -165,10 +180,10 @@ signal stm: stmachine;
              
               if unsigned(ptr_window_i) /=  0 then
             
-              wr_shifted <= shift_right(unsigned(ptr_window_i(7 downto 0)), 1  ) +1;
+              wr_shifted <= shift_right(unsigned(ptr_window_i), 1  ) +1;
 
               else
-              wr_shifted <= unsigned(ptr_window_i(7 downto 0) )  + 1 ;
+              wr_shifted <= unsigned(ptr_window_i )  + 1 ;
               end if;
             if trigger = '1' then
                flag8 <= true;
@@ -255,10 +270,16 @@ signal stm: stmachine;
           when wr_add =>
    
           if trigger = '1' then
+          
                window2read <= std_logic_vector(unsigned(ptr_window_i)+3) ; 
                if full_fifo = '0' then
                    ptr_window_i <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);       
-                     wr_shifted <= unsigned(wr_shifted+1);
+                     if wr_shifted /= 255 then  
+                          wr_shifted <= unsigned(wr_shifted+1);
+                     else
+                          wr_shifted <= (others => '0');
+                     end if;
+
                    if unsigned(ptr_window_trans_i) /= 0 then
                          ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
                    else
@@ -274,8 +295,12 @@ signal stm: stmachine;
                  if full_fifo = '0' then
 
                      ptr_window_i <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);
-                     wr_shifted <= unsigned(wr_shifted+1);
-           
+                     if wr_shifted /= 255 then  
+                               wr_shifted <= unsigned(wr_shifted+1);
+                          else
+                               wr_shifted <= (others => '0');
+                          end if;
+
                    if unsigned(ptr_window_trans_i) /= 0 then
                          ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
                    else
@@ -358,6 +383,42 @@ end process p_sstin;
 
 sstin <= sstin_i;
 
- 
- 
+------------------------------------------
+
+
+p_addressOut : process(clk,RST)
+begin
+if RST = '0' then
+      stm_comp <= A;
+      saved_i <= (others=> 'X');
+      enable_write_i <= '0';
+
+
+else
+
+    if rising_edge(clk) then
+
+            if window2read = "XXXXXXXXX" then
+                   enable_write_i <= '0';
+            else
+                if window2read /= saved_i then
+                enable_write_i <= '1';
+                saved_i <= window2read;
+                addressOut <= unsigned(window2read);
+                else
+                    enable_write_i <= '0';
+        --            saved_i <=  window2read;
+                end if;
+             end if;   
+
+     end if;
+end if;
+
+end process p_addressOut;
+
+enable_write<= enable_write_i;
+
+
+
+
 end architecture;
