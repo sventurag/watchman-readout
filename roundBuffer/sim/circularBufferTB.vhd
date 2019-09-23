@@ -36,10 +36,13 @@ architecture sim of circular_buffer_tb is
   signal rst : std_logic := '0';
   signal trigger : std_logic := '0';
   signal full_fifo : std_logic := '0';
-  signal wr: unsigned(7 downto 0) := (others =>'0');
+  signal wr: unsigned(8 downto 0) := (others =>'0');
   signal ptr_window : std_logic_vector(8 downto 0) := (others => '0');
   signal counter: std_logic_vector(2 downto 0):= (others => '0');
   signal sstin : std_logic := '0';
+  signal addressOut: unsigned(8 downto 0);
+  signal enable_write : std_logic;
+
  -- signal ptr_sub_sstin : std_logic_vector(8 downto 0) := (others=> '0');
 begin
 
@@ -52,8 +55,11 @@ begin
       full_fifo => full_fifo,
       ptr_window => ptr_window,
       wr=> wr,
+      addressOut => addressOut,
    --   ptr_sub_sstin => ptr_sub_sstin,
       sstin => sstin,
+      enable_write=> enable_write,
+      
       counter => counter
      
     );
