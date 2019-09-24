@@ -39,12 +39,11 @@ entity circular_buffer is
 
           sstin :  out std_logic;
           wr:     out unsigned(8 downto 0);
-          addressOut: out unsigned(8 downto 0);
+          RD_add: out unsigned(8 downto 0);
           enable_write :  out std_logic;
-          counter :  out std_logic_vector(2 downto 0)
-   --        WR_RS: out std_logic_vector(6 downto 0);
-   --       WR_CS: out std_logic_vector(2 downto 0);
-    --      RD_add : out std_logic_vector(8 downto 0)
+          counter :  out std_logic_vector(2 downto 0);
+          WR_RS: out unsigned(1 downto 0);
+          WR_CS: out unsigned(5 downto 0)
   );
 end circular_buffer;
  
@@ -70,10 +69,28 @@ type stmachine_comp is ( A, B, C, D);
 signal stm_comp: stmachine_comp;
 signal saved_i: std_logic_vector(8 downto 0);
 signal enable_write_i: std_logic;
-
+signal rd_add_i :unsigned(8 downto 0);
   
   begin
   
+  ----------------------------------
+  -- State machine for hancling the hits and generate the 
+  -- wr/read addresses (signals wr and window2read, respectively). 
+  
+  -- The ptr_window_i counter is running over the number of winwows 
+  -- increasing +4 (for a 2-write-address subbuffer).
+  
+  -- Signal wr_shifted is ptr_window divided by two (one-bit shift)
+  -- to get the real address WR_CS and WR_RS for the TARGETC. This operation
+  -- is done in the first state, then, the wr_shifted is just increased by 1.
+
+  
+  -- Signal ptr_sub_i is the current subbuffer window. 
+  
+  -- The first 15 states are for raising flags and to get wr from
+  -- the pointer_window_i signal 
+  
+  ----------------------------------
  
   p_sm:  process(clk,RST, trigger, full_fifo)
   begin 
@@ -325,7 +342,9 @@ end if;
 end process p_sm;
 ptr_window <= ptr_window_i;
 
--------------------
+----------------------------------
+-- Dummy signal for simulations
+----------------------------------
 
 p_counter: process(clk, RST)
 begin
@@ -348,8 +367,13 @@ end process p_counter;
 counter <= counter_i;
 wr <= wr_shifted;
 
-----------------------------------
+WR_RS <= wr_shifted(1 downto 0);
 
+WR_CS <= wr_shifted(7 downto 2);
+
+----------------------------------
+-- Dummy signal for simulations
+----------------------------------
 p_sstin: process(clk,RST)
 
 begin
@@ -383,10 +407,11 @@ end process p_sstin;
 
 sstin <= sstin_i;
 
-------------------------------------------
+----------------------------------
+-- One-cycle signal for the enable_write
+----------------------------------
 
-
-p_addressOut : process(clk,RST)
+p_enableWrite : process(clk,RST)
 begin
 if RST = '0' then
       stm_comp <= A;
@@ -404,18 +429,18 @@ else
                 if window2read /= saved_i then
                 enable_write_i <= '1';
                 saved_i <= window2read;
-                addressOut <= unsigned(window2read);
+                rd_add_i <= unsigned(window2read);
                 else
                     enable_write_i <= '0';
-        --            saved_i <=  window2read;
                 end if;
              end if;   
 
      end if;
 end if;
 
-end process p_addressOut;
+end process p_enableWrite;
 
+RD_add <= rd_add_i;
 enable_write<= enable_write_i;
 
 
