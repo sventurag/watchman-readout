@@ -42,7 +42,8 @@ architecture sim of circular_buffer_tb is
   signal sstin : std_logic := '0';
   signal addressOut: unsigned(8 downto 0);
   signal enable_write : std_logic;
-
+  signal WR_RS : unsigned(1 downto 0);
+  signal WR_CS : unsigned(5 downto 0);
  -- signal ptr_sub_sstin : std_logic_vector(8 downto 0) := (others=> '0');
 begin
 
@@ -60,8 +61,9 @@ begin
       sstin => sstin,
       enable_write=> enable_write,
       
-      counter => counter
-     
+      counter => counter,
+      WR_RS => WR_RS,
+      WR_CS => WR_CS
     );
 
     clk <= not clk after clock_period / 2;
@@ -158,7 +160,7 @@ begin
 --          end loop;
       
       
---      finish;
+  --    finish;
     end process;
 
 end architecture;
