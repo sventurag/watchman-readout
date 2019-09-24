@@ -30,18 +30,16 @@ entity circular_buffer is
 
   port (
           clk : in  std_logic;
-          RST : in  std_logic;  -- next address = 0
+          RST : in  std_logic;  
           trigger : in std_logic;
-          full_fifo : in std_logic;
-          
-          
+          full_fifo : in std_logic;          
           ptr_window : out std_logic_vector(8 downto 0);
-
           sstin :  out std_logic;
-          wr:     out unsigned(8 downto 0);
-          RD_add: out unsigned(8 downto 0);
+       --   wr:     out unsigned(8 downto 0);
           enable_write :  out std_logic;
           counter :  out std_logic_vector(2 downto 0);
+          
+          RD_add: out unsigned(8 downto 0);
           WR_RS: out unsigned(1 downto 0);
           WR_CS: out unsigned(5 downto 0)
   );
@@ -70,12 +68,13 @@ signal stm_comp: stmachine_comp;
 signal saved_i: std_logic_vector(8 downto 0);
 signal enable_write_i: std_logic;
 signal rd_add_i :unsigned(8 downto 0);
-  
+signal flag_no_hit_last_state: boolean;
+
   begin
   
   ----------------------------------
-  -- State machine for hancling the hits and generate the 
-  -- wr/read addresses (signals wr and window2read, respectively). 
+  -- State machine for handling the trigger and to generate the 
+  -- wr/read addresses (signals WR_CS, WR_RS, RD_add and enable_write). 
   
   -- The ptr_window_i counter is running over the number of winwows 
   -- increasing +4 (for a 2-write-address subbuffer).
@@ -90,6 +89,8 @@ signal rd_add_i :unsigned(8 downto 0);
   -- The first 15 states are for raising flags and to get wr from
   -- the pointer_window_i signal 
   
+  
+  -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
  
   p_sm:  process(clk,RST, trigger, full_fifo)
@@ -102,13 +103,14 @@ signal rd_add_i :unsigned(8 downto 0);
       flag_full <= '0';
       window2read <= (others=> 'X');
       wr_shifted <= (others=> '0');
+      flag_no_hit_last_state<= True;
       
   else 
       if rising_edge(clk) then
       case stm is
     
       when hit =>      
-          
+           
           if unsigned(ptr_window_i) /= 0 then
           wr_shifted <= shift_right(unsigned(ptr_window_i), 1  );
           
@@ -117,8 +119,10 @@ signal rd_add_i :unsigned(8 downto 0);
           end if;
           
           if trigger = '1' then
+             
              flag1 <= true;
             window2read <= std_logic_vector(ptr_window_i);
+             
              
           else
              flag1 <= false;
@@ -126,6 +130,10 @@ signal rd_add_i :unsigned(8 downto 0);
           end if;
           
           stm <= hit2;
+          
+               
+          
+          
 
      when hit2 =>      
            if trigger = '1' then
@@ -184,6 +192,10 @@ signal rd_add_i :unsigned(8 downto 0);
 
    
         when hit7 => 
+     --      if flag
+           
+           
+           
            if trigger = '1' then
               flag7 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
@@ -192,6 +204,9 @@ signal rd_add_i :unsigned(8 downto 0);
                 window2read <= (others=>'X') ;         
            end if;
              stm <= hit8;
+             
+             
+             
        
        when hit8 =>      
              
@@ -307,7 +322,8 @@ signal rd_add_i :unsigned(8 downto 0);
                    stm<= hit;
                end if;              
            else  
-           
+             flag_no_hit_last_state<= True;
+
              if flag1 or flag2 or flag3 or flag4 or flag5 or flag6  or flag7 or flag8 or flag9 or flag10 or flag11 or flag12 or flag13  or flag14 or flag15 = true then
                  if full_fifo = '0' then
 
@@ -327,9 +343,10 @@ signal rd_add_i :unsigned(8 downto 0);
                  else   
                      stm<= hit;                 
                  end if;
-             else 
+             else  --- NO HIT 
                  stm<= hit;
                  wr_shifted <= unsigned(wr_shifted-1);
+                 flag_no_hit_last_state<= True;
 
              end if;             
            stm <= hit;
@@ -365,7 +382,8 @@ else
 end process p_counter;
 
 counter <= counter_i;
-wr <= wr_shifted;
+
+--wr <= wr_shifted;
 
 WR_RS <= wr_shifted(1 downto 0);
 
