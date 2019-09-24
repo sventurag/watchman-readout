@@ -60,7 +60,6 @@ WindowsSum = np.zeros((totalWindows*31))
 
 wave_gen().Output1(out=True)
 
- 
 
 for j in repeticiones: # # Number of waveforms for the same delay value
 
