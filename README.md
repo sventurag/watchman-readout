@@ -10,6 +10,8 @@ Vivado, SDK and Python files for the development of the readout for WATCHMAN pro
 #### Hendriks Jonathan
 #### Vasiliy Shebalin
 #### Salvador Ventura
+#### Elise Sueoka
+
 
 ## Folder Structure
 
