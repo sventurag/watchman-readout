@@ -72,28 +72,30 @@ for i in range(0,rango,1):
             plt.axvline(j-1, color='k', linewidth=2)
     std3windowsList.append(std_3windows/repeticiones)
     textstr = 'std3windows={:10.2f}'.format(std_3windows/repeticiones)
-#    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
+    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=fontsizeAxis)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=fontsizeAxis)
-#fig.text(.4, .95, 'Pedestal substracted data, same delay, 10 times', ha='center', fontsize=16)
+fig.text(.4, .95, 'Pedestal substracted data, same delay, 10 times', ha='center', fontsize=16)
 # Option 2
 # TkAgg backend
 #manager = plt.get_current_fig_manager()
 #manager.resize(*manager.window.maxsize())
 
 #Sinewave fit
-"""
+
 def sinefit(x,a,b,c,d):
     return a*np.sin(b*x + c) + d
 
 print(df.shape)
 x = np.arange(220,340,1)
-freqlist = list()
+freqlistf = list()
 
 for i in range(0,repeticiones,1):
     popt, pocv = curve_fit(sinefit, x, df[i][220:340].values, bounds = ((160,0,-np.inf,-np.inf),(np.inf,0.3,np.inf,np.inf)) )
-    freqlist.append(popt[1]/(2*np.pi))
+    freqlistf.append(popt[1]/(2*np.pi))
+print(np.mean(freqlistf))
 
+"""
 print(np.std(freqlist))
 plt.figure()
 rc('font', size = 14)
@@ -102,8 +104,36 @@ plt.hist(freqlist,6)
 plt.xlabel('Frequency [GHz]')
 plt.ylabel('# instances')
 """
+#Sinewave zero crossing
+freqlist = np.zeros(shape = (1,7), dtype = float)
+print(freqlist)
+for j in range(100):
+    freqlist0 = []
+    sindata = df[j][220:340]
+    zero_xing = np.where(np.diff(np.signbit(sindata.values)))[0]
+    for i in range(zero_xing.size-1):
+        freqlist0.append(0.5/(sindata.index[zero_xing[i+1]]-sindata.index[zero_xing[i]]))
+    freqlist0.append(np.mean(freqlist0))
+    if (j == 0):
+        freqlist = freqlist0
+    else:
+        freqlist = np.vstack((freqlist, freqlist0))
+print(np.mean(freqlist[:,6]))
+"""
+plt.figure()
+rc('font', size = 14)
+plt.title('100 trials of a .03GHz (30MHz) pulse')
+plt.hist(freqlist[:,0],bins=10, alpha = 0.5, label='t1')
+plt.hist(freqlist[:,1],bins=10, alpha = 0.5, label='t2')
+plt.hist(freqlist[:,2],bins=10, alpha = 0.5, label='t3')
+plt.hist(freqlist[:,3],bins=10, alpha = 0.5, label='t4')
+plt.hist(freqlist[:,4],bins=10, alpha = 0.5, label='t5')
+plt.hist(freqlist[:,5],bins=10, alpha = 0.5, label='t6')
 
-
+plt.legend()
+plt.xlabel('Frequency [GHz]')
+plt.ylabel('# instances')
+"""
 #Display sine data + fit
 """
 popt, pocv = curve_fit(sinefit, x, df[0][220:340].values, bounds = ((160,0,-np.inf,-np.inf),(np.inf,0.3,np.inf,np.inf)) )
