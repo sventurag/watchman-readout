@@ -71,7 +71,7 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_CMPBIASIN_REG,	0x654); //1620
 
 //	usleep(5000000);
- // /*
+//  /*
     // To operate DLL
 	xil_printf("Turning DLL ON \r\n");
 	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019

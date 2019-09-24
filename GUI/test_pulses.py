@@ -15,47 +15,22 @@ import os
 import targetc as targetc
 import pandas as pd
 
-#fileName = './data/pedestals'
-#pedestal = pd.read_csv(fileName, sep=" ",header=None)[10]
-
 tc = targetc.targetc()
-
-#regID = 78
-
-#regValue = 2340
-#tc.send_command(8, regID, regValue) # nmbrWindows
-#time.sleep(1)
-
-##regID = 84
-##regValue = 2490
-##
-##
-##tc.send_command(8, regID, regValue) #VADJN
-##time.sleep(1)
-### """
-##
-
-#time.sleep(1)
-#regID = 65
-#regValue = 0
-#tc.send_command(8,regID,regValue) # SSTOUTFB
-#time.sleep(1)
-#
-#time.sleep(1)
-#regID = 79
-#regValue = 0
-#tc.send_command(8,regID,regValue) # VTRIMT
-#time.sleep(1)
-#
-
 wave_gen().Output1(out=False)
-nmbrWindows = 4
-tc.send_command(9,10,nmbrWindows) # pedestal
-time.sleep(3)
 
-#regValue= 0 #
-#regID = 93
-#tc.send_command(8,regID,regValue) # delay from rising edge WR update
+rango = list((range(10,11,1)))  # number of steps in delay values for the waveform generator
+
+repeticiones = list( range(0,100,1)   )
+fileToSave = './data/sinewave_sstoutfb_59.txt'
+
+print ('Setting ssToutFB')
+regID = 65
+regValue = 59
+time.sleep(2)
+
+nmbrWindows = 4
+tc.send_command(9,50,nmbrWindows) # pedestal
+time.sleep(5)
 
 time.sleep(1)
 regID = 151
@@ -69,94 +44,38 @@ regValue = nmbrWindows
 tc.send_command(8, regID, regValue) # nmbrWindows
 time.sleep(1)
 
-wave_gen().Output1(out=True)
+
+
 startWindow=0
-totalWindows=512
+totalWindows=12
 
 Windows512 = np.zeros((totalWindows*31))
 
 Windows512_delays= list()
 
-#tc.send_command(7,0,0)I
-#delays = list((range(56,58,1))) #edge
-delays = list((range(10,11,1))) # NEW EDGE
-#delays = list((range(35,65,1))) # 
 
-#de`lays = list((range(18,19,1)))
 WindowsSum = np.zeros((totalWindows*31))
 
-wave_gen().Output1(out=False)
-time.sleep(1)
-tc.send_command(9,10,nmbrWindows) # pedestal
-time.sleep(1)
 
 
-#regID = 84
-#regValue = 2690
-#tc.send_command(8, regID, regValue) #VADJN
-#
-#nmbrWindows = 4
-#tc.send_command(9,10,nmbrWindows) # pedestal
-#time.sleep(3)
-#
+wave_gen().Output1(out=True)
 
-#wave_gen().Output1(out=True)
 
- 
+for j in repeticiones: # # Number of waveforms for the same delay value
 
-for j in range(0,1,1):
     print(j)
-#for j in range(0,10,1):
-#for k in range(0,5,1):
- #   regID = 84
- #   regValue = j
- #   tc.send_command(8, regID, regValue) #VADJN
- #   time.sleep(2)
-    # """
-    
+   
 
-    for i in delays:
+    for i in rango:
     
-     # regID = 65
-     # regValue = j
-     # tc.send_command(8, regID, regValue) # get windows
-     # time.sleep(1)
-         #for k in range(0,10,1):
        wave_gen().trigDelay(i*.000000001)
        time.sleep(0.5)
-       Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,3)       
-      # WindowsSum += Windows512
+       Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,2)       
        Windows512 = [int(i)] + Windows512.tolist()
        Windows512_delays.append(Windows512)
        time.sleep(0.5)
-#time.sleep(1)
-#regID = 78
-#regValue = 1000
-#tc.send_command(8,regID,regValue) # first window
-#time.sleep(1)
-#
-#
-#i=17
-#for j in range(50,63,1):
-#   #for i in delays:
-#   regID = 65
-#   regValue = j
-#   tc.send_command(8, regID, regValue) 
-#   time.sleep(1)
-#   for k in range(0,10,1):
-#       wave_gen().trigDelay(i*.000000001)
-#       time.sleep(1)
-#       Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,2)       
-#      # WindowsSum += Windows512
-#       Windows512 = [int(j)] + Windows512.tolist()
-#       Windows512_delays.append(Windows512)
-#
-#WindowsMean = WindowsSum/(j+1)
-#WindowsAvg = [int(j+1)] + WindowsMean.tolist()
-#Windows512_delays.append(WindowsAvg)
 
-#np.savetxt(os.path.abspath('./data/bb5_qBIAS1300_beforandater_window17_SweepFB_10times2.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
-np.savetxt(os.path.abspath('./data/triggerbyOsc_10_11_1_rep_1_dll_ON_pedestals512_ch3.txt'), np.array(Windows512_delays).T, fmt='%5.3f')
+np.savetxt(os.path.abspath(fileToSave), np.array(Windows512_delays).T, fmt='%5.3f')
 time.sleep(1)
 
 Windows512_delays = Windows512_delays * 0 
