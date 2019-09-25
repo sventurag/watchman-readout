@@ -55,7 +55,7 @@ signal flag_full: std_logic;
 signal window2read: std_logic_vector(8 downto 0);
 signal wr_shifted: unsigned(8 downto 0);
 signal ptr_window_trans_i: std_logic_vector(8 downto 0);
-signal ptr_sub_i: unsigned(8 downto 0);
+--signal ptr_sub_i: unsigned(8 downto 0);
 
 type stmachine is ( wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14, hit15);
 signal stm: stmachine;
@@ -67,8 +67,8 @@ type stmachine_comp is ( A, B, C, D);
 signal stm_comp: stmachine_comp;
 signal saved_i: std_logic_vector(8 downto 0);
 signal enable_write_i: std_logic;
-signal rd_add_i : std_logic_vector(8 downto 0);
-signal flag_no_hit_last_state: boolean;
+--signal rd_add_i : std_logic_vector(8 downto 0);
+--signal flag_no_hit_last_state: boolean;
 
   begin
   
@@ -84,7 +84,8 @@ signal flag_no_hit_last_state: boolean;
   -- is done in the first state, then, the wr_shifted is just increased by 1.
 
   
-  -- Signal ptr_sub_i is the current subbuffer window. 
+  -- Signal ptr_sub_i is the current subbuffer window. Uncomment lines were ptr_sub_i appeared
+  -- to follow the signal 
   
   -- The first 15 states are for raising flags and to get wr from
   -- the pointer_window_i signal 
@@ -98,12 +99,12 @@ signal flag_no_hit_last_state: boolean;
  if RST = '0' then
       stm <= hit;
       ptr_window_i  <= (others=> '0');
-      ptr_sub_i  <= (others=> '0');
+--      ptr_sub_i  <= (others=> '0');
 
       flag_full <= '0';
       window2read <= (others=> '0');
       wr_shifted <= (others=> '0');
-      flag_no_hit_last_state<= True;
+--      flag_no_hit_last_state<= True;
       
   else 
       if rising_edge(clk) then
@@ -112,7 +113,7 @@ signal flag_no_hit_last_state: boolean;
       when hit =>      
            
           if unsigned(ptr_window_i) /= 0 then
-          wr_shifted <= shift_right(unsigned(ptr_window_i), 1  );
+          wr_shifted <= shift_right(unsigned(ptr_window_i), 1 );
           
           else
           wr_shifted <= unsigned(ptr_window_i);
@@ -312,17 +313,17 @@ signal flag_no_hit_last_state: boolean;
                           wr_shifted <= (others => '0');
                      end if;
 
-                   if unsigned(ptr_window_trans_i) /= 0 then
-                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
-                   else
-                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;                
-                   end if;                          
+--                   if unsigned(ptr_window_trans_i) /= 0 then
+--                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
+--                   else
+--                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;                
+--                   end if;                          
                    stm<= hit;
                else 
                    stm<= hit;
                end if;              
            else  
-             flag_no_hit_last_state<= True;
+  --           flag_no_hit_last_state<= True;
 
              if flag1 or flag2 or flag3 or flag4 or flag5 or flag6  or flag7 or flag8 or flag9 or flag10 or flag11 or flag12 or flag13  or flag14 or flag15 = true then
                  if full_fifo = '0' then
@@ -334,11 +335,11 @@ signal flag_no_hit_last_state: boolean;
                                wr_shifted <= (others => '0');
                           end if;
 
-                   if unsigned(ptr_window_trans_i) /= 0 then
-                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
-                   else
-                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;
-                   end if;                  
+--                   if unsigned(ptr_window_trans_i) /= 0 then
+--                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
+--                   else
+--                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;
+--                   end if;                  
                      stm<= hit;
                  else   
                      stm<= hit;                 
@@ -346,7 +347,7 @@ signal flag_no_hit_last_state: boolean;
              else  --- NO HIT 
                  stm<= hit;
                  wr_shifted <= unsigned(wr_shifted-1);
-                 flag_no_hit_last_state<= True;
+  --               flag_no_hit_last_state<= True;
 
              end if;             
            stm <= hit;
@@ -435,7 +436,7 @@ if RST = '0' then
       stm_comp <= A;
       saved_i <= (others=> '0');
       enable_write_i <= '0';
-      rd_add_i <= (OTHERS =>'0');
+  --    rd_add_i <= (OTHERS =>'0');
 
 
 else
@@ -444,7 +445,7 @@ else
         if window2read /= saved_i then
             enable_write_i <= '1';
             saved_i <= window2read;
-            rd_add_i <=  window2read;
+          --  rd_add_i <=  window2read;
         else
             enable_write_i <= '0';
         end if;
