@@ -83,7 +83,7 @@ begin
 
       trigger<= '0';
       
-      wait for 50 * clock_period;
+      wait for 10 * clock_period;
            
  
       trigger <= '1';
