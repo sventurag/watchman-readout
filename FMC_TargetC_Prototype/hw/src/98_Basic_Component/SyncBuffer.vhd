@@ -8,17 +8,17 @@ entity SyncBuffer is
 	);
 	port (
 	      -- Clock and reset
-		Clk:	in	std_logic;
+		Clk:	in	std_logic
 		nrst:	in	std_logic;
       -- Incoming buffer, asynchronous
 		asyncBuffer:	in	std_logic_vector(NBITS-1 downto 0);
       -- Outgoing buffer, synced to clk
-		syncBuffer:     out	std_logic_vector(NBITS-1 downto 0)
+		syncBuffer:     out	std_logic_vector(NBITS-1 downto 0);
 --		ClkA:	in	std_logic;
 	);
 end SyncBUffer;
 
-architecture rtl of SyncBuffer is
+architecture rtl of clkcrossing_buf is
 
 	  component SyncBit is 
            generic (
@@ -71,9 +71,9 @@ begin
               clk  => clk,
               rst   => nrst,
               -- Incoming buffer bit, asynchronous
-              asyncBit => asyncBuffer(I),
+              asyncBit => asyncBuffer[I],
               -- Outgoing buffer bit, synced to clk
-              syncBit   => syncBuffer(I)
+              syncBit   => syncBuffer[I]
            ); 
 
 	end generate;
