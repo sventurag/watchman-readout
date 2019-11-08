@@ -45,14 +45,14 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 }
 
 # Set IP repository paths
-import_ip{
- ${ip_repository}/axi_cmd_fifo_11W_5D.xcix\
- ${ip_repository}/axi_time_fifo_64W_32D.xcix\
- ${ip_repository}/axi_trig_afifo_12W_32D\
- ${ip_repository}/axi_wdo_addr_fifo.xcix\
- ${ip_repository}/dig_sto_fifo_9W_16D.xcix\
- ${ip_repository}/trig0_fifo_10W_16D_1.xcix
-}
+#import_ip{
+# ${ip_repository}/axi_cmd_fifo_11W_5D.xcix\
+# ${ip_repository}/axi_time_fifo_64W_32D.xcix\
+# ${ip_repository}/axi_trig_afifo_12W_32D\
+# ${ip_repository}/axi_wdo_addr_fifo.xcix\
+# ${ip_repository}/dig_sto_fifo_9W_16D.xcix\
+# ${ip_repository}/trig0_fifo_10W_16D_1.xcix
+#}
  
 set obj [get_filesets sources_1]
 set files [list \
