@@ -1,10 +1,10 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Tue Oct 22 05:14:32 2019
+-- Date        : Tue Oct 22 05:14:31 2019
 -- Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_auto_pc_1/base_zynq_auto_pc_1_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top base_zynq_auto_pc_1 -prefix
+--               base_zynq_auto_pc_1_ base_zynq_auto_pc_1_stub.vhdl
 -- Design      : base_zynq_auto_pc_1
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z010clg400-1
