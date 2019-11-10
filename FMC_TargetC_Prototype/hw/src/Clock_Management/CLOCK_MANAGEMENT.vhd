@@ -235,11 +235,11 @@ begin
          O => clkFbIn
    );
 
-	BUFG_OUTCLK100 : BUFG
-	port map (
-    	I => Clk100MHzRaw,
-    	O => Clk100MHz_bufg
-	);
+--	BUFG_OUTCLK100 : BUFG
+--	port map (
+--    	I => Clk100MHzRaw,
+--    	O => Clk100MHz_bufg
+--	);
 
 	BUFG_OUTCLK150 : BUFG
 	port map (
@@ -294,7 +294,7 @@ begin
 	CLK125MHz_intl <= '0' when locked_intl = '0' else CLK125MHz_bufg;
 	
 
---	SSTIN_intl <= '0' when locked_intl = '0' else SSTIN_bufg;
+	SSTIN_intl <= '0' when locked_intl = '0' else SSTIN_bufg;
 
 
 --	RDAD_CLK_intl <= '0' when locked_intl = '0' else Clk100MHzRaw;
