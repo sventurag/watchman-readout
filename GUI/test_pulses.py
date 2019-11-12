@@ -82,5 +82,5 @@ Windows512_delays = Windows512_delays * 0
     
 
 #wave_gen().Output1(out=False)
-
+print("end")
 
