@@ -18,6 +18,9 @@ entity WindowStoreV4 is
 	CPUBus:			in 	std_logic_vector(10 downto 0);
 	CPUTime:		in	T_timestamp;
 	TriggerInfo:	in 	std_logic_vector(11 downto 0);
+	
+    -- Control Signals
+    CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
 
 	-- Overwatch of Transmission
 	NbrOfPackets:	out	std_logic_vector(7 downto 0);
@@ -129,6 +132,7 @@ END COMPONENT;
 
 	signal Full_out_intl    : std_logic;
 	signal WriteEn_intl  : std_logic;
+	signal WriteEn  : std_logic;
 
 	signal Counter:		std_logic_vector(63 downto 0);
 
@@ -137,6 +141,8 @@ END COMPONENT;
 	signal Trig:	std_logic_vector(11 downto 0);
 
 	signal Wdo1:	std_logic_vector(8 downto 0);
+    signal WdoNumber:	std_logic_vector(8 downto 0);
+
 	signal CMD_s:	std_logic_vector(10 downto 0);
     signal CMD_s1:	std_logic_vector(10 downto 0);
 
@@ -272,11 +278,37 @@ begin
 	end process;
 	
 	
+
 	
+	
+	
+multiplex:	process(ClockBus.CLK125MHz)
+        begin
+            if nrst = '0' then
+                --RDAD_WriteEn_intl <= '0';
+                --AXI_WriteEn_intl <= '0';
+                NbrOfPackets_intl <= (others => '0');
+                trig <= (others => '0');
+                Wdo1 <= (others => '0');
+                counter <= (others => '0');
+                cmd_s1 <= (others => '0');
+            else
+                if rising_edge(ClockBus.Clk125MHz) then
+                    if CtrlBus_IxSL.CPUMode = '0' then
+                        WriteEn <= WriteEn_intl;
+                        WdoNumber <= Wdo1; 
+                    else
+                         WriteEn <= WriteEn_RB;
+                         WdoNumber <= WdoNumber_RB; 
+	                end if;
+	            end if;    
+	        end if;
+	end process;
+	
+		
     Cmd_s<= (others => '0');
-	Trig <= (others => '0');
-	counter <= (others => '0');
-	
+    Trig <= (others => '0');
+    counter <= (others => '0');
 -- Window address to RDAD_ADD module
 
     RDAD_STO_AFIFO : axi_wdo_addr_fifo
@@ -289,7 +321,7 @@ begin
         rd_clk => ClockBus.RDAD_CLK,
 
         
-        din => Wdo1,
+        din => WdoNumber,
         full => Full_out_intl,
         wr_en => WriteEn_intl,
         wr_clk => ClockBus.CLK125MHz
