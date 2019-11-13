@@ -184,7 +184,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 	int pmt;
 	data_list* tmp_ptr;
 	uint32_t info, mask;
-	static uint64_t count;
+	static uint64_t count=0;
 
 	/* Read pending interrupts */
 	IrqStatus = XAxiDma_IntrGetIrq(AxiDmaInst, XAXIDMA_DEVICE_TO_DMA);
@@ -217,32 +217,40 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		ControlRegisterWrite(PSBUSY_MASK,ENABLE);
 		if(stream_flag || (!empty_flag)){
 			// Invalid the cache to update the value change in memory by the PL
-			Xil_DCacheInvalidateRange((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 			count++;
-			for(pmt=0; pmt<4; pmt++){
-				info = last_element->data.data_struct.info;
-				mask = 0x1 << (LAST_SHIFT+pmt);
-				printf("avant last for pmt = %d | LAST_SHIFT+pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,LAST_SHIFT+pmt,count,info,mask);
-				if((info & mask) != 0){
-					flag_axidma_rx[pmt]++;
-					printf("last for pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,count,info,mask);
-				}
-			}
-
-			tmp_ptr = last_element;
-			last_element = (data_list *)malloc(sizeof(data_list));
-			if(!last_element){
-				printf("malloc for last_element failed in function, %s! count = %d\r\n", __func__, count);
-			}
-			/* New empty element initialisation */
-			last_element->next = NULL;
-			last_element->previous = tmp_ptr;
-			for(int i=0; i< 6; i++) last_element->data.data_array[i] = 0;
-			tmp_ptr->next = last_element;
-			empty_flag = false;
-			XAxiDma_SimpleTransfer_hm((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
+//			for(pmt=0; pmt<4; pmt++){
+//				info = last_element->data.data_struct.info;
+//				mask = 0x1 << (LAST_SHIFT+pmt);
+//				printf("avant last for pmt = %d | LAST_SHIFT+pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,LAST_SHIFT+pmt,count,info,mask);
+//				if((info & mask) != 0){
+//					flag_axidma_rx[pmt]++;
+//					printf("last for pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,count,info,mask);
+//				}
+//			}
+         //   usleep(10);
+			//tmp_ptr = last_element;
+            data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
+            	if(!tmp_ptr){
+            		printf("malloc for tmp_ptr failed in function, %s!\r\n", __func__);
+            		return XST_FAILURE;
+            	}
+            	tmp_ptr->next = NULL;
+            	tmp_ptr->previous = NULL;
+//			for(int i=0; i< 6; i++) last_element->data.data_array[i] = 0;
+//			tmp_ptr->next = last_element;
+			//empty_flag = false;
+			XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+
+			Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+
+			xil_printf("transferencia dma done, %d \r\n",count);
+
+
+
+
+
 		}
 		else{
 			flag_axidma_rx_done = true;
