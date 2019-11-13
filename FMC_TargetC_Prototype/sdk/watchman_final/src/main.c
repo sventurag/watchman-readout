@@ -377,12 +377,14 @@ int main()
 					ControlRegisterWrite(SWRESET_MASK,ENABLE);
 					state_main = IDLE;
 				}
-				for(pmt=0; pmt<4; pmt++){
-					if(flag_axidma_rx[pmt] > 0){
-						dma_received_data(pmt);
-						flag_axidma_rx[pmt]--;
-					}
-				}
+				ControlRegisterWrite(SMODE_MASK ,ENABLE);
+//				xil_printf("triggerModei\r\n");
+//				for(pmt=0; pmt<4; pmt++){
+//					if(flag_axidma_rx[pmt] > 0){
+//						dma_received_data(pmt);
+//						flag_axidma_rx[pmt]--;
+//					}
+//				}
 				break;
 			case GET_TRANSFER_FCT:
 				if(send_data_transfer_fct() == XST_SUCCESS) printf("Recover data pass!\r\n");
