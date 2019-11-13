@@ -30,6 +30,8 @@ entity WindowStoreV4 is
     RDAD_ReadEn  :in  std_logic;
     RDAD_DataOut : out std_logic_vector(8 downto 0);
     RDAD_Empty	: out std_logic;
+    RDAD_Data_trig : in std_logic_vector(8 downto 0);
+    RDAD_WriteEn_trig: in std_logic;
 
 	-- FIFO for FiFoManager
 	AXI_ReadEn:	in	std_logic;
@@ -160,7 +162,6 @@ END COMPONENT;
 
 begin
 
-	NbrOfPackets <= NbrOfPackets_intl;
 
 	process(ClockBus.CLK125MHz)
 	begin
@@ -282,29 +283,25 @@ begin
 	
 	
 	
-multiplex:	process(ClockBus.CLK125MHz)
+multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
         begin
             if nrst = '0' then
-                --RDAD_WriteEn_intl <= '0';
-                --AXI_WriteEn_intl <= '0';
-                NbrOfPackets_intl <= (others => '0');
-                trig <= (others => '0');
-                Wdo1 <= (others => '0');
-                counter <= (others => '0');
-                cmd_s1 <= (others => '0');
+                WriteEn <= '0';
+                WdoNumber <= (others=>'0'); 
             else
                 if rising_edge(ClockBus.Clk125MHz) then
                     if CtrlBus_IxSL.CPUMode = '0' then
                         WriteEn <= WriteEn_intl;
                         WdoNumber <= Wdo1; 
                     else
-                         WriteEn <= WriteEn_RB;
-                         WdoNumber <= WdoNumber_RB; 
+                         WriteEn <=RDAD_WriteEn_trig ;
+                         WdoNumber <= RDAD_Data_trig; 
 	                end if;
 	            end if;    
 	        end if;
 	end process;
-	
+
+
 		
     Cmd_s<= (others => '0');
     Trig <= (others => '0');
@@ -382,12 +379,13 @@ multiplex:	process(ClockBus.CLK125MHz)
         rd_clk => ClockBus.AXI_CLK,
 
         
-        din => Wdo1,
+        din => WdoNumber,
         full => axi_full_s(2),
         wr_en => WriteEn_intl,
         wr_clk => ClockBus.CLK125MHz
 
       );
+    
     
   
 
@@ -412,5 +410,6 @@ multiplex:	process(ClockBus.CLK125MHz)
 
 
 	AXI_empty <= '0' when axi_empty_s = "0000" else '1';
+	NbrOfPackets <= NbrOfPackets_intl;
 
 end Behavioral;
