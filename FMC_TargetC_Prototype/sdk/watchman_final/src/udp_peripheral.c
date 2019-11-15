@@ -257,6 +257,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 					}
 					else{
 						stream_flag = true;
+
 						xil_printf("Command start_stream received\r\n");
 						count_ttcps_timer = 0;
 						count_scu_timer = 0;

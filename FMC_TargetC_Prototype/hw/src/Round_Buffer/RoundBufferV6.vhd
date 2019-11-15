@@ -74,6 +74,8 @@ component DummyTrigger is
   clk :            in  std_logic;
   RST :             in  std_logic;
   start_reg:	    in 	std_logic; 
+  Timestamp:        in T_timestamp;
+
   trigger :         out std_logic
 
 );
@@ -377,7 +379,9 @@ inst_DummyTriger: DummyTrigger
 
   clk =>            ClockBus.Clk125MHz ,
   RST =>            nrst,
-  start_reg=>     CtrlBus_IxSL.WindowStorage 	, 
+  start_reg=>     CtrlBus_IxSL.WindowStorage,
+  Timestamp=>        Timestamp,
+ 
   trigger =>       dummytrigger_s   
 
 );

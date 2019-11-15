@@ -128,10 +128,17 @@ int s;
 
 int main()
 {
+    int i,j;
+	uint16_t data_tmp;
 
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
-	int pmt;
+	//int pmt;
+    data_list* tmp_ptr_main  = (data_list *)malloc(sizeof(data_list));
+           	if(!tmp_ptr_main){
+           		printf("malloc for tmp_ptr failed in function, %s!\r\n", __func__);
+           		return XST_FAILURE;
+           	}
 	dma_stm_en state_main = IDLE;
 
 	/* the mac address of the board. this should be unique per board */
@@ -344,9 +351,9 @@ int main()
 		}
 		switch(state_main){
 			case IDLE:
-				if(stream_flag && (!get_transfer_fct_flag) && (!get_windows_flag)){
-					XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
-					ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger
+				if(stream_flag){
+					xil_printf("From IDLE to STREAM");
+
 					state_main = STREAM;
 				}
 				if(get_transfer_fct_flag && (!stream_flag) && empty_flag){
@@ -371,13 +378,51 @@ int main()
 					}
 				break;
 			case STREAM:
-				if((!stream_flag) && empty_flag){
-					ControlRegisterWrite(SWRESET_MASK,DISABLE);
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+				if((!stream_flag)){
+					usleep(100);
+		     		ControlRegisterWrite(SWRESET_MASK,DISABLE);
+
+				//	ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
+			//		ControlRegisterWrite(WINDOW_MASK,DISABLE);
+			//		ControlRegisterWrite(SMODE_MASK ,DISABLE);
 					ControlRegisterWrite(SWRESET_MASK,ENABLE);
+					usleep(100);
 					state_main = IDLE;
 				}
-				ControlRegisterWrite(SMODE_MASK ,ENABLE);
+				ControlRegisterWrite(SMODE_MASK ,ENABLE); // mode for selecting the interrupt, 1 for dma
+				usleep(100);
+
+				ControlRegisterWrite(SS_TPG_MASK ,ENABLE); // 0 for test pattern mode, 1 for sample mode (normal mode)
+				usleep(100);
+
+				ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
+				usleep(100);
+
+				ControlRegisterWrite(WINDOW_MASK,ENABLE); // windowStorage register for  trigger
+				usleep(100);
+				XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
+                xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
+                for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Pedestal subtraction */
+						data_tmp = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
+                        xil_printf(",%d",data_tmp);
+					}
+
+					//printf("\r\n");
+				}
+
+                //
+				Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
+				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+
+				usleep(100000);
+
+
+				ControlRegisterWrite(WINDOW_MASK,DISABLE);
+				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+
+				free(tmp_ptr_main);
 //				xil_printf("triggerModei\r\n");
 //				for(pmt=0; pmt<4; pmt++){
 //					if(flag_axidma_rx[pmt] > 0){
