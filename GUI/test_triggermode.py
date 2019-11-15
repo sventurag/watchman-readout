@@ -17,4 +17,10 @@ import pandas as pd
 
 tc = targetc.targetc()
 
+#for i in range(10):
+#    tc.send_command(3,0,0) # start TriggerMode
+#    time.sleep(3)
+#    print(i)
 tc.send_command(3,0,0) # start TriggerMode
+
+print("the end")

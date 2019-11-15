@@ -181,10 +181,17 @@ void timer_ttcps_callback(XTtcPs * TimerInstance)
 ****************************************************************************/
 void axidma_rx_callback(XAxiDma* AxiDmaInst){
 	uint32_t IrqStatus;
-	int pmt;
-	data_list* tmp_ptr;
-	uint32_t info, mask;
-	static uint64_t count=0;
+	//int pmt;
+	//uint32_t info, mask;
+	//static uint64_t count=0;
+//    data_list* tmp_ptr_cb  = (data_list *)malloc(sizeof(data_list));
+//	if(!tmp_ptr_cb){
+//		printf("malloc for tmp_ptr_cb failed in function, %s!\r\n", __func__);
+//	//	return XST_FAILURE;
+//	}
+//	tmp_ptr_cb->next = NULL;
+//	tmp_ptr_cb->previous = NULL;
+
 
 	/* Read pending interrupts */
 	IrqStatus = XAxiDma_IntrGetIrq(AxiDmaInst, XAXIDMA_DEVICE_TO_DMA);
@@ -218,7 +225,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		if(stream_flag || (!empty_flag)){
 			// Invalid the cache to update the value change in memory by the PL
 
-			count++;
+	//		count++;
 //			for(pmt=0; pmt<4; pmt++){
 //				info = last_element->data.data_struct.info;
 //				mask = 0x1 << (LAST_SHIFT+pmt);
@@ -230,24 +237,19 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 //			}
          //   usleep(10);
 			//tmp_ptr = last_element;
-            data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
-            	if(!tmp_ptr){
-            		printf("malloc for tmp_ptr failed in function, %s!\r\n", __func__);
-            		return XST_FAILURE;
-            	}
-            	tmp_ptr->next = NULL;
-            	tmp_ptr->previous = NULL;
+
 //			for(int i=0; i< 6; i++) last_element->data.data_array[i] = 0;
 //			tmp_ptr->next = last_element;
 			//empty_flag = false;
-			XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
-			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+//			XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr_cb->data.data_array, SIZE_DATA_ARRAY_BYT);
+//			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+//
+//			Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_cb->data.data_array, SIZE_DATA_ARRAY_BYT);
 
-			Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
-
-			xil_printf("transferencia dma done, %d \r\n",count);
+			xil_printf("transferencia dma done\r\n");
 
 
+		//	free(tmp_ptr_cb);
 
 
 

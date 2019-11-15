@@ -29,7 +29,7 @@ fileToSave = './data/sinewave_sstoutfb_59.txt'
 #time.sleep(2)
 
 nmbrWindows = 4
-tc.send_command(9,50,nmbrWindows) # pedestal
+#tc.send_command(9,50,nmbrWindows) # pedestal
 time.sleep(3)
 
 time.sleep(1)

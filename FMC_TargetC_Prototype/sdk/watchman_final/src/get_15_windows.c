@@ -136,6 +136,7 @@ int get_15_windows_fct(void){
 			return XST_FAILURE;
 		}
 		else flag_axidma_rx_done = false;
+  //      xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr-> data.data_struct.wdo_id );
 
 		/* Test the returned values */
 		if(tmp_ptr->data.data_struct.wdo_id != window){
@@ -278,6 +279,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 				return XST_FAILURE;
 			}
 			else flag_axidma_rx_done = false;
+     //       xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr-> data.data_struct.wdo_id );
 
 			/* Test the returned values */
 			if(tmp_ptr->data.data_struct.wdo_id != window){
