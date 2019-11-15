@@ -320,7 +320,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
         
         din => WdoNumber,
         full => Full_out_intl,
-        wr_en => WriteEn_intl,
+        wr_en => WriteEn,
         wr_clk => ClockBus.CLK125MHz
 
       );
@@ -340,7 +340,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
      
      din => Cmd_s,
      full => axi_full_s(0),
-     wr_en => WriteEn_intl,
+     wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz
      );
      
@@ -360,7 +360,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
      
      din => Counter,
      full => axi_full_s(1),
-     wr_en => WriteEn_intl,
+     wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz
      );
      
@@ -381,7 +381,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
         
         din => WdoNumber,
         full => axi_full_s(2),
-        wr_en => WriteEn_intl,
+        wr_en => WriteEn,
         wr_clk => ClockBus.CLK125MHz
 
       );
@@ -402,7 +402,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
      
      din => Trig,
      full => axi_full_s(3),
-     wr_en => WriteEn_intl,
+     wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz
      );
      
