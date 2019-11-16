@@ -170,6 +170,7 @@ end component circularBuffer;
 		CPUBus:			in 	std_logic_vector(10 downto 0);
 		CPUTime:		in	T_timestamp;
 		TriggerInfo:	in 	std_logic_vector(11 downto 0);
+		trigger:        in  std_logic_vector(3 downto 0);
 		-- Control Signals
         CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
 
@@ -278,7 +279,8 @@ end component CPU_CONTROLLERV3;
               syncBit     : out std_logic
            ); 
         end component;
-
+        
+     
 	-- -------------------------------------------------------------
 	-- SIGNALS
 	-- -------------------------------------------------------------
@@ -337,6 +339,7 @@ end component CPU_CONTROLLERV3;
     signal WR_CS_S_trig:        std_logic_vector(5 downto 0);
     signal WR_RS_S_user:		std_logic_vector(1 downto 0);
     signal WR_CS_S_user:        std_logic_vector(5 downto 0);
+
 
 --    signal windowStorage_s : std_logic;
     
@@ -493,6 +496,8 @@ SyncBitNrst: SyncBit
 		CPUBus		=> Bus_intl,
 		CPUTime		=> Time_intl,
 		TriggerInfo	=> TrigInfo_intl,
+		trigger=>       trigger,
+
 		  -- Control Signals
         CtrlBus_IxSL => CtrlBus_IxSL ,
 
@@ -556,6 +561,7 @@ multiplex_WR:	process(ClockBus.CLK125MHz, nrst)
 	            end if;    
 	        end if;
 	end process;
+
 
 
 

@@ -21,6 +21,13 @@ tc = targetc.targetc()
 #    tc.send_command(3,0,0) # start TriggerMode
 #    time.sleep(3)
 #    print(i)
+#wave_gen().Output1(out=True)
+
 tc.send_command(3,0,0) # start TriggerMode
 
 print("the end")
+
+
+
+
+

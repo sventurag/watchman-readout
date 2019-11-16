@@ -90,6 +90,9 @@ extern int pedestalAvg;
 
 /** Value from the GUI for the number of windows for pedestal calculation   */
 extern int nmbrWindowsPed;
+/** Value from the GUI for voltage value for comparators and vped  */
+extern int VPED_ANALOG;
+
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -203,8 +206,9 @@ int main()
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
-		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
+	//if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,1.0) != XST_SUCCESS){
+	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
 		return -1;
 	}
 	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_0,THRESHOLD_CMP) != XST_SUCCESS){

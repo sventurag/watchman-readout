@@ -6,6 +6,7 @@
  */
 
 #include "udp_peripheral.h"
+#include "iic_DAC_LTC2657.h"
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -77,6 +78,10 @@ extern int pedestalAvg;
 
 /** Value from the GUI for the number of windows for pedestal calculation   */
 extern int nmbrWindowsPed;
+
+/** Value from the GUI for voltage value for comparators and vped  */
+extern int VPED_ANALOG;
+
 
 /****************************************************************************/
 /**
@@ -191,6 +196,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 	int regVal_one_reg;
 	int regID_one_reg;
 	//int pedestalNmbrWindows;
+	int temp;
 
 	while((start < (length-1)) && (flag_start == false)){
 		if((payload[start] == 0x55) && (payload[start+1] == 0xAA)) flag_start = true;
@@ -342,6 +348,18 @@ int command_parser(struct pbuf *p, char* return_buf){
 						xil_printf("delay_UpdateWR = %d\r\n", delay_UpdateWR);
 
 								   			         }
+				    else if((regID_one_reg == DAC_VOLTAGE))
+				      {
+				          temp = (float) regVal_one_reg;
+				       VPED_ANALOG = temp/100;
+
+				   if(DAC_LTC2657_SetChannelVoltage(DAC_VPED, VPED_ANALOG) != XST_SUCCESS){
+					   xil_printf("DAC: setting vped voltage failed!\r\n");
+					   return XST_FAILURE;
+				   }
+				   	   printf("VPED_ANALOG = %f\n", VPED_ANALOG);
+				   }
+
 				    else
 				    {
 				        WriteRegister(regID_one_reg, regVal_one_reg);
