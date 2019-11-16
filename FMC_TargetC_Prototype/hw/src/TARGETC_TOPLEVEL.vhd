@@ -871,7 +871,7 @@ end process;
 --end process;
 
 	
-	BB5 <= ClockBus_intl.SSTIN;
+	BB5 <= CtrlBusOut_intl.WindowStorage;
    -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 	BB4 <= CtrlBusIn_intl.SSvalid;
 	BB3 <= MONTIMING_inverted;
