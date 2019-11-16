@@ -83,13 +83,6 @@ class targetc():
        payload.append(comando)  # then then command ID
        payload.append(random.randrange(0,255)) # then a random number to put an "id" on every frame
     
-    #   if(cmd[comando] == 'write_all_reg'): # if the command is write register, add the register's value
-    #       for reg in regs:
-    #           numb = int(reg.get())
-    #           payload.append(int(numb / 256))
-    #           payload.append(int(numb % 256))
-    #         #  print(int(numb / 256))
-    #         #  print(int(numb % 256))
        if(self.cmd[comando] == 'restartAll'): # restart main()
            dummy = param1 
        if(self.cmd[comando] == 'triggerMode'): # restart main()

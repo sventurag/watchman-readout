@@ -18,6 +18,8 @@ entity WindowStoreV4 is
 	CPUBus:			in 	std_logic_vector(10 downto 0);
 	CPUTime:		in	T_timestamp;
 	TriggerInfo:	in 	std_logic_vector(11 downto 0);
+	trigger:        in  std_logic_vector(3 downto 0);
+
 	
     -- Control Signals
     CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
@@ -117,6 +119,20 @@ COMPONENT axi_trig_afifo_12W_32D
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
+        
+COMPONENT trig_fifo_3W_16D
+  PORT (
+    wr_clk : IN STD_LOGIC;
+    rd_clk : IN STD_LOGIC;
+    din : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    wr_en : IN STD_LOGIC;
+    rd_en : IN STD_LOGIC;
+    dout : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+    full : OUT STD_LOGIC;
+    empty : OUT STD_LOGIC
+  );
+END COMPONENT;
+
 
 	type T_storestate is(
 		IDLE,
@@ -152,6 +168,10 @@ END COMPONENT;
 	signal axi_empty_s:	std_logic_vector(3 downto 0);
 
 	signal NbrOfPackets_intl : std_logic_vector(7 downto 0);
+	   signal trigger125MHz_s:     std_logic_vector(3 downto 0);
+     signal trigger_empty_s:        std_logic;
+    signal trigger_full_s:        std_logic;
+  
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -411,5 +431,26 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
 
 	AXI_empty <= '0' when axi_empty_s = "0000" else '1';
 	NbrOfPackets <= NbrOfPackets_intl;
+	
+	
+	
+	
+        trigger_100to125MHz : trig_fifo_3W_16D
+        port map (
+    
+         dout => trigger125MHz_s,
+         empty => trigger_empty_s,
+         rd_en => AXI_ReadEn,
+         rd_clk => ClockBus.CLK125MHz,
+    
+         
+         din => trigger,
+         full => trigger_full_s,
+         wr_en => CtrlBus_IxSL.WindowStorage,
+         wr_clk => ClockBus.AXI_CLK
+         );
+         
 
+	
+	
 end Behavioral;
