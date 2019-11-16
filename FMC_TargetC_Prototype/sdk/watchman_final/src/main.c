@@ -22,7 +22,7 @@
 #include "get_15_windows.h"
 #include "get_transfer_fct.h"
 #include "transfer_function.h"
-
+#include "xtime_l.h"
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Pointer on the network interface */
@@ -131,6 +131,7 @@ int s;
 
 int main()
 {
+	XTime tStart, tEnd;
     int i,j;
 	uint16_t data_tmp;
 
@@ -401,22 +402,33 @@ int main()
 
 				ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
 				usleep(100);
-
+            	XTime_GetTime(&tStart);
 				ControlRegisterWrite(WINDOW_MASK,ENABLE); // windowStorage register for  trigger
-				usleep(100);
 				XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
-                xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
-                for(i=0; i<16; i++){
-					for(j=0; j<32; j++){
-						/* Pedestal subtraction */
-						data_tmp = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
-                        xil_printf(",%d",data_tmp);
-					}
 
-					//printf("\r\n");
-				}
 
-                //
+            	XTime_GetTime(&tEnd);
+
+                usleep(10);
+             	 printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
+
+				xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
+
+                usleep(100);
+
+            //	xil_printf("XAxiDma_SimpleTransfer_hm took %llu clock cycles.\r\n", (tEnd - tStart) );
+            	printf( "XAxiDma_SimpleTransfer_hm took %5.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
+//                for(i=0; i<16; i++){
+//					for(j=0; j<32; j++){
+//						/* Pedestal subtraction */
+//						data_tmp = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
+//                        xil_printf(",%d",data_tmp);
+//					}
+//
+//					//printf("\r\n");
+//				}
+
+
 				Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
 				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
@@ -494,6 +506,7 @@ int main()
 
 	return 0;
 }
+
 
 
 void end_main(clean_state_en state, char* error_txt){
