@@ -25,6 +25,7 @@ tc = targetc.targetc()
 
 tc.send_command(3,0,0) # start TriggerMode
 
+
 print("the end")
 
 
