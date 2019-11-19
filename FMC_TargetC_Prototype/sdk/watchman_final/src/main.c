@@ -64,7 +64,8 @@ extern volatile bool pedestal_flag;
 extern volatile bool empty_flag;
 /** @brief Pointer on the first element of the list used in trigger mode */
 extern data_list* first_element;
-
+/** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
+extern volatile bool flag_axidma_rx_done;
 //******** To test the error detection********************/
 /** @brief Flag raised when the user want to test the autonomous side of the system with a watchdog */
 extern volatile bool simul_err_watchdog_flag;
@@ -90,8 +91,8 @@ extern int pedestalAvg;
 
 /** Value from the GUI for the number of windows for pedestal calculation   */
 extern int nmbrWindowsPed;
-/** Value from the GUI for voltage value for comparators and vped  */
-extern int VPED_ANALOG;
+///** Value from the GUI for voltage value for comparators and vped  */
+//extern int VPED_ANALOG;
 
 
 /*********************** Global variables ****************/
@@ -133,7 +134,7 @@ int main()
 {
 	XTime tStart, tEnd;
     int i,j;
-	uint16_t data_tmp;
+	uint16_t data_tmp, data_tmp2;
 
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
@@ -207,8 +208,7 @@ int main()
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
 		return -1;
 	}
-	//if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
-	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,1.0) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
 	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
 		return -1;
 	}
@@ -357,7 +357,7 @@ int main()
 		switch(state_main){
 			case IDLE:
 				if(stream_flag){
-					xil_printf("From IDLE to STREAM");
+				//	xil_printf("From IDLE to STREAM");
 
 					state_main = STREAM;
 				}
@@ -386,10 +386,6 @@ int main()
 				if((!stream_flag)){
 					usleep(100);
 		     		ControlRegisterWrite(SWRESET_MASK,DISABLE);
-
-				//	ControlRegisterWrite(CPUMODE_MASK,DISABLE); // mode with NBRWINDOS and FSTWINDOW
-			//		ControlRegisterWrite(WINDOW_MASK,DISABLE);
-			//		ControlRegisterWrite(SMODE_MASK ,DISABLE);
 					ControlRegisterWrite(SWRESET_MASK,ENABLE);
 					usleep(100);
 					state_main = IDLE;
@@ -403,34 +399,28 @@ int main()
 				ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
 				usleep(100);
             	XTime_GetTime(&tStart);
-				ControlRegisterWrite(WINDOW_MASK,ENABLE); // windowStorage register for  trigger
+				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting dummy  trigger
 				XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
-
-
+				Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
+				flag_axidma_rx_done = false;
+				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
             	XTime_GetTime(&tEnd);
-
-                usleep(10);
-             	 printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
-
-				xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
+                usleep(1);
+             	xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
+             	printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
+            	printf( "XAxiDma_SimpleTransfer_hm took %.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
 
                 usleep(100);
 
-            //	xil_printf("XAxiDma_SimpleTransfer_hm took %llu clock cycles.\r\n", (tEnd - tStart) );
-            	printf( "XAxiDma_SimpleTransfer_hm took %5.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
-//                for(i=0; i<16; i++){
-//					for(j=0; j<32; j++){
-//						/* Pedestal subtraction */
-//						data_tmp = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
-//                        xil_printf(",%d",data_tmp);
-//					}
-//
-//					//printf("\r\n");
-//				}
+                for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Pedestal subtraction */
+						data_tmp = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
+                        xil_printf(",%d",data_tmp);
+					}
 
-
-				Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
-				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+					//printf("\r\n");
+				}
 
 				usleep(100000);
 
@@ -438,7 +428,32 @@ int main()
 				ControlRegisterWrite(WINDOW_MASK,DISABLE);
 				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
-				free(tmp_ptr_main);
+//				free(tmp_ptr_main);
+//				tmp_ptr_main= NULL;
+
+				usleep(100);
+                xil_printf("after freeing ptr\r\n");
+
+		        for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Pedestal subtraction */
+						tmp_ptr_main->data.data_struct.data[i][j]=0;
+					}
+		        }
+
+//                tmp_ptr_main->data.data_struct.wdo_id =0;
+//             	xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
+//
+//
+//		        for(i=0; i<16; i++){
+//					for(j=0; j<32; j++){
+//						/* Pedestal subtraction */
+//
+//						data_tmp2 = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
+//						xil_printf(",%d",data_tmp2);
+//					}
+//		        }
+
 //				xil_printf("triggerModei\r\n");
 //				for(pmt=0; pmt<4; pmt++){
 //					if(flag_axidma_rx[pmt] > 0){
@@ -446,6 +461,12 @@ int main()
 //						flag_axidma_rx[pmt]--;
 //					}
 //				}
+				stream_flag= FALSE;
+				usleep(100);
+				printf("leaving trigger mode\r\n");
+				state_main = IDLE;
+
+
 				break;
 			case GET_TRANSFER_FCT:
 				if(send_data_transfer_fct() == XST_SUCCESS) printf("Recover data pass!\r\n");

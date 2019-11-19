@@ -68,13 +68,15 @@ int get_15_windows_fct(void){
 
 	/* First window */
 	window_start = fstWindowValue;
-
+    usleep(10);
+    printf("fstWindowValue %d \r\n", fstWindowValue);
 	/* Number of windows */
 	//nmbrWindows = 16;
 
 	/* Give the element's address to the DMA */
-	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
-
+	 XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+    usleep(10);
 	/* Initiate transfer and measure */
 	regptr[TC_FSTWINDOW_REG] = fstWindowValue;
 	regptr[TC_NBRWINDOW_REG] = nmbrWindows;
@@ -86,7 +88,8 @@ int get_15_windows_fct(void){
 
 	for(window =window_start ; window<nmbrWindows+window_start; window++){
 
-		if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	//	if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+		XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 		/* Wait on DMA transfer to be done */
 		timeout = 200000; // Timeout of 10 sec
@@ -216,7 +219,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 		//nmbrWindows = 16;
 
 		/* Give the element's address to the DMA */
-		XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	//	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 		/* Initiate transfer and measure */
 		regptr[TC_FSTWINDOW_REG] = startWindow;
@@ -229,7 +232,9 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 		for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
-			if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+			XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+
+//			if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 			/* Wait on DMA transfer to be done */
 			timeout = 200000; // Timeout of 10 sec

@@ -246,7 +246,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 //
 //			Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_cb->data.data_array, SIZE_DATA_ARRAY_BYT);
 
-			xil_printf("transferencia dma done\r\n");
+			xil_printf(" dma transfer done\r\n");
 
 
 		//	free(tmp_ptr_cb);
