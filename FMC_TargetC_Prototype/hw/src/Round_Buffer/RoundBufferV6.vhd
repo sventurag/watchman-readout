@@ -339,7 +339,7 @@ end component CPU_CONTROLLERV3;
     signal WR_CS_S_trig:        std_logic_vector(5 downto 0);
     signal WR_RS_S_user:		std_logic_vector(1 downto 0);
     signal WR_CS_S_user:        std_logic_vector(5 downto 0);
-
+    signal trigger_s:        std_logic;
 
 --    signal windowStorage_s : std_logic;
     
@@ -397,7 +397,7 @@ circBuffer: circularBuffer
     
   clk    =>          ClockBus.CLK125MHz  ,
   RST    =>             nrst,  
-  trigger   =>        dummytrigger_s ,
+  trigger   =>        trigger_s ,
   full_fifo   =>      RDAD_Full_s  ,    
   windowStorage=>     CtrlBus_IxSL.WindowStorage,       
   enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
@@ -563,6 +563,8 @@ multiplex_WR:	process(ClockBus.CLK125MHz, nrst)
 	end process;
 
 
+
+trigger_s <= '0' when trigger= "0000" else '1';
 
 
 
