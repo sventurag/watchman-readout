@@ -241,12 +241,13 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 //			for(int i=0; i< 6; i++) last_element->data.data_array[i] = 0;
 //			tmp_ptr->next = last_element;
 			//empty_flag = false;
-//			XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr_cb->data.data_array, SIZE_DATA_ARRAY_BYT);
+//			XAxiDma_SimpleTransfer_hm((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 //			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 //
-//			Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_cb->data.data_array, SIZE_DATA_ARRAY_BYT);
+	//		Xil_DCacheInvalidateRange((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 
-			xil_printf(" dma transfer done\r\n");
+			flag_axidma_rx_done = true;
+			//xil_printf(" dma transfer done\r\n");
 
 
 		//	free(tmp_ptr_cb);
