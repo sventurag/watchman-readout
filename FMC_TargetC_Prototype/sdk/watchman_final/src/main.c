@@ -134,6 +134,7 @@ int main()
 {
 	XTime tStart, tEnd;
     int i,j;
+    int timeout;
 	uint16_t data_tmp, data_tmp2;
 
 	//static XTime tStart, tEnd;
@@ -397,16 +398,33 @@ int main()
 				usleep(100);
 
 				ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
+
 				usleep(100);
-            	XTime_GetTime(&tStart);
-				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting dummy  trigger
-				XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
-				Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr_main->data.data_array, SIZE_DATA_ARRAY_BYT);
-				flag_axidma_rx_done = false;
+
+				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
+				usleep(100);
+				XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
+
+				XTime_GetTime(&tStart);
+				//sleep(10);
+				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
+				Xil_DCacheInvalidateRange((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
+				while(!flag_axidma_rx_done){
+
+//					/* If needed, reload watchdog's counter */
+//							if(flag_scu_timer){
+//								XScuWdt_RestartWdt(&WdtScuInstance);
+//								flag_scu_timer = false;
+//							}
+
+				};
+				XTime_GetTime(&tEnd);
+
+				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
 				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
-            	XTime_GetTime(&tEnd);
-                usleep(1);
-             	xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
+				flag_axidma_rx_done =false;
+            	usleep(1);
+             	xil_printf("wdo_id=%d \r\n", (uint16_t)first_element-> data.data_struct.wdo_id );
              	printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
             	printf( "XAxiDma_SimpleTransfer_hm took %.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
 
@@ -415,7 +433,7 @@ int main()
                 for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
+						data_tmp = (uint16_t) (first_element->data.data_struct.data[i][j]);
                         xil_printf(",%d",data_tmp);
 					}
 
