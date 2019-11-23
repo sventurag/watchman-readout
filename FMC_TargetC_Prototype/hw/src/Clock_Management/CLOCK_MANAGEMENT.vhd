@@ -168,20 +168,20 @@ begin
 		COMPENSATION         => "BUF_IN",
 		STARTUP_WAIT         => false,
 		DIVCLK_DIVIDE        => 1,     -- D
-		CLKFBOUT_MULT_F      => 10.0,  -- M
+		CLKFBOUT_MULT_F      => 1.0,  -- M 10.0 for 125 mhz from 100 mhz
 		CLKFBOUT_PHASE       => 0.000,
 		CLKFBOUT_USE_FINE_PS => false,
-		CLKOUT0_DIVIDE_F       => 10.0, -- 169  M CLKO
+		CLKOUT0_DIVIDE_F       => 1.0, -- 169  M CLKO
 		CLKOUT0_PHASE        => 0.000,
 		CLKOUT0_DUTY_CYCLE   => 0.500,
 		CLKOUT0_USE_FINE_PS  => false,
 		--
-		CLKOUT1_DIVIDE      => 8, -- 169   -- O  changed from 4 to 10 to get 100MHz, 8 to get 125
+		CLKOUT1_DIVIDE      => 1, -- 169   -- O  changed from 4 to 10 to get 100MHz, 8 to get 125
 		CLKOUT1_PHASE        => 0.000,
 		CLKOUT1_DUTY_CYCLE   => 0.500,
 		CLKOUT1_USE_FINE_PS  => false,
 		--
-		CLKIN1_PERIOD        => 10.0,
+		CLKIN1_PERIOD        => 8.0,
 		--CLKIN2_PERIOD        => 10.0,
 		REF_JITTER1          => 0.010,
 		REF_JITTER2          => 0.010)
