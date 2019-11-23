@@ -120,18 +120,18 @@ COMPONENT axi_trig_afifo_12W_32D
   );
 END COMPONENT;
         
-COMPONENT trig_fifo_3W_16D
-  PORT (
-    wr_clk : IN STD_LOGIC;
-    rd_clk : IN STD_LOGIC;
-    din : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
-    wr_en : IN STD_LOGIC;
-    rd_en : IN STD_LOGIC;
-    dout : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
-    full : OUT STD_LOGIC;
-    empty : OUT STD_LOGIC
-  );
-END COMPONENT;
+--COMPONENT trig_fifo_3W_16D
+--  PORT (
+--    wr_clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
+--    din : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+--    wr_en : IN STD_LOGIC;
+--    rd_en : IN STD_LOGIC;
+--    dout : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+--    full : OUT STD_LOGIC;
+--    empty : OUT STD_LOGIC
+--  );
+--END COMPONENT;
 
 
 	type T_storestate is(
@@ -435,20 +435,20 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
 	
 	
 	
-        trigger_100to125MHz : trig_fifo_3W_16D
-        port map (
+--        trigger_100to125MHz : trig_fifo_3W_16D
+--        port map (
     
-         dout => trigger125MHz_s,
-         empty => trigger_empty_s,
-         rd_en => AXI_ReadEn,
-         rd_clk => ClockBus.CLK125MHz,
+--         dout => trigger125MHz_s,
+--         empty => trigger_empty_s,
+--         rd_en => AXI_ReadEn,
+--         rd_clk => ClockBus.CLK125MHz,
     
          
-         din => trigger,
-         full => trigger_full_s,
-         wr_en => CtrlBus_IxSL.WindowStorage,
-         wr_clk => ClockBus.AXI_CLK
-         );
+--         din => trigger,
+--         full => trigger_full_s,
+--         wr_en => CtrlBus_IxSL.WindowStorage,
+--         wr_clk => ClockBus.AXI_CLK
+--         );
          
 
 	
