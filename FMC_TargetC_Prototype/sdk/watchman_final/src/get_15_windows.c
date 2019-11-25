@@ -219,7 +219,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 		//nmbrWindows = 16;
 
 		/* Give the element's address to the DMA */
-	//	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+		XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 		/* Initiate transfer and measure */
 		regptr[TC_FSTWINDOW_REG] = startWindow;
@@ -232,9 +232,9 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 		for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
-			XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+			//XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
-//			if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+			if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 			/* Wait on DMA transfer to be done */
 			timeout = 200000; // Timeout of 10 sec
