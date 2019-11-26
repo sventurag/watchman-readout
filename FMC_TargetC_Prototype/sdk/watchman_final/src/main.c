@@ -409,15 +409,7 @@ int main()
 				//sleep(10);
 				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
 				Xil_DCacheInvalidateRange((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
-				while(!flag_axidma_rx_done){
-
-//					/* If needed, reload watchdog's counter */
-//							if(flag_scu_timer){
-//								XScuWdt_RestartWdt(&WdtScuInstance);
-//								flag_scu_timer = false;
-//							}
-
-				};
+				while(!flag_axidma_rx_done){};
 				XTime_GetTime(&tEnd);
 
 				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
