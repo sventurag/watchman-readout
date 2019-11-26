@@ -26,7 +26,13 @@ tc = targetc.targetc()
 tc.send_command(3,0,0) # start TriggerMode
 
 
+nmbrWindows=4
+#tc.send_command(9,50,nmbrWindows) # pedestal
+
+
 print("the end")
+
+
 
 
 
