@@ -16,3 +16,236 @@ Timeout: TPG failed!
 04.04.2019 @ 03:21:49 : In main: TestPattern Generator failed!
 
 -------END-------
+
+
+------START------
+Global variables initialization pass!
+Mounting SD card pass!
+Open existing file
+Log file creation pass!
+Open existing file and updated the time
+Time file creation pass!
+Watch dog has not expired
+Devices initialization pass!
+Interrupts initialization pass!
+DAC initialization pass!
+DAC_VPED:7	1.750000 V
+DAC_GRP_0:0	2.000000 V
+DAC_GRP_1:1	2.000000 V
+DAC_GRP_2:2	2.000000 V
+DAC_GRP_3:3	2.000000 V
+Start PHY autonegotiation 
+Waiting for PHY to complete autonegotiation.
+autonegotiation complete 
+link speed for phy address 0: 1000
+Board IP: 192.168.1.10
+Netmask : 255.255.255.0
+Gateway : 192.168.1.1
+
+PC IP: 192.168.1.11
+UDP started @ port 8 for data and @ port 7 for commands
+PL's clock ready
+Turning DLL ON 
+TragetC's registers initialized!
+window id= 10
+TestPattern Generator pass!
+Arrays Initialization
+Getting data1073
+989
+14602
+14536
+14392
+14362
+14348
+14491
+14528
+14603
+14236
+14361
+13913
+14485
+14676
+14581
+14695
+14616
+14498
+14571
+14520
+14477
+14181
+14532
+14573
+14540
+14463
+14624
+14449
+13806
+14253
+12879
+107
+98
+1460
+1453
+1439
+1436
+1434
+1449
+1452
+1460
+1423
+1436
+1391
+1448
+1467
+1458
+1469
+1461
+1449
+1457
+1452
+1447
+1418
+1453
+1457
+1454
+1446
+1462
+1444
+1380
+1425
+1287
+610
+1425
+14807
+14616
+14617
+14651
+14415
+14276
+14559
+14897
+15014
+14660
+14705
+14821
+14633
+14624
+14385
+13889
+14660
+14776
+14842
+14659
+14867
+14794
+14857
+14836
+14333
+14445
+14820
+14648
+14729
+14079
+61
+142
+1480
+1461
+1461
+1465
+1441
+1427
+1455
+1489
+1501
+1466
+1470
+1482
+1463
+1462
+1438
+1388
+1466
+1477
+1484
+1465
+1486
+1479
+1485
+1483
+1433
+1444
+1482
+1464
+1472
+1407
+1094
+14614
+14754
+14615
+14419
+14332
+14282
+14450
+14474
+14520
+14064
+14429
+14097
+14773
+14756
+14501
+14548
+14513
+14354
+14465
+14614
+14629
+14015
+14320
+14518
+14558
+14469
+14458
+14424
+13658
+14253
+12940
+109
+1461
+1475
+1461
+1441
+1433
+1428
+1445
+1447
+1452
+1406
+1442
+1409
+1477
+1475
+1450
+1454
+1451
+1435
+1446
+1461
+1462
+1401
+1432
+1451
+1455
+1446
+1445
+1442
+1365
+1425
+1294
+Pedestal initialization pass!
+DAC_VPED:7	0.000000 V
+DAC_VPED:7	0.250000 V
+DAC_VPED:7	0.500000 V
+Write time file failed during f_write, result = 1
+DAC_VPED:7	0.750000 V
+DAC_VPED:7	1.000000 V
