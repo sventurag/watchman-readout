@@ -173,7 +173,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI.FREQ_HZ">200000000</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI.FREQ_HZ">150000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -453,7 +453,7 @@
         </spirit:parameter>
         <spirit:parameter>
           <spirit:name>FREQ_HZ</spirit:name>
-          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_ACLK.FREQ_HZ">200000000</spirit:value>
+          <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="BUSIFPARAM_VALUE.S_AXI_ACLK.FREQ_HZ">150000000</spirit:value>
           <spirit:vendorExtensions>
             <xilinx:parameterInfo>
               <xilinx:parameterUsage>none</xilinx:parameterUsage>
@@ -1711,11 +1711,11 @@ interrupt is set.
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Nov 26 22:43:57 UTC 2019</spirit:value>
+            <spirit:value>Tue Nov 26 23:19:29 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:b4899d78</spirit:value>
+            <spirit:value>8:3998c7a0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1731,11 +1731,11 @@ interrupt is set.
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Nov 26 22:43:57 UTC 2019</spirit:value>
+            <spirit:value>Tue Nov 26 23:19:29 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:b4899d78</spirit:value>
+            <spirit:value>8:3998c7a0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1767,7 +1767,7 @@ interrupt is set.
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:133f95f5</spirit:value>
+            <spirit:value>8:b9fb693c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1783,11 +1783,11 @@ interrupt is set.
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Nov 26 22:43:57 UTC 2019</spirit:value>
+            <spirit:value>Tue Nov 26 23:19:29 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:133f95f5</spirit:value>
+            <spirit:value>8:b9fb693c</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1801,11 +1801,11 @@ interrupt is set.
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Nov 26 22:43:57 UTC 2019</spirit:value>
+            <spirit:value>Tue Nov 26 23:19:29 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:b4899d78</spirit:value>
+            <spirit:value>8:3998c7a0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1819,11 +1819,11 @@ interrupt is set.
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Tue Nov 26 22:48:20 UTC 2019</spirit:value>
+            <spirit:value>Tue Nov 26 23:23:49 UTC 2019</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>8:b4899d78</spirit:value>
+            <spirit:value>8:3998c7a0</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -2249,7 +2249,7 @@ interrupt is set.
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_S_AXI_ACLK_FREQ_HZ</spirit:name>
         <spirit:displayName>C S Axi Aclk Freq Hz</spirit:displayName>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_ACLK_FREQ_HZ">200000000</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_S_AXI_ACLK_FREQ_HZ">150000000</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_SCL_INERTIAL_DELAY</spirit:name>
@@ -2544,7 +2544,7 @@ interrupt is set.
       <spirit:name>AXI_ACLK_FREQ_MHZ</spirit:name>
       <spirit:displayName>AXI Clock Frequency (in MHz)</spirit:displayName>
       <spirit:description>This parameter specifies (but does not set) the frequency of the AXI4-Lite interface.</spirit:description>
-      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.AXI_ACLK_FREQ_MHZ" spirit:order="1180" spirit:minimum="25.0" spirit:maximum="300.0">200.0</spirit:value>
+      <spirit:value spirit:format="float" spirit:resolve="user" spirit:id="PARAM_VALUE.AXI_ACLK_FREQ_MHZ" spirit:order="1180" spirit:minimum="25.0" spirit:maximum="300.0">150.0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>

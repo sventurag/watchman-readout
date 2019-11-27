@@ -1,7 +1,7 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Tue Nov 26 12:48:20 2019
+-- Date        : Tue Nov 26 13:23:49 2019
 -- Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
 -- Command     : write_vhdl -force -mode funcsim
 --               /home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axi_iic_0_0/base_zynq_axi_iic_0_0_sim_netlist.vhdl
@@ -4810,21 +4810,21 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_tbuf(10),
       R => Bus2IIC_Reset
     );
-\timing_param_tbuf_i_reg[1]\: unisim.vcomponents.FDRE
+\timing_param_tbuf_i_reg[1]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(3),
       D => s_axi_wdata(1),
       Q => \^fsm_sequential_scl_state_reg[3]_0\(1),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_tbuf_i_reg[2]\: unisim.vcomponents.FDRE
+\timing_param_tbuf_i_reg[2]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(3),
       D => s_axi_wdata(2),
       Q => \^fsm_sequential_scl_state_reg[3]_0\(2),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_tbuf_i_reg[3]\: unisim.vcomponents.FDSE
      port map (
@@ -4866,13 +4866,13 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^fsm_sequential_scl_state_reg[3]_0\(7),
       S => Bus2IIC_Reset
     );
-\timing_param_tbuf_i_reg[8]\: unisim.vcomponents.FDSE
+\timing_param_tbuf_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(3),
       D => s_axi_wdata(8),
       Q => Timing_param_tbuf(8),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_tbuf_i_reg[9]\: unisim.vcomponents.FDSE
      port map (
@@ -4970,13 +4970,13 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_thddat(9),
       R => Bus2IIC_Reset
     );
-\timing_param_thdsta_i_reg[0]\: unisim.vcomponents.FDRE
+\timing_param_thdsta_i_reg[0]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(5),
       D => s_axi_wdata(0),
       Q => \^fsm_sequential_scl_state_reg[2]_0\(0),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_thdsta_i_reg[10]\: unisim.vcomponents.FDRE
      port map (
@@ -5002,21 +5002,21 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^fsm_sequential_scl_state_reg[2]_0\(2),
       S => Bus2IIC_Reset
     );
-\timing_param_thdsta_i_reg[3]\: unisim.vcomponents.FDSE
+\timing_param_thdsta_i_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(5),
       D => s_axi_wdata(3),
       Q => \^fsm_sequential_scl_state_reg[2]_0\(3),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
-\timing_param_thdsta_i_reg[4]\: unisim.vcomponents.FDSE
+\timing_param_thdsta_i_reg[4]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(5),
       D => s_axi_wdata(4),
       Q => \^fsm_sequential_scl_state_reg[2]_0\(4),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_thdsta_i_reg[5]\: unisim.vcomponents.FDRE
      port map (
@@ -5026,29 +5026,29 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^fsm_sequential_scl_state_reg[2]_0\(5),
       R => Bus2IIC_Reset
     );
-\timing_param_thdsta_i_reg[6]\: unisim.vcomponents.FDSE
+\timing_param_thdsta_i_reg[6]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(5),
       D => s_axi_wdata(6),
       Q => \^fsm_sequential_scl_state_reg[2]_0\(6),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
-\timing_param_thdsta_i_reg[7]\: unisim.vcomponents.FDRE
+\timing_param_thdsta_i_reg[7]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(5),
       D => s_axi_wdata(7),
       Q => \^fsm_sequential_scl_state_reg[2]_0\(7),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_thdsta_i_reg[8]\: unisim.vcomponents.FDSE
+\timing_param_thdsta_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(5),
       D => s_axi_wdata(8),
       Q => Timing_param_thdsta(8),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_thdsta_i_reg[9]\: unisim.vcomponents.FDSE
      port map (
@@ -5074,21 +5074,21 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_thigh(10),
       R => Bus2IIC_Reset
     );
-\timing_param_thigh_i_reg[1]\: unisim.vcomponents.FDRE
+\timing_param_thigh_i_reg[1]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(2),
       D => s_axi_wdata(1),
       Q => \^s_axi_rdata_i_reg[7]\(1),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_thigh_i_reg[2]\: unisim.vcomponents.FDRE
+\timing_param_thigh_i_reg[2]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(2),
       D => s_axi_wdata(2),
       Q => \^s_axi_rdata_i_reg[7]\(2),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_thigh_i_reg[3]\: unisim.vcomponents.FDRE
      port map (
@@ -5130,13 +5130,13 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^s_axi_rdata_i_reg[7]\(7),
       S => Bus2IIC_Reset
     );
-\timing_param_thigh_i_reg[8]\: unisim.vcomponents.FDSE
+\timing_param_thigh_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(2),
       D => s_axi_wdata(8),
       Q => Timing_param_thigh(8),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_thigh_i_reg[9]\: unisim.vcomponents.FDSE
      port map (
@@ -5162,21 +5162,21 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_tlow(10),
       R => Bus2IIC_Reset
     );
-\timing_param_tlow_i_reg[1]\: unisim.vcomponents.FDRE
+\timing_param_tlow_i_reg[1]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(1),
       D => s_axi_wdata(1),
       Q => Timing_param_tlow(1),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_tlow_i_reg[2]\: unisim.vcomponents.FDRE
+\timing_param_tlow_i_reg[2]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(1),
       D => s_axi_wdata(2),
       Q => Timing_param_tlow(2),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_tlow_i_reg[3]\: unisim.vcomponents.FDRE
      port map (
@@ -5218,13 +5218,13 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^s_axi_rdata_i_reg[7]_3\(3),
       S => Bus2IIC_Reset
     );
-\timing_param_tlow_i_reg[8]\: unisim.vcomponents.FDSE
+\timing_param_tlow_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(1),
       D => s_axi_wdata(8),
       Q => Timing_param_tlow(8),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_tlow_i_reg[9]\: unisim.vcomponents.FDSE
      port map (
@@ -5258,37 +5258,37 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^s_axi_rdata_i_reg[8]\(1),
       S => Bus2IIC_Reset
     );
-\timing_param_tsudat_i_reg[2]\: unisim.vcomponents.FDSE
+\timing_param_tsudat_i_reg[2]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(4),
       D => s_axi_wdata(2),
       Q => \^s_axi_rdata_i_reg[8]\(2),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
-\timing_param_tsudat_i_reg[3]\: unisim.vcomponents.FDSE
+\timing_param_tsudat_i_reg[3]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(4),
       D => s_axi_wdata(3),
       Q => \^s_axi_rdata_i_reg[8]\(3),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
-\timing_param_tsudat_i_reg[4]\: unisim.vcomponents.FDRE
+\timing_param_tsudat_i_reg[4]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(4),
       D => s_axi_wdata(4),
       Q => \^s_axi_rdata_i_reg[8]\(4),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_tsudat_i_reg[5]\: unisim.vcomponents.FDSE
+\timing_param_tsudat_i_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(4),
       D => s_axi_wdata(5),
       Q => \^s_axi_rdata_i_reg[8]\(5),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_tsudat_i_reg[6]\: unisim.vcomponents.FDSE
      port map (
@@ -5322,29 +5322,29 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_tsudat(9),
       R => Bus2IIC_Reset
     );
-\timing_param_tsusta_i_reg[0]\: unisim.vcomponents.FDRE
+\timing_param_tsusta_i_reg[0]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(7),
       D => s_axi_wdata(0),
       Q => \^s_axi_rdata_i_reg[7]_1\(0),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_tsusta_i_reg[10]\: unisim.vcomponents.FDSE
+\timing_param_tsusta_i_reg[10]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(7),
       D => s_axi_wdata(10),
       Q => Timing_param_tsusta(10),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
-\timing_param_tsusta_i_reg[1]\: unisim.vcomponents.FDRE
+\timing_param_tsusta_i_reg[1]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(7),
       D => s_axi_wdata(1),
       Q => \^s_axi_rdata_i_reg[7]_1\(1),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_tsusta_i_reg[2]\: unisim.vcomponents.FDSE
      port map (
@@ -5370,13 +5370,13 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_tsusta(4),
       S => Bus2IIC_Reset
     );
-\timing_param_tsusta_i_reg[5]\: unisim.vcomponents.FDSE
+\timing_param_tsusta_i_reg[5]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(7),
       D => s_axi_wdata(5),
       Q => \^s_axi_rdata_i_reg[7]_1\(4),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_tsusta_i_reg[6]\: unisim.vcomponents.FDSE
      port map (
@@ -5394,21 +5394,21 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^s_axi_rdata_i_reg[7]_1\(5),
       R => Bus2IIC_Reset
     );
-\timing_param_tsusta_i_reg[8]\: unisim.vcomponents.FDRE
+\timing_param_tsusta_i_reg[8]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(7),
       D => s_axi_wdata(8),
       Q => Timing_param_tsusta(8),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_tsusta_i_reg[9]\: unisim.vcomponents.FDRE
+\timing_param_tsusta_i_reg[9]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(7),
       D => s_axi_wdata(9),
       Q => Timing_param_tsusta(9),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_tsusto_i_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -5426,21 +5426,21 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => Timing_param_tsusto(10),
       R => Bus2IIC_Reset
     );
-\timing_param_tsusto_i_reg[1]\: unisim.vcomponents.FDRE
+\timing_param_tsusto_i_reg[1]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(6),
       D => s_axi_wdata(1),
       Q => \^s_axi_rdata_i_reg[7]_0\(1),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
-\timing_param_tsusto_i_reg[2]\: unisim.vcomponents.FDRE
+\timing_param_tsusto_i_reg[2]\: unisim.vcomponents.FDSE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(6),
       D => s_axi_wdata(2),
       Q => \^s_axi_rdata_i_reg[7]_0\(2),
-      R => Bus2IIC_Reset
+      S => Bus2IIC_Reset
     );
 \timing_param_tsusto_i_reg[3]\: unisim.vcomponents.FDSE
      port map (
@@ -5482,13 +5482,13 @@ sda_cout_reg_i_5: unisim.vcomponents.LUT2
       Q => \^s_axi_rdata_i_reg[7]_0\(5),
       S => Bus2IIC_Reset
     );
-\timing_param_tsusto_i_reg[8]\: unisim.vcomponents.FDSE
+\timing_param_tsusto_i_reg[8]\: unisim.vcomponents.FDRE
      port map (
       C => s_axi_aclk,
       CE => Bus2IIC_WrCE(6),
       D => s_axi_wdata(8),
       Q => Timing_param_tsusto(8),
-      S => Bus2IIC_Reset
+      R => Bus2IIC_Reset
     );
 \timing_param_tsusto_i_reg[9]\: unisim.vcomponents.FDSE
      port map (
@@ -12338,7 +12338,7 @@ entity base_zynq_axi_iic_0_0_axi_iic is
   attribute C_SMBUS_PMBUS_HOST : integer;
   attribute C_SMBUS_PMBUS_HOST of base_zynq_axi_iic_0_0_axi_iic : entity is 0;
   attribute C_S_AXI_ACLK_FREQ_HZ : integer;
-  attribute C_S_AXI_ACLK_FREQ_HZ of base_zynq_axi_iic_0_0_axi_iic : entity is 200000000;
+  attribute C_S_AXI_ACLK_FREQ_HZ of base_zynq_axi_iic_0_0_axi_iic : entity is 150000000;
   attribute C_S_AXI_ADDR_WIDTH : integer;
   attribute C_S_AXI_ADDR_WIDTH of base_zynq_axi_iic_0_0_axi_iic : entity is 9;
   attribute C_S_AXI_DATA_WIDTH : integer;
@@ -12483,7 +12483,7 @@ architecture STRUCTURE of base_zynq_axi_iic_0_0 is
   attribute C_SMBUS_PMBUS_HOST : integer;
   attribute C_SMBUS_PMBUS_HOST of U0 : label is 0;
   attribute C_S_AXI_ACLK_FREQ_HZ : integer;
-  attribute C_S_AXI_ACLK_FREQ_HZ of U0 : label is 200000000;
+  attribute C_S_AXI_ACLK_FREQ_HZ of U0 : label is 150000000;
   attribute C_S_AXI_ADDR_WIDTH : integer;
   attribute C_S_AXI_ADDR_WIDTH of U0 : label is 9;
   attribute C_S_AXI_DATA_WIDTH : integer;
@@ -12496,7 +12496,7 @@ architecture STRUCTURE of base_zynq_axi_iic_0_0 is
   attribute x_interface_parameter : string;
   attribute x_interface_parameter of iic2intc_irpt : signal is "XIL_INTERFACENAME INTERRUPT, SENSITIVITY LEVEL_HIGH, PortWidth 1";
   attribute x_interface_info of s_axi_aclk : signal is "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK";
-  attribute x_interface_parameter of s_axi_aclk : signal is "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 200000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0";
+  attribute x_interface_parameter of s_axi_aclk : signal is "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 150000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0";
   attribute x_interface_info of s_axi_aresetn : signal is "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST";
   attribute x_interface_parameter of s_axi_aresetn : signal is "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW";
   attribute x_interface_info of s_axi_arready : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARREADY";
@@ -12518,7 +12518,7 @@ architecture STRUCTURE of base_zynq_axi_iic_0_0 is
   attribute x_interface_info of sda_t : signal is "xilinx.com:interface:iic:1.0 IIC SDA_T";
   attribute x_interface_info of s_axi_araddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI ARADDR";
   attribute x_interface_info of s_axi_awaddr : signal is "xilinx.com:interface:aximm:1.0 S_AXI AWADDR";
-  attribute x_interface_parameter of s_axi_awaddr : signal is "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 200000000, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
+  attribute x_interface_parameter of s_axi_awaddr : signal is "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 150000000, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0";
   attribute x_interface_info of s_axi_bresp : signal is "xilinx.com:interface:aximm:1.0 S_AXI BRESP";
   attribute x_interface_info of s_axi_rdata : signal is "xilinx.com:interface:aximm:1.0 S_AXI RDATA";
   attribute x_interface_info of s_axi_rresp : signal is "xilinx.com:interface:aximm:1.0 S_AXI RRESP";
