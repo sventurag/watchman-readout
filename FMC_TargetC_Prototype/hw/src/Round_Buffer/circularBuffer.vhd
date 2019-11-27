@@ -79,6 +79,10 @@ signal enable_write_i: std_logic;
 attribute mark_debug : string;
 
 attribute mark_debug of window2read: signal is "true";
+attribute mark_debug of trigger: signal is "true";
+
+
+
 
 attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
