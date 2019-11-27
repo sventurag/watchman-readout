@@ -278,6 +278,7 @@ component SyncBuffer is
     attribute mark_debug of GCC_RESET: signal is "true";
     attribute mark_debug of SS_INCR: signal is "true";
     attribute mark_debug of WL_CNT_INTL: signal is "true";
+    attribute mark_debug of DO: signal is "true";
 
     
 
@@ -891,21 +892,21 @@ begin
 							SS_CNT_EN <= '1';
 						end if;
 					when LOW_SET0 =>
-						HSCLK_intl <= '0';
+						HSCLK_intl <= '1';   --'0'
 						if SSBitCnt = 0  then
 							SS_INCR_intl <= '1';
 						else
 							SS_INCR_intl <= '0';
 						end if;
 						SS_RESET_intl <= '0';
-						hsout_stm <= LOW_SET1;
-					when LOW_SET1 =>
-						HSCLK_intl <= '1';
-						hsout_stm <= HIGH_SET1;
-					when HIGH_SET1 =>
-						SS_INCR_intl <= '0';
-						HSCLK_intl <= '1';
 						hsout_stm <= HIGH_SET0;
+--					when LOW_SET1 =>
+--						HSCLK_intl <= '1';
+--						hsout_stm <= HIGH_SET1;
+--					when HIGH_SET1 =>
+--						SS_INCR_intl <= '0';
+--						HSCLK_intl <= '1';
+--						hsout_stm <= HIGH_SET0;
 					when HIGH_SET0 =>
 						-- SAmple the output of TARGETC
 						if SSBitCnt > 1 then
