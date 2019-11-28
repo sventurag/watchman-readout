@@ -163,13 +163,13 @@ class targetc():
             self.int_array[i] = np.fromstring(data[i],dtype=np.uint16)
         
         #print('lEN', len(self.int_array))
-        print(self.int_array)
-        self.Vped=500
+        print(self.int_array[0])
+        self.Vped=0
         self.windowsNumbers = [self.int_array[x][1] for x in range(0,len(self.int_array)) ] # create a list with the window numbers, byte 1 from each window
         print('windowsNumbers',self.windowsNumbers) 
         self.numberofWindows = len(self.windowsNumbers)
-        pedestal_avg = 1000.
-        offset_avoid_negative=1000.
+        pedestal_avg = 0.
+        offset_avoid_negative=0.
         #payload = [self.int_array[x:x + 512] for x in range( 2,len(self.int_array), int(self.windowSize/2) ) ] # get the data from each window asumming a self.windowSize, payload[window][data]
  
         payload = [self.int_array[i][2:514]  for i in range(0,len(self.int_array))]
