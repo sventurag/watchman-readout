@@ -890,6 +890,7 @@ begin
 							hsout_stm <= LOW_SET0;
 						else
 							SS_CNT_EN <= '1';
+							hsout_stm <= INCRWAIT;
 						end if;
 					when LOW_SET0 =>
 						HSCLK_intl <= '1';   --'0'
@@ -902,11 +903,11 @@ begin
 						hsout_stm <= LOW_SET1;
 					when LOW_SET1 =>
 						HSCLK_intl <= '1';
-						hsout_stm <= HIGH_SET1;
-					when HIGH_SET1 =>
-						SS_INCR_intl <= '0';
-						HSCLK_intl <= '1';
 						hsout_stm <= HIGH_SET0;
+--					when HIGH_SET1 =>
+--						SS_INCR_intl <= '0';
+--						HSCLK_intl <= '1';
+--						hsout_stm <= HIGH_SET0;
 					when HIGH_SET0 =>
 						-- SAmple the output of TARGETC
 						if SSBitCnt > 1 then
