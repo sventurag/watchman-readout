@@ -904,8 +904,9 @@ begin
 					when LOW_SET1 =>
 						HSCLK_intl <= '1';
 						hsout_stm <= HIGH_SET0;
+				        SS_INCR_intl <= '0';
+
 --					when HIGH_SET1 =>
---						SS_INCR_intl <= '0';
 --						HSCLK_intl <= '1';
 --						hsout_stm <= HIGH_SET0;
 					when HIGH_SET0 =>
