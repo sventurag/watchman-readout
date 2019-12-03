@@ -279,6 +279,7 @@ int main()
 	printf("PL's clock ready\r\n");
 	// Initialize TargetC's registers
 	SetTargetCRegisters();
+	printf("sleep to set the debug core\r\n");
 
 	/* Test pattern */
 	if(test_TPG() == XST_SUCCESS) printf("TestPattern Generator pass!\r\n");
