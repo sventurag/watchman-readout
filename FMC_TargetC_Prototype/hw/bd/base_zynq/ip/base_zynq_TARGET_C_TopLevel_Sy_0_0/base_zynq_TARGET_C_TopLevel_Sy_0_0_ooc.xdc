@@ -58,6 +58,6 @@ create_clock -period 10 -name WL_CLK_N [get_ports WL_CLK_N]
 
 create_clock -period 10 -name WL_CLK_P [get_ports WL_CLK_P]
 
-create_clock -period 8 -name tc_axi_aclk [get_ports tc_axi_aclk]
+create_clock -period 6.667 -name tc_axi_aclk [get_ports tc_axi_aclk]
 
 
