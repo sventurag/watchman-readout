@@ -267,18 +267,18 @@ component SyncBuffer is
 	signal CH15_intl : std_logic_vector(11 downto 0);
     attribute mark_debug : string;
     
-    attribute mark_debug of HSCLK: signal is "true";
-    attribute mark_debug of SS_CNT_INTL: signal is "true";
-    attribute mark_debug of RAMP: signal is "true";
-    attribute mark_debug of RAMP_CNT: signal is "true";
-    attribute mark_debug of RDAD_CLK: signal is "true";
-    attribute mark_debug of RDAD_SIN: signal is "true";
-    attribute mark_debug of RDAD_DIR: signal is "true";
-    attribute mark_debug of CH0: signal is "true";
-    attribute mark_debug of GCC_RESET: signal is "true";
-    attribute mark_debug of SS_INCR: signal is "true";
-    attribute mark_debug of WL_CNT_INTL: signal is "true";
-    attribute mark_debug of DO: signal is "true";
+--    attribute mark_debug of HSCLK: signal is "true";
+--    attribute mark_debug of SS_CNT_INTL: signal is "true";
+--    attribute mark_debug of RAMP: signal is "true";
+--    attribute mark_debug of RAMP_CNT: signal is "true";
+--    attribute mark_debug of RDAD_CLK: signal is "true";
+--    attribute mark_debug of RDAD_SIN: signal is "true";
+--    attribute mark_debug of RDAD_DIR: signal is "true";
+--    attribute mark_debug of CH0: signal is "true";
+--    attribute mark_debug of GCC_RESET: signal is "true";
+--    attribute mark_debug of SS_INCR: signal is "true";
+--    attribute mark_debug of WL_CNT_INTL: signal is "true";
+--    attribute mark_debug of DO: signal is "true";
 
     
 
