@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Mon Dec  2 12:19:14 2019
+--Date        : Mon Dec  2 16:55:56 2019
 --Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -1916,37 +1916,6 @@ architecture STRUCTURE of base_zynq is
     s2mm_introut : out STD_LOGIC
   );
   end component base_zynq_axi_dma_0_0;
-  component base_zynq_axi_iic_0_0 is
-  port (
-    s_axi_aclk : in STD_LOGIC;
-    s_axi_aresetn : in STD_LOGIC;
-    iic2intc_irpt : out STD_LOGIC;
-    s_axi_awaddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    s_axi_awvalid : in STD_LOGIC;
-    s_axi_awready : out STD_LOGIC;
-    s_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axi_wvalid : in STD_LOGIC;
-    s_axi_wready : out STD_LOGIC;
-    s_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_bvalid : out STD_LOGIC;
-    s_axi_bready : in STD_LOGIC;
-    s_axi_araddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
-    s_axi_arvalid : in STD_LOGIC;
-    s_axi_arready : out STD_LOGIC;
-    s_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_rvalid : out STD_LOGIC;
-    s_axi_rready : in STD_LOGIC;
-    sda_i : in STD_LOGIC;
-    sda_o : out STD_LOGIC;
-    sda_t : out STD_LOGIC;
-    scl_i : in STD_LOGIC;
-    scl_o : out STD_LOGIC;
-    scl_t : out STD_LOGIC;
-    gpo : out STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  end component base_zynq_axi_iic_0_0;
   component base_zynq_processing_system7_0_0 is
   port (
     TTC0_WAVE0_OUT : out STD_LOGIC;
@@ -2062,20 +2031,6 @@ architecture STRUCTURE of base_zynq is
     PS_PORB : inout STD_LOGIC
   );
   end component base_zynq_processing_system7_0_0;
-  component base_zynq_rst_ps7_0_50M_0 is
-  port (
-    slowest_sync_clk : in STD_LOGIC;
-    ext_reset_in : in STD_LOGIC;
-    aux_reset_in : in STD_LOGIC;
-    mb_debug_sys_rst : in STD_LOGIC;
-    dcm_locked : in STD_LOGIC;
-    mb_reset : out STD_LOGIC;
-    bus_struct_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
-    peripheral_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
-    interconnect_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 );
-    peripheral_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  end component base_zynq_rst_ps7_0_50M_0;
   component base_zynq_TARGET_C_TopLevel_Sy_0_0 is
   port (
     SW_nRST : out STD_LOGIC;
@@ -2154,6 +2109,51 @@ architecture STRUCTURE of base_zynq is
     BB5 : out STD_LOGIC
   );
   end component base_zynq_TARGET_C_TopLevel_Sy_0_0;
+  component base_zynq_axi_iic_0_0 is
+  port (
+    s_axi_aclk : in STD_LOGIC;
+    s_axi_aresetn : in STD_LOGIC;
+    iic2intc_irpt : out STD_LOGIC;
+    s_axi_awaddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    s_axi_awvalid : in STD_LOGIC;
+    s_axi_awready : out STD_LOGIC;
+    s_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axi_wvalid : in STD_LOGIC;
+    s_axi_wready : out STD_LOGIC;
+    s_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_bvalid : out STD_LOGIC;
+    s_axi_bready : in STD_LOGIC;
+    s_axi_araddr : in STD_LOGIC_VECTOR ( 8 downto 0 );
+    s_axi_arvalid : in STD_LOGIC;
+    s_axi_arready : out STD_LOGIC;
+    s_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_rvalid : out STD_LOGIC;
+    s_axi_rready : in STD_LOGIC;
+    sda_i : in STD_LOGIC;
+    sda_o : out STD_LOGIC;
+    sda_t : out STD_LOGIC;
+    scl_i : in STD_LOGIC;
+    scl_o : out STD_LOGIC;
+    scl_t : out STD_LOGIC;
+    gpo : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component base_zynq_axi_iic_0_0;
+  component base_zynq_rst_ps7_0_50M_0 is
+  port (
+    slowest_sync_clk : in STD_LOGIC;
+    ext_reset_in : in STD_LOGIC;
+    aux_reset_in : in STD_LOGIC;
+    mb_debug_sys_rst : in STD_LOGIC;
+    dcm_locked : in STD_LOGIC;
+    mb_reset : out STD_LOGIC;
+    bus_struct_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
+    peripheral_reset : out STD_LOGIC_VECTOR ( 0 to 0 );
+    interconnect_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 );
+    peripheral_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component base_zynq_rst_ps7_0_50M_0;
   signal ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal DONE_1 : STD_LOGIC;
   signal DO_10_1 : STD_LOGIC;
