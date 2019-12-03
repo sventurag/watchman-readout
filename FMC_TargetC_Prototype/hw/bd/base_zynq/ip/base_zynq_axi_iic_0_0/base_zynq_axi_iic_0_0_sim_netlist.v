@@ -1,7 +1,7 @@
 // Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Mon Dec  2 16:58:36 2019
+// Date        : Tue Dec  3 10:55:42 2019
 // Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axi_iic_0_0/base_zynq_axi_iic_0_0_sim_netlist.v
@@ -42,10 +42,10 @@ module base_zynq_axi_iic_0_0
     scl_o,
     scl_t,
     gpo);
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 150000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0" *) input s_axi_aclk;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 S_AXI_ACLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_ACLK, ASSOCIATED_BUSIF S_AXI, ASSOCIATED_RESET s_axi_aresetn, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0" *) input s_axi_aclk;
   (* x_interface_info = "xilinx.com:signal:reset:1.0 S_AXI_ARESETN RST" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI_ARESETN, POLARITY ACTIVE_LOW" *) input s_axi_aresetn;
   (* x_interface_info = "xilinx.com:signal:interrupt:1.0 INTERRUPT INTERRUPT" *) (* x_interface_parameter = "XIL_INTERFACENAME INTERRUPT, SENSITIVITY LEVEL_HIGH, PortWidth 1" *) output iic2intc_irpt;
-  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 150000000, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input [8:0]s_axi_awaddr;
+  (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI AWADDR" *) (* x_interface_parameter = "XIL_INTERFACENAME S_AXI, DATA_WIDTH 32, PROTOCOL AXI4LITE, FREQ_HZ 125000000, ID_WIDTH 0, ADDR_WIDTH 9, AWUSER_WIDTH 0, ARUSER_WIDTH 0, WUSER_WIDTH 0, RUSER_WIDTH 0, BUSER_WIDTH 0, READ_WRITE_MODE READ_WRITE, HAS_BURST 0, HAS_LOCK 0, HAS_PROT 0, HAS_CACHE 0, HAS_QOS 0, HAS_REGION 0, HAS_WSTRB 1, HAS_BRESP 1, HAS_RRESP 1, SUPPORTS_NARROW_BURST 0, NUM_READ_OUTSTANDING 2, NUM_WRITE_OUTSTANDING 2, MAX_BURST_LENGTH 1, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, NUM_READ_THREADS 1, NUM_WRITE_THREADS 1, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0" *) input [8:0]s_axi_awaddr;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI AWVALID" *) input s_axi_awvalid;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI AWREADY" *) output s_axi_awready;
   (* x_interface_info = "xilinx.com:interface:aximm:1.0 S_AXI WDATA" *) input [31:0]s_axi_wdata;
@@ -106,7 +106,7 @@ module base_zynq_axi_iic_0_0
   (* C_SDA_INERTIAL_DELAY = "0" *) 
   (* C_SDA_LEVEL = "1" *) 
   (* C_SMBUS_PMBUS_HOST = "0" *) 
-  (* C_S_AXI_ACLK_FREQ_HZ = "150000000" *) 
+  (* C_S_AXI_ACLK_FREQ_HZ = "125000000" *) 
   (* C_S_AXI_ADDR_WIDTH = "9" *) 
   (* C_S_AXI_DATA_WIDTH = "32" *) 
   (* C_TEN_BIT_ADR = "0" *) 
@@ -2300,7 +2300,7 @@ endmodule
 
 (* C_DEFAULT_VALUE = "8'b00000000" *) (* C_FAMILY = "zynq" *) (* C_GPO_WIDTH = "1" *) 
 (* C_IIC_FREQ = "100000" *) (* C_SCL_INERTIAL_DELAY = "0" *) (* C_SDA_INERTIAL_DELAY = "0" *) 
-(* C_SDA_LEVEL = "1" *) (* C_SMBUS_PMBUS_HOST = "0" *) (* C_S_AXI_ACLK_FREQ_HZ = "150000000" *) 
+(* C_SDA_LEVEL = "1" *) (* C_SMBUS_PMBUS_HOST = "0" *) (* C_S_AXI_ACLK_FREQ_HZ = "125000000" *) 
 (* C_S_AXI_ADDR_WIDTH = "9" *) (* C_S_AXI_DATA_WIDTH = "32" *) (* C_TEN_BIT_ADR = "0" *) 
 (* ORIG_REF_NAME = "axi_iic" *) (* downgradeipidentifiedwarnings = "yes" *) 
 module base_zynq_axi_iic_0_0_axi_iic
@@ -7431,42 +7431,42 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(Data_Exists_DFF_2[0]),
         .Q(sr_i[7]),
         .R(Bus2IIC_Reset));
-  FDRE \timing_param_tbuf_i_reg[0] 
+  FDSE \timing_param_tbuf_i_reg[0] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[0]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [0]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDRE \timing_param_tbuf_i_reg[10] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[10]),
         .Q(Timing_param_tbuf[10]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_tbuf_i_reg[1] 
+  FDRE \timing_param_tbuf_i_reg[1] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[1]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [1]),
-        .S(Bus2IIC_Reset));
-  FDSE \timing_param_tbuf_i_reg[2] 
+        .R(Bus2IIC_Reset));
+  FDRE \timing_param_tbuf_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[2]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [2]),
-        .S(Bus2IIC_Reset));
-  FDSE \timing_param_tbuf_i_reg[3] 
+        .R(Bus2IIC_Reset));
+  FDRE \timing_param_tbuf_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[3]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [3]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_tbuf_i_reg[4] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_tbuf_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[4]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [4]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDSE \timing_param_tbuf_i_reg[5] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
@@ -7479,12 +7479,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[6]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [6]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_tbuf_i_reg[7] 
+  FDRE \timing_param_tbuf_i_reg[7] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
         .D(s_axi_wdata[7]),
         .Q(\FSM_sequential_scl_state_reg[3]_0 [7]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tbuf_i_reg[8] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[3]),
@@ -7581,24 +7581,24 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[1]),
         .Q(\FSM_sequential_scl_state_reg[2]_0 [1]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_thdsta_i_reg[2] 
+  FDRE \timing_param_thdsta_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[5]),
         .D(s_axi_wdata[2]),
         .Q(\FSM_sequential_scl_state_reg[2]_0 [2]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_thdsta_i_reg[3] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_thdsta_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[5]),
         .D(s_axi_wdata[3]),
         .Q(\FSM_sequential_scl_state_reg[2]_0 [3]),
-        .R(Bus2IIC_Reset));
-  FDRE \timing_param_thdsta_i_reg[4] 
+        .S(Bus2IIC_Reset));
+  FDSE \timing_param_thdsta_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[5]),
         .D(s_axi_wdata[4]),
         .Q(\FSM_sequential_scl_state_reg[2]_0 [4]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDRE \timing_param_thdsta_i_reg[5] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[5]),
@@ -7611,12 +7611,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[6]),
         .Q(\FSM_sequential_scl_state_reg[2]_0 [6]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_thdsta_i_reg[7] 
+  FDRE \timing_param_thdsta_i_reg[7] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[5]),
         .D(s_axi_wdata[7]),
         .Q(\FSM_sequential_scl_state_reg[2]_0 [7]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_thdsta_i_reg[8] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[5]),
@@ -7629,12 +7629,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[9]),
         .Q(Timing_param_thdsta[9]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_thigh_i_reg[0] 
+  FDRE \timing_param_thigh_i_reg[0] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
         .D(s_axi_wdata[0]),
         .Q(\s_axi_rdata_i_reg[7] [0]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_thigh_i_reg[10] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
@@ -7647,18 +7647,18 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[1]),
         .Q(\s_axi_rdata_i_reg[7] [1]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_thigh_i_reg[2] 
+  FDRE \timing_param_thigh_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
         .D(s_axi_wdata[2]),
         .Q(\s_axi_rdata_i_reg[7] [2]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_thigh_i_reg[3] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_thigh_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
         .D(s_axi_wdata[3]),
         .Q(\s_axi_rdata_i_reg[7] [3]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDRE \timing_param_thigh_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
@@ -7677,12 +7677,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[6]),
         .Q(\s_axi_rdata_i_reg[7] [6]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_thigh_i_reg[7] 
+  FDRE \timing_param_thigh_i_reg[7] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
         .D(s_axi_wdata[7]),
         .Q(\s_axi_rdata_i_reg[7] [7]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_thigh_i_reg[8] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[2]),
@@ -7695,12 +7695,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[9]),
         .Q(Timing_param_thigh[9]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_tlow_i_reg[0] 
+  FDRE \timing_param_tlow_i_reg[0] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
         .D(s_axi_wdata[0]),
         .Q(Timing_param_tlow[0]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tlow_i_reg[10] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
@@ -7713,18 +7713,18 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[1]),
         .Q(Timing_param_tlow[1]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_tlow_i_reg[2] 
+  FDRE \timing_param_tlow_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
         .D(s_axi_wdata[2]),
         .Q(Timing_param_tlow[2]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_tlow_i_reg[3] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_tlow_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
         .D(s_axi_wdata[3]),
         .Q(Timing_param_tlow[3]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDRE \timing_param_tlow_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
@@ -7743,12 +7743,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[6]),
         .Q(\s_axi_rdata_i_reg[7]_3 [2]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_tlow_i_reg[7] 
+  FDRE \timing_param_tlow_i_reg[7] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
         .D(s_axi_wdata[7]),
         .Q(\s_axi_rdata_i_reg[7]_3 [3]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tlow_i_reg[8] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[1]),
@@ -7773,30 +7773,30 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[10]),
         .Q(Timing_param_tsudat[10]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsudat_i_reg[1] 
+  FDRE \timing_param_tsudat_i_reg[1] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[4]),
         .D(s_axi_wdata[1]),
         .Q(\s_axi_rdata_i_reg[8] [1]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_tsudat_i_reg[2] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_tsudat_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[4]),
         .D(s_axi_wdata[2]),
         .Q(\s_axi_rdata_i_reg[8] [2]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDRE \timing_param_tsudat_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[4]),
         .D(s_axi_wdata[3]),
         .Q(\s_axi_rdata_i_reg[8] [3]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsudat_i_reg[4] 
+  FDRE \timing_param_tsudat_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[4]),
         .D(s_axi_wdata[4]),
         .Q(\s_axi_rdata_i_reg[8] [4]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tsudat_i_reg[5] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[4]),
@@ -7827,42 +7827,42 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[9]),
         .Q(Timing_param_tsudat[9]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsusta_i_reg[0] 
+  FDRE \timing_param_tsusta_i_reg[0] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[0]),
         .Q(\s_axi_rdata_i_reg[7]_1 [0]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tsusta_i_reg[10] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[10]),
         .Q(Timing_param_tsusta[10]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsusta_i_reg[1] 
+  FDRE \timing_param_tsusta_i_reg[1] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[1]),
         .Q(\s_axi_rdata_i_reg[7]_1 [1]),
-        .S(Bus2IIC_Reset));
-  FDSE \timing_param_tsusta_i_reg[2] 
+        .R(Bus2IIC_Reset));
+  FDRE \timing_param_tsusta_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[2]),
         .Q(\s_axi_rdata_i_reg[7]_1 [2]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_tsusta_i_reg[3] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_tsusta_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[3]),
         .Q(\s_axi_rdata_i_reg[7]_1 [3]),
-        .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsusta_i_reg[4] 
+        .S(Bus2IIC_Reset));
+  FDRE \timing_param_tsusta_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[4]),
         .Q(Timing_param_tsusta[4]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tsusta_i_reg[5] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
@@ -7875,60 +7875,60 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[6]),
         .Q(Timing_param_tsusta[6]),
         .S(Bus2IIC_Reset));
-  FDRE \timing_param_tsusta_i_reg[7] 
+  FDSE \timing_param_tsusta_i_reg[7] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[7]),
         .Q(\s_axi_rdata_i_reg[7]_1 [5]),
-        .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsusta_i_reg[8] 
+        .S(Bus2IIC_Reset));
+  FDRE \timing_param_tsusta_i_reg[8] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[8]),
         .Q(Timing_param_tsusta[8]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDSE \timing_param_tsusta_i_reg[9] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[7]),
         .D(s_axi_wdata[9]),
         .Q(Timing_param_tsusta[9]),
         .S(Bus2IIC_Reset));
-  FDRE \timing_param_tsusto_i_reg[0] 
+  FDSE \timing_param_tsusto_i_reg[0] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[0]),
         .Q(\s_axi_rdata_i_reg[7]_0 [0]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDRE \timing_param_tsusto_i_reg[10] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[10]),
         .Q(Timing_param_tsusto[10]),
         .R(Bus2IIC_Reset));
-  FDSE \timing_param_tsusto_i_reg[1] 
+  FDRE \timing_param_tsusto_i_reg[1] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[1]),
         .Q(\s_axi_rdata_i_reg[7]_0 [1]),
-        .S(Bus2IIC_Reset));
-  FDSE \timing_param_tsusto_i_reg[2] 
+        .R(Bus2IIC_Reset));
+  FDRE \timing_param_tsusto_i_reg[2] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[2]),
         .Q(\s_axi_rdata_i_reg[7]_0 [2]),
-        .S(Bus2IIC_Reset));
-  FDSE \timing_param_tsusto_i_reg[3] 
+        .R(Bus2IIC_Reset));
+  FDRE \timing_param_tsusto_i_reg[3] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[3]),
         .Q(\s_axi_rdata_i_reg[7]_0 [3]),
-        .S(Bus2IIC_Reset));
-  FDRE \timing_param_tsusto_i_reg[4] 
+        .R(Bus2IIC_Reset));
+  FDSE \timing_param_tsusto_i_reg[4] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[4]),
         .Q(Timing_param_tsusto[4]),
-        .R(Bus2IIC_Reset));
+        .S(Bus2IIC_Reset));
   FDSE \timing_param_tsusto_i_reg[5] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
@@ -7941,12 +7941,12 @@ module base_zynq_axi_iic_0_0_reg_interface
         .D(s_axi_wdata[6]),
         .Q(Timing_param_tsusto[6]),
         .S(Bus2IIC_Reset));
-  FDSE \timing_param_tsusto_i_reg[7] 
+  FDRE \timing_param_tsusto_i_reg[7] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
         .D(s_axi_wdata[7]),
         .Q(\s_axi_rdata_i_reg[7]_0 [5]),
-        .S(Bus2IIC_Reset));
+        .R(Bus2IIC_Reset));
   FDRE \timing_param_tsusto_i_reg[8] 
        (.C(s_axi_aclk),
         .CE(Bus2IIC_WrCE[6]),
