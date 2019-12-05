@@ -634,6 +634,8 @@ begin
 							WL.valid <= '1';
 							WL.ready <= '0';
 							wlstate <= VALID;
+						    RAMP_intl <= '0';
+					    	GCC_RESET_intl <= '0';
 
 							WL_CNT_EN <= '0';
 						else
@@ -656,7 +658,7 @@ begin
 						--Enable FIFODIG for removing the window
 						DIG_WriteEn <= '0';
 
-						RAMP_intl <= '1';
+--						RAMP_intl <= '1';
 						--if (SS.response = '1') then
 						if (SS.response = '0') then
 							WL.busy <= '1';
@@ -671,13 +673,13 @@ begin
 						if (SS.busy = '1') then
 							DIG_WriteEn <= '0';
 							wlstate <= SAMPLE_END;
-							RAMP_intl <= '1';
+--							RAMP_intl <= '1';
 							WL_CNT_EN <= '0';
 						else
 							-- Sampling is finished
 							DIG_WriteEn <= '1';
 							wlstate <= RAMP_DISCH;
-							GCC_RESET_intl <= '1';
+							GCC_RESET_intl <= '0';
 							WL_CNT_EN <= '1';
 							RAMP_intl <= '0';
 						end if;
@@ -689,7 +691,7 @@ begin
 							WL.ready <= '1';
 							WL.valid <= '0';
 							wlstate <= IDLE;
-							GCC_RESET_intl <= '1';
+							GCC_RESET_intl <= '0';
 							WL_CNT_EN <= '0';
 						else
 							WL_CNT_EN <= '1';
