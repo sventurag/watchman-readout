@@ -912,33 +912,33 @@ begin
 --						hsout_stm <= HIGH_SET0;
 					when HIGH_SET0 =>
 						-- SAmple the output of TARGETC
-						if SSBitCnt > 1 then
+						if SSBitCnt > 2 then
 
-							CH0_intl(SSBitCnt-2) <= DO(0);
-							CH1_intl(SSBitCnt-2) <= DO(1);
-							CH2_intl(SSBitCnt-2) <= DO(2);
-							CH3_intl(SSBitCnt-2) <= DO(3);
+							CH0_intl(SSBitCnt-3) <= DO(0);
+							CH1_intl(SSBitCnt-3) <= DO(1);
+							CH2_intl(SSBitCnt-3) <= DO(2);
+							CH3_intl(SSBitCnt-3) <= DO(3);
 
-							CH4_intl(SSBitCnt-2) <= DO(4);
-							CH5_intl(SSBitCnt-2) <= DO(5);
-							CH6_intl(SSBitCnt-2) <= DO(6);
-							CH7_intl(SSBitCnt-2) <= DO(7);
+							CH4_intl(SSBitCnt-3) <= DO(4);
+							CH5_intl(SSBitCnt-3) <= DO(5);
+							CH6_intl(SSBitCnt-3) <= DO(6);
+							CH7_intl(SSBitCnt-3) <= DO(7);
 
-							CH8_intl(SSBitCnt-2) <= DO(8);
-							CH9_intl(SSBitCnt-2) <= DO(9);
-							CH10_intl(SSBitCnt-2) <=DO(10);
-							CH11_intl(SSBitCnt-2) <= DO(11);
+							CH8_intl(SSBitCnt-3) <= DO(8);
+							CH9_intl(SSBitCnt-3) <= DO(9);
+							CH10_intl(SSBitCnt-3) <=DO(10);
+							CH11_intl(SSBitCnt-3) <= DO(11);
 
-							CH12_intl(SSBitCnt-2) <= DO(12);
-							CH13_intl(SSBitCnt-2) <= DO(13);
-							CH14_intl(SSBitCnt-2) <= DO(14);
-							CH15_intl(SSBitCnt-2) <= DO(15);
+							CH12_intl(SSBitCnt-3) <= DO(12);
+							CH13_intl(SSBitCnt-3) <= DO(13);
+							CH14_intl(SSBitCnt-3) <= DO(14);
+							CH15_intl(SSBitCnt-3) <= DO(15);
 
 						end if;
 
 						HSCLK_intl <= '0';
 
-						if SSBitCnt = 13 then
+						if SSBitCnt = 14 then
 						--if SSBitCnt = 13 then
 						--if SSBitCnt = 11 then
 							hsout_stm <= REQUEST;
@@ -949,7 +949,7 @@ begin
 						else
 							SS.valid <= '0';
 							SS.busy <= '1';
-							hsout_stm <= LOW_SET0;
+							hsout_stm <= LOW_SET1;
 							SSBitCnt <= SSBitCnt + 1;
 						end if;
 						--WLvalidAck <= '0';
