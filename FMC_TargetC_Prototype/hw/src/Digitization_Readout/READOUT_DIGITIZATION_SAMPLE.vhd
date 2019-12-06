@@ -949,7 +949,7 @@ begin
 						else
 							SS.valid <= '0';
 							SS.busy <= '1';
-							hsout_stm <= LOW_SET0;
+							hsout_stm <= LOW_SET1;
 							SSBitCnt <= SSBitCnt + 1;
 						end if;
 						--WLvalidAck <= '0';
