@@ -885,7 +885,7 @@ begin
 					when INCRWAIT =>
 						SS_INCR_intl <= '1';
 
-						if SS_CNT_INTL > UNSIGNED(INCR_WAIT_PERIOD) then
+						if SS_CNT_INTL = UNSIGNED(INCR_WAIT_PERIOD) then
 							SS_CNT_EN <= '0';
 							SS_RESET_intl <= '0';
 							hsout_stm <= LOW_SET0;
