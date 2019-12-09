@@ -630,7 +630,7 @@ begin
 
 						wlstate <= START;
 					when START =>
-						if(WL_CNT_INTL = x"37f" ) then
+						if(WL_CNT_INTL = x"3ff" ) then
 							WL.valid <= '1';
 							WL.ready <= '0';
 							wlstate <= VALID;
