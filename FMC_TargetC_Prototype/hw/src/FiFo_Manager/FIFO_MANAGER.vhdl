@@ -79,34 +79,59 @@ architecture rtl of FifoManagerV4 is
 			ClkB:	in	std_logic
 		);
 	end component clkcrossing_buf;
-
-	type fifostate is (
-		IDLE,
-		READY,
-		ACKNOWLEDGE,
-		PROC_REQ,
-
-		WRFULL,
-		WRxRD,
-		WRxRD_INIT,
-		WRxRD_HEADER,
-		WRxRD_DATA,
-		WR_TEMPO,
-		STALL,
-
-		REQUEST,
-		RESP_ACK,
-		REQ_GRANT,
-
-		VALID,
-		READ_FIFO_INFO,
-		WAIT_FIFO_INFO,
-		HEADER_FIFO_PREPARE,
-		RESPVALID
-	);
-	signal fifo_wr_stm : 	 fifostate := IDLE;
-	signal fifo_rd_stm : 	 fifostate := IDLE;
-	signal last_fifo_rd_stm : fifostate := IDLE;
+type fifostate_wr is (
+            IDLE,
+            READY,
+            ACKNOWLEDGE,
+            PROC_REQ,
+    
+            WRFULL,
+            WRxRD,
+            --WRxRD_INIT,
+            --WRxRD_HEADER,
+            --WRxRD_DATA,
+            WR_TEMPO,
+        --    STALL,
+    
+            REQUEST,
+            RESP_ACK,
+            REQ_GRANT,
+    
+        --    VALID,
+            READ_FIFO_INFO,
+            WAIT_FIFO_INFO,
+            HEADER_FIFO_PREPARE
+        --    RESPVALID
+        );
+        signal fifo_wr_stm :      fifostate_wr := IDLE;
+        
+        type fifostate_rd is (
+                IDLE,
+                READY,
+                ACKNOWLEDGE,
+                PROC_REQ,
+        
+            --    WRFULL,
+             --   WRxRD,
+                WRxRD_INIT,
+                WRxRD_HEADER,
+                WRxRD_DATA,
+            --    WR_TEMPO,
+                STALL_WRxRD_DATA,
+                STALL_WRxRD_HEADER,
+        
+            --    REQUEST,
+            --    RESP_ACK,
+            --    REQ_GRANT,
+        
+                VALID,
+    --            READ_FIFO_INFO,
+    --            WAIT_FIFO_INFO,
+    --            HEADER_FIFO_PREPARE
+               RESPVALID
+            );
+        
+        signal fifo_rd_stm :      fifostate_rd := IDLE;
 
 	component module_fifo_regs_no_flags is
 		generic (
@@ -483,7 +508,7 @@ begin
 	end if;
 	end process;
 
-	-- FIFO READ PROCESS
+-- FIFO READ PROCESS
 	fifoRD : process(ClockBus.AXI_CLK,CtrlBus_IxSL.SW_nRST)
 	begin
 	if (CtrlBus_IxSL.SW_nRST = '0') then
@@ -585,9 +610,9 @@ begin
 						end case;
 					else
 						rd_en	<= '0';
-						last_fifo_rd_stm <= WRxRD_HEADER;
+						-- last_fifo_rd_stm <= WRxRD_HEADER;
 						dataout_last <= dataout_intlH;
-						fifo_rd_stm <= STALL;
+						fifo_rd_stm <= STALL_WRxRD_HEADER;
 					end if;
 				when WRxRD_DATA =>
 					if(StreamReady = '1') then
@@ -605,22 +630,36 @@ begin
 						end if;
 					else
 						rd_en	<= '0';
-						last_fifo_rd_stm <= WRxRD_DATA;
+				--		last_fifo_rd_stm <= WRxRD_DATA;
 						dataout_last <= dataout_intlD;
-						fifo_rd_stm <= STALL;
+						fifo_rd_stm <= STALL_WRxRD_DATA;
 					end if;
 
 				-- New State when the AXI is not ready data output should be stalled
-				WHEN STALL =>
+				WHEN STALL_WRxRD_HEADER =>
 					dataout_stall <= dataout_intlD;
 					if(StreamReady = '1') then
-						fifo_rd_stm <= last_fifo_rd_stm;
+						fifo_rd_stm <= WRxRD_HEADER;
 						cnt_fifo <= std_logic_vector(unsigned(cnt_fifo) + 1);
 						rd_en	<= '1';
 					else
-						fifo_rd_stm <= STALL;
+						fifo_rd_stm <= STALL_WRxRD_HEADER;
 						rd_en	<= '0';
 					end if;
+-- New State when the AXI is not ready data output should be stalled
+                WHEN STALL_WRxRD_DATA =>
+                    dataout_stall <= dataout_intlD;
+                    if(StreamReady = '1') then
+                        fifo_rd_stm <= WRxRD_DATA;
+                        cnt_fifo <= std_logic_vector(unsigned(cnt_fifo) + 1);
+                        rd_en    <= '1';
+                    else
+                        fifo_rd_stm <= STALL_WRxRD_DATA;
+                        rd_en    <= '0';
+                    end if;
+
+
+
 
 				WHEN VALID =>
 					rd_en <= '0';
@@ -631,8 +670,8 @@ begin
 						fifo_rd_stm <= IDLE;
 					end if;
 				WHEN RESPVALID =>
-				when others =>
-					fifo_rd_stm <= IDLE;
+--				when others =>
+--					fifo_rd_stm <= IDLE;
 			end case;
 		end if;
 	end if;
