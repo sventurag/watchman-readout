@@ -399,15 +399,15 @@ begin
 					if (request_intl = '0') then
 						FIFO_WR.recv.ack <= '0';
 
-						fifo_wr_stm <= PROC_REQ;
+						fifo_wr_stm <= WRxRD;
 					else
 						fifo_wr_stm <= ACKNOWLEDGE;
 						FIFO_WR.recv.ack <= '1';
 						--Handshake_RECV_intl.ACK <= '1';
 					end if;
-				when PROC_REQ =>
-					--fifo_wr_stm <= WRFULL;
-					fifo_wr_stm <= WRxRD;
+--				when PROC_REQ =>
+--					--fifo_wr_stm <= WRFULL;
+--					fifo_wr_stm <= WRxRD;
 --				when WRFULL =>
 --					if(full = x"FFFF") then
 --						fifo_wr_stm <= WRFULL;
