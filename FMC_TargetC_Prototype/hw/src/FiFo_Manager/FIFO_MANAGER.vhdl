@@ -408,12 +408,12 @@ begin
 				when PROC_REQ =>
 					--fifo_wr_stm <= WRFULL;
 					fifo_wr_stm <= WRxRD;
-				when WRFULL =>
-					if(full = x"FFFF") then
-						fifo_wr_stm <= WRFULL;
-					else
-						fifo_wr_stm <= WRxRD;
-					end if;
+--				when WRFULL =>
+--					if(full = x"FFFF") then
+--						fifo_wr_stm <= WRFULL;
+--					else
+--						fifo_wr_stm <= WRxRD;
+--					end if;
 
 				when WRxRD =>
 					wr_en	<= '1';
