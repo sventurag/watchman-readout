@@ -14,7 +14,7 @@ from waveform_gen_33600 import wave_gen
 import os
 import targetc as targetc
 import pandas as pd
-
+from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 #wave_gen().Output1(out=False)
 
@@ -70,7 +70,7 @@ for j in repeticiones: # # Number of waveforms for the same delay value
     
  #      wave_gen().trigDelay(i*.000000001)
        time.sleep(0.5)
-       Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,0)       
+       Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,15)       
        Windows512 = [int(i)] + Windows512.tolist()
        Windows512_delays.append(Windows512)
        time.sleep(0.5)
@@ -82,4 +82,6 @@ Windows512_delays = Windows512_delays * 0
     
 #wave_gen().Output1(out=False)
 print("end")
+
+plot_pulse(fileToSave)
 
