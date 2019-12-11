@@ -14,7 +14,7 @@ from waveform_gen_33600 import wave_gen
 import os
 import targetc as targetc
 import pandas as pd
-
+from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 fileToSave = './data/trigger.txt'
 
@@ -45,9 +45,7 @@ Windows512_delays = Windows512_delays * 0
 #wave_gen().Output1(out=False)
 print("end")
 
-
-print("the end")
-
+plot_pulse(fileToSave)
 
 
 
