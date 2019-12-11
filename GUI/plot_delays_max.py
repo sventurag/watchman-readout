@@ -11,7 +11,7 @@ vadjn = list(range(2600,2700,5))
 
 #### Data parameters
 rango = 1  # number of steps in delay values for the waveform generator
-repeticiones = 1 # Number of waveforms for the same delay value
+repeticiones =10 # Number of waveforms for the same delay value
 
 
 
@@ -21,7 +21,7 @@ print(df)
 
 total= int(rango*repeticiones)
 startWindow=0
-totalWindows=12
+totalWindows=4*20
 #print(pd.DataFrame(df, columns=[0,3]))
 nmbrWindows = 4
 print(len(df[0]))
@@ -43,6 +43,9 @@ lblsize =16
 plt.rc('xtick', labelsize= lblsize)
 plt.rc('ytick', labelsize=lblsize)
 
+ped_raw = df.iloc[:,0:8]
+ped= ped_raw.mean(axis=1)
+ped_subtracted = df[9]-ped
 
 maximums= pd.DataFrame()
 
@@ -52,8 +55,8 @@ for i in range(0,rango,1):
     for	k in range(i,total,rango):
         std_3windows = 0
         plt.plot(list(df.index), df[k], '-o', markersize=4) 
-        
-		
+         
+    		
 
 	#plt.xticks(np.arange(200,384,10))       
      #   plt.xlim(210, 375)
@@ -68,10 +71,11 @@ for i in range(0,rango,1):
      
        # std_3windows += np.std(df[k][0:96])
         plt.title('delay = {} ns'.format(i), fontsize=18, color='b')
-     #   for j in range(0,int(32*nmbrWindows*10),32):
-     #       plt.axvline(j-1, color='k', linewidth=2)
+        #for j in range(0,int(32*nmbrWindows*40),32):
+         #   plt.axvline(j-1, color='k', linewidth=2)
     std3windowsList.append(std_3windows/repeticiones)
     textstr = 'std3windows={:10.2f}'.format(std_3windows/repeticiones)
+    plt.plot(list(df.index), ped_subtracted)
 #    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=fontsizeAxis)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=fontsizeAxis)
