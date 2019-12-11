@@ -5,13 +5,13 @@ import pandas as pd
 import os
 from scipy.optimize import curve_fit
 from matplotlib import rc
-fileName = './data/sinewave_sstoutfb_59.txt'
+fileName = './data/trigger.txt'
 vadjn = list(range(2600,2700,5))
 #vadjn = list(np.zeros(10))
 
 #### Data parameters
 rango = 1  # number of steps in delay values for the waveform generator
-repeticiones =10 # Number of waveforms for the same delay value
+repeticiones =1 # Number of waveforms for the same delay value
 
 
 
@@ -21,9 +21,9 @@ print(df)
 
 total= int(rango*repeticiones)
 startWindow=0
-totalWindows=4*20
+totalWindows=1
 #print(pd.DataFrame(df, columns=[0,3]))
-nmbrWindows = 4
+nmbrWindows = 1
 print(len(df[0]))
 
 print(np.arange(startWindow*32,totalWindows*32,1 ))
@@ -43,10 +43,10 @@ lblsize =16
 plt.rc('xtick', labelsize= lblsize)
 plt.rc('ytick', labelsize=lblsize)
 
-ped_raw = df.iloc[:,0:8]
-ped= ped_raw.mean(axis=1)
-ped_subtracted = df[9]-ped
-
+#ped_raw = df.iloc[:,0:8]
+#ped= ped_raw.mean(axis=1)
+#ped_subtracted = df[9]-ped
+#
 maximums= pd.DataFrame()
 
 for i in range(0,rango,1):
@@ -75,7 +75,7 @@ for i in range(0,rango,1):
          #   plt.axvline(j-1, color='k', linewidth=2)
     std3windowsList.append(std_3windows/repeticiones)
     textstr = 'std3windows={:10.2f}'.format(std_3windows/repeticiones)
-    plt.plot(list(df.index), ped_subtracted)
+    #plt.plot(list(df.index), ped_subtracted)
 #    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=fontsizeAxis)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=fontsizeAxis)
