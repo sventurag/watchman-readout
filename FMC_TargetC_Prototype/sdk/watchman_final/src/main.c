@@ -405,12 +405,43 @@ int main()
 				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
 				usleep(100);
 				XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
-
 				XTime_GetTime(&tStart);
 				//sleep(10);
 				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
 				Xil_DCacheInvalidateRange((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
-				while(!flag_axidma_rx_done){};
+
+				//////////////////////////////////////
+				timeout = 200000; // Timeout of 10 sec
+				printf("Waiting for the pulse...");
+
+				do{
+					/* If needed, update timefile */
+					if(flag_ttcps_timer){
+						update_timefile();
+						flag_ttcps_timer = false;
+					}
+
+					/* If needed, reload watchdog's counter */
+					if(flag_scu_timer){
+						XScuWdt_RestartWdt(&WdtScuInstance);
+						flag_scu_timer = false;
+					}
+
+					/* The DMA had a problem */
+					if(flag_axidma_error){
+						printf("Error with DMA interrupt: TPG !\r\n");
+						return XST_FAILURE;
+					}
+
+					usleep(0.1);
+					timeout--;
+					printf(".");
+				}while(!flag_axidma_rx_done || !timeout);
+				if (timeout==0) {
+					printf("\r\n timeout, trigger mode aborted\r\n");
+				}
+               /////////
+		//		while(!flag_axidma_rx_done){};
 				XTime_GetTime(&tEnd);
 
 				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
