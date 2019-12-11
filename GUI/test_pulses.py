@@ -20,7 +20,7 @@ tc = targetc.targetc()
 
 rango = list((range(10,11,1)))  # number of steps in delay values for the waveform generator
 
-repeticiones = list( range(0,10,1)   )
+repeticiones = list( range(0,1,1)   )
 fileToSave = './data/sinewave_sstoutfb_59.txt'
 
 #print ('Setting ssToutFB')
@@ -47,7 +47,7 @@ time.sleep(1)
 
 
 startWindow=0
-totalWindows=4*40 #12
+totalWindows=12 #12
 
 Windows512 = np.zeros((totalWindows*31))
 
