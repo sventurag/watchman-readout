@@ -112,9 +112,14 @@ class targetc():
           self.init_UDP_connection_trigger_mode()
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-          self.thread_trigger_obj=Thread(target=self.thread_trigger, args=())
+        #  self.thread_trigger_obj=Thread(target=self.thread_trigger, args=())
+        #  #thread_timer_2=Timer(10,thread_timer_int_2)
+        #  self.thread_trigger_obj.start()
+        #  self.get_windows_flag = True
+          self.init_UDP_connection_data()
+          self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
           #thread_timer_2=Timer(10,thread_timer_int_2)
-          self.thread_trigger_obj.start()
+          self.thread_user_mode_obj.start()
           self.get_windows_flag = True
 
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
@@ -163,7 +168,7 @@ class targetc():
             self.int_array[i] = np.fromstring(data[i],dtype=np.uint16)
         
         #print('lEN', len(self.int_array))
-        print(self.int_array[0])
+        print("all channels, window 0",self.int_array[0])
         self.Vped=0
         self.windowsNumbers = [self.int_array[x][1] for x in range(0,len(self.int_array)) ] # create a list with the window numbers, byte 1 from each window
         print('windowsNumbers',self.windowsNumbers) 
@@ -192,8 +197,10 @@ class targetc():
         for i in range(numberWindows):
             sameChannel = np.concatenate((sameChannel,list_to_flat[i][channel] ),axis = None  )
         return sameChannel
-        
+
+
     def thread_user_mode(self):  
+        print("starting thread")
         flag_tmp = True
         self.timer_thread_flag_2 = False
         maxWindows = self.stepWindows
@@ -212,6 +219,7 @@ class targetc():
                             windowsList.append(data)
                            # print('DATA',data)                           
                             cntWindows += 1
+                            print(cntWindows)
                          else:
                             # error: no end code
                             print(data[0],data[1020:1030], len(data))
@@ -237,7 +245,7 @@ class targetc():
         
 #        self.get_sorted_data(np.array(windowsList))
         self.allWindows.append(windowsList)
-        #print("windowsList", windowsList[1])
+       # print("windowsList", windowsList)
         
        # print("windowsList", windowsList[1][0])
         windowsList = windowsList*0 
@@ -391,5 +399,17 @@ class targetc():
     
     #############################################
     
-
-
+    def trigger_mode(self, stepWindows,channel):
+        self.stepWindows = stepWindows 
+        self.allWindows=list()        
+        self.totalWindows=stepWindows
+        self.startWindow=0
+        self.send_command(3,0,0)# send command to PS to start trigger mode
+      #  self.thread_user_mode_flag = 1
+        self.channel=channel  
+        time.sleep(1)
+        WindowsData_toSave= np.zeros((32*self.stepWindows))
+        print(WindowsData_toSave)
+        print(self.allWindows)
+        WindowsData_toSave = self.get_sorted_data(self.allWindows)[:,channel]       
+        return WindowsData_toSave.flatten()  
