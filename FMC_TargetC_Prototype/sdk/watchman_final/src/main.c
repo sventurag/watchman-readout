@@ -94,6 +94,8 @@ extern int nmbrWindowsPed;
 ///** Value from the GUI for voltage value for comparators and vped  */
 //extern int VPED_ANALOG;
 
+/** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
+ extern char* frame_buf;
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -135,6 +137,8 @@ int main()
 	XTime tStart, tEnd;
     int i,j;
     int timeout;
+    int index;
+    int window;
 	uint16_t data_tmp, data_tmp2;
 
 	//static XTime tStart, tEnd;
@@ -449,6 +453,7 @@ int main()
 				flag_axidma_rx_done =false;
             	usleep(1);
              	xil_printf("wdo_id=%d \r\n", (uint16_t)first_element-> data.data_struct.wdo_id );
+             	window=(uint16_t)first_element-> data.data_struct.wdo_id ;
              	printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
             	printf( "XAxiDma_SimpleTransfer_hm took %.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
 
@@ -464,7 +469,39 @@ int main()
 					//printf("\r\n");
 				}
 
-				usleep(100000);
+				usleep(1);
+
+		/* If data valid, send them to computer */
+				index = 0;
+				frame_buf[index++] = 0x55;
+				frame_buf[index++] = 0xAA;
+				frame_buf[index++] = (char)window;
+				frame_buf[index++] = (char)(window >> 8);
+
+				//printf("\r\n window = %d\r\n",window);
+				for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Pedestal subtraction */
+						data_tmp = (uint16_t) (first_element->data.data_struct.data[i][j]);//-  pedestal[window][i][j]+ offset_avoid_negative);
+
+						frame_buf[index++] = (char)data_tmp;
+						//printf("int_number = %d\r\n ", (char)(int_number));
+
+						frame_buf[index++] = (char)(data_tmp >> 8);
+						//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
+
+					}
+
+					//printf("\r\n");
+				}
+				//printf("\r\n");
+				frame_buf[index++] = 0x33;
+			//    printf("Test\r\n");
+				frame_buf[index++] = 0xCC;
+				printf("%d\r\n", index);
+				transfer_data(frame_buf, index);
+
+
 
 
 				ControlRegisterWrite(WINDOW_MASK,DISABLE);
