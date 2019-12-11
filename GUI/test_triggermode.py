@@ -16,6 +16,7 @@ import targetc as targetc
 import pandas as pd
 
 tc = targetc.targetc()
+fileToSave = './data/trigger.txt'
 
 #for i in range(10):
 #    tc.send_command(3,0,0) # start TriggerMode
@@ -23,11 +24,26 @@ tc = targetc.targetc()
 #    print(i)
 #wave_gen().Output1(out=True)
 
-tc.send_command(3,0,0) # start TriggerMode
+#tc.send_command(3,0,0) # start TriggerMode
+totalWindows=1
+Windows512 = np.zeros((totalWindows*31))
 
+Windows512_delays= list()
 
-nmbrWindows=4
-#tc.send_command(9,50,nmbrWindows) # pedestal
+Windows512 =  tc.trigger_mode(1,15)
+print(Windows512)
+Windows512 = [1] + Windows512.tolist()
+Windows512_delays.append(Windows512)
+      
+      #time.sleep(0.5)
+
+np.savetxt(os.path.abspath(fileToSave), np.array(Windows512_delays).T, fmt='%5.3f')
+time.sleep(1)
+
+Windows512_delays = Windows512_delays * 0 
+    
+#wave_gen().Output1(out=False)
+print("end")
 
 
 print("the end")
