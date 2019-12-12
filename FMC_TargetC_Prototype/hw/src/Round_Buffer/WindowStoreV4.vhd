@@ -174,7 +174,11 @@ END COMPONENT;
   
     signal cnt_wr_en : std_logic_vector(3 downto 0);
     signal long_pulse: std_logic;
+    attribute mark_debug : string;
     
+   attribute mark_debug of WdoNumber: signal is "true";
+      attribute mark_debug of WriteEn: signal is "true";
+
     
         type longPulse_type is(
             IDLE,
@@ -327,60 +331,61 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
                         WdoNumber <= Wdo1; 
                     else
                          WdoNumber <= RDAD_Data_trig;         
-                         if long_pulse = '0' then     ---  Check long_pulses_stm
+--                         if long_pulse = '0' then     ---  Check long_pulses_stm
                              WriteEn <=RDAD_WriteEn_trig ;
-                         else
-                             WriteEn<= '0';
-                         end if;
+--                         else
+--                             WriteEn<= '0';
+--                         end if;
 	                end if;
 	            end if;    
 	        end if;
 	end process;
 
 
+
 -- handling long pulses
 
-long_pulses_stm:	process(ClockBus.CLK125MHz)
+--long_pulses_stm:	process(ClockBus.CLK125MHz)
        
              
-        begin
-            if nrst = '0' then
-                long_pulse <= '0';
-                cnt_wr_en <= (others=>'0'); 
-            else
-                if rising_edge(ClockBus.Clk125MHz) then 
-                    if CtrlBus_IxSL.CPUMode = '1' then
-                            case longpulse_stm is
-                                 when IDLE =>            
-                                if RDAD_WriteEn_trig= '1' then           
-                                    if cnt_wr_en < "0111" then  --- After x windows (cnt_wr_en < x) the pulse is considered 'long'.
-                                        long_pulse<= '0';
-                                        cnt_wr_en <= std_logic_vector(unsigned(cnt_wr_en) + 1);
-                                        longpulse_stm <= IDLE;
-                                    else
-                                        long_pulse<='1';
-                                        cnt_wr_en <= (others=>'0');
-                                        longpulse_stm <= longpulse;  -- if the writeEn stays high for more than x clk periods the long_pulse signal goes high
-                                    end if;    
-                               else
-                                   long_pulse <= '0';
-                                   cnt_wr_en <= (others=>'0');
-                                   longpulse_stm <= IDLE;                                                
-                            end if;
-                             when longpulse=>
-                                if RDAD_WriteEn_trig= '1' then           
-                                    long_pulse<= '1';
-                                    longpulse_stm <= longpulse; 
-                                else
-                                    long_pulse<= '0';
-                                    longpulse_stm <= IDLE;
-                                end if;
-                            end case;        
+--        begin
+--            if nrst = '0' then
+--                long_pulse <= '0';
+--                cnt_wr_en <= (others=>'0'); 
+--            else
+--                if rising_edge(ClockBus.Clk125MHz) then 
+--                    if CtrlBus_IxSL.CPUMode = '1' then
+--                            case longpulse_stm is
+--                                 when IDLE =>            
+--                                if RDAD_WriteEn_trig= '1' then           
+--                                    if cnt_wr_en < "0111" then  --- After x windows (cnt_wr_en < x) the pulse is considered 'long'.
+--                                        long_pulse<= '0';
+--                                        cnt_wr_en <= std_logic_vector(unsigned(cnt_wr_en) + 1);
+--                                        longpulse_stm <= IDLE;
+--                                    else
+--                                        long_pulse<='1';
+--                                        cnt_wr_en <= (others=>'0');
+--                                        longpulse_stm <= longpulse;  -- if the writeEn stays high for more than x clk periods the long_pulse signal goes high
+--                                    end if;    
+--                               else
+--                                   long_pulse <= '0';
+--                                   cnt_wr_en <= (others=>'0');
+--                                   longpulse_stm <= IDLE;                                                
+--                            end if;
+--                             when longpulse=>
+--                                if RDAD_WriteEn_trig= '1' then           
+--                                    long_pulse<= '1';
+--                                    longpulse_stm <= longpulse; 
+--                                else
+--                                    long_pulse<= '0';
+--                                    longpulse_stm <= IDLE;
+--                                end if;
+--                            end case;        
                         
-                        end if;
-                    end if;
-                end if;        
-    end process;
+--                        end if;
+--                    end if;
+--                end if;        
+--    end process;
 		
     Cmd_s<= (others => '0');
     Trig <= (others => '0');
