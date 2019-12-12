@@ -18,11 +18,13 @@ from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 fileToSave = './data/trigger.txt'
 
-for i in range(0,10,1):
-    Windows512 =  tc.trigger_mode(1,15,fileToSave )
-    plot_pulse(fileToSave)
+#or i in range(0,10,1):
+
+Windows512 =  tc.trigger_mode(2,15,fileToSave )
+
+#plot_pulse(fileToSave)
 #    time.sleep(3)
-    time.sleep(1)
+#    time.sleep(1)
     #plt.close(1)
 
 

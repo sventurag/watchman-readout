@@ -13,6 +13,7 @@ import waveform_gen_33600 as wv_gen
 from waveform_gen_33600 import wave_gen
 import os
 from tempfile import TemporaryFile
+from plot_delays_max import plot_pulse
 from waiting import wait
 class targetc():
 
@@ -273,7 +274,7 @@ class targetc():
                             windowsList.append(data)
                            # print('DATA',data)                           
                             cntWindows += 1
-                       #     print(cntWindows)
+                            print(cntWindows)
                          else:
                             # error: no end code
                             print(data[0],data[1020:1030], len(data))
@@ -296,7 +297,7 @@ class targetc():
             # socket exception: problem during execution of socket.recvfrom
             except socket.error:
                 dummy = 0 # dummy execution to catch the exception
-        
+            print("trying")
 #        self.get_sorted_data(np.array(windowsList))
         self.allWindows.append(windowsList)
        # print("windowsList", windowsList)
@@ -313,8 +314,9 @@ class targetc():
         WindowsData_toSave_flat = self.WindowsData_toSave.flatten() 
         WindowsData_txt = [1]+ WindowsData_toSave_flat.tolist() 
         np.savetxt(os.path.abspath(self.fileToSave), np.array(WindowsData_txt).T, fmt='%5.3f')
-        
+        print("dataSaved") 
         self.flag_transfer_done=False
+        plot_pulse(self.fileToSave)
         
 
     ## Method thread to process the command received by UDP (running all the time)
