@@ -140,6 +140,7 @@ int main()
     int index;
     int window;
 	uint16_t data_tmp, data_tmp2;
+	int Windows_triggerMode;
 
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
@@ -408,10 +409,16 @@ int main()
 
 				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
 				usleep(100);
+
+				for (Windows_triggerMode=0; Windows_triggerMode<3;Windows_triggerMode++ ) {
+
 				XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 				XTime_GetTime(&tStart);
 				//sleep(10);
 				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
+
+
+
 				Xil_DCacheInvalidateRange((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 				//////////////////////////////////////
@@ -504,9 +511,11 @@ int main()
 
 
 
-				ControlRegisterWrite(WINDOW_MASK,DISABLE);
-				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
+				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+				Windows_triggerMode++;
+				}
+		        ControlRegisterWrite(WINDOW_MASK,DISABLE);
 //				free(tmp_ptr_main);
 //				tmp_ptr_main= NULL;
 

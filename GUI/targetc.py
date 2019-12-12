@@ -13,7 +13,8 @@ import waveform_gen_33600 as wv_gen
 from waveform_gen_33600 import wave_gen
 import os
 from tempfile import TemporaryFile
-
+from plot_delays_max import plot_pulse
+from waiting import wait
 class targetc():
 
     def __init__(self):
@@ -30,7 +31,7 @@ class targetc():
 ##     Contain the zynq's ip
 ##     List of all the commands
 ##     Flag which indicates if the streaming is running
-        
+        self.flag_transfer_done = False
         self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'get_windows_raw', 'restartAll']
         self.stream_flag = False
         ## Flag which indicates that the user want to close the GUI (to avoid problem when accessing graphical object after "WM_DELETE_WINDOW" event)
@@ -109,18 +110,19 @@ class targetc():
        if(self.cmd[comando] == 'restartAll'): # restart main()
            dummy = param1 
        if(self.cmd[comando] == 'trigger_mode'): # restart main() 
-          self.init_UDP_connection_trigger_mode()
+          #self.init_UDP_connection_trigger_mode()
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-        #  self.thread_trigger_obj=Thread(target=self.thread_trigger, args=())
-        #  #thread_timer_2=Timer(10,thread_timer_int_2)
-        #  self.thread_trigger_obj.start()
-        #  self.get_windows_flag = True
           self.init_UDP_connection_data()
-          self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
-          #thread_timer_2=Timer(10,thread_timer_int_2)
-          self.thread_user_mode_obj.start()
+        
+          self.thread_trigger_obj=Thread(target=self.thread_trigger, args=())
+        #  #thread_timer_2=Timer(10,thread_timer_int_2)
+          self.thread_trigger_obj.start()
           self.get_windows_flag = True
+        #  self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
+          #thread_timer_2=Timer(10,thread_timer_int_2)
+         # self.thread_user_mode_obj.start()
+         # self.get_windows_flag = True
 
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
@@ -168,7 +170,7 @@ class targetc():
             self.int_array[i] = np.fromstring(data[i],dtype=np.uint16)
         
         #print('lEN', len(self.int_array))
-        print("all channels, window 0",self.int_array[0])
+        #print("all channels, window 0",self.int_array[0])
         self.Vped=0
         self.windowsNumbers = [self.int_array[x][1] for x in range(0,len(self.int_array)) ] # create a list with the window numbers, byte 1 from each window
         print('windowsNumbers',self.windowsNumbers) 
@@ -253,15 +255,16 @@ class targetc():
         self.close_UDP_connection_data()
         
     def thread_trigger(self):  
+        print("starting thread")
         flag_tmp = True
         self.timer_thread_flag_2 = False
-        maxWindows = 1# self.stepWindows
+        maxWindows = self.stepWindows
         cntWindows = 0
         windowsList= list()
         #window_array = np.zeros((32*16))
         while(cntWindows < maxWindows):
             try:
-                data, adress = self.sock_trigger.recvfrom(1031) # wait on data
+                data, adress = self.sock_data.recvfrom(1031) # wait on data
                 # process the data received
                 if(adress[0] == self.UDP_IP): # test the emitter's ip
                     if((data[0] == int("0x55", 0)) and (data[1] == int("0xAA", 0))): # for every command look for start code
@@ -269,8 +272,9 @@ class targetc():
                          if((data[1028] == int("0x33", 0)) and (data[1029] == int("0xCC", 0))):
                             #self.data=data
                             windowsList.append(data)
-                            print('DATA',data)                           
+                           # print('DATA',data)                           
                             cntWindows += 1
+                            print(cntWindows)
                          else:
                             # error: no end code
                             print(data[0],data[1020:1030], len(data))
@@ -293,15 +297,26 @@ class targetc():
             # socket exception: problem during execution of socket.recvfrom
             except socket.error:
                 dummy = 0 # dummy execution to catch the exception
-        
+            print("trying")
 #        self.get_sorted_data(np.array(windowsList))
         self.allWindows.append(windowsList)
-        #print("windowsList", windowsList[1])
+       # print("windowsList", windowsList)
         
        # print("windowsList", windowsList[1][0])
         windowsList = windowsList*0 
+        self.flag_transfer_done= True
        # windowsData_int = np.zeros((32*4))
-     #   self.close_UDP_connection_trigger_mode()
+       # self.close_UDP_connection_data()
+        self.WindowsData_toSave= np.zeros((32*self.stepWindows))
+        #print(self.WindowsData_toSave)
+        #print(self.allWindows)
+        self.WindowsData_toSave = self.get_sorted_data(self.allWindows)[:,self.channel]       
+        WindowsData_toSave_flat = self.WindowsData_toSave.flatten() 
+        WindowsData_txt = [1]+ WindowsData_toSave_flat.tolist() 
+        np.savetxt(os.path.abspath(self.fileToSave), np.array(WindowsData_txt).T, fmt='%5.3f')
+        print("dataSaved") 
+        self.flag_transfer_done=False
+        plot_pulse(self.fileToSave)
         
 
     ## Method thread to process the command received by UDP (running all the time)
@@ -399,17 +414,13 @@ class targetc():
     
     #############################################
     
-    def trigger_mode(self, stepWindows,channel):
+    def trigger_mode(self, stepWindows,channel, fileToSave):
         self.stepWindows = stepWindows 
         self.allWindows=list()        
         self.totalWindows=stepWindows
         self.startWindow=0
         self.send_command(3,0,0)# send command to PS to start trigger mode
-      #  self.thread_user_mode_flag = 1
         self.channel=channel  
-        time.sleep(1)
-        WindowsData_toSave= np.zeros((32*self.stepWindows))
-        print(WindowsData_toSave)
-        print(self.allWindows)
-        WindowsData_toSave = self.get_sorted_data(self.allWindows)[:,channel]       
-        return WindowsData_toSave.flatten()  
+        self.fileToSave=fileToSave
+        
+        return 
