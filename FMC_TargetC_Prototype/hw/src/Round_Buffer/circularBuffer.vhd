@@ -80,6 +80,10 @@ attribute mark_debug : string;
 
 attribute mark_debug of window2read: signal is "true";
 attribute mark_debug of trigger: signal is "true";
+attribute mark_debug of WR_CS: signal is "true";
+attribute mark_debug of WR_RS: signal is "true";
+attribute mark_debug of wr_shifted: signal is "true";
+
 
 
 
