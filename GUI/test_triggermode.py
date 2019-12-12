@@ -14,39 +14,24 @@ from waveform_gen_33600 import wave_gen
 import os
 import targetc as targetc
 import pandas as pd
-
+from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 fileToSave = './data/trigger.txt'
 
-#for i in range(10):
-#    tc.send_command(3,0,0) # start TriggerMode
+#or i in range(0,10,1):
+
+Windows512 =  tc.trigger_mode(2,15,fileToSave )
+
+#plot_pulse(fileToSave)
 #    time.sleep(3)
-#    print(i)
-#wave_gen().Output1(out=True)
+#    time.sleep(1)
+    #plt.close(1)
 
-#tc.send_command(3,0,0) # start TriggerMode
-totalWindows=1
-Windows512 = np.zeros((totalWindows*31))
 
-Windows512_delays= list()
-
-Windows512 =  tc.trigger_mode(1,15)
-print(Windows512)
-Windows512 = [1] + Windows512.tolist()
-Windows512_delays.append(Windows512)
-      
-      #time.sleep(0.5)
-
-np.savetxt(os.path.abspath(fileToSave), np.array(Windows512_delays).T, fmt='%5.3f')
-time.sleep(1)
-
-Windows512_delays = Windows512_delays * 0 
-    
-#wave_gen().Output1(out=False)
 print("end")
 
 
-print("the end")
+
 
 
 
