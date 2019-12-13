@@ -302,12 +302,12 @@ int main()
 		return -1;
 	}
 
-	/* Initialize transfer function coefficients */
-	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
-	else{
-		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Transfer function initialization failed!");
-		return -1;
-	}
+//	/* Initialize transfer function coefficients */
+//	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
+//	else{
+//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Transfer function initialization failed!");
+//		return -1;
+//	}
 
 /*
 	// Sweep over SSTOUTFB to get 1.6V in VADJN

@@ -87,7 +87,6 @@ attribute mark_debug of wr_shifted: signal is "true";
 
 
 
-
 attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
 
