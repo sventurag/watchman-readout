@@ -5,7 +5,7 @@ import pandas as pd
 import os
 from scipy.optimize import curve_fit
 from matplotlib import rc
-fileName = './data/trigger.txt'
+#fileName = './data/raw_window_512.txt'
 
 def plot_pulse(fileName):
 #vadjn = list(range(2600,2700,5))
@@ -13,7 +13,7 @@ def plot_pulse(fileName):
 
     #### Data parameters
     rango = 1  # number of steps in delay values for the waveform generator
-    repeticiones =1 # Number of waveforms for the same delay value
+    repeticiones =50 # Number of waveforms for the same delay value
     
     
     
@@ -45,9 +45,9 @@ def plot_pulse(fileName):
     plt.rc('xtick', labelsize= lblsize)
     plt.rc('ytick', labelsize=lblsize)
     
-    #ped_raw = df.iloc[:,0:8]
-    #ped= ped_raw.mean(axis=1)
-    #ped_subtracted = df[9]-ped
+    ped_raw = df.iloc[:,0:48]
+    ped= ped_raw.mean(axis=1)
+    ped_subtracted = df[49]-ped
     #
     maximums= pd.DataFrame()
     
@@ -72,13 +72,15 @@ def plot_pulse(fileName):
             
          
            # std_3windows += np.std(df[k][0:96])
-            plt.title('delay = {} ns'.format(i), fontsize=18, color='b')
+            #plt.title('delay = {} ns'.format(i), fontsize=18, color='b')
+            plt.title('Raw data for pedestals, 50 avg', fontsize=18, color='b')
             #for j in range(0,int(32*nmbrWindows*40),32):
              #   plt.axvline(j-1, color='k', linewidth=2)
         std3windowsList.append(std_3windows/repeticiones)
         textstr = 'std3windows={:10.2f}'.format(std_3windows/repeticiones)
-        #plt.plot(list(df.index), ped_subtracted)
-        plt.show()
+       # plt.plot(list(df.index), ped_subtracted)
+       # plt.show()
+        return ped
 #    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=fontsizeAxis)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=fontsizeAxis)
@@ -87,7 +89,7 @@ def plot_pulse(fileName):
 # TkAgg backend
 #manager = plt.get_current_fig_manager()
 #manager.resize(*manager.window.maxsize())
-
+#plot_pulse(fileName)
 #Sinewave fit
 """
 def sinefit(x,a,b,c,d):

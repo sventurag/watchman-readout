@@ -76,14 +76,31 @@ signal stm_comp: stmachine_comp;
 signal enable_write_i: std_logic;
 --signal rd_add_i : std_logic_vector(8 downto 0);
 --signal flag_no_hit_last_state: boolean;
-attribute mark_debug : string;
+
+  signal cnt_wr_en : std_logic_vector(3 downto 0);
+    
+       signal long_pulse_sig: std_logic;
+              signal trigger_intl: std_logic;
+
+       attribute mark_debug : string;
+       
+   
+   
+       
+           type longPulse_type is(
+               IDLE,
+               LONGPULSE
+           );
+   
+           signal longpulse_stm : longpulse_type := IDLE;
+           
+           
 
 attribute mark_debug of window2read: signal is "true";
 attribute mark_debug of trigger: signal is "true";
 attribute mark_debug of WR_CS: signal is "true";
 attribute mark_debug of WR_RS: signal is "true";
 attribute mark_debug of wr_shifted: signal is "true";
-
 
 
 
@@ -115,7 +132,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
   -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
  
-  p_sm:  process(clk,RST, trigger, full_fifo,Timestamp)
+  p_sm:  process(clk,RST, trigger_intl, full_fifo,Timestamp)
   begin 
  if (RST = '0') or (windowStorage='0') then
       stm_circularBuffer <= start;
@@ -150,7 +167,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
           wr_shifted <= unsigned(ptr_window_i);
           end if;
           
-          if trigger = '1' then
+          if trigger_intl = '1' then
              
              flag1 <= true;
             window2read <= std_logic_vector(ptr_window_i);
@@ -169,7 +186,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
           
 
      when hit2 =>      
-           if trigger = '1' then
+           if trigger_intl = '1' then
               flag2 <= true;
              window2read <= std_logic_vector(ptr_window_i);
              enable_write_i<='1';   
@@ -181,7 +198,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
            stm_circularBuffer <= hit3;
          
       when hit3 =>      
-            if trigger = '1' then
+            if trigger_intl = '1' then
                flag3 <= true;
                
               window2read <= std_logic_vector(ptr_window_i);
@@ -196,7 +213,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
             
            
        when hit4 =>      
-             if trigger = '1' then
+             if trigger_intl = '1' then
                 flag4 <= true;
               window2read <= std_logic_vector(ptr_window_i);
               enable_write_i<='1';   
@@ -210,7 +227,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
                      
        
         when hit5 =>      
-              if trigger = '1' then
+              if trigger_intl = '1' then
                  flag5 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
@@ -223,7 +240,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
            stm_circularBuffer <= hit6;
         
         when hit6 =>      
-           if trigger = '1' then
+           if trigger_intl = '1' then
               flag6 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
@@ -240,7 +257,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
            
            
            
-           if trigger = '1' then
+           if trigger_intl = '1' then
               flag7 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
@@ -264,7 +281,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
               else
               wr_shifted <= unsigned(ptr_window_i )  + 1 ;
               end if;
-            if trigger = '1' then
+            if trigger_intl = '1' then
                flag8 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
@@ -277,7 +294,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
             stm_circularBuffer <= hit9;
   
        when hit9 =>      
-             if trigger = '1' then
+             if trigger_intl = '1' then
                 flag9<= true; 
               window2read <= std_logic_vector(unsigned(ptr_window_i) +2); 
               enable_write_i<='1';   
@@ -290,7 +307,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
              stm_circularBuffer <= hit10;
            
         when hit10 =>      
-              if trigger = '1' then
+              if trigger_intl = '1' then
                  flag10 <= true;
              window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
                 enable_write_i<='1';   
@@ -304,7 +321,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
           stm_circularBuffer <= hit11;
           
          when hit11 =>      
-               if trigger = '1' then
+               if trigger_intl = '1' then
                   flag11 <= true;
                   window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
                 enable_write_i<='1';   
@@ -317,7 +334,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
              stm_circularBuffer <= hit12;
                       
           when hit12 =>      
-                if trigger = '1' then
+                if trigger_intl = '1' then
                    flag12 <= true;
                    window2read <= std_logic_vector(unsigned(ptr_window_i)+2);    
                 enable_write_i<='1';   
@@ -330,7 +347,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
              stm_circularBuffer <= hit13;
           
           when hit13 =>      
-             if trigger = '1' then
+             if trigger_intl = '1' then
                 flag13 <= true;
             window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
                 enable_write_i<='1';   
@@ -343,7 +360,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
                stm_circularBuffer <= hit14;
   
           when hit14 =>      
-             if trigger = '1' then
+             if trigger_intl = '1' then
                 flag14 <= true;
             window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
                 enable_write_i<='1';   
@@ -359,7 +376,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 
           when hit15 =>      
              ptr_window_trans_i <= ptr_window_i;
-             if trigger = '1' then
+             if trigger_intl = '1' then
                 flag15 <= true;
             window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
                 enable_write_i<='1';   
@@ -373,7 +390,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
                  
           when wr_add =>
    
-          if trigger = '1' then
+          if trigger_intl = '1' then
           
                window2read <= std_logic_vector(unsigned(ptr_window_i)+3) ; 
                enable_write_i<='1';   
@@ -537,6 +554,56 @@ enable_write<= enable_write_i;
 enable_write_fifo<= enable_write_i;
 
 
+
+-- handling long pulses
+
+long_pulses_stm:	process(clk,trigger)
+       
+             
+        begin
+            if RST = '0' then
+                long_pulse_sig <= '0';
+                cnt_wr_en <= (others=>'0'); 
+            else
+                if rising_edge(clk) then 
+                            case longpulse_stm is
+                                 when IDLE =>            
+                                if trigger= '1' then           
+                                    if cnt_wr_en < "0001" then  --- After x windows (cnt_wr_en < x) the pulse is considered 'long'.
+                                        long_pulse_sig<= '0';
+                                        cnt_wr_en <= std_logic_vector(unsigned(cnt_wr_en) + 1);
+                                        trigger_intl<=trigger;
+                                        longpulse_stm <= IDLE;
+                                    else
+                                        long_pulse_sig<='1';
+                                        cnt_wr_en <= (others=>'0');
+                                        longpulse_stm <= longpulse;  -- if the writeEn stays high for more than x clk periods the long_pulse signal goes high
+                                        trigger_intl<= '0';
+
+                                    end if;    
+                               else
+                                   long_pulse_sig <= '0';
+                                   cnt_wr_en <= (others=>'0');
+                                   longpulse_stm <= IDLE;
+                                   trigger_intl<=trigger;
+                                                
+                               end if;
+                             when longpulse=>
+                                if trigger= '1' then           
+                                    long_pulse_sig<= '1';
+                                    longpulse_stm <= longpulse; 
+                                       trigger_intl<='0';
+                                else
+                                    long_pulse_sig<= '0';
+                                    longpulse_stm <= IDLE;
+                                    trigger_intl<=trigger;
+
+                                end if;
+                            end case;        
+                        
+                        end if;
+                    end if;
+    end process;
 
 
 end architecture;

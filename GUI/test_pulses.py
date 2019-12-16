@@ -20,8 +20,8 @@ tc = targetc.targetc()
 
 rango = list((range(10,11,1)))  # number of steps in delay values for the waveform generator
 
-repeticiones = list( range(0,1,1)   )
-fileToSave = './data/sinewave_sstoutfb_59.txt'
+repeticiones = list( range(0,50,1)   )
+fileToSave = './data/raw_window_512.txt'
 
 #print ('Setting ssToutFB')
 #regID = 65
@@ -47,7 +47,7 @@ time.sleep(1)
 
 
 startWindow=0
-totalWindows=12 #12
+totalWindows=512 #12
 
 Windows512 = np.zeros((totalWindows*31))
 
@@ -83,5 +83,5 @@ Windows512_delays = Windows512_delays * 0
 #wave_gen().Output1(out=False)
 print("end")
 
-plot_pulse(fileToSave)
+#plot_pulse(fileToSave)
 

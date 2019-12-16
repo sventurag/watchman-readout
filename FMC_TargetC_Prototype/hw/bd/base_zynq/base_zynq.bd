@@ -388,17 +388,7 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>HCMPD</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>HCMPC</spirit:name>
+          <spirit:name>HCMPA</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -418,7 +408,17 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>HCMPA</spirit:name>
+          <spirit:name>HCMPC</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>0</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>HCMPD</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -1579,10 +1579,10 @@
       <spirit:adHocConnection>
         <spirit:name>xlconstant_0_dout</spirit:name>
         <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
-        <spirit:externalPortReference spirit:portRef="HCMPA"/>
-        <spirit:externalPortReference spirit:portRef="HCMPB"/>
-        <spirit:externalPortReference spirit:portRef="HCMPC"/>
         <spirit:externalPortReference spirit:portRef="HCMPD"/>
+        <spirit:externalPortReference spirit:portRef="HCMPC"/>
+        <spirit:externalPortReference spirit:portRef="HCMPB"/>
+        <spirit:externalPortReference spirit:portRef="HCMPA"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TARGET_C_TopLevel_Sy_0_SIN</spirit:name>

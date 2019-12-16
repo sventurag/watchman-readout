@@ -170,7 +170,7 @@ class targetc():
             self.int_array[i] = np.fromstring(data[i],dtype=np.uint16)
         
         #print('lEN', len(self.int_array))
-        #print("all channels, window 0",self.int_array[0])
+        print("all channels, window 0",self.int_array)
         self.Vped=0
         self.windowsNumbers = [self.int_array[x][1] for x in range(0,len(self.int_array)) ] # create a list with the window numbers, byte 1 from each window
         print('windowsNumbers',self.windowsNumbers) 
