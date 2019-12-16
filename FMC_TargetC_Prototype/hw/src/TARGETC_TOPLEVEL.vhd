@@ -837,8 +837,8 @@ SyncBitCNT_CLR: SyncBit
 	nTrigC <= not TrigC;
 	nTrigD <= not TrigD;
 
---	Trigger_intl <= nTrigD & nTrigC & nTrigB & nTrigA;
-	Trigger_intl <= TrigD & TrigC & TrigB & TrigA;
+	Trigger_intl <= nTrigD & nTrigC & nTrigB & nTrigA;
+--	Trigger_intl <= TrigD & TrigC & TrigB & TrigA;
 
 	TestStream <= CtrlBusOut_intl.TestStream;
 

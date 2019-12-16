@@ -1,8 +1,8 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Wed Dec 11 15:57:38 2019
---Host        : watchman running 64-bit unknown
+--Date        : Fri Dec 13 11:47:32 2019
+--Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
 --Purpose     : IP block netlist
@@ -142,10 +142,10 @@ architecture STRUCTURE of base_zynq_wrapper is
     DO_9 : in STD_LOGIC;
     SDA : inout STD_LOGIC;
     SCL : inout STD_LOGIC;
-    HCMPD : out STD_LOGIC_VECTOR ( 0 to 0 );
-    HCMPC : out STD_LOGIC_VECTOR ( 0 to 0 );
-    HCMPB : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPA : out STD_LOGIC_VECTOR ( 0 to 0 );
+    HCMPB : out STD_LOGIC_VECTOR ( 0 to 0 );
+    HCMPC : out STD_LOGIC_VECTOR ( 0 to 0 );
+    HCMPD : out STD_LOGIC_VECTOR ( 0 to 0 );
     SIN : out STD_LOGIC;
     SCLK : out STD_LOGIC;
     PCLK : out STD_LOGIC;
