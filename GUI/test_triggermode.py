@@ -20,7 +20,7 @@ fileToSave = './data/trigger.txt'
 
 #or i in range(0,10,1):
 
-Windows512 =  tc.trigger_mode(2,15,fileToSave )
+Windows512 =  tc.trigger_mode(3,15,fileToSave )
 
 #plot_pulse(fileToSave)
 #    time.sleep(3)
