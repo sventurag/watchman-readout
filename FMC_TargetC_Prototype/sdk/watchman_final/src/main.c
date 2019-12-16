@@ -302,12 +302,12 @@ int main()
 		return -1;
 	}
 
-//	/* Initialize transfer function coefficients */
-//	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
-//	else{
-//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Transfer function initialization failed!");
-//		return -1;
-//	}
+	/* Initialize transfer function coefficients */
+	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
+	else{
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Transfer function initialization failed!");
+		return -1;
+	}
 
 /*
 	// Sweep over SSTOUTFB to get 1.6V in VADJN
@@ -410,7 +410,7 @@ int main()
 				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
 				usleep(100);
 
-				for (Windows_triggerMode=0; Windows_triggerMode<3;Windows_triggerMode++ ) {
+				for (Windows_triggerMode=0; Windows_triggerMode<5;Windows_triggerMode++ ) {
 
 				XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 				XTime_GetTime(&tStart);
@@ -463,20 +463,20 @@ int main()
              	window=(uint16_t)first_element-> data.data_struct.wdo_id ;
              	printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
             	printf( "XAxiDma_SimpleTransfer_hm took %.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
-
-                usleep(100);
-
-                for(i=0; i<16; i++){
-					for(j=0; j<32; j++){
-						/* Pedestal subtraction */
-						data_tmp = (uint16_t) (first_element->data.data_struct.data[i][j]);
-                        xil_printf(",%d",data_tmp);
-					}
-
-					//printf("\r\n");
-				}
-
-				usleep(1);
+//
+//                usleep(100);
+//
+//                for(i=0; i<16; i++){
+//					for(j=0; j<32; j++){
+//						/* Pedestal subtraction */
+//						data_tmp = (uint16_t) (first_element->data.data_struct.data[i][j]);
+//                        xil_printf(",%d",data_tmp);
+//					}
+//
+//					//printf("\r\n");
+//				}
+//
+//				usleep(1);
 
 		/* If data valid, send them to computer */
 				index = 0;
@@ -513,7 +513,8 @@ int main()
 
 
 				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
-				Windows_triggerMode++;
+				//Windows_triggerMode++;
+				printf("Windows_triggerMode %d", Windows_triggerMode);
 				}
 		        ControlRegisterWrite(WINDOW_MASK,DISABLE);
 //				free(tmp_ptr_main);
