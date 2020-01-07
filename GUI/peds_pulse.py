@@ -19,53 +19,80 @@ from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 
     
-lblsize =16
+lblsize =30
 plt.rc('xtick', labelsize= lblsize)
 plt.rc('ytick', labelsize=lblsize)
 
 
-fileName= '/home/salvador/Desktop/trigger.txt'
-df_Data = pd.read_csv ( fileName, sep=" ", names='p', skiprows=1 )
+fileName= '/home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/GUI/data/data_jan5_6.txt'
+windows= [21,25,3]
+df_rawPulse = pd.read_csv ( fileName, sep=" ", names='p', skiprows=1 )
 
-print(df_Data)
+print('df_rawPulse',df_rawPulse)
+
 ped_512=plot_pulse('./data/raw_window_512.txt')
-
+print('ped_512',ped_512)
 
 #ped_512=data.iloc[0:95]
+plt.figure()
+plt.plot(df_rawPulse)
+#plt.show()
 
-pedSubtractedData= df_Data-ped_512[0:95]
-
-df_Data['ped']= ped_512[0:95]
-
-print(df_Data.iloc[0:10])
-
-df_Data_window = df_Data.iloc[32:64,:]
-df_Data_window['pedSub']= df_Data_window['p']-df_Data_window['ped']
+#pedSubtractedData= df_Data-ped_512[609:704]
 
 
+first_a= windows[0]*32
+first_b = first_a +32
 
-print(df_Data_window)
+sec_a= windows[1]*32
+sec_b = sec_a +32
+
+third_a= windows[2]*32
+third_b = third_a +32
+
+
+data1= pd.DataFrame({'ped' : ped_512.iloc[first_a:first_b]})
+data2= pd.DataFrame({'ped' : ped_512.iloc[sec_a:sec_b]})
+data3= pd.DataFrame({'ped' : ped_512.iloc[third_a:third_b]})
+
+data = pd.concat([data1,data2,data3])
+print('peds before append', data)
+
+
+print('peds before reset index', data)
+data = data.reset_index(drop=True)
+
+data['rawPulse']= df_rawPulse
+data['pedSub']= data['rawPulse']- data['ped']
+#print(''peds)
+
+print('data',  data)
+
+
+
 
 
 
 plt.figure()
 
-plt.plot(df_Data_window['ped'], label='Pedestal, 50 avg')
-plt.plot(df_Data_window['p'], label='Raw PMT pulse')
+plt.plot(data['ped'], label='Pedestal, 50 avg')
+plt.plot(data['rawPulse'],'-ro', label='Raw PMT pulse')
 plt.grid(True, linestyle='--', linewidth=1)
-plt.legend(fontsize=25,loc= 'upper center' )
+plt.legend(fontsize=25,loc= 'lower center' )
 plt.ylabel('ADC counts', fontsize=lblsize)
 plt.xlabel('Time [ns]', fontsize=lblsize)
 plt.figure()
 
-plt.plot(df_Data_window['pedSub'], '-ro')
+plt.plot(data['pedSub'].iloc[64:96].reset_index(drop=True), '-ro')
+plt.ylim(-900,0)
+plt.xlim(0,31)
 plt.grid(True, linestyle='--', linewidth=1)
 plt.ylabel('ADC counts', fontsize=lblsize)
 plt.xlabel('Time [ns]', fontsize=lblsize)
-plt.title('PMT pulse with TARGETC, wdo_number=1', fontsize=18, color='b')
+plt.title('PMT pulse with TARGETC', fontsize=18, color='b')
 
 #plt.plot(pedSubtractedData [31:63], '-ro')
-#plt.plot(ped_512[31:63]-1280)
+#plt.plot(ped_51i2[31:63]-1280)
 #plt.plot(df_Data[31:63]-1280)
 plt.show()
 

@@ -16,13 +16,14 @@ import targetc as targetc
 import pandas as pd
 from plot_delays_max import plot_pulse
 tc = targetc.targetc()
-fileToSave = './data/trigger.txt'
+fileToSave = './data/data_jan5_8.txt'
 
 #or i in range(0,10,1):
 
 Windows512 =  tc.trigger_mode(3,15,fileToSave )
 
-#plot_pulse(fileToSave)
+#raw_data=plot_pulse(fileToSave)
+#print('raw_data', raw_data)
 #    time.sleep(3)
 #    time.sleep(1)
     #plt.close(1)

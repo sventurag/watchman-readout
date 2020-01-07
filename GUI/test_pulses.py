@@ -21,7 +21,7 @@ tc = targetc.targetc()
 rango = list((range(10,11,1)))  # number of steps in delay values for the waveform generator
 
 repeticiones = list( range(0,50,1)   )
-fileToSave = './data/raw_window_512.txt'
+fileToSave = './data/raw_window_64_jan5.txt'
 
 #print ('Setting ssToutFB')
 #regID = 65
@@ -47,7 +47,7 @@ time.sleep(1)
 
 
 startWindow=0
-totalWindows=512 #12
+totalWindows=64 #12
 
 Windows512 = np.zeros((totalWindows*31))
 

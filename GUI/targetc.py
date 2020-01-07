@@ -13,7 +13,7 @@ import waveform_gen_33600 as wv_gen
 from waveform_gen_33600 import wave_gen
 import os
 from tempfile import TemporaryFile
-from plot_delays_max import plot_pulse
+from plotPulse import plot_pulse
 from waiting import wait
 class targetc():
 
