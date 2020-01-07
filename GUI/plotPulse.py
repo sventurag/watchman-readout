@@ -45,10 +45,10 @@ def plot_pulse(fileName):
     plt.rc('xtick', labelsize= lblsize)
     plt.rc('ytick', labelsize=lblsize)
     
-    ped_raw = df.iloc[:,0:48]
-    ped= ped_raw.mean(axis=1)
-    ped_subtracted = df[49]-ped
-    #
+ #   ped_raw = df.iloc[:,0:48]
+ #   ped= ped_raw.mean(axis=1)
+ #   ped_subtracted = df[49]-ped
+ #   #
     maximums= pd.DataFrame()
     
     for i in range(0,rango,1):
@@ -79,8 +79,8 @@ def plot_pulse(fileName):
         std3windowsList.append(std_3windows/repeticiones)
         textstr = 'std3windows={:10.2f}'.format(std_3windows/repeticiones)
        # plt.plot(list(df.index), ped_subtracted)
-      #  plt.show()
-        return ped
+        plt.show()
+      #  return ped
 #    ax.text(0.05, 0.95, textstr, transform=ax.transAxes, fontsize=14,verticalalignment='top', bbox=props)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.5, 0.04, 'Time [ns]', ha='center', fontsize=fontsizeAxis)
 #print('std3list={}'.format(np.asarray(std3windowsList).fig.text(0.08, 0.5, 'ADC counts', va='center', rotation='vertical', fontsize=fontsizeAxis)
