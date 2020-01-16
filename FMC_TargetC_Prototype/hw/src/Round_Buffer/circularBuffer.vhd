@@ -58,7 +58,7 @@ signal sstin_i : std_logic;
 signal flag, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, flag13, flag14, flag15 : boolean;
 signal flag_full: std_logic;
 signal window2read: std_logic_vector(8 downto 0);
-signal wr_shifted: unsigned(8 downto 0);
+signal wr_i: unsigned(8 downto 0);
 signal ptr_window_trans_i: std_logic_vector(8 downto 0);
 signal counter_dly_i : std_logic_vector(3 downto 0);
 
@@ -100,7 +100,7 @@ attribute mark_debug of window2read: signal is "true";
 attribute mark_debug of trigger: signal is "true";
 attribute mark_debug of WR_CS: signal is "true";
 attribute mark_debug of WR_RS: signal is "true";
-attribute mark_debug of wr_shifted: signal is "true";
+attribute mark_debug of wr_i: signal is "true";
 
 
 
@@ -117,9 +117,9 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
   -- The ptr_window_i counter is running over the number of winwows 
   -- increasing +4 (for a 2-write-address subbuffer).
   
-  -- Signal wr_shifted is ptr_window divided by two (one-bit shift)
+  -- Signal wr_i is ptr_window divided by two (one-bit shift)
   -- to get the real address WR_CS and WR_RS for the TARGETC. This operation
-  -- is done in the first state, then, the wr_shifted is just increased by 1.
+  -- is done in the first state, then, the wr_i is just increased by 1.
 
   
   -- Signal ptr_sub_i is the current subbuffer window. Uncomment lines were ptr_sub_i appeared
@@ -141,7 +141,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 
       flag_full <= '0';
       window2read <= (others=> '0');
-      wr_shifted <= (others=> '0');
+      wr_i <= (others=> '0');
       enable_write_i <= '0';
 --      flag_no_hit_last_state<= True;
       
@@ -161,10 +161,10 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
       when hit =>      
            
           if unsigned(ptr_window_i) /= 0 then
-          wr_shifted <= shift_right(unsigned(ptr_window_i), 1 );
+          wr_i <= shift_right(unsigned(ptr_window_i), 1 );
           
           else
-          wr_shifted <= unsigned(ptr_window_i);
+          wr_i <= unsigned(ptr_window_i);
           end if;
           
           if trigger_intl = '1' then
@@ -276,10 +276,10 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
              
               if unsigned(ptr_window_i) /=  0 then
             
-              wr_shifted <= shift_right(unsigned(ptr_window_i), 1  ) +1;
+              wr_i <= shift_right(unsigned(ptr_window_i), 1  ) +1;
 
               else
-              wr_shifted <= unsigned(ptr_window_i )  + 1 ;
+              wr_i <= unsigned(ptr_window_i )  + 1 ;
               end if;
             if trigger_intl = '1' then
                flag8 <= true;
@@ -397,11 +397,11 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 
                if full_fifo = '0' then
                    ptr_window_i <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);       
-                     if wr_shifted /= 255 then  
-                          wr_shifted <= unsigned(wr_shifted+1);
+                     if wr_i /= 255 then  
+                          wr_i <= unsigned(wr_i+1);
                      
                      else
-                          wr_shifted <= (others => '0');
+                          wr_i <= (others => '0');
                      end if;
 
 --                   if unsigned(ptr_window_trans_i) /= 0 then
@@ -422,11 +422,11 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
                  if full_fifo = '0' then
 
                      ptr_window_i <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);
-                     if wr_shifted /= 255 then  
-                               wr_shifted <= unsigned(wr_shifted+1);
-                          else
-                               wr_shifted <= (others => '0');
-                          end if;
+                     if wr_i /= 255 then  
+                               wr_i <= unsigned(wr_i+1);
+                     else
+                               wr_i <= (others => '0');
+                     end if;
 
 --                   if unsigned(ptr_window_trans_i) /= 0 then
 --                         ptr_sub_i <= shift_right(unsigned(ptr_window_trans_i), 2  )+1;
@@ -439,7 +439,9 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
                  end if;
              else  --- NO HIT 
                  stm_circularBuffer<= hit;
-                 wr_shifted <= unsigned(wr_shifted-1);
+                 wr_i <= unsigned(wr_i-1);  -- If no hit is detected, the wr pointer goes back to the initial value for the current subBuffer, at this point (the end of wr), 
+                                            -- wr - 1 means going back four windows, a subBuffer, so, 
+                                            -- the current subBuffer will be overwritted
   --               flag_no_hit_last_state<= True;
 
              end if;             
@@ -452,9 +454,9 @@ end if;
 
 end process p_sm;
 -- ptr_window <= ptr_window_i;
-WR_RS <= std_logic_vector(wr_shifted(1 downto 0));
+WR_RS <= std_logic_vector(wr_i(1 downto 0));
 
-WR_CS <= std_logic_vector(wr_shifted(7 downto 2));
+WR_CS <= std_logic_vector(wr_i(7 downto 2));
 ----------------------------------
 -- Dummy SSTIN signal for simulations
 ----------------------------------
@@ -479,7 +481,7 @@ end process p_counter;
 
 -- counter <= counter_i;
 
---wr <= wr_shifted;
+
 
 
 
