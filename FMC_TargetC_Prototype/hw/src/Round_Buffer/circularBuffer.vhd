@@ -101,7 +101,7 @@ attribute mark_debug of trigger: signal is "true";
 attribute mark_debug of WR_CS: signal is "true";
 attribute mark_debug of WR_RS: signal is "true";
 attribute mark_debug of wr_i: signal is "true";
-
+attribute mark_debug of ptr_window_i: signal is "true";
 
 
 

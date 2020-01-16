@@ -155,6 +155,11 @@ architecture arch_imp of TC_ClockManagementV3 is
 	signal clkFbOut_WL, clkFbOut : std_logic;
 	signal clkFbIn_WL, clkFbIn : std_logic;
 	signal axi_clk_intl:std_logic;
+	
+	attribute mark_debug : string;
+    attribute mark_debug of SSTIN_intl: signal is "true";
+
+	
 
 begin
 
