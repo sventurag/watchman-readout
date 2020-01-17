@@ -47,7 +47,7 @@ architecture sim of circular_buffer_tb is
 begin
 
  -- DUT : entity work.circular_buffer(circ)
-  DUT : entity work.circular_buffer(STRUCTURE)
+  DUT : entity work.circularBuffer(STRUCTURE)
 
     port map (
       clk => clk,
