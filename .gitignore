@@ -6,3 +6,5 @@
 watchmanLog.txt
 
 GUI/__pycache__/
+
+*.swm
