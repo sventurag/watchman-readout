@@ -8,3 +8,5 @@ watchmanLog.txt
 GUI/__pycache__/
 
 *.swm
+
+GUI/.test_triggermode.py.swl
