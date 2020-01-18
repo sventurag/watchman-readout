@@ -16,7 +16,7 @@ import targetc as targetc
 import pandas as pd
 from plot_delays_max import plot_pulse
 tc = targetc.targetc()
-fileToSave = './data/data_jan5_8.txt'
+fileToSave = './data/pulse_gen_test.txt'
 
 #or i in range(0,10,1):
 
