@@ -20,7 +20,7 @@ fileToSave = './data/pulse_gen_test.txt'
 
 #or i in range(0,10,1):
 
-Windows512 =  tc.trigger_mode(3,15,fileToSave )
+Windows512 =  tc.trigger_mode(2,15,fileToSave )
 
 #raw_data=plot_pulse(fileToSave)
 #print('raw_data', raw_data)
