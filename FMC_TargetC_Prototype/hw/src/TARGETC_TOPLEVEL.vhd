@@ -843,6 +843,8 @@ SyncBitCNT_CLR: SyncBit
 	TestStream <= CtrlBusOut_intl.TestStream;
 
 
+
+
  -- Debug pins
 
 -- For triggering a signal every time WR_CS and WR_RS are equal to zero 
