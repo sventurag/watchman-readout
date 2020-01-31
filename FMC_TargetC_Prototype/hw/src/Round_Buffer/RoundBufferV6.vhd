@@ -401,10 +401,10 @@ circBuffer: circularBuffer
   full_fifo   =>      RDAD_Full_s  ,    
   windowStorage=>     CtrlBus_IxSL.WindowStorage,       
   enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
-    enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
+ --   enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
 
   RD_add    =>          RDAD_Data_s ,
-    RD_add_fifo    =>          RDAD_Data_fifo_s ,
+ --   RD_add_fifo    =>          RDAD_Data_fifo_s ,
 
   WR_RS    =>           WR_RS_S_trig,
   WR_CS   =>            WR_CS_S_trig,

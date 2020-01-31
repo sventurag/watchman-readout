@@ -25,7 +25,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
  use ieee.numeric_std.all;
-  -- use work.TARGETC_pkg.all; not used in simulations
+ use work.TARGETC_pkg.all; --not used in simulations
 
 entity circularBuffer is
 
@@ -44,8 +44,8 @@ entity circularBuffer is
 --  RD_add_fifo:   out std_logic_vector(8 downto 0);
   WR_RS:            out std_logic_vector(1 downto 0);
   WR_CS:            out std_logic_vector(5 downto 0);
-  delay_trigger:    in std_logic_vector(3 downto 0)
---  Timestamp:        in T_timestamp  -- not used in simulations
+  delay_trigger:    in std_logic_vector(3 downto 0);
+  Timestamp:        in T_timestamp  -- not used in simulations
 
 );
 
@@ -102,6 +102,7 @@ signal cnt_wr_en : std_logic_vector(3 downto 0);
 signal cnt_long_pulse : std_logic_vector(3 downto 0);
 signal long_pulse_sig: std_logic;
 signal trigger_intl: std_logic;
+signal rdad_i: std_logic_vector(8 downto 0);
 
 attribute mark_debug : string;
 type longPulse_type is(
@@ -143,7 +144,7 @@ begin
   -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
  
- p_sm:  process(clk,RST, windowStorage,trigger_intl, full_fifo)
+ p_sm:  process(clk,RST, windowStorage,trigger_intl, full_fifo, Timestamp.samplecnt)
 variable flag_number_v: std_logic_vector(3 downto 0);
 variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
   begin 
@@ -162,8 +163,8 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
       if rising_edge(clk) then
       case stm_circularBuffer is
       when start =>
-           --if (windowStorage = '1') and (Timestamp.samplecnt="111") then
-           if (windowStorage = '1') and (counter_i="111") then
+           if (windowStorage = '1') and (Timestamp.samplecnt="111") then
+           --if (windowStorage = '1') and (counter_i="111") then  -- for simulations only
 
                stm_circularBuffer <= hit0;
            else
@@ -178,7 +179,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
           if unsigned(ptr_window_i) /= 0 then
               wr_i <= shift_right(unsigned(ptr_window_i), 1 );  -- Dividing by 2, beacause every WR address in TARGETC corresponds to 2 windows.
             if trigger_intl = '1' then
---                flag0 <= true;
                 flag_number<= "0000";
                 window2read <= std_logic_vector(unsigned(ptr_window_i) - 1);
                 fifo_wr_en<='1';   
@@ -192,7 +192,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                 end if;   
               
               else
---                 flag0 <= false;
                  fifo_wr_en<='0';  
               end if;
           else
@@ -200,13 +199,11 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                             
               if trigger_intl = '1' then
                  
- --               flag0 <= true;
                 flag_number<= "0000";
                 window2read <= std_logic_vector(ptr_window_i);
                 fifo_wr_en<='1';   
                  
               else
---                 flag0 <= false;
                  fifo_wr_en<='0';  
               end if;
               
@@ -220,7 +217,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
 
      when hit1 =>      
            if trigger_intl = '1' then
---              flag1 <= true;
               flag_number<= "0001";
 
              window2read <= std_logic_vector(ptr_window_i);
@@ -235,16 +231,13 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              end if;   
            
            else
---              flag1 <= false;        
               fifo_wr_en<='0';    
-                -- window2read <= (others=>'X') ;         
           end if;
            stm_circularBuffer <= hit2;
  
        
       when hit2 =>      
             if trigger_intl = '1' then
---               flag2 <= true;
                flag_number<= "0010";
 
               window2read <= std_logic_vector(ptr_window_i);
@@ -258,9 +251,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
               end if;   
             
               else
---               flag2 <= false;          
                fifo_wr_en<='0';  
-                -- window2read <= (others=>'X') ;         
            end if;
         stm_circularBuffer <= hit3;
             
@@ -269,7 +260,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
   ---------------------------------               
        when hit3 =>      
              if trigger_intl = '1' then
---                flag3 <= true;
                 flag_number<= "0011";
 
               window2read <= std_logic_vector(ptr_window_i);
@@ -291,7 +281,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        
         when hit4 =>      
               if trigger_intl = '1' then
---                 flag4 <= true;
                 flag_number<= "0100";
 
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
@@ -304,15 +293,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                   jump_wr(4)<= '0';
                end if;   
               else
---                 flag4 <= false;          
                 fifo_wr_en<='0';  
-                -- window2read <= (others=>'X') ;         
              end if;
            stm_circularBuffer <= hit5;
         
         when hit5 =>      
            if trigger_intl = '1' then
---              flag5 <= true;
                 flag_number<= "0101";
 
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
@@ -325,19 +311,16 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                   jump_wr(5)<= '0';
                end if;   
            else
---              flag5 <= false;          
-        fifo_wr_en<='0';          -- window2read <= (others=>'X') ;         
+        fifo_wr_en<='0';      
            end if;
              stm_circularBuffer <= hit6;
 
    
         when hit6 => 
-     --      if flag
            
            
            ptr_window_inter<= ptr_window_i;
            if trigger_intl = '1' then
---              flag6 <= true;
                 flag_number<= "0110";
               
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
@@ -350,9 +333,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                   jump_wr(6)<= '0';
                end if;   
           else
---              flag6 <= false;          
         fifo_wr_en<='0';  
-                -- window2read <= (others=>'X') ;         
            end if;
              stm_circularBuffer <= hit7;
              
@@ -386,9 +367,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                       current_subBuffer(7)<='1';
                    end if;   
                else
---                   flag7 <= false;
                     fifo_wr_en<='0';  
-                    -- window2read <= (others=>'X') ;         
                 end if;
                 stm_circularBuffer <= hit8;
                 jump_wr<=(others=>'0');
@@ -408,7 +387,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                        wr_i <= unsigned(ptr_window_i )  + 1 ;
                   end if;     
                      if trigger_intl = '1' then
---                              flag7 <= true;
                                flag_number<= "0111";
                               
                               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
@@ -419,36 +397,17 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                                  current_subBuffer(7)<='1';
                               end if;   
                           else
---                              flag7 <= false;
                                fifo_wr_en<='0';  
-                               -- window2read <= (others=>'X') ;         
                            end if;
                            stm_circularBuffer <= hit8;
                   
                end if;
        end if;           
                                    
---            if trigger_intl = '1' then
---               flag7 <= true;
---                flag_number<= "0111";
-               
---               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
---               fifo_wr_en<='1';   
---              if  unsigned(delay_trigger)> 7 then 
---                   current_subBuffer(7) <='0';
---               else
---                  current_subBuffer(7)<='1';
---               end if;   
---           else
---               flag7 <= false;
---                fifo_wr_en<='0';  
---                -- window2read <= (others=>'X') ;         
---            end if;
---            stm_circularBuffer <= hit8;
+
   
        when hit8 =>      
              if trigger_intl = '1' then
---                flag8<= true; 
                 flag_number<= "1000";
                 
               window2read <= std_logic_vector(unsigned(ptr_window_i) +2); 
@@ -459,15 +418,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                  current_subBuffer(8)<='1';
               end if;       
             else
---                flag8<= false;          
-                -- window2read <= (others=>'X') ;         
             fifo_wr_en<='0';  
             end if;
              stm_circularBuffer <= hit9;
            
         when hit9 =>      
               if trigger_intl = '1' then
---                 flag9 <= true;
                 flag_number<= "1001";
                  
              window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
@@ -478,16 +434,13 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    current_subBuffer(9)<='1';
                 end if;              
               else
---                 flag9 <= false;                   
                 fifo_wr_en<='0';       
-                -- window2read <= (others=>'X') ;
              
              end if;
           stm_circularBuffer <= hit10;
           
          when hit10 =>      
                if trigger_intl = '1' then
---                  flag10 <= true;
                 flag_number<= "1010";
                   
                   window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
@@ -499,15 +452,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                 end if;   
                 
                else
---                  flag10<= false;          
-                -- window2read <= (others=>'X') ;         
               fifo_wr_en<='0';  
               end if;
              stm_circularBuffer <= hit11;
                       
           when hit11 =>      
                 if trigger_intl = '1' then
---                   flag11 <= true;
                 flag_number<= "1011";
                    
                    window2read <= std_logic_vector(unsigned(ptr_window_i)+2);    
@@ -518,8 +468,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    current_subBuffer(11)<='1';
                 end if;   
                    else
---                   flag11 <= false; 
-               -- window2read <= (others=>'X') ;         
          fifo_wr_en<='0';  
                end if;
              stm_circularBuffer <= hit12;
@@ -868,9 +816,9 @@ if RST = '0' then
 else
 
     if rising_edge(clk) then
-        if RD_add /= saved_i then
+        if rdad_i /= saved_i then
             enable_write <= '1';
-            saved_i <= RD_add;
+            saved_i <= rdad_i;
         else
             enable_write <= '0';
         end if;
@@ -887,7 +835,7 @@ p_2window_decision: process(clk,RST)
 
 begin
 if RST = '0' then
-    RD_add <= (others=> '0');
+    rdad_i <= (others=> '0');
     enable_write_i <= '0';
     fifo_rd_en <= '0';
     fifo_out_i <= (others=> '0');
@@ -922,7 +870,7 @@ else
                 enable_write_i <= '0';
                 
             when two_windowsA=>
-                RD_add <=   fifo_out_i(12 downto 4);
+                rdad_i <=   fifo_out_i(12 downto 4);
                 enable_write_i <= '1';
                 stm_2windows <= delay2;
           
@@ -932,13 +880,13 @@ else
                       stm_2windows <=two_windowsB ;
                       
             when two_windowsB=>
-                    RD_add <=std_logic_vector(unsigned(fifo_out_i(12 downto 4)) +1); 
+                    rdad_i <=std_logic_vector(unsigned(fifo_out_i(12 downto 4)) +1); 
                     enable_write_i <= '1';
                     stm_2windows <= enable_rd;
                     
 
             when one_window=>
-                RD_add <= fifo_out_i(12 downto 4);
+                rdad_i <= fifo_out_i(12 downto 4);
                 enable_write_i <= '1';
                 stm_2windows <= enable_rd;
     
