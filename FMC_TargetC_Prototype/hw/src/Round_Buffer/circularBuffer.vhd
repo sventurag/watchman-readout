@@ -1,4 +1,4 @@
----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Company: IDLAB, Hawaii
 -- Engineer: Salvador Ventura
 -- 
@@ -25,7 +25,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
  use ieee.numeric_std.all;
-  -- use work.TARGETC_pkg.all; not used in simulations
+  use work.TARGETC_pkg.all;
 
 entity circularBuffer is
 
@@ -38,14 +38,14 @@ entity circularBuffer is
   full_fifo :        in std_logic;          
   windowStorage:             in std_logic;
   enable_write :    out std_logic;
---    enable_write_fifo :    out std_logic;
+    enable_write_fifo :    out std_logic;
 
   RD_add:           out std_logic_vector(8 downto 0);
---  RD_add_fifo:   out std_logic_vector(8 downto 0);
+  RD_add_fifo:   out std_logic_vector(8 downto 0);
   WR_RS:            out std_logic_vector(1 downto 0);
-  WR_CS:            out std_logic_vector(5 downto 0)
-   
---  Timestamp:        in T_timestamp  -- not used in simulations
+  WR_CS:            out std_logic_vector(5 downto 0);
+  
+  Timestamp:        in T_timestamp
 
 );
 end circularBuffer;
@@ -55,7 +55,7 @@ architecture structure of circularBuffer is
 signal ptr_window_i : std_logic_vector(8 downto 0);
 signal counter_i: std_logic_vector(2 downto 0);
 signal sstin_i : std_logic;
-signal flag0, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, flag13, flag14, flag15 : boolean;
+signal flag, flag1, flag2, flag3, flag4, flag5, flag6, flag7, flag8, flag9, flag10, flag11, flag12, flag13, flag14, flag15 : boolean;
 signal flag_full: std_logic;
 signal window2read: std_logic_vector(8 downto 0);
 signal wr_i: unsigned(8 downto 0);
@@ -64,7 +64,7 @@ signal counter_dly_i : std_logic_vector(3 downto 0);
 
 --signal ptr_sub_i: unsigned(8 downto 0);
 
-type stmachine is (start, wr_add ,hit0,hit1, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14);
+type stmachine is (start, wr_add ,hit, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14, hit15);
 signal stm_circularBuffer: stmachine;
 
 
@@ -132,8 +132,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
   -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
  
- --  p_sm:  process(clk,RST, trigger_intl, full_fifo,Timestamp)
- p_sm:  process(clk,RST, trigger_intl, full_fifo)
+  p_sm:  process(clk,RST, trigger_intl, full_fifo,Timestamp)
   begin 
  if (RST = '0') or (windowStorage='0') then
       stm_circularBuffer <= start;
@@ -150,146 +149,130 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
       if rising_edge(clk) then
       case stm_circularBuffer is
       when start =>
-           --if (windowStorage = '1') and (Timestamp.samplecnt="111") then
-           if (windowStorage = '1') and (counter_i="111") then
-
-               stm_circularBuffer <= hit0;
+           if (windowStorage = '1') and (Timestamp.samplecnt="111") then
+               stm_circularBuffer <= hit;
            else
                stm_circularBuffer<= start;
            end if;
           
            
 -- and counter_i="111" 
----------------------------------
--- If a pulse is detected at this point, and taking in account the delay (~8 ns) the pulse ocurred and was sampled in the previous window
----------------------------------    
-      when hit0 =>      
+    
+      when hit =>      
            
           if unsigned(ptr_window_i) /= 0 then
-              wr_i <= shift_right(unsigned(ptr_window_i), 1 );
-            if trigger_intl = '1' then
-                             
-                flag0 <= true;
-                window2read <= std_logic_vector(unsigned(ptr_window_i) - 1);
-                enable_write_i<='1';   
-                 
-              else
-                 flag0 <= false;
-                 enable_write_i<='0';  
-              end if;
+          wr_i <= shift_right(unsigned(ptr_window_i), 1 );
+          
           else
-              wr_i <= unsigned(ptr_window_i);
-                            
-              if trigger_intl = '1' then
-                 
-                flag0 <= true;
-                window2read <= std_logic_vector(ptr_window_i);
-                enable_write_i<='1';   
-                 
-              else
-                 flag0 <= false;
-                 enable_write_i<='0';  
-              end if;
-              
+          wr_i <= unsigned(ptr_window_i);
           end if;
-
-          stm_circularBuffer <= hit1;
+          
+          if trigger_intl = '1' then
+             
+             flag1 <= true;
+            window2read <= std_logic_vector(ptr_window_i);
+            enable_write_i<='1';   
+             
+          else
+             flag1 <= false;
+             enable_write_i<='0';  
+             -- window2read <= (others=>'X') ;         
+          end if;
+          
+          stm_circularBuffer <= hit2;
           
                
           
           
 
-     when hit1 =>      
+     when hit2 =>      
            if trigger_intl = '1' then
-              flag1 <= true;
+              flag2 <= true;
              window2read <= std_logic_vector(ptr_window_i);
              enable_write_i<='1';   
            else
-              flag1 <= false;        
+              flag2 <= false;        
               enable_write_i<='0';    
                 -- window2read <= (others=>'X') ;         
           end if;
-           stm_circularBuffer <= hit2;
- 
-       
-      when hit2 =>      
+           stm_circularBuffer <= hit3;
+         
+      when hit3 =>      
             if trigger_intl = '1' then
-               flag2 <= true;
+               flag3 <= true;
                
               window2read <= std_logic_vector(ptr_window_i);
               enable_write_i<='1';   
 
               else
-               flag2 <= false;          
+               flag3 <= false;          
                enable_write_i<='0';  
                 -- window2read <= (others=>'X') ;         
            end if;
-        stm_circularBuffer <= hit3;
+        stm_circularBuffer <= hit4;
             
----------------------------------
-        -- If a pulse is detected at this point, and taking in account the delay (~8 ns) the pulse ocurred and was sampled in the previous window
-  ---------------------------------               
-       when hit3 =>      
+           
+       when hit4 =>      
              if trigger_intl = '1' then
-                flag3 <= true;
+                flag4 <= true;
               window2read <= std_logic_vector(ptr_window_i);
               enable_write_i<='1';   
 
              else
-                flag3 <= false;          
+                flag4 <= false;          
                 enable_write_i<='0';  
                 -- window2read <= (others=>'X') ;         
             end if;
-           stm_circularBuffer <= hit4;
+           stm_circularBuffer <= hit5;
                      
        
-        when hit4 =>      
+        when hit5 =>      
               if trigger_intl = '1' then
-                 flag4 <= true;
+                 flag5 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
 
               else
-                 flag4 <= false;          
+                 flag5 <= false;          
                 enable_write_i<='0';  
                 -- window2read <= (others=>'X') ;         
              end if;
-           stm_circularBuffer <= hit5;
+           stm_circularBuffer <= hit6;
         
-        when hit5 =>      
-           if trigger_intl = '1' then
-              flag5 <= true;
-               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
-               enable_write_i<='1';   
-
-           else
-              flag5 <= false;          
-        enable_write_i<='0';          -- window2read <= (others=>'X') ;         
-           end if;
-             stm_circularBuffer <= hit6;
-
-   
-        when hit6 => 
-     --      if flag
-           
-           
-           
+        when hit6 =>      
            if trigger_intl = '1' then
               flag6 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
 
-          else
+           else
               flag6 <= false;          
+        enable_write_i<='0';          -- window2read <= (others=>'X') ;         
+           end if;
+             stm_circularBuffer <= hit7;
+
+   
+        when hit7 => 
+     --      if flag
+           
+           
+           
+           if trigger_intl = '1' then
+              flag7 <= true;
+               window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
+               enable_write_i<='1';   
+
+          else
+              flag7 <= false;          
         enable_write_i<='0';  
                 -- window2read <= (others=>'X') ;         
            end if;
-             stm_circularBuffer <= hit7;
+             stm_circularBuffer <= hit8;
              
              
              
        
-       when hit7 =>      
+       when hit8 =>      
              
               if unsigned(ptr_window_i) /=  0 then
             
@@ -299,86 +282,70 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
               wr_i <= unsigned(ptr_window_i )  + 1 ;
               end if;
             if trigger_intl = '1' then
-               flag7 <= true;
+               flag8 <= true;
                window2read <= std_logic_vector(unsigned(ptr_window_i) + 1);
                enable_write_i<='1';   
 
            else
-               flag7 <= false;
+               flag8 <= false;
                 enable_write_i<='0';  
                 -- window2read <= (others=>'X') ;         
             end if;
-            stm_circularBuffer <= hit8;
+            stm_circularBuffer <= hit9;
   
-       when hit8 =>      
+       when hit9 =>      
              if trigger_intl = '1' then
-                flag8<= true; 
+                flag9<= true; 
               window2read <= std_logic_vector(unsigned(ptr_window_i) +2); 
               enable_write_i<='1';   
     
             else
-                flag8<= false;          
+                flag9<= false;          
                 -- window2read <= (others=>'X') ;         
             enable_write_i<='0';  
             end if;
-             stm_circularBuffer <= hit9;
+             stm_circularBuffer <= hit10;
            
-        when hit9 =>      
+        when hit10 =>      
               if trigger_intl = '1' then
-                 flag9 <= true;
+                 flag10 <= true;
              window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
                 enable_write_i<='1';   
            
               else
-                 flag9 <= false;                   
+                 flag10 <= false;                   
                 enable_write_i<='0';       
                 -- window2read <= (others=>'X') ;
              
              end if;
-          stm_circularBuffer <= hit10;
+          stm_circularBuffer <= hit11;
           
-         when hit10 =>      
+         when hit11 =>      
                if trigger_intl = '1' then
-                  flag10 <= true;
+                  flag11 <= true;
                   window2read <= std_logic_vector(unsigned(ptr_window_i)+2); 
                 enable_write_i<='1';   
 
                else
-                  flag10<= false;          
+                  flag11<= false;          
                 -- window2read <= (others=>'X') ;         
               enable_write_i<='0';  
               end if;
-             stm_circularBuffer <= hit11;
+             stm_circularBuffer <= hit12;
                       
-          when hit11 =>      
+          when hit12 =>      
                 if trigger_intl = '1' then
-                   flag11 <= true;
+                   flag12 <= true;
                    window2read <= std_logic_vector(unsigned(ptr_window_i)+2);    
                 enable_write_i<='1';   
 
                    else
-                   flag11 <= false; 
+                   flag12 <= false; 
                -- window2read <= (others=>'X') ;         
          enable_write_i<='0';  
                end if;
-             stm_circularBuffer <= hit12;
- 
+             stm_circularBuffer <= hit13;
           
-          when hit12 =>      
-             if trigger_intl = '1' then
-                flag12 <= true;
-            window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
-                enable_write_i<='1';   
-
-             else
-                flag12 <= false;
-                -- window2read <= (others=>'X') ;         
-          enable_write_i<='0';  
-             end if;
-               stm_circularBuffer <= hit13;
- 
- 
-  
           when hit13 =>      
              if trigger_intl = '1' then
                 flag13 <= true;
@@ -386,23 +353,36 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
                 enable_write_i<='1';   
 
              else
-                
                 flag13 <= false;
-                enable_write_i<='0';   
- 
                 -- window2read <= (others=>'X') ;         
+          enable_write_i<='0';  
              end if;
-               stm_circularBuffer <= hit14;             
-
+               stm_circularBuffer <= hit14;
+  
           when hit14 =>      
-             ptr_window_trans_i <= ptr_window_i;
              if trigger_intl = '1' then
                 flag14 <= true;
             window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
                 enable_write_i<='1';   
 
              else
-                flag14 <= false;    
+                
+                flag14 <= false;
+                enable_write_i<='0';   
+ 
+                -- window2read <= (others=>'X') ;         
+             end if;
+               stm_circularBuffer <= hit15;             
+
+          when hit15 =>      
+             ptr_window_trans_i <= ptr_window_i;
+             if trigger_intl = '1' then
+                flag15 <= true;
+            window2read <= std_logic_vector(unsigned(ptr_window_i)+3); 
+                enable_write_i<='1';   
+
+             else
+                flag15 <= false;    
                 enable_write_i<='0';   
       
              end if;
@@ -429,9 +409,9 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 --                   else
 --                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;                
 --                   end if;                          
-                   stm_circularBuffer<= hit0;
+                   stm_circularBuffer<= hit;
                else 
-                   stm_circularBuffer<= hit0;
+                   stm_circularBuffer<= hit;
                end if;
                              
            else  
@@ -453,19 +433,19 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 --                   else
 --                         ptr_sub_i <= unsigned(ptr_window_trans_i) + 1;
 --                   end if;                  
-                     stm_circularBuffer<= hit0;
+                     stm_circularBuffer<= hit;
                  else   
-                     stm_circularBuffer<= hit0;                 
+                     stm_circularBuffer<= hit;                 
                  end if;
              else  --- NO HIT 
-                 stm_circularBuffer<= hit0;
+                 stm_circularBuffer<= hit;
                  wr_i <= unsigned(wr_i-1);  -- If no hit is detected, the wr pointer goes back to the initial value for the current subBuffer, at this point (the end of wr), 
                                             -- wr - 1 means going back four windows, a subBuffer, so, 
                                             -- the current subBuffer will be overwritted
   --               flag_no_hit_last_state<= True;
 
              end if;             
-           stm_circularBuffer <= hit0;
+           stm_circularBuffer <= hit;
         end if;       
            end case;
    end if;
@@ -500,6 +480,7 @@ else
 end process p_counter;
 
 -- counter <= counter_i;
+
 
 
 
@@ -540,22 +521,6 @@ end process p_sstin;
 
 -- sstin <= sstin_i;
 
-
-----------------------------------
--- Delayed trigger
-----------------------------------
---p_delayedTrigger : process(clk, trigger)
-
---begin
-
---if RST = '0' then
---    delayedTrigger = '0';
---else
-     
-
-
-
-
 ----------------------------------
 -- One-cycle signal for the enable_write
 ----------------------------------
@@ -585,10 +550,10 @@ end process p_sstin;
 --end process p_enableWrite;
 
 RD_add <= window2read;
---RD_add_fifo<= window2read;
+RD_add_fifo<= window2read;
 
 enable_write<= enable_write_i;
---enable_write_fifo<= enable_write_i;
+enable_write_fifo<= enable_write_i;
 
 
 
@@ -641,6 +606,6 @@ long_pulses_stm:	process(clk,trigger)
                         end if;
                     end if;
     end process;
-
-
+    
+    
 end architecture;
