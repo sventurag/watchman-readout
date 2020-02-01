@@ -97,12 +97,12 @@ component circularBuffer is
  -- sstin :           out std_logic;
 --   wr:     out unsigned(8 downto 0);
   enable_write :    out std_logic;
-    enable_write_fifo :    out std_logic;
+   -- enable_write_fifo :    out std_logic;
 
 --  counter :          out std_logic_vector(2 downto 0);        
   
   RD_add:           out std_logic_vector(8 downto 0);
-    RD_add_fifo:           out std_logic_vector(8 downto 0);
+  --  RD_add_fifo:           out std_logic_vector(8 downto 0);
 
             
   WR_RS:            out std_logic_vector(1 downto 0);
