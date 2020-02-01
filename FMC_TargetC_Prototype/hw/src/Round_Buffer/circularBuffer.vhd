@@ -37,7 +37,7 @@ entity circularBuffer is
   trigger :         in std_logic;
   full_fifo :        in std_logic;          
   windowStorage:             in std_logic;
---  enable_write :    out std_logic;
+  enable_write :    out std_logic;
 --    enable_write_fifo :    out std_logic;
 
   RD_add:           out std_logic_vector(8 downto 0);
@@ -144,7 +144,6 @@ begin
   
   -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
- delay_trigger <= CtrlBus_IxSL.TC_Delay_RB(3 downto 0);
 
  p_sm:  process(clk,RST, windowStorage,trigger_intl, full_fifo, Timestamp.samplecnt)
 variable flag_number_v: std_logic_vector(3 downto 0);
