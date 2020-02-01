@@ -72,7 +72,8 @@ extern int nmbrWindows;
 
 /** Value from the GUI for delay in update WR   */
 extern int  delay_UpdateWR;
-
+/** Value of trigger delay for correction of the window number in the circular buffer  */
+extern int  delay_RB;
 /** Number of iterations for the average in pedestal calculation**/
 extern int pedestalAvg;
 
