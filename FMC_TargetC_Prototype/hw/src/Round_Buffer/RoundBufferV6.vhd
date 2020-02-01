@@ -108,6 +108,7 @@ component circularBuffer is
   WR_RS:            out std_logic_vector(1 downto 0);
 
   WR_CS:            out std_logic_vector(5 downto 0);
+  delay_trigger:    in std_logic_vector(3 downto 0);
     Timestamp:        in T_timestamp
 
   
@@ -340,6 +341,7 @@ end component CPU_CONTROLLERV3;
     signal WR_RS_S_user:		std_logic_vector(1 downto 0);
     signal WR_CS_S_user:        std_logic_vector(5 downto 0);
     signal trigger_s:        std_logic;
+    signal delay_trigger_intl: std_logic_vector(3 downto 0);
 
 --    signal windowStorage_s : std_logic;
     
@@ -408,6 +410,7 @@ circBuffer: circularBuffer
 
   WR_RS    =>           WR_RS_S_trig,
   WR_CS   =>            WR_CS_S_trig,
+  delay_trigger => delay_trigger_intl,
   Timestamp=>         Timestamp
  -- ptr_window   =>         ,
   -- sstin =>           out std_logic,
@@ -566,6 +569,7 @@ multiplex_WR:	process(ClockBus.CLK125MHz, nrst)
 
 trigger_s <= '0' when trigger= "0000" else '1';
 
+delay_trigger_intl <= CtrlBus_IxSL.TC_Delay_RB(3 downto 0);
 
 
 end implementation;
