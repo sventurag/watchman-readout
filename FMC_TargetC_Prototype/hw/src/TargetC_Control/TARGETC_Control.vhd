@@ -932,6 +932,19 @@ BUF_Delay_UpdateWR : clkcrossing_buf
 			ClkB	=> ClockBus.CLK125MHz
 		);
 
+
+BUF_TC_Delay_RB : clkcrossing_buf
+		generic map(
+			NBITS => 32
+		)
+		port map(
+			nrst	=>	'1',
+			DA		=>	TCReg(TC_Delay_RB),
+			QB		=> 	CtrlBus_OxMS.TC_Delay_RB, -- compensation for trigger delay for correction of the window number in the circular buffer
+			ClkA	=> 	AxiBusIn.ACLK,
+			ClkB	=> ClockBus.CLK125MHz
+		);
+
 --SyncBuffer_Delay_UpdateWR : SyncBuffer
 --		generic map(
 --			NBITS => 32

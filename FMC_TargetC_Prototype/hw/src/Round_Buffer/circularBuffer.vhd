@@ -37,7 +37,7 @@ entity circularBuffer is
   trigger :         in std_logic;
   full_fifo :        in std_logic;          
   windowStorage:             in std_logic;
-  enable_write :    out std_logic;
+--  enable_write :    out std_logic;
 --    enable_write_fifo :    out std_logic;
 
   RD_add:           out std_logic_vector(8 downto 0);
@@ -46,7 +46,9 @@ entity circularBuffer is
   WR_CS:            out std_logic_vector(5 downto 0);
   delay_trigger:    in std_logic_vector(3 downto 0);
   Timestamp:        in T_timestamp  -- not used in simulations
-
+  -- Control Signal
+ --  CtrlBus_IxSL:    in     T_CtrlBus_IxSL
+   
 );
 
 end circularBuffer;
@@ -103,7 +105,7 @@ signal cnt_long_pulse : std_logic_vector(3 downto 0);
 signal long_pulse_sig: std_logic;
 signal trigger_intl: std_logic;
 signal rdad_i: std_logic_vector(8 downto 0);
-
+--signal delay_trigger: std_logic_vector(3 downto 0);
 attribute mark_debug : string;
 type longPulse_type is(
    IDLE,
@@ -121,7 +123,6 @@ attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
 
 begin
-  
   ----------------------------------
   -- State machine for handling the trigger and to generate the 
   -- wr/read addresses (signals WR_CS, WR_RS, RD_add and enable_write). 
@@ -143,7 +144,8 @@ begin
   
   -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
- 
+ delay_trigger <= CtrlBus_IxSL.TC_Delay_RB(3 downto 0);
+
  p_sm:  process(clk,RST, windowStorage,trigger_intl, full_fifo, Timestamp.samplecnt)
 variable flag_number_v: std_logic_vector(3 downto 0);
 variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
@@ -158,6 +160,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
       current_subBuffer<= (others=>'0');
       first_round_of_subbuffer <= '1';
       jump_wr<=(others=>'0');
+
      
   else 
       if rising_edge(clk) then
