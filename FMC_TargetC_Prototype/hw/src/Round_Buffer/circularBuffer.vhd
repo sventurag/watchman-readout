@@ -897,7 +897,7 @@ else
 end if;
 end process;
 
-
+RD_ADD <= rdad_i;
 
 
 end architecture;
