@@ -16,11 +16,14 @@ import targetc as targetc
 import pandas as pd
 from plot_delays_max import plot_pulse
 tc = targetc.targetc()
-fileToSave = './data/data_jan5_8.txt'
+fileToSave = './data/pulse_gen_test.txt'
 
-#or i in range(0,10,1):
 
-Windows512 =  tc.trigger_mode(3,15,fileToSave )
+
+regID=95;
+TC_Delay_RB=3;
+#tc.send_command(8, regID, TC_Delay_RB) # nmbrWindows
+Windows512 =  tc.trigger_mode(2,15,fileToSave )
 
 #raw_data=plot_pulse(fileToSave)
 #print('raw_data', raw_data)

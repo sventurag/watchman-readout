@@ -813,7 +813,7 @@ begin
 
 					when "000" => --Time 1
 						validReal_s <= '1'; -- After this the data is correct, time to stabilize
-					when "011"	=> --Half way // Falling edge
+					when "010"	=> --Half way // Falling edge
 				--	when "0001"	=>
 						validData_s <= '0';
 
@@ -825,17 +825,19 @@ begin
 						--OldAddrBit <= (others => '0');
 						--OldAddrBit(to_integer(unsigned(CurAddr_s))) <= '1';
 						--OldAddrBit <= (oldidx => '1', others => '0');
-                    when "100"=>
+                    when "011"=>
         --            when "0010"=>
                          
-                          if counterWR < std_logic_vector(unsigned(Delay_UpdateWR)) then  -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
-                             counterWR <= std_logic_vector(unsigned(Delay_UpdateWR) + 1) ; 
-
-                          else 
                               updateWR   <= CurAddr_s;   
-                              counterWR  <= (others=>'0');
 
-                          end if;
+                         
+--                          if counterWR < std_logic_vector(unsigned(Delay_UpdateWR)) then  -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
+--                             counterWR <= std_logic_vector(unsigned(Delay_UpdateWR) + 1) ; 
+
+--                          else 
+--                              counterWR  <= (others=>'0');
+
+--                          end if;
                       
                         
 
@@ -846,7 +848,7 @@ begin
 						CPUTime <= prev_TimeStamp;
 						Old_TrigInfo_copy <= Old_TrigInfo;
 
-					when "101" =>
+					when "100" =>
 						validData_s <= '1'; -- After this the data is correct, time to stabilize
 
 					when others =>
@@ -862,7 +864,8 @@ begin
 	end process;
 
 	-- Address update
-	ValidData <= validData_s;
+    --ValidData <= validData_s when CtrlBus_IxSL.CPUMode = '0'  else  '0';
+	ValidData<= validData_s;
 	ValidReal <= validReal_s;
 
 	--CurAddr	<= CurAddr_s;
