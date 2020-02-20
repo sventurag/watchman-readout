@@ -248,8 +248,8 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 
 			trigger : 		in std_logic_vector(3 downto 0);
 
-			WR_RS_S:		out std_logic_vector(1 downto 0);
-			WR_CS_S:		out std_logic_vector(5 downto 0);
+			WR_R:		out std_logic_vector(1 downto 0);
+			WR_C:		out std_logic_vector(5 downto 0);
 
 			CtrlBus_IxSL:		in 	T_CtrlBus_IxSL; --Outputs from Control Master
 			--CtrlBus_OxSL:		out	T_CtrlBus_OxSL; --Outputs from Control Master
@@ -518,6 +518,11 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 	-- -------------------------------------------------------------
 	attribute DONT_TOUCH : string;
 	attribute DONT_TOUCH of TC_RoundBuffer: label is "TRUE";
+	
+	attribute mark_debug : string; 
+    attribute mark_debug of WR_CS_S_intl: signal is "true";
+    attribute mark_debug of WR_RS_S_intl: signal is "true";
+
 begin
 
 
@@ -620,8 +625,8 @@ begin
 
 			trigger		=> trigger_intl,
 
-			WR_RS_S		=> WR_RS_S_intl,
-			WR_CS_S		=> WR_CS_S_intl,
+			WR_R		=> WR_RS_S_intl,
+			WR_C	=> WR_CS_S_intl,
 
 			CtrlBus_IxSL		=> CtrlBusOut_intl,
 			--CtrlBus_OxSL		=> CtrlBusIn_intl,
@@ -653,7 +658,7 @@ begin
 		--RST 	=> CtrlBusOut_intl.SW_nRST,
 
 		DISCH_PERIOD	=> x"0064",
-		INCR_WAIT_PERIOD => x"0000",
+		INCR_WAIT_PERIOD => x"0032",
 
 		ClockBus	=> ClockBus_intl,
 		--TimeCounter	=> timecounter_intl,
@@ -837,12 +842,9 @@ SyncBitCNT_CLR: SyncBit
 	nTrigC <= not TrigC;
 	nTrigD <= not TrigD;
 
---	Trigger_intl <= nTrigD & nTrigC & nTrigB & nTrigA;  -- For negative pulses
-	Trigger_intl <= TrigD & TrigC & TrigB & TrigA;     -- For positive pulses
+	Trigger_intl <= nTrigD & nTrigC & nTrigB & nTrigA;
 
 	TestStream <= CtrlBusOut_intl.TestStream;
-
-
 
 
  -- Debug pins
@@ -874,7 +876,7 @@ end process;
 --end process;
 
 	
-	BB5 <= CtrlBusOut_intl.WindowStorage;
+	BB5 <= ClockBus_intl.SSTIN;
    -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 	BB4 <= CtrlBusIn_intl.SSvalid;
 	BB3 <= MONTIMING_inverted;
