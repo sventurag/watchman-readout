@@ -37,31 +37,35 @@ architecture sim of circular_buffer_tb is
   signal trigger : std_logic := '0';
   signal full_fifo : std_logic := '0';
   signal ptr_window : std_logic_vector(8 downto 0) := (others => '0');
-  signal counter: std_logic_vector(2 downto 0):= (others => '0');
+  --signal counter: std_logic_vector(2 downto 0):= (others => '0');
   signal sstin : std_logic := '0';
   signal enable_write : std_logic;
   signal WR_RS : std_logic_vector(1 downto 0);
   signal WR_CS : std_logic_vector(5 downto 0);
   signal RD_add: std_logic_vector(8 downto 0);
+  signal windowStorage: std_logic;
+ -- signal RD_add_fifo: std_logic;
   
 begin
 
  -- DUT : entity work.circular_buffer(circ)
-  DUT : entity work.circular_buffer(STRUCTURE)
+  DUT : entity work.circularBuffer(structure)
 
     port map (
       clk => clk,
       rst => rst,
       trigger => trigger,
       full_fifo => full_fifo,
-      ptr_window => ptr_window,
+      windowStorage=> windowStorage,
+      enable_write=> enable_write,
+
+ --     ptr_window => ptr_window,
   --    wr=> wr,
       RD_add => RD_add,
    --   ptr_sub_sstin => ptr_sub_sstin,
-      sstin => sstin,
-      enable_write=> enable_write,
+ --     sstin => sstin,
       
-      counter => counter,
+ --     counter => counter,
       WR_RS => WR_RS,
       WR_CS => WR_CS
     );
@@ -73,6 +77,8 @@ begin
       
       wait for 5 * clock_period;
       rst <= '1';
+      wait for 5 * clock_period;
+      windowStorage<= '1';
       wait until rising_edge(clk);
       
       wait for 14 * clock_period;
