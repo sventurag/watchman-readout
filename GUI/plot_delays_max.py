@@ -39,6 +39,6 @@ def plot_pulse(fileName, rango, repeticiones):
     maximums= pd.DataFrame()
     rows = 10
     
-    df.plot(kind='line', subplots= True, layout= (4,rows), sharex=True, sharey=False, legend=False, marker='o' )
+    df.plot(kind='line', subplots= True, layout= (7,rows), sharex=True, sharey=False, legend=False, marker='o' )
     
     plt.show()
