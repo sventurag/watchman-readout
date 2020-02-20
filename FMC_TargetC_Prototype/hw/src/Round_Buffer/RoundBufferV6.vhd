@@ -28,8 +28,8 @@ entity RoundBufferV6 is
 
 		trigger : 		in std_logic_vector(3 downto 0);
 
-		WR_RS_S:		out std_logic_vector(1 downto 0);
-		WR_CS_S:		out std_logic_vector(5 downto 0);
+		WR_R:		out std_logic_vector(1 downto 0);
+		WR_C:		out std_logic_vector(5 downto 0);
 
 		CtrlBus_IxSL:		in 	T_CtrlBus_IxSL; --Outputs from Control Master
 
@@ -67,20 +67,20 @@ architecture implementation of RoundBufferV6 is
 
 
 
-component DummyTrigger is
+--component DummyTrigger is
 
-    port (
+--    port (
 
-  clk :            in  std_logic;
-  RST :             in  std_logic;
-  start_reg:	    in 	std_logic; 
-  Timestamp:        in T_timestamp;
+--  clk :            in  std_logic;
+--  RST :             in  std_logic;
+--  start_reg:	    in 	std_logic; 
+--  Timestamp:        in T_timestamp;
 
-  trigger :         out std_logic
+--  trigger :         out std_logic
 
-);
+--);
 
-end component DummyTrigger;
+--end component DummyTrigger;
 
 
 
@@ -171,16 +171,18 @@ end component circularBuffer;
 		CPUBus:			in 	std_logic_vector(10 downto 0);
 		CPUTime:		in	T_timestamp;
 		TriggerInfo:	in 	std_logic_vector(11 downto 0);
-		trigger:        in  std_logic_vector(3 downto 0);
+--		trigger:        in  std_logic_vector(3 downto 0);
 		-- Control Signals
-        CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
 
 		-- FIFO out for Reading RDAD
 	    RDAD_ReadEn  :in  std_logic;
 	    RDAD_DataOut : out std_logic_vector(8 downto 0);
 	    RDAD_Empty	: out std_logic;
-        RDAD_Data_trig : in std_logic_vector(8 downto 0);
-        RDAD_WriteEn_trig: in std_logic;
+
+--      CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
+--      RDAD_Data_trig : in std_logic_vector(8 downto 0);
+--      RDAD_WriteEn_trig: in std_logic;
+
 		-- FIFO for FiFoManager
 		AXI_ReadEn:	in	std_logic;
 		AXI_Time_DataOut : out std_logic_vector(63 downto 0);
@@ -288,7 +290,7 @@ end component CPU_CONTROLLERV3;
 
 	signal TrigInfo_intl:		std_logic_vector(11 downto 0);
 	signal Bus_intl :			std_logic_vector(10 downto 0);
-
+	
 
 --	signal PREVBus_intl :		std_logic_vector(NBRWINDOWS-1 downto 0);
 --	signal NEXTBus_intl :		std_logic_vector(NBRWINDOWS-1 downto 0);
@@ -308,7 +310,8 @@ end component CPU_CONTROLLERV3;
 	signal OldWindowCnt :	std_logic_vector(7 downto 0);
 	signal NextWindowCnt:	std_logic_vector(7 downto 0);
 	signal PrevWindowCnt:	std_logic_vector(7 downto 0);
-
+    signal WR_C_sig:      std_logic_vector(5 downto 0):=(others=>'0');
+    signal WR_R_sig:      std_logic_vector(1 downto 0):=(others=>'0');
 	--signal CtrlBus_IxSL_intl : T_CtrlBus_OxMS_Intl;
 	--
 	-- signal wr1_en_bus :				std_logic_vector(NBRWINDOWS-1 downto 0);
@@ -323,7 +326,7 @@ end component CPU_CONTROLLERV3;
 	--signal OldAddrBit_s:		std_logic_vector(NBRWINDOWS-1 downto 0);  COMMENTED ON MAY 2019
 
 	signal clr_intl : std_logic;
-	signal ValidData_s, ValidReal_s : std_logic;
+	signal ValidData_s, ValidReal_s, ValidData_dly, ValidData_delay: std_logic;
 	signal time_intl:			T_timestamp;
     signal nrst : std_logic;
     
@@ -336,12 +339,48 @@ end component CPU_CONTROLLERV3;
 
     signal RDAD_WrEn_s : std_logic;
     signal RDAD_WrEn_fifo_s : std_logic;
-    signal WR_RS_S_trig:		std_logic_vector(1 downto 0);
-    signal WR_CS_S_trig:        std_logic_vector(5 downto 0);
-    signal WR_RS_S_user:		std_logic_vector(1 downto 0);
-    signal WR_CS_S_user:        std_logic_vector(5 downto 0);
+    signal WR_RS_S_trig:		std_logic_vector(1 downto 0):=(others=>'0');
+    signal WR_CS_S_trig:        std_logic_vector(5 downto 0):=(others=>'0');
+    signal WR_RS_S_user:		std_logic_vector(1 downto 0):=(others=>'0');
+    signal WR_CS_S_user:        std_logic_vector(5 downto 0):=(others=>'0');
     signal trigger_s:        std_logic;
     signal delay_trigger_intl: std_logic_vector(3 downto 0);
+    signal flag_edge : std_logic;
+    signal CPUMODE_edge: std_logic;
+    	type WR_update is (
+        IDLE,
+        CPUMODE_edge_detected
+    );
+    signal wr_update_st : WR_update;
+    
+        type SSTIN_synch_st is (
+    USERMODE,
+    TRIGGERMODE,
+    SSTIN_SYNC,
+    EVALUATE
+);
+
+signal sstin_sync_st : SSTIN_synch_st:=USERMODE;
+
+--signal Bus_intl_dly :			std_logic_vector(10 downto 0);
+--signal Bus_intl_delay :			std_logic_vector(10 downto 0);
+--signal read_enable_dly: std_logic;
+--signal read_enable_delay: std_logic;
+--signal windowstorage_dly : std_logic;
+--signal windowstorage_delay: std_logic;
+--signal axireadenable_dly : std_logic;
+--signal axireadenable_delay: std_logic;
+--signal TrigInfo_dly:std_logic_vector(11 downto 0);
+--signal TrigInfo_delay:std_logic_vector(11 downto 0);
+
+
+
+
+    signal CPUMode_delayed: std_logic;
+    signal reg3: std_logic;
+    signal reg4: std_logic;    
+
+    
 
 --    signal windowStorage_s : std_logic;
     
@@ -378,18 +417,18 @@ begin
 
 
 
-inst_DummyTriger: DummyTrigger
+--inst_DummyTriger: DummyTrigger
 
-    port map (
+--    port map (
 
-  clk =>            ClockBus.Clk125MHz ,
-  RST =>            nrst,
-  start_reg=>     CtrlBus_IxSL.WindowStorage,
-  Timestamp=>        Timestamp,
+--  clk =>            ClockBus.Clk125MHz ,
+--  RST =>            nrst,
+--  start_reg=>     CtrlBus_IxSL.WindowStorage,
+--  Timestamp=>        Timestamp,
  
-  trigger =>       dummytrigger_s   
+--  trigger =>       dummytrigger_s   
 
-);
+--);
 
 
 
@@ -499,10 +538,9 @@ SyncBitNrst: SyncBit
 		CPUBus		=> Bus_intl,
 		CPUTime		=> Time_intl,
 		TriggerInfo	=> TrigInfo_intl,
-		trigger=>       trigger,
+	--	trigger=>       trigger,
 
 		  -- Control Signals
-        CtrlBus_IxSL => CtrlBus_IxSL ,
 
 		-- Overwatch
 		--NbrOfPackets	=> CtrlBus_OxSL.RBNbrOfPackets,
@@ -513,8 +551,11 @@ SyncBitNrst: SyncBit
 		RDAD_ReadEn  => RDAD_ReadEn,
 		RDAD_DataOut => RDAD_DataOut,
 		RDAD_Empty	=> 	RDAD_Empty,
-        RDAD_Data_trig => RDAD_Data_s,
-        RDAD_WriteEn_trig =>RDAD_WrEn_s,
+        
+        
+--        CtrlBus_IxSL => CtrlBus_IxSL ,
+--        RDAD_Data_trig => RDAD_Data_s,
+--        RDAD_WriteEn_trig =>RDAD_WrEn_s,
         
         
         
@@ -539,37 +580,120 @@ SyncBitNrst: SyncBit
         ); 
 
 
+     edge_detect_cpu: process(ClockBus.CLK125MHz,nrst,CtrlBus_IxSL.CPUMode)
+    begin
+        if rising_edge(ClockBus.CLK125MHz) then
+         reg3<= CtrlBus_IxSL.CPUMode;
+         reg4<= reg3;
+        end if;
+    end process edge_detect_cpu;
+        
+    CPUMODE_edge <= (reg3) xor (reg4);  
+
 
 	
-multiplex_WR:	process(ClockBus.CLK125MHz, nrst)
+edge_flag:	process(ClockBus.CLK125MHz, nrst)
         begin
             if nrst = '0' then
-              WR_RS_S  <=  (others => '0');
-              WR_CS_S  <=  (others => '0');
-           
+              flag_edge <= '0';
+
             
             else
                 if rising_edge(ClockBus.Clk125MHz) then
-                    if CtrlBus_IxSL.CPUMode = '0' then
-                         WR_RS_S  <=  WR_RS_S_user;
-                         WR_CS_S <=  WR_CS_S_user; 
-                    elsif CtrlBus_IxSL.CPUMode = '1' then
-                        WR_RS_S  <=  WR_RS_S_trig;
-                        WR_CS_S <=  WR_CS_S_trig; 
-                    else
-                        WR_RS_S  <=  (others => '0');
-                        WR_CS_S  <=  (others => '0');
+                   if CPUMODE_edge = '1' then
+                      flag_edge <= '1';
+                  else
+                       flag_edge <= '0';
+                  end if;
+                end if;
+            end if;
+           end process; 
+           
+
+WR_update_inst: process(ClockBus.CLK125MHz, nrst,TimeStamp.samplecnt,CPUMODE_edge)               
+        begin
+      if nrst = '0' then
+        WR_R_sig  <=  (others=> '0');
+        WR_C_sig <=  (others=>'0');
+      else    
+          if rising_edge(ClockBus.Clk125MHz) then
+               case sstin_sync_st is
+               
+                    when USERMODE =>
+                       if CPUMODE_edge = '0' then                          
+                          WR_R_sig  <=  WR_RS_S_user;
+                          WR_C_sig <=  WR_CS_S_user;
+                          sstin_sync_st <= USERMODE;
+                      else
+                          sstin_sync_st <= SSTIN_SYNC;
+                      end if;
+                      
+                    when TRIGGERMODE =>
+                         if CPUMODE_edge = '0' then
+                             WR_R_sig  <=  WR_RS_S_trig;
+                             WR_C_sig <=  WR_CS_S_trig; 
+                             
+                             sstin_sync_st <= TRIGGERMODE;                        
+                        else                         
+                            sstin_sync_st <= SSTIN_SYNC;
+                         end if;
                          
-	                end if;
-	            end if;    
-	        end if;
+                    when SSTIN_SYNC =>         
+                         if TimeStamp.samplecnt= "110" then
+                            sstin_sync_st <= EVALUATE;
+                         else
+                            sstin_sync_st <= SSTIN_SYNC;
+                         end if;
+                         
+                    when EVALUATE =>                               
+                         if  (CtrlBus_IxSL.CPUMode = '0') then 
+                              sstin_sync_st <= USERMODE;
+                         else
+                              sstin_sync_st <= TRIGGERMODE;
+                         end if;
+
+                    end case;    
+	      end if;
+	   end if;
 	end process;
-
-
+	
+WR_R <= WR_R_sig ;
+WR_C <= WR_C_sig ;
+	
+--dly_wdoNumber: process(ClockBus.CLK125MHz, nrst,TimeStamp.samplecnt,CPUMODE_edge)  
+--    begin
+--  if nrst = '0' then
+--    Bus_intl_dly  <=  (others=> '0');
+--    ValidData_dly  <= '0';
+--    read_enable_dly<= '0';
+--    windowstorage_dly <= '0';
+--     axireadenable_dly<='0';
+--     TrigInfo_dly <=(others=> '0');
+    
+--  else
+--            if rising_edge(ClockBus.Clk125MHz) then
+--                 Bus_intl_dly<=    Bus_intl;
+--                 ValidData_dly<= ValidData_s;
+--                 read_enable_dly<= RDAD_ReadEn;
+--                 windowstorage_dly <= CtrlBus_IxSL.WindowStorage;
+--                 axireadenable_dly <= AXI_ReadEn;
+--                 TrigInfo_dly<= TrigInfo_intl;
+----                  WR_R_sig  <=  WR_RS_S_user;
+----                 WR_C_sig <=  WR_CS_S_user;
+                 
+--            end if;
+--  end if;         
+--  end process;
+  
+--  Bus_intl_delay <=Bus_intl_dly;
+--  ValidData_delay  <= ValidData_dly;
+--  read_enable_delay<= read_enable_dly;
+--  windowstorage_delay <= windowstorage_dly;
+--   axireadenable_delay<=axireadenable_dly;
 
 trigger_s <= '0' when trigger= "0000" else '1';
 
 delay_trigger_intl <= CtrlBus_IxSL.TC_Delay_RB(3 downto 0);
-
+--TrigInfo_dly<=TrigInfo_dly;
 
 end implementation;
