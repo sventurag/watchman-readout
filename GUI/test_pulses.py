@@ -19,7 +19,7 @@ from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 wave_gen().Output1(out=False)
 
-rango = list((range(10,50,2)))  # number of steps in delay values for the waveformigenerator
+rango = list((range(10,150,2)))  # number of steps in delay values for the waveformigenerator
 
 
 repeticiones = list( range(0,1,1)   )
@@ -86,5 +86,5 @@ wave_gen().Output1(out=False)
 print("end")
 
 
-plot_pulse(fileToSave,20,1)
+plot_pulse(fileToSave,70,1)
 
