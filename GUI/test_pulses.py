@@ -15,13 +15,15 @@ import os
 import targetc as targetc
 import pandas as pd
 from plot_delays_max import plot_pulse
+#from plotPulse import plot_pulse
 tc = targetc.targetc()
-#wave_gen().Output1(out=False)
+wave_gen().Output1(out=False)
 
-rango = list((range(10,11,1)))  # number of steps in delay values for the waveform generator
+rango = list((range(10,150,2)))  # number of steps in delay values for the waveformigenerator
 
-repeticiones = list( range(0,50,1)   )
-fileToSave = './data/raw_window_64_jan5.txt'
+
+repeticiones = list( range(0,1,1)   )
+fileToSave = './data/wavGenTest.txt'
 
 #print ('Setting ssToutFB')
 #regID = 65
@@ -29,7 +31,7 @@ fileToSave = './data/raw_window_64_jan5.txt'
 #time.sleep(2)
 
 nmbrWindows = 4
-#tc.send_command(9,50,nmbrWindows) # pedestal
+#tc.send_command(8,93,15) # pedestal
 time.sleep(3)
 
 time.sleep(1)
@@ -47,7 +49,7 @@ time.sleep(1)
 
 
 startWindow=0
-totalWindows=64 #12
+totalWindows=12
 
 Windows512 = np.zeros((totalWindows*31))
 
@@ -58,8 +60,8 @@ WindowsSum = np.zeros((totalWindows*31))
 
 
 
-#wave_gen().Output1(out=True)
-
+wave_gen().Output1(out=True)
+time.sleep(1)
 
 for j in repeticiones: # # Number of waveforms for the same delay value
 
@@ -68,20 +70,21 @@ for j in repeticiones: # # Number of waveforms for the same delay value
 
     for i in rango:
     
- #      wave_gen().trigDelay(i*.000000001)
-       time.sleep(0.5)
+       wave_gen().trigDelay(i*.000000001)
+       time.sleep(1)
        Windows512 = tc.get_512_windows(startWindow,totalWindows,nmbrWindows,15)       
        Windows512 = [int(i)] + Windows512.tolist()
        Windows512_delays.append(Windows512)
-       time.sleep(0.5)
+       time.sleep(1)
 
 np.savetxt(os.path.abspath(fileToSave), np.array(Windows512_delays).T, fmt='%5.3f')
 time.sleep(1)
 
 Windows512_delays = Windows512_delays * 0 
     
-#wave_gen().Output1(out=False)
+wave_gen().Output1(out=False)
 print("end")
 
-#plot_pulse(fileToSave)
+
+plot_pulse(fileToSave,70,1)
 
