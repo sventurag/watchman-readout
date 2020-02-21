@@ -344,91 +344,91 @@ COMPONENT trig0_fifo_10W_16D
 
 begin
 	-- Lookup Table for the Leading Edge Signal to know if the previous window (OldAddr) must be taken into account
-	LE_LUT_inst : 	LookupTable_LE
-	generic map(
-		MIN_LE_TIME => 3--MIN_LE_TIME
-	)
-	port map(
-		clk	=> ClockBus.CLK125MHz,
-		SCnt	=>  TimeStamp.samplecnt,
-		prevWdo => LE_intl
-	);
+--	LE_LUT_inst : 	LookupTable_LE
+--	generic map(
+--		MIN_LE_TIME => 3--MIN_LE_TIME
+--	)
+--	port map(
+--		clk	=> ClockBus.CLK125MHz,
+--		SCnt	=>  TimeStamp.samplecnt,
+--		prevWdo => LE_intl
+--	);
 
-	WR1_LE_LUT_inst : 	LookupTable_LE
-	generic map(
-		MIN_LE_TIME => 3--MIN_LE_TIME
-	)
-	port map(
-		clk	=> ClockBus.CLK125MHz,
-		SCnt	=> notsamplecnt,
-		prevWdo => LE_intr
-	);
+--	WR1_LE_LUT_inst : 	LookupTable_LE
+--	generic map(
+--		MIN_LE_TIME => 3--MIN_LE_TIME
+--	)
+--	port map(
+--		clk	=> ClockBus.CLK125MHz,
+--		SCnt	=> notsamplecnt,
+--		prevWdo => LE_intr
+--	);
 
-	DDF0BUS : for K in 0 to 7 generate
-		DFFX: RisingEdge_DFlipFlop
-		   port map(
-		      D => RealTimeAddr(K),
-		      nQ => open,
-		      Clk => ClockBus.CLK125MHz,
-		      Q => LE_RealAddr0(K),
-		      nrst => nrst
-		   );
-	end generate;
+--	DDF0BUS : for K in 0 to 7 generate
+--		DFFX: RisingEdge_DFlipFlop
+--		   port map(
+--		      D => RealTimeAddr(K),
+--		      nQ => open,
+--		      Clk => ClockBus.CLK125MHz,
+--		      Q => LE_RealAddr0(K),
+--		      nrst => nrst
+--		   );
+--	end generate;
 
-	DDF1BUS : for K in 0 to 7 generate
-		DFFX: RisingEdge_DFlipFlop
-		   port map(
-		      D => LE_RealAddr0(K),
-		      nQ => open,
-		      Clk => ClockBus.CLK125MHz,
-		      Q => LE_RealAddr1(K),
-		      nrst => nrst
-		   );
-	end generate;
+--	DDF1BUS : for K in 0 to 7 generate
+--		DFFX: RisingEdge_DFlipFlop
+--		   port map(
+--		      D => LE_RealAddr0(K),
+--		      nQ => open,
+--		      Clk => ClockBus.CLK125MHz,
+--		      Q => LE_RealAddr1(K),
+--		      nrst => nrst
+--		   );
+--	end generate;
 
-	DDF2BUS : for K in 0 to 7 generate
-		DFFX: RisingEdge_DFlipFlop
-		   port map(
-		      D => LE_RealAddr1(K),
-		      nQ => open,
-		      Clk => ClockBus.CLK125MHz,
-		      Q => LE_RealAddr(K),
-		      nrst => nrst
-		   );
-	end generate;
+--	DDF2BUS : for K in 0 to 7 generate
+--		DFFX: RisingEdge_DFlipFlop
+--		   port map(
+--		      D => LE_RealAddr1(K),
+--		      nQ => open,
+--		      Clk => ClockBus.CLK125MHz,
+--		      Q => LE_RealAddr(K),
+--		      nrst => nrst
+--		   );
+--	end generate;
 
-	DDF0BUSTRIG : for K in 0 to 11 generate
-		DFFX: RisingEdge_DFlipFlop
-		   port map(
-		      D => TrigInfo_intl_dly(K),
-		      nQ => open,
-		      Clk => ClockBus.CLK125MHz,
-		      Q => TrigInfo0(K),
-		      nrst => nrst
-		   );
-	end generate;
+--	DDF0BUSTRIG : for K in 0 to 11 generate
+--		DFFX: RisingEdge_DFlipFlop
+--		   port map(
+--		      D => TrigInfo_intl_dly(K),
+--		      nQ => open,
+--		      Clk => ClockBus.CLK125MHz,
+--		      Q => TrigInfo0(K),
+--		      nrst => nrst
+--		   );
+--	end generate;
 
-	DDF1BUSTRIG : for K in 0 to 11 generate
-		DFFX: RisingEdge_DFlipFlop
-		   port map(
-		      D => TrigInfo0(K),
-		      nQ => open,
-		      Clk => ClockBus.CLK125MHz,
-		      Q => TrigInfo1(K),
-		      nrst => nrst
-		   );
-	end generate;
+--	DDF1BUSTRIG : for K in 0 to 11 generate
+--		DFFX: RisingEdge_DFlipFlop
+--		   port map(
+--		      D => TrigInfo0(K),
+--		      nQ => open,
+--		      Clk => ClockBus.CLK125MHz,
+--		      Q => TrigInfo1(K),
+--		      nrst => nrst
+--		   );
+--	end generate;
 
-	DDF2BUSTRIG : for K in 0 to 11 generate
-		DFFX: RisingEdge_DFlipFlop
-		   port map(
-		      D => TrigInfo1(K),
-		      nQ => open,
-		      Clk => ClockBus.CLK125MHz,
-		      Q => TrigInfo2(K),
-		      nrst => nrst
-		   );
-	end generate;
+--	DDF2BUSTRIG : for K in 0 to 11 generate
+--		DFFX: RisingEdge_DFlipFlop
+--		   port map(
+--		      D => TrigInfo1(K),
+--		      nQ => open,
+--		      Clk => ClockBus.CLK125MHz,
+--		      Q => TrigInfo2(K),
+--		      nrst => nrst
+--		   );
+--	end generate;
 
 	notsamplecnt <= not(TimeStamp.samplecnt(2)) & TimeStamp.samplecnt(1 downto 0);
 
@@ -443,38 +443,38 @@ begin
 	-- );
 
 	-- Trigger controller analyze the raw trigger to give out last signals long signals etc from the 4 trigger inputs (TrigA, TrigB, TrigC and TrigD)
-	TRIG_CONTROL_inst : TRIGGER_CONTROLLER
-		Generic map(
-			LONG_TRIGGER => 32
-		)
-		Port map(
-		nrst 	=> nrst,
-		clk		=> ClockBus.CLK125MHz,
+--	TRIG_CONTROL_inst : TRIGGER_CONTROLLER
+--		Generic map(
+--			LONG_TRIGGER => 32
+--		)
+--		Port map(
+--		nrst 	=> nrst,
+--		clk		=> ClockBus.CLK125MHz,
 
-		trigger => trigger,
+--		trigger => trigger,
 
-		TriggerInfo => TrigInfo_intl
-		);
+--		TriggerInfo => TrigInfo_intl
+--		);
 
-	TriggerInfo <=	(others => '0')	when CtrlBus_IxSL.CPUMode = '0' else 	Old_TrigInfo_copy;
-	Trig_intl <= TrigInfo_intl(0) or TrigInfo_intl(1) or TrigInfo_intl(2) or TrigInfo_intl(3);
+--	TriggerInfo <=	(others => '0')	when CtrlBus_IxSL.CPUMode = '0' else 	Old_TrigInfo_copy;
+--	Trig_intl <= TrigInfo_intl(0) or TrigInfo_intl(1) or TrigInfo_intl(2) or TrigInfo_intl(3);
 
-	-- Store and delay blocks for storage of trigger information
-	GEN_DLY_TRIG : for I in 0 to 11 generate
-		Dly_Trig : BlockDelay
-			generic map(
-				NBR => 16
-			)
-			port map(
-				nrst 	=> nrst,
-				nclr 	=> validData_s,
-				clk		=> ClockBus.Clk125MHz,
+--	-- Store and delay blocks for storage of trigger information
+--	GEN_DLY_TRIG : for I in 0 to 11 generate
+--		Dly_Trig : BlockDelay
+--			generic map(
+--				NBR => 16
+--			)
+--			port map(
+--				nrst 	=> nrst,
+--				nclr 	=> validData_s,
+--				clk		=> ClockBus.Clk125MHz,
 
-				SCnt	=> TimeStamp.samplecnt,
-				D		=> TrigInfo_intl(I),
-				Q		=> TrigInfo_intl_dly(I)
-			);
-	end generate;
+--				SCnt	=> TimeStamp.samplecnt,
+--				D		=> TrigInfo_intl(I),
+--				Q		=> TrigInfo_intl_dly(I)
+--			);
+--	end generate;
 
 	-- DLY_WR1 :  BlockDelay
 	-- 	generic map(
@@ -533,75 +533,75 @@ begin
 --			Q		=> wr2_en_dly
 --		);
 
-	process(ClockBus.CLK125MHz,nrst)
-	begin
-		if nRST = '0' then
-			wr1_en_dly <= '0';
-		else
-			if rising_edge(ClockBus.CLK125MHz) then
-				if TimeStamp.samplecnt = "111" then
-					wr1_en_dly <= D_wr1_en;
-				else
-					wr1_en_dly <= D_wr1_en or wr1_en_dly;
-				end if;
-			end if;
-		end if;
-	end process;
+--	process(ClockBus.CLK125MHz,nrst)
+--	begin
+--		if nRST = '0' then
+--			wr1_en_dly <= '0';
+--		else
+--			if rising_edge(ClockBus.CLK125MHz) then
+--				if TimeStamp.samplecnt = "111" then
+--					wr1_en_dly <= D_wr1_en;
+--				else
+--					wr1_en_dly <= D_wr1_en or wr1_en_dly;
+--				end if;
+--			end if;
+--		end if;
+--	end process;
 
-	process(ClockBus.CLK125MHz,nrst)
-	begin
-		if nRST = '0' then
-			wr2_en_dly <= '0';
-		else
-			if rising_edge(ClockBus.CLK125MHz) then
-				if TimeStamp.samplecnt = "011" then
-					wr2_en_dly <= D_wr2_en;
-				else
-					wr2_en_dly <= D_wr2_en or wr2_en_dly;
-				end if;
-			end if;
-		end if;
-	end process;
-
-
-
-	-- Process for the write signals
-	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
-	begin
-		if nRST = '0' then
-			prevTrigger <= '0';
-
-			D_wr1_en <= '0';
-			D_wr2_en <= '0';
-		else
-			if rising_edge(ClockBus.CLK125MHz) then
-				prevTrigger <= Trig_intl;
-
-				if prevTrigger = '1' or Trig_intl = '1' then
-					if TimeStamp.samplecnt(2) = '0' then
-						D_wr1_en <= '1';
-						--add on
-						D_wr2_en <= '0';
-					else
-						D_wr2_en <= '1';
-						--add on
-						D_wr1_en <= '0';
+--	process(ClockBus.CLK125MHz,nrst)
+--	begin
+--		if nRST = '0' then
+--			wr2_en_dly <= '0';
+--		else
+--			if rising_edge(ClockBus.CLK125MHz) then
+--				if TimeStamp.samplecnt = "011" then
+--					wr2_en_dly <= D_wr2_en;
+--				else
+--					wr2_en_dly <= D_wr2_en or wr2_en_dly;
+--				end if;
+--			end if;
+--		end if;
+--	end process;
 
 
-					end if;
-				else
-					D_wr1_en <= '0';
-					D_wr2_en <= '0';
-				end if;
 
-			end if;
-		end if;
-	end process;
+--	-- Process for the write signals
+--	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
+--	begin
+--		if nRST = '0' then
+--			prevTrigger <= '0';
 
-	TrigAddr <= D_wr2_dly & D_wr1_dly & LE_RealAddr;
+--			D_wr1_en <= '0';
+--			D_wr2_en <= '0';
+--		else
+--			if rising_edge(ClockBus.CLK125MHz) then
+--				prevTrigger <= Trig_intl;
 
-	D_wr1_dly <= '1' when (((TimeStamp.samplecnt(2) = '0') or (LE_intr = '1')) and (LE_intl = '0')) else '0';
-	D_wr2_dly <= '1' when (((TimeStamp.samplecnt(2) = '1') or (LE_intl = '1')) and (LE_intr = '0')) else '0';
+--				if prevTrigger = '1' or Trig_intl = '1' then
+--					if TimeStamp.samplecnt(2) = '0' then
+--						D_wr1_en <= '1';
+--						--add on
+--						D_wr2_en <= '0';
+--					else
+--						D_wr2_en <= '1';
+--						--add on
+--						D_wr1_en <= '0';
+
+
+--					end if;
+--				else
+--					D_wr1_en <= '0';
+--					D_wr2_en <= '0';
+--				end if;
+
+--			end if;
+--		end if;
+--	end process;
+
+--	TrigAddr <= D_wr2_dly & D_wr1_dly & LE_RealAddr;
+
+--	D_wr1_dly <= '1' when (((TimeStamp.samplecnt(2) = '0') or (LE_intr = '1')) and (LE_intl = '0')) else '0';
+--	D_wr2_dly <= '1' when (((TimeStamp.samplecnt(2) = '1') or (LE_intl = '1')) and (LE_intr = '0')) else '0';
 
 
 --	TRIG0FIFO : aFifoV2
@@ -626,22 +626,22 @@ begin
 
 
 
-    TRIG0FIFO : trig0_fifo_10W_16D
-      PORT MAP (
-      --  rst => nrst,
+--    TRIG0FIFO : trig0_fifo_10W_16D
+--      PORT MAP (
+--      --  rst => nrst,
         
-        dout => TrigData,
-        empty => TrigEmpty,
-        rd_en => TrigRead,
-        rd_clk => ClockBus.CLK125MHz,
+--        dout => TrigData,
+--        empty => TrigEmpty,
+--        rd_en => TrigRead,
+--        rd_clk => ClockBus.CLK125MHz,
 
         
-        din => TrigAddr,
-        full => TrigFull,
-        wr_en => TrigWrite,
-        wr_clk => ClockBus.CLK125MHz
+--        din => TrigAddr,
+--        full => TrigFull,
+--        wr_en => TrigWrite,
+--        wr_clk => ClockBus.CLK125MHz
 
-      );
+--      );
 
 
 --	TRIG1FIFO : aFifoV2
@@ -665,94 +665,94 @@ begin
 
 
 
-    TRIG1FIFO : axi_trig_afifo_12W_32D
-      PORT MAP (
-      --  rst => nrst,
+--    TRIG1FIFO : axi_trig_afifo_12W_32D
+--      PORT MAP (
+--      --  rst => nrst,
         
-        dout => TrigInfo,
-        empty => open,
-        rd_en => TrigRead,
-        rd_clk => ClockBus.CLK125MHz,
+--        dout => TrigInfo,
+--        empty => open,
+--        rd_en => TrigRead,
+--        rd_clk => ClockBus.CLK125MHz,
 
         
-        din => TrigInfo1,
-        full => open,
-        wr_en => TrigWrite,
-        wr_clk => ClockBus.CLK125MHz
+--        din => TrigInfo1,
+--        full => open,
+--        wr_en => TrigWrite,
+--        wr_clk => ClockBus.CLK125MHz
 
-      );
+--      );
     
 
 
-	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
-	begin
-		if nRST = '0' then
-			prevTrig <= (others => '0');
-			TrigWrite <= '0';
-		else
-			if rising_edge(ClockBus.CLK125MHz) then
+--	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
+--	begin
+--		if nRST = '0' then
+--			prevTrig <= (others => '0');
+--			TrigWrite <= '0';
+--		else
+--			if rising_edge(ClockBus.CLK125MHz) then
 
-				prevTrig <= prevTrig(0) & Trig_intl;
+--				prevTrig <= prevTrig(0) & Trig_intl;
 
 
-				-- WriteSignals
+--				-- WriteSignals
 
-				-- Trigger Sim
-				case prevtrig is
-					when "00" =>
-						TrigWrite <= '0';
-					when "01" =>
-						TrigWrite <= '1';
-						if LE_intl = '1' then
-							--TRIG_CPUBUS <= CMD_WR2_MARKED & OldAddr_intl;
-						else
-							--TRIG_CPUBUS <= DIGI_CPUBUS;
-						end if;
-					when "11" =>
-						if validReal_s = '0' then
-							TrigWrite <= '1';
-						else
-							TrigWrite <= '0';
-						end if;
-					when "10" =>
-						TrigWrite <= '1';
-					when others =>
+--				-- Trigger Sim
+--				case prevtrig is
+--					when "00" =>
+--						TrigWrite <= '0';
+--					when "01" =>
+--						TrigWrite <= '1';
+--						if LE_intl = '1' then
+--							--TRIG_CPUBUS <= CMD_WR2_MARKED & OldAddr_intl;
+--						else
+--							--TRIG_CPUBUS <= DIGI_CPUBUS;
+--						end if;
+--					when "11" =>
+--						if validReal_s = '0' then
+--							TrigWrite <= '1';
+--						else
+--							TrigWrite <= '0';
+--						end if;
+--					when "10" =>
+--						TrigWrite <= '1';
+--					when others =>
 
-				end case;
-			end if;
-		end if;
-	end process;
+--				end case;
+--			end if;
+--		end if;
+--	end process;
 
-	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
+--	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
 
-	begin
+--	begin
 
-		if nRST = '0' then
-			TrigRead <= '0';
-			Trig_stm <= IDLE;
-		else
-			if rising_edge(ClockBus.CLK125MHz) then
-				case Trig_stm is
-					when IDLE =>
-						if TrigEmpty = '0' then
-							Trig_stm <= READFIFO;
-							TrigRead <= '1';
-						else
-							Trig_stm <= IDLE;
-							TrigRead <= '0';
-						end if;
-					when READFIFO =>
-						TrigRead <= '0';
-						Trig_stm <= EVALUATE;
-					when EVALUATE =>
-						Trig_stm <= IDLE;
-					when MARK_WINDOW =>
+--		if nRST = '0' then
+--			TrigRead <= '0';
+--			Trig_stm <= IDLE;
+--		else
+--			if rising_edge(ClockBus.CLK125MHz) then
+--				case Trig_stm is
+--					when IDLE =>
+--						if TrigEmpty = '0' then
+--							Trig_stm <= READFIFO;
+--							TrigRead <= '1';
+--						else
+--							Trig_stm <= IDLE;
+--							TrigRead <= '0';
+--						end if;
+--					when READFIFO =>
+--						TrigRead <= '0';
+--						Trig_stm <= EVALUATE;
+--					when EVALUATE =>
+--						Trig_stm <= IDLE;
+--					when MARK_WINDOW =>
 
-					when others =>
-				end case;
-			end if;
-		end if;
-	end process;
+--					when others =>
+--				end case;
+--			end if;
+--		end if;
+--	end process;
 	-- Process of address change on rising_edge of SSTIN
 	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
 	begin
