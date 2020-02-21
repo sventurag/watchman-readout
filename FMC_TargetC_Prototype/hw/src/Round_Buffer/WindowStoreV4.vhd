@@ -171,7 +171,8 @@ END COMPONENT;
 	   signal trigger125MHz_s:     std_logic_vector(3 downto 0);
      signal trigger_empty_s:        std_logic;
     signal trigger_full_s:        std_logic;
-  
+   signal WriteEn_mult: std_logic;
+   signal WdoNumber_mult: std_logic_vector(8 downto 0);
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -303,26 +304,30 @@ begin
 	
 	
 	
-multiplex_WdoNumber:	process(ClockBus.CLK125MHz)
+multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
         begin
             if nrst = '0' then
-                WriteEn <= '0';
-                WdoNumber <= (others=>'0'); 
+                WriteEn_mult <= '0';
+                WdoNumber_mult <= (others=>'0'); 
             else
                 if rising_edge(ClockBus.Clk125MHz) then
-                    if CtrlBus_IxSL.CPUMode = '0' then
-                        WriteEn <= WriteEn_intl;
-                        WdoNumber <= Wdo1; 
-                    else
-                         WriteEn <=RDAD_WriteEn_trig ;
-                         WdoNumber <= RDAD_Data_trig; 
-	                end if;
-	            end if;    
+                   case CtrlBus_IxSL.CPUMode is
+                       when '0' =>  
+                        WriteEn_mult <= WriteEn_intl;
+                        WdoNumber_mult <= Wdo1; 
+                        when '1'=>
+                         WriteEn_mult <=RDAD_WriteEn_trig ;
+                         WdoNumber_mult <= RDAD_Data_trig; 
+                    end case;
+	        end if;
 	        end if;
 	end process;
 
 
-		
+
+
+	WriteEn <= 	WriteEn_mult;
+	WdoNumber<= WdoNumber_mult;
     Cmd_s<= (others => '0');
     Trig <= (others => '0');
     counter <= (others => '0');
