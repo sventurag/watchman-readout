@@ -18,7 +18,7 @@
 #include "pedestal.h"
 #include "xtime_l.h"
 #include "xscuwdt.h"
-
+//#include "xiicps.h"
 #include "get_15_windows.h"
 #include "get_transfer_fct.h"
 #include "transfer_function.h"
@@ -410,7 +410,7 @@ int main()
 				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
 				usleep(100);
 
-				for (Windows_triggerMode=0; Windows_triggerMode<2;Windows_triggerMode++ ) {
+				for (Windows_triggerMode=0; Windows_triggerMode<4;Windows_triggerMode++ ) {
 
 				XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 				XTime_GetTime(&tStart);
