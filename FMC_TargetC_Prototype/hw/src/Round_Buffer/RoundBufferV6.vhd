@@ -179,9 +179,9 @@ end component circularBuffer;
 	    RDAD_DataOut : out std_logic_vector(8 downto 0);
 	    RDAD_Empty	: out std_logic;
 
---      CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
---      RDAD_Data_trig : in std_logic_vector(8 downto 0);
---      RDAD_WriteEn_trig: in std_logic;
+      CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
+      RDAD_Data_trig : in std_logic_vector(8 downto 0);
+      RDAD_WriteEn_trig: in std_logic;
 
 		-- FIFO for FiFoManager
 		AXI_ReadEn:	in	std_logic;
@@ -553,9 +553,9 @@ SyncBitNrst: SyncBit
 		RDAD_Empty	=> 	RDAD_Empty,
         
         
---        CtrlBus_IxSL => CtrlBus_IxSL ,
---        RDAD_Data_trig => RDAD_Data_s,
---        RDAD_WriteEn_trig =>RDAD_WrEn_s,
+        CtrlBus_IxSL => CtrlBus_IxSL ,
+        RDAD_Data_trig => RDAD_Data_s,
+        RDAD_WriteEn_trig =>RDAD_WrEn_s,
         
         
         
