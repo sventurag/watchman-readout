@@ -388,17 +388,7 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>HCMPA</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>HCMPB</spirit:name>
+          <spirit:name>HCMPD</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -418,7 +408,17 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
-          <spirit:name>HCMPD</spirit:name>
+          <spirit:name>HCMPB</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>0</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>HCMPA</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -782,6 +782,8 @@
           <spirit:configurableElementValue spirit:referenceId="PCW_DDR_RAM_HIGHADDR">0x3FFFFFFF</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_UART1_BASEADDR">0xE0001000</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_UART1_HIGHADDR">0xE0001FFF</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_BASEADDR">0xE0004000</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_HIGHADDR">0xE0004FFF</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_GPIO_BASEADDR">0xE000A000</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_GPIO_HIGHADDR">0xE000AFFF</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_ENET0_BASEADDR">0xE000B000</spirit:configurableElementValue>
@@ -852,6 +854,7 @@
           <spirit:configurableElementValue spirit:referenceId="PCW_QSPI_PERIPHERAL_FREQMHZ">200</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_SDIO_PERIPHERAL_FREQMHZ">50</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_UART_PERIPHERAL_FREQMHZ">50</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C_PERIPHERAL_FREQMHZ">111.111115</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_TTC_PERIPHERAL_FREQMHZ">50</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_PCAP_PERIPHERAL_FREQMHZ">200</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_FPGA0_PERIPHERAL_FREQMHZ">125</spirit:configurableElementValue>
@@ -982,7 +985,7 @@
           <spirit:configurableElementValue spirit:referenceId="PCW_EN_ENET0">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_EN_ENET1">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_EN_GPIO">1</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="PCW_EN_I2C0">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_EN_I2C0">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_EN_I2C1">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_EN_PJTAG">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_EN_SDIO0">1</spirit:configurableElementValue>
@@ -1019,6 +1022,7 @@
           <spirit:configurableElementValue spirit:referenceId="PCW_P2F_GPIO_INTR">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_P2F_ENET0_INTR">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_P2F_SDIO0_INTR">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_P2F_I2C0_INTR">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_P2F_UART1_INTR">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_IRQ_F2P_INTR">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_IRQ_F2P_MODE">DIRECT</spirit:configurableElementValue>
@@ -1090,9 +1094,14 @@
           <spirit:configurableElementValue spirit:referenceId="PCW_USB0_PERIPHERAL_ENABLE">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_USB_RESET_ENABLE">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_USB1_PERIPHERAL_ENABLE">0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_PERIPHERAL_ENABLE">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_PERIPHERAL_ENABLE">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_I2C0_IO">MIO 14 .. 15</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_GRP_INT_ENABLE">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_RESET_ENABLE">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C0_RESET_IO">&lt;Select&gt;</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_I2C1_PERIPHERAL_ENABLE">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_I2C_RESET_ENABLE">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_I2C_RESET_SELECT">Share reset pin</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_GPIO_PERIPHERAL_ENABLE">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_GPIO_MIO_GPIO_ENABLE">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_GPIO_MIO_GPIO_IO">MIO</spirit:configurableElementValue>
@@ -1285,8 +1294,8 @@
           <spirit:configurableElementValue spirit:referenceId="PCW_MIO_53_SLEW">slow</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="preset">ZC702</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_UIPARAM_GENERATE_SUMMARY">NA</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="PCW_MIO_TREE_PERIPHERALS">GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#ENET Reset#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="PCW_MIO_TREE_SIGNALS">gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#reset#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_MIO_TREE_PERIPHERALS">GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#ENET Reset#GPIO#GPIO#I2C 0#I2C 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="PCW_MIO_TREE_SIGNALS">gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#reset#gpio[12]#gpio[13]#scl#sda#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_PS7_SI_REV">PRODUCTION</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_FPGA_FCLK0_ENABLE">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="PCW_NOR_SRAM_CS0_T_TR">1</spirit:configurableElementValue>
@@ -1410,6 +1419,7 @@
         <spirit:internalPortReference spirit:componentRef="axistream_0" spirit:portRef="M_AXIS_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_dma_0" spirit:portRef="axi_resetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_iic_0" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M01_ARESETN"/>
@@ -1417,7 +1427,6 @@
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M02_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aresetn"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>ARESETN_1</spirit:name>
@@ -1514,6 +1523,9 @@
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="S_AXI_HP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_iic_0" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="slowest_sync_clk"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i1"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i2"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="ACLK"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M00_ACLK"/>
@@ -1522,9 +1534,6 @@
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="M00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M02_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i1"/>
-        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i2"/>
-        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aclk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>Net</spirit:name>
@@ -1579,10 +1588,10 @@
       <spirit:adHocConnection>
         <spirit:name>xlconstant_0_dout</spirit:name>
         <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
-        <spirit:externalPortReference spirit:portRef="HCMPD"/>
-        <spirit:externalPortReference spirit:portRef="HCMPC"/>
-        <spirit:externalPortReference spirit:portRef="HCMPB"/>
         <spirit:externalPortReference spirit:portRef="HCMPA"/>
+        <spirit:externalPortReference spirit:portRef="HCMPB"/>
+        <spirit:externalPortReference spirit:portRef="HCMPC"/>
+        <spirit:externalPortReference spirit:portRef="HCMPD"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TARGET_C_TopLevel_Sy_0_SIN</spirit:name>
