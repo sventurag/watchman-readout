@@ -18,6 +18,11 @@ entity WindowStoreV4 is
 	CPUBus:			in 	std_logic_vector(10 downto 0);
 	CPUTime:		in	T_timestamp;
 	TriggerInfo:	in 	std_logic_vector(11 downto 0);
+	trigger:        in  std_logic_vector(3 downto 0);
+
+	
+    -- Control Signals
+    CtrlBus_IxSL:    in     T_CtrlBus_IxSL;
 
 	-- Overwatch of Transmission
 	NbrOfPackets:	out	std_logic_vector(7 downto 0);
@@ -27,6 +32,8 @@ entity WindowStoreV4 is
     RDAD_ReadEn  :in  std_logic;
     RDAD_DataOut : out std_logic_vector(8 downto 0);
     RDAD_Empty	: out std_logic;
+    RDAD_Data_trig : in std_logic_vector(8 downto 0);
+    RDAD_WriteEn_trig: in std_logic;
 
 	-- FIFO for FiFoManager
 	AXI_ReadEn:	in	std_logic;
@@ -112,12 +119,25 @@ COMPONENT axi_trig_afifo_12W_32D
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
+        
+--COMPONENT trig_fifo_3W_16D
+--  PORT (
+--    wr_clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
+--    din : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+--    wr_en : IN STD_LOGIC;
+--    rd_en : IN STD_LOGIC;
+--    dout : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
+--    full : OUT STD_LOGIC;
+--    empty : OUT STD_LOGIC
+--  );
+--END COMPONENT;
+
 
 	type T_storestate is(
 		IDLE,
 		STABILIZE,
 		PREPARE,
-		DLY,
 		PULSE,
 		STABILIZE2,
 		PREPARE2,
@@ -130,6 +150,7 @@ END COMPONENT;
 
 	signal Full_out_intl    : std_logic;
 	signal WriteEn_intl  : std_logic;
+	signal WriteEn  : std_logic;
 
 	signal Counter:		std_logic_vector(63 downto 0);
 
@@ -138,11 +159,33 @@ END COMPONENT;
 	signal Trig:	std_logic_vector(11 downto 0);
 
 	signal Wdo1:	std_logic_vector(8 downto 0);
+    signal WdoNumber:	std_logic_vector(8 downto 0);
+
 	signal CMD_s:	std_logic_vector(10 downto 0);
+    signal CMD_s1:	std_logic_vector(10 downto 0);
+
 	signal axi_full_s:	std_logic_vector(3 downto 0);
 	signal axi_empty_s:	std_logic_vector(3 downto 0);
 
 	signal NbrOfPackets_intl : std_logic_vector(7 downto 0);
+	   signal trigger125MHz_s:     std_logic_vector(3 downto 0);
+     signal trigger_empty_s:        std_logic;
+    signal trigger_full_s:        std_logic;
+   signal WriteEn_mult: std_logic;
+   signal WdoNumber_mult: std_logic_vector(8 downto 0);
+   
+   attribute mark_debug : string;
+
+   attribute mark_debug of WriteEn: signal is "true";
+   attribute mark_debug of WdoNumber: signal is "true";
+   attribute mark_debug of WdoNumber_mult: signal is "true";
+   attribute mark_debug of WriteEn_mult: signal is "true";
+   attribute mark_debug of RDAD_WriteEn_trig: signal is "true";
+   attribute mark_debug of RDAD_Data_trig: signal is "true";
+   attribute mark_debug of WriteEn_intl: signal is "true";
+
+   
+   
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -153,7 +196,6 @@ END COMPONENT;
 
 begin
 
-	NbrOfPackets <= NbrOfPackets_intl;
 
 	process(ClockBus.CLK125MHz)
 	begin
@@ -164,7 +206,7 @@ begin
 			trig <= (others => '0');
 			Wdo1 <= (others => '0');
 			counter <= (others => '0');
-			cmd_s <= (others => '0');
+			cmd_s1 <= (others => '0');
 		else
 			if rising_edge(ClockBus.Clk125MHz) then
 
@@ -178,28 +220,28 @@ begin
 							case CPUBus(10 downto 8) is
 								when CMD_WR1_MARKED => -- ODD WINDOW
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+1);
-									counter <= CPUTime.graycnt & "0000"; -- gray counter is a timestamp for the window
+								--	counter <= CPUTime.graycnt & "0000"; -- gray counter is a timestamp for the window
 									--trig <= TrigInfoDly;
-									trig <= TriggerInfo;
+								--	trig <= TriggerInfo;
 									Wdo1 <= CPUBus(7 downto 0) & '0';
-									cmd_s <= CPUBus;
+									cmd_s1 <= CPUBus;
 									writeEn_stm <= STABILIZE;
 								when CMD_WR2_MARKED =>-- EVEN WINDOW
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+1);
 									--counter <= CPUTime;
-									counter <= CPUTime.graycnt & "1000";
+									--counter <= CPUTime.graycnt & "1000";
 									--trig <= TrigInfoDly;
-									trig <= TriggerInfo;
+								--	trig <= TriggerInfo;
 									Wdo1 <= CPUBus(7 downto 0) & '1';
-									cmd_s <= CPUBus;
+									cmd_s1 <= CPUBus;
 									writeEn_stm <= STABILIZE;
 								when CMD_BOTH_MARKED =>
 									NbrOfPackets_intl <= std_logic_vector(unsigned(NbrOfPackets_intl)+2);
-									counter <= CPUTime.graycnt & "0000";
+							--		counter <= CPUTime.graycnt & "0000";
 									--trig <= TrigInfoDly;
-									trig <= TriggerInfo and TRIG_LAST_MASK;
+								--	trig <= TriggerInfo and TRIG_LAST_MASK;
 									Wdo1 <= CPUBus(7 downto 0) & '0';
-									cmd_s <= CPUBus;
+									cmd_s1 <= CPUBus;
 									writeEn_stm <= STABILIZE;
 								when others =>
 								writeEn_stm <= IDLE;
@@ -211,14 +253,12 @@ begin
 							writeEn_stm <= PREPARE;
 						when PREPARE =>
 							writeEn_stm <= PULSE;
---					    when DLY =>
---					           writeEn_stm <= PULSE;
 
 						when PULSE =>
-							if cmd_s(10 downto 8) = CMD_BOTH_MARKED then
+							if cmd_s1(10 downto 8) = CMD_BOTH_MARKED then
 								Wdo1 <= Wdo1(8 downto 1) & '1';
 								--trig <= TriggerInfo;
-								Counter <= Counter(63 downto 4) & "1000";
+						--		Counter <= Counter(63 downto 4) & "1000";
 								writeEn_stm <= STABILIZE2;
 							else
 								writeEn_stm <= IDLE;
@@ -271,46 +311,40 @@ begin
 			end if;
 		end if;
 	end process;
-	-- process(ClockBus.Clk125MHz,nRST)
-	-- begin
-	-- 	if nrst = '0' then
-	-- 		TrigInfoBuf <= (others => '0');
-	-- 	else
-	-- 		if rising_edge(ClockBus.Clk125MHz) then
-	--
-	-- 			TrigInfoDly <= TrigInfoBuf;
-	--
-	-- 			if (TimeCounter(3 downto 0) = "0000") then
-	-- 				TrigInfoBuf <= TriggerInfo;
-	-- 			else
-	-- 				TrigInfoBuf <= TrigInfoBuf or TriggerInfo;
-	-- 			end if;
-	-- 		end if;
-	-- 	end if;
-	-- end process;
+	
+	
+
+	
+	
+	
+multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
+        begin
+            if nrst = '0' then
+                WriteEn_mult <= '0';
+                WdoNumber_mult <= (others=>'0'); 
+            else
+                if rising_edge(ClockBus.Clk125MHz) then
+                   case CtrlBus_IxSL.CPUMode is
+                       when '0' =>  
+                        WriteEn_mult <= WriteEn_intl;
+                        WdoNumber_mult <= Wdo1; 
+                        when '1'=>
+                         WriteEn_mult <=RDAD_WriteEn_trig ;
+                         WdoNumber_mult <= RDAD_Data_trig; 
+                    end case;
+	        end if;
+	        end if;
+	end process;
 
 
-	-- RDAD and Storage FIFO
---	RDAD_STO_AFIFO :  aFifoV2
---    generic map(
---        DATA_WIDTH => 9,
---        ADDR_WIDTH => 4	--Maybe more ?
---    )
---    port map (
---    	rst 	=> nrst,
---        -- Reading port.
---        Data_out    => RDAD_DataOut,
---        Empty_out   => RDAD_Empty,
---        ReadEn_in   => RDAD_ReadEn,
---        RClk        => ClockBus.RDAD_CLK,
---        -- Writing port.
---        Data_in     => Wdo1,
---        Full_out    => Full_out_intl,
---        WriteEn_in  => WriteEn_intl,
---        WClk        => ClockBus.CLK125MHz
---    );
 
 
+	WriteEn <= 	WriteEn_mult;
+	WdoNumber<= WdoNumber_mult;
+    Cmd_s<= (others => '0');
+    Trig <= (others => '0');
+    counter <= (others => '0');
+-- Window address to RDAD_ADD module
 
     RDAD_STO_AFIFO : axi_wdo_addr_fifo
       PORT MAP (
@@ -322,44 +356,21 @@ begin
         rd_clk => ClockBus.RDAD_CLK,
 
         
-        din => Wdo1,
+        din => WdoNumber,
         full => Full_out_intl,
-        wr_en => WriteEn_intl,
+        wr_en => WriteEn,
         wr_clk => ClockBus.CLK125MHz
 
       );
     
 
-
-
-
---	-- RDAD and Storage FIFO
---	AXI_CMD_AFIFO :  aFifoV2
---    generic map(
---        DATA_WIDTH => 11,
---        ADDR_WIDTH => 5	--Maybe more ?
---    )
---    port map (
---    	rst 	=> nrst,
---        -- Reading port.
---        Data_out    => AXI_Spare_DataOut,
---        Empty_out   => axi_empty_s(0),
---        ReadEn_in   => AXI_ReadEn,
---        RClk        => ClockBus.AXI_CLK,
---        -- Writing port.
---        Data_in     => Cmd_s,
---        Full_out    => axi_full_s(0),
---        WriteEn_in  => WriteEn_intl,
---        WClk        => ClockBus.CLK125MHz
---    );
-    
-    
+-- Window address for DIG time in FIFO manager
     
     
     AXI_CMD_AFIFO :  axi_cmd_fifo_11W_5D
     port map (
 
-     dout => AXI_Spare_DataOut,
+     dout => AXI_Spare_DataOut, 
      empty => axi_empty_s(0),
      rd_en => AXI_ReadEn,
      rd_clk => ClockBus.AXI_CLK,
@@ -367,36 +378,13 @@ begin
      
      din => Cmd_s,
      full => axi_full_s(0),
-     wr_en => WriteEn_intl,
+     wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz
      );
      
-    
-    
-    
-
---	-- RDAD and Storage FIFO
---	AXI_Time_AFIFO :  aFifoV2
---    generic map(
---        DATA_WIDTH => 64,
---        ADDR_WIDTH => 5	--Maybe more ?
---    )
---    port map (
---    	rst 	=> nrst,
---        -- Reading port.
---        Data_out    => AXI_Time_DataOut,
---        Empty_out   => axi_empty_s(1),
---        ReadEn_in   => AXI_ReadEn,
---        RClk        => ClockBus.AXI_CLK,
---        -- Writing port.
---        Data_in     => Counter,
---        Full_out    => axi_full_s(1),
---        WriteEn_in  => WriteEn_intl,
---        WClk        => ClockBus.CLK125MHz
---    );
-
-
-
+ 
+ 
+  -- Counter for WDOTime in FIFO manager
 
     
     AXI_Time_AFIFO :  axi_time_fifo_64W_32D
@@ -410,40 +398,13 @@ begin
      
      din => Counter,
      full => axi_full_s(1),
-     wr_en => WriteEn_intl,
+     wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz
      );
      
     
 
-
-
-
-
-
-
-
-
-
---	-- RDAD and Storage FIFO
---	AXI_WdoAddr_AFIFO :  aFifoV2
---	generic map(
---		DATA_WIDTH => 9,
---		ADDR_WIDTH => 5	--Maybe more ?
---	)
---	port map (
---		rst 	=> nrst,
---		-- Reading port.
---		Data_out    => AXI_WdoAddr_DataOut,
---		Empty_out   => axi_empty_s(2),
---		ReadEn_in   => AXI_ReadEn,
---		RClk        => ClockBus.AXI_CLK,
---		-- Writing port.
---		Data_in     => Wdo1,
---		Full_out    => axi_full_s(2),
---		WriteEn_in  => WriteEn_intl,
---		WClk        => ClockBus.CLK125MHz
---	);
+ -- FIFO_WdoAddr for  FIFO manager
 
 
     AXI_WdoAddr_AFIFO : axi_wdo_addr_fifo
@@ -456,37 +417,17 @@ begin
         rd_clk => ClockBus.AXI_CLK,
 
         
-        din => Wdo1,
+        din => WdoNumber,
         full => axi_full_s(2),
-        wr_en => WriteEn_intl,
+        wr_en => WriteEn,
         wr_clk => ClockBus.CLK125MHz
 
       );
     
-       
---	-- RDAD and Storage FIFO
---	AXI_Trig_AFIFO :  aFifoV2
---	generic map(
---		DATA_WIDTH => 12,
---		ADDR_WIDTH => 5	--Maybe more ?
---	)
---	port map (
---		rst 	=> nrst,
---		-- Reading port.
---		Data_out    => AXI_TrigInfo_DataOut,
---		Empty_out   => axi_empty_s(3),
---		ReadEn_in   => AXI_ReadEn,
---		RClk        => ClockBus.AXI_CLK,
---		-- Writing port.
---		Data_in     => Trig,
---		Full_out    => axi_full_s(3),
---		WriteEn_in  => WriteEn_intl,
---		WClk        => ClockBus.CLK125MHz
---	);
+    
+  
 
-
-
-
+-- Trigger info  for FIFO_TrigInfo in FIFO MANAGER
     
     AXI_Trig_AFIFO :  axi_trig_afifo_12W_32D
     port map (
@@ -499,16 +440,35 @@ begin
      
      din => Trig,
      full => axi_full_s(3),
-     wr_en => WriteEn_intl,
+     wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz
      );
      
 
 
 
-
-
-	--AXI_Empty	<=
 	AXI_empty <= '0' when axi_empty_s = "0000" else '1';
+	NbrOfPackets <= NbrOfPackets_intl;
+	
+	
+	
+	
+--        trigger_100to125MHz : trig_fifo_3W_16D
+--        port map (
+    
+--         dout => trigger125MHz_s,
+--         empty => trigger_empty_s,
+--         rd_en => AXI_ReadEn,
+--         rd_clk => ClockBus.CLK125MHz,
+    
+         
+--         din => trigger,
+--         full => trigger_full_s,
+--         wr_en => CtrlBus_IxSL.WindowStorage,
+--         wr_clk => ClockBus.AXI_CLK
+--         );
+         
 
+	
+	
 end Behavioral;
