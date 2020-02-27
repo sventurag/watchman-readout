@@ -121,3 +121,33 @@ void extract_features(uint16_t* data, int length, features_ext* features){
 	b = p1.y - a*p1.x;
 	features->time.time_fl = (amp_start - b)/a;
 }
+
+
+void PrintInboundRingStatus(InboundRingManager_t inboundRing) {
+	char string[256];
+	printf(          "--------------------------- Inbound Ring status ---------------------------");
+	sprintf(string, "0x%08lx inboundRingManager.writePointer", (u32) inboundRing.writePointer);
+	//debug(string);
+	sprintf(string, "  %08ld inboundRingManager.writeLocation", (u32) inboundRing.writeLocation);
+	//debug(string);
+	sprintf(string, "  %08d inboundRingManager.packetSize at write",(int) inboundRing.packetSize[inboundRing.writeLocation]);
+	//debug(string);
+	sprintf(string, "0x%08lx inboundRingManager.procPointer", (u32) inboundRing.procPointer);
+//debug(string);
+	sprintf(string, "  %08ld inboundRingManager.procLocation", (u32) inboundRing.procLocation);
+//	debug(string);
+	sprintf(string, "  %08d inboundRingManager.packetSize at proc",(int) inboundRing.packetSize[inboundRing.procLocation]);
+//	debug(string);
+	sprintf(string, "0x%08lx inboundRingManager.firstAllowedPointer", (u32) inboundRing.firstAllowedPointer);
+//	debug(string);
+	sprintf(string, "0x%08lx inboundRingManager.lastAllowedPointer", (u32) inboundRing.lastAllowedPointer);
+//	debug(string);
+	sprintf(string, "  %08d inboundRingManager.pendingCount",(int) inboundRing.pendingCount);
+//	debug(string);
+	sprintf(string, "  %08d inboundRingManager.totalCount",(int) inboundRing.totalCount);
+//	debug(string);
+	sprintf(string, "  %08d inboundRingManager.processedCount",(int) inboundRing.processedCount);
+//	debug(string);
+	return;
+}
+

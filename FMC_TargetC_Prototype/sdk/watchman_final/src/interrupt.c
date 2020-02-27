@@ -53,6 +53,9 @@ extern int flag_axidma_rx[4];
 /** @brief Pointer on the last element of the list used in trigger mode */
 extern data_list* last_element;
 
+/* data structure from PL */
+extern InboundRingManager_t inboundRingManager;
+
 /****************************************************************************/
 /**
 * @brief	Callback for assertion
@@ -224,6 +227,33 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		ControlRegisterWrite(PSBUSY_MASK,ENABLE);
 		if(stream_flag || (!empty_flag)){
 			// Invalid the cache to update the value change in memory by the PL
+
+//			inboundRingManager.packetSize[inboundRingManager.writeLocation] = tmpValue;
+			// Data is now in the DRAM... increment counts.
+
+			if (inboundRingManager.pendingCount > INBOUND_RING_BUFFER_LENGTH_IN_PACKETS) {
+				printf("AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
+		//		sprintf(string, "AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
+			//	warning(string);
+		//		g_bufOverflow = true;
+			}
+
+
+			inboundRingManager.totalCount ++ ;
+			inboundRingManager.pendingCount ++;
+			// Reset circ buffer if out of bounds
+			if(inboundRingManager.writePointer < inboundRingManager.lastAllowedPointer) {
+				(inboundRingManager.writePointer)++;
+				inboundRingManager.writeLocation++;
+			} else {
+				inboundRingManager.writePointer  = inboundRingManager.firstAllowedPointer;
+				inboundRingManager.writeLocation = 0;
+			}
+			//Initiate a new transfer
+			XAxiDma_SimpleTransfer_hm((unsigned int *)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
+			//StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
+
+
 
 	//		count++;
 //			for(pmt=0; pmt<4; pmt++){
