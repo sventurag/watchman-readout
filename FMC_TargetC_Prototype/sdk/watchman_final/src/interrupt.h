@@ -26,6 +26,7 @@
 #include "axis_peripheral.h"
 #include "xtime_l.h"
 #include "file_hm.h"
+#include "data_analysis.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/

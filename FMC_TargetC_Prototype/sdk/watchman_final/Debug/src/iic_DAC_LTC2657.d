@@ -70,8 +70,8 @@ src/iic_DAC_LTC2657.o src/iic_DAC_LTC2657.o: ../src/iic_DAC_LTC2657.c \
  ../src/file_hm.h ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
  ../src/data_analysis.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h
 
 ../src/iic_DAC_LTC2657.h:
@@ -226,8 +226,8 @@ src/iic_DAC_LTC2657.o src/iic_DAC_LTC2657.o: ../src/iic_DAC_LTC2657.c \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h:
 
-../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
-
 ../src/data_analysis.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:

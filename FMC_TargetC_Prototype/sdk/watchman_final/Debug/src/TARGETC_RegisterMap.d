@@ -70,8 +70,8 @@ src/TARGETC_RegisterMap.o src/TARGETC_RegisterMap.o: \
  ../src/file_hm.h ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
  ../src/data_analysis.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h \
  ../src/utility.h
 
@@ -219,9 +219,9 @@ src/TARGETC_RegisterMap.o src/TARGETC_RegisterMap.o: \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h:
 
-../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
-
 ../src/data_analysis.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:
 
