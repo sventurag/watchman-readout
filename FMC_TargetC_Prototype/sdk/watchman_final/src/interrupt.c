@@ -801,3 +801,10 @@ void cleanup_interrupts(bool wdt_too)
 	return;
 }
 
+void disable_interrupts(void) {
+	XScuTimer_DisableInterrupt(&TimerScuInstance);
+		XScuTimer_Stop(&TimerScuInstance);
+		XTtcPs_DisableInterrupts(&TimerTtcPsInstance, XTTCPS_IXR_INTERVAL_MASK);
+		XTtcPs_Stop(&TimerTtcPsInstance);
+		XAxiDma_IntrDisable(&AxiDmaInstance, XAXIDMA_IRQ_ALL_MASK, XAXIDMA_DMA_TO_DEVICE);
+}

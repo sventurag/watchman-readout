@@ -12,6 +12,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include "xtime_l.h"
+#include "interrupt.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/
@@ -141,7 +142,8 @@ typedef struct {
 
 
 void PrintInboundRingStatus(InboundRingManager_t inboundRing);
-
+void updateInboundCircBuffer();
+void udp_transfer_WM( volatile InboundRingManager_t *data_to_send );
 
 
 
