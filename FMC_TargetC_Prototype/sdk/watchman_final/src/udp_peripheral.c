@@ -637,12 +637,6 @@ void print_ip_settings(ip_addr_t *ip, ip_addr_t *mask, ip_addr_t *gw)
 	print_ip("Gateway : ", gw);
 }
 
-void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
-{
-
-	printf("....");
-}
-
 //
 //
 //
