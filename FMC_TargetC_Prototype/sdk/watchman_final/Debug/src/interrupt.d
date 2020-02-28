@@ -65,12 +65,11 @@ src/interrupt.o src/interrupt.o: ../src/interrupt.c ../src/interrupt.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xtime_l.h \
  ../src/TARGETC_RegisterMap.h ../src/global.h ../src/axis_peripheral.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
- ../src/data_analysis.h ../src/file_hm.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
+ ../src/file_hm.h ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h \
- ../src/utility.h
+ ../src/utility.h ../src/data_analysis.h
 
 ../src/interrupt.h:
 
@@ -210,8 +209,6 @@ src/interrupt.o src/interrupt.o: ../src/interrupt.c ../src/interrupt.h \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
 
-../src/data_analysis.h:
-
 ../src/file_hm.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h:
@@ -223,3 +220,5 @@ src/interrupt.o src/interrupt.o: ../src/interrupt.c ../src/interrupt.h \
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:
 
 ../src/utility.h:
+
+../src/data_analysis.h:

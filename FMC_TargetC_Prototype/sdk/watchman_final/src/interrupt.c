@@ -250,7 +250,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 				inboundRingManager.writeLocation = 0;
 			}
 			//Initiate a new transfer
-			XAxiDma_SimpleTransfer_hm((unsigned int *)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
+			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
 			//StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
 
 

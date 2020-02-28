@@ -7,6 +7,7 @@ src/get_15_windows.o src/get_15_windows.o: ../src/get_15_windows.c \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xtime_l.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_types.h \
  ../src/axis_peripheral.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bdring.h \
@@ -73,7 +74,6 @@ src/get_15_windows.o src/get_15_windows.o: ../src/get_15_windows.c \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_types.h \
  ../src/iic_DAC_LTC2657.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xiic.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xiic_l.h
@@ -93,6 +93,8 @@ src/get_15_windows.o src/get_15_windows.o: ../src/get_15_windows.c \
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xil_types.h:
 
 ../src/axis_peripheral.h:
 
@@ -231,8 +233,6 @@ src/get_15_windows.o src/get_15_windows.o: ../src/get_15_windows.c \
 ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xil_types.h:
 
 ../src/iic_DAC_LTC2657.h:
 
