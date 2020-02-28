@@ -16,6 +16,7 @@
 #include "time_hm.h"
 #include "interrupt.h"
 #include "TARGETC_RegisterMap.h"
+#include "data_analysis.h"
 
 #if defined (__arm__) || defined (__aarch64__)
 #include "xil_printf.h"
@@ -49,5 +50,6 @@ void tcp_fasttmr(void);
 void tcp_slowtmr(void);
 int setup_pcb_data(ip_addr_t pc_ipaddr, uint16_t port);
 int setup_pcb_cmd(ip_addr_t pc_ipaddr, uint16_t port);
+void udp_transfer_WM( volatile InboundRingManager_t *data_to_send );
 
 #endif /* SRC_UDP_PERIPHERAL_H_ */
