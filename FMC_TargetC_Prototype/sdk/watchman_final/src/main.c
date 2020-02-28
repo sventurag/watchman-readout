@@ -431,7 +431,7 @@ int main()
 
 
 
-
+				}
 				stream_flag= FALSE;
 				usleep(100);
 				printf("leaving trigger mode\r\n");

@@ -67,13 +67,13 @@ src/main.o src/main.o: ../src/main.c \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xscuwdt_hw.h \
  ../src/axis_peripheral.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
- ../src/data_analysis.h ../src/TARGETC_RegisterMap.h ../src/global.h \
+ ../src/TARGETC_RegisterMap.h ../src/global.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h \
  ../src/utility.h ../src/file_hm.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
- ../src/iic_DAC_LTC2657.h \
+ ../src/data_analysis.h ../src/iic_DAC_LTC2657.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xiic.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xiic_l.h \
  ../src/pedestal.h \
@@ -217,8 +217,6 @@ src/main.o src/main.o: ../src/main.c \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
 
-../src/data_analysis.h:
-
 ../src/TARGETC_RegisterMap.h:
 
 ../src/global.h:
@@ -234,6 +232,8 @@ src/main.o src/main.o: ../src/main.c \
 ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h:
+
+../src/data_analysis.h:
 
 ../src/iic_DAC_LTC2657.h:
 

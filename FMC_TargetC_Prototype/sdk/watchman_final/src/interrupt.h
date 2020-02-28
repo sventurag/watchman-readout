@@ -26,7 +26,7 @@
 #include "axis_peripheral.h"
 #include "xtime_l.h"
 #include "file_hm.h"
-#include "data_analysis.h"
+//#include "data_analysis.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/
@@ -69,6 +69,7 @@ int interrupts_initialization(void);
 void enable_interrupts();
 int devices_initialization();
 void cleanup_interrupts(bool wdt_too);
+void disable_interrupts(void);
 
 /*** Type definition *************************************************/
 /*********************************************************************/

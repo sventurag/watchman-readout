@@ -103,6 +103,7 @@ void SetTargetCRegisters(void){
 * @note		-
 *
 ****************************************************************************/
+
 void GetTargetCStatus(){
 	xil_printf(">> STATUS:\t ");
 	decToHexa(regptr[TC_STATUS_REG] );
