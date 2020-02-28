@@ -18,7 +18,7 @@
 #include "interrupt.h"
 #include "xtime_l.h"
 #include "xstatus.h"
-#include "data_analysis.h"
+//#include "data_analysis.h"
 #include "TARGETC_RegisterMap.h"
 #include "file_hm.h"
 #include "xscuwdt.h"

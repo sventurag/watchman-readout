@@ -24,7 +24,7 @@
 #include "transfer_function.h"
 #include "xtime_l.h"
 #include "data_analysis.h"
-/**************** Extern global variables ****************/
+/**************** External global variables ****************/
 /*********************************************************/
 /** @brief Pointer on the network interface */
 extern struct netif *echo_netif;
@@ -420,35 +420,18 @@ int main()
 				clearInboundBuffer();
 				PrintInboundRingStatus(inboundRingManager);
 
+				while(1) {
+						if(inboundRingManager.pendingCount > 0) {
+							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
+							updateInboundCircBuffer();
+						}
 
-//				g_bufOverflow = false;
-//				liveCounter = 6;
-//				WriteAxiPsReg(AXI_SCROD_PS_LIVECOUNTER_ADDR, liveCounter);
-//				show_cpu_frequency();
-//				show_asic_mask_if_necessary();
-//				info("SCROD_init() complete");
-				//overflow_virtual_tty_fifo();
 
-//                tmp_ptr_main->data.data_struct.wdo_id =0;
-//             	xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr_main-> data.data_struct.wdo_id );
-//
-//
-//		        for(i=0; i<16; i++){
-//					for(j=0; j<32; j++){
-//						/* Pedestal subtraction */
-//
-//						data_tmp2 = (uint16_t) (tmp_ptr_main->data.data_struct.data[i][j]);
-//						xil_printf(",%d",data_tmp2);
-//					}
-//		        }
 
-//				xil_printf("triggerModei\r\n");
-//				for(pmt=0; pmt<4; pmt++){
-//					if(flag_axidma_rx[pmt] > 0){
-//						dma_received_data(pmt);
-//						flag_axidma_rx[pmt]--;
-//					}
-//				}
+
+
+
+
 				stream_flag= FALSE;
 				usleep(100);
 				printf("leaving trigger mode\r\n");
