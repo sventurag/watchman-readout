@@ -145,7 +145,7 @@ int main()
 {
 //	XTime tStart, tEnd;
 //    int i,j;
-//    int timeout;
+    int timeout;
 //    int index;
 //    int window;
 //	uint16_t data_tmp, data_tmp2;
@@ -311,12 +311,12 @@ int main()
 		return -1;
 	}
 
-	/* Initialize transfer function coefficients */
-	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
-	else{
-		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Transfer function initialization failed!");
-		return -1;
-	}
+//	/* Initialize transfer function coefficients */
+//	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
+//	else{
+//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Transfer function initialization failed!");
+//		return -1;
+//	}
 
 /*
 	// Sweep over SSTOUTFB to get 1.6V in VADJN
@@ -407,6 +407,20 @@ int main()
 					state_main = IDLE;
 				}
 
+				ControlRegisterWrite(SMODE_MASK ,ENABLE); // mode for selecting the interrupt, 1 for dma
+				usleep(100);
+
+				ControlRegisterWrite(SS_TPG_MASK ,ENABLE); // 0 for test pattern mode, 1 for sample mode (normal mode)
+				usleep(100);
+
+				ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
+
+				usleep(100);
+
+
+				xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
+				usleep(100);
+
 
 
 				// setup inbound and outbound circular waveform/packet buffers
@@ -416,22 +430,62 @@ int main()
 				inboundRingManager.procPointer         = inboundRingManager.writePointer;
 				inboundRingManager.firstAllowedPointer = inboundRingManager.writePointer;
 				inboundRingManager.lastAllowedPointer  = inboundRingManager.writePointer + (INBOUND_RING_BUFFER_LENGTH_IN_PACKETS - 1);
-
-				clearInboundBuffer();
 				PrintInboundRingStatus(inboundRingManager);
 
+				printf("after inboundRingManager init \r\n");
+				usleep(100);
+				clearInboundBuffer();
+				usleep(100);
+
+				PrintInboundRingStatus(inboundRingManager);
+				usleep(100);
+
+
+				StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+			     usleep(100);
+				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
+			     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+
+				usleep(100);
+				printf("after inboundRingManager print, starting while loop \r\n");
+				 usleep(100);
 				while(1) {
 						if(inboundRingManager.pendingCount > 0) {
 							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
+							printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+
 							updateInboundCircBuffer();
+						     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+						     ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+
+							/* Wait on DMA transfer to be done */
+					//	timeout = 200000;
+						}
+							/* If needed, update timefile */
+							if(flag_ttcps_timer){
+								update_timefile();
+								flag_ttcps_timer = false;
+							}
+
+							/* If needed, reload watchdog's counter */
+							if(flag_scu_timer){
+								XScuWdt_RestartWdt(&WdtScuInstance);
+								flag_scu_timer = false;
+							}
+
+							/* The DMA had a problem */
+							if(flag_axidma_error){
+								printf("Error with DMA interrupt: TPG !\r\n");
+								return XST_FAILURE;
+
+					    	}
+//							printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+
 						}
 
 
 
 
-
-
-				}
 				stream_flag= FALSE;
 				usleep(100);
 				printf("leaving trigger mode\r\n");

@@ -32,6 +32,7 @@
 
 /*** Function prototypes *********************************************/
 void XAxiDma_SimpleTransfer_hm(UINTPTR BuffAddr, int LengthOfBytes);
+void StartDmaTransfer( unsigned int *dstAddress, unsigned int len );
 void dma_received_data(int pmt);
 int test_TPG(void);
 

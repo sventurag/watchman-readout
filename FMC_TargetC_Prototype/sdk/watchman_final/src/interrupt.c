@@ -249,9 +249,14 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 				inboundRingManager.writePointer  = inboundRingManager.firstAllowedPointer;
 				inboundRingManager.writeLocation = 0;
 			}
+
+	           printf("Interrupt went off\r\n");
+	           usleep(100);
 			//Initiate a new transfer
-			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
-			//StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
+//			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
+	           StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+//		     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+		     //StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
 
 
 
@@ -278,7 +283,6 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 
 			flag_axidma_rx_done = true;
 			//xil_printf(" dma transfer done\r\n");
-
 
 		//	free(tmp_ptr_cb);
 

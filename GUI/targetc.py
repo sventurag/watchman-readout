@@ -32,7 +32,7 @@ class targetc():
 ##     List of all the commands
 ##     Flag which indicates if the streaming is running
         self.flag_transfer_done = False
-        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'get_windows_raw', 'restartAll']
+        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'get_windows_raw', 'restartAll', 'stopStream']
         self.stream_flag = False
         ## Flag which indicates that the user want to close the GUI (to avoid problem when accessing graphical object after "WM_DELETE_WINDOW" event)
         self.destroy_flag = False 
@@ -317,7 +317,8 @@ class targetc():
         print("dataSaved") 
         self.flag_transfer_done=False
         plot_pulse(self.fileToSave)
-        
+        self.send_command(3,0,0)# send command to PS to start trigger mode
+                
 
     ## Method thread to process the command received by UDP (running all the time)
     # @param : The object pointer
