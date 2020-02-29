@@ -65,12 +65,11 @@ src/global.o src/global.o: ../src/global.c ../src/global.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h \
  ../src/time_hm.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xtime_l.h \
- ../src/TARGETC_RegisterMap.h ../src/utility.h ../src/file_hm.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
+ ../src/TARGETC_RegisterMap.h ../src/utility.h ../src/data_analysis.h \
+ ../src/file_hm.h ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
- ../src/data_analysis.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h
 
 ../src/global.h:
@@ -211,6 +210,8 @@ src/global.o src/global.o: ../src/global.c ../src/global.h \
 
 ../src/utility.h:
 
+../src/data_analysis.h:
+
 ../src/file_hm.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h:
@@ -220,7 +221,5 @@ src/global.o src/global.o: ../src/global.c ../src/global.h \
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
-
-../src/data_analysis.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:

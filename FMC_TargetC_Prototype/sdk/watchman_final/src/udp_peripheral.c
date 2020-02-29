@@ -7,6 +7,7 @@
 
 #include "udp_peripheral.h"
 #include "iic_DAC_LTC2657.h"
+#include "data_analysis.h"
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -635,3 +636,147 @@ void print_ip_settings(ip_addr_t *ip, ip_addr_t *mask, ip_addr_t *gw)
 	print_ip("Netmask : ", mask);
 	print_ip("Gateway : ", gw);
 }
+
+//
+//
+//
+//
+//	ControlRegisterWrite(SMODE_MASK ,ENABLE); // mode for selecting the interrupt, 1 for dma
+//	usleep(100);
+//
+//	ControlRegisterWrite(SS_TPG_MASK ,ENABLE); // 0 for test pattern mode, 1 for sample mode (normal mode)
+//	usleep(100);
+//
+//	ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
+//
+//	usleep(100);
+//
+//	xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
+//	usleep(100);
+//
+//	for (Windows_triggerMode=0; Windows_triggerMode<4;Windows_triggerMode++ ) {
+//
+//	XAxiDma_SimpleTransfer_hm((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
+//	XTime_GetTime(&tStart);
+//	//sleep(10);
+//	ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
+//
+//
+//
+//	Xil_DCacheInvalidateRange((UINTPTR)first_element->data.data_array, SIZE_DATA_ARRAY_BYT);
+//
+//	//////////////////////////////////////
+//	timeout = 200000; // Timeout of 10 sec
+//	printf("Waiting for the pulse...");
+//
+//	do{
+//		/* If needed, update timefile */
+//		if(flag_ttcps_timer){
+//			update_timefile();
+//			flag_ttcps_timer = false;
+//		}
+//
+//		/* If needed, reload watchdog's counter */
+//		if(flag_scu_timer){
+//			XScuWdt_RestartWdt(&WdtScuInstance);
+//			flag_scu_timer = false;
+//		}
+//
+//		/* The DMA had a problem */
+//		if(flag_axidma_error){
+//			printf("Error with DMA interrupt: TPG !\r\n");
+//			return XST_FAILURE;
+//		}
+//
+//		usleep(0.1);
+//		timeout--;
+//		printf(".");
+//	}while(!flag_axidma_rx_done || !timeout);
+//	if (timeout==0) {
+//		printf("\r\n timeout, trigger mode aborted\r\n");
+//	}
+//   /////////
+////		while(!flag_axidma_rx_done){};
+//	XTime_GetTime(&tEnd);
+//
+//	xil_printf("flag_axidma_rx_done= %d \r\n",flag_axidma_rx_done);
+//	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+//	flag_axidma_rx_done =false;
+//	usleep(1);
+// 	xil_printf("wdo_id=%d \r\n", (uint16_t)first_element-> data.data_struct.wdo_id );
+// 	window=(uint16_t)first_element-> data.data_struct.wdo_id ;
+// 	printf("Time1 %lld, Time2 %lld, Diff %lld\n\r", tEnd, tStart, tEnd-tStart);
+//	printf( "XAxiDma_SimpleTransfer_hm took %.4f\n", 1.0*((tEnd - tStart) / (COUNTS_PER_SECOND/1000000)));
+////
+////                usleep(100);
+////
+////                for(i=0; i<16; i++){
+////					for(j=0; j<32; j++){
+////						/* Pedestal subtraction */
+////						data_tmp = (uint16_t) (first_element->data.data_struct.data[i][j]);
+////                        xil_printf(",%d",data_tmp);
+////					}
+////
+////					//printf("\r\n");
+////				}
+////
+////				usleep(1);
+//
+///* If data valid, send them to computer */
+//	index = 0;
+//	frame_buf[index++] = 0x55;
+//	frame_buf[index++] = 0xAA;
+//	frame_buf[index++] = (char)window;
+//	frame_buf[index++] = (char)(window >> 8);
+//
+//	//printf("\r\n window = %d\r\n",window);
+//	for(i=0; i<16; i++){
+//		for(j=0; j<32; j++){
+//			/* Pedestal subtraction */
+//			data_tmp = (uint16_t) (first_element->data.data_struct.data[i][j]);//-  pedestal[window][i][j]+ offset_avoid_negative);
+//
+//			frame_buf[index++] = (char)data_tmp;
+//			//printf("int_number = %d\r\n ", (char)(int_number));
+//
+//			frame_buf[index++] = (char)(data_tmp >> 8);
+//			//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
+//
+//		}
+//
+//		//printf("\r\n");
+//	}
+//	//printf("\r\n");
+//	frame_buf[index++] = 0x33;
+////    printf("Test\r\n");
+//	frame_buf[index++] = 0xCC;
+//	printf("%d\r\n", index);
+//	transfer_data(frame_buf, index);
+//
+//
+//
+//
+//
+//	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+//	//Windows_triggerMode++;
+//	printf("Windows_triggerMode %d", Windows_triggerMode);
+//	}
+//    ControlRegisterWrite(WINDOW_MASK,DISABLE);
+////				free(tmp_ptr_main);
+////				tmp_ptr_main= NULL;
+//
+//	usleep(100);
+//    xil_printf("after freeing ptr\r\n");
+//
+//    for(i=0; i<16; i++){
+//		for(j=0; j<32; j++){
+//			/* Pedestal subtraction */
+//			tmp_ptr_main->data.data_struct.data[i][j]=0;
+//		}
+//    }
+//}
+//
+
+
+
+
+

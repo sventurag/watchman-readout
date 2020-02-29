@@ -12,7 +12,7 @@
 #include <math.h>
 #include <stdbool.h>
 #include "xtime_l.h"
-#include "axis_peripheral.h"
+#include "interrupt.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/
@@ -42,7 +42,9 @@
 #define THRESHOLD_CMP	1.78  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
 #define THRESHOLD_PULSE	500
 
-
+#define WAVE_BUFFER_SIZE (518)
+#define INBOUND_RING_BUFFER_LENGTH_IN_PACKETS  (WAVE_BUFFER_SIZE)
+#define MAX_INBOUND_PACKET_BYTES  (SIZE_DATA_ARRAY_BYT) //
 
 /*** Type definition *************************************************/
 /*********************************************************************/
@@ -94,6 +96,7 @@ typedef union data_axi_union{
  * @brief Structure to create the list of the element
  */
 typedef struct data_list_st data_list;
+
 struct data_list_st{
     data_axi_un data;		/**< The element */
     data_list* previous;	/**< Pointer on the previous element (NULL if this is the first one) */
@@ -103,5 +106,45 @@ struct data_list_st{
 /*** Function prototypes *********************************************/
 int correct_data(uint16_t* data, int pmt, char nbr_wdo, uint32_t* info, data_list* tmp_first_element);
 void extract_features(uint16_t* data, int length, features_ext* features);
+
+
+
+//// This is an inbound packet container
+//typedef struct {
+//	// Header
+//	u32 eventHeader;
+////	u8  hitWord;
+////	u8  asicWord;
+////	u16 triggerPosition;
+//	u32 payload[MAX_INBOUND_PAYLOAD_WORDS]; //Including checksum
+//} __attribute__ ((packed))GenericInboundPacket_t;
+
+
+// This is a struct to help manage inbound buffering
+typedef struct {
+	// Pointer where next packet should be written
+	data_axi *writePointer;
+	u16 writeLocation;
+	// Pointer where next packet should be processed
+	data_axi *procPointer;
+	u16 procLocation;
+	// First/last allowed pointers that can be used
+	data_axi *firstAllowedPointer;
+	data_axi *lastAllowedPointer;
+	// Array of received packet sizes
+	u32 packetSize[SIZE_DATA_ARRAY];
+	// Waveforms pending processing, total waveforms received, total waveforms processed
+	u32 pendingCount;
+	u32 totalCount;
+	u32 processedCount;
+} InboundRingManager_t;
+
+
+
+void PrintInboundRingStatus(InboundRingManager_t inboundRing);
+void updateInboundCircBuffer();
+void udp_transfer_WM( volatile InboundRingManager_t *data_to_send );
+
+
 
 #endif /* SRC_FEATURES_EXTRACTION_H_ */

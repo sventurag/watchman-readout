@@ -22,7 +22,8 @@ fileToSave = './data/pulse_gen_test.txt'
 
 regID=95;
 TC_Delay_RB=3;
-#tc.send_command(8, regID, TC_Delay_RB) # nmbrWindows
+tc.send_command(8, regID, TC_Delay_RB) # nmbrWindows
+#time.sleep(1)
 Windows512 =  tc.trigger_mode(2,15,fileToSave )
 
 #raw_data=plot_pulse(fileToSave)
