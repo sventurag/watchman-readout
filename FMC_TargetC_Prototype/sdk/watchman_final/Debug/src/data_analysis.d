@@ -4,26 +4,19 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_types.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h \
- ../src/axis_peripheral.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bdring.h \
+ ../src/interrupt.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xscugic.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_assert.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bd.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_hw.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_printf.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/bspconfig.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xpseudo_asm.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xreg_cortexa9.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xpseudo_asm_gcc.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xdebug.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h \
- ../src/interrupt.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xscugic.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xscugic_hw.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_exception.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/lwip/tcp.h \
@@ -60,18 +53,25 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xscutimer_hw.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xttcps.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xttcps_hw.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bdring.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bd.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_hw.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xdebug.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xscuwdt.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/xscuwdt_hw.h \
  ../src/udp_peripheral.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/lwip/udp.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/lwip/prot/udp.h \
  ../src/time_hm.h ../src/TARGETC_RegisterMap.h ../src/global.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h \
- ../src/utility.h ../src/file_hm.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
+ ../src/axis_peripheral.h \
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h \
+ ../src/file_hm.h ../../watchman_final_bsp/ps7_cortexa9_0/include/ff.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/integer.h \
  ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h \
- ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h
+ ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h \
+ ../src/utility.h
 
 ../src/data_analysis.h:
 
@@ -83,19 +83,19 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h:
 
-../src/axis_peripheral.h:
+../src/interrupt.h:
 
-../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma.h:
+../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h:
 
-../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bdring.h:
+../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xscugic.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_assert.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bd.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_hw.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:
 
@@ -108,20 +108,6 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xreg_cortexa9.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xpseudo_asm_gcc.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xdebug.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters.h:
-
-../src/interrupt.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xparameters_ps.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h:
-
-../../watchman_final_bsp/ps7_cortexa9_0/include/xscugic.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xscugic_hw.h:
 
@@ -195,6 +181,18 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xttcps_hw.h:
 
+../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bdring.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_bd.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xaxidma_hw.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xdebug.h:
+
+../../watchman_final_bsp/ps7_cortexa9_0/include/xil_cache.h:
+
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xscuwdt.h:
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/xscuwdt_hw.h:
@@ -211,9 +209,9 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
 
 ../src/global.h:
 
-../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:
+../src/axis_peripheral.h:
 
-../src/utility.h:
+../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
 
 ../src/file_hm.h:
 
@@ -223,4 +221,6 @@ src/data_analysis.o src/data_analysis.o: ../src/data_analysis.c \
 
 ../../watchman_final_bsp/ps7_cortexa9_0/include/ffconf.h:
 
-../../watchman_final_bsp/ps7_cortexa9_0/include/xstatus.h:
+../../watchman_final_bsp/ps7_cortexa9_0/include/xil_io.h:
+
+../src/utility.h:

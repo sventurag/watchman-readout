@@ -18,7 +18,7 @@
 #include "interrupt.h"
 #include "xtime_l.h"
 #include "xstatus.h"
-#include "data_analysis.h"
+//#include "data_analysis.h"
 #include "TARGETC_RegisterMap.h"
 #include "file_hm.h"
 #include "xscuwdt.h"
@@ -32,6 +32,7 @@
 
 /*** Function prototypes *********************************************/
 void XAxiDma_SimpleTransfer_hm(UINTPTR BuffAddr, int LengthOfBytes);
+void StartDmaTransfer( unsigned int *dstAddress, unsigned int len );
 void dma_received_data(int pmt);
 int test_TPG(void);
 

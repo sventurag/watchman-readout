@@ -26,6 +26,7 @@
 #include "axis_peripheral.h"
 #include "xtime_l.h"
 #include "file_hm.h"
+//#include "data_analysis.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/
@@ -52,7 +53,7 @@
 /** @brief Value to load in watchdog's counter (| 0x13FFFFFF = 1sec)*/
 #define WDT_LOAD_VALUE		0xc7fffff6  //10 sec
 /** @brief Value for reset counter of lwIP connection */
-#define RESET_RX_CNTR_LIMIT	400
+#define RESET_RX_CNTR_LIMIT	4000000
 
 /*** Function prototypes *********************************************/
 void assert_callback(const char8 *File, s32 Line);
@@ -68,6 +69,7 @@ int interrupts_initialization(void);
 void enable_interrupts();
 int devices_initialization();
 void cleanup_interrupts(bool wdt_too);
+void disable_interrupts(void);
 
 /*** Type definition *************************************************/
 /*********************************************************************/
