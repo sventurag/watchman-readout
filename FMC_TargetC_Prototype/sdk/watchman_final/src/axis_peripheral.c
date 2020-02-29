@@ -58,6 +58,18 @@ void XAxiDma_SimpleTransfer_hm(UINTPTR BuffAddr, int LengthOfBytes)
 	XAxiDma_WriteReg(XPAR_AXI_DMA_0_BASEADDR+XAXIDMA_RX_OFFSET, XAXIDMA_BUFFLEN_OFFSET, LengthOfBytes);
 }
 
+
+void StartDmaTransfer( unsigned int *dstAddress, unsigned int len ) {
+//	sprintf(string, "0x%08lx S2MM dstAddress", (u32) dstAddress);
+//	debug(string);
+//	sprintf(string, "0x%08lx S2MM length", (u32) len);
+//	debug(string);
+	// Write destination address to S2MM_DA register
+ 	Xil_Out32( XPAR_AXI_DMA_0_BASEADDR + 0x48, (u32) dstAddress );
+	// Write length to S2MM_LENGTH register.
+	Xil_Out32( XPAR_AXI_DMA_0_BASEADDR + 0x58, (u32) len );
+}
+
 /****************************************************************************/
 /**
 * @brief	Process a complete waveform received by the DMA in trigger mode
