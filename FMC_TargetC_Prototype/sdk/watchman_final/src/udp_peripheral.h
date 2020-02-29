@@ -16,6 +16,7 @@
 #include "time_hm.h"
 #include "interrupt.h"
 #include "TARGETC_RegisterMap.h"
+#include "data_analysis.h"
 
 #if defined (__arm__) || defined (__aarch64__)
 #include "xil_printf.h"

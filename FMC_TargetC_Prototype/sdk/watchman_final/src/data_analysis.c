@@ -13,7 +13,10 @@
 uint16_t  pedestal[512][16][32];
 /** @brief Lookup table to correct the transfer function */
 extern uint16_t lookup_table[2048];
-
+/** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
+extern char* frame_buf;
+/* data structure from PL */
+InboundRingManager_t inboundRingManager;
 /****************************************************************************/
 /**
 * @brief	Correct the data received from the PL side (pedestal subtraction &
@@ -121,3 +124,99 @@ void extract_features(uint16_t* data, int length, features_ext* features){
 	b = p1.y - a*p1.x;
 	features->time.time_fl = (amp_start - b)/a;
 }
+
+
+
+
+void updateInboundCircBuffer() {
+	disable_interrupts();
+	inboundRingManager.pendingCount--; // updated in interrupt handler, so have to be careful here
+	inboundRingManager.processedCount++;
+	// Reset circ buffer if out of bounds
+	if(inboundRingManager.procPointer < inboundRingManager.lastAllowedPointer) {
+		(inboundRingManager.procPointer)++;
+		(inboundRingManager.procLocation)++;
+	} else {
+		inboundRingManager.procPointer  = inboundRingManager.firstAllowedPointer;
+		inboundRingManager.procLocation = 0;
+	}
+	enable_interrupts();
+}
+
+
+void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
+{
+ int index;
+ data_axi *Data2send = data_to_send -> procPointer;
+ uint16_t data_tmp;
+ int window, i, j;
+
+ window = Data2send->wdo_id;
+ printf("windowNumber:%d \r\n",window);
+	printf(".Pulse...\r\n");
+	index = 0;
+				frame_buf[index++] = 0x55;
+				frame_buf[index++] = 0xAA;
+				frame_buf[index++] = (char)window;
+				frame_buf[index++] = (char)(window >> 8);
+
+				//printf("\r\n window = %d\r\n",window);
+				for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Pedestal subtraction */
+						data_tmp = (uint16_t) (Data2send->data[i][j]);//-  pedestal[window][i][j]+ offset_avoid_negative);
+
+						frame_buf[index++] = (char)data_tmp;
+					    //printf("int_number = %d\r\n ", (char)(int_number));
+
+						frame_buf[index++] = (char)(data_tmp >> 8);
+						//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
+
+					}
+
+					//printf("\r\n");
+				}
+				//printf("\r\n");
+				frame_buf[index++] = 0x33;
+			//    printf("Test\r\n");
+				frame_buf[index++] = 0xCC;
+			//	printf("%d\r\n", index);
+				transfer_data(frame_buf, index);
+
+}
+
+
+void PrintInboundRingStatus(InboundRingManager_t inboundRing) {
+	//char string[256];
+	printf(          "--------------------------- Inbound Ring status ---------------------------\r\n");
+	printf( "0x%08lx inboundRingManager.writePointer\r\n", (u32) inboundRing.writePointer);
+	usleep(100);
+
+	printf( "0x%08lx inboundRingManager.writePointer\r\n", (u32) inboundRing.writePointer);
+	usleep(100);
+
+	usleep(100);
+	printf( "  %08ld inboundRingManager.writeLocation\r\n", (u32) inboundRing.writeLocation);
+	usleep(100);
+
+	printf( "  %08d inboundRingManager.packetSize at write\r\n",(int) inboundRing.packetSize[inboundRing.writeLocation]);
+	usleep(100);
+	printf( "0x%08lx inboundRingManager.procPointer\r\n", (u32) inboundRing.procPointer);
+     usleep(100);
+	printf( "  %08ld inboundRingManager.procLocation\r\n", (u32) inboundRing.procLocation);
+    usleep(100);
+	printf( "  %08d inboundRingManager.packetSize at proc\r\n",(int) inboundRing.packetSize[inboundRing.procLocation]);
+        usleep(100);
+	printf( "0x%08lx inboundRingManager.firstAllowedPointer\r\n", (u32) inboundRing.firstAllowedPointer);
+        usleep(100);
+	printf( "0x%08lx inboundRingManager.lastAllowedPointer\r\n", (u32) inboundRing.lastAllowedPointer);
+        usleep(100);
+	printf( "  %08d inboundRingManager.pendingCount\r\n",(int) inboundRing.pendingCount);
+        usleep(100);
+	printf( "  %08d inboundRingManager.totalCount\r\n",(int) inboundRing.totalCount);
+        usleep(100);
+	printf( "  %08d inboundRingManager.processedCount\r\n",(int) inboundRing.processedCount);
+        usleep(100);
+	return;
+}
+

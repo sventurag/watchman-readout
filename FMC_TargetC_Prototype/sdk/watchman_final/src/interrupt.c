@@ -53,6 +53,9 @@ extern int flag_axidma_rx[4];
 /** @brief Pointer on the last element of the list used in trigger mode */
 extern data_list* last_element;
 
+/* data structure from PL */
+extern InboundRingManager_t inboundRingManager;
+
 /****************************************************************************/
 /**
 * @brief	Callback for assertion
@@ -225,6 +228,38 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		if(stream_flag || (!empty_flag)){
 			// Invalid the cache to update the value change in memory by the PL
 
+//			inboundRingManager.packetSize[inboundRingManager.writeLocation] = tmpValue;
+			// Data is now in the DRAM... increment counts.
+
+			if (inboundRingManager.pendingCount > INBOUND_RING_BUFFER_LENGTH_IN_PACKETS) {
+				printf("AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
+		//		sprintf(string, "AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
+			//	warning(string);
+		//		g_bufOverflow = true;
+			}
+
+
+			inboundRingManager.totalCount ++ ;
+			inboundRingManager.pendingCount ++;
+			// Reset circ buffer if out of bounds
+			if(inboundRingManager.writePointer < inboundRingManager.lastAllowedPointer) {
+				(inboundRingManager.writePointer)++;
+				inboundRingManager.writeLocation++;
+			} else {
+				inboundRingManager.writePointer  = inboundRingManager.firstAllowedPointer;
+				inboundRingManager.writeLocation = 0;
+			}
+
+	           printf("Interrupt went off\r\n");
+	           usleep(100);
+			//Initiate a new transfer
+//			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
+	           StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+//		     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+		     //StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
+
+
+
 	//		count++;
 //			for(pmt=0; pmt<4; pmt++){
 //				info = last_element->data.data_struct.info;
@@ -248,7 +283,6 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 
 			flag_axidma_rx_done = true;
 			//xil_printf(" dma transfer done\r\n");
-
 
 		//	free(tmp_ptr_cb);
 
@@ -771,3 +805,10 @@ void cleanup_interrupts(bool wdt_too)
 	return;
 }
 
+void disable_interrupts(void) {
+	XScuTimer_DisableInterrupt(&TimerScuInstance);
+		XScuTimer_Stop(&TimerScuInstance);
+		XTtcPs_DisableInterrupts(&TimerTtcPsInstance, XTTCPS_IXR_INTERVAL_MASK);
+		XTtcPs_Stop(&TimerTtcPsInstance);
+		XAxiDma_IntrDisable(&AxiDmaInstance, XAXIDMA_IRQ_ALL_MASK, XAXIDMA_DMA_TO_DEVICE);
+}
