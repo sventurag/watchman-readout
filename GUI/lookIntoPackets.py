@@ -35,13 +35,20 @@ def process_packet(filename,channel):
         numberofwindows+=1
     payloads_list_flat = [item for  sublist in payloads_list for item in sublist]
     print(window_numbers)
-    plt.figure()
-    plt.plot(payloads_list_flat, '-o')
-    plt.title('{}'.format(window_numbers))
+   
+    #plt.figure()
+    fig= plt.figure()
+    ax = fig.add_subplot(111)
+    ax.plot(payloads_list_flat, '-o')
+    ax.set_title("Pulses in self trigger mode")
+    newTickLoc = list(range(0,numberofwindows*32,32))
     for j in range(0,int(32*(numberofwindows+1)),32):
-        plt.axvline(j, color='g', linewidth=1)
+        ax.axvline(j, color='g', linewidth=1)
+    ax2= ax.twiny()    #https://stackoverflow.com/questions/10514315/how-to-add-a-second-x-axis-in-matplotlib
+    ax2.set_xlim(ax.get_xlim())
+    ax2.set_xticks(newTickLoc)
+    ax2.set_xticklabels(window_numbers, fontsize=9, rotation=70)
+    ax2.set_label("Window number")
     plt.show()
-           
-
 filename='traffic.pcap'
 process_packet(filename, 15)
