@@ -113,16 +113,10 @@ class targetc():
           #self.init_UDP_connection_trigger_mode()
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-      #    self.init_UDP_connection_data()
-        
-      #    self.thread_trigger_obj=Thread(target=self.thread_trigger, args=())
-        #  #thread_timer_2=Timer(10,thread_timer_int_2)
-      #    self.thread_trigger_obj.start()
+#          self.init_UDP_connection_data()
+#          self.thread_trigger_obj=Thread(target=self.thread_trigger, args=())
+#          self.thread_trigger_obj.start()
           self.get_windows_flag = True
-        #  self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
-          #thread_timer_2=Timer(10,thread_timer_int_2)
-         # self.thread_user_mode_obj.start()
-         # self.get_windows_flag = True
 
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
