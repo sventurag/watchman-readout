@@ -286,6 +286,10 @@ int main()
 	ControlRegisterWrite(REGCLR_MASK,DISABLE);
 	usleep(100000);
 	ControlRegisterWrite(SWRESET_MASK,ENABLE);
+	usleep(1000);
+	ControlRegisterWrite(PSBUSY_MASK,ENABLE);
+	usleep(1000);
+
 	// Waiting on PL's clocks to be ready
 	while((regptr[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
 		sleep(1); //sleep 100ms
@@ -437,7 +441,7 @@ int main()
 				clearInboundBuffer();
 				usleep(100);
 
-				PrintInboundRingStatus(inboundRingManager);
+			///	PrintInboundRingStatus(inboundRingManager);
 				usleep(100);
 
 
@@ -456,7 +460,7 @@ int main()
 
 							updateInboundCircBuffer();
 						     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-						     ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+						//     ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
 							/* Wait on DMA transfer to be done */
 					//	timeout = 200000;

@@ -224,7 +224,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 
 	/* If completion interrupt is asserted, then set RxDone flag */
 	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
-		ControlRegisterWrite(PSBUSY_MASK,ENABLE);
+	//	ControlRegisterWrite(PSBUSY_MASK,ENABLE);
 		if(stream_flag || (!empty_flag)){
 			// Invalid the cache to update the value change in memory by the PL
 
