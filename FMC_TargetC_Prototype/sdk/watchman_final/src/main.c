@@ -287,7 +287,7 @@ int main()
 	usleep(100000);
 	ControlRegisterWrite(SWRESET_MASK,ENABLE);
 	usleep(1000);
-	ControlRegisterWrite(PSBUSY_MASK,ENABLE);
+	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 	usleep(1000);
 
 	// Waiting on PL's clocks to be ready
