@@ -232,7 +232,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 			// Data is now in the DRAM... increment counts.
 
 			if (inboundRingManager.pendingCount > INBOUND_RING_BUFFER_LENGTH_IN_PACKETS) {
-				printf("AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
+				xil_printf("AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
 		//		sprintf(string, "AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
 			//	warning(string);
 		//		g_bufOverflow = true;
@@ -250,8 +250,8 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 				inboundRingManager.writeLocation = 0;
 			}
 
-	           //printf("Interrupt went off\r\n");
-	           printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+	           //xil_printf("Interrupt went off\r\n");
+	           xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
 	           usleep(100);
 			//Initiate a new transfer
 //			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
@@ -265,7 +265,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 //			for(pmt=0; pmt<4; pmt++){
 //				info = last_element->data.data_struct.info;
 //				mask = 0x1 << (LAST_SHIFT+pmt);
-//				printf("avant last for pmt = %d | LAST_SHIFT+pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,LAST_SHIFT+pmt,count,info,mask);
+//				xil_printf("avant last for pmt = %d | LAST_SHIFT+pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,LAST_SHIFT+pmt,count,info,mask);
 //				if((info & mask) != 0){
 //					flag_axidma_rx[pmt]++;
 //					printf("last for pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,count,info,mask);
