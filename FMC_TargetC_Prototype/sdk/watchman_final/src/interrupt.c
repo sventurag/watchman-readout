@@ -251,8 +251,8 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 			}
 
 	           //xil_printf("Interrupt went off\r\n");
-	           xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-	           usleep(100);
+	 //          xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+	//           usleep(100);
 			//Initiate a new transfer
 //			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
 	           StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
