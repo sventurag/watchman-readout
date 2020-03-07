@@ -287,8 +287,7 @@ int main()
 	usleep(100000);
 	ControlRegisterWrite(SWRESET_MASK,ENABLE);
 	usleep(1000);
-	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
-	usleep(1000);
+
 
 	// Waiting on PL's clocks to be ready
 	while((regptr[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
@@ -447,7 +446,7 @@ int main()
 
 				StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 			     usleep(100);
-				ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
+				 ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
 			     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 
 				usleep(100);
@@ -459,7 +458,7 @@ int main()
 							printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
 
 							updateInboundCircBuffer();
-						     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+						//     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						//     ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
 							/* Wait on DMA transfer to be done */
