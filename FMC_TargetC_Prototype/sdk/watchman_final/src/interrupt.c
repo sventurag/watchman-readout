@@ -224,7 +224,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 
 	/* If completion interrupt is asserted, then set RxDone flag */
 	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
-	//	ControlRegisterWrite(PSBUSY_MASK,ENABLE);
+		ControlRegisterWrite(PSBUSY_MASK,ENABLE);
 		if(stream_flag || (!empty_flag)){
 			// Invalid the cache to update the value change in memory by the PL
 
@@ -256,8 +256,9 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 			//Initiate a new transfer
 //			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
 	           StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-//		     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+		     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 		     //StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
+		  			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
 
 
@@ -278,7 +279,6 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 //			tmp_ptr->next = last_element;
 			//empty_flag = false;
 //			XAxiDma_SimpleTransfer_hm((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
-//			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 //
 	//		Xil_DCacheInvalidateRange((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 
