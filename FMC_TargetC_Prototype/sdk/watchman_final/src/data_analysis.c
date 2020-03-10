@@ -182,7 +182,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				frame_buf[index++] = 0xCC;
 			//	xil_printf("%d\r\n", index);
 				transfer_data(frame_buf, index);
-				sleep(5);
+			//	sleep(5);
 
 }
 
