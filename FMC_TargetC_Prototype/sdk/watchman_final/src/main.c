@@ -455,7 +455,7 @@ int main()
 				while(1) {
 						if(inboundRingManager.pendingCount > 0) {
 							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
-							printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+							xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
 						       Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 
 							updateInboundCircBuffer();
