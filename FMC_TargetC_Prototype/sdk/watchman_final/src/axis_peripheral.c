@@ -64,6 +64,8 @@ void StartDmaTransfer( unsigned int *dstAddress, unsigned int len ) {
 //	debug(string);
 //	sprintf(string, "0x%08lx S2MM length", (u32) len);
 //	debug(string);
+	/* Update the memory with the value in the cache */
+	Xil_DCacheFlushRange((INTPTR )dstAddress, len);
 	// Write destination address to S2MM_DA register
  	Xil_Out32( XPAR_AXI_DMA_0_BASEADDR + 0x48, (u32) dstAddress );
 	// Write length to S2MM_LENGTH register.
