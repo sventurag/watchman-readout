@@ -255,7 +255,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 	//           usleep(100);
 			//Initiate a new transfer
 //			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
-	           StartDmaTransfer((unsigned int *)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+			XAxiDma_SimpleTransfer_hm((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 		       Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 		     //StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
 		  			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
