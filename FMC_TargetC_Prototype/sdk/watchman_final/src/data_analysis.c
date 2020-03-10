@@ -153,7 +153,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 
  window = Data2send->wdo_id;
  xil_printf("windowNumber:%d \r\n",window);
-	xil_printf(".Pulse...\r\n");
+//	xil_printf(".Pulse...\r\n");
 	index = 0;
 				frame_buf[index++] = 0x55;
 				frame_buf[index++] = 0xAA;
