@@ -12,3 +12,5 @@ GUI/__pycache__/
 GUI/.test_triggermode.py.swl
 
 GUI/.test_pulses.py.swn
+
+GUI/traffic.pcap
