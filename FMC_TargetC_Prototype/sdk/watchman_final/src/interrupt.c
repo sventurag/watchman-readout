@@ -184,32 +184,15 @@ void timer_ttcps_callback(XTtcPs * TimerInstance)
 ****************************************************************************/
 void axidma_rx_callback(XAxiDma* AxiDmaInst){
 	uint32_t IrqStatus;
-	//int pmt;
-	//uint32_t info, mask;
-	//static uint64_t count=0;
-//    data_list* tmp_ptr_cb  = (data_list *)malloc(sizeof(data_list));
-//	if(!tmp_ptr_cb){
-//		printf("malloc for tmp_ptr_cb failed in function, %s!\r\n", __func__);
-//	//	return XST_FAILURE;
-//	}
-//	tmp_ptr_cb->next = NULL;
-//	tmp_ptr_cb->previous = NULL;
-
-
 	/* Read pending interrupts */
 	IrqStatus = XAxiDma_IntrGetIrq(AxiDmaInst, XAXIDMA_DEVICE_TO_DMA);
-//	if(flag_while_loop){
-//		printf("IrqStatus = 0x%x\r\n", IrqStatus);
-//		uint32_t reg = XAxiDma_ReadReg(AxiDmaInst->RegBase + (XAXIDMA_RX_OFFSET * XAXIDMA_DEVICE_TO_DMA), XAXIDMA_BUFFLEN_OFFSET);
-//		printf("reg = 0x%x\r\n",reg);
-//	}
+
 	/* If no interrupt is asserted, we do not do anything */
 	if (!(IrqStatus & XAXIDMA_IRQ_ALL_MASK)) {
 		/* Acknowledge pending interrupts */
 		XAxiDma_IntrAckIrq(AxiDmaInst, IrqStatus, XAXIDMA_DEVICE_TO_DMA);
 		return;
 	}
-
 	/*
 	 * If error interrupt is asserted, raise error flag, reset the
 	 * hardware to recover from the error, and return with no further
@@ -221,24 +204,14 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		XAxiDma_IntrAckIrq(AxiDmaInst, IrqStatus, XAXIDMA_DEVICE_TO_DMA);
 		return;
 	}
-
 	/* If completion interrupt is asserted, then set RxDone flag */
 	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
 		ControlRegisterWrite(PSBUSY_MASK,ENABLE);
 		if(stream_flag || (!empty_flag)){
-			// Invalid the cache to update the value change in memory by the PL
-
-//			inboundRingManager.packetSize[inboundRingManager.writeLocation] = tmpValue;
-			// Data is now in the DRAM... increment counts.
 
 			if (inboundRingManager.pendingCount > INBOUND_RING_BUFFER_LENGTH_IN_PACKETS) {
 				xil_printf("AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
-		//		sprintf(string, "AxiDmaInterruptHandler: BUFFER OVERFLOW DETECTED IN PS... NOTHING GOOD WILL COME OF THIS!");
-			//	warning(string);
-		//		g_bufOverflow = true;
 			}
-
-
 			inboundRingManager.totalCount ++ ;
 			inboundRingManager.pendingCount ++;
 			// Reset circ buffer if out of bounds
@@ -249,45 +222,12 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 				inboundRingManager.writePointer  = inboundRingManager.firstAllowedPointer;
 				inboundRingManager.writeLocation = 0;
 			}
-
-	           //xil_printf("Interrupt went off\r\n");
-	 //          xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-	//           usleep(100);
-			//Initiate a new transfer
-//			XAxiDma_SimpleTransfer_hm((unsigned int)inboundRingManager.writePointer, SIZE_DATA_ARRAY_BYT);
 			XAxiDma_SimpleTransfer_hm((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-		       Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-		     //StartDmaTransfer((unsigned int *)inboundRingManager.writePointer, 1030*2*10);
-		  			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+		    Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+		  	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
-
-
-	//		count++;
-//			for(pmt=0; pmt<4; pmt++){
-//				info = last_element->data.data_struct.info;
-//				mask = 0x1 << (LAST_SHIFT+pmt);
-//				xil_printf("avant last for pmt = %d | LAST_SHIFT+pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,LAST_SHIFT+pmt,count,info,mask);
-//				if((info & mask) != 0){
-//					flag_axidma_rx[pmt]++;
-//					printf("last for pmt = %d at count = %d and info = %x with mask = %x\r\n",pmt,count,info,mask);
-//				}
-//			}
-         //   usleep(10);
-			//tmp_ptr = last_element;
-
-//			for(int i=0; i< 6; i++) last_element->data.data_array[i] = 0;
-//			tmp_ptr->next = last_element;
-			//empty_flag = false;
-//			XAxiDma_SimpleTransfer_hm((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
-//
-	//		Xil_DCacheInvalidateRange((UINTPTR)last_element->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 			flag_axidma_rx_done = true;
-			//xil_printf(" dma transfer done\r\n");
-
-		//	free(tmp_ptr_cb);
-
-
 
 		}
 		else{

@@ -39,8 +39,9 @@ def process_packet(filename,channel):
     #plt.figure()
     fig= plt.figure()
     ax = fig.add_subplot(111)
+    #ax.set_title("delay=5")
     ax.plot(payloads_list_flat, '-o')
-    ax.set_title("Pulses in self trigger mode")
+    ax.set_title("delay=3")
     newTickLoc = list(range(0,numberofwindows*32,32))
     for j in range(0,int(32*(numberofwindows+1)),32):
         ax.axvline(j, color='g', linewidth=1)
