@@ -108,7 +108,8 @@ class targetc():
     #         #  print(int(numb / 256))
     #         #  print(int(numb % 256))
        if(self.cmd[comando] == 'restartAll'): # restart main()
-           dummy = param1 
+          payload.append(int("0x33", 0)) # frame's end code 0x33CC
+          payload.append(int("0xCC", 0))
        if(self.cmd[comando] == 'trigger_mode'): # restart main() 
           #self.init_UDP_connection_trigger_mode()
           payload.append(int("0x33", 0)) # frame's end code 0x33CC

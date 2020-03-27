@@ -28,6 +28,9 @@ time.sleep(1)
 #Windows512 =  tc.trigger_mode(2,15,fileToSave )
 tc.send_command(3, 0, 0) # nmbrWindows
 
+time.sleep(1)
+tc.send_command(11,0,0) #restartAll
+
 #raw_data=plot_pulse(fileToSave)
 #print('raw_data', raw_data)
 #    time.sleep(3)
