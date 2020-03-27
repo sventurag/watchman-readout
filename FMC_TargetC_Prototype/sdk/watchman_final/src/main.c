@@ -392,8 +392,9 @@ int main()
 					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 					state_main = GET_PEDESTAL;
 				}
-				if(restart_flag && (!stream_flag) && empty_flag){
+				if(restart_flag){
 								ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+								printf("restarting at idle\r\n");
 								state_main = RESTART;
 							}
 				if(get_windows_raw_flag && (!stream_flag) && empty_flag){
@@ -452,7 +453,7 @@ int main()
 				usleep(100);
 				printf("after inboundRingManager print, starting while loop \r\n");
 				 usleep(100);
-				while(1) {
+				while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
 							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
