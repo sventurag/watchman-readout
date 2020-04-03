@@ -711,82 +711,54 @@ long_pulses_stm:	process(clk,trigger, RST)
     end process;
 
 ----------------------------------
--- Trigger Delay introduced by electronics 
+-- Trigger Delay introduced by electronics
 -- For a 4-window subBuffer, a maximum delay of 16 cycles is allowed, as the data is overwritted every 16 cycles
 ----------------------------------
 
-p_delay_flag : process(clk,RST, delay_trigger,window2read, flag_number)
+p_delayed_flag_and_window : process(clk,RST, delay_trigger,window2read, flag_number)
 
-variable local_window_v:  std_logic_vector(1 downto 0);
-variable subtraction_v: integer;
-variable delay_flag_v: std_logic_vector(3 downto 0);
-variable div_window_v: std_logic_vector(8 downto 0);
+
+variable delay_flag_v : std_logic_vector(3 downto 0);
 begin
 
 if RST = '0' then
     delay_flag_v := (others=> '0');
     delay_window <= (others=> '0');
-    local_window_v:=(others=> '0');
-    delay_flag <= (others=> '0');
-    div_window_v:= (others=> '0');
-    
-else
-    if rising_edge(clk) then 
 
-        div_window_v := std_logic_vector(shift_right(unsigned(window2read), 2  ));
-         if unsigned(flag_number) - unsigned(delay_trigger) > 0 then
-            delay_flag_v := std_logic_vector(unsigned(flag_number) - unsigned(delay_trigger));
-        else
-            delay_flag_v := std_logic_vector( 16 + unsigned(flag_number) - unsigned(delay_trigger));
-        end if;
-        
-        case delay_flag_v is
-               when "0000" | "0001" | "0010" | "0011" =>
-                   local_window_v := "00" ; 
-               when "0100" | "0101" | "0110" | "0111" =>
-                   local_window_v := "01" ;
-               when "1000" | "1001" | "1010" | "1011" =>
-                   local_window_v := "10" ;
-               when "1100" | "1101" | "1110" | "1111" =>
-                   local_window_v := "11" ;
-               when others =>
-                   local_window_v:= "UU" ;
-          end case;
-          
-         if (unsigned(local_window_v) > unsigned(window2read)) then
-            subtraction_v := 4;
-         else
-            subtraction_v:= 0;
-         end if;        
-         if unsigned(div_window_v) = 0 then
-             delay_window <= "0000000" & local_window_v;
-         else
-              delay_window <= std_logic_vector(   shift_left(unsigned(div_window_v), 2) - subtraction_v  +   unsigned(local_window_v));    
-         end if; 
-         delay_flag <=  delay_flag_v;
-
-    end if;
-end if;
-end process;
-
-
-
-p_delay_one_cycle: process(clk,RST, fifo_wr_en)
-begin
-if RST = '0' then
-    fifo_wr_en_delay <= '0';
 else
     if rising_edge(clk) then
+           
+            if (delay_trigger <= flag_number)  then
+                delay_flag_v := std_logic_vector(unsigned(flag_number) - unsigned(delay_trigger)); -- same subbuffer
+                delay_window <= window2read(8 downto 2) & delay_flag_v(3 downto 2); -- window corrected, SubBuffer number + local window. Local window is the internal number for each subBUffer, from 0 to 3.                
+ 
+        else
+                delay_flag_v:= std_logic_vector( 16 + unsigned(flag_number) - unsigned(delay_trigger)); -- previous subbuffer
+                delay_window <= std_logic_vector(unsigned(window2read(8 downto 2) ) -1) & delay_flag_v(3 downto 2) ; -- When the trigger happened in the previous subBuffer, the subBUffer number, window2read(8 downto 2), is decreased by 1.
 
-    fifo_wr_en_delay<= fifo_wr_en;
-    end if;
-end if;
-end process;
+        end if;
+       
+        delay_flag <= delay_flag_v;
 
-
-
+-- THIS CASE WAS REPLACED BY SLICING THE  delay_flag_v VARIABLE      
+--        case delay_flag is
+--               when "0000" | "0001" | "0010" | "0011" =>
+--                   local_window <= "00" ;
+--               when "0100" | "0101" | "0110" | "0111" =>
+--                   local_window <= "01" ;
+--               when "1000" | "1001" | "1010" | "1011" =>
+--                   local_window <= "10" ;
+--               when "1100" | "1101" | "1110" | "1111" =>
+--                   local_window <= "11" ;
+--               when others =>
+--                   local_window<= "UU" ;
+--          end case;
+         
+   end if;
+end if;    
+    end process;
+   
 fifo_in<= delay_window & delay_flag;
-
 
 ----------------------------------
 -- FIFO after RB
