@@ -47,14 +47,14 @@ def softTrigger():
     wave_gen().softTrigger()
     time.sleep(1)
 
-setFreq(5e3)
-setDelay(3)
-triggerMode(10)
-softTrigger()
-##
+#setFreq(5e3)
+#setDelay(3)
+#triggerMode(10)
+#softTrigger()
+###
+#
 
-
-#restart()
+restart()
 
 print("end")
 
