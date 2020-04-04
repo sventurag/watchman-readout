@@ -858,7 +858,6 @@ else
                     enable_write_i <= '1';
                     stm_2windows <= enable_rd;
                     
-
             when one_window=>
                 rdad_i <= fifo_out_i(12 downto 4);
                 enable_write_i <= '1';
