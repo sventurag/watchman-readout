@@ -90,6 +90,8 @@ signal saved_i: std_logic_vector(8 downto 0);
 signal delay_window: std_logic_vector(8 downto 0);
 signal  delay_flag : std_logic_vector(3 downto 0);
 signal fifo_wr_en_delay: std_logic;
+signal fifo_wr_en_delay2: std_logic;
+
 signal current_subBuffer: std_logic_vector(14 downto 0) ;
 signal first_round_of_subbuffer: std_logic;
 signal jump_wr: std_logic_vector(6 downto 0) ;
@@ -759,6 +761,21 @@ end if;
     end process;
    
 fifo_in<= delay_window & delay_flag;
+
+
+p_delay_fifo_wr_cycle: process(clk,RST, fifo_wr_en)
+begin
+if RST = '0' then
+    fifo_wr_en_delay <= '0';
+else
+    if rising_edge(clk) then
+
+    fifo_wr_en_delay<= fifo_wr_en;
+   fifo_wr_en_delay2 <= fifo_wr_en_delay;
+
+    end if;
+end if;
+end process;
 
 ----------------------------------
 -- FIFO after RB
