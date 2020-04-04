@@ -726,6 +726,7 @@ begin
 if RST = '0' then
     delay_flag_v := (others=> '0');
     delay_window <= (others=> '0');
+    delay_flag <= (others=> '0');
 
 else
     if rising_edge(clk) then
@@ -767,6 +768,7 @@ p_delay_fifo_wr_cycle: process(clk,RST, fifo_wr_en)
 begin
 if RST = '0' then
     fifo_wr_en_delay <= '0';
+    fifo_wr_en_delay2<= '0';
 else
     if rising_edge(clk) then
 
@@ -784,7 +786,7 @@ rb_output_windowNumber_inst : rb_output_windowNumber
   PORT MAP (
     clk => clk,
     din => fifo_in,
-    wr_en => fifo_wr_en_delay,
+    wr_en => fifo_wr_en_delay2,
     rd_en => fifo_rd_en,
     dout => fifo_out,
     full => fifo_full,
@@ -798,7 +800,7 @@ rb_output_windowNumber_inst : rb_output_windowNumber
 --- The enable_write is high only once independent of the lenght of the trigger
 ----------------------------------
 
-p_enableWrite : process(clk,RST)
+p_enableWrite : process(clk,RST,rdad_i)
 begin
 if RST = '0' then
       saved_i <= (others=> '0');
