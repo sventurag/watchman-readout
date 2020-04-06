@@ -45,7 +45,7 @@ def process_packet(filename,channel):
     fig= plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(payloads_list_flat, '-o')
-    ax.set_title("Sine wave + offset")
+    ax.set_title("Freq=1 Hz, Electronics Delay = 3")
     newTickLoc = list(range(0,numberofwindows*32,32))
     for j in range(0,int(32*(numberofwindows+1)),32):
         ax.axvline(j, color='g', linewidth=1)
