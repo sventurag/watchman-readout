@@ -217,7 +217,7 @@ for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_raw[window][channel][sample] = 0;
-     //       usleep(10);
+            usleep(10);
 	//		printf("%d\r\n", data_raw[window][channel][sample]);
 
 	}
