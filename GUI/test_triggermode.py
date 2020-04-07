@@ -51,9 +51,9 @@ def softTrigger():
 
 
 
-#setFreq(1)
-#setDelay(3)
-#triggerMode(1)
+setFreq(1)
+setDelay(3)
+triggerMode(100)
 softTrigger()
 #####
 #
