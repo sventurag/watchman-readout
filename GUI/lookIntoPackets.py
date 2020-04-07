@@ -63,6 +63,7 @@ def process_packet(filename,channel):
 #    plt.xlabel('Number of windows', fontsize= fonttam)
 #    plt.legend(fontsize=fonttam-10)
     plt.show()
+
 filename='traffic.pcap'
 process_packet(filename, 15)
 
