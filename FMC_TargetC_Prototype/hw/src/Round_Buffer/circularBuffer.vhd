@@ -719,7 +719,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
            
            WR_CS <= std_logic_vector(wr_i(7 downto 2));
            
-           
+          
 --           WR_window <= ptr_window_i;
            ----------------------------------
            -- Dummy SSTIN signal for simulations
