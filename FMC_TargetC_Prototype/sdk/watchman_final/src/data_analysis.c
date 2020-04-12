@@ -150,6 +150,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
  data_axi *Data2send = data_to_send -> procPointer;
  uint16_t data_tmp;
  int window, i, j;
+ int offset_avoid_negative = 1250;
 
  window = Data2send->wdo_id;
  xil_printf("windowNumber:%d \r\n",window);
@@ -164,7 +165,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t) (Data2send->data[i][j]);//-  pedestal[window][i][j]+ offset_avoid_negative);
+						data_tmp = (uint16_t) (Data2send->data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
 
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
