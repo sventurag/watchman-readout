@@ -50,9 +50,9 @@ def softTrigger():
 #restart()
 
 
-setFreq(1)
+#setFreq(1)
 setDelay(7)
-triggerMode(100)
+#triggerMode(100)
 softTrigger()
 #####
 #

@@ -40,12 +40,12 @@ def process_packet(filename,channel):
    # print("payloads_list",payloads_list)
     payloads_list_flat = [item for  sublist in payloads_list for item in sublist]
     print(window_numbers)
-    fonttam=40
+    fonttam=20
     #plt.figure()
     fig= plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(payloads_list_flat, '-o')
-    ax.set_title("Freq=1 Hz, Electronics Delay = 7, Samplecnt 010")
+    ax.set_title("Freq=1 Hz, Electronics Delay = 7, Samplecnt 110")
     newTickLoc = list(range(0,numberofwindows*32,32))
     for j in range(0,int(32*(numberofwindows+1)),32):
         ax.axvline(j, color='g', linewidth=1)
