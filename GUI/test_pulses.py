@@ -19,11 +19,11 @@ from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 wave_gen().Output1(out=False)
 
-rango = list((range(10,150,2)))  # number of steps in delay values for the waveformigenerator
+rango = list((range(10,30,2)))  # number of steps in delay values for the waveformigenerator
 
 
 repeticiones = list( range(0,1,1)   )
-fileToSave = './data/wavGenTest.txt'
+fileToSave = './data/wavGenTest2.txt'
 
 #print ('Setting ssToutFB')
 #regID = 65
@@ -86,5 +86,5 @@ wave_gen().Output1(out=False)
 print("end")
 
 
-plot_pulse(fileToSave,70,1)
+plot_pulse(fileToSave,10,1)
 
