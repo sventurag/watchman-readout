@@ -177,8 +177,8 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        if rising_edge(clk) then
        case stm_circularBuffer is
        when start =>
-            --if (windowStorage = '1') and (Timestamp.samplecnt="111") then
-            if (windowStorage = '1') and (counter_i="011") then
+            if (windowStorage = '1') and (Timestamp.samplecnt="111") then
+          --  if (windowStorage = '1') and (counter_i="011") then
  
                 stm_circularBuffer <= hit0;
             else
@@ -725,61 +725,61 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
 -- window2read2 <= window2read & first_round_of_subbuffer;
  
 -- WR_window <= ptr_window_i;
- ----------------------------------
- -- Dummy SSTIN signal for simulations
- ----------------------------------
+-- ----------------------------------
+-- -- Dummy SSTIN signal for simulations
+-- ----------------------------------
  
- p_counter: process(clk, RST)
- begin
- if RST = '0' then
-     counter_i <= (others=> '0');
+-- p_counter: process(clk, RST)
+-- begin
+-- if RST = '0' then
+--     counter_i <= (others=> '0');
   
- else
-     if rising_edge(clk) then
-         if counter_i < "111" then
-            counter_i <= std_logic_vector(unsigned(counter_i) + 1);
-         else 
-            counter_i <= "000";
+-- else
+--     if rising_edge(clk) then
+--         if counter_i < "111" then
+--            counter_i <= std_logic_vector(unsigned(counter_i) + 1);
+--         else 
+--            counter_i <= "000";
  
-         end if;
-     end if;
-  end if;
+--         end if;
+--     end if;
+--  end if;
  
- end process p_counter;
+-- end process p_counter;
  
- ----------------------------------
- -- Dummy signal for simulations
- ----------------------------------
- p_sstin: process(clk,RST)
+-- ----------------------------------
+-- -- Dummy signal for simulations
+-- ----------------------------------
+-- p_sstin: process(clk,RST)
  
- begin
- if RST = '0' then
-     sstin_i <= '0';
- else
-     if rising_edge(clk) then
-         case counter_i is 
-         when "000" =>
-             sstin_i <= '1';
-         when "001" =>
-             sstin_i <= '1';
-         when "010" =>
-             sstin_i <= '1';
-         when "011" =>
-             sstin_i <= '0';
-         when "110" => 
-            sstin_i <= '0';
-         when "111"=> 
-            sstin_i <= '1';   
-         when others =>
-             sstin_i <= '0';
-         end case;
+-- begin
+-- if RST = '0' then
+--     sstin_i <= '0';
+-- else
+--     if rising_edge(clk) then
+--         case counter_i is 
+--         when "000" =>
+--             sstin_i <= '1';
+--         when "001" =>
+--             sstin_i <= '1';
+--         when "010" =>
+--             sstin_i <= '1';
+--         when "011" =>
+--             sstin_i <= '0';
+--         when "110" => 
+--            sstin_i <= '0';
+--         when "111"=> 
+--            sstin_i <= '1';   
+--         when others =>
+--             sstin_i <= '0';
+--         end case;
       
-      end if;
+--      end if;
      
-  end if;
+--  end if;
   
  
- end process p_sstin;
+-- end process p_sstin;
  
  ----------------------------------
  -- Long pulses handling
