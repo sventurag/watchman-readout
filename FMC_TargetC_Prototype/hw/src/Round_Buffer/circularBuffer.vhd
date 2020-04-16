@@ -178,7 +178,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        case stm_circularBuffer is
        when start =>
             --if (windowStorage = '1') and (Timestamp.samplecnt="111") then
-            if (windowStorage = '1') and (counter_i="100") then
+            if (windowStorage = '1') and (counter_i="011") then
  
                 stm_circularBuffer <= hit0;
             else
