@@ -117,6 +117,7 @@ signal starting_run : std_logic; -- this is to distinguish between the first run
 signal jump_ptr_correction: std_logic;
 signal jump_flag:std_logic;
 signal intra_buffer_flag_w0:  std_logic;
+signal first_round_of_subbuffer_delay: std_logic;
 attribute mark_debug : string;
 type longPulse_type is(
    IDLE,
@@ -722,6 +723,22 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  
  WR_CS <= std_logic_vector(wr_i(7 downto 2));
  
+ p_first_round_of_subbuffer_delay : process(clk,RST, first_round_of_subbuffer)
+ begin
+ if RST = '0' then
+     first_round_of_subbuffer_delay <= '0';
+ else
+     if rising_edge(clk) then
+ 
+    first_round_of_subbuffer_delay<= first_round_of_subbuffer;
+    --first_round_of_subbuffer_delay2<= first_round_of_subbuffer_delay;
+ 
+   -- fifo_wr_en_delay2 <= fifo_wr_en_delay;
+ 
+     end if;
+ end if;
+ end process;
+ 
 -- window2read2 <= window2read & first_round_of_subbuffer;
  
 -- WR_window <= ptr_window_i;
@@ -875,7 +892,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                      jump_flag <= '0';
                      intra_buffer_flag_w0 <='1'; 
                      
-                     
+                 elsif (first_round_of_subbuffer_delay = '0') then 
+                    delay_flag_v:= std_logic_vector( 16 + unsigned(flag_number) - unsigned(delay_trigger)); -- previous subbuffer
+                    delay_window <= std_logic_vector(unsigned(window2read(8 downto 2) )) & delay_flag_v(3 downto 2) ; -- When the trigger happened in the previous subBuffer, the subBUffer number, window2read(8 downto 2), is decreased by 1.
+                    jump_flag <= '0';
+                    intra_buffer_flag_w0 <='1';                       
+                                             
                  elsif (jump_ptr_correction = '1') and  (flag_number < "1000")  then
                      delay_flag_v:= std_logic_vector( 16 + unsigned(flag_number) - unsigned(delay_trigger)); -- previous subbuffer
                      delay_window <= std_logic_vector(unsigned(window2read(8 downto 2) ) -1) & std_logic_vector(unsigned(delay_flag_v(3 downto 2)) -2) ; -- THE NUMBER TWO SHOULD BE VARIABLE AND NOT HARDCODED
