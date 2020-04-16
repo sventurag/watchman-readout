@@ -52,10 +52,9 @@ def softTrigger():
 #import subprocess
 #subprocess.call("./tcpdumpWatchmanData", cwd="/home/salvador/bin")
 
-time.sleep(2)
-setFreq(1)
-setDelay(7)
-triggerMode(4)
+#setFreq(1)
+#setDelay(7)
+#triggerMode(4)
 softTrigger()
 
 
