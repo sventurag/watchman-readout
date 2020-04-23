@@ -3,6 +3,8 @@
 
 *.swo
 
+*.swn
+
 watchmanLog.txt
 
 GUI/__pycache__/

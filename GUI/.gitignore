@@ -1,5 +1,5 @@
 # GitIgnore
 
-*.py.swp
+*.py.swn
 .lookIntoPackets.py.swn
 data/
