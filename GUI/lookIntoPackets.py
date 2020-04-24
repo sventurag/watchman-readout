@@ -48,13 +48,13 @@ def process_packet(filename,channel):
     plt.xlabel('Number of windows',fontsize= fonttam)
     plt.grid(True) 
     # Offset to avoid negative numbers subtraction
-    offset = 1260
+    offset = 210
     payload_minus_offset = [ x - offset for x in payloads_list_flat] 
    
     fig= plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(payload_minus_offset, '-o', markersize=3)
-    ax.set_title("Freq=20000 Hz, Electronics Delay = 7", y=1.1)
+    ax.set_title("Freq=10000 Hz, Pulse width = 12 ns, VOLT =0.07 , LOAD = 50 Ohms", y=1.1)
     ax.yaxis.grid(True)
     newTickLoc = list(range(0,numberofwindows*32,32))
     for j in range(0,int(32*(numberofwindows+1)),32):
@@ -114,7 +114,7 @@ def process_packet(filename,channel):
 
     plt.show()
 
-filename='20000Hz100pulses.pcap'
-#filename= 'traffic.pcap'
+#filename='20000Hz100pulses.pcap'
+filename= 'traffic.pcap'
 process_packet(filename, 15)
 
