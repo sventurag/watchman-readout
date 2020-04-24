@@ -74,9 +74,23 @@ class wave_gen(object):
         self.inst.write("FREQ {:.9f}".format(freq))
         time.sleep(1)
         self.inst.close()
-
-
-   
+    def Query(self):
+        print('LOAD: ',self.inst.query("OUTPUT1:LOAD?"))
+        time.sleep(1)
+        print('VOLT: ',self.inst.query("VOLT?"))
+        time.sleep(1)
+        print('Pulse Width : ',self.inst.query("FUNC:PULS:WIDTH?"))
+        time.sleep(1)
+    def pulseWidth(self, pulsWidth):
+        self.inst.write("FUNC:PULS:WIDTH {:.9f}".format(pulsWidth))
+        time.sleep(1)
+    def loadHz(self,impedance):
+        self.inst.write("OUTPUT1:LOAD {:.9f}".format(impedance))
+        time.sleep(1)
+    def volt(self, voltage):
+        self.inst.write("VOLT {:.9f}".format(voltage))
+        time.sleep(1)
+        
 
                      
 
