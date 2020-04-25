@@ -306,7 +306,7 @@ int main()
 	}
 
 	/* Initialize pedestal */
-	if(get_pedestal(10, 4) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+	if(get_pedestal(30, 4) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 //	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 
 	else{
