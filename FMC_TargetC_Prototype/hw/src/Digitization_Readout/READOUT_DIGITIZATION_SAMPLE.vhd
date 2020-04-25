@@ -264,6 +264,8 @@ component SyncBuffer is
 	signal CH13_intl : std_logic_vector(11 downto 0);
 	signal CH14_intl : std_logic_vector(11 downto 0);
 	signal CH15_intl : std_logic_vector(11 downto 0);
+    
+    signal readCounter: std_logic_vector(11 downto 0);  -- Digitization counter
     attribute mark_debug : string;
     
 --    attribute mark_debug of HSCLK: signal is "true";
@@ -414,12 +416,6 @@ begin
 
 
 
-
-
-
-
-
-
 	process(CtrlBus_IxSL.SW_nRST,ClockBus.RDAD_CLK)
 	begin
 		if CtrlBus_IxSL.SW_nRST = '0' then
@@ -429,8 +425,10 @@ begin
 				case rdad_stm is
 					when FIFOREAD =>
 						RDAD_ReadEn <= '1';
+						readCounter <= (others => '0');
 					when others	=>
 						RDAD_ReadEn <= '0';
+						readCounter <= std_logic_vector(unsigned(readCounter)+ 1);
 				end case;
 			end if;
 		end if;
