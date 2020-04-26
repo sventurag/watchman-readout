@@ -54,7 +54,7 @@ def process_packet(filename,channel):
     fig= plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(payload_minus_offset, '-o', markersize=3)
-    ax.set_title("Freq=10000 Hz, Pulse width = 8 ns, VOLT =0.07 , LOAD = 50 Ohms", y=1.1)
+    ax.set_title("Freq=50000 Hz, Pulse width = 8 ns, VOLT =0.07 , LOAD = 50 Ohms", y=1.1)
     ax.yaxis.grid(True)
     newTickLoc = list(range(0,numberofwindows*32,32))
     for j in range(0,int(32*(numberofwindows+1)),32):
@@ -72,7 +72,7 @@ def process_packet(filename,channel):
      
     # Identifying rising edge points of the pulses, there may be more than one point identified as rising edge for the same
     # pulse.
-    df['rising'] = df.payload[ ( (df.payload.shift(1) - df.payload) <-200 ) & (df.payload >300) ]   
+    df['rising'] = df.payload[ ( (df.payload.shift(1) - df.payload) <-150 ) & (df.payload >300) ]   
     rising_index = df.rising[ df.rising > 0].index
     
     # For each rising edge point, the index of the  maximum value of the pulse is searched in the next 10 positions,
@@ -80,7 +80,7 @@ def process_packet(filename,channel):
     indx_max = []
     temp = []
     for i in range( len( rising_index ) ):
-       temp= df.payload[rising_index[i]: rising_index[i]+10].idxmax()
+       temp= df.payload[rising_index[i]: rising_index[i]+16].idxmax()
        if i==0:
            indx_max.append(temp)
        elif (temp != indx_max[-1]):

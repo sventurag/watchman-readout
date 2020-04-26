@@ -265,11 +265,20 @@ component SyncBuffer is
 	signal CH14_intl : std_logic_vector(11 downto 0);
 	signal CH15_intl : std_logic_vector(11 downto 0);
     
-    signal readCounter: std_logic_vector(11 downto 0);  -- Digitization counter
+    signal readCounter: std_logic_vector(25 downto 0);  -- Digitization counter
+    signal read_stme_idle: std_logic;
+    attribute dont_touch              : boolean;
+    attribute dont_touch of readCounter    : signal is true;
+    attribute dont_touch of read_stme_idle    : signal is true;
+
+    attribute KEEP : string;
+    attribute KEEP of readCounter : signal is "TRUE";
+    attribute KEEP of read_stme_idle : signal is "TRUE";
+
     attribute mark_debug : string;
     
---    attribute mark_debug of HSCLK: signal is "true";
---    attribute mark_debug of SS_CNT_INTL: signal is "true";
+    attribute mark_debug of read_stme_idle: signal is "true";
+    attribute mark_debug of readCounter: signal is "true";
 --    attribute mark_debug of RAMP: signal is "true";
 --    attribute mark_debug of RAMP_CNT: signal is "true";
 --    attribute mark_debug of RDAD_CLK: signal is "true";
@@ -416,7 +425,7 @@ begin
 
 
 
-	process(CtrlBus_IxSL.SW_nRST,ClockBus.RDAD_CLK)
+   process(CtrlBus_IxSL.SW_nRST,ClockBus.RDAD_CLK)
 	begin
 		if CtrlBus_IxSL.SW_nRST = '0' then
 			RDAD_ReadEn <= '0';
@@ -448,7 +457,9 @@ begin
 			RDAD.response <= '0';
 			RDAD.ready <= '0';
 			RDAD.busy <= '0';
-			RDAD.valid <= '0';
+			RDAD.valid <= '0'; 
+			read_stme_idle <= '0';
+
 			RDAD_stm <= IDLE;
 
 		else
@@ -464,6 +475,7 @@ begin
 						--BitCnt <= 10;
 						BitCnt <= 0;
 						RDAD.response <= '0';
+						read_stme_idle <= '1';
 
 --						if(StorageBusy = '0' and WL.busy = '0' and SS.busy = '0' and done_flg = '0') then -- Storage Done Digitilization can start
 --							rdad_stm <= LOW_SET0;
@@ -479,6 +491,7 @@ begin
 						else
 							rdad_stm <= READY;
 						end if;
+					    read_stme_idle <= '0';
 					when FIFOREAD =>
 						RDAD.response <= '1';
 						RDAD.busy <= '1';

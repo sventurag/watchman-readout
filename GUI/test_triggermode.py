@@ -56,7 +56,7 @@ def softTrigger():
 wave_gen().loadHz(50)
 wave_gen().volt(0.070)
 
-wave_gen().pulseWidth(8e-9)
+wave_gen().pulseWidth(12e-9)
 time.sleep(1)
 
 wave_gen().Query()
@@ -64,7 +64,7 @@ time.sleep(1)
 
 
 
-setFreq(10000)
+setFreq(20000)
 setDelay(7)
 #triggerMode(100)
 softTrigger()
