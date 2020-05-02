@@ -28,9 +28,9 @@ def setDelay(nmbrCycles):
     tc.send_command(8, regID, nmbrCycles)
     time.sleep(1)
 
-def triggerMode(nmbrBursts):
-    wave_gen().bursSettings(nmbrBursts)
-    time.sleep(1)
+def triggerMode():
+#    wave_gen().bursSettings(nmbrBursts)
+#    time.sleep(1)
     tc.send_command(3, 0, 0) # triggerMode 
     time.sleep(1)
 
@@ -54,20 +54,24 @@ def softTrigger():
 
 
 wave_gen().loadHz(50)
-wave_gen().volt(0.070)
+#wave_gen().volt(0.080)
 
 wave_gen().pulseWidth(12e-9)
 time.sleep(1)
+
+#  freq, amp, offset
+wave_gen().apply(1000,0.07,0)
 
 wave_gen().Query()
 time.sleep(1)
 
 
 
-setFreq(20000)
+#setFreq(10000)
 setDelay(7)
-#triggerMode(100)
-softTrigger()
+time.sleep(5)
+triggerMode()
+#softTrigger()
 
 
 #####

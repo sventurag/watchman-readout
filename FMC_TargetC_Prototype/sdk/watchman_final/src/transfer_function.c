@@ -16,7 +16,7 @@ extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
 extern volatile bool flag_axidma_rx_done;
 /** @brief Array containing the pedestal correction for every sample */
-extern uint16_t  pedestal[512][16][32];
+extern uint32_t  pedestal[512][16][32];
 /** @brief Lookup table to correct the transfer function */
 extern uint16_t lookup_table[2048];
 /** @brief Flag raised when the Triple Timer Counter overflows */

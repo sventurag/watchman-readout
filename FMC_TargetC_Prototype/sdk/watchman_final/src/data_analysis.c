@@ -10,7 +10,7 @@
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Array containing the pedestal correction for every sample */
-uint16_t  pedestal[512][16][32];
+uint32_t  pedestal[512][16][32];
 /** @brief Lookup table to correct the transfer function */
 extern uint16_t lookup_table[2048];
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */

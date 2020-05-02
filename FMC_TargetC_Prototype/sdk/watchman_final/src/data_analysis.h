@@ -5,7 +5,6 @@
  * @version 0.0
  */
 
-
 #ifndef SRC_FEATURES_EXTRACTION_H_
 #define SRC_FEATURES_EXTRACTION_H_
 
@@ -42,7 +41,7 @@
 #define THRESHOLD_CMP	1.78  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
 #define THRESHOLD_PULSE	500
 
-#define WAVE_BUFFER_SIZE (518)
+#define WAVE_BUFFER_SIZE (1000)
 #define INBOUND_RING_BUFFER_LENGTH_IN_PACKETS  (WAVE_BUFFER_SIZE)
 #define MAX_INBOUND_PACKET_BYTES  (SIZE_DATA_ARRAY_BYT) //
 
@@ -51,63 +50,61 @@
 /**
  * @brief Union to convert access a float as an int without converting it in int
  */
-typedef union time_union{
-	float time_fl;	/**< The time in float */
-	int time_t; 	/**< The same time in float but considerate as int (without convertion) */
+typedef union time_union {
+	float time_fl; /**< The time in float */
+	int time_t; /**< The same time in float but considerate as int (without convertion) */
 } time_un;
 
 /**
  * @brief Structure containing the features extracted from a normal pulse
  */
-typedef struct features_ext_st{
-	int amplitude;	/**< Amplitude maximum of the pulse */
-	time_un time;	/**< Time when the signal was a 20% of the maximum amplitude */
+typedef struct features_ext_st {
+	int amplitude; /**< Amplitude maximum of the pulse */
+	time_un time; /**< Time when the signal was a 20% of the maximum amplitude */
 } features_ext;
-
 
 /**
  * @brief Structure containing the coordinations of a point
  */
-typedef struct coordinates_st{
-	float x;	/**< Coordination X */
-	float y;	/**< Coordination Y */
+typedef struct coordinates_st {
+	float x; /**< Coordination X */
+	float y; /**< Coordination Y */
 } coordinates;
 
 /**
  * @brief Structure of an element of the list which represent a window.
  */
-typedef struct data_axi_st{
-    uint64_t wdo_time;		/**< Timestampe of the window */
-    uint64_t PL_spare; 		/**< Spare bits for the development used to return the command send to the round buffer */
-    uint32_t info; 			/**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
-    uint32_t wdo_id; 		/**< ID of the window (0 to 511) */
-    uint32_t data[16][32];	/**< Voltage measured by every sample */
-}data_axi;
+typedef struct data_axi_st {
+	uint64_t wdo_time; /**< Timestampe of the window */
+	uint64_t PL_spare; /**< Spare bits for the development used to return the command send to the round buffer */
+	uint32_t info; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
+	uint32_t wdo_id; /**< ID of the window (0 to 511) */
+	uint32_t data[16][32]; /**< Voltage measured by every sample */
+} data_axi;
 
 /**
  * @brief Union to access an element as an array, used to give the element's address to the DMA
  */
-typedef union data_axi_union{
-    struct data_axi_st data_struct;			/**< Structure of the element */
-    uint32_t data_array[SIZE_DATA_ARRAY];	/**< Array of same size, pointer passed to DMA */
-}data_axi_un;
+typedef union data_axi_union {
+	struct data_axi_st data_struct; /**< Structure of the element */
+	uint32_t data_array[SIZE_DATA_ARRAY]; /**< Array of same size, pointer passed to DMA */
+} data_axi_un;
 
 /**
  * @brief Structure to create the list of the element
  */
 typedef struct data_list_st data_list;
 
-struct data_list_st{
-    data_axi_un data;		/**< The element */
-    data_list* previous;	/**< Pointer on the previous element (NULL if this is the first one) */
-    data_list* next;		/**< Pointer on the next element (NULL if this is the last one) */
+struct data_list_st {
+	data_axi_un data; /**< The element */
+	data_list* previous; /**< Pointer on the previous element (NULL if this is the first one) */
+	data_list* next; /**< Pointer on the next element (NULL if this is the last one) */
 };
 
 /*** Function prototypes *********************************************/
-int correct_data(uint16_t* data, int pmt, char nbr_wdo, uint32_t* info, data_list* tmp_first_element);
+int correct_data(uint16_t* data, int pmt, char nbr_wdo, uint32_t* info,
+		data_list* tmp_first_element);
 void extract_features(uint16_t* data, int length, features_ext* features);
-
-
 
 //// This is an inbound packet container
 //typedef struct {
@@ -118,7 +115,6 @@ void extract_features(uint16_t* data, int length, features_ext* features);
 ////	u16 triggerPosition;
 //	u32 payload[MAX_INBOUND_PAYLOAD_WORDS]; //Including checksum
 //} __attribute__ ((packed))GenericInboundPacket_t;
-
 
 // This is a struct to help manage inbound buffering
 typedef struct {
@@ -139,12 +135,8 @@ typedef struct {
 	u32 processedCount;
 } InboundRingManager_t;
 
-
-
 void PrintInboundRingStatus(InboundRingManager_t inboundRing);
 void updateInboundCircBuffer();
-void udp_transfer_WM( volatile InboundRingManager_t *data_to_send );
-
-
+void udp_transfer_WM(volatile InboundRingManager_t *data_to_send);
 
 #endif /* SRC_FEATURES_EXTRACTION_H_ */
