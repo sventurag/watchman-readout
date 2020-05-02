@@ -143,7 +143,7 @@ void clearInboundBuffer(void) {
 
 int main()
 {
-//	XTime tStart, tEnd;
+	XTime tStart, tEnd;
 //    int i,j;
     int timeout;
 //    int index;
@@ -304,9 +304,9 @@ int main()
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
 		return -1;
 	}
-
+    sleep(5);
 	/* Initialize pedestal */
-	if(get_pedestal(30, 4) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+	if(get_pedestal(250, 1) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 //	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 
 	else{
@@ -453,7 +453,8 @@ int main()
 				usleep(100);
 				printf("after inboundRingManager print, starting while loop \r\n");
 				 usleep(100);
-				while(stream_flag) {
+				 XTime_GetTime(&tStart);
+				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
 							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
@@ -492,8 +493,10 @@ int main()
 
 
 				stream_flag= FALSE;
+				XTime_GetTime(&tEnd);
 				usleep(100);
 				printf("leaving trigger mode\r\n");
+				printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
 				state_main = IDLE;
 
 
