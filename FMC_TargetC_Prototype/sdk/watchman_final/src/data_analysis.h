@@ -41,7 +41,7 @@
 #define THRESHOLD_CMP	1.78  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
 #define THRESHOLD_PULSE	500
 
-#define WAVE_BUFFER_SIZE (1000)
+#define WAVE_BUFFER_SIZE 50000
 #define INBOUND_RING_BUFFER_LENGTH_IN_PACKETS  (WAVE_BUFFER_SIZE)
 #define MAX_INBOUND_PACKET_BYTES  (SIZE_DATA_ARRAY_BYT) //
 
@@ -82,6 +82,9 @@ typedef struct data_axi_st {
 	uint32_t data[16][32]; /**< Voltage measured by every sample */
 } data_axi;
 
+
+
+
 /**
  * @brief Union to access an element as an array, used to give the element's address to the DMA
  */
@@ -89,6 +92,8 @@ typedef union data_axi_union {
 	struct data_axi_st data_struct; /**< Structure of the element */
 	uint32_t data_array[SIZE_DATA_ARRAY]; /**< Array of same size, pointer passed to DMA */
 } data_axi_un;
+
+//struct data_axi_un dataArray ;
 
 /**
  * @brief Structure to create the list of the element

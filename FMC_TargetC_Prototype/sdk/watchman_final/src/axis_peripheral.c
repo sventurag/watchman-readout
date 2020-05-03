@@ -214,16 +214,16 @@ int test_TPG(void){
 	int timeout,i,j;
 
 	/* Create an element for the DMA */
-	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
+	data_axi_un* tmp_ptr  = (data_axi_un *)malloc(sizeof(data_axi_un));
 	if(!tmp_ptr){
 		printf("malloc for tmp_ptr failed in function, %s!\r\n", __func__);
 		return XST_FAILURE;
 	}
-	tmp_ptr->next = NULL;
-	tmp_ptr->previous = NULL;
+//	tmp_ptr->next = NULL;
+//	tmp_ptr->previous = NULL;
 
 	/* Give the element's address to the DMA */
-	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+	XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data_array, SIZE_DATA_ARRAY_BYT);
 
 	/* Initiate the test */
 	regptr[TC_FSTWINDOW_REG] = 10;
@@ -270,22 +270,22 @@ int test_TPG(void){
 	else flag_axidma_rx_done = false;
 
 	/* Update the cache with the data written by the DMA */
-	Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
-    printf("window id= %d\r\n",(uint)tmp_ptr->data.data_struct.wdo_id);
+	Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data_array, SIZE_DATA_ARRAY_BYT);
+    printf("window id= %d\r\n",(uint16_t)tmp_ptr->data_struct.wdo_id);
 
 	/* Test the returned values */
-	if(tmp_ptr->data.data_struct.wdo_id == 10){
+	if((uint16_t)tmp_ptr->data_struct.wdo_id == 10){
 		for(j=0; j<32; j++){
 			for(i=0; i<16; i++){
-				if(tmp_ptr->data.data_struct.data[i][j] != 0x50A){
+				if((uint16_t)tmp_ptr->data_struct.data[i][j] != 0x50A){
 					/* Returned values wrong */
-					printf("wdo_time: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time);
-					printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
-					printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
-					printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
+					printf("wdo_time: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_time);
+					printf("PL_spare: %d\r\n", (uint16_t)tmp_ptr->data_struct.PL_spare);
+					printf("info: 0x%X\r\n", (uint16_t)tmp_ptr->data_struct.info);
+					printf("wdo_id: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_id);
 					for(j=0; j<32; j++){
 						for(i=0; i<16; i++){
-							printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
+							printf("%d\t", (uint16_t)tmp_ptr->data_struct.data[i][j]);
 						}
 						printf("\r\n");
 					}
@@ -297,13 +297,13 @@ int test_TPG(void){
 	}
 	else{
 		/* Window ID wrong */
-		printf("wdo_time: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time);
-		printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
-		printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
-		printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
+		printf("wdo_time: %d\r\n", (uint)tmp_ptr->data_struct.wdo_time);
+		printf("PL_spare: %d\r\n", (uint)tmp_ptr->data_struct.PL_spare);
+		printf("info: 0x%X\r\n", (uint16_t)tmp_ptr->data_struct.info);
+		printf("wdo_id: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_id);
 		for(j=0; j<32; j++){
 			for(i=0; i<16; i++){
-				printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
+				printf("%d\t", (uint16_t)tmp_ptr->data_struct.data[i][j]);
 			}
 			printf("\r\n");
 		}

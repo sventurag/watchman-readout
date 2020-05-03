@@ -51,10 +51,6 @@ wave_gen().Output1(out=True)
 
 restart()
 
-#tc.send_command(9,250,1)
-
-
-#setFreq(1)
 #setDelay(3)
 #triggerMode(10)
 #softTrigger()
