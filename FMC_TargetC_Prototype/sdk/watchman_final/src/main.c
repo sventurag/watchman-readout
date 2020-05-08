@@ -87,9 +87,6 @@ extern struct pbuf *buf_cmd;
 /** Number of iterations for the average in pedestal calculation**/
 extern int pedestalAvg;
 
-/** Number of iterations for the average in pedestal calculation**/
-extern int pedestalAvg;
-
 /** Value from the GUI for the number of windows for pedestal calculation   */
 extern int nmbrWindowsPed;
 ///** Value from the GUI for voltage value for comparators and vped  */
@@ -133,6 +130,7 @@ typedef enum dma_stm_enum{
 
 /*** Function prototypes *********************************************/
 void end_main(clean_state_en state, char* error_txt);
+void updateInboundCircBuffer();
 void restart(void);
 int s;
 __attribute__((section(".ps7_ddr_0"))) data_axi  DDR_incoming_waveform_ring_buffer[INBOUND_RING_BUFFER_LENGTH_IN_PACKETS];
@@ -428,7 +426,6 @@ int main()
 
 
 				// setup inbound and outbound circular waveform/packet buffers
-//				clearPedestalDataEtc();
 				memset((void *) (&inboundRingManager), 0, sizeof(inboundRingManager));
 				inboundRingManager.writePointer        = DDR_incoming_waveform_ring_buffer;
 				inboundRingManager.procPointer         = inboundRingManager.writePointer;
@@ -458,15 +455,16 @@ int main()
 						if(inboundRingManager.pendingCount > 0) {
 							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-						       Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+		                      Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+						     updateInboundCircBuffer();
 
-							updateInboundCircBuffer();
 						//     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						//     ControlRegisterWrite(PSBUSY_MASK,DISABLE);
 
 							/* Wait on DMA transfer to be done */
 					//	timeout = 200000;
 						}
+
 							/* If needed, update timefile */
 							if(flag_ttcps_timer){
 								update_timefile();
@@ -480,11 +478,11 @@ int main()
 							}
 
 							/* The DMA had a problem */
-							if(flag_axidma_error){
-								printf("Error with DMA interrupt: TPG !\r\n");
-								return XST_FAILURE;
-
-					    	}
+//							if(flag_axidma_error){
+//								printf("Error with DMA interrupt: TPG !\r\n");
+//								return XST_FAILURE;
+//
+//					    	}
 //							printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
 
 						}
@@ -496,6 +494,7 @@ int main()
 				XTime_GetTime(&tEnd);
 				usleep(100);
 				printf("leaving trigger mode\r\n");
+			    xil_printf("p %d \r\n", (uint16_t)(inboundRingManager.processedCount));
 				printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
 				state_main = IDLE;
 
@@ -561,6 +560,23 @@ int main()
 	return 0;
 }
 
+void updateInboundCircBuffer() {
+	disable_interrupts();
+ //   xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+	inboundRingManager.pendingCount--; // updated in interrupt handler, so have to be careful here
+	inboundRingManager.processedCount++;
+	// Reset circ buffer if out of bounds
+	if(inboundRingManager.procPointer < inboundRingManager.lastAllowedPointer) {
+		(inboundRingManager.procPointer)++;
+		(inboundRingManager.procLocation)++;
+	} else {
+		inboundRingManager.procPointer  = inboundRingManager.firstAllowedPointer;
+		inboundRingManager.procLocation = 0;
+	}
+  //  xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+   // xil_printf("inboundRingManager.processedCount %d \r\n", (uint16_t)(inboundRingManager.processedCount));
+    enable_interrupts();
+}
 
 
 void end_main(clean_state_en state, char* error_txt){

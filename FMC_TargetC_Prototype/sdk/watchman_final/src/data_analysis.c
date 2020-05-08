@@ -16,7 +16,7 @@ extern uint16_t lookup_table[2048];
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
 /* data structure from PL */
-InboundRingManager_t inboundRingManager;
+//extern InboundRingManager_t inboundRingManager;
 /****************************************************************************/
 /**
 * @brief	Correct the data received from the PL side (pedestal subtraction &
@@ -128,20 +128,24 @@ void extract_features(uint16_t* data, int length, features_ext* features){
 
 
 
-void updateInboundCircBuffer() {
-	disable_interrupts();
-	inboundRingManager.pendingCount--; // updated in interrupt handler, so have to be careful here
-	inboundRingManager.processedCount++;
-	// Reset circ buffer if out of bounds
-	if(inboundRingManager.procPointer < inboundRingManager.lastAllowedPointer) {
-		(inboundRingManager.procPointer)++;
-		(inboundRingManager.procLocation)++;
-	} else {
-		inboundRingManager.procPointer  = inboundRingManager.firstAllowedPointer;
-		inboundRingManager.procLocation = 0;
-	}
-	enable_interrupts();
-}
+//void updateInboundCircBuffer() {
+//	disable_interrupts();
+//    xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+//	inboundRingManager.pendingCount--; // updated in interrupt handler, so have to be careful here
+//	inboundRingManager.processedCount++;
+//	// Reset circ buffer if out of bounds
+//	if(inboundRingManager.procPointer < inboundRingManager.lastAllowedPointer) {
+//		(inboundRingManager.procPointer)++;
+//		(inboundRingManager.procLocation)++;
+//	} else {
+//		inboundRingManager.procPointer  = inboundRingManager.firstAllowedPointer;
+//		inboundRingManager.procLocation = 0;
+//	}
+//    xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+//    xil_printf("inboundRingManager.processedCount %d \r\n", (uint16_t)(inboundRingManager.processedCount));
+//    enable_interrupts();
+//    xil_printf("after_int_inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+//}
 
 
 void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
@@ -153,7 +157,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
  int offset_avoid_negative = 200;
 
  window = Data2send->wdo_id;
- xil_printf("windowNumber:%d \r\n",window);
+// xil_printf("windowNumber:%d \r\n",window);
 //	xil_printf(".Pulse...\r\n");
 	index = 0;
 				frame_buf[index++] = 0x55;
@@ -162,10 +166,10 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				frame_buf[index++] = (char)(window >> 8);
 
 				//xil_printf("\r\n window = %d\r\n",window);
-				for(i=0; i<16; i++){
+		//		for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t)  (Data2send->data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
+						data_tmp = (uint16_t)  (Data2send->data[15][j]-  pedestal[window][15][j]+ offset_avoid_negative);
 
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
@@ -176,7 +180,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 					}
 
 					//xil_printf("\r\n");
-				}
+				//}
 				//xil_printf("\r\n");
 				frame_buf[index++] = 0x33;
 			//    xil_printf("Test\r\n");

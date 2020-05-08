@@ -41,7 +41,7 @@
 #define THRESHOLD_CMP	1.78  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
 #define THRESHOLD_PULSE	500
 
-#define WAVE_BUFFER_SIZE 50000
+#define WAVE_BUFFER_SIZE 2000
 #define INBOUND_RING_BUFFER_LENGTH_IN_PACKETS  (WAVE_BUFFER_SIZE)
 #define MAX_INBOUND_PACKET_BYTES  (SIZE_DATA_ARRAY_BYT) //
 
@@ -141,7 +141,7 @@ typedef struct {
 } InboundRingManager_t;
 
 void PrintInboundRingStatus(InboundRingManager_t inboundRing);
-void updateInboundCircBuffer();
+
 void udp_transfer_WM(volatile InboundRingManager_t *data_to_send);
 
 #endif /* SRC_FEATURES_EXTRACTION_H_ */

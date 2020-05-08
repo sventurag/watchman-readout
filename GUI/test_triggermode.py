@@ -60,7 +60,7 @@ wave_gen().pulseWidth(12e-9)
 time.sleep(1)
 
 #  freq, amp, offset
-wave_gen().apply(1000,0.07,0)
+wave_gen().apply(40000,0.07,0)
 
 wave_gen().Query()
 time.sleep(1)
