@@ -52,15 +52,19 @@ def softTrigger():
 #import subprocess
 #subprocess.call("./tcpdumpWatchmanData", cwd="/home/salvador/bin")
 
+# Taking Pedestals 
 
-wave_gen().loadHz(50)
+tc.send_command(9,100,1)
+time.sleep(10)
+print("conf waveform generator")
+wave_gen().loadHz(150)
 #wave_gen().volt(0.080)
 
 wave_gen().pulseWidth(12e-9)
 time.sleep(1)
 
 #  freq, amp, offset
-wave_gen().apply(40000,0.07,0)
+wave_gen().apply(1000,0.07,0)
 
 wave_gen().Query()
 time.sleep(1)

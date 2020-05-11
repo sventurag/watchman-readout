@@ -159,7 +159,7 @@ def highpass_filter(y, sr):
     return filtered_audio
 
 #filename='20000Hz100pulses.pcap'
-#filename= 'traffic.pcap'
-filename= './data/10000Hz100pulses12nsVolt070load50.pcap'
+filename= './data/load40/load40_sp1'
+#filename= './data/10000Hz100pulses12nsVolt070load50.pcap'
 process_packet(filename, 0)
 

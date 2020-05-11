@@ -303,14 +303,14 @@ int main()
 		return -1;
 	}
     sleep(5);
-	/* Initialize pedestal */
-	if(get_pedestal(250, 1) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
+	/* Initialize pedestal
+	if(get_pedestal(50, 1) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 //	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal initialization failed!");
 		return -1;
-	}
+	}*/
 
 //	/* Initialize transfer function coefficients */
 //	if(init_transfer_function() == XST_SUCCESS) printf("Transfer function initialization pass!\r\n");
