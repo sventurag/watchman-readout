@@ -178,7 +178,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        if rising_edge(clk) then
        case stm_circularBuffer is
        when start =>
-            if (windowStorage = '1') and (Timestamp.samplecnt="100") then
+            if (windowStorage = '1') and (Timestamp.samplecnt="011") then
           --  if (windowStorage = '1') and (counter_i="011") then
  
                 stm_circularBuffer <= hit0;
