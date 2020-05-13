@@ -2,6 +2,6 @@
 # GitIgonre for the Vivado Project
 
 XilinxBuild/
-sdk/watchman_final/Debug/watchman_final.elf
-sdk/watchman_final/Debug/src/
+#sdk/watchman_final/Debug/watchman_final.elf
+#sdk/watchman_final/Debug/src/
 
