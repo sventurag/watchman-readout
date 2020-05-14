@@ -2,7 +2,11 @@
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
 <<<<<<< HEAD
+<<<<<<< HEAD
 --Date        : Mon May 11 19:43:56 2020
+=======
+--Date        : Thu Apr 16 12:25:04 2020
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
 --Date        : Thu Apr 16 12:25:04 2020
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
@@ -147,15 +151,21 @@ architecture STRUCTURE of base_zynq_wrapper is
     SDA : inout STD_LOGIC;
     SCL : inout STD_LOGIC;
 <<<<<<< HEAD
+<<<<<<< HEAD
     HCMPA : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPB : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPC : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPD : out STD_LOGIC_VECTOR ( 0 to 0 );
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
     HCMPD : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPC : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPB : out STD_LOGIC_VECTOR ( 0 to 0 );
     HCMPA : out STD_LOGIC_VECTOR ( 0 to 0 );
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
     SIN : out STD_LOGIC;
     SCLK : out STD_LOGIC;

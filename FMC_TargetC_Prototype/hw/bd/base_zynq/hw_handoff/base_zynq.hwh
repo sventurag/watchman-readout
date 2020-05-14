@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <<<<<<< HEAD
+<<<<<<< HEAD
 <EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon May 11 19:43:57 2020" VIVADOVERSION="2018.2">
+=======
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Apr 16 12:25:04 2020" VIVADOVERSION="2018.2">
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
 <EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Thu Apr 16 12:25:04 2020" VIVADOVERSION="2018.2">
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
@@ -120,16 +124,24 @@
       </CONNECTIONS>
     </PORT>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <PORT DIR="O" LEFT="0" NAME="HCMPA" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
 =======
     <PORT DIR="O" LEFT="0" NAME="HCMPD" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
+    <PORT DIR="O" LEFT="0" NAME="HCMPD" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
       <CONNECTIONS>
         <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
       </CONNECTIONS>
     </PORT>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <PORT DIR="O" LEFT="0" NAME="HCMPB" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+=======
+    <PORT DIR="O" LEFT="0" NAME="HCMPC" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
     <PORT DIR="O" LEFT="0" NAME="HCMPC" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
@@ -138,7 +150,11 @@
       </CONNECTIONS>
     </PORT>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <PORT DIR="O" LEFT="0" NAME="HCMPC" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+=======
+    <PORT DIR="O" LEFT="0" NAME="HCMPB" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
     <PORT DIR="O" LEFT="0" NAME="HCMPB" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
@@ -146,8 +162,12 @@
         <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
       </CONNECTIONS>
     </PORT>
+<<<<<<< HEAD
 <<<<<<< HEAD
     <PORT DIR="O" LEFT="0" NAME="HCMPD" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+=======
+    <PORT DIR="O" LEFT="0" NAME="HCMPA" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
     <PORT DIR="O" LEFT="0" NAME="HCMPA" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
@@ -5219,6 +5239,10 @@
         <PORT CLKFREQUENCY="125000000" DIR="O" NAME="FCLK_CLK0" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            <CONNECTION INSTANCE="axistream_0" PORT="M_AXIS_ACLK"/>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
             <CONNECTION INSTANCE="axistream_0" PORT="M_AXIS_ACLK"/>
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
@@ -5229,7 +5253,13 @@
             <CONNECTION INSTANCE="axi_iic_0" PORT="s_axi_aclk"/>
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="slowest_sync_clk"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <CONNECTION INSTANCE="axistream_0" PORT="M_AXIS_ACLK"/>
+=======
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="RefCLK_i1"/>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="RefCLK_i2"/>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_aclk"/>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="RefCLK_i1"/>
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="RefCLK_i2"/>
@@ -5244,9 +5274,12 @@
             <CONNECTION INSTANCE="axi_interconnect_0" PORT="M00_ACLK"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M02_ACLK"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="RefCLK_i1"/>
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="RefCLK_i2"/>
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_aclk"/>
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
           </CONNECTIONS>
@@ -6466,14 +6499,20 @@
         <PORT DIR="O" LEFT="0" NAME="peripheral_aresetn" RIGHT="0" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
           <CONNECTIONS>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <CONNECTION INSTANCE="axi_dma_0" PORT="axi_resetn"/>
             <CONNECTION INSTANCE="axi_iic_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="axistream_0" PORT="M_AXIS_ARESETN"/>
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
             <CONNECTION INSTANCE="axistream_0" PORT="M_AXIS_ARESETN"/>
             <CONNECTION INSTANCE="axi_dma_0" PORT="axi_resetn"/>
             <CONNECTION INSTANCE="axi_iic_0" PORT="s_axi_aresetn"/>
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_aresetn"/>
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M00_ARESETN"/>
@@ -6483,7 +6522,10 @@
             <CONNECTION INSTANCE="axi_interconnect_0" PORT="M00_ARESETN"/>
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="M02_ARESETN"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_aresetn"/>
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
           </CONNECTIONS>
@@ -6691,15 +6733,21 @@
         <PORT DIR="O" LEFT="0" NAME="dout" RIGHT="0" SIGIS="undef" SIGNAME="xlconstant_0_dout">
           <CONNECTIONS>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPD"/>
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPC"/>
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPB"/>
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPA"/>
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPA"/>
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPB"/>
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPC"/>
             <CONNECTION INSTANCE="External_Ports" PORT="HCMPD"/>
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
           </CONNECTIONS>
         </PORT>

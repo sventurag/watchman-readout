@@ -1,14 +1,20 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
      port map (
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
 --Date        : Mon May 11 19:43:56 2020
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
 --Date        : Thu Apr 16 12:25:04 2020
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 --Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
 --Command     : generate_target base_zynq.bd
@@ -1805,15 +1811,21 @@ entity base_zynq is
     WR_RS_S1 : out STD_LOGIC
   );
 <<<<<<< HEAD
+<<<<<<< HEAD
   attribute CORE_GENERATION_INFO : string;
   attribute CORE_GENERATION_INFO of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=21,numReposBlks=14,numNonXlnxBlks=0,numHierBlks=7,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=8,da_board_cnt=3,da_clkrst_cnt=9,synth_mode=OOC_per_IP}";
   attribute HW_HANDOFF : string;
   attribute HW_HANDOFF of base_zynq : entity is "base_zynq.hwdef";
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
   attribute core_generation_info : string;
   attribute core_generation_info of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=21,numReposBlks=14,numNonXlnxBlks=0,numHierBlks=7,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=8,da_board_cnt=3,da_clkrst_cnt=9,synth_mode=OOC_per_IP}";
   attribute hw_handoff : string;
   attribute hw_handoff of base_zynq : entity is "base_zynq.hwdef";
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 end base_zynq;
 
@@ -1852,7 +1864,10 @@ architecture STRUCTURE of base_zynq is
   );
   end component base_zynq_xlconstant_0_0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
   component base_zynq_iobuf_0_1 is
   port (
     O : out STD_LOGIC;
@@ -1887,6 +1902,9 @@ architecture STRUCTURE of base_zynq is
     M_AXIS_TREADY : in STD_LOGIC
   );
   end component base_zynq_axistream_0_0;
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
   component base_zynq_axi_dma_0_0 is
   port (
@@ -2095,6 +2113,7 @@ architecture STRUCTURE of base_zynq is
   );
   end component base_zynq_rst_ps7_0_50M_0;
 <<<<<<< HEAD
+<<<<<<< HEAD
   component base_zynq_iobuf_0_0 is
   port (
     O : out STD_LOGIC;
@@ -2129,6 +2148,8 @@ architecture STRUCTURE of base_zynq is
     M_AXIS_TREADY : in STD_LOGIC
   );
   end component base_zynq_axistream_0_0;
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 =======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
   component base_zynq_TARGET_C_TopLevel_Sy_0_0 is
@@ -2462,6 +2483,7 @@ architecture STRUCTURE of base_zynq is
   signal NLW_rst_ps7_0_50M_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps7_0_50M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
 <<<<<<< HEAD
+<<<<<<< HEAD
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
   attribute X_INTERFACE_INFO of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
@@ -2494,6 +2516,8 @@ architecture STRUCTURE of base_zynq is
   attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
   attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
 =======
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
   attribute x_interface_info : string;
   attribute x_interface_info of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
   attribute x_interface_info of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
@@ -2525,6 +2549,9 @@ architecture STRUCTURE of base_zynq is
   attribute x_interface_info of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
   attribute x_interface_info of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
   attribute x_interface_info of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
+<<<<<<< HEAD
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+=======
 >>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 begin
   BB1 <= TARGET_C_TopLevel_Sy_0_BB1;
