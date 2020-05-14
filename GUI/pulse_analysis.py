@@ -10,6 +10,7 @@ import pandas as pd
 import scipy.stats as stats          
 from scipy import signal
 from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
+#%matplotlib  inline
 num_channels =1
 def bin2dec(pkt):
 #    payloadSize=512
@@ -34,7 +35,7 @@ def process_packet(filename,channel):
         temp_payload = temp[1:num_elements] # Taking the payload only
         temp_rsh = temp_payload.reshape(num_channels,-1)
         payloads_list.append(temp_rsh[channel].tolist())
-        window_numbers.append(temp[0]) # Taking the window number only
+        window_numbers.append(temp[0]) # Taking the window number only:
         numberofwindows+=1
     print(numberofwindows)
    #     average.append(np.mean(temp_rsh[channel])-1115)
@@ -60,12 +61,9 @@ def process_packet(filename,channel):
     fig= plt.figure()
     ax = fig.add_subplot(111)
     ax.plot(df.payload, '-o', markersize=1.5, mfc='k')
-#    ax.set_xlim(0,3000)
-#    ax.set_ylim(-20,10)
-    plt.xticks(fontsize=fonttam)
-    plt.yticks(fontsize=fonttam)
-    ax.set_title("Freq=5000 Hz, Pulse width = 12 ns, VOLT =0.07", y=1.1)
-    plt.legend(['Pedestal subtracted Pulses'])
+    ax.tick_params(axis='both',labelsize=fonttam)
+    ax.legend(['Pedestal subtracted Pulses'])
+    ax.set_xlim(0,1000)
     ax.yaxis.grid(True)
     newTickLoc = list(range(0,numberofwindows*32,32))
     #for j in range(0,int(32*(numberofwindows+1)),32):
@@ -91,8 +89,6 @@ def process_packet(filename,channel):
             col_window_numbers.append(item)
     
     df['windowNumbers'] = col_window_numbers;
-    #df.numberofwindows[0]= numberofwindows
-    #plt.show()
     return df
     #df_filt = pd.DataFrame(filtered_sig, columns=['payload'])
 
@@ -180,7 +176,7 @@ fonttam=20
 
 #filename = './bunches/1000Hzpulses_2117110307303_cycles12nsVolt070load50_sp_sp1'
 #filename = './4000Hz/4000Hzpulses_3452729986_cycles12nsVolt070load50_sp'
-filename = './1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
+filename = '/home/salvador/vivado/data/1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
 #filename = './40kHz/40000Hzpulses_184521586246_cycles12nsVolt070load50_sp1'
 #filename = './load5k/1000Hzpulses_8972137529_cycles12nsVolt070load5k_sp1'
 #filename = './load75/1000Hzpulses_15123268129_cycles12nsVolt070load75_sp1'
@@ -197,52 +193,26 @@ filename = './1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
 df = process_packet(filename, 0)
 #plt.show()
 df_payload = pulseMax(df, -100, 200)
+
 #df_filtered = pulseMax(df_filt, -70,150)
 
 plt.plot(df_payload.maximum,'ok', markersize= 5, mfc='red')
-#plt.xlim(0,1000)
-plt.figure()
+plt.xlim(0,1000)
 
 
-
-#plt.show()
-
-## 3D PLOT
-
-#######
-
-#fig= plt.figure()
-#ax20=fig.add_subplot(111, projection='3d')
-#yticks=list(range(0,32,1))
 #
-#for k in yticks:
-#    
-#    df_no31 = df_payload.loc[df_payload['ciountsIndx'] == k ]
-#    #ys= df_no31.maximum[df_no31.maximum>0]
-#    df_group = df_no31.groupby('maximum')['windowNumbers'].count()
-#    xs = df_group.index.values
-#    ys= df_group.values
-#    print('ys',ys)
-#    print('xs',xs)
-#    #xs = list( range(0,len(ys),1) ) 
-#    ax20.bar(xs,ys, zs=k, zdir='y', alpha=0.8)
-#
-#ax20.set_xlabel('Maximum')
-#ax20.set_ylabel('Sample Number')
-#ax20.set_zlabel('Frequency')
-#ax20.set_yticks(yticks)
-#
+
 #
 df_countsAndMaximum = df_payload[['countsIndx', 'maximum']].loc[df_payload['maximum'] > 0]
 df_windowAndMaximum = df_payload[['windowNumbers', 'maximum']].loc[df_payload['maximum'] > 0]
-df_countsAndMaximum.to_csv('1000Hzpulses_countsIndxVsMaximumLoad50.txt', header=False, index=False, sep='\t', mode='a')
-df_windowAndMaximum.to_csv('1000Hzpulses_windowVsMaximumLoad50.txt', header=False, index=False, sep='\t', mode='a')
+df_countsAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_countsIndxVsMaximumLoad50.txt', header=False, index=False, sep='\t', mode='a')
+df_windowAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_windowVsMaximumLoad50.txt', header=False, index=False, sep='\t', mode='a')
 
 print('countsAndMaximum',df_countsAndMaximum.head())
 #
 
 sample =0
-df_payload['maxSampleX'] =  df_payload.maximum[df_payload['maximum']>0].loc[ df_payload['countsIndx']== sample]
+df_payload['maxSampleX'] =  df_payload.maximum[df_payload.maximum.notnull()].loc[ df_payload['countsIndx']== sample]
 
 
 
@@ -250,20 +220,17 @@ print("---------------------")
 
 
 print(df_payload[df_payload['maxSampleX']>0])
-#df['rising'] = df.payload[ ( (df.payload.shift(1) - df.payload) <diffSamples ) & (df.payload > minThreshold) ]   
 df_maxSample= df_payload[ df_payload.iloc [:,-1] >0 ]
 
 shift_ = 20
 list_maxSample = df_maxSample.index.values-shift_
 print('list_maxSample',list_maxSample)
-#list_maxSample2 = [list_maxSample-10 for x in list_maxSample]
-
-#print('list_maxSample2',list_maxSample2)
-#print('list_maxSample',list_maxSample[0:10])
-#print('list_maxSample', df_payload.payload[ list_maxSample[0]: list_maxSample[20]] )
 
 width=40
-
+# Parameters for baseline estimation
+numberofPoints=5
+df_payload['MeanBeforePulse']= np.nan
+df_payload['MeanAfterPulse']= np.nan
 fig, axes = plt.subplots(nrows= 5, ncols=20)
 fig.subplots_adjust(hspace=0.5)
 fig.suptitle('Sample {}'.format(sample))
@@ -271,28 +238,30 @@ for ax in axes.flatten():
     indx = np.where(axes.flatten()==ax)[0][0]
     list_ind = list_maxSample[indx]
     print(indx)
-    ax.plot(  df_payload.index[ list_ind : (list_ind+width) ],          df_payload.payload[ list_ind : (list_ind+width) ], '-ok')
- 
+    amplitudVector= df_payload.payload[ list_ind : (list_ind+width) ].values
+    #Plotting the pulse
+    ax.plot(  df_payload.index[ list_ind : (list_ind+width) ],       amplitudVector   , '-ok')
+    df_payload.loc[df_payload.index==list_ind+shift_, 'MeanBeforePulse']= np.mean(amplitudVector[0:10])
+    df_payload.loc[df_payload.index==list_ind+shift_, 'MeanAfterPulse']= np.mean(amplitudVector[-6:-1])
+
+   # Plotting the maximum
     ax.plot( df_payload.index[ (list_ind +shift_)],df_payload.payload[ (list_ind + shift_) ], '>')
     
     ax.set(title='{}'.format(df_payload.payload[ (list_ind + shift_) ]))
     ax.grid()
     ax.set_ylim(-20,10)
-#df_pulsesZero = df_payload.plot ( df_payload.payload  [  df_payload['maxSample0'].iloc[ ]       ])  
 
 
-df_payload['maxSampleX'] =  df_payload.maximum[df_payload['maximum']>0].loc[ df_payload['countsIndx']== sample]
-
+df_payload['maxSampleX'] =  df_payload.maximum[df_payload.maximum.notnull()].loc[ df_payload['countsIndx']== sample]
 
 
 
 plt.figure()
-minHist = int(df_payload.maxSampleX.loc[df_payload.maxSampleX > 0].min())
-maxHist =int( df_payload.maxSampleX.loc[df_payload.maxSampleX > 0].max())
+minHist = int(df_payload.maxSampleX.loc[df_payload.maxSampleX.notnull()].min())
+maxHist =int( df_payload.maxSampleX.loc[df_payload.maxSampleX.notnull()].max())
 plt.hist(df_payload.maxSampleX, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
+plt.title("Sample{}".format(sample))
 
-
-#print(df_payload.maxSampleX, bins=61,  range=(540,600))
 print(df_payload.head())
 
 
