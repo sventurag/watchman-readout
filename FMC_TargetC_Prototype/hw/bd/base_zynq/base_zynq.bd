@@ -388,37 +388,53 @@
           </spirit:wire>
         </spirit:port>
         <spirit:port>
+<<<<<<< HEAD
           <spirit:name>HCMPA</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>HCMPB</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>HCMPC</spirit:name>
-          <spirit:wire>
-            <spirit:direction>out</spirit:direction>
-            <spirit:vector>
-              <spirit:left>0</spirit:left>
-              <spirit:right>0</spirit:right>
-            </spirit:vector>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
+=======
           <spirit:name>HCMPD</spirit:name>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>0</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+<<<<<<< HEAD
+          <spirit:name>HCMPB</spirit:name>
+=======
+          <spirit:name>HCMPC</spirit:name>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>0</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+<<<<<<< HEAD
+          <spirit:name>HCMPC</spirit:name>
+=======
+          <spirit:name>HCMPB</spirit:name>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>0</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+<<<<<<< HEAD
+          <spirit:name>HCMPD</spirit:name>
+=======
+          <spirit:name>HCMPA</spirit:name>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
             <spirit:vector>
@@ -728,6 +744,42 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
+<<<<<<< HEAD
+=======
+        <spirit:instanceName>iobuf_1</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="iobuf" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">base_zynq_iobuf_0_1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">iobuf</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>iobuf_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="iobuf" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">base_zynq_iobuf_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">iobuf</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axistream_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="module_ref" spirit:name="axistream" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">base_zynq_axistream_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceName">axistream</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:subInstancePath"></spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:referenceType">hdl</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="bd:BoundaryCRC">0x0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
         <spirit:instanceName>axi_dma_0</spirit:instanceName>
         <spirit:componentRef spirit:library="ip" spirit:name="axi_dma" spirit:vendor="xilinx.com" spirit:version="7.1"/>
         <spirit:configurableElementValues>
@@ -1326,6 +1378,7 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
+<<<<<<< HEAD
         <spirit:instanceName>iobuf_0</spirit:instanceName>
         <spirit:componentRef spirit:library="module_ref" spirit:name="iobuf" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
@@ -1359,6 +1412,8 @@
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
         <spirit:instanceName>TARGET_C_TopLevel_Sy_0</spirit:instanceName>
         <spirit:componentRef spirit:library="module_ref" spirit:name="TARGET_C_TopLevel_System" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
@@ -1416,9 +1471,16 @@
       <spirit:adHocConnection>
         <spirit:name>rst_ps7_0_50M_peripheral_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="peripheral_aresetn"/>
+<<<<<<< HEAD
         <spirit:internalPortReference spirit:componentRef="axi_dma_0" spirit:portRef="axi_resetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_iic_0" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axistream_0" spirit:portRef="M_AXIS_ARESETN"/>
+=======
+        <spirit:internalPortReference spirit:componentRef="axistream_0" spirit:portRef="M_AXIS_ARESETN"/>
+        <spirit:internalPortReference spirit:componentRef="axi_dma_0" spirit:portRef="axi_resetn"/>
+        <spirit:internalPortReference spirit:componentRef="axi_iic_0" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aresetn"/>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M01_ARESETN"/>
@@ -1426,7 +1488,10 @@
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M02_ARESETN"/>
+<<<<<<< HEAD
         <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aresetn"/>
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>ARESETN_1</spirit:name>
@@ -1516,13 +1581,23 @@
       <spirit:adHocConnection>
         <spirit:name>processing_system7_0_FCLK_CLK0</spirit:name>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="FCLK_CLK0"/>
+<<<<<<< HEAD
+=======
+        <spirit:internalPortReference spirit:componentRef="axistream_0" spirit:portRef="M_AXIS_ACLK"/>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
         <spirit:internalPortReference spirit:componentRef="axi_dma_0" spirit:portRef="s_axi_lite_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_dma_0" spirit:portRef="m_axi_s2mm_aclk"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="M_AXI_GP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="processing_system7_0" spirit:portRef="S_AXI_HP0_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_iic_0" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="rst_ps7_0_50M" spirit:portRef="slowest_sync_clk"/>
+<<<<<<< HEAD
         <spirit:internalPortReference spirit:componentRef="axistream_0" spirit:portRef="M_AXIS_ACLK"/>
+=======
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i1"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i2"/>
+        <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aclk"/>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="ACLK"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M00_ACLK"/>
@@ -1531,9 +1606,12 @@
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="axi_interconnect_0" spirit:portRef="M00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="ps7_0_axi_periph" spirit:portRef="M02_ACLK"/>
+<<<<<<< HEAD
         <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i1"/>
         <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="RefCLK_i2"/>
         <spirit:internalPortReference spirit:componentRef="TARGET_C_TopLevel_Sy_0" spirit:portRef="tc_axi_aclk"/>
+=======
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>Net</spirit:name>
@@ -1588,10 +1666,17 @@
       <spirit:adHocConnection>
         <spirit:name>xlconstant_0_dout</spirit:name>
         <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
+<<<<<<< HEAD
         <spirit:externalPortReference spirit:portRef="HCMPD"/>
         <spirit:externalPortReference spirit:portRef="HCMPC"/>
         <spirit:externalPortReference spirit:portRef="HCMPB"/>
         <spirit:externalPortReference spirit:portRef="HCMPA"/>
+=======
+        <spirit:externalPortReference spirit:portRef="HCMPA"/>
+        <spirit:externalPortReference spirit:portRef="HCMPB"/>
+        <spirit:externalPortReference spirit:portRef="HCMPC"/>
+        <spirit:externalPortReference spirit:portRef="HCMPD"/>
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>TARGET_C_TopLevel_Sy_0_SIN</spirit:name>

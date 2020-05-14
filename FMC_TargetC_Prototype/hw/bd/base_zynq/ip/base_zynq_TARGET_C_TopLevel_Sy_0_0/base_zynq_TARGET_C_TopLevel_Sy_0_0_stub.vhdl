@@ -1,7 +1,11 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
+<<<<<<< HEAD
 -- Date        : Mon May 11 19:53:14 2020
+=======
+-- Date        : Thu Apr 16 12:34:27 2020
+>>>>>>> a7c8139c5b471757595d0057edcf8bff7fb6145a
 -- Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGET_C_TopLevel_Sy_0_0/base_zynq_TARGET_C_TopLevel_Sy_0_0_stub.vhdl
