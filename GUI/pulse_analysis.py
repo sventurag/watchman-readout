@@ -113,6 +113,62 @@ def pulseMax (df, diffSamples, minThreshold):
     df['maximum'] = df.payload[indx_max]
     return df
 
+def baseline(df_baseline,sample, width, numberofPointsBefore, numberofPointsAfter, ncols, plotPulse):
+    if sample== -1:
+        df_baseline['maxSample']=df_baseline.maximum[df_baseline.maximum.notnull()]
+    else:
+        df_baseline['maxSample'] =  df_baseline.maximum[df_baseline.maximum.notnull()].loc[ df_baseline['countsIndx']== sample]
+        
+
+    df_maxSample= df_baseline[ df_baseline.iloc [:,-1].notnull() ]
+   
+    shift_ = np.int(width/2)
+    list_maxSample = df_maxSample.index.values-shift_
+    
+    list_maxSample=np.delete( list_maxSample,0,0)
+    list_maxSample=np.delete( list_maxSample,-1,0) 
+    print('LEN MAXSAMPLE ARRAY',len(list_maxSample))
+    df_baseline['MeanBeforePulse']= np.nan
+    df_baseline['MeanAfterPulse']= np.nan
+    
+    for list_ind in list_maxSample:
+        amplitudVector= df_baseline.payload[ list_ind : (list_ind+width) ].values
+        df_baseline.loc[df_baseline.index==(list_ind+shift_), 'MeanBeforePulse']= np.mean(amplitudVector[0:np.int(numberofPointsBefore)])
+        df_baseline.loc[df_baseline.index==(list_ind+shift_), 'MeanAfterPulse']= np.mean(amplitudVector[ (np.int(numberofPointsAfter))*(-1):-1])
+    
+    if plotPulse == True:
+        fig, axes = plt.subplots(nrows= 5, ncols=ncols)
+        fig.subplots_adjust(hspace=0.5)
+        fig.suptitle('Sample {}'.format(sample))
+        for ax in axes.flatten():
+            indx = np.where(axes.flatten()==ax)[0][0]
+            list_ind = list_maxSample[indx]
+            print(indx)
+            amplitudVector= df_baseline.payload[ list_ind : (list_ind+width) ].values
+           #Plotting pulse
+            ax.plot(  df_baseline.index[ list_ind : (list_ind+width) ],       amplitudVector   , '-ok')
+            #Plotting maximum
+            ax.plot( df_baseline.index[ (list_ind +shift_)],df_baseline.payload[ (list_ind + shift_) ], '>')
+            
+           
+
+        ax.set(title='{}'.format(df_baseline.payload[ (list_ind + shift_) ]))
+        ax.grid()
+   #     ax.set_ylim(-20,10)
+    fig2,(ax1, ax2) = plt.subplots(nrows=1, ncols=2)
+    if sample==-1:
+        plt.suptitle('All samples')
+    else:
+        plt.suptitle('Sample{}'.format(sample))
+
+    df_baseline.hist('MeanBeforePulse', ax=ax1, grid=True)#
+    df_baseline.hist('MeanAfterPulse', ax=ax2, grid=True)#, xlabel= 'Mean value after pulse [ADC counts]')
+    ax1.set(title='MeanBeforePulse', xlabel= 'Mean value before pulse [ADC counts]')
+    ax2.set(title='MeanAfterPulse', xlabel= 'Mean value before pulse [ADC counts]')
+    
+    return df_baseline
+
+
 def plot_hist(df):
     fonttam=20
     fig4= plt.figure()
@@ -121,8 +177,8 @@ def plot_hist(df):
     std_max = df.payload[df.maximum>0].std()
     print('mean_max',mean_max)
 
-    minHist = int(df.maximum.loc[df_payload.maximum > 0].min())
-    maxHist =int( df.maximum.loc[df_payload.maximum > 0].max())
+    minHist = int(df.maximum.loc[df_payload.maximum.notnull()].min())
+    maxHist =int( df.maximum.loc[df_payload.maximum.notnull()].max())
     hist =  df.maximum[df.maximum>0].hist(bins=(maxHist-minHist)+1,range=(minHist,maxHist), ec='k')
     print(df.maximum[df.maximum>0].values)
     #hist = df.payload.plot(kind='bar')
@@ -211,59 +267,27 @@ df_windowAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_windowVsMaxi
 print('countsAndMaximum',df_countsAndMaximum.head())
 #
 
-sample =0
-df_payload['maxSampleX'] =  df_payload.maximum[df_payload.maximum.notnull()].loc[ df_payload['countsIndx']== sample]
+#df_payload['maxSampleX'] =  df_payload.maximum[df_payload.maximum.notnull()].loc[ df_payload['countsIndx']== sample]
 
 
 
 print("---------------------")
 
-def baseline(df_baseline,sample, width, numberofPointsBefore, numberofPointsAfter):
-    if sample== -1:
-        df_baseline['maxSample']=df_baseline.maximum[df_baseline.maximum.notnull()]
-    else:
-        df_baseline['maxSample'] =  df_baseline.maximum[df_baseline.maximum.notnull()].loc[ df_baseline['countsIndx']== sample]
-        
-
-    df_maxSample= df_baseline[ df_baseline.iloc [:,-1].notnull() ]
-
-    shift_ = np.int(width/2)
-    list_maxSample = df_maxSample.index.values-shift_
-
-    numberofPoints=5
-    df_baseline['MeanBeforePulse']= np.nan
-    df_baseline['MeanAfterPulse']= np.nan
-    fig, axes = plt.subplots(nrows= 5, ncols=20)
-    fig.subplots_adjust(hspace=0.5)
-    fig.suptitle('Sample {}'.format(sample))
-    for ax in axes.flatten():
-        indx = np.where(axes.flatten()==ax)[0][0]
-        list_ind = list_maxSample[indx]
-        print(indx)
-        amplitudVector= df_baseline.payload[ list_ind : (list_ind+width) ].values
-        #Plotting the pulse
-        ax.plot(  df_baseline.index[ list_ind : (list_ind+width) ],       amplitudVector   , '-ok')
-        df_baseline.loc[df_payload.index==list_ind+shift_, 'MeanBeforePulse']= np.mean(amplitudVector[0:np.int(numberofPointsBefore)])
-        df_baseline.loc[df_payload.index==list_ind+shift_, 'MeanAfterPulse']= np.mean(amplitudVector[ (np.int(numberofPointsAfter))*(-1):-1])
-    
-       # Plotting the maximum
-        ax.plot( df_baseline.index[ (list_ind +shift_)],df_baseline.payload[ (list_ind + shift_) ], '>')
-        
-        ax.set(title='{}'.format(df_baseline.payload[ (list_ind + shift_) ]))
-        ax.grid()
-        ax.set_ylim(-20,10)
-        return df_baseline
 
 
-df_baselineAll=  baseline(df_payload, -1, 40, 10, 6) 
+df_baselineAll=  baseline(df_payload, -1, 40, 10, 6, 30, False) 
+
+sample =0
+
+df_baseline0 = baseline(df_payload, sample, 40, 10, 6, 19, False)
 
 plt.figure()
-minHist = int(df_payload.maxSampleX.loc[df_payload.maxSampleX.notnull()].min())
-maxHist =int( df_payload.maxSampleX.loc[df_payload.maxSampleX.notnull()].max())
-plt.hist(df_payload.maxSampleX, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
+minHist = int(df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].min())
+maxHist =int( df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].max())
+plt.hist(df_baselineAll.maxSample, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
 plt.title("Sample{}".format(sample))
 
-print(df_payload.head())
+print(df_baselineAll.head())
 
 
 plot_hist(df_payload)
