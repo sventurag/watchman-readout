@@ -279,16 +279,16 @@ component SyncBuffer is
     
     attribute mark_debug of read_stme_idle: signal is "true";
     attribute mark_debug of readCounter: signal is "true";
---    attribute mark_debug of RAMP: signal is "true";
---    attribute mark_debug of RAMP_CNT: signal is "true";
---    attribute mark_debug of RDAD_CLK: signal is "true";
---    attribute mark_debug of RDAD_SIN: signal is "true";
---    attribute mark_debug of RDAD_DIR: signal is "true";
---    attribute mark_debug of CH0: signal is "true";
---    attribute mark_debug of GCC_RESET: signal is "true";
---    attribute mark_debug of SS_INCR: signal is "true";
---    attribute mark_debug of WL_CNT_INTL: signal is "true";
---    attribute mark_debug of DO: signal is "true";
+    attribute mark_debug of RAMP: signal is "true";
+    attribute mark_debug of RAMP_CNT: signal is "true";
+    attribute mark_debug of RDAD_CLK: signal is "true";
+    attribute mark_debug of RDAD_SIN: signal is "true";
+    attribute mark_debug of RDAD_DIR: signal is "true";
+    attribute mark_debug of CH0: signal is "true";
+    attribute mark_debug of GCC_RESET: signal is "true";
+    attribute mark_debug of SS_INCR: signal is "true";
+    attribute mark_debug of WL_CNT_INTL: signal is "true";
+    attribute mark_debug of DO: signal is "true";
 
     
 
