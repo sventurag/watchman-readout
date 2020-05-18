@@ -37,7 +37,7 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_WR_STRB2_LE_REG,	58); //58
 	WriteRegister(TC_WR_STRB2_TE_REG,	12); //12
 
-	WriteRegister(TC_WR2_ADDR_LE_REG,	5); // Adrian's numbers works from here
+	WriteRegister(TC_WR2_ADDR_LE_REG,	5); // Adrian's numbers work from here
 	WriteRegister(TC_WR2_ADDR_TE_REG,	25);  // 25
 
 	WriteRegister(TC_WR_STRB1_LE_REG,	26);  // 20
@@ -87,7 +87,7 @@ void SetTargetCRegisters(void){
 
  // */
 	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
-	WriteRegister(TC_MONTIMING_REG, 128);		//INIT MonTiming PASS disable
+	WriteRegister(TC_MONTIMING_REG, 0);		//INIT MonTiming PASS disable
 
 	xil_printf("TragetC's registers initialized!\r\n");
 }
