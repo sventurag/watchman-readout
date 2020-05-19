@@ -17,13 +17,16 @@ import pandas as pd
 from plot_delays_max import plot_pulse
 #from plotPulse import plot_pulse
 tc = targetc.targetc()
+tc.send_command(9,100,1)
+
+time.sleep(10)
 wave_gen().Output1(out=False)
 
-#rango = list((range(10,30,2)))  # number of steps in delay values for the waveformigenerator
-rango = list( range(0,1,1) )
+rango = list((range(10,30,5)))  # number of steps in delay values for the waveformigenerator
+#rango = list( range(0,1,1) )
 
 repeticiones = list( range(0,1,1)   )
-fileToSave = './data/flat2.txt'
+fileToSave = './data/testMay18_2020.txt'
 
 #print ('Setting ssToutFB')
 #regID = 65
@@ -49,7 +52,7 @@ time.sleep(1)
 
 
 startWindow=0
-totalWindows=512
+totalWindows=20
 
 Windows512 = np.zeros((totalWindows*31))
 
@@ -60,7 +63,7 @@ WindowsSum = np.zeros((totalWindows*31))
 
 
 
-#wave_gen().Output1(out=False)
+wave_gen().Output1(out=True)
 time.sleep(1)
 
 for j in repeticiones: # # Number of waveforms for the same delay value

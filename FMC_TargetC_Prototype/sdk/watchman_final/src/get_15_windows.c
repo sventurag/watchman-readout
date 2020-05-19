@@ -158,7 +158,7 @@ int get_15_windows_fct(void){
 			for(i=0; i<16; i++){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[i][j]);//-  pedestal[window][i][j]+ offset_avoid_negative);
+					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));
