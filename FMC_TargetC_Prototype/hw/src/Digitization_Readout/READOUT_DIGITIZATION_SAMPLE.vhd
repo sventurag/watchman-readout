@@ -880,7 +880,7 @@ begin
 							SS_INCR_intl <= '1';
 							--hsout_stm <= LOW_SET0;
 							SS_CNT_EN <= '1';
-							hsout_stm <= LOW_SET0;
+							hsout_stm <= INCRWAIT;
 
 							-- WDOTime	<= 	WDOTime_WL;
 							-- DIGTime <= 	DIGTime_WL;
@@ -893,17 +893,17 @@ begin
 							SS.response <= '1';
 							hsout_stm <= RESPREADY;
 						end if;
---					when INCRWAIT =>
---						SS_INCR_intl <= '1';
+					when INCRWAIT =>
+						SS_INCR_intl <= '1';
 
-----						if SS_CNT_INTL = UNSIGNED(INCR_WAIT_PERIOD) then
---                        SS_CNT_EN <= '0';
---                        SS_RESET_intl <= '0';
---                        hsout_stm <= LOW_SET0;
-----						else
-----							SS_CNT_EN <= '1';
-----							hsout_stm <= INCRWAIT;
-----						end if;
+						if SS_CNT_INTL = UNSIGNED(INCR_WAIT_PERIOD) then
+                        SS_CNT_EN <= '0';
+                        SS_RESET_intl <= '0';
+                        hsout_stm <= LOW_SET0;
+						else
+							SS_CNT_EN <= '1';
+							hsout_stm <= INCRWAIT;
+						end if;
 					when LOW_SET0 =>
 						HSCLK_intl <= '1';   --'0'
 						if SSBitCnt = 0  then
@@ -995,7 +995,7 @@ begin
 								SScnt <= SScnt + 1;
 								if(SScnt < 31) then
 									--hsout_stm <= LOW_SET0;
-									hsout_stm	<= LOW_SET0;
+									hsout_stm	<= INCRWAIT;
 									SS.busy <= '1';
 								else
 									--SS_RESET_intl <= '1';
