@@ -57,13 +57,13 @@ def softTrigger():
 tc.send_command(9,100,1)
 time.sleep(15)
 print("conf waveform generator")
-wave_gen().loadHz(100)
+wave_gen().loadHz(1000)
 
 wave_gen().pulseWidth(12e-9)
 time.sleep(1)
 
 #  freq, amp, offset
-wave_gen().apply(1000,0.07,0)
+wave_gen().apply(1000,0.15,0)
 
 wave_gen().Query()
 time.sleep(1)

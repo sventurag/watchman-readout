@@ -53,10 +53,7 @@ restart()
 
 #setDelay(3)
 #triggerMode(10)
-#softTrigger()
-#####
-#
-
+#softTrigger#
 
 print("end")
 
