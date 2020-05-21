@@ -198,11 +198,11 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
            
              if trigger_intl = '1' then
                  flag_number<= "0000";
-                 if unsigned(ptr_window_i) /= 0 then   
+--                 if unsigned(ptr_window_i) /= 0 then   
                      window2read <= std_logic_vector(unsigned(ptr_window_i));
-                 else
-                     wr_i <= unsigned(ptr_window_i);
-                 end if;    
+--                 else
+--                     wr_i <= unsigned(ptr_window_i);
+--                 end if;    
                  fifo_wr_en<='1';   
                  if  unsigned(delay_trigger)> 0 then 
                       current_subBuffer(0) <='0';
