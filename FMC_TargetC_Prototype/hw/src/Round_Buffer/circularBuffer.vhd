@@ -979,7 +979,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  p_enableWrite : process(clk,RST)
  begin
  if RST = '0' then
-       saved_i <= (others=> '0');
+       saved_i <= "111111111";--(others=> '0');
        enable_write_intl <= '0';
  
  else
@@ -1008,7 +1008,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  
  begin
  if RST = '0' then
-     rd_add_i <= (others=> '0');
+     rd_add_i <= "111111111";--(others=> '0');
      enable_write_i <= '0';
      fifo_rd_en <= '0';
      fifo_out_i <= (others=> '0');

@@ -232,7 +232,7 @@ fonttam=20
 
 #filename = './bunches/1000Hzpulses_2117110307303_cycles12nsVolt070load50_sp_sp1'
 #filename = './4000Hz/4000Hzpulses_3452729986_cycles12nsVolt070load50_sp'
-filename = '/home/salvador/vivado/data/1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
+#filename = '/home/salvador/vivado/data/1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
 #filename = './40kHz/40000Hzpulses_184521586246_cycles12nsVolt070load50_sp1'
 #filename = './load5k/1000Hzpulses_8972137529_cycles12nsVolt070load5k_sp1'
 #filename = './load75/1000Hzpulses_15123268129_cycles12nsVolt070load75_sp1'
@@ -246,6 +246,26 @@ filename = '/home/salvador/vivado/data/1000Hz/1000Hzpulses_6899474890_cycles12ns
 #filename = './amp50mV/1000Hzpulses_16526659222_cycles12nsVolt050load75_sp1'
 #filename = './load75/1000Hzpulses_37252155670_cycles12nsVolt070load75_sp1'
 #filename = './load75/1000Hzpulses_12749085115_cycles12nsVolt070load75_sp1'
+#filename= '/home/salvador/vivado/data/load75/1000Hzpulses_31904512932_cycles12nsVolt070load75_sp1'
+#filename = '/home/salvador/vivado/data/load75/1000Hzpulses_57538107850_cycles12nsVolt070load75_incrwait_sp1'
+#filename = '/home/salvador/vivado/data/load100/1000Hzpulses_65426331829_cycles12nsVolt070load100_incrwait_sp1'
+#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_xxx_cycles12nsVolt070load50_disch400_sp1'
+#filename = '/home/salvador/vivado/data/load75/1000Hzpulses_60252166477_cycles12nsVolt070load75_disch400_sp1'
+#filename = '/home/salvador/vivado/data/load05/1000Hzpulses_43805187438_cycles12nsVolt070load05_disch400_sp1'
+#filename = '/home/salvador/vivado/data/load30/1000Hzpulses_37921322656_cycles12nsVolt020load30_disch400_sp1'
+#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_30367922792_cycles12nsVolt070load50_sp1'
+#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_26657078385_cycles12ns100mV50ohm_sp1'
+#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_25119085331_cycles12ns100mV75ohm_sp1'
+#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_25119085331_cycles12ns100mV100ohm_sp1'
+#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_79711080063_cycles12ns150mV100ohm_sp1'
+#filename = '/home/salvador/vivado/data/load150/1000Hzpulses_12749800203_cycles12ns150mV150ohm_sp1'
+#filename = '/home/salvador/vivado/data/load250/1000Hzpulses_25553906384_cycles12ns150mV250ohm_sp1'
+#filename = '/home/salvador/vivado/data/load500/1000Hzpulses_13719295240_cycles12ns150mV500ohm_sp1'
+#filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_52498850295_cycles12ns150mV10000ohm_sp1'
+#filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_xx_cycles12ns130mV10000ohm_sp1'
+#filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_65637282744_cycles12ns200mV10000ohm_sp1'
+filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_85585679113_cycles12ns150mV10000ohm_sp1'
+
 df = process_packet(filename, 0)
 #plt.show()
 df_payload = pulseMax(df, -100, 200)
@@ -261,8 +281,8 @@ plt.xlim(0,1000)
 #
 df_countsAndMaximum = df_payload[['countsIndx', 'maximum']].loc[df_payload['maximum'] > 0]
 df_windowAndMaximum = df_payload[['windowNumbers', 'maximum']].loc[df_payload['maximum'] > 0]
-df_countsAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_countsIndxVsMaximumLoad50.txt', header=False, index=False, sep='\t', mode='a')
-df_windowAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_windowVsMaximumLoad50.txt', header=False, index=False, sep='\t', mode='a')
+df_countsAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_countsIndxVsMaximum_150mVLoad10k_disch400_incrwait.txt', header=False, index=False, sep='\t', mode='a')
+df_windowAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_windowVsMaximum_150mVLoad10k_disch400_incrwait.txt', header=False, index=False, sep='\t', mode='a')
 
 print('countsAndMaximum',df_countsAndMaximum.head())
 #
@@ -275,19 +295,19 @@ print("---------------------")
 
 
 
-df_baselineAll=  baseline(df_payload, -1, 40, 10, 6, 30, False) 
+#df_baselineAll=  baseline(df_payload, -1, 40, 10, 6, 30, False) 
 
-sample =0
-
-df_baseline0 = baseline(df_payload, sample, 40, 10, 6, 19, False)
-
-plt.figure()
-minHist = int(df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].min())
-maxHist =int( df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].max())
-plt.hist(df_baselineAll.maxSample, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
-plt.title("Sample{}".format(sample))
-
-print(df_baselineAll.head())
+#sample =0
+#
+#df_baseline0 = baseline(df_payload, sample, 40, 10, 6, 19, False)
+#
+#plt.figure()
+#minHist = int(df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].min())
+#maxHist =int( df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].max())
+#plt.hist(df_baselineAll.maxSample, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
+#plt.title("Sample{}".format(sample))
+#
+#print(df_baselineAll.head())
 
 
 plot_hist(df_payload)
