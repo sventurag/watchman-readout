@@ -945,6 +945,32 @@ BUF_TC_Delay_RB : clkcrossing_buf
 			ClkB	=> ClockBus.CLK125MHz
 		);
 
+        BUF_pedestalTrigger : clkcrossing_buf
+                generic map(
+                    NBITS => 32
+                )
+                port map(
+                    nrst    =>    '1',
+                    DA        =>    TCReg(pedestalTrigger),
+                    QB        =>     CtrlBus_OxMS.pedestalTrigger, -- signal to start the pedestalTrigger module
+                    ClkA    =>     AxiBusIn.ACLK,
+                    ClkB    => ClockBus.CLK125MHz
+                );
+                
+                
+  BUF_pedestalTriggerAvg : clkcrossing_buf
+                generic map(
+                    NBITS => 32
+                )
+                port map(
+                    nrst    =>    '1',
+                    DA        =>    TCReg(pedestalTriggerAvg),
+                    QB        =>     CtrlBus_OxMS.pedestalTriggerAvg, -- signal to start the pedestalTrigger module
+                    ClkA    =>     AxiBusIn.ACLK,
+                    ClkB    => ClockBus.CLK125MHz
+                );
+                                  
+        
 --SyncBuffer_Delay_UpdateWR : SyncBuffer
 --		generic map(
 --			NBITS => 32

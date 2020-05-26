@@ -117,6 +117,12 @@
 /** @brief  -- compensation for trigger delay for correction of the window number in the circular buffer  */
 #define TC_Delay_RB		        95
 
+/** @brief  Signal to start pedestal acquisition in trigger mode */
+#define PEDESTAL_TRIGGER		96
+
+/** @brief  Number of average elements for pedestal acquisition in trigger mode */
+#define PEDESTAL_TRIGGER_AVG     97
+
 
 /** @brief  Test pattern generator Register */
 #define TC_TPG_REG				128

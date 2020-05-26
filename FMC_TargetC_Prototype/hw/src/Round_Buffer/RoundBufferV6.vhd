@@ -283,6 +283,20 @@ end component CPU_CONTROLLERV3;
            ); 
         end component;
         
+        component pedestalTrigger is 
+            Port ( 
+                        clk : in STD_LOGIC;
+                       rst : in STD_LOGIC;
+                       trigger : out STD_LOGIC;
+                       windowstorage : in STD_LOGIC;
+                       pedestals: in std_logic;
+                       wr_rs:  in std_logic_vector(1 downto 0); -- To synchronize WR and start at window 0
+                       sstin : in std_logic_vector(2 downto 0)
+                       );
+
+               end component; 
+        
+        
      
 	-- -------------------------------------------------------------
 	-- SIGNALS
@@ -361,7 +375,8 @@ end component CPU_CONTROLLERV3;
 );
 
 signal sstin_sync_st : SSTIN_synch_st:=USERMODE;
-
+signal trigger_ped : std_logic;
+signal trigger_intl : std_logic;
 --signal Bus_intl_dly :			std_logic_vector(10 downto 0);
 --signal Bus_intl_delay :			std_logic_vector(10 downto 0);
 --signal read_enable_dly: std_logic;
@@ -578,6 +593,17 @@ SyncBitNrst: SyncBit
         address_is_zero => address_is_zero_out
 
         ); 
+        
+ pedestalTrigger_inst : pedestalTrigger
+     Port map ( 
+                clk => ClockBus.CLK125MHz,
+               rst => nrst ,
+               trigger => trigger_ped,
+               windowstorage => CtrlBus_IxSL.WindowStorage,
+               pedestals =>CtrlBus_IxSL.pedestalTrigger,
+               wr_rs =>  WR_RS_S_trig, -- To synchronize WR and start at window 0
+               sstin => Timestamp.samplecnt
+               );
 
 
      edge_detect_cpu: process(ClockBus.CLK125MHz,nrst,CtrlBus_IxSL.CPUMode)
@@ -693,7 +719,13 @@ WR_C <= WR_C_sig ;
 
 trigger_s <= '0' when trigger= "0000" else '1';
 
+trigger_intl <= trigger_s or trigger_ped;
+
 delay_trigger_intl <= CtrlBus_IxSL.TC_Delay_RB(3 downto 0);
 --TrigInfo_dly<=TrigInfo_dly;
+
+
+
+
 
 end implementation;
