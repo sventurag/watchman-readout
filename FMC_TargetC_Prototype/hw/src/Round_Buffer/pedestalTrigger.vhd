@@ -30,6 +30,7 @@ entity pedestalTrigger is
            trigger : out STD_LOGIC;
            windowstorage : in STD_LOGIC;
            pedestals: in std_logic;
+           average :  in std_logic_vector(8 downto 0);
            wr_rs:  in std_logic_vector(1 downto 0); -- To synchronize WR and start at window 0
            sstin : in std_logic_vector(2 downto 0)
            );
@@ -69,6 +70,7 @@ signal trigger_i  : std_logic;
 signal reg1: std_logic;
 signal reg2: std_logic;
 signal edge_det_i : std_logic;
+signal cnt_average: std_logic_vector(8 downto 0);
 
 begin
 
@@ -98,26 +100,34 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
       cnt_wait0_i <= (others=> '0');
       cnt_countingLoops_i <= (others=> '0');
       trigger_i<='0';
+      cnt_average<= (others =>'0');
   else 
       if rising_edge(clk) then
           case stm_trigger is
               when IDLE =>
                    --if (windowStorage = '1') and (Timestamp.samplecnt="111") then
-                   if ( edge_det_i= '1')   then                  
+                   if ( edge_det_i= '1')   then 
+                       cnt_average<= (others =>'0');                 
                        stm_trigger <= START;
                    else
                        stm_trigger<= IDLE;
                    end if;
                
                when START =>
+                if cnt_average <=average then
                     if (windowStorage = '1') and (sstin="111")  and (wr_rs="00")  then                  
                               stm_trigger <= CNT_START;
                        else
                               stm_trigger<= START;
                          end if;
-                      
+                 else
+                        cnt_start_i <= (others=> '0');
+                         stm_trigger<= IDLE;
+                  end if;       
+        
+                     
               when CNT_START =>
-                	   if cnt_start_i <  "000001110" then
+                	   if cnt_start_i <  "000000100" then
                    		   	cnt_start_i <= std_logic_vector(unsigned(cnt_start_i) + 1);
            	  	     	   stm_trigger <= CNT_START;           
                  	  else 
@@ -130,7 +140,7 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
                       
               when TRIGGER_LOW_0 =>
 					   trigger_i <= '0';
-					   if cnt_intratrigger <= "1001101111100" then --4990 = 137E
+					   if cnt_intratrigger <= "1001101111100" then --4988 
 						  cnt_intratrigger <= std_logic_vector(unsigned(cnt_intratrigger) + 1);
 						  stm_trigger <= TRIGGER_LOW_0;
 					   else
@@ -161,6 +171,7 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
 							   cnt_countingLoops_i  <= std_logic_vector(unsigned(cnt_countingLoops_i) + 1);
 							  stm_trigger <= TRIGGER_HIGH_0;
 					   else
+						   		cnt_countingLoops_i <=(others=>'0');
 						   		stm_trigger <= TRIGGER_HIGH_1;
 						        cnt_wait0_i<= (others=>'0') ; 
 
@@ -171,7 +182,7 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
         
               when TRIGGER_LOW_1 =>
                trigger_i <= '0';
-               if cnt_intratrigger_1<= "1001110010100" then  -- 4999
+               if cnt_intratrigger_1<= "1001110010100" then  -- 5012
                   cnt_intratrigger_1 <= std_logic_vector(unsigned(cnt_intratrigger_1) + 1);
                   stm_trigger <= TRIGGER_LOW_1;
                else 
@@ -185,8 +196,9 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
                cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
                       stm_trigger <= TRIGGER_HIGH_1;
               else
-                   cnt_i <= (others=>'0');                      
-                       stm_trigger <= IDLE;
+                   cnt_i <= (others=>'0'); 
+                   cnt_average <= std_logic_vector(unsigned(cnt_average) + 1);                     
+                       stm_trigger <= START;
                        
                        
                end if;
