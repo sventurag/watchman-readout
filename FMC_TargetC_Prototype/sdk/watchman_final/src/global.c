@@ -66,9 +66,25 @@ int* regptr;
 /** @brief Array containing the pedestal correction for every sample */
 uint32_t  pedestal[512][16][32];
 
+/** @brief Array containing the pedestal correction for every sample, the pedestal values
+ * in trigger Mode follow the way is done with real data to minimize the differences
+ * in data acquisition time for the same window. pedestal_A is for windows that contain the whole pulse
+ * and for the windows that are first of two windows.*/
+
+uint32_t  pedestal_A[512][16][32];
+
+/** @brief Array containing the pedestal correction for every sample, the pedestal values
+ * in trigger Mode follow the way is done with real data to minimize the differences
+ * in data acquisition time for the same window. pedestal_B is for windows that are the second ones
+ * in a two-window pulse */
+
+uint32_t  pedestal_B[512][16][32];
+
+
+/** Flag to start pedestal mode pedestal acquisition */
+volatile bool pedestalTriggerModeFlag;
 
 /** @brief Array containing raw data of the whole array */
-
 uint32_t  data_raw[512][16][32];
 
 /** @brief Lookup table to correct the transfer function */

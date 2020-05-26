@@ -23,6 +23,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows);
 int get_windows(int startWindow, int nmbrofWindows);
 
 int get_15_windows_fct(void);
+int pedestal_triggerMode_init(int avg);
 
 
 

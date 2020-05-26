@@ -98,6 +98,9 @@ extern int nmbrWindowsPed;
  /* data structure from PL */
  extern InboundRingManager_t inboundRingManager;
 
+ /** Flag to start pedestal mode pedestal acquisition */
+ extern bool pedestalTriggerModeFlag;
+
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Network interface */
@@ -453,9 +456,14 @@ int main()
 				 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
-							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
+//							if (pedestalTriggerModeFlag != true){
+							    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-		                      Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+//							else{
+//								pedestalTriggerModeArrays(&(inboundRingManager));
+//							};
+
+							Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						     updateInboundCircBuffer();
 
 						//     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);

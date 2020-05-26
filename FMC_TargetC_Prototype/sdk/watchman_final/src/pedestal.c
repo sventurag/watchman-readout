@@ -26,6 +26,22 @@ extern volatile bool flag_scu_timer;
 /** @brief Instance of the device watchdog */
 extern XScuWdt WdtScuInstance;
 
+/** @brief Array containing the pedestal correction for every sample, the pedestal values
+ * in trigger Mode follow the way is done with real data to minimize the differences
+ * in data acquisition time for the same window. pedestal_A is for windows that contain the whole pulse
+ * and for the windows that are first of two windows.*/
+
+extern uint32_t  pedestal_A[512][16][32];
+
+/** @brief Array containing the pedestal correction for every sample, the pedestal values
+ * in trigger Mode follow the way is done with real data to minimize the differences
+ * in data acquisition time for the same window. pedestal_B is for windows that are the second ones
+ * in a two-window pulse */
+
+extern uint32_t  pedestal_B[512][16][32];
+
+/** Flag to start pedestal mode pedestal acquisition */
+extern bool pedestalTriggerModeFlag;
 
 /****************************************************************************/
 /**
@@ -289,4 +305,113 @@ for (window=0; window< 3; window++){
 
 
 }
+
+
+/*
+**************************************************************************
+*
+* @brief	Get pedestals in trigger mode
+*
+* @param	number of average, avg;
+*
+* @return	Void function, updating data_raw and pedestal global variables
+*
+* @note		-
+*
+***************************************************************************
+*/
+
+
+int pedestal_triggerMode_init(int avg){
+
+int i,j,k,window,channel,sample;
+
+printf("Arrays Initialization\r\n");
+for(window = 0; window< 512; window++ ){
+	for(channel = 0; channel< 16; channel++ ){
+		for(sample = 0; sample< 32; sample++ ){
+			pedestal_A[window][channel][sample] = 0;
+			pedestal_B[window][channel][sample] = 0;
+            usleep(10);
+	//		printf("%d\r\n", data_raw[window][channel][sample]);
+
+	}
+}
+};
+
+// Start trigger mode
+
+WriteRegister(PEDESTAL_TRIGGER_AVG, avg);
+pedestalTriggerModeFlag= true;
+usleep(10);
+WriteRegister(PEDESTAL_TRIGGER, ENABLE);
+
+};
+
+//
+//
+//for(window = 0; window< 512; window++ ){
+//	for(channel = 0; channel< 16; channel++ ){
+//		for(sample = 0; sample< 32; sample++ ){
+//			pedestal[window][channel][sample] = 0;
+//		//	usleep(10);
+//		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
+//
+//	}
+//}
+//};
+//
+//
+//printf("Getting data");
+//
+//for (i=0; i<avg; i++ ){
+//	for(j=0; j<512; j+=nmbrofWindows){
+//
+//         if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
+//             else { printf("get Windows raw failed\r\n");
+//    //     usleep(300);
+//         }
+//
+//	}
+//  //  printf("avg %d of  %d\r\n", i, avg);
+//
+//};
+//// Average
+//
+//	 for(window=0; window<512; window++){
+//			for(channel=0; channel<16; channel++){
+//				for(sample = 0; sample <32;sample++){
+//					pedestal[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+//
+//	     		}
+//	     	}
+//	     };
+//
+//for (window=0; window< 3; window++){
+//	 for(sample = 0; sample <32;sample++){
+//	 	printf("%d\r\n",data_raw[window][2][sample]);
+//	 }
+//	 for(sample = 0; sample <32;sample++){
+//	 	printf("%d\r\n",pedestal[window][2][sample]);
+//	 }
+//};
+//
+//// Test
+//
+//	for(k=0; k<512; k+=nmbrofWindows){
+//
+//         if (get_windows(k,nmbrofWindows)== XST_SUCCESS);
+//             else { printf("get Windows raw failed\r\n");
+//         usleep(300);
+//         }
+//	};
+//
+//
+//
+//
+//	 return XST_SUCCESS;
+//
+//
+//}
+
 
