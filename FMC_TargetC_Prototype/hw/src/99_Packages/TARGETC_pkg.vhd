@@ -150,6 +150,7 @@ package TARGETC_pkg is
 	constant TC_Delay_UpdateWR: integer := 93; --  value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
    	constant TC_Delay_RB:     integer:= 95; -- compensation for trigger delay for correction of the window number in the circular buffer
    	constant pedestalTrigger: integer:= 96;
+   	constant pedestalTriggerAvg: integer:= 97;
 	constant TC_WL_DIV_REG:		integer := 153;
 
     --Overwatch
@@ -207,6 +208,7 @@ package TARGETC_pkg is
         Delay_UpdateWR: std_logic_vector(31 downto 0);
         TC_Delay_RB:    std_logic_vector(31 downto 0);
         pedestalTrigger: std_logic_vector(31 downto 0);
+        pedestalTriggerAvg: std_logic_vector(31 downto 0);
 
         
 		SAMPLEMODE:		std_logic;
