@@ -363,15 +363,23 @@ int command_parser(struct pbuf *p, char* return_buf){
 				  				    	delay_RB = regVal_one_reg;
 				  						xil_printf("delay_RB = %d\r\n", delay_RB);
                                         regptr[TC_Delay_RB]= delay_RB;
-				  //								   			         }
-				  //				    else if((regID_one_reg == DAC_VOLTAGE))
-				  //				      {
-				  //				          temp = (float) regVal_one_reg;
-				  //				       VPED_ANALOG = temp/100;
-
-
-
 				  				   }
+
+				    else if((regID_one_reg == PEDESTAL_TRIGGER))
+
+				  				    {
+
+				  						xil_printf("PEDESTAL_TRIGGER = %d\r\n", regID_one_reg);
+                                        regptr[PEDESTAL_TRIGGER]= regVal_one_reg;
+				  				   }
+				    else if((regID_one_reg == PEDESTAL_TRIGGER_AVG))
+
+				 				  				    {
+
+				 				  						xil_printf("PEDESTAL_TRIGGER_AVG = %d\r\n", regID_one_reg);
+				                                         regptr[PEDESTAL_TRIGGER_AVG]= regVal_one_reg;
+				 				  				   }
+
 
 				    else
 				    {
