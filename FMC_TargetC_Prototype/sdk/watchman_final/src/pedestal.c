@@ -43,6 +43,9 @@ extern uint32_t  pedestal_B[512][16][32];
 /** Flag to start pedestal mode pedestal acquisition */
 extern bool pedestalTriggerModeFlag;
 
+/* data structure from PL */
+extern InboundRingManager_t inboundRingManager;
+
 /****************************************************************************/
 /**
 * @brief	Calculate the pedestal value for every memory location in the TARGET C
@@ -310,7 +313,7 @@ for (window=0; window< 3; window++){
 /*
 **************************************************************************
 *
-* @brief	Get pedestals in trigger mode
+* @brief	Initiation pedestals in trigger mode
 *
 * @param	number of average, avg;
 *
@@ -347,6 +350,43 @@ usleep(10);
 WriteRegister(PEDESTAL_TRIGGER, ENABLE);
 
 };
+
+
+/*
+**************************************************************************
+*
+* @brief	Save pedestal window into a correspondent array pedestal_A or pedestal_B
+*
+* @param
+*
+* @return
+*
+* @note		-
+*
+***************************************************************************
+*/
+
+
+int pedestalTriggerModeArrays(volatile InboundRingManager_t *datatosave ){
+
+int i,j,k,window,channel,sample,window_order;
+data_axi *Data2save = datatosave -> procPointer;
+uint16_t data_tmp;
+int offset_avoid_negative = 200;
+
+window = Data2save->wdo_id;
+window_order= Data2save -> info;
+
+
+
+
+
+
+
+};
+
+
+
 
 //
 //
