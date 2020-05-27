@@ -77,7 +77,7 @@ package TARGETC_pkg is
 
 		constant C_PS_BUSY_MASK:		std_logic_vector(31 downto 0) := x"00010000";
         constant C_CPUMODE_MASK:        std_logic_vector(31 downto 0) := x"00020000";
-
+        constant C_TRIGGER_MODE_PED_MASK:        std_logic_vector(31 downto 0) := x"00040000";
 		--BIT
 		constant C_WRITE_BIT:		integer := 0;
 		--constant C_PCLK_BIT:		integer := 1;
@@ -102,6 +102,7 @@ package TARGETC_pkg is
 
 		constant C_PS_BUSY_BIT:		integer := 16;
         constant C_CPUMODE_BIT:     integer := 17;
+        constant C_TRIGGER_MODE_PED_BIT: integer := 18;
 
 	constant TC_STATUS_REG : 	integer := 130;
 		--MASK
@@ -149,7 +150,6 @@ package TARGETC_pkg is
 	constant TC_NBRWINDOW_REG:	integer := 152;
 	constant TC_Delay_UpdateWR: integer := 93; --  value of  TimeStamp.samplecnt to update the WR address, 8 to 15 (from falling edge to 8 ns before rising edge)
    	constant TC_Delay_RB:     integer:= 95; -- compensation for trigger delay for correction of the window number in the circular buffer
-   	constant pedestalTrigger: integer:= 96;
    	constant pedestalTriggerAvg: integer:= 97;
 	constant TC_WL_DIV_REG:		integer := 153;
 
@@ -207,7 +207,7 @@ package TARGETC_pkg is
 		NBRWINDOW:		std_logic_vector(31 downto 0);
         Delay_UpdateWR: std_logic_vector(31 downto 0);
         TC_Delay_RB:    std_logic_vector(31 downto 0);
-        pedestalTrigger: std_logic_vector(31 downto 0);
+        TriggerModePed: std_logic;
         pedestalTriggerAvg: std_logic_vector(31 downto 0);
 
         

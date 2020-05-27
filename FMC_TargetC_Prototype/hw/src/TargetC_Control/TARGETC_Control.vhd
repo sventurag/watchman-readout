@@ -114,6 +114,8 @@ architecture arch_imp of TC_Control is
     signal TestStream_stm : 	Pulse_State_Type := IDLE;
     signal PSBusy_stm : 		Pulse_State_Type := IDLE;
     signal testfifo_stm:		Pulse_State_Type := IDLE;
+    signal startTriggerModePed_stm:		Pulse_State_Type := IDLE;
+
 
     signal TC_ADDR_s :	std_logic_vector(6 downto 0);
     signal TC_DATA_s:	std_logic_vector(11 downto 0);
@@ -124,7 +126,7 @@ architecture arch_imp of TC_Control is
 	signal TCReg: slv_array(0 to TC_REGISTER_NUMBER);
 	signal Cnt_AXIS_intl: std_logic_vector(9 downto 0);
 	signal WindowStorage_intl : std_logic;
-
+    signal startTriggerModePed_intl: std_logic;
 begin
 	-- I/O Connections assignments
 
@@ -618,7 +620,43 @@ begin
 	--CtrlBus_OxMS.WindowStorage		<= '0' when startstorage_stm = IDLE else '1';
 	WindowStorage_intl		<= '0' when startstorage_stm = IDLE else '1';
 
-	-- --------------------------------------------------------------------------------
+ ----------------------------------------------------------------------------------
+       -- Start Storage Command Start
+       process(AxiBusIn.ARESETN,ClockBus.SSTIN) is
+       begin
+           if (AxiBusIn.ARESETN = '0') then
+               startTriggerModePed_stm <= IDLE;
+           else
+               if (rising_edge(ClockBus.SSTIN)) then
+                   case startTriggerModePed_stm is
+                       when IDLE =>
+                           if ((TCReg(TC_CONTROL_REG) and C_TRIGGER_MODE_PED_MASK) = C_TRIGGER_MODE_PED_MASK) then
+                               startTriggerModePed_stm <= PULSE;
+                           else
+                               startTriggerModePed_stm <= IDLE;
+                           end if;
+                       when PULSE =>
+                           startTriggerModePed_stm <= RESET;
+                       when RESET =>    -- Wait for user PS clear register
+                           if ((TCReg(TC_CONTROL_REG) and C_TRIGGER_MODE_PED_MASK) = C_TRIGGER_MODE_PED_MASK)then
+                               startTriggerModePed_stm <= RESET;
+                           else
+                               startTriggerModePed_stm <= IDLE;
+                           end if;
+                      end case;
+                end if;
+           end if;
+       end process;
+   
+   
+       --CtrlBus_OxMS.WindowStorage        <= '1' when startstorage_stm = PULSE else '0';
+       --CtrlBus_OxMS.WindowStorage        <= '0' when startstorage_stm = IDLE else '1';
+       startTriggerModePed_intl        <= '0' when startTriggerModePed_stm = IDLE else '1';
+   
+       -- --------------------------------------------------------------------------------	
+	
+	
+	
 	-- Acknowledge the read of sample
     process(AxiBusIn.ARESETN,ClockBus.HSCLK) is
     begin
@@ -772,7 +810,23 @@ begin
 			QB(0)	=> 	CtrlBus_OxMS.WindowStorage,
 			ClkA	=> 	AxiBusIn.ACLK,
 			ClkB	=> ClockBus.CLK125MHz
+	
+	
 		);
+		BUF_PEDESTAL_TRIGGER : clkcrossing_buf
+            generic map(
+                NBITS => 1
+            )
+            port map(
+                nrst    =>    '1',
+                DA(0)    =>     startTriggerModePed_intl,
+                QB(0)    =>     CtrlBus_OxMS.TriggerModePed,
+                ClkA    =>     AxiBusIn.ACLK,
+                ClkB    => ClockBus.CLK125MHz
+            );
+            	
+		
+		
 	
 --	SyncBitWINDOWMODE: SyncBit
 --               generic map (
@@ -945,18 +999,6 @@ BUF_TC_Delay_RB : clkcrossing_buf
 			ClkB	=> ClockBus.CLK125MHz
 		);
 
-        BUF_pedestalTrigger : clkcrossing_buf
-                generic map(
-                    NBITS => 32
-                )
-                port map(
-                    nrst    =>    '1',
-                    DA        =>    TCReg(pedestalTrigger),
-                    QB        =>     CtrlBus_OxMS.pedestalTrigger, -- signal to start the pedestalTrigger module
-                    ClkA    =>     AxiBusIn.ACLK,
-                    ClkB    => ClockBus.CLK125MHz
-                );
-                
                 
   BUF_pedestalTriggerAvg : clkcrossing_buf
                 generic map(
@@ -965,7 +1007,7 @@ BUF_TC_Delay_RB : clkcrossing_buf
                 port map(
                     nrst    =>    '1',
                     DA        =>    TCReg(pedestalTriggerAvg),
-                    QB        =>     CtrlBus_OxMS.pedestalTriggerAvg, -- signal to start the pedestalTrigger module
+                    QB        =>     CtrlBus_OxMS.pedestalTriggerAvg, -- number of average for trigger mode pedestals
                     ClkA    =>     AxiBusIn.ACLK,
                     ClkB    => ClockBus.CLK125MHz
                 );

@@ -355,12 +355,23 @@ int command_parser(struct pbuf *p, char* return_buf){
 //				          temp = (float) regVal_one_reg;
 //				       VPED_ANALOG = temp/100;
 
-				   if(DAC_LTC2657_SetChannelVoltage(DAC_VPED, VPED_ANALOG) != XST_SUCCESS){
-					   xil_printf("DAC: setting vped voltage failed!\r\n");
-					   return XST_FAILURE;
+
+
 				   }
-				   	   printf("VPED_ANALOG = %f\n", VPED_ANALOG);
-				   }
+				    else if((regID_one_reg == TC_Delay_RB))
+				  				    {
+				  				    	delay_RB = regVal_one_reg;
+				  						xil_printf("delay_RB = %d\r\n", delay_RB);
+                                        regptr[TC_Delay_RB]= delay_RB;
+				  //								   			         }
+				  //				    else if((regID_one_reg == DAC_VOLTAGE))
+				  //				      {
+				  //				          temp = (float) regVal_one_reg;
+				  //				       VPED_ANALOG = temp/100;
+
+
+
+				  				   }
 
 				    else
 				    {
