@@ -1048,6 +1048,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                  rd_add_i <=   fifo_out_i(12 downto 4);
                  enable_write_i <= '1';
                  twoWindows<='0';
+                  --- MARK AS FIRST WINDOW OF TWO 
                  stm_2windows <= delay2;
            
              when delay2=>
@@ -1070,7 +1071,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                      else
                          rd_add_i <=std_logic_vector(unsigned(fifo_out_i(12 downto 4)) +1); 
                      end if;
-                     
+                 --- MARK AS SECOND WINDOW                     
                      enable_write_i <= '1';
                      stm_2windows <= enable_rd;
                      
@@ -1080,6 +1081,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              when one_window=>
                  rd_add_i <= fifo_out_i(12 downto 4);
                  enable_write_i <= '1';
+                 --- MARK WINDOW CONTAINS A COMPLETE PULSE
                  stm_2windows <= delay3;
              when delay3 =>
                   enable_write_i <= '0';
