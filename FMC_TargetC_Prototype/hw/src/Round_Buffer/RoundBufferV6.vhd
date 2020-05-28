@@ -97,6 +97,7 @@ component circularBuffer is
  -- sstin :           out std_logic;
 --   wr:     out unsigned(8 downto 0);
   enable_write :    out std_logic;
+  TriggerInfo : out std_logic_vector(11 downto 0);
    -- enable_write_fifo :    out std_logic;
 
 --  counter :          out std_logic_vector(2 downto 0);        
@@ -303,7 +304,7 @@ end component CPU_CONTROLLERV3;
 	-- SIGNALS
 	-- -------------------------------------------------------------
 
-	signal TrigInfo_intl:		std_logic_vector(11 downto 0);
+	signal TriggerInfo_i:		std_logic_vector(11 downto 0);
 	signal Bus_intl :			std_logic_vector(10 downto 0);
 	
 
@@ -458,6 +459,7 @@ circBuffer: circularBuffer
   full_fifo   =>      RDAD_Full_s  ,    
   windowStorage=>     CtrlBus_IxSL.WindowStorage,       
   enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
+  TriggerInfo => TriggerInfo_i,
  --   enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
 
   RD_add    =>          RDAD_Data_s ,
@@ -513,7 +515,7 @@ SyncBitNrst: SyncBit
 
 			CPUBus		=> Bus_intl,
 			CPUTime		=> Time_intl,
-			TriggerInfo	=> TrigInfo_intl,
+--			TriggerInfo	=> TrigInfo_intl,
 
 			WR_RS_S			=> WR_RS_S_user,
 			WR_CS_S			=> WR_CS_S_user,
@@ -553,7 +555,7 @@ SyncBitNrst: SyncBit
 
 		CPUBus		=> Bus_intl,
 		CPUTime		=> Time_intl,
-		TriggerInfo	=> TrigInfo_intl,
+		TriggerInfo	=> TriggerInfo_i,
 	--	trigger=>       trigger,
 
 		  -- Control Signals

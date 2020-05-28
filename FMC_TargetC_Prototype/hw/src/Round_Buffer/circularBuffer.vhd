@@ -38,6 +38,7 @@ entity circularBuffer is
   full_fifo :        in std_logic;          
   windowStorage:             in std_logic;
   enable_write :    out std_logic;
+  TriggerInfo :    out std_logic_vector(11 downto 0); 
 --    enable_write_fifo :    out std_logic;
 
   RD_add:           out std_logic_vector(8 downto 0);
@@ -133,6 +134,7 @@ attribute mark_debug of wr_i: signal is "true";
 attribute mark_debug of ptr_window_i: signal is "true";
 attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
+signal window_order : std_logic_vector(1 downto 0);
 begin
   
   ----------------------------------
@@ -1013,6 +1015,8 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
      fifo_rd_en <= '0';
      fifo_out_i <= (others=> '0');
      twoWindows <= '0';
+     window_order <= "00"; -- Default value for window order
+
  else    
      if rising_edge(clk) then 
          case stm_2windows is
@@ -1048,7 +1052,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                  rd_add_i <=   fifo_out_i(12 downto 4);
                  enable_write_i <= '1';
                  twoWindows<='0';
-                  --- MARK AS FIRST WINDOW OF TWO 
+                 window_order <= "01";  -- First window of two
                  stm_2windows <= delay2;
            
              when delay2=>
@@ -1071,7 +1075,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                      else
                          rd_add_i <=std_logic_vector(unsigned(fifo_out_i(12 downto 4)) +1); 
                      end if;
-                 --- MARK AS SECOND WINDOW                     
+                     window_order <= "10"; -- Second window of two
                      enable_write_i <= '1';
                      stm_2windows <= enable_rd;
                      
@@ -1081,7 +1085,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              when one_window=>
                  rd_add_i <= fifo_out_i(12 downto 4);
                  enable_write_i <= '1';
-                 --- MARK WINDOW CONTAINS A COMPLETE PULSE
+                 window_order <= "00"; -- Complete pulse in one window
                  stm_2windows <= delay3;
              when delay3 =>
                   enable_write_i <= '0';
@@ -1093,7 +1097,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  end if;
  end process;
  
- 
+ TriggerInfo <= x"00" & "00" & window_order;
  
  RD_add <= rd_add_i;
 -- For simulation purposes:
