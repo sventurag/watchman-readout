@@ -290,7 +290,7 @@ end component CPU_CONTROLLERV3;
                        trigger : out STD_LOGIC;
                        windowstorage : in STD_LOGIC;
                        pedestals: in std_logic;
-                       average: in std_logic_vector(8 downto 0);
+                       average: in std_logic_vector(31 downto 0);
                        wr_rs:  in std_logic_vector(1 downto 0); -- To synchronize WR and start at window 0
                        sstin : in std_logic_vector(2 downto 0)
                        );

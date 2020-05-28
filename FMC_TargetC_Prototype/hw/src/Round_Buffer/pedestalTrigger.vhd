@@ -30,7 +30,7 @@ entity pedestalTrigger is
            trigger : out STD_LOGIC;
            windowstorage : in STD_LOGIC;
            pedestals: in std_logic;
-           average :  in std_logic_vector(8 downto 0);
+           average :  in std_logic_vector(31 downto 0);
            wr_rs:  in std_logic_vector(1 downto 0); -- To synchronize WR and start at window 0
            sstin : in std_logic_vector(2 downto 0)
            );
@@ -87,7 +87,6 @@ end process p_edge_detector;
 edge_det_i <= reg1  and not (reg2);
 
 p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
-
   begin 
   
  if (rst = '0') or (windowStorage='0') then
@@ -96,7 +95,6 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
       cnt_i <= (others=> '0');
       cnt_intratrigger<= (others=> '0');
       cnt_intratrigger_1<= (others=> '0');
-
       cnt_wait0_i <= (others=> '0');
       cnt_countingLoops_i <= (others=> '0');
       trigger_i<='0';
