@@ -211,7 +211,7 @@ end component circularBuffer;
 		-- Interface to WindowCPU
 		CPUBus:			out	std_logic_vector(10 downto 0);
 		CPUTime:		out	T_Timestamp;
-		TriggerInfo :	out std_logic_vector(11 downto 0);
+	--	TriggerInfo :	out std_logic_vector(11 downto 0);
 
 		WR_RS_S:		out std_logic_vector(1 downto 0);
 		WR_CS_S:		out std_logic_vector(5 downto 0);

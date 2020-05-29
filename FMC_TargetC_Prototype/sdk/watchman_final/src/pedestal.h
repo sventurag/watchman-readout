@@ -23,8 +23,10 @@ int get_windowsRaw(int startWindow, int nmbrofWindows);
 int get_windows(int startWindow, int nmbrofWindows);
 
 int get_15_windows_fct(void);
-int pedestal_triggerMode_init(int avg);
-
+void pedestal_triggerMode_init(int avg);
+void  pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave );
+void divideByAverageNumber(void);
+void sendPedestals( uint32_t pedestalArray[512][16][32] );
 
 
 #endif /* SRC_PEDESTAL_H_ */

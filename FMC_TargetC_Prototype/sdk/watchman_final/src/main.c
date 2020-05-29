@@ -101,6 +101,9 @@ extern int nmbrWindowsPed;
  /** Flag to start pedestal mode pedestal acquisition */
  extern bool pedestalTriggerModeFlag;
 
+ /**number of average for pedestals in trigger mode*/
+ extern int nbr_avg_ped_triggerMode;
+
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Network interface */
@@ -164,6 +167,8 @@ int main()
 
 	/* the mac address of the board. this should be unique per board */
 	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+
+	int cnt_pedestal_windows;
 
 	xil_printf("\n\r\n\r------START------\r\n");
 
@@ -456,12 +461,21 @@ int main()
 				 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
-//							if (pedestalTriggerModeFlag != true){
+							if (pedestalTriggerModeFlag != true){
 							    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
+							}
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-//							else{
-//								pedestalTriggerModeArrays(&(inboundRingManager));
-//							};
+							else{
+								pedestal_triggerMode_getArrays(&(inboundRingManager));
+								cnt_pedestal_windows +=1;
+								if (cnt_pedestal_windows >= nbr_avg_ped_triggerMode*512*2){
+									pedestalTriggerModeFlag = false;
+									cnt_pedestal_windows = 0;
+									xil_printf("end of pedestals\r\n");
+									xil_printf(" Divide by avg and sending pedestals...\r\n");
+									divideByAverageNumber();
+								}
+							};
 
 							Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						     updateInboundCircBuffer();

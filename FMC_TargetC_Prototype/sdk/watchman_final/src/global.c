@@ -96,12 +96,15 @@ int fstWindowValue;
 int nmbrWindows;
 /** Value from the GUI for delay in update WR   */
 int  delay_UpdateWR;
-/** Value of trigger delay for correction of the window number in the circular buffer  */
-int  delay_RB;
+///** Value of trigger delay for correction of the window number in the circular buffer  */
+//int  delay_RB;
 /** Number of iterations for the average in pedestal calculation**/
 int pedestalAvg;
 /** Value from the GUI for the number of windows for pedestal calculation   */
 int nmbrWindowsPed;
+
+/**number of average for pedestals in trigger mode*/
+int nbr_avg_ped_triggerMode;
 
 /* data structure from PL */
 InboundRingManager_t inboundRingManager;
@@ -153,6 +156,7 @@ int init_global_var(void){
 	flag_ttcps_timer = false;
 	flag_scu_timer = false;
 	first_element = (data_list *)malloc(sizeof(data_list));
+	pedestalTriggerModeFlag= false;
 
 
 	if(!first_element){

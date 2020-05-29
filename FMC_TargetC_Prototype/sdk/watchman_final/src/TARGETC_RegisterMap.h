@@ -163,7 +163,7 @@
 	/** @brief  PL Control Mask : PL Running mode, 0=User Mode or 1 = Trigger mode*/
 	#define			CPUMODE_MASK	0x00020000
 /** @brief  PL Control Mask: Start pedestal acquisition in trigger mode. PL starts with rising Edge */
-	#define			C_TRIGGER_MODE_PED	0x00040000
+	#define			C_TRIGGER_MODE_PED_MASK	0x00040000
 
 
 

@@ -17,6 +17,21 @@ extern uint16_t lookup_table[2048];
 extern char* frame_buf;
 /* data structure from PL */
 //extern InboundRingManager_t inboundRingManager;
+
+
+/** @brief Array containing the pedestal correction for every sample, the pedestal values
+ * in trigger Mode follow the way is done with real data to minimize the differences
+ * in data acquisition time for the same window. pedestal_A is for windows that contain the whole pulse
+ * and for the windows that are first of two windows.*/
+
+extern uint32_t  pedestal_A[512][16][32];
+
+/** @brief Array containing the pedestal correction for every sample, the pedestal values
+ * in trigger Mode follow the way is done with real data to minimize the differences
+ * in data acquisition time for the same window. pedestal_B is for windows that are the second ones
+ * in a two-window pulse */
+
+extern uint32_t  pedestal_B[512][16][32];
 /****************************************************************************/
 /**
 * @brief	Correct the data received from the PL side (pedestal subtraction &
@@ -153,10 +168,11 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
  int index;
  data_axi *Data2send = data_to_send -> procPointer;
  uint16_t data_tmp;
- int window, i, j;
+ int window, sample, window_order;
  int offset_avoid_negative = 200;
 
  window = Data2send->wdo_id;
+ window_order = Data2send-> info;
 // xil_printf("windowNumber:%d \r\n",window);
 //	xil_printf(".Pulse...\r\n");
 	index = 0;
@@ -167,17 +183,30 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 
 				//xil_printf("\r\n window = %d\r\n",window);
 		//		for(i=0; i<16; i++){
-					for(j=0; j<32; j++){
+				if  ( (window_order == 0) || (window_order == 1) ){
+					for(sample = 0; sample <32; sample++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t)  (Data2send->data[15][j]-  pedestal[window][15][j]+ offset_avoid_negative);
+						data_tmp = (uint16_t)  (Data2send->data[15][sample]-  pedestal_A[window][15][sample]+ offset_avoid_negative);
+						frame_buf[index++] = (char)data_tmp;
+					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
+
+						frame_buf[index++] = (char)(data_tmp >> 8);
+						//xil_printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
+					}
+				}
+
+				else if (window_order == 2) {
+					for(sample = 0; sample <32; sample++){
+					   data_tmp = (uint16_t)  (Data2send->data[15][sample]-  pedestal_B[window][15][sample]+ offset_avoid_negative);
 
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
 
 						frame_buf[index++] = (char)(data_tmp >> 8);
 						//xil_printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
-
 					}
+				}
+
 
 					//xil_printf("\r\n");
 				//}
