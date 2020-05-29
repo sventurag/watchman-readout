@@ -455,7 +455,7 @@ circBuffer: circularBuffer
     
   clk    =>          ClockBus.CLK125MHz  ,
   RST    =>             nrst,  
-  trigger   =>        trigger_s ,
+  trigger   =>        trigger_intl ,
   full_fifo   =>      RDAD_Full_s  ,    
   windowStorage=>     CtrlBus_IxSL.WindowStorage,       
   enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
