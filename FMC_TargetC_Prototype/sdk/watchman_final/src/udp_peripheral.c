@@ -73,8 +73,7 @@ extern int nmbrWindows;
 
 /** Value from the GUI for delay in update WR   */
 extern int  delay_UpdateWR;
-/** Value of trigger delay for correction of the window number in the circular buffer  */
-extern int  delay_RB;
+
 /** Number of iterations for the average in pedestal calculation**/
 extern int pedestalAvg;
 
@@ -83,6 +82,10 @@ extern int nmbrWindowsPed;
 
 ///** Value from the GUI for voltage value for comparators and vped  */
 //extern int VPED_ANALOG;
+
+///** Flag to start pedestal mode pedestal acquisition */
+//extern bool pedestalTriggerModeFlag;
+
 
 
 /****************************************************************************/
@@ -197,6 +200,8 @@ int command_parser(struct pbuf *p, char* return_buf){
 	int regVal;
 	int regVal_one_reg;
 	int regID_one_reg;
+	int avg;
+	int  delay_RB;
 	//int pedestalNmbrWindows;
 //	int temp;
 
@@ -365,13 +370,14 @@ int command_parser(struct pbuf *p, char* return_buf){
                                         regptr[TC_Delay_RB]= delay_RB;
 				  				   }
 
-				    else if((regID_one_reg == PEDESTAL_TRIGGER))
-
-				  				    {
-
-				  						xil_printf("PEDESTAL_TRIGGER = %d\r\n", regID_one_reg);
-                                        regptr[PEDESTAL_TRIGGER]= regVal_one_reg;
-				  				   }
+//				    else if((regID_one_reg == PEDESTAL_TRIGGER))
+//
+//				  				    {
+//
+//				  						xil_printf("PEDESTAL_TRIGGER = %d\r\n", regID_one_reg);
+//				  						pedestalTriggerModeFlag= true;
+//
+//				  				   }
 				    else if((regID_one_reg == PEDESTAL_TRIGGER_AVG))
 
 				 				  				    {
@@ -406,21 +412,14 @@ int command_parser(struct pbuf *p, char* return_buf){
 						else return -1;
 						break;
 
-			case 10:	// get RAW data
-				if(start + 4 == end){
-						//	xil_printf("Command get_15_windows received\r\n");
-/*
+			case 10:	// Pedestal triggermode
+					if(start + 4 + 3 == end){
 						i = 4;
-						WriteRegister(TC_NBRWINDOW_REG, payload[i]);
-						WriteRegister(TC_FSTWINDOW_REG, payload[i+1]*256+ payload[i+2]);
-						usleep(50);
-
-						nmbrWindows = payload[i];
-						fstWindowValue = payload[i+1]*256 + payload[i+2];
-						xil_printf("%d,%d\r\n",payload[i], payload[i+1]*256 + payload[i+2]);
-						usleep(150);
-*/
-						get_windows_raw_flag = true;
+						//value0 = payload[i];
+						avg = payload[i+1]*256 + payload[i+2];
+						pedestal_triggerMode_init(avg);
+						xil_printf("Starting pedestals in trigger mode\r\n");
+						pedestalTriggerModeFlag= true;
 							return 6;
 						}
 						else return -1;
