@@ -61,7 +61,7 @@ signal cnt_interBuffer_i: std_logic_vector(8 downto 0);
 signal cnt_intratrigger : std_logic_vector(12 downto 0);
 signal cnt_intratrigger_1 : std_logic_vector(12 downto 0);
 
-signal cnt_i : std_logic_vector(6 downto 0);
+signal cnt_i : std_logic_vector(8 downto 0);
 
 
 signal cnt_wait0_i: std_logic_vector(3 downto 0);
@@ -138,22 +138,30 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
                       
               when TRIGGER_LOW_0 =>
 					   trigger_i <= '0';
-					   if cnt_intratrigger <= "1001101111100" then --4988 
-						  cnt_intratrigger <= std_logic_vector(unsigned(cnt_intratrigger) + 1);
+	                   if (cnt_intratrigger > "0000000000000" ) then
+						  cnt_intratrigger <= std_logic_vector(unsigned(cnt_intratrigger) -1 );
 						  stm_trigger <= TRIGGER_LOW_0;
 					   else
-						   cnt_intratrigger <= (others=> '0');
+--						   cnt_intratrigger <= (others=> '0');
 						  stm_trigger <= DECISION_0;
 					   end if;
                
              when DECISION_0 =>
-					   if cnt_i < "1111111" then -- 127
+					   if cnt_i <= "001111111" then -- 127
 						  cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+						  cnt_intratrigger <= "1001101111101";
 						  stm_trigger <= TRIGGER_HIGH_0;
-					   else 
-						  cnt_i<= (others=> '0');
-						  stm_trigger <= WAIT_0;
-					   end if;
+					  else
+					  	  cnt_i<= (others=>'0') ; 
+                          stm_trigger <= WAIT_0;
+					  end if;
+					  
+--					  if  (cnt_i  > "1111111" ) and (cnt_i  > "1111111" )
+--						 cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+--                      stm_trigger <= TRIGGER_HIGH_0;
+--                  else
+--                        cnt_intratrigger <= "1001101111101";
+--                  end if;
                   
               when WAIT_0 =>
 					   if cnt_wait0_i <= "0001" then
