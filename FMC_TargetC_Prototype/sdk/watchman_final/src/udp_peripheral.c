@@ -7,7 +7,7 @@
 
 #include "udp_peripheral.h"
 #include "iic_DAC_LTC2657.h"
-#include "data_analysis.h"
+
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -418,8 +418,8 @@ int command_parser(struct pbuf *p, char* return_buf){
 						//value0 = payload[i];
 						avg = payload[i+1]*256 + payload[i+2];
 						pedestal_triggerMode_init(avg);
-						xil_printf("Starting pedestals in trigger mode\r\n");
-						pedestalTriggerModeFlag= true;
+						xil_printf("Starting pedestals in trigger mode %d\r\n", avg);
+//						pedestalTriggerModeFlag= true;
 							return 6;
 						}
 						else return -1;

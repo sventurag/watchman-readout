@@ -17,7 +17,7 @@
 #include "interrupt.h"
 #include "TARGETC_RegisterMap.h"
 #include "data_analysis.h"
-#include "pedestal.h"
+//#include "pedestal.h"
 
 #if defined (__arm__) || defined (__aarch64__)
 #include "xil_printf.h"

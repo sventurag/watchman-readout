@@ -468,6 +468,7 @@ int main()
 							else{
 								pedestal_triggerMode_getArrays(&(inboundRingManager));
 								cnt_pedestal_windows +=1;
+			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
 								if (cnt_pedestal_windows >= nbr_avg_ped_triggerMode*512*2){
 									pedestalTriggerModeFlag = false;
 									cnt_pedestal_windows = 0;

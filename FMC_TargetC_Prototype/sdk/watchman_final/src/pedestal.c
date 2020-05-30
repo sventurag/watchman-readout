@@ -334,7 +334,7 @@ void pedestal_triggerMode_init(int avg){
 
 int window,channel,sample;
 
-printf("Arrays Initialization\r\n");
+printf("Arrays Initialization Pedestal trigger mode\r\n");
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
@@ -350,9 +350,10 @@ for(window = 0; window< 512; window++ ){
 // Start trigger mode
 
 regptr [PEDESTAL_TRIGGER_AVG]= nbr_avg_ped_triggerMode;
-nbr_avg_ped_triggerMode= avg-1;
-pedestalTriggerModeFlag = true;
 usleep(10);
+nbr_avg_ped_triggerMode= avg+1;
+pedestalTriggerModeFlag = true;\
+usleep(30);
 ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
 
 };
@@ -432,8 +433,8 @@ int window,channel,sample;
 for(window=0; window<512; window++){
 		for(channel=0; channel<16; channel++){
 			for(sample = 0; sample <32;sample++){
-				pedestal_A[window][channel][sample] = pedestal_A[window][channel][sample] /nbr_avg_ped_triggerMode ;
-				pedestal_B[window][channel][sample] = pedestal_A[window][channel][sample] /nbr_avg_ped_triggerMode ;
+				pedestal_A[window][channel][sample] = pedestal_A[window][channel][sample] /(nbr_avg_ped_triggerMode + 1) ;
+				pedestal_B[window][channel][sample] = pedestal_A[window][channel][sample] /(nbr_avg_ped_triggerMode + 1);
 
     		}
     	}
