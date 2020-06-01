@@ -43,12 +43,13 @@ type stm_trigger_type is(
    CNT_START,
    TRIGGER_HIGH_0,
    TRIGGER_LOW_0,
-   DECISION_0,
+ --  DECISION_0,
    WAIT_0,
-   COUNTING_LOOPS,
-   TRIGGER_HIGH_1,
-   TRIGGER_LOW_1,
-   DECISION_1
+   RUN_NUMBER
+--   COUNTING_LOOPS,
+--   TRIGGER_HIGH_1,
+--   TRIGGER_LOW_1,
+--   DECISION_1
 --   CNT_INTRA_BUFFER,
 --   CNT_INTER_BUFFER
    
@@ -70,8 +71,10 @@ signal trigger_i  : std_logic;
 signal reg1: std_logic;
 signal reg2: std_logic;
 signal edge_det_i : std_logic;
-signal cnt_average: std_logic_vector(8 downto 0);
-
+signal cnt_average: std_logic_vector(31 downto 0);
+signal cnt_run: std_logic_vector(1 downto 0);
+signal  wait_number_i: std_logic_vector(3 downto 0);
+signal cnt_minus_one: std_logic_vector(8 downto 0);
 begin
 
 p_edge_detector :  process(clk)
@@ -93,10 +96,13 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
       stm_trigger <= IDLE;
       cnt_start_i <= (others=> '0');
       cnt_i <= (others=> '0');
-      cnt_intratrigger<= (others=> '0');
+      cnt_intratrigger<= "1001101111101";
       cnt_intratrigger_1<= (others=> '0');
       cnt_wait0_i <= (others=> '0');
       cnt_countingLoops_i <= (others=> '0');
+            cnt_run <= (others=> '0');
+            wait_number_i <=  (others=> '0');
+    
       trigger_i<='0';
       cnt_average<= (others =>'0');
   else 
@@ -112,9 +118,10 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
                    end if;
                
                when START =>
-                if cnt_average <=average then
+                if cnt_average <=average then 
                     if (windowStorage = '1') and (sstin="111")  and (wr_rs="00")  then                  
                               stm_trigger <= CNT_START;
+                               cnt_intratrigger<= "1001101111101";
                        else
                               stm_trigger<= START;
                          end if;
@@ -142,79 +149,118 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
 						  cnt_intratrigger <= std_logic_vector(unsigned(cnt_intratrigger) -1 );
 						  stm_trigger <= TRIGGER_LOW_0;
 					   else
---						   cnt_intratrigger <= (others=> '0');
-						  stm_trigger <= DECISION_0;
+						  stm_trigger <= RUN_NUMBER;
 					   end if;
-               
-             when DECISION_0 =>
-					   if cnt_i <= "001111111" then -- 127
-						  cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
-						  cnt_intratrigger <= "1001101111101";
-						  stm_trigger <= TRIGGER_HIGH_0;
-					  else
-					  	  cnt_i<= (others=>'0') ; 
-                          stm_trigger <= WAIT_0;
-					  end if;
-					  
---					  if  (cnt_i  > "1111111" ) and (cnt_i  > "1111111" )
---						 cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
---                      stm_trigger <= TRIGGER_HIGH_0;
---                  else
---                        cnt_intratrigger <= "1001101111101";
---                  end if;
-                  
-              when WAIT_0 =>
-					   if cnt_wait0_i <= "0001" then
-						  cnt_wait0_i <= std_logic_vector(unsigned(cnt_wait0_i) + 1);
-						  stm_trigger<= WAIT_0;   
-					   else                    
-						  stm_trigger <= COUNTING_LOOPS;
-						  cnt_wait0_i<= (others=>'0') ; 
-					   end if;
-              
-              when COUNTING_LOOPS =>
-					   if cnt_countingLoops_i <  "0010" then
-							   cnt_countingLoops_i  <= std_logic_vector(unsigned(cnt_countingLoops_i) + 1);
-							  stm_trigger <= TRIGGER_HIGH_0;
-					   else
-						   		cnt_countingLoops_i <=(others=>'0');
-						   		stm_trigger <= TRIGGER_HIGH_1;
-						        cnt_wait0_i<= (others=>'0') ; 
 
-					   end if;
-              when TRIGGER_HIGH_1 =>           
-                  trigger_i <= '1';
-                  stm_trigger<= TRIGGER_LOW_1;
+      when WAIT_0 =>
+                        if cnt_wait0_i <= wait_number_i  then
+                           cnt_wait0_i <= std_logic_vector(unsigned(cnt_wait0_i) + 1);
+                           stm_trigger<= WAIT_0;   
+                        else                    
+                           stm_trigger <= RUN_NUMBER;
+                           cnt_wait0_i<= (others=>'0') ; 
+                        end if;
+ 
+         when RUN_NUMBER =>
+                        case cnt_run is
+                        when "00" =>
+                                    if (cnt_i < "001111111") then 
+                                       cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+                                       cnt_intratrigger <= "1001101111101";
+                                       stm_trigger <= TRIGGER_HIGH_0;
+                                   else
+                                         cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
+                                       stm_trigger <= WAIT_0;
+                                       cnt_intratrigger <= "1001101111101";
+                                       wait_number_i<="0001";
+                                   end if;					  
+			           when "01" =>         
+                                  if  (cnt_i  < "011111111" ) then
+                                   cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+                                      cnt_intratrigger <= "1001101111101";
+                                      stm_trigger <= TRIGGER_HIGH_0;
+                                  else
+                                     stm_trigger <= WAIT_0;
+                                     cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
+                                     cnt_intratrigger <= "1001110000101";
+                                     wait_number_i<="0001";
+
+                                   end if;
+                      
+                      when "10" =>         
+ 					  if   (cnt_i  < "101111111" ) then
+ 					       cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+                           cnt_intratrigger <= "1001110000101";
+                           stm_trigger <= TRIGGER_HIGH_0;
+                       else
+                          stm_trigger <= WAIT_0;
+                           cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
+                           cnt_intratrigger <= "1001110010101";
+                             wait_number_i<="0001";
+
+                        end if;                      
+                     
+                     when "11" =>         
+                       if   (cnt_i  <"111111111" ) then
+                            cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+                             cnt_intratrigger <= "1001110010101";
+                             stm_trigger <= TRIGGER_HIGH_0;
+                         else
+                           cnt_i<= (others=>'0') ; 
+                            stm_trigger <= START;
+                              cnt_average<=  std_logic_vector(unsigned(cnt_average) + 1);
+                           cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
+
+                          end if;          
+                                      when others =>
+            
+                  end case;
+              
+--              when COUNTING_LOOPS =>
+--					   if cnt_countingLoops_i <  "0010" then
+--							   cnt_countingLoops_i  <= std_logic_vector(unsigned(cnt_countingLoops_i) + 1);
+--							  stm_trigger <= TRIGGER_HIGH_0;
+--					   else
+--						   		cnt_countingLoops_i <=(others=>'0');
+--						   		stm_trigger <= TRIGGER_HIGH_1;
+--						        cnt_wait0_i<= (others=>'0') ; 
+
+--					   end if;
+--              when TRIGGER_HIGH_1 =>           
+--                  trigger_i <= '1';
+--                  stm_trigger<= TRIGGER_LOW_1;
         
-              when TRIGGER_LOW_1 =>
-               trigger_i <= '0';
-               if cnt_intratrigger_1<= "1001110010100" then  -- 5012
-                  cnt_intratrigger_1 <= std_logic_vector(unsigned(cnt_intratrigger_1) + 1);
-                  stm_trigger <= TRIGGER_LOW_1;
-               else 
-                  cnt_intratrigger_1 <= (others=>'0');
-                  stm_trigger <= DECISION_1;
-               end if;
+--              when TRIGGER_LOW_1 =>
+--               trigger_i <= '0';
+--               if cnt_intratrigger_1<= "1001110010100" then  -- 5012
+--                  cnt_intratrigger_1 <= std_logic_vector(unsigned(cnt_intratrigger_1) + 1);
+--                  stm_trigger <= TRIGGER_LOW_1;
+--               else 
+--                  cnt_intratrigger_1 <= (others=>'0');
+--                  stm_trigger <= DECISION_1;
+--               end if;
                
-               when DECISION_1 =>
-               trigger_i<= '0';
-              if cnt_i < "1111111" then -- 127
-               cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
-                      stm_trigger <= TRIGGER_HIGH_1;
-              else
-                   cnt_i <= (others=>'0'); 
-                   cnt_average <= std_logic_vector(unsigned(cnt_average) + 1);                     
-                       stm_trigger <= START;
+--               when DECISION_1 =>
+--               trigger_i<= '0';
+--              if cnt_i < "1111111" then -- 127
+--               cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
+--                      stm_trigger <= TRIGGER_HIGH_1;
+--              else
+--                   cnt_i <= (others=>'0'); 
+--                   cnt_average <= std_logic_vector(unsigned(cnt_average) + 1);                     
+--                       stm_trigger <= START;
                        
                        
-               end if;
+  --             end if;
          end case;     
               
      end if;
 end if;
           
 end process;
-         
+
+
+
 trigger<= trigger_i;
 
 end Behavioral;
