@@ -74,7 +74,6 @@ signal edge_det_i : std_logic;
 signal cnt_average: std_logic_vector(31 downto 0);
 signal cnt_run: std_logic_vector(1 downto 0);
 signal  wait_number_i: std_logic_vector(3 downto 0);
-signal cnt_minus_one: std_logic_vector(8 downto 0);
 begin
 
 p_edge_detector :  process(clk)
@@ -89,7 +88,7 @@ end process p_edge_detector;
 
 edge_det_i <= reg1  and not (reg2);
 
-p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
+p_sm:  process(clk,rst, windowStorage,sstin,pedestals, cnt_run)
   begin 
   
  if (rst = '0') or (windowStorage='0') then
@@ -212,46 +211,9 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals)
                            cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
 
                           end if;          
-                                      when others =>
             
                   end case;
-              
---              when COUNTING_LOOPS =>
---					   if cnt_countingLoops_i <  "0010" then
---							   cnt_countingLoops_i  <= std_logic_vector(unsigned(cnt_countingLoops_i) + 1);
---							  stm_trigger <= TRIGGER_HIGH_0;
---					   else
---						   		cnt_countingLoops_i <=(others=>'0');
---						   		stm_trigger <= TRIGGER_HIGH_1;
---						        cnt_wait0_i<= (others=>'0') ; 
 
---					   end if;
---              when TRIGGER_HIGH_1 =>           
---                  trigger_i <= '1';
---                  stm_trigger<= TRIGGER_LOW_1;
-        
---              when TRIGGER_LOW_1 =>
---               trigger_i <= '0';
---               if cnt_intratrigger_1<= "1001110010100" then  -- 5012
---                  cnt_intratrigger_1 <= std_logic_vector(unsigned(cnt_intratrigger_1) + 1);
---                  stm_trigger <= TRIGGER_LOW_1;
---               else 
---                  cnt_intratrigger_1 <= (others=>'0');
---                  stm_trigger <= DECISION_1;
---               end if;
-               
---               when DECISION_1 =>
---               trigger_i<= '0';
---              if cnt_i < "1111111" then -- 127
---               cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
---                      stm_trigger <= TRIGGER_HIGH_1;
---              else
---                   cnt_i <= (others=>'0'); 
---                   cnt_average <= std_logic_vector(unsigned(cnt_average) + 1);                     
---                       stm_trigger <= START;
-                       
-                       
-  --             end if;
          end case;     
               
      end if;
