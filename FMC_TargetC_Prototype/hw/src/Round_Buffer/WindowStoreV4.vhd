@@ -107,7 +107,21 @@ COMPONENT axi_time_fifo_64W_32D
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
-COMPONENT axi_trig_afifo_12W_32D
+--COMPONENT axi_trig_afifo_12W_32D
+--  PORT (
+--    wr_clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
+--    din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+--    wr_en : IN STD_LOGIC;
+--    rd_en : IN STD_LOGIC;
+--    dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+--    full : OUT STD_LOGIC;
+--    empty : OUT STD_LOGIC
+--  );
+--END COMPONENT;
+        
+        
+        COMPONENT AXI_TRIG_AFIFO
   PORT (
     wr_clk : IN STD_LOGIC;
     rd_clk : IN STD_LOGIC;
@@ -119,7 +133,6 @@ COMPONENT axi_trig_afifo_12W_32D
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
-        
 --COMPONENT trig_fifo_3W_16D
 --  PORT (
 --    wr_clk : IN STD_LOGIC;
@@ -429,7 +442,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 
 -- Trigger info  for FIFO_TrigInfo in FIFO MANAGER
     
-    AXI_Trig_AFIFO :  axi_trig_afifo_12W_32D
+    AXI_Trig_AFIFO_inst :  AXI_TRIG_AFIFO
     port map (
 
      dout => AXI_TrigInfo_DataOut,
