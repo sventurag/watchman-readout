@@ -168,7 +168,7 @@ int main()
 	/* the mac address of the board. this should be unique per board */
 	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
 
-	int cnt_pedestal_windows;
+	int cnt_pedestal_windows =0;
 
 	xil_printf("\n\r\n\r------START------\r\n");
 
@@ -445,7 +445,8 @@ int main()
 				usleep(100);
 				clearInboundBuffer();
 				usleep(100);
-
+				// INIT PEDESTALS
+				pedestal_triggerMode_init();
 			///	PrintInboundRingStatus(inboundRingManager);
 				usleep(100);
 
@@ -469,7 +470,7 @@ int main()
 								pedestal_triggerMode_getArrays(&(inboundRingManager));
 								cnt_pedestal_windows +=1;
 			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
-								if (cnt_pedestal_windows >= nbr_avg_ped_triggerMode*512*2){
+								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512){
 									pedestalTriggerModeFlag = false;
 									cnt_pedestal_windows = 0;
 									xil_printf("end of pedestals\r\n");

@@ -330,7 +330,7 @@ for (window=0; window< 3; window++){
 */
 
 
-void pedestal_triggerMode_init(int avg){
+void pedestal_triggerMode_init(void){
 
 int window,channel,sample;
 
@@ -349,12 +349,10 @@ for(window = 0; window< 512; window++ ){
 
 // Start trigger mode
 
-regptr [PEDESTAL_TRIGGER_AVG]= nbr_avg_ped_triggerMode;
-usleep(10);
-nbr_avg_ped_triggerMode= avg+1;
-pedestalTriggerModeFlag = true;\
-usleep(30);
-ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
+//usleep(10);
+//pedestalTriggerModeFlag = true;
+//usleep(30);
+//ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
 
 };
 
@@ -385,7 +383,7 @@ window_order = Data2save -> info;
 
 
  if ( (window_order == 0) || (window_order == 1) ){
-	xil_printf("window, window_order: %d, %d\r\n", window, window_order);
+	xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 	 	for(sample = 0; sample< 32; sample++ ){
 	 		pedestal_A[window][channel][sample] += (uint16_t)  (Data2save->data[channel][sample]);
@@ -394,7 +392,7 @@ window_order = Data2save -> info;
  }
 
 else if ( window_order == 2 ) {
-	xil_printf("window, window_order: %d, %d\r\n", window, window_order);
+	xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			pedestal_B[window][channel][sample] += (uint16_t)  (Data2save->data[channel][sample]);

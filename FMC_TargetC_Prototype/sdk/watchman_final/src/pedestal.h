@@ -15,6 +15,7 @@
 #include "TARGETC_RegisterMap.h"
 #include "file_hm.h"
 #include "xscuwdt.h"
+//#include "udp_peripheral.h"
 
 /*** Function prototypes *********************************************/
 int init_pedestals(void);
@@ -23,8 +24,8 @@ int get_windowsRaw(int startWindow, int nmbrofWindows);
 int get_windows(int startWindow, int nmbrofWindows);
 
 int get_15_windows_fct(void);
-void pedestal_triggerMode_init(int avg);
-void  pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave );
+void pedestal_triggerMode_init(void);
+void pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave );
 void divideByAverageNumber(void);
 void sendPedestals( uint32_t pedestalArray[512][16][32] );
 

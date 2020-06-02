@@ -86,6 +86,10 @@ extern int nmbrWindowsPed;
 ///** Flag to start pedestal mode pedestal acquisition */
 //extern bool pedestalTriggerModeFlag;
 
+/**number of average for pedestals in trigger mode*/
+extern int nbr_avg_ped_triggerMode;
+/** Flag to start pedestal mode pedestal acquisition */
+extern bool pedestalTriggerModeFlag;
 
 
 /****************************************************************************/
@@ -417,7 +421,14 @@ int command_parser(struct pbuf *p, char* return_buf){
 						i = 4;
 						//value0 = payload[i];
 						avg = payload[i+1]*256 + payload[i+2];
-						pedestal_triggerMode_init(avg);
+					//	pedestal_triggerMode_init(avg);
+						regptr [PEDESTAL_TRIGGER_AVG]= avg;
+						nbr_avg_ped_triggerMode= avg;
+						usleep(10);
+						pedestalTriggerModeFlag = true;
+						usleep(30);
+						ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
+					//	pedestalTriggerModeFlag = true;
 						xil_printf("Starting pedestals in trigger mode %d\r\n", avg);
 //						pedestalTriggerModeFlag= true;
 							return 6;
