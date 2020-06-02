@@ -463,18 +463,24 @@ int main()
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
 							if (pedestalTriggerModeFlag != true){
-							    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
+			//				    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
+								xil_printf("SUCEDIO UN PUTO INTERRUPT\r\n");
 							}
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
 							else{
 								pedestal_triggerMode_getArrays(&(inboundRingManager));
 								cnt_pedestal_windows +=1;
+
 			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
-								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512){
-									pedestalTriggerModeFlag = false;
+								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512*4){
 									cnt_pedestal_windows = 0;
 									xil_printf("end of pedestals\r\n");
+									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
+
 									xil_printf(" Divide by avg and sending pedestals...\r\n");
+
+									disable_interrupts();
+
 									divideByAverageNumber();
 								}
 							};
