@@ -84,7 +84,7 @@ triggerMode()
 
 time.sleep(2)
 
-pedestalTriggerMode(10)
+pedestalTriggerMode(1)
 
 #softTrigger()
 #####

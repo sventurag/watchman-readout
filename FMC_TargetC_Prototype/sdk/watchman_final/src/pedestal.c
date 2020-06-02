@@ -330,7 +330,7 @@ for (window=0; window< 3; window++){
 */
 
 
-void pedestal_triggerMode_init(int avg){
+void pedestal_triggerMode_init(void){
 
 int window,channel,sample;
 
@@ -349,12 +349,10 @@ for(window = 0; window< 512; window++ ){
 
 // Start trigger mode
 
-regptr [PEDESTAL_TRIGGER_AVG]= nbr_avg_ped_triggerMode;
-usleep(10);
-nbr_avg_ped_triggerMode= avg+1;
-pedestalTriggerModeFlag = true;\
-usleep(30);
-ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
+//usleep(10);
+//pedestalTriggerModeFlag = true;
+//usleep(30);
+//ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
 
 };
 
@@ -385,7 +383,7 @@ window_order = Data2save -> info;
 
 
  if ( (window_order == 0) || (window_order == 1) ){
-	xil_printf("window, window_order: %d, %d\r\n", window, window_order);
+	xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 	 	for(sample = 0; sample< 32; sample++ ){
 	 		pedestal_A[window][channel][sample] += (uint16_t)  (Data2save->data[channel][sample]);
@@ -394,7 +392,7 @@ window_order = Data2save -> info;
  }
 
 else if ( window_order == 2 ) {
-	xil_printf("window, window_order: %d, %d\r\n", window, window_order);
+	xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			pedestal_B[window][channel][sample] += (uint16_t)  (Data2save->data[channel][sample]);
@@ -428,22 +426,49 @@ else {
 
 void divideByAverageNumber(void){
 
-int window,channel,sample;
+int window,channel,sample, tempA, tempB;
+
+xil_printf("avg %d\r\n", nbr_avg_ped_triggerMode);
+
+//for(window=0; window<512; window++){
+//		for(channel=0; channel<16; channel++){
+//			for(sample = 0; sample <32;sample++){
+//				tempA = pedestal_A[window][channel][sample];
+//				tempB = pedestal_B[window][channel][sample];
+//				xil_printf("tempB, %d \r\n", tempB);
+////				pedestal_A[window][channel][sample] = tempA/(nbr_avg_ped_triggerMode + 1) ;
+////				pedestal_B[window][channel][sample] = tempB/(nbr_avg_ped_triggerMode + 1);
+//
+//    		}
+//    	}
+//    };
 
 for(window=0; window<512; window++){
 		for(channel=0; channel<16; channel++){
 			for(sample = 0; sample <32;sample++){
-				pedestal_A[window][channel][sample] = pedestal_A[window][channel][sample] /(nbr_avg_ped_triggerMode + 1) ;
-				pedestal_B[window][channel][sample] = pedestal_A[window][channel][sample] /(nbr_avg_ped_triggerMode + 1);
+				tempA = pedestal_A[window][channel][sample];
+				tempB = pedestal_B[window][channel][sample];
+				pedestal_A[window][channel][sample] = (uint32_t)(tempA/(nbr_avg_ped_triggerMode + 1) );
+				pedestal_B[window][channel][sample] = (uint32_t)(tempB/(nbr_avg_ped_triggerMode + 1) );
+              //  xil_printf("pedestal_B, %d \r\n", tempB);
 
     		}
+
     	}
-    };
+
+
+};
+
+xil_printf("division finished \r\n");
+
 sendPedestals(pedestal_A);
+xil_printf("pedestalA sent \r\n");
+usleep(10000);
 sendPedestals(pedestal_B);
 xil_printf("Pedestal transmission finished\r\n");
-
-
+cleanup_interrupts(false);
+enable_interrupts();
+pedestalTriggerModeFlag = false;
 }
 
 
@@ -465,15 +490,23 @@ void sendPedestals( uint32_t pedestalArray[512][16][32] ){
 uint16_t data_tmp;
 int window,channel,sample, index;
 
-index = 0;
-
-frame_buf[index++] = 0x55;
-frame_buf[index++] = 0xAA;
+//xil_printf("starting transmission \r\n");
 
 for(window=0; window<512; window++){
-	frame_buf[index++] = (char)window;
-	frame_buf[index++] = (char)(window >> 8);
+	xil_printf("%d \r\n", window);
+//	usleep(1000000)
+data_tmp = 0;
+channel=0;
+sample=0;
+index = 0;
+frame_buf[index++] = 0x55;
+frame_buf[index++] = 0xAA;
+frame_buf[index++] = (char)window;
+frame_buf[index++] = (char)(window >> 8);
+
 		for(channel=0; channel<16; channel++){
+//			xil_printf("channel %d \r\n", channel);
+//			usleep(1000);
 			for(sample = 0; sample <32;sample++){
 				data_tmp = (uint16_t)pedestalArray[window][channel][sample];
 
@@ -483,75 +516,14 @@ for(window=0; window<512; window++){
 			   frame_buf[index++] = (char)(data_tmp >> 8);
 									//xil_printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
 			}
-
+}
 			frame_buf[index++] = 0x33;
 				//    xil_printf("Test\r\n");
 					frame_buf[index++] = 0xCC;
 				//	xil_printf("%d\r\n", index);
 					transfer_data(frame_buf, index);
-		}
-}
-}
-//		for(sample = 0; sample< 32; sample++ ){
-//			pedestal[window][channel][sample] = 0;
-//		//	usleep(10);
-//		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
-//
-//	}
-//}
-//};
-//
-//
-//printf("Getting data");
-//
-//for (i=0; i<avg; i++ ){
-//	for(j=0; j<512; j+=nmbrofWindows){
-//
-//         if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
-//             else { printf("get Windows raw failed\r\n");
-//    //     usleep(300);
-//         }
-//
-//	}
-//  //  printf("avg %d of  %d\r\n", i, avg);
-//
-//};
-//// Average
-//
-//	 for(window=0; window<512; window++){
-//			for(channel=0; channel<16; channel++){
-//				for(sample = 0; sample <32;sample++){
-//					pedestal[window][channel][sample] = data_raw[window][channel][sample] /avg ;
-//
-//	     		}
-//	     	}
-//	     };
-//
-//for (window=0; window< 3; window++){
-//	 for(sample = 0; sample <32;sample++){
-//	 	printf("%d\r\n",data_raw[window][2][sample]);
-//	 }
-//	 for(sample = 0; sample <32;sample++){
-//	 	printf("%d\r\n",pedestal[window][2][sample]);
-//	 }
-//};
-//
-//// Test
-//
-//	for(k=0; k<512; k+=nmbrofWindows){
-//
-//         if (get_windows(k,nmbrofWindows)== XST_SUCCESS);
-//             else { printf("get Windows raw failed\r\n");
-//         usleep(300);
-//         }
-//	};
-//
-//
-//
-//
-//	 return XST_SUCCESS;
-//
-//
-//}
 
+}
+//usleep(1000);
+};
 
