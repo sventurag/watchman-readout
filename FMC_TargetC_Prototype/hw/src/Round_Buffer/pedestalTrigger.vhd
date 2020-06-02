@@ -131,7 +131,7 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals, cnt_run)
         
                      
               when CNT_START =>
-                	   if cnt_start_i <  "000000011" then
+                	   if cnt_start_i <  "000000100" then
                    		   	cnt_start_i <= std_logic_vector(unsigned(cnt_start_i) + 1);
            	  	     	   stm_trigger <= CNT_START;           
                  	  else 
@@ -211,7 +211,7 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals, cnt_run)
                            cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
 
                           end if;          
-            
+                  when others=> null;
                   end case;
 
          end case;     
