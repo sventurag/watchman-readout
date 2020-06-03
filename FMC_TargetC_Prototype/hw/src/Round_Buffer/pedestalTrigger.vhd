@@ -73,7 +73,7 @@ signal edge_det_i : std_logic;
 signal cnt_average: std_logic_vector(31 downto 0);
 signal cnt_run: std_logic_vector(1 downto 0);
 signal  wait_number_i: std_logic_vector(3 downto 0);
-signal cnt_between_runs_i:  std_logic_vector(23 downto 0);
+signal cnt_between_runs_i:  std_logic_vector(26 downto 0);
 begin
 
 p_edge_detector :  process(clk)
@@ -116,7 +116,7 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals, cnt_run)
                    end if;
                
                when START =>
-               if cnt_between_runs_i < x"4FFFFF" then
+               if cnt_between_runs_i < x"3FFFFF" then
                      cnt_between_runs_i <= std_logic_vector(unsigned(cnt_between_runs_i) + 1);
                        stm_trigger<= START;
                else
