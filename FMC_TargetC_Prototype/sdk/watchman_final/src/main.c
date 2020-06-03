@@ -337,7 +337,8 @@ int main()
 */
 	//get_pedestal(100,4);
 	flag_while_loop = true;
-
+	pedestal_triggerMode_init();
+	usleep(100);
 	printf("Start while loop\r\n");
 	while (run_flag){
 		/* Simulate a infinity loop to trigger the watchdog  */
@@ -446,7 +447,7 @@ int main()
 				clearInboundBuffer();
 				usleep(100);
 				// INIT PEDESTALS
-				pedestal_triggerMode_init();
+
 			///	PrintInboundRingStatus(inboundRingManager);
 				usleep(100);
 
@@ -463,25 +464,28 @@ int main()
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
 							if (pedestalTriggerModeFlag != true){
-			//				    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
-								xil_printf("SUCEDIO UN PUTO INTERRUPT\r\n");
+							    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
+							//	xil_printf("SUCEDIO UN INTERRUPT\r\n");
 							}
 						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
 							else{
 								pedestal_triggerMode_getArrays(&(inboundRingManager));
 								cnt_pedestal_windows +=1;
+								xil_printf(" %d, ", cnt_pedestal_windows);
 
 			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
-								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512*4){
+								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512*2){
 									cnt_pedestal_windows = 0;
 									xil_printf("end of pedestals\r\n");
 									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
-
+									pedestalTriggerModeFlag = false;
 									xil_printf(" Divide by avg and sending pedestals...\r\n");
 
-									disable_interrupts();
+//									disable_interrupts();
 
 									divideByAverageNumber();
+									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
+
 								}
 							};
 

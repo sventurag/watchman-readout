@@ -83,9 +83,12 @@ uint32_t  pedestal_B[512][16][32];
 
 /** Flag to start pedestal mode pedestal acquisition */
 volatile bool pedestalTriggerModeFlag;
-
 /** @brief Array containing raw data of the whole array */
 uint32_t  data_raw[512][16][32];
+/** @brief Array containing raw data of the whole array */
+uint32_t  data_rawA[512][16][32];
+/** @brief Array containing raw data of the whole array */
+uint32_t  data_rawB[512][16][32];
 
 /** @brief Lookup table to correct the transfer function */
 uint16_t lookup_table[2048];
