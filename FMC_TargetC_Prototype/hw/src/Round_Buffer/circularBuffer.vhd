@@ -97,7 +97,7 @@ signal ptr_window_inter: std_logic_vector(8 downto 0);
 signal long_pulse_rst: std_logic;
 type stmachine_comp is ( A, B, C, D);
 
-type stmachine_2windows is (retrieve,enable_rd, delay, decide, one_window, two_windowsA, delay2,  two_windowsB, delay3,delay4);
+type stmachine_2windows is (retrieve,enable_rd, delay, decide, one_window, two_windowsA, delay2,  two_windowsB, delay3,delay4, delay_comp1, delay_comp2);
 signal stm_2windows : stmachine_2windows:= enable_rd;
 signal enable_write_i: std_logic;
 signal cnt_wr_en : std_logic_vector(3 downto 0);
@@ -1090,8 +1090,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              when delay3 =>
                   enable_write_i <= '0';
                   fifo_rd_en <= '0';
+                  stm_2windows <= delay_comp1;
+             when delay_comp1 => 
+                  stm_2windows <= delay_comp2;
+             when delay_comp2 =>
                   stm_2windows <= enable_rd;
- 
+                  
             end case;
      end if;
  end if;
