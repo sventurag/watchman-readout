@@ -31,6 +31,12 @@ extern XScuWdt WdtScuInstance;
  * in data acquisition time for the same window. pedestal_A is for windows that contain the whole pulse
  * and for the windows that are first of two windows.*/
 
+/** @brief Array containing raw data of the whole array */
+extern uint32_t  data_rawA[512][16][32];
+/** @brief Array containing raw data of the whole array */
+extern uint32_t  data_rawB[512][16][32];
+
+
 extern uint32_t  pedestal_A[512][16][32];
 
 /** @brief Array containing the pedestal correction for every sample, the pedestal values
@@ -347,6 +353,28 @@ for(window = 0; window< 512; window++ ){
 }
 }
 
+for(window = 0; window< 512; window++ ){
+	for(channel = 0; channel< 16; channel++ ){
+		for(sample = 0; sample< 32; sample++ ){
+			data_rawA[window][channel][sample] = 0;
+            usleep(10);
+	//		printf("%d\r\n", data_raw[window][channel][sample]);
+
+	}
+}
+};
+
+for(window = 0; window< 512; window++ ){
+	for(channel = 0; channel< 16; channel++ ){
+		for(sample = 0; sample< 32; sample++ ){
+			data_rawB[window][channel][sample] = 0;
+            usleep(10);
+	//		printf("%d\r\n", data_raw[window][channel][sample]);
+
+	}
+}
+};
+
 // Start trigger mode
 
 //usleep(10);
@@ -383,19 +411,19 @@ window_order = Data2save -> info;
 
 
  if ( (window_order == 0) || (window_order == 1) ){
-	xil_printf("%d, %d\r\n", window, window_order);
+	//xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 	 	for(sample = 0; sample< 32; sample++ ){
-	 		pedestal_A[window][channel][sample] += (uint16_t)  (Data2save->data[channel][sample]);
+	 		data_rawA[window][channel][sample] +=  Data2save->data[channel][sample];
 	 	}
 	 }
  }
 
 else if ( window_order == 2 ) {
-	xil_printf("%d, %d\r\n", window, window_order);
+	//xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
-			pedestal_B[window][channel][sample] += (uint16_t)  (Data2save->data[channel][sample]);
+			data_rawB[window][channel][sample] +=   Data2save->data[channel][sample];
 		}
 	 }
 }
@@ -426,7 +454,7 @@ else {
 
 void divideByAverageNumber(void){
 
-int window,channel,sample, tempA, tempB;
+int window,channel,sample;
 
 xil_printf("avg %d\r\n", nbr_avg_ped_triggerMode);
 
@@ -446,10 +474,8 @@ xil_printf("avg %d\r\n", nbr_avg_ped_triggerMode);
 for(window=0; window<512; window++){
 		for(channel=0; channel<16; channel++){
 			for(sample = 0; sample <32;sample++){
-				tempA = pedestal_A[window][channel][sample];
-				tempB = pedestal_B[window][channel][sample];
-				pedestal_A[window][channel][sample] = (uint32_t)(tempA/(nbr_avg_ped_triggerMode + 1) );
-				pedestal_B[window][channel][sample] = (uint32_t)(tempB/(nbr_avg_ped_triggerMode + 1) );
+				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
+				pedestal_B[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
               //  xil_printf("pedestal_B, %d \r\n", tempB);
 
     		}
@@ -466,9 +492,9 @@ xil_printf("pedestalA sent \r\n");
 usleep(10000);
 sendPedestals(pedestal_B);
 xil_printf("Pedestal transmission finished\r\n");
-cleanup_interrupts(false);
-enable_interrupts();
-pedestalTriggerModeFlag = false;
+//cleanup_interrupts(false);
+//enable_interrupts();
+
 }
 
 
@@ -493,7 +519,7 @@ int window,channel,sample, index;
 //xil_printf("starting transmission \r\n");
 
 for(window=0; window<512; window++){
-	xil_printf("%d \r\n", window);
+//	xil_printf("%d \r\n", window);
 //	usleep(1000000)
 data_tmp = 0;
 channel=0;

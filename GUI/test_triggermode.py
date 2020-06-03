@@ -82,9 +82,27 @@ time.sleep(2)
 
 triggerMode()
 
-time.sleep(2)
+time.sleep(5)
 
-pedestalTriggerMode(1)
+pedestalTriggerMode(39)
+
+time.sleep(10)
+
+triggerMode()
+
+
+time.sleep(5)
+triggerMode()
+time.sleep(5)
+
+#  freq, amp, offset
+wave_gen().apply(1000,0.16,0)
+time.sleep(5)
+
+wave_gen().Query()
+time.sleep(5)
+
+wave_gen().Output1(out=True)  
 
 #softTrigger()
 #####
