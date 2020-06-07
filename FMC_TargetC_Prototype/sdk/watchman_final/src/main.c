@@ -471,7 +471,7 @@ int main()
 							else{
 								pedestal_triggerMode_getArrays(&(inboundRingManager));
 								cnt_pedestal_windows +=1;
-								xil_printf(" %d, ", cnt_pedestal_windows);
+	//							xil_printf(" %d, ", cnt_pedestal_windows);
 
 			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
 								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512*2){
@@ -523,7 +523,7 @@ int main()
 
 
 
-
+				ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
 				stream_flag= FALSE;
 				XTime_GetTime(&tEnd);
 				usleep(100);
