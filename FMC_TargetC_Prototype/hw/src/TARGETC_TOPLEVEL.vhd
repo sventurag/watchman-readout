@@ -657,7 +657,7 @@ begin
 	Port map(
 		--RST 	=> CtrlBusOut_intl.SW_nRST,
 
-		DISCH_PERIOD	=> x"0000",
+		DISCH_PERIOD	=> x"0064",
 		INCR_WAIT_PERIOD => x"0000",
 
 		ClockBus	=> ClockBus_intl,
