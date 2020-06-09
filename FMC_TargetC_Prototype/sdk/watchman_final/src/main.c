@@ -456,11 +456,13 @@ int main()
 			     usleep(100);
 				 ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
 			     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-
-				usleep(100);
+					usleep(100);
+			     xil_printf(" pendingCountBefore: %d \r\n",inboundRingManager.pendingCount);
+			     usleep(100);
 				printf("after inboundRingManager print, starting while loop \r\n");
 				 usleep(100);
-				 XTime_GetTime(&tStart);
+
+			//	 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
 							if (pedestalTriggerModeFlag != true){
@@ -474,18 +476,20 @@ int main()
 	//							xil_printf(" %d, ", cnt_pedestal_windows);
 
 			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
-								if (cnt_pedestal_windows >= (nbr_avg_ped_triggerMode+1)*512*2){
+								if (cnt_pedestal_windows >= ((nbr_avg_ped_triggerMode+1)*512*2)){
+									xil_printf("cnt_pedestal_windows %d,\r\n", cnt_pedestal_windows);
 									cnt_pedestal_windows = 0;
 									xil_printf("end of pedestals\r\n");
 									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
-									pedestalTriggerModeFlag = false;
+
 									xil_printf(" Divide by avg and sending pedestals...\r\n");
 
 //									disable_interrupts();
 
 									divideByAverageNumber();
 									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
-
+									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
+									pedestalTriggerModeFlag = false;
 								}
 							};
 
@@ -523,13 +527,13 @@ int main()
 
 
 
-				ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
 				stream_flag= FALSE;
-				XTime_GetTime(&tEnd);
+			//	XTime_GetTime(&tEnd);
 				usleep(100);
 				printf("leaving trigger mode\r\n");
 			    xil_printf("p %d \r\n", (uint16_t)(inboundRingManager.processedCount));
-				printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
+				xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
+			//	printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
 				state_main = IDLE;
 
 

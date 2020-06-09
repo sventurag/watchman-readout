@@ -88,19 +88,19 @@ triggerMode()
 
 time.sleep(1)
 
-avgNmbr=5
+avgNmbr=10
 pedestalTriggerMode(avgNmbr)
-sec2wait= int(avgNmbr*0.31 +4)
+sec2wait= int(avgNmbr*0.31 +5)
 
 time.sleep(sec2wait)
 
-triggerMode()
+#triggerMode()
 
 
-time.sleep(5)
-triggerMode()
-time.sleep(1)
-pedestalFlat(1)
+#time.sleep(5)
+#triggerMode()
+#time.sleep(1)
+pedestalFlat(0)
 
 #  freq, amp, offset
 #wave_gen().apply(1000,0.1,0)

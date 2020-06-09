@@ -187,6 +187,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 					for(sample = 0; sample <32; sample++){
 						/* Pedestal subtraction */
 						data_tmp = (uint16_t)  (Data2send->data[15][sample]-  pedestal_A[window][15][sample]+ offset_avoid_negative);
+//						data_tmp = (uint16_t)  (Data2send->data[15][sample]); //-  pedestal_A[window][15][sample]+ offset_avoid_negative);
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
 
@@ -198,6 +199,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				else if (window_order == 2) {
 					for(sample = 0; sample <32; sample++){
 					   data_tmp = (uint16_t)  (Data2send->data[15][sample]-  pedestal_B[window][15][sample]+ offset_avoid_negative);
+//					   data_tmp = (uint16_t)  (Data2send->data[15][sample]);  //-  pedestal_B[window][15][sample]+ offset_avoid_negative);
 
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
