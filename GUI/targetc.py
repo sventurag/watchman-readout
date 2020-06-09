@@ -32,7 +32,7 @@ class targetc():
 ##     List of all the commands
 ##     Flag which indicates if the streaming is running
         self.flag_transfer_done = False
-        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'pedestalTriggerMode', 'restartAll', 'stopStream']
+        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'pedestalTriggerMode', 'restartAll', 'flat_pedestal']
         self.stream_flag = False
         ## Flag which indicates that the user want to close the GUI (to avoid problem when accessing graphical object after "WM_DELETE_WINDOW" event)
         self.destroy_flag = False 
@@ -106,7 +106,7 @@ class targetc():
     #           payload.append(int(numb / 256))
     #           payload.append(int(numb % 256))
     #         #  print(int(numb / 256))
-    #         #  print(int(numb % 256))
+    #         #  print(int(n
        if(self.cmd[comando] == 'restartAll'): # restart main()
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
@@ -135,7 +135,16 @@ class targetc():
            payload.append(param2) # number of windows
            payload.append(int("0x33", 0)) # frame's end code 0x33CC
            payload.append(int("0xCC", 0))
+
        if(self.cmd[comando] == 'pedestalTriggerMode'): # start pedestals in trigger mode, the trigger mode should started a priori
+                                                
+           payload.append(param1) # NOT USED
+           payload.append(int(param2 / 256)) # number of Pedestal average
+           payload.append(int(param2 % 256))
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
+      
+       if(self.cmd[comando] == 'flat_pedestal'): # start pedestals in trigger mode, the trigger mode should started a priori
                                                 
            payload.append(param1) # NOT USED
            payload.append(int(param2 / 256)) # number of Pedestal average

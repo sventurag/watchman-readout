@@ -446,14 +446,25 @@ int command_parser(struct pbuf *p, char* return_buf){
 						else return -1;
 						break;
 
-			case 12:	// error watchdog asked
-				if(start + 4 == end){
-					xil_printf("Command err_watchdog received\r\n");
-					simul_err_watchdog_flag = true;
-					return 6;
-				}
-				else return -1;
-				break;
+			case 12:	// flat pedestals
+				if(start + 4 + 3 == end){
+					i = 4;
+					//value0 = payload[i];
+					avg = payload[i+1]*256 + payload[i+2];
+				//	pedestal_triggerMode_init(avg);
+					regptr [PEDESTAL_TRIGGER_AVG]= avg;
+					nbr_avg_ped_triggerMode= avg;
+					usleep(10);
+				//	pedestalTriggerModeFlag = true;
+				//	usleep(30);
+					ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
+				//	pedestalTriggerModeFlag = true;
+					xil_printf("Starting flat pedestals in trigger mode %d\r\n", avg);
+//						pedestalTriggerModeFlag= true;
+						return 6;
+					}
+					else return -1;
+					break;
 			case 13:	// error function problem asked
 				if(start + 4 == end){
 					xil_printf("Command err_function_prob received\r\n");

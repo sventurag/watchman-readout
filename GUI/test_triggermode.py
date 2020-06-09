@@ -50,6 +50,10 @@ def softTrigger():
 def pedestalTriggerMode(avg):
     tc.send_command(10,0,avg)
     time.sleep(1)
+
+def pedestalFlat(avg):
+    tc.send_command(12,0,avg)
+    time.sleep(1)
 #restart()
 
 #import subprocess
@@ -61,7 +65,7 @@ def pedestalTriggerMode(avg):
 #time.sleep(15)
 #
 #print("conf waveform generator")
-#wave_gen().loadHz(1000)
+wave_gen().loadHz(75)
 #
 #wave_gen().pulseWidth(12e-9)
 #time.sleep(1)
@@ -82,27 +86,30 @@ time.sleep(2)
 
 triggerMode()
 
-time.sleep(5)
+time.sleep(1)
 
-pedestalTriggerMode(39)
+avgNmbr=10
+pedestalTriggerMode(avgNmbr)
+sec2wait= int(avgNmbr*0.31 +5)
 
-time.sleep(10)
+time.sleep(sec2wait)
 
-triggerMode()
+#triggerMode()
 
 
-time.sleep(5)
-triggerMode()
-time.sleep(5)
+#time.sleep(5)
+#triggerMode()
+#time.sleep(1)
+pedestalFlat(0)
 
 #  freq, amp, offset
-wave_gen().apply(1000,0.16,0)
-time.sleep(5)
+#wave_gen().apply(1000,0.1,0)
+#time.sleep(5)
 
-wave_gen().Query()
-time.sleep(5)
+#wave_gen().Query()
+#time.sleep(5)
 
-wave_gen().Output1(out=True)  
+#wave_gen().Output1(out=True)  
 
 #softTrigger()
 #####
