@@ -40,6 +40,7 @@ architecture Behavioral of pedestalTrigger is
 type stm_trigger_type is(
    IDLE,
    START,
+    WAIT_FOR_NEXT_RUN,
    CNT_START,
    TRIGGER_HIGH_0,
    TRIGGER_LOW_0,
@@ -116,31 +117,26 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals, cnt_run)
                    end if;
                
                when START =>
-               if cnt_between_runs_i < x"3FFFFF" then
-                     cnt_between_runs_i <= std_logic_vector(unsigned(cnt_between_runs_i) + 1);
-                       stm_trigger<= START;
-               else
-                      
-                        if cnt_average <=average then 
+ --                       if cnt_average <=average then 
                             if (windowStorage = '1') and (sstin="111")  and (wr_rs="00")  then                  
                                       stm_trigger <= CNT_START;
                                        cnt_intratrigger<= "10011011111101";
-                                          cnt_between_runs_i<= (others=> '0');
-                               else
+  --                                        cnt_between_runs_i<= (others=> '0');
+                              else
                                       stm_trigger<= START;
                                  end if;
-                         else
-                                cnt_start_i <= (others=> '0');
-                                 stm_trigger<= IDLE;
-                          end if;       
-                end if;
-                     
+--                         else
+  --                              cnt_start_i <= (others=> '0');
+  --                                 cnt_average<= (others =>'0');
+  --                               stm_trigger<= IDLE;
+  --                        end if;       
+
               when CNT_START =>
                 	   if cnt_start_i <  "000000100" then
                    		   	cnt_start_i <= std_logic_vector(unsigned(cnt_start_i) + 1);
            	  	     	   stm_trigger <= CNT_START;           
                  	  else 
-                   		   cnt_start_i <= "000000000";
+                           cnt_start_i <= (others=> '0');
                    		   stm_trigger <= TRIGGER_HIGH_0;
           			 end if;
               when TRIGGER_HIGH_0 =>           
@@ -211,13 +207,32 @@ p_sm:  process(clk,rst, windowStorage,sstin,pedestals, cnt_run)
                              stm_trigger <= TRIGGER_HIGH_0;
                          else
                            cnt_i<= (others=>'0') ; 
-                            stm_trigger <= START;
-                              cnt_average<=  std_logic_vector(unsigned(cnt_average) + 1);
+                            stm_trigger <=WAIT_FOR_NEXT_RUN ;
+                            cnt_average<=  std_logic_vector(unsigned(cnt_average) + 1);
                            cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
+                         end if;
+                         
+                       when others=> null;
+                         end case; 
+                         
+                          when   WAIT_FOR_NEXT_RUN =>  
+                          
+                              if cnt_between_runs_i < x"3FFFFF" then
+                                    cnt_between_runs_i <= std_logic_vector(unsigned(cnt_between_runs_i) + 1);
+                                      stm_trigger<= WAIT_FOR_NEXT_RUN;
+                              else
+                                       if cnt_average <=average then 
+                                             stm_trigger <= START;
+                                             cnt_between_runs_i <=(others=>'0');
+                                              cnt_start_i <= (others=> '0');
 
-                          end if;          
-                  when others=> null;
-                  end case;
+                                       else
+                                               cnt_start_i <= (others=> '0');
+                                               cnt_average<=(others=> '0');
+                                               cnt_between_runs_i <=(others=>'0');
+                                               stm_trigger<=IDLE;
+                                         end if;          
+                                end if;
 
          end case;     
               
