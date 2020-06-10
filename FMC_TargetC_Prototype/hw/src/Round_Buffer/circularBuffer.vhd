@@ -25,7 +25,7 @@
 library ieee;
 use ieee.std_logic_1164.all;
  use ieee.numeric_std.all;
- use work.TARGETC_pkg.all; --not used in simulations
+-- use work.TARGETC_pkg.all; --not used in simulations
 
 entity circularBuffer is
 
@@ -36,17 +36,15 @@ entity circularBuffer is
   RST :             in  std_logic;  
   trigger :         in std_logic;
   full_fifo :        in std_logic;          
-  windowStorage:             in std_logic;
+  mode:             in std_logic;
   enable_write :    out std_logic;
-  TriggerInfo :    out std_logic_vector(11 downto 0); 
---    enable_write_fifo :    out std_logic;
-
+  TriggerInfo :    out std_logic_vector(11 downto 0);
   RD_add:           out std_logic_vector(8 downto 0);
---  RD_add_fifo:   out std_logic_vector(8 downto 0);
   WR_RS:            out std_logic_vector(1 downto 0);
   WR_CS:            out std_logic_vector(5 downto 0);
   delay_trigger:    in std_logic_vector(3 downto 0);
-  Timestamp:        in T_timestamp  -- not used in simulations
+   sstin:                in std_logic_vector(2 downto 0)
+  
   -- Control Signal
  --  CtrlBus_IxSL:    in     T_CtrlBus_IxSL
    
@@ -159,11 +157,11 @@ begin
   -- window2read could be modified to get the right window according to the trigger delay
   ----------------------------------
  
- p_sm:  process(clk,RST, windowStorage,trigger_intl, full_fifo,Timestamp.samplecnt)
+ p_sm:  process(clk,RST, mode,trigger_intl, full_fifo,sstin)
 variable flag_number_v: std_logic_vector(3 downto 0);
 variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
   begin 
- if (RST = '0') or (windowStorage='0') then
+ if (RST = '0') or (mode='0') then
       stm_circularBuffer <= start;
       ptr_window_i  <= (others=> '0');
       window2read <= (others=> '0');
@@ -180,8 +178,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        if rising_edge(clk) then
        case stm_circularBuffer is
        when start =>
-            if (windowStorage = '1') and (Timestamp.samplecnt="011") then
-          --  if (windowStorage = '1') and (counter_i="011") then
+            if (mode = '1') and (sstin="011")  then
  
                 stm_circularBuffer <= hit0;
             else
