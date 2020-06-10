@@ -116,7 +116,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                                  end if;
 
               when CNT_START =>
-                	   if cnt_start_i <  "000001111" then  -- This synchronization is different for sim and implementation
+                	   if cnt_start_i <  "000001110" then  -- This synchronization is different for sim and implementation
                    		   	cnt_start_i <= std_logic_vector(unsigned(cnt_start_i) + 1);
            	  	     	   stm_trigger <= CNT_START;           
                  	  else 

@@ -18,7 +18,7 @@ entity WindowStoreV4 is
 	CPUBus:			in 	std_logic_vector(10 downto 0);
 	CPUTime:		in	T_timestamp;
 	TriggerInfo:	in 	std_logic_vector(11 downto 0);
-	trigger:        in  std_logic_vector(3 downto 0);
+	--trigger:        in  std_logic_vector(3 downto 0);
 
 	
     -- Control Signals

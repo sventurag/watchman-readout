@@ -466,38 +466,70 @@ int main()
 			//	 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
-							if (pedestalTriggerModeFlag != true){
-							    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
-							//	xil_printf("SUCEDIO UN INTERRUPT\r\n");
-							}
-						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-							else{
+                          if (pedestalTriggerModeFlag == true) {
+								if (cnt_pedestal_windows < 1023){
 								pedestal_triggerMode_getArrays(&(inboundRingManager));
-								cnt_pedestal_windows +=1;
-	//							xil_printf(" %d, ", cnt_pedestal_windows);
+									cnt_pedestal_windows +=1;
 
-			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
-								if (cnt_pedestal_windows >= ((nbr_avg_ped_triggerMode+1)*512*2)){
-									xil_printf("cnt_pedestal_windows %d,\r\n", cnt_pedestal_windows);
-									cnt_pedestal_windows = 0;
-								//	xil_printf("end of pedestals\r\n");
-				//					xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
-                                    cnt_avg_number += 1;
-
-//									disable_interrupts();
-
-									//divideByAverageNumber();
-									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
-									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
-									pedestalTriggerModeFlag = false;
-									if (cnt_avg_number >= 50){
-										divideByAverageNumber();
-										xil_printf(" Divide by avg and sending pedestals...\r\n");
-
-
-									}
 								}
-							};
+								else if (cnt_pedestal_windows==1023) {
+									pedestal_triggerMode_getArrays(&(inboundRingManager));
+									cnt_pedestal_windows = 0;
+									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
+
+
+									 if (cnt_avg_number < 49)  {
+										 cnt_avg_number += 1;
+										 xil_printf("%d\r\n", cnt_avg_number);
+									 }
+
+									 else if (cnt_avg_number == 49){
+										 usleep(500);
+										 cnt_avg_number = 0;
+										 divideByAverageNumber();
+									PrintInboundRingStatus(inboundRingManager);
+
+									 }
+
+								}
+                          }
+                          else {
+                                   udp_transfer_WM( &(inboundRingManager));
+
+                          }
+					//		if (pedestalTriggerModeFlag != true){
+		//					    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
+							//	xil_printf("SUCEDIO UN INTERRUPT\r\n");
+		//					}
+						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+//							else{
+//
+//
+//			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
+//								if (cnt_pedestal_windows >= 1024){
+//									cnt_pedestal_windows = 0;
+//                                    cnt_avg_number += 1;
+//									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
+//									xil_printf("%d\r\n",cnt_avg_number);
+//									if (cnt_avg_number >= 50){
+//										divideByAverageNumber();
+//										xil_printf(" Divide by avg and sending pedestals...\r\n");
+//	                                    cnt_avg_number =0;
+//										xil_printf("%d\r\n",cnt_avg_number);
+//
+//
+//									}
+//									else {
+//										pedestal_triggerMode_getArrays(&(inboundRingManager));
+//										cnt_pedestal_windows +=1;
+//
+//									}
+//			//							xil_printf(" %d, ", cnt_pedestal_windows);
+//
+//								}
+//
+//
+//							}
 
 							Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						     updateInboundCircBuffer();
@@ -538,7 +570,7 @@ int main()
 				usleep(100);
 				printf("leaving trigger mode\r\n");
 			    xil_printf("p %d \r\n", (uint16_t)(inboundRingManager.processedCount));
-				xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
+				PrintInboundRingStatus(inboundRingManager);
 			//	printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
 				state_main = IDLE;
 

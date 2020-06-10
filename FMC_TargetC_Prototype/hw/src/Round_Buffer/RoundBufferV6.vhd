@@ -92,7 +92,7 @@ component circularBuffer is
   RST :             in  std_logic;  
   trigger :         in std_logic;
   full_fifo :        in std_logic;          
-   windowStorage:     in std_logic; 
+   mode:     in std_logic; 
  -- ptr_window :      out std_logic_vector(8 downto 0);
  -- sstin :           out std_logic;
 --   wr:     out unsigned(8 downto 0);
@@ -110,7 +110,7 @@ component circularBuffer is
 
   WR_CS:            out std_logic_vector(5 downto 0);
   delay_trigger:    in std_logic_vector(3 downto 0);
-    Timestamp:        in T_timestamp
+    sstin :        in std_logic_vector(2 downto 0)
 
   
 
@@ -289,7 +289,7 @@ end component CPU_CONTROLLERV3;
                         clk : in STD_LOGIC;
                        rst : in STD_LOGIC;
                        trigger : out STD_LOGIC;
-                       windowstorage : in STD_LOGIC;
+                       mode : in STD_LOGIC;
                        pedestals: in std_logic;
                        average: in std_logic_vector(31 downto 0);
                        wr_rs:  in std_logic_vector(1 downto 0); -- To synchronize WR and start at window 0
@@ -457,7 +457,7 @@ circBuffer: circularBuffer
   RST    =>             nrst,  
   trigger   =>        trigger_intl ,
   full_fifo   =>      RDAD_Full_s  ,    
-  windowStorage=>     CtrlBus_IxSL.WindowStorage,       
+  mode =>     CtrlBus_IxSL.WindowStorage,       
   enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
   TriggerInfo => TriggerInfo_i,
  --   enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
@@ -468,7 +468,7 @@ circBuffer: circularBuffer
   WR_RS    =>           WR_RS_S_trig,
   WR_CS   =>            WR_CS_S_trig,
   delay_trigger => delay_trigger_intl,
-  Timestamp=>         Timestamp
+  sstin =>         Timestamp.samplecnt
  -- ptr_window   =>         ,
   -- sstin =>           out std_logic,
  --   wr=>     out unsigned(8 downto 0);
@@ -602,7 +602,7 @@ SyncBitNrst: SyncBit
                 clk => ClockBus.CLK125MHz,
                rst => nrst ,
                trigger => trigger_ped,
-               windowstorage => CtrlBus_IxSL.WindowStorage,
+               mode => CtrlBus_IxSL.WindowStorage,
                pedestals =>CtrlBus_IxSL.TriggerModePed,
                average => CtrlBus_IxSL.pedestalTriggerAvg,
                wr_rs =>  WR_RS_S_trig, -- To synchronize WR and start at window 0

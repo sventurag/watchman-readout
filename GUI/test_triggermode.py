@@ -65,7 +65,7 @@ def pedestalFlat(avg):
 #time.sleep(15)
 #
 #print("conf waveform generator")
-wave_gen().loadHz(75)
+#wave_gen().loadHz(75)
 #
 #wave_gen().pulseWidth(12e-9)
 #time.sleep(1)
@@ -82,24 +82,26 @@ wave_gen().Output1(out=False)
 ##setFreq(10000)
 
 setDelay(7)
-time.sleep(5)
+time.sleep(1)
 #time.sleep(2)
 
 triggerMode()
 
-time.sleep(1)
+time.sleep(6)
 
 
 
-avgNmbr=0
-sec2wait= int(avgNmbr*0.31 +5)
+avgNmbr=50
 
-for i in range(0,50,1):
-    pedestalTriggerMode(avgNmbr)
-    time.sleep(sec2wait)
+pedestalTriggerMode(avgNmbr)
+sec2wait= int(avgNmbr*0.31 +10)
 
-
-time.sleep(5)
+#for i in range(0,50,1):
+#    pedestalTriggerMode(avgNmbr)
+#    print(i)
+#    time.sleep(sec2wait)
+#
+time.sleep(25)
 
 pedestalFlat(0)
 

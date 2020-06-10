@@ -429,7 +429,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 						usleep(30);
 						ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
 					//	pedestalTriggerModeFlag = true;
-						xil_printf("Starting pedestals in trigger mode %d\r\n", avg);
+					//	xil_printf("Starting pedestals in trigger mode %d\r\n", avg);
 //						pedestalTriggerModeFlag= true;
 							return 6;
 						}
