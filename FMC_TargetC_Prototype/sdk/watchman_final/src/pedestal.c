@@ -474,9 +474,12 @@ xil_printf("avg %d\r\n", nbr_avg_ped_triggerMode);
 for(window=0; window<512; window++){
 		for(channel=0; channel<16; channel++){
 			for(sample = 0; sample <32;sample++){
-				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
-				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
-              //  xil_printf("pedestal_B, %d \r\n", tempB);
+//				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
+//				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
+				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(50) ;
+				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(50) ;
+
+				//  xil_printf("pedestal_B, %d \r\n", tempB);
 
     		}
 

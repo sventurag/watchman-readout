@@ -154,6 +154,7 @@ int main()
 //    int window;
 //	uint16_t data_tmp, data_tmp2;
 //	int Windows_triggerMode;
+    int cnt_avg_number=0;
 
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
@@ -479,17 +480,22 @@ int main()
 								if (cnt_pedestal_windows >= ((nbr_avg_ped_triggerMode+1)*512*2)){
 									xil_printf("cnt_pedestal_windows %d,\r\n", cnt_pedestal_windows);
 									cnt_pedestal_windows = 0;
-									xil_printf("end of pedestals\r\n");
-									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
-
-									xil_printf(" Divide by avg and sending pedestals...\r\n");
+								//	xil_printf("end of pedestals\r\n");
+				//					xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
+                                    cnt_avg_number += 1;
 
 //									disable_interrupts();
 
-									divideByAverageNumber();
+									//divideByAverageNumber();
 									xil_printf(" inboundRingManager.pendingCount: %d \r\n",inboundRingManager.pendingCount);
 									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
 									pedestalTriggerModeFlag = false;
+									if (cnt_avg_number >= 50){
+										divideByAverageNumber();
+										xil_printf(" Divide by avg and sending pedestals...\r\n");
+
+
+									}
 								}
 							};
 

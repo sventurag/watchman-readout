@@ -80,26 +80,27 @@ wave_gen().loadHz(75)
 wave_gen().Output1(out=False)  
 #time.sleep(2)#
 ##setFreq(10000)
+
 setDelay(7)
-#time.sleep(5)
-time.sleep(2)
+time.sleep(5)
+#time.sleep(2)
 
 triggerMode()
 
 time.sleep(1)
 
-avgNmbr=10
-pedestalTriggerMode(avgNmbr)
+
+
+avgNmbr=0
 sec2wait= int(avgNmbr*0.31 +5)
 
-time.sleep(sec2wait)
+for i in range(0,50,1):
+    pedestalTriggerMode(avgNmbr)
+    time.sleep(sec2wait)
 
-#triggerMode()
 
+time.sleep(5)
 
-#time.sleep(5)
-#triggerMode()
-#time.sleep(1)
 pedestalFlat(0)
 
 #  freq, amp, offset
