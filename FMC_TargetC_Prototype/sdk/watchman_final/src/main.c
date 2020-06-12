@@ -486,8 +486,9 @@ int main()
 									 else if (cnt_avg_number == 49){
 										 usleep(500);
 										 cnt_avg_number = 0;
+										 PrintInboundRingStatus(inboundRingManager);
 										 divideByAverageNumber();
-									PrintInboundRingStatus(inboundRingManager);
+
 
 									 }
 
