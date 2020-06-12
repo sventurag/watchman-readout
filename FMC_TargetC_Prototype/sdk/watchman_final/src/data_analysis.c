@@ -1,5 +1,5 @@
 /**
- * @file 	features_extraction.c
+ * @file 	data_analysis.c
  * @author	Anthony Schluchin
  * @date	28th November 2018
  * @version 0.0

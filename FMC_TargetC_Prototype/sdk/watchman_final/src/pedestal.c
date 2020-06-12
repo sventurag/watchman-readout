@@ -411,7 +411,7 @@ window_order = Data2save -> info;
 
 
  if ( (window_order == 0) || (window_order == 1) ){
-	//xil_printf("%d, %d\r\n", window, window_order);
+//	xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 	 	for(sample = 0; sample< 32; sample++ ){
 	 		data_rawA[window][channel][sample] +=  Data2save->data[channel][sample];
@@ -420,7 +420,6 @@ window_order = Data2save -> info;
  }
 
 else if ( window_order == 2 ) {
-	//xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_rawB[window][channel][sample] +=   Data2save->data[channel][sample];
@@ -431,7 +430,6 @@ else if ( window_order == 2 ) {
 else {
 			xil_printf("Wrong window_order Value: %d, %d\r\n", window, window_order);
      }
-
 
 
  };
@@ -487,11 +485,12 @@ for(window=0; window<512; window++){
 
 
 };
+pedestalTriggerModeFlag = false;
 
 xil_printf("division finished \r\n");
-
+//usleep(10000);
 //sendPedestals(pedestal_A);
-//xil_printf("pedestalA sent \r\n");
+////xil_printf("pedestalA sent \r\n");
 //usleep(10000);
 //sendPedestals(pedestal_B);
 //xil_printf("Pedestal transmission finished\r\n");

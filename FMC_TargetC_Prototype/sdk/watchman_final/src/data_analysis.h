@@ -1,12 +1,12 @@
 /**
- * @file 	features_extraction.h
+ * @file 	data_analysis.h
  * @author	Anthony Schluchin
  * @date	28th November 2018
  * @version 0.0
  */
 
-#ifndef SRC_FEATURES_EXTRACTION_H_
-#define SRC_FEATURES_EXTRACTION_H_
+#ifndef SRC_DATA_ANALYSIS_H_
+#define SRC_DATA_ANALYSIS_H_
 
 #include <math.h>
 #include <stdbool.h>

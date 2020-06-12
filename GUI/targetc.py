@@ -121,7 +121,7 @@ class targetc():
 
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-          print("stream command sent")
+ #         print("stream command sent")
        if(self.cmd[comando] == 'write_register'): # if the command is write register, add the register's value
                                                 
            payload.append(param1) # regID

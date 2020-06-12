@@ -46,7 +46,7 @@ def restart():
 def softTrigger():
     wave_gen().softTrigger()
  #   time.sleep(1)
-wave_gen().Output1(out=True)
+#wave_gen().Output1(out=True)
 #time.sleep(1)
 restart()
 
