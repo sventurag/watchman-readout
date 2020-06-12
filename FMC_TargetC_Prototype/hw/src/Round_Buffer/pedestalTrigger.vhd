@@ -4,11 +4,11 @@
 -- 
 -- Create Date: 05/20/2020 10:02:21 PM
 -- Design Name:  
--- Module Name: pedestalTrigger - Behavioral
+-- Module Name: pedestalTrigger 
 -- Project Name: WATCHMAN
 -- Target Devices: MicroZed board
 -- Tool Versions: 
--- Description:  Trigger signal to get pedestal arrays
+-- Description:  Trigger signal to get pedestal arrays for the TARGETC in trigger mode.
 -- 
 -- Dependencies: 
 -- 
@@ -50,7 +50,7 @@ type stm_trigger_type is(
 );
 
 signal stm_trigger : stm_trigger_type := IDLE;
-signal cnt_period : std_logic_vector(13 downto 0); -- Counter to set a period between trigger rising edges
+signal cnt_period : std_logic_vector(14 downto 0); -- Counter to set a period between trigger rising edges
 signal cnt_i : std_logic_vector(8 downto 0); -- Counter for triggers, the total number will be 512 for the four Runs, that means 1024 digitized windows 
 signal cnt_wait0_i: std_logic_vector(3 downto 0); -- Wait between Runs 
 signal trigger_i  : std_logic;  
@@ -82,7 +82,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
  if (rst = '0') or (mode='0') then
       stm_trigger <= IDLE;
       cnt_i <= (others=> '0');
-      cnt_period<= "10011011111101";  -- 9981. This is for  a freq~12.5 kHz, 1/ (9981*8ns). Due to RoundBuffer design, this number may vary few cycles for different Runs. 
+      cnt_period<= "100110111111101";  -- . This is for  a freq~12.5 kHz, 1/ (9981*8ns). Due to RoundBuffer design, this number may vary few cycles for different Runs. 
       cnt_wait0_i <= (others=> '0');
             cnt_run <= (others=> '0');
             wait_number_i <=  (others=> '0');
@@ -96,16 +96,16 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
               when IDLE =>
                    if ( edge_det_i= '1')   then 
                        cnt_iterations<= (others =>'0');    
-                        first_trigger_flag <='1';             
                        stm_trigger <= START;
                    else
                        stm_trigger<= IDLE;
                    end if;
                
                when START => -- Synchronization state to catch WR and SSTIN
-                            if  (sstin="011")  and (wr_rs="00")  then          -- Sin        
-                                       cnt_period<= "10011011111101";
+                            if  (sstin="011")  and (wr_rs="00")  then          --         
+                                       cnt_period<= "100110111111101";
                                        wait_number_i <= "1110" ;  -- This number is different for sim and implementation due to delays for WR in multiplexer between USER and TRIGGER MODE.
+                                       first_trigger_flag <='1';             
                                        stm_trigger <= WAIT_0;
                               else
                                       stm_trigger<= START;
@@ -113,14 +113,16 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
       when WAIT_0 =>
                            if cnt_wait0_i <= wait_number_i  then
                                   cnt_wait0_i <= std_logic_vector(unsigned(cnt_wait0_i) + 1);
+                                  stm_trigger<= WAIT_0;
                              else
                                     if first_trigger_flag ='0' then 
-                                           stm_trigger<= WAIT_0;
-                                           stm_trigger <= RUN_NUMBER;
                                            cnt_wait0_i<= (others=>'0') ; 
+                                           stm_trigger <= RUN_NUMBER;
                                     else 
-                                            stm_trigger <= TRIGGER_HIGH_0;
                                             first_trigger_flag <= '0';   
+                                            cnt_wait0_i<= (others=>'0') ; 
+                                           stm_trigger <= TRIGGER_HIGH_0;
+
                                     end if;         
                                                
 
@@ -145,23 +147,23 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                         when "00" =>  -- First RUN over the storage array  windows: [ 0,1, 4, 5 ...]
                                     if (cnt_i < "001111111") then    -- First run ends after 128 triggers (one trigger per subBuffer, every subBuffer has 4 windows)
                                        cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
-                                       cnt_period <= "10011011111101"; -- 9981 
+                                       cnt_period <= "100110111111101"; --  
                                        stm_trigger <= TRIGGER_HIGH_0;
                                    else
                                          cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
                                        stm_trigger <= WAIT_0;
-                                       cnt_period <= "10011011111101"; -- 9981 
+                                       cnt_period <= "100110111111101"; --  
                                        wait_number_i<="0001";
                                    end if;					  
 			           when "01" =>           -- Second RUN over the storage array, windows:  [1,2, 5, 6...]
                                   if  (cnt_i  < "011111111" ) then   -- Second  run ends after 256 triggers
                                      cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
-                                      cnt_period <= "10011011111101";  -- 9981 
+                                      cnt_period <= "100110111111101";  --  
                                       stm_trigger <= TRIGGER_HIGH_0;
                                   else
                                      stm_trigger <= WAIT_0;
                                      cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
-                                     cnt_period <= "10011011110101"; --9973
+                                     cnt_period <= "100110111111101"; --
                                      wait_number_i<="0001";
 
                                    end if;
@@ -169,12 +171,12 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                       when "10" =>           -- Third  RUN over the storage array, windows:  [2,3,6,7...]
                           if   (cnt_i  < "101111111" ) then  -- Second  run ends after 384  triggers
                               cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
-                               cnt_period <= "10011011110101";--9973
+                               cnt_period <= "100110111110101";--
                                stm_trigger <= TRIGGER_HIGH_0;
                        else
                               stm_trigger <= WAIT_0;
                                cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
-                               cnt_period <= "10011011110101";--9973
+                               cnt_period <= "100110111110101";--
                                  wait_number_i<="0001";
 
                         end if;                      
@@ -182,7 +184,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                      when "11" =>     --     Fourth  RUN over the storage array, windows:  [3,0,7,4,11,8...]
                            if   (cnt_i  <"111111111" ) then  -- Second  run ends after 511  triggers
                                  cnt_i <= std_logic_vector(unsigned(cnt_i) + 1);
-                                 cnt_period <= "10011011110101";--9973
+                                 cnt_period <= "100110111110101";--9973
                                  stm_trigger <= TRIGGER_HIGH_0;
                              else
                                cnt_i<= (others=>'0') ; 
@@ -195,21 +197,19 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                          end case; 
                          
                           when   NEXT_ITERATION =>  -- Wait between averages
-                          
-                              if cnt_wait_iterations < x"0000010" then -- x"3FFFFF" 
-                                    cnt_wait_iterations <= std_logic_vector(unsigned(cnt_wait_iterations) + 1);
-                                      stm_trigger<= NEXT_ITERATION;
-                              else
-                                       if cnt_iterations <=average then 
-                                          stm_trigger <= START;
-                                          cnt_wait_iterations <=(others=>'0');
+                                if cnt_iterations <=average then 
+                                      if cnt_wait_iterations < x"0989680" then -- 5e6
+                                            cnt_wait_iterations <= std_logic_vector(unsigned(cnt_wait_iterations) + 1);
+                                             stm_trigger<= NEXT_ITERATION;
+                                      else 
+                                              stm_trigger <= START;
+                                              cnt_wait_iterations <=(others=>'0'); 
+                                      end if;
+                                else
+                                     cnt_wait_iterations <=(others=>'0');
+                                     stm_trigger<=IDLE;                                
 
-                                      else
-                                           cnt_iterations<=(others=> '0');
-                                           cnt_wait_iterations <=(others=>'0');
-                                           stm_trigger<=IDLE;
                                      end if;          
-                                end if;
 
          end case;     
               
