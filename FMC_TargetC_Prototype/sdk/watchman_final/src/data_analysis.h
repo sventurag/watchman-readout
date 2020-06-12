@@ -128,6 +128,7 @@ typedef struct {
 	u16 writeLocation;
 	// Pointer where next packet should be processed
 	data_axi *procPointer;
+
 	u16 procLocation;
 	// First/last allowed pointers that can be used
 	data_axi *firstAllowedPointer;
