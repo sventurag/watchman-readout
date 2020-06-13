@@ -546,7 +546,7 @@ int main()
 				PrintInboundRingStatus(inboundRingManager);
 			//	printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
 				state_main = IDLE;
-
+				clearInboundBuffer();
 
 				break;
 			case GET_TRANSFER_FCT:

@@ -130,6 +130,8 @@ attribute mark_debug of WR_CS: signal is "true";
 attribute mark_debug of WR_RS: signal is "true";
 attribute mark_debug of wr_i: signal is "true";
 attribute mark_debug of ptr_window_i: signal is "true";
+attribute mark_debug of delay_flag: signal is "true";
+
 attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
 signal window_order : std_logic_vector(1 downto 0);
