@@ -466,71 +466,43 @@ int main()
 			//	 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
-                          if (pedestalTriggerModeFlag == true) {
-								if (cnt_pedestal_windows < 1023){
-								pedestal_triggerMode_getArrays(&(inboundRingManager));
-									cnt_pedestal_windows +=1;
-
-								}
-								else if (cnt_pedestal_windows==1023) {
-									pedestal_triggerMode_getArrays(&(inboundRingManager));
-									cnt_pedestal_windows = 0;
-									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
-
-
-									 if (cnt_avg_number < 49)  {
-										 cnt_avg_number += 1;
-										 xil_printf("%d\r\n", cnt_avg_number);
-									 }
-
-									 else if (cnt_avg_number == 49){
-										 usleep(500);
-										 cnt_avg_number = 0;
-										 PrintInboundRingStatus(inboundRingManager);
-										 divideByAverageNumber();
-
-
-									 }
-
-								}
-                          }
-                          else {
-                                   udp_transfer_WM( &(inboundRingManager));
-
-                          }
-					//		if (pedestalTriggerModeFlag != true){
-		//					    udp_transfer_WM( &(inboundRingManager));  //Last argument is "process as pedestal"
-							//	xil_printf("SUCEDIO UN INTERRUPT\r\n");
-		//					}
-						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-//							else{
+//                          if (pedestalTriggerModeFlag == true) {
 //
 //
-//			//					xil_printf("cnt_pedestal %d", cnt_pedestal_windows);
-//								if (cnt_pedestal_windows >= 1024){
-//									cnt_pedestal_windows = 0;
-//                                    cnt_avg_number += 1;
-//									ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,DISABLE);
-//									xil_printf("%d\r\n",cnt_avg_number);
-//									if (cnt_avg_number >= 50){
-//										divideByAverageNumber();
-//										xil_printf(" Divide by avg and sending pedestals...\r\n");
-//	                                    cnt_avg_number =0;
-//										xil_printf("%d\r\n",cnt_avg_number);
-//
-//
-//									}
-//									else {
-//										pedestal_triggerMode_getArrays(&(inboundRingManager));
-//										cnt_pedestal_windows +=1;
-//
-//									}
-//			//							xil_printf(" %d, ", cnt_pedestal_windows);
+//                        	    if (cnt_pedestal_windows < 1023){
+//									if (pedestal_triggerMode_getArrays(&(inboundRingManager))!= XST_SUCCESS){
+//					                    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal acquisition failed!");}
+//									cnt_pedestal_windows +=1;
 //
 //								}
+//								else {
+//									if (pedestal_triggerMode_getArrays(&(inboundRingManager))!= XST_SUCCESS){
+//										end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal acquisition failed!");}
+//									cnt_pedestal_windows = 0;
 //
 //
-//							}
+//									 if (cnt_avg_number < (nbr_avg_ped_triggerMode))  {
+//										 cnt_avg_number += 1;
+//							//			 xil_printf("%d\r\n", cnt_avg_number);
+//
+//									 }
+//
+//									 else {
+//
+//										 usleep(500);
+//										 cnt_avg_number = 0;
+	//									 PrintInboundRingStatus(inboundRingManager);
+//										 divideByAverageNumber();
+//
+//									 }
+//							  }
+//
+//                          }
+  //                        else {
+                                   udp_transfer_WM( &(inboundRingManager));
+ //                                 xil_printf("%d\r\n", (int)inboundRingManager.processedCount);
+
+      //                    }
 
 							Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						     updateInboundCircBuffer();
@@ -542,11 +514,11 @@ int main()
 					//	timeout = 200000;
 						}
 
-							/* If needed, update timefile */
-							if(flag_ttcps_timer){
-								update_timefile();
-								flag_ttcps_timer = false;
-							}
+//							/* If needed, update timefile */
+//							if(flag_ttcps_timer){
+//								update_timefile();
+//								flag_ttcps_timer = false;
+//							}
 
 							/* If needed, reload watchdog's counter */
 							if(flag_scu_timer){

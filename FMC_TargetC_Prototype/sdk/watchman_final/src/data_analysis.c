@@ -181,7 +181,9 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				frame_buf[index++] = (char)window;
 				frame_buf[index++] = (char)(window >> 8);
 
-				//xil_printf("\r\n window = %d\r\n",window);
+			//	xil_printf("\r\n window = %d\r\n",window);
+				xil_printf("%d,%d\r\n",window, window_order);
+
 		//		for(i=0; i<16; i++){
 				if  ( (window_order == 0) || (window_order == 1) ){
 					for(sample = 0; sample <32; sample++){
@@ -208,6 +210,9 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 						//xil_printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
 					}
 				}
+				else {
+							xil_printf("Wrong window_order Value: %d, %d\r\n", window, window_order);
+				     }
 
 
 					//xil_printf("\r\n");

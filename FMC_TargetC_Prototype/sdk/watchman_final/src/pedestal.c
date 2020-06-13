@@ -400,7 +400,7 @@ for(window = 0; window< 512; window++ ){
 */
 
 
-void  pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave ){
+int  pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave ){
 
 int window,channel,sample,window_order;
 data_axi *Data2save = datatosave -> procPointer;
@@ -431,7 +431,7 @@ else {
 			xil_printf("Wrong window_order Value: %d, %d\r\n", window, window_order);
      }
 
-
+return XST_SUCCESS;
  };
 
 
@@ -474,8 +474,8 @@ for(window=0; window<512; window++){
 			for(sample = 0; sample <32;sample++){
 //				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
 //				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
-				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(50) ;
-				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(50) ;
+				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode) ;
+				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode) ;
 
 				//  xil_printf("pedestal_B, %d \r\n", tempB);
 
@@ -487,7 +487,7 @@ for(window=0; window<512; window++){
 };
 pedestalTriggerModeFlag = false;
 
-xil_printf("division finished \r\n");
+xil_printf("divfin\r\n");
 //usleep(10000);
 //sendPedestals(pedestal_A);
 ////xil_printf("pedestalA sent \r\n");

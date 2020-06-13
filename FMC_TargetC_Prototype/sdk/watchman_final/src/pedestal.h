@@ -25,7 +25,7 @@ int get_windows(int startWindow, int nmbrofWindows);
 
 int get_15_windows_fct(void);
 void pedestal_triggerMode_init(void);
-void pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave );
+int pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave );
 void divideByAverageNumber(void);
 void sendPedestals( uint32_t pedestalArray[512][16][32] );
 
