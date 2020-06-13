@@ -52,14 +52,14 @@ type stm_trigger_type is(
 signal stm_trigger : stm_trigger_type := IDLE;
 signal cnt_period : std_logic_vector(14 downto 0); -- Counter to set a period between trigger rising edges
 signal cnt_i : std_logic_vector(8 downto 0); -- Counter for triggers, the total number will be 512 for the four Runs, that means 1024 digitized windows 
-signal cnt_wait0_i: std_logic_vector(3 downto 0); -- Wait between Runs 
+signal cnt_wait0_i: std_logic_vector(4 downto 0); -- Wait between Runs 
 signal trigger_i  : std_logic;  
 signal reg1: std_logic; -- Rising edge detector for pedestal signal which starts the generation of triggers
 signal reg2: std_logic; -- Rising edge detector for pedestal signal which starts the generation of triggers
 signal edge_det_i : std_logic;  -- Rising edge detector for pedestal signal which starts the generation of triggers
 signal cnt_iterations: std_logic_vector(31 downto 0); -- Counter for the number of averages
 signal cnt_run: std_logic_vector(1 downto 0); -- Counting Runs, 4 in total, this number is used to decide the period, which is  different for every Run, due to the windows to be digitized. 
-signal  wait_number_i: std_logic_vector(3 downto 0); -- 
+signal  wait_number_i: std_logic_vector(4 downto 0); -- 
 signal cnt_wait_iterations:  std_logic_vector(26 downto 0);
 signal first_trigger_flag: std_logic;
 begin
@@ -104,7 +104,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                when START => -- Synchronization state to catch WR and SSTIN
                             if  (sstin="011")  and (wr_rs="00")  then          --         
                                        cnt_period<= "100110111111101";
-                                       wait_number_i <= "1110" ;  -- This number is different for sim and implementation due to delays for WR in multiplexer between USER and TRIGGER MODE.
+                                       wait_number_i <= "01111" ;  -- This number is different for sim and implementation due to delays for WR in multiplexer between USER and TRIGGER MODE.
                                        first_trigger_flag <='1';             
                                        stm_trigger <= WAIT_0;
                               else
@@ -153,7 +153,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                                          cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
                                        stm_trigger <= WAIT_0;
                                        cnt_period <= "100110111111101"; --  
-                                       wait_number_i<="0001";
+                                       wait_number_i<="00001";
                                    end if;					  
 			           when "01" =>           -- Second RUN over the storage array, windows:  [1,2, 5, 6...]
                                   if  (cnt_i  < "011111111" ) then   -- Second  run ends after 256 triggers
@@ -164,7 +164,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                                      stm_trigger <= WAIT_0;
                                      cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
                                      cnt_period <= "100110111111101"; --
-                                     wait_number_i<="0001";
+                                     wait_number_i<="00001";
 
                                    end if;
                       
@@ -177,7 +177,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                               stm_trigger <= WAIT_0;
                                cnt_run <=  std_logic_vector(unsigned(cnt_run) + 1);
                                cnt_period <= "100110111110101";--
-                                 wait_number_i<="0001";
+                                 wait_number_i<="00001";
 
                         end if;                      
                      
