@@ -182,7 +182,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				frame_buf[index++] = (char)(window >> 8);
 
 			//	xil_printf("\r\n window = %d\r\n",window);
-				xil_printf("%d,%d\r\n",window, window_order);
+			//	xil_printf("%d,%d\r\n",window, window_order);
 
 		//		for(i=0; i<16; i++){
 				if  ( (window_order == 0) || (window_order == 1) ){

@@ -91,9 +91,19 @@ def pedestalFlat(avg):
 #
 
 
-avgNmbr = 1
+avgNmbr = 999
+#
+for i in range(0,1,1):
+    pedestalTriggerMode(avgNmbr)
+    print(i)
+    time.sleep(230)
 
-pedestalTriggerMode(avgNmbr)
+triggerMode()
+time.sleep(2)
+triggerMode()
+
+
+
 #    print(i)
 #    time.sleep(sec2wait)
 #

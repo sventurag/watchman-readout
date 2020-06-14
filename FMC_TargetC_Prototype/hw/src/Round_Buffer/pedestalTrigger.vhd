@@ -104,7 +104,7 @@ p_sm:  process(clk,rst, mode ,sstin,pedestals, cnt_run)
                when START => -- Synchronization state to catch WR and SSTIN
                             if  (sstin="011")  and (wr_rs="00")  then          --         
                                        cnt_period<= "100110111111101";
-                                       wait_number_i <= "01111" ;  -- This number is different for sim and implementation due to delays for WR in multiplexer between USER and TRIGGER MODE.
+                                       wait_number_i <= "01110" ;  -- This number is different for sim and implementation due to delays for WR in multiplexer between USER and TRIGGER MODE.
                                        first_trigger_flag <='1';             
                                        stm_trigger <= WAIT_0;
                               else

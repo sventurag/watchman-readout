@@ -480,8 +480,8 @@ int command_parser(struct pbuf *p, char* return_buf){
 				break;
 			case 14:	// error exception asked
 				if(start + 4 == end){
-					xil_printf("Command err_exception received\r\n");
-					simul_err_exception_flag = true;
+					xil_printf("Print circular buffer\r\n");
+	//				PrintInboundRingStatus(inboundRingManager);
 					return 6;
 				}
 				else return -1;
