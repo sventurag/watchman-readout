@@ -32,7 +32,7 @@ class targetc():
 ##     List of all the commands
 ##     Flag which indicates if the streaming is running
         self.flag_transfer_done = False
-        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'pedestalTriggerMode', 'restartAll', 'flat_pedestal']
+        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'pedestalTriggerMode', 'restartAll', 'flat_pedestal', 'dividePedestals']
         self.stream_flag = False
         ## Flag which indicates that the user want to close the GUI (to avoid problem when accessing graphical object after "WM_DELETE_WINDOW" event)
         self.destroy_flag = False 
@@ -151,6 +151,11 @@ class targetc():
            payload.append(int(param2 % 256))
            payload.append(int("0x33", 0)) # frame's end code 0x33CC
            payload.append(int("0xCC", 0))
+      
+       if(self.cmd[comando] == 'dividePedestals'):
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
+
 
        if(self.cmd[comando] == 'get_windows'):
    #       payload.append(param1)

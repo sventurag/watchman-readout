@@ -103,6 +103,8 @@ extern int nmbrWindowsPed;
 
  /**number of average for pedestals in trigger mode*/
  extern int nbr_avg_ped_triggerMode;
+ /** Flag to start division by  nbr_avg_ped_triggerMode */
+ extern bool dividePedestalsFlag;
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -130,6 +132,7 @@ typedef enum dma_stm_enum{
 	GET_WINDOWS,		/**< System sending the data of consecutive windows in response to the corresponding command */
 	GET_PEDESTAL,      /**< System getting the pedestal for an specific voltage and nmbr of windows, data saved into the pedestal variable */
 	GET_WINDOWS_RAW,   /**< System getting the pedestal for an specific voltage and nmbr of windows, dat */
+	DIVIDE_PEDESTALS,
 	RESTART,           /**< Restart main() */
 } dma_stm_en;
 
@@ -409,6 +412,9 @@ int main()
 						ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 						state_main = GET_WINDOWS_RAW;
 					}
+				if(dividePedestalsFlag){
+					state_main = DIVIDE_PEDESTALS;
+					}
 				break;
 			case STREAM:
 				if((!stream_flag)){
@@ -466,43 +472,12 @@ int main()
 			//	 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
-//                          if (pedestalTriggerModeFlag == true) {
-//
-//
-//                        	    if (cnt_pedestal_windows < 1023){
-//									if (pedestal_triggerMode_getArrays(&(inboundRingManager))!= XST_SUCCESS){
-//					                    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal acquisition failed!");}
-//									cnt_pedestal_windows +=1;
-//
-//								}
-//								else {
-//									if (pedestal_triggerMode_getArrays(&(inboundRingManager))!= XST_SUCCESS){
-//										end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Pedestal acquisition failed!");}
-//									cnt_pedestal_windows = 0;
-//
-//
-//									 if (cnt_avg_number < (nbr_avg_ped_triggerMode))  {
-//										 cnt_avg_number += 1;
-//							//			 xil_printf("%d\r\n", cnt_avg_number);
-//
-//									 }
-//
-//									 else {
-//
-//										 usleep(500);
-//										 cnt_avg_number = 0;
-	//									 PrintInboundRingStatus(inboundRingManager);
-//										 divideByAverageNumber();
-//
-//									 }
-//							  }
-//
-//                          }
-  //                        else {
-                                   udp_transfer_WM( &(inboundRingManager));
- //                                 xil_printf("%d\r\n", (int)inboundRingManager.processedCount);
-
-      //                    }
+							if (pedestalTriggerModeFlag == true) {
+                            pedestal_triggerMode_getArrays(&(inboundRingManager));
+							}
+							if (pedestalTriggerModeFlag != true) {
+								udp_transfer_WM( &(inboundRingManager));
+							}
 
 							Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						     updateInboundCircBuffer();
@@ -585,6 +560,15 @@ int main()
 				}
 				pedestal_flag = false;
 				state_main = IDLE;
+				break;
+			case DIVIDE_PEDESTALS:
+			    if(dividePedestalsFlag) {
+			     divideByAverageNumber();
+			     usleep(10);
+			     dividePedestalsFlag=false;
+
+			    printf("Restarting");
+			    }
 				break;
 			case RESTART:
 			    if(restart_flag) {

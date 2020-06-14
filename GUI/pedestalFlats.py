@@ -54,6 +54,11 @@ def pedestalTriggerMode(avg):
 def pedestalFlat(avg):
     tc.send_command(12,0,avg)
     time.sleep(1)
+
+def dividePedestals():
+    tc.send_command(13,0,0)
+    time.sleep(1)
+
 #restart()
 
 #import subprocess
@@ -91,17 +96,20 @@ def pedestalFlat(avg):
 #
 
 
-avgNmbr = 999
+#avgNmbr = 999
+##
+#for i in range(0,1,1):
+#    pedestalTriggerMode(avgNmbr)
+#    print(i)
+#    time.sleep(230)
 #
-for i in range(0,1,1):
-    pedestalTriggerMode(avgNmbr)
-    print(i)
-    time.sleep(230)
+#triggerMode()
+#time.sleep(2)
+#triggerMode()
+#
 
-triggerMode()
-time.sleep(2)
-triggerMode()
-
+#dividePedestals()
+pedestalFlat(0)
 
 
 #    print(i)

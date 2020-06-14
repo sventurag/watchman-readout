@@ -57,6 +57,8 @@ extern InboundRingManager_t inboundRingManager;
 
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
+
+int cnt_average;
 /****************************************************************************/
 /**
 * @brief	Calculate the pedestal value for every memory location in the TARGET C
@@ -339,7 +341,7 @@ for (window=0; window< 3; window++){
 void pedestal_triggerMode_init(void){
 
 int window,channel,sample;
-
+cnt_average =0;
 printf("Arrays Initialization Pedestal trigger mode\r\n");
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
@@ -411,6 +413,7 @@ window_order = Data2save -> info;
 
 
  if ( (window_order == 0) || (window_order == 1) ){
+	 cnt_average += 1;
 //	xil_printf("%d, %d\r\n", window, window_order);
 	 for(channel = 0; channel< 16; channel++ ){
 	 	for(sample = 0; sample< 32; sample++ ){
@@ -419,17 +422,23 @@ window_order = Data2save -> info;
 	 }
  }
 
-else if ( window_order == 2 ) {
+if ( window_order == 2 ) {
+	 cnt_average += 1;
 	 for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_rawB[window][channel][sample] +=   Data2save->data[channel][sample];
 		}
 	 }
 }
-
+/*
 else {
 			xil_printf("Wrong window_order Value: %d, %d\r\n", window, window_order);
      }
+*/
+if 	 (cnt_average == (nbr_avg_ped_triggerMode+1)){
+//	xil_printf("%d\r\n", cnt_average);
+	divideByAverageNumber();
+}
 
 return XST_SUCCESS;
  };
@@ -450,12 +459,12 @@ return XST_SUCCESS;
 ***************************************************************************
 */
 
-void divideByAverageNumber(void){
+int divideByAverageNumber(void){
 
 int window,channel,sample;
 
-xil_printf("avg %d\r\n", nbr_avg_ped_triggerMode);
-
+//xil_printf("avg %d\r\n", nbr_avg_ped_triggerMode);
+//usleep(10);
 //for(window=0; window<512; window++){
 //		for(channel=0; channel<16; channel++){
 //			for(sample = 0; sample <32;sample++){
@@ -474,8 +483,8 @@ for(window=0; window<512; window++){
 			for(sample = 0; sample <32;sample++){
 //				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
 //				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode + 1) ;
-				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode) ;
-				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode) ;
+				pedestal_A[window][channel][sample] = data_rawA[window][channel][sample]/(nbr_avg_ped_triggerMode+1) ;
+				pedestal_B[window][channel][sample] = data_rawB[window][channel][sample]/(nbr_avg_ped_triggerMode+1) ;
 
 				//  xil_printf("pedestal_B, %d \r\n", tempB);
 
@@ -487,16 +496,16 @@ for(window=0; window<512; window++){
 };
 pedestalTriggerModeFlag = false;
 
-xil_printf("divfin\r\n");
+//xil_printf("divfin\r\n");
 //usleep(10000);
-//sendPedestals(pedestal_A);
+sendPedestals(pedestal_A);
 ////xil_printf("pedestalA sent \r\n");
-//usleep(10000);
-//sendPedestals(pedestal_B);
-//xil_printf("Pedestal transmission finished\r\n");
+//usleep(100);
+sendPedestals(pedestal_B);
+xil_printf("Pedestal transmission finished\r\n");
 //cleanup_interrupts(false);
 //enable_interrupts();
-
+return XST_SUCCESS;
 }
 
 

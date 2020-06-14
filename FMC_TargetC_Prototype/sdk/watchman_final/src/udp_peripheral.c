@@ -91,7 +91,8 @@ extern int nbr_avg_ped_triggerMode;
 /** Flag to start pedestal mode pedestal acquisition */
 extern bool pedestalTriggerModeFlag;
 
-
+/** Flag to start division by  nbr_avg_ped_triggerMode */
+extern bool dividePedestalsFlag;
 /****************************************************************************/
 /**
 * @brief	Send a frame trought UDP
@@ -457,7 +458,7 @@ int command_parser(struct pbuf *p, char* return_buf){
 					regptr [PEDESTAL_TRIGGER_AVG]= avg;
 					nbr_avg_ped_triggerMode= avg;
 					usleep(10);
-				//	pedestalTriggerModeFlag = true;
+					pedestalTriggerModeFlag = false;
 				//	usleep(30);
 					ControlRegisterWrite(C_TRIGGER_MODE_PED_MASK,ENABLE);
 				//    usleep(10);
@@ -472,8 +473,9 @@ int command_parser(struct pbuf *p, char* return_buf){
 					break;
 			case 13:	// error function problem asked
 				if(start + 4 == end){
-					xil_printf("Command err_function_prob received\r\n");
-					simul_err_function_prob_flag = true;
+					 dividePedestalsFlag = true;
+	          xil_printf("DividePedestal command received\r\n");
+
 					return 6;
 				}
 				else return -1;

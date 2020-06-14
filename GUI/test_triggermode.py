@@ -54,6 +54,10 @@ def pedestalTriggerMode(avg):
 def pedestalFlat(avg):
     tc.send_command(12,0,avg)
     time.sleep(1)
+
+def dividePedestals():
+    tc.send_command(13,0,0)
+    time.sleep(1)
 #restart()
 
 #import subprocess
@@ -91,20 +95,27 @@ time.sleep(1)
 
 
 
-avgNmbr = 1
+avgNmbr =49
 
+#pedestalTriggerMode(avgNmbr)
+sec2wait= int(((avgNmbr*1024)/5000)+10)
+
+#for i in range(0,1,1):
 pedestalTriggerMode(avgNmbr)
-sec2wait= int(avgNmbr*0.31 +10)
+    #print(i)
+time.sleep(sec2wait)
 
-#for i in range(0,50,1):
-#    pedestalTriggerMode(avgNmbr)
-#    print(i)
-#    time.sleep(sec2wait)
+#dividePedestals()
+#print('Divide Pedestals')
+#time.sleep(10)
 #
 
-#time.sleep(6)
+#triggerMode()
 
-#pedestalFlat(0)
+#time.sleep(2)
+#triggerMode()
+
+pedestalFlat(0)
 
 #  freq, amp, offset
 #wave_gen().apply(1000,0.1,0)
