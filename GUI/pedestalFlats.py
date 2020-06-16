@@ -109,25 +109,29 @@ def dividePedestals():
 #
 
 #dividePedestals()
-pedestalFlat(0)
+#pedestalFlat(31)
 
 
 #    print(i)
 #    time.sleep(sec2wait)
 #
+wave_gen().Output1(out=False)  
 
-#time.sleep(10)
+time.sleep(5)
 
 #pedestalFlat(0)
 
 #  freq, amp, offset
-#wave_gen().apply(1000,0.1,0)
-#time.sleep(5)
+wave_gen().apply(6000,0.1,0)
+time.sleep(5)
 
-#wave_gen().Query()
-#time.sleep(5)
+wave_gen().Query()
+time.sleep(5)
 
-#wave_gen().Output1(out=True)  
+wave_gen().Output1(out=True)  
+
+
+time.sleep(5)
 
 #softTrigger()
 #####

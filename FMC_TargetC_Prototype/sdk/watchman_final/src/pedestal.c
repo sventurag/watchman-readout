@@ -435,9 +435,10 @@ else {
 			xil_printf("Wrong window_order Value: %d, %d\r\n", window, window_order);
      }
 */
-if 	 (cnt_average == (nbr_avg_ped_triggerMode+1)){
+if 	 (cnt_average == ( (nbr_avg_ped_triggerMode+1) *1024  )  ){
 //	xil_printf("%d\r\n", cnt_average);
 	divideByAverageNumber();
+	cnt_average=0;
 }
 
 return XST_SUCCESS;
@@ -498,10 +499,10 @@ pedestalTriggerModeFlag = false;
 
 //xil_printf("divfin\r\n");
 //usleep(10000);
-sendPedestals(pedestal_A);
+//sendPedestals(pedestal_A);
 ////xil_printf("pedestalA sent \r\n");
 //usleep(100);
-sendPedestals(pedestal_B);
+//sendPedestals(pedestal_B);
 xil_printf("Pedestal transmission finished\r\n");
 //cleanup_interrupts(false);
 //enable_interrupts();

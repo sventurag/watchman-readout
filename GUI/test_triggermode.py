@@ -81,8 +81,8 @@ def dividePedestals():
 #time.sleep(1)
 #
 #
-#wave_gen().Output1(out=False)  
-#time.sleep(2)#
+wave_gen().Output1(out=False)  
+time.sleep(2)#
 ##setFreq(10000)
 
 setDelay(7)
@@ -95,10 +95,10 @@ time.sleep(1)
 
 
 
-avgNmbr =49
+avgNmbr = 4999
 
 #pedestalTriggerMode(avgNmbr)
-sec2wait= int(((avgNmbr*1024)/5000)+10)
+sec2wait= int(((avgNmbr*1024)/4000))
 
 #for i in range(0,1,1):
 pedestalTriggerMode(avgNmbr)
@@ -115,7 +115,7 @@ time.sleep(sec2wait)
 #time.sleep(2)
 #triggerMode()
 
-pedestalFlat(0)
+#pedestalFlat(0)
 
 #  freq, amp, offset
 #wave_gen().apply(1000,0.1,0)
