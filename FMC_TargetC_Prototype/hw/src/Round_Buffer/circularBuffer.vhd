@@ -72,11 +72,8 @@ COMPONENT rb_output_windowNumber
 END COMPONENT;
 
 signal ptr_1st_window_of_subBuffer : std_logic_vector(8 downto 0);
-signal counter_i: std_logic_vector(2 downto 0);
-signal sstin_i : std_logic;
 signal subBuffer2read: std_logic_vector(6 downto 0);
 signal wr_i: unsigned(8 downto 0);
-signal ptr_window_trans_i: std_logic_vector(8 downto 0);
 signal fifo_wr_en : std_logic;
 signal fifo_rd_en : std_logic;
 signal fifo_full : std_logic;
@@ -85,7 +82,7 @@ signal flag_number: std_logic_vector(3 downto 0);
 signal fifo_in: std_logic_vector(14 downto 0);
 signal fifo_out_i: std_logic_vector(14 downto 0);
 signal fifo_out: std_logic_vector(14 downto 0);
-type stmachine is (start, wr_add ,hit0,hit1, hit2, hit3, hit4, hit5, hit6,hit7,hit8, hit9, hit10, hit11, hit12, hit13,hit14);
+type stmachine is (start , wr_wtch_trig_0, wtch_trig_1_to_6 ,wr_wtch_trig_7, wtch_trig_8_to_14, wr_wtch_trig_15);
 signal stm_circularBuffer: stmachine;
 signal saved_i: std_logic_vector(8 downto 0);
 signal delay_window: std_logic_vector(8 downto 0);
@@ -121,6 +118,9 @@ signal jump_ptr_correction: std_logic;
 signal jump_flag:std_logic;
 signal intra_buffer_flag_w0:  std_logic;
 signal first_round_of_subbuffer_delay: std_logic;
+signal cnt_watching_trigger_A : integer ; 
+signal cnt_watching_trigger_B: integer ; 
+
 attribute mark_debug : string;
 type longPulse_type is(
    IDLE,
@@ -249,6 +249,9 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
       first_round_of_subbuffer <= '1';
       jump_wr<=(others=>'0');
       starting_run<='1';
+      cnt_watching_trigger_A<=1;
+      cnt_watching_trigger_B<=8;
+
       
          
    else 
@@ -257,7 +260,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        when start =>
             if (mode = '1') and (sstin="011")  then
  
-                stm_circularBuffer <= hit0;
+                stm_circularBuffer <= wr_wtch_trig_0 ;
             else
                 stm_circularBuffer<= start;
             end if;
@@ -265,7 +268,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  ---------------------------------
  -- If a pulse is detected at this point, and taking in account the delay (~8 ns) the pulse ocurred and was sampled in the previous window
  ---------------------------------    
-       when hit0 =>      
+       when wr_wtch_trig_0 =>      
            if unsigned(ptr_1st_window_of_subBuffer) /= 0 then
                wr_i <= shift_right(unsigned(ptr_1st_window_of_subBuffer), 1 );  -- Dividing by 2, beacause every WR address in TARGETC corresponds to 2 windows.
            else 
@@ -273,33 +276,21 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
            end if;
            -- Update signals respect to trigger signal 
            update_signals_upon_trigger_detection_WR_A ( 0, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-           stm_circularBuffer <= hit1;
+           stm_circularBuffer <= wtch_trig_1_to_6;
            
-      when hit1 =>      
-             update_signals_upon_trigger_detection_WR_A ( 1, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-            stm_circularBuffer <= hit2;
-       when hit2 =>      
-           update_signals_upon_trigger_detection_WR_A ( 2, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-         stm_circularBuffer <= hit3;
+      when wtch_trig_1_to_6 =>      
+             if cnt_watching_trigger_A < 6 then
+                  update_signals_upon_trigger_detection_WR_A ( cnt_watching_trigger_A, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
+                  cnt_watching_trigger_A<= cnt_watching_trigger_A +1;
+                  stm_circularBuffer <= wtch_trig_1_to_6;
+             else
+                  update_signals_upon_trigger_detection_WR_A ( cnt_watching_trigger_A, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
+                  cnt_watching_trigger_A<= 1 ;
+                  stm_circularBuffer <= wr_wtch_trig_7;
+             end if;
+          
 
-        when hit3 =>      
-                     update_signals_upon_trigger_detection_WR_A ( 3, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-            stm_circularBuffer <= hit4;
-
-         when hit4 =>      
-             update_signals_upon_trigger_detection_WR_A ( 4, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-            stm_circularBuffer <= hit5;
-         
-         when hit5 =>      
-            update_signals_upon_trigger_detection_WR_A ( 5, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-            stm_circularBuffer <= hit6;
- 
-         when hit6 => 
-   --         ptr_window_inter<= ptr_1st_window_of_subBuffer;
-            update_signals_upon_trigger_detection_WR_A ( 6, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
-              stm_circularBuffer <= hit7;
-
-        when hit7 =>      
+        when wr_wtch_trig_7 =>      
          -- In this state, WR and ptr_window are updated,
          --- we have to know if the past states trigger detections
          -- correspond to the first round of the subBuffer, if the 
@@ -314,7 +305,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    ptr_1st_window_of_subBuffer <=  std_logic_vector(unsigned(ptr_1st_window_of_subBuffer)+4);
                    jump_ptr_correction <= '1';  -- refer to the currrent window in case after delay correction, the pulse ocurred in this window
                    jump_wr<=(others=>'0');
-                   stm_circularBuffer <= hit0;
+                   stm_circularBuffer <= wr_wtch_trig_0;
                    fifo_wr_en<='0'; 
                    first_round_of_subbuffer <= '1';
   
@@ -326,44 +317,30 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                         wr_i <= unsigned(ptr_1st_window_of_subBuffer )  + 1 ;
                    end if;     
                     update_signals_upon_trigger_detection_WR_B( 7, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-                    stm_circularBuffer <= hit8;
+                    stm_circularBuffer <= wtch_trig_8_to_14;
               end if;           
                                     
- 
-        when hit8 =>      
-              update_signals_upon_trigger_detection_WR_B( 8, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-              stm_circularBuffer <= hit9;
+        
+        when wtch_trig_8_to_14 =>      
+               
+          if cnt_watching_trigger_B < 14 then
+               update_signals_upon_trigger_detection_WR_B ( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer);
+               if cnt_watching_trigger_B = 9 then
+                    starting_run<='0'; -- At this point the delay_flag_and_window has updated the flag_number
+                    jump_ptr_correction<= '0';
+                     cnt_watching_trigger_B<= cnt_watching_trigger_B +1; 
+                     stm_circularBuffer <= wtch_trig_8_to_14;
+               else
+                    cnt_watching_trigger_B<= cnt_watching_trigger_B +1; 
+                    stm_circularBuffer <= wtch_trig_8_to_14;
+                end if;
+          else
+               update_signals_upon_trigger_detection_WR_B( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer );
+               cnt_watching_trigger_B<= 1 ;
+               stm_circularBuffer <= wr_wtch_trig_15;
+          end if;            
             
-         when hit9 =>      
-               starting_run<='0'; -- At this point the delay_flag_and_window has updated the flag_number
- 
-               jump_ptr_correction<= '0';
- 
-               update_signals_upon_trigger_detection_WR_B(9 , ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-               stm_circularBuffer <= hit10;
-           
-          when hit10 =>      
-             update_signals_upon_trigger_detection_WR_B( 10, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-              stm_circularBuffer <= hit11;
-                       
-           when hit11 =>      
-             update_signals_upon_trigger_detection_WR_B( 11, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-              stm_circularBuffer <= hit12;
- 
-           when hit12 =>      
-               update_signals_upon_trigger_detection_WR_B( 12, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-              stm_circularBuffer <= hit13;
-   
-           when hit13 =>      
-             update_signals_upon_trigger_detection_WR_B( 13, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-             stm_circularBuffer <= hit14;             
- 
-           when hit14 => 
-  --            ptr_window_trans_i <= ptr_1st_window_of_subBuffer;
-              update_signals_upon_trigger_detection_WR_B( 14, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
-                stm_circularBuffer <= wr_add;
-                  
-           when wr_add =>  -- UPDATE WR 
+           when wr_wtch_trig_15 =>  -- UPDATE WR 
            if trigger_intl = '1' then
                 flag_number<= "1111";
                 subBuffer2read <= ptr_1st_window_of_subBuffer(8 downto 2) ; 
@@ -378,9 +355,9 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                       end if;
                       current_subBuffer<= (others=>'0');
       
-                    stm_circularBuffer<= hit0;
+                    stm_circularBuffer<= wr_wtch_trig_0;
                 else 
-                    stm_circularBuffer<= hit0;
+                    stm_circularBuffer<= wr_wtch_trig_0;
                 end if;
                               
             else   -- If not trigger detected in the current state
@@ -395,21 +372,21 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                       else
                                 wr_i <= (others => '0');
                       end if;
-                      stm_circularBuffer<= hit0;
+                      stm_circularBuffer<= wr_wtch_trig_0;
                        current_subBuffer<= (others=>'0');
                   else   
-                      stm_circularBuffer<= hit0;  
+                      stm_circularBuffer<= wr_wtch_trig_0;  
                        current_subBuffer<= (others=>'0');               
                   end if;
               else  --- NO HIT 
                   current_subBuffer<= (others=>'0');
-                  stm_circularBuffer<= hit0;
+                  stm_circularBuffer<= wr_wtch_trig_0;
                   wr_i <= unsigned(wr_i -1);  -- If no hit is detected, the wr pointer goes back to the initial value for the current subBuffer, at this point (the end of wr), 
                                              -- wr - 1 means going back four windows, a subBuffer, so, 
                                              -- the current subBuffer will be overwritted
                  first_round_of_subbuffer <= '0';
               end if;             
-            stm_circularBuffer <= hit0;
+            stm_circularBuffer <= wr_wtch_trig_0;
          end if;       
             end case;
     end if;
