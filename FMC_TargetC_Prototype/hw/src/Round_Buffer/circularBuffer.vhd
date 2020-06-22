@@ -295,7 +295,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
             stm_circularBuffer <= hit6;
  
          when hit6 => 
-            ptr_window_inter<= ptr_1st_window_of_subBuffer;
+   --         ptr_window_inter<= ptr_1st_window_of_subBuffer;
             update_signals_upon_trigger_detection_WR_A ( 6, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
               stm_circularBuffer <= hit7;
 
@@ -311,7 +311,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
 
                if unsigned(jump_wr) > 0 then
                    wr_i <= shift_right(unsigned(ptr_1st_window_of_subBuffer), 1  ) +2;
-                   ptr_1st_window_of_subBuffer <=  std_logic_vector(unsigned(ptr_window_inter)+4);
+                   ptr_1st_window_of_subBuffer <=  std_logic_vector(unsigned(ptr_1st_window_of_subBuffer)+4);
                    jump_ptr_correction <= '1';  -- refer to the currrent window in case after delay correction, the pulse ocurred in this window
                    jump_wr<=(others=>'0');
                    stm_circularBuffer <= hit0;
@@ -359,7 +359,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              stm_circularBuffer <= hit14;             
  
            when hit14 => 
-              ptr_window_trans_i <= ptr_1st_window_of_subBuffer;
+  --            ptr_window_trans_i <= ptr_1st_window_of_subBuffer;
               update_signals_upon_trigger_detection_WR_B( 14, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, flag_number, subBuffer2read, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
                 stm_circularBuffer <= wr_add;
                   
@@ -370,7 +370,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                 fifo_wr_en<='1';   
                 if full_fifo = '0' then
                       if wr_i /= 255 then  
-                                 ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);   -- To next subBuffer              
+                                 ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);   -- To next subBuffer              
                                   wr_i <= unsigned(wr_i+1);
                                   first_round_of_subbuffer <= '1';
                       else
@@ -387,17 +387,17 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                     fifo_wr_en<='0';                      
               if  unsigned(current_subBuffer) > 0 then
                   if full_fifo = '0' then
-                      ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);
+                      ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);
                       if wr_i /= 255 then  
                           if  unsigned(current_subBuffer) > 0 then           -- To next subBuffer 
-                                 ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_window_trans_i) + 4);                 
+                                 ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);                 
          
                                 wr_i <= unsigned(wr_i+1); 
                                 first_round_of_subbuffer <= '1';
                                 long_pulse_rst<='1';
-                               else
+                          else
                                 wr_i <= unsigned(wr_i-1);
-                                ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_window_trans_i) );                 
+                                ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) );                 
                                 first_round_of_subbuffer <= '0';
  
                            end if;          
