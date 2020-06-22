@@ -443,7 +443,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              if RST = '0' then
                  long_pulse_sig <= '0';
                  cnt_wr_en <= (others=>'0'); 
-       --          trigger_intl<='0';
              else
                  if rising_edge(clk) then 
                              case longpulse_stm is
@@ -589,9 +588,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  end process;
  
  
- 
- 
- 
+
  ----------------------------------
  -- FIFO after RB
  ----------------------------------
@@ -620,17 +617,13 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
        enable_write_intl <= '0';
  
  else
- 
+
      if rising_edge(clk) then     
- --        if rd_add_i = "000000000" then
- --            enable_write_intl <= enable_write_i;
- --        else
              if rd_add_i /= saved_i then
                   enable_write_intl <= '1';
                   saved_i <= rd_add_i;
              else
                   enable_write_intl <= '0';
-       --      end if;
          end if;
       end if;   
  end if;
@@ -739,41 +732,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  TriggerInfo <= x"00" & "00" & window_order;
  
  RD_add <= rd_add_i;
--- For simulation purposes:
 
---p_edge_detector_write_enable :  process(clk, enable_write_intl)
---begin
---        if rising_edge (clk) then
---            reg3 <= enable_write_intl;
---            reg4 <= reg3;
-            
---        end if;
-   
---end process p_edge_detector_write_enable;    
-
---edge_det_write_enable_intl <= not(reg3) and  (reg4);
-
-
---p_enable_write_cntr: process(clk,RST, edge_det_write_enable_intl)
-
---begin
-
---if RST = '0' then
---    enable_write_cntr_intl <= (others =>'0');
---else    
---    if rising_edge(clk) then 
---        if edge_det_write_enable_intl = '1' then
---            if enable_write_cntr_intl <"111111111" then
---                enable_write_cntr_intl <= std_logic_vector(unsigned(enable_write_cntr_intl) + 1);
---            else
---                enable_write_cntr_intl <= (others=> '0'); 
---            end if;
-----        else
-----           enable_write_cntr_intl <= enable_write_cntr_intl;
---        end if;
---    end if;
---end if;        
---end process;
-----enable_write_cntr <= enable_write_cntr_intl;
 end architecture;
 
