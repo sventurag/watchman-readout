@@ -371,7 +371,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                 if full_fifo = '0' then
                       if wr_i /= 255 then  
                                  ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);   -- To next subBuffer              
-                                  wr_i <= unsigned(wr_i+1);
+                                  wr_i <= unsigned(wr_i +1);  -- To next subBuffer    
                                   first_round_of_subbuffer <= '1';
                       else
                            wr_i <= (others => '0');
@@ -385,28 +385,16 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                               
             else   -- If not trigger detected in the current state
                     fifo_wr_en<='0';                      
-              if  unsigned(current_subBuffer) > 0 then
+              if  unsigned(current_subBuffer) > 0 then -- If trigger ocurred in the present run of the subBuffer (previous states)
                   if full_fifo = '0' then
-                      ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);
                       if wr_i /= 255 then  
-                          if  unsigned(current_subBuffer) > 0 then           -- To next subBuffer 
-                                 ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);                 
-         
-                                wr_i <= unsigned(wr_i+1); 
+                               ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);         -- To next subBuffer          
+                               wr_i <= unsigned(wr_i +1);   -- To next subBuffer    
                                 first_round_of_subbuffer <= '1';
                                 long_pulse_rst<='1';
-                          else
-                                wr_i <= unsigned(wr_i-1);
-                                ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) );                 
-                                first_round_of_subbuffer <= '0';
- 
-                           end if;          
-                    
                       else
                                 wr_i <= (others => '0');
                       end if;
- 
-            
                       stm_circularBuffer<= hit0;
                        current_subBuffer<= (others=>'0');
                   else   
@@ -416,12 +404,10 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
               else  --- NO HIT 
                   current_subBuffer<= (others=>'0');
                   stm_circularBuffer<= hit0;
-                  wr_i <= unsigned(wr_i-1);  -- If no hit is detected, the wr pointer goes back to the initial value for the current subBuffer, at this point (the end of wr), 
+                  wr_i <= unsigned(wr_i -1);  -- If no hit is detected, the wr pointer goes back to the initial value for the current subBuffer, at this point (the end of wr), 
                                              -- wr - 1 means going back four windows, a subBuffer, so, 
                                              -- the current subBuffer will be overwritted
                  first_round_of_subbuffer <= '0';
- 
- 
               end if;             
             stm_circularBuffer <= hit0;
          end if;       
