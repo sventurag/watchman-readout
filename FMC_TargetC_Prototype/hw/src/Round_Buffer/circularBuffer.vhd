@@ -336,7 +336,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                 end if;
           else
                update_signals_upon_trigger_detection_WR_B( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer );
-               cnt_watching_trigger_B<= 1 ;
+               cnt_watching_trigger_B<= 8 ;
                stm_circularBuffer <= wr_wtch_trig_15;
           end if;            
             
