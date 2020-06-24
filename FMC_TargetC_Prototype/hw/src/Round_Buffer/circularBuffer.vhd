@@ -92,19 +92,15 @@ signal fifo_wr_en_delay2: std_logic;
 signal current_subBuffer: std_logic_vector(14 downto 0) ;
 signal first_round_of_subbuffer: std_logic;
 signal jump_wr: std_logic_vector(6 downto 0) ;
-signal ptr_window_inter: std_logic_vector(8 downto 0);
-signal long_pulse_rst: std_logic;
 type stmachine_comp is ( A, B, C, D);
 
 type stmachine_2windows is (retrieve,enable_rd, delay, decide, one_window, two_windowsA, delay2,  two_windowsB, delay3,delay4, delay_comp1, delay_comp2);
 signal stm_2windows : stmachine_2windows:= enable_rd;
 signal enable_write_i: std_logic;
 signal cnt_wr_en : std_logic_vector(3 downto 0);
-signal cnt_long_pulse : std_logic_vector(3 downto 0);
 signal long_pulse_sig: std_logic;
 signal trigger_intl: std_logic;
 signal rd_add_i:std_logic_vector(8 downto 0);
-signal enable_write_cntr_intl: std_logic_vector(8 downto 0);
 signal enable_write_intl: std_logic;
 signal reg3: std_logic;
 signal reg4: std_logic;
@@ -120,6 +116,7 @@ signal inter_buffer_flag:  std_logic;
 signal first_round_of_subbuffer_delay: std_logic;
 signal cnt_watching_trigger_A : integer ; 
 signal cnt_watching_trigger_B: integer ; 
+signal window_order : std_logic_vector(1 downto 0);
 
 attribute mark_debug : string;
 type longPulse_type is(
@@ -138,7 +135,6 @@ attribute mark_debug of cycle_number_corrected: signal is "true";
 
 attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
-signal window_order : std_logic_vector(1 downto 0);
  -- variable flagNumber : std_logic_vector(3 downto 0);
 
 
@@ -368,7 +364,6 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                                ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);         -- To next subBuffer          
                                wr_i <= unsigned(wr_i +1);   -- To next subBuffer    
                                 first_round_of_subbuffer <= '1';
-                                long_pulse_rst<='1';
                       else
                                 wr_i <= (others => '0');
                       end if;
