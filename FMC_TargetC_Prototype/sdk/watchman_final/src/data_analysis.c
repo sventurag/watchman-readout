@@ -170,7 +170,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
  uint16_t data_tmp;
  int window, sample, window_order;
  int offset_avoid_negative = 200;
-
+ int channelToSend=0;
  window = Data2send->wdo_id;
  window_order = Data2send-> info;
 // xil_printf("windowNumber:%d \r\n",window);
@@ -188,7 +188,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 				if  ( (window_order == 0) || (window_order == 1) ){
 					for(sample = 0; sample <32; sample++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t)  (Data2send->data[15][sample] - pedestal_A[window][15][sample]+ offset_avoid_negative);
+						data_tmp = (uint16_t)  (Data2send->data[channelToSend][sample] - pedestal_A[window][channelToSend][sample]+ offset_avoid_negative);
 //						data_tmp = (uint16_t)  (Data2send->data[15][sample]); //-  pedestal_A[window][15][sample]+ offset_avoid_negative);
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
@@ -200,7 +200,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 
 				if (window_order == 2) {
 					for(sample = 0; sample <32; sample++){
-					   data_tmp = (uint16_t)  (Data2send->data[15][sample]-  pedestal_B[window][15][sample]+ offset_avoid_negative);
+					   data_tmp = (uint16_t)  (Data2send->data[channelToSend][sample]-  pedestal_B[window][channelToSend][sample]+ offset_avoid_negative);
 //					   data_tmp = (uint16_t)  (Data2send->data[15][sample]);  //-  pedestal_B[window][15][sample]+ offset_avoid_negative);
 
 						frame_buf[index++] = (char)data_tmp;
