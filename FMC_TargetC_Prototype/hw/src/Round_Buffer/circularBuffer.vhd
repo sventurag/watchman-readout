@@ -365,7 +365,9 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                                wr_i <= unsigned(wr_i +1);   -- To next subBuffer    
                                 first_round_of_subbuffer <= '1';
                       else
+                               ptr_1st_window_of_subBuffer<= (others => '0');
                                 wr_i <= (others => '0');
+                                 first_round_of_subbuffer <= '1';
                       end if;
                       stm_circularBuffer<= wr_wtch_trig_0;
                        current_subBuffer<= (others=>'0');
