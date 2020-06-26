@@ -70,7 +70,6 @@ def dividePedestals():
 #time.sleep(15)
 #
 #print("conf waveform generator")
-#wave_gen().loadHz(75)
 #
 #wave_gen().pulseWidth(12e-9)
 #time.sleep(1)
@@ -116,13 +115,14 @@ def dividePedestals():
 #    time.sleep(sec2wait)
 #
 wave_gen().Output1(out=False)  
+wave_gen().loadHz(50)
 
 time.sleep(5)
 
-#pedestalFlat(0)
+#pedestalFlat(10)
 
 #  freq, amp, offset
-wave_gen().apply(6000,0.1,0)
+wave_gen().apply(1000,0.3,0)
 time.sleep(5)
 
 wave_gen().Query()
@@ -131,7 +131,7 @@ time.sleep(5)
 wave_gen().Output1(out=True)  
 
 
-time.sleep(5)
+#time.sleep(5)
 
 #softTrigger()
 #####

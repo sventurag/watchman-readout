@@ -95,7 +95,7 @@ time.sleep(1)
 
 
 
-avgNmbr = 4999
+avgNmbr = 999
 
 #pedestalTriggerMode(avgNmbr)
 sec2wait= int(((avgNmbr*1024)/4000))
@@ -115,7 +115,7 @@ time.sleep(sec2wait)
 #time.sleep(2)
 #triggerMode()
 
-#pedestalFlat(0)
+pedestalFlat(10)
 
 #  freq, amp, offset
 #wave_gen().apply(1000,0.1,0)
