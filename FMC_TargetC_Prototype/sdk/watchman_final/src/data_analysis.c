@@ -170,7 +170,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
  uint16_t data_tmp;
  int window, sample, window_order;
  int offset_avoid_negative = 200;
- int channelToSend=0;
+ int channelToSend=2;
  window = Data2send->wdo_id;
  window_order = Data2send-> info;
 // xil_printf("windowNumber:%d \r\n",window);
