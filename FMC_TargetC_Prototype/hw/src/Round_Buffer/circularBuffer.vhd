@@ -598,7 +598,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  -- one or two windows decision
  ----------------------------------
  p_2window_decision: process(clk,RST)
- variable intra_buffer_flag_w0_v: std_logic;
+ variable inter_buffer_flag_w0_v: std_logic;
  variable jump_flag_v: std_logic;
  variable window2read_v: std_logic_vector(8 downto 0);
  variable cycle_number_corrected_var: std_logic_vector(3 downto 0);
@@ -610,7 +610,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
      fifo_rd_en <= '0';
      fifo_out_i <= (others=> '0');
      twoWindows <= '0';
-     intra_buffer_flag_w0_v := '0';
+     inter_buffer_flag_w0_v := '0';
      jump_flag_v := '0';
      window2read_v:= (others=> '0');
      cycle_number_corrected_var := (others=> '0');
@@ -634,7 +634,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    stm_2windows <=retrieve ;
             when retrieve =>
              fifo_out_i <= fifo_out;
-             intra_buffer_flag_w0_v:= fifo_out(14);
+             inter_buffer_flag_w0_v:= fifo_out(14);
              jump_flag_v:= fifo_out(13);
              window2read_v:= fifo_out(12 downto 4);
              cycle_number_corrected_var:= fifo_out(3 downto 0);
@@ -644,7 +644,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
              when decide =>
                    fifo_rd_en <= '0';                
                  case cycle_number_corrected_var  is -- flag numbers
-                     when "0011" | "0111" |"1011"| "1111" => -- FIX '0000' case not handled 
+                     when "0010" | "0011" | "0110" | "0111" | "1010" |"1011"| "1110" |"1111" => -- FIX '0000' case not handled 
                      stm_2windows <= two_windowsA;
                      twoWindows<= '1';
                      when others =>
@@ -669,12 +669,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    stm_2windows <= two_windowsB;
                    
              when two_windowsB=>
-                     if (jump_flag_v= '1') and (cycle_number_corrected_var  ="1111") then
+                     if (jump_flag_v= '1') and (cycle_number_corrected_var  = ("1111" or "1110") ) then
                          rd_add_i <=std_logic_vector(unsigned(window2read_v) +3);  -- special case for jump subBuffer 
-                       elsif  (intra_buffer_flag_w0_v= '1') and (cycle_number_corrected_var = "0111") then
-                         rd_add_i <=std_logic_vector(unsigned(window2read_v) -2); -- special case for firs wr address handling to avoid going to window 512
-                      elsif  (intra_buffer_flag_w0_v = '1') and (cycle_number_corrected_var= "1111") then
-                         rd_add_i <=std_logic_vector(unsigned(window2read_v) -3); -- special case for firs wr address handling to avoid going to window 512
+                       elsif  (inter_buffer_flag_w0_v= '1') and (cycle_number_corrected_var = ("0111" or "0110") ) then
+                         rd_add_i <=std_logic_vector(unsigned(window2read_v) -2); -- special case for first wr address handling to avoid going to window 512
+                      elsif  (inter_buffer_flag_w0_v = '1') and (cycle_number_corrected_var= ("1111" or "1110") ) then
+                         rd_add_i <=std_logic_vector(unsigned(window2read_v) -3); -- special case for first wr address handling to avoid going to window 512
                      else
                          rd_add_i <=std_logic_vector(unsigned(window2read_v) +1); 
                      end if;
