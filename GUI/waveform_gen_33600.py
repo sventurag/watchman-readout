@@ -90,6 +90,12 @@ class wave_gen(object):
     def pulseWidth(self, pulsWidth):
         self.inst.write("FUNC:PULS:WIDTH {:.9f}".format(pulsWidth))
         time.sleep(1)
+    def pulseEdgeTrailing(self, trailingEdge):
+        self.inst.write("FUNC:PULS:TRAN:TRAILING {:.9f}".format(trailingEdge))
+        time.sleep(1)
+    def pulseEdgeLeading(self, leadingEdge):
+        self.inst.write("FUNC:PULS:TRAN:LEADING {:.9f}".format(leadingEdge))
+        time.sleep(1)
     def loadHz(self,impedance):
         self.inst.write("OUTPUT1:LOAD {:.9f}".format(impedance))
         time.sleep(1)

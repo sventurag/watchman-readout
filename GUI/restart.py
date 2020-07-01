@@ -48,8 +48,8 @@ def softTrigger():
  #   time.sleep(1)
 #wave_gen().Output1(out=True)
 #time.sleep(1)
-#restart()
-wave_gen().Output1(out=False)  
+restart()
+#wave_gen().Output1(out=False)  
 
 #setDelay(3)
 #triggerMode(10)
