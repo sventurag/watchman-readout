@@ -89,7 +89,8 @@ signal window2read: std_logic_vector(8 downto 0);
 signal  cycle_number_corrected : std_logic_vector(3 downto 0);
 signal fifo_wr_en_delay: std_logic;
 signal fifo_wr_en_delay2: std_logic;
-signal current_subBuffer: std_logic_vector(14 downto 0) ;
+signal fifo_wr_en_delay3: std_logic;
+signal trigger_detected: std_logic_vector(14 downto 0) ;
 signal first_round_of_subbuffer: std_logic;
 signal jump_wr: std_logic_vector(6 downto 0) ;
 type stmachine_comp is ( A, B, C, D);
@@ -110,7 +111,9 @@ signal starting_run : std_logic; -- this is to distinguish between the first run
                                   -- so the first window after turning on the board is never 511 but zero after 
                                   -- correcting for the electronics delay
 
+signal jump_ptr_correction_intl: std_logic;
 signal jump_ptr_correction: std_logic;
+
 signal jump_flag:std_logic;
 signal inter_buffer_flag:  std_logic;
 signal first_round_of_subbuffer_delay: std_logic;
@@ -139,7 +142,7 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 
 
 -- Update signals in function of trigger_intl, ptr_1st_window_of_subBuffer and delay_trigger signals.
--- trigger_detection ( state_number, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en, , current_subBuffer, first_round_of_subBuffer, jump_wr )
+-- trigger_detection ( state_number, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en, , trigger_detected, first_round_of_subBuffer, jump_wr )
 procedure update_signals_upon_trigger_detection_WR_A (
      state_number:  in integer ;
     ptr_1st_window_of_subBuffer : in std_logic_vector (8 downto 0);
@@ -148,36 +151,38 @@ procedure update_signals_upon_trigger_detection_WR_A (
    signal cycle_number_triggered : out  std_logic_vector(3 downto 0) ;
    signal subBuffer_triggered: out  std_logic_vector(6 downto 0) ;
    signal fifo_wr_en : out std_logic;
-   signal current_subBuffer: out  std_logic_vector (14 downto 0) ;
+   signal trigger_detected: out  std_logic_vector (14 downto 0) ;
    signal  first_round_of_subbuffer: in std_logic ;
    signal jump_wr : out  std_logic_vector (6 downto 0)
 ) is 
 
 begin
-            if trigger_intl = '1' then
-        cycle_number_triggered <=  std_logic_vector (to_unsigned (state_number, cycle_number_triggered'length   )  );
-       subBuffer_triggered<=   ptr_1st_window_of_subBuffer(8 downto 2);
-       fifo_wr_en<='1';   
-        if  unsigned(delay_trigger)> state_number then 
-             current_subBuffer(state_number) <='0';
-             if first_round_of_subbuffer = '1' then
-                   jump_wr(state_number)<= '0';
-                 else 
-                  jump_wr(state_number)<= '1';   -- Signal to update WR in case the trigger is detected in the first part of the subBUffer (WR_A) and it is not the first round of the subBuffer, which
-                                                                     -- means the actual trigger happened in the second part of the subBuffer and we must "jump" from hit7 to the next subBuffer to avoid overwritting the 2nd part of the subBuffer (WR_B).
-             end if;
-
-        else
-             current_subBuffer(state_number)<='1';
-       end if;   
-      else
-         fifo_wr_en<='0';  
+         if trigger_intl = '1' then
+               cycle_number_triggered <=  std_logic_vector (to_unsigned (state_number, cycle_number_triggered'length   )  );
+               subBuffer_triggered<=   ptr_1st_window_of_subBuffer(8 downto 2);
+               fifo_wr_en<='1';   
+               trigger_detected(state_number)<='1';
+                if  unsigned(delay_trigger)> state_number then 
+                     if first_round_of_subbuffer = '1' then
+                           jump_wr(state_number)<= '0';
+                           
+                     else 
+                              jump_wr(state_number)<= '1';   -- Signal to update WR in case the trigger is detected in the first part of the subBUffer (WR_A) and it is not the first round of the subBuffer, which
+                                                                             -- means the actual trigger happened in the second part of the subBuffer and we must "jump" from hit7 to the next subBuffer to avoid overwritting the 2nd part of the subBuffer (WR_B).
+                      end if;
+                 else
+                              fifo_wr_en<='0';  
+                              trigger_detected(state_number) <='0';
+                  end if;   
+       else
+              fifo_wr_en<='0';  
+             trigger_detected(state_number) <='0';
       end if;
 end;
 
 
 -- Update signals in function of trigger_intl, ptr_1st_window_of_subBuffer and delay_trigger signals. SECOND PART OF SUBBUFFER
--- update_signals_upon_trigger_detection_WR_B( state_number, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en, , current_subBuffer, first_round_of_subBuffer)
+-- update_signals_upon_trigger_detection_WR_B( state_number, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en, , trigger_detected, first_round_of_subBuffer)
 procedure update_signals_upon_trigger_detection_WR_B (
      state_number:  in integer ;
     ptr_1st_window_of_subBuffer : in std_logic_vector (8 downto 0);
@@ -186,23 +191,20 @@ procedure update_signals_upon_trigger_detection_WR_B (
    signal cycle_number_triggered : out  std_logic_vector(3 downto 0) ;
    signal subBuffer_triggered: out  std_logic_vector(6 downto 0) ;
    signal fifo_wr_en : out std_logic;
-   signal current_subBuffer: out  std_logic_vector (14 downto 0) ;
+   signal trigger_detected: out  std_logic_vector (14 downto 0) ;
    signal  first_round_of_subbuffer: in std_logic 
 ) is 
 
 begin
             if trigger_intl = '1' then
-        cycle_number_triggered <=  std_logic_vector (to_unsigned (state_number, cycle_number_triggered'length   )  );
-       subBuffer_triggered<=   ptr_1st_window_of_subBuffer(8 downto 2);
-       fifo_wr_en<='1';   
-        if  unsigned(delay_trigger)> state_number then 
-             current_subBuffer(state_number) <='0';
-        else
-             current_subBuffer(state_number)<='1';
-       end if;   
-      else
-         fifo_wr_en<='0';  
-      end if;
+                   cycle_number_triggered <=  std_logic_vector (to_unsigned (state_number, cycle_number_triggered'length   )  );
+                   subBuffer_triggered<=   ptr_1st_window_of_subBuffer(8 downto 2);
+                   fifo_wr_en<='1';   
+                    trigger_detected(state_number)<='1';
+           else
+                     fifo_wr_en<='0';  
+                     trigger_detected(state_number) <='0';
+          end if;
 end;
 
 
@@ -232,7 +234,7 @@ begin
   ----------------------------------
 
  p_sm:  process(clk,RST, mode,trigger_intl, full_fifo,sstin)
-variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
+variable trigger_detected_v: std_logic_vector(14 downto 0) ;
   begin 
  if (RST = '0') or (mode='0') then
       stm_circularBuffer <= start;
@@ -241,13 +243,13 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
       ptr_wr <= (others=> '0');
       fifo_wr_en <= '0';
       cycle_number_triggered <= "0000";
-      current_subBuffer<= (others=>'0');
+      trigger_detected<= (others=>'0');
       first_round_of_subbuffer <= '1';
       jump_wr<=(others=>'0');
       starting_run<='1';
       cnt_watching_trigger_A<=0;
       cnt_watching_trigger_B<=8;
-
+      jump_ptr_correction_intl<= '0';
       
          
    else 
@@ -266,11 +268,11 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  ---------------------------------    
       when wtch_trig_0_to_6 =>      
              if cnt_watching_trigger_A < 6 then
-                  update_signals_upon_trigger_detection_WR_A ( cnt_watching_trigger_A, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
+                  update_signals_upon_trigger_detection_WR_A ( cnt_watching_trigger_A, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  trigger_detected, first_round_of_subBuffer, jump_wr );
                   cnt_watching_trigger_A<= cnt_watching_trigger_A +1;
                   stm_circularBuffer <= wtch_trig_0_to_6;
              else
-                  update_signals_upon_trigger_detection_WR_A ( cnt_watching_trigger_A, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer, jump_wr );
+                  update_signals_upon_trigger_detection_WR_A ( cnt_watching_trigger_A, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  trigger_detected, first_round_of_subBuffer, jump_wr );
                   cnt_watching_trigger_A<= 0 ;
                   stm_circularBuffer <= wr_wtch_trig_7;
              end if;
@@ -288,12 +290,12 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                if unsigned(jump_wr) > 0 then
                    ptr_wr <= shift_right(unsigned(ptr_1st_window_of_subBuffer), 1  ) +2;
                    ptr_1st_window_of_subBuffer <=  std_logic_vector(unsigned(ptr_1st_window_of_subBuffer)+4);
-                   jump_ptr_correction <= '1';  -- refer to the currrent window in case after delay correction, the pulse ocurred in this window
+                   jump_ptr_correction_intl <= '1';  -- refer to the currrent window in case after delay correction, the pulse ocurred in this window
                    jump_wr<=(others=>'0');
                    stm_circularBuffer <= wtch_trig_0_to_6;
                    fifo_wr_en<='0'; 
                    first_round_of_subbuffer <= '1';
-  
+                   trigger_detected <=(others=>'0');
                else
                  -- UPDATE WR FOR THE SECOND PART OF THE SUBBUFFER
                    if unsigned(ptr_1st_window_of_subBuffer) /=  0 then
@@ -301,7 +303,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    else
                         ptr_wr <= unsigned(ptr_1st_window_of_subBuffer )  + 1 ;
                    end if;     
-                    update_signals_upon_trigger_detection_WR_B( 7, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en , current_subBuffer, first_round_of_subBuffer);
+                    update_signals_upon_trigger_detection_WR_B( 7, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en , trigger_detected, first_round_of_subBuffer);
                     stm_circularBuffer <= wtch_trig_8_to_14;
               end if;           
                                     
@@ -309,10 +311,10 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
         when wtch_trig_8_to_14 =>      
                
           if cnt_watching_trigger_B < 14 then
-               update_signals_upon_trigger_detection_WR_B ( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer);
+               update_signals_upon_trigger_detection_WR_B ( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  trigger_detected, first_round_of_subBuffer);
                if cnt_watching_trigger_B = 9 then
                     starting_run<='0'; -- At this point the delay_flag_and_window has updated the cycle_number_triggered
-                    jump_ptr_correction<= '0';
+                    jump_ptr_correction_intl<= '0';
                      cnt_watching_trigger_B<= cnt_watching_trigger_B +1; 
                      stm_circularBuffer <= wtch_trig_8_to_14;
                else
@@ -320,7 +322,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                     stm_circularBuffer <= wtch_trig_8_to_14;
                 end if;
           else
-               update_signals_upon_trigger_detection_WR_B( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  current_subBuffer, first_round_of_subBuffer );
+               update_signals_upon_trigger_detection_WR_B( cnt_watching_trigger_B, ptr_1st_window_of_subBuffer, trigger_intl, delay_trigger, cycle_number_triggered, subBuffer_triggered, fifo_wr_en,  trigger_detected, first_round_of_subBuffer );
                cnt_watching_trigger_B<= 8 ;
                stm_circularBuffer <= wr_wtch_trig_15;
           end if;            
@@ -338,16 +340,16 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                       else
                            ptr_wr <= (others => '0');
                       end if;
-                      current_subBuffer<= (others=>'0');
-      
-                    stm_circularBuffer<= wtch_trig_0_to_6;
+                 trigger_detected<= (others=>'0');
+                 stm_circularBuffer<= wtch_trig_0_to_6;
                 else 
                     stm_circularBuffer<= wtch_trig_0_to_6;
                 end if;
                               
             else  
                     fifo_wr_en<='0';                      
-              if  unsigned(current_subBuffer) > 0 then -- If trigger ocurred in the present run of the subBuffer (previous states) but not in current state
+              if  unsigned(trigger_detected) > 0 then -- If trigger ocurred in the present run of the subBuffer (previous states) but not in current state
+                  trigger_detected<= (others=>'0');
                   if full_fifo = '0' then
                       if ptr_wr /= 255 then  
                                ptr_1st_window_of_subBuffer <= std_logic_vector(unsigned(ptr_1st_window_of_subBuffer) + 4);         -- To next subBuffer          
@@ -359,13 +361,10 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                                  first_round_of_subbuffer <= '1';
                       end if;
                       stm_circularBuffer<= wtch_trig_0_to_6;
-                       current_subBuffer<= (others=>'0');
                   else   
                       stm_circularBuffer<= wtch_trig_0_to_6;  
-                       current_subBuffer<= (others=>'0');               
                   end if;
               else  --- NO HIT 
-                  current_subBuffer<= (others=>'0');
                   stm_circularBuffer<= wtch_trig_0_to_6;
                   ptr_wr <= unsigned(ptr_wr -1);  -- If no hit is detected, the wr pointer goes back to the initial value for the current subBuffer, at this point (the end of wr), 
                                              -- ptr_wr - 1 means going back four windows, a subBuffer, so, 
@@ -383,7 +382,10 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  
  WR_RS <= std_logic_vector(ptr_wr(1 downto 0));
  WR_CS <= std_logic_vector(ptr_wr(7 downto 2));
- 
+jump_ptr_correction <= jump_ptr_correction_intl;
+-- jump_ptr_correction <=
+--                                        '1'  when ( (unsigned(jump_wr)>0) or  jump_ptr_correction_intl='1' )else
+--                                      '0'; 
  p_first_round_of_subbuffer_delay : process(clk,RST, first_round_of_subbuffer)
  begin
  if RST = '0' then
@@ -471,44 +473,44 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  else
      if rising_edge(clk) then 
             
-             if (delay_trigger <= cycle_number_triggered)  then 
-                 cycle_number_corrected_v := std_logic_vector(unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- same run of the subbuffer
-                 window2read <= subBuffer_triggered& cycle_number_corrected_v(3 downto 2); -- window corrected, SubBuffer number + local window. Local window is the internal number for each subBUffer, from 0 to 3.                
-                 jump_flag <= '0';
-                 inter_buffer_flag <='0'; 
-             else
+                     if (delay_trigger <= cycle_number_triggered)  then 
+         cycle_number_corrected_v := std_logic_vector(unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- same run of the subbuffer
+         window2read <= subBuffer_triggered& cycle_number_corrected_v(3 downto 2); -- window corrected, SubBuffer number + local window. Local window is the internal number for each subBUffer, from 0 to 3.                
+         jump_flag <= '0';
+         inter_buffer_flag <='0'; 
+     else
 --              Forcing the window number in  the first subBuffer 
-                 if ( (starting_run = '1') and (  (subBuffer_triggered = "0000000")   )   and ( unsigned(cycle_number_triggered) < "1000"  )   )then
-                     cycle_number_corrected_v:= x"0";
-                     window2read <= "000000000";
-                     jump_flag <= '0';
-                     inter_buffer_flag <='0'; 
+         if ( (starting_run = '1') and (  (subBuffer_triggered = "0000000")   )   and ( unsigned(cycle_number_triggered) < "1000"  )   )then
+             cycle_number_corrected_v:= x"0";
+             window2read <= "000000000";
+             jump_flag <= '0';
+             inter_buffer_flag <='0'; 
 
-                 elsif ( (subBuffer_triggered = "0000000")  )  and (starting_run = '0')  and (unsigned(cycle_number_triggered) < "1000" ) then -- INterbuffer case in order to avoid going back to window 512
-                     cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- cycle_number_corrected could take only values in the range 8-16
-                     window2read <= "0000000"  & "1" & cycle_number_corrected_v(2); -- In this case, window2read could take only two values= 2 or 3   
-                     jump_flag <= '0';
-                     inter_buffer_flag <='1'; 
- 
- --              TRIGGER IN SECOND PART OF THE SUBBUFFER                
-                 elsif (first_round_of_subbuffer_delay = '0') then 
-                    cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- previous  run of subbuffer, SAME SUBBUFFER
-                    window2read <= std_logic_vector(unsigned(subBuffer_triggered ) ) & cycle_number_corrected_v(3 downto 2) ; 
-                    jump_flag <= '0';
-                    inter_buffer_flag <='1';                       
- --               Case when trigger caused a jump from the first part of the subBuffer (WR_A, state hit7) to the next subBuffer . TRIGGER HAPPENED IN SECOND PART OF SUBBUFFER (WR_B)                                       
-                 elsif (jump_ptr_correction = '1') and  (cycle_number_triggered < "1000")  then
-                     cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- previous subbuffer
-                     window2read <= std_logic_vector(unsigned(subBuffer_triggered ) -1) & std_logic_vector(unsigned(cycle_number_corrected_v(3 downto 2)) -2) ; -- (SUBBUFFER-1 )& (window_triggered -2)
-                     inter_buffer_flag <='0'; 
-                     jump_flag <='1';
-                 else
+         elsif ( (subBuffer_triggered = "0000000")  )  and (starting_run = '0')  and (unsigned(cycle_number_triggered) < "1000" ) then -- INterbuffer case in order to avoid going back to window 512
+             cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- cycle_number_corrected could take only values in the range 8-16
+             window2read <= "0000000"  & "1" & cycle_number_corrected_v(2); -- In this case, window2read could take only two values= 2 or 3   
+             jump_flag <= '0';
+             inter_buffer_flag <='1'; 
+
+--              TRIGGER IN SECOND PART OF THE SUBBUFFER                
+         elsif (first_round_of_subbuffer_delay = '0') then 
+            cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- previous  run of subbuffer, SAME SUBBUFFER
+            window2read <= std_logic_vector(unsigned(subBuffer_triggered ) ) & cycle_number_corrected_v(3 downto 2) ; 
+            jump_flag <= '0';
+            inter_buffer_flag <='1';                       
+--               Case when trigger caused a jump from the first part of the subBuffer (WR_A, state hit7) to the next subBuffer . TRIGGER HAPPENED IN SECOND PART OF SUBBUFFER (WR_B)                                       
+         elsif (jump_ptr_correction = '1') and  (cycle_number_triggered < "1000")  then
+             cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- previous subbuffer
+             window2read <= std_logic_vector(unsigned(subBuffer_triggered ) -1) & std_logic_vector(unsigned(cycle_number_corrected_v(3 downto 2)) -2) ; -- (SUBBUFFER-1 )& (window_triggered -2)
+             inter_buffer_flag <='0'; 
+             jump_flag <='1';
+         else
 --               TRIGGER in previous subBuffer                  
-                     cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- previous subbuffer
-                     window2read <= std_logic_vector(unsigned(subBuffer_triggered ) -1) & cycle_number_corrected_v(3 downto 2) ; -- SUBBUFFER-1. When  trigger happened in  previous subBuffer,  subBuffer_triggered is decreased by 1.
-                     jump_flag <= '0';
-                     inter_buffer_flag <='0'; 
-                 end if;
+             cycle_number_corrected_v:= std_logic_vector( 16 + unsigned(cycle_number_triggered) - unsigned(delay_trigger)); -- previous subbuffer
+             window2read <= std_logic_vector(unsigned(subBuffer_triggered ) -1) & cycle_number_corrected_v(3 downto 2) ; -- SUBBUFFER-1. When  trigger happened in  previous subBuffer,  subBuffer_triggered is decreased by 1.
+             jump_flag <= '0';
+             inter_buffer_flag <='0'; 
+         end if;
          end if;
          
          cycle_number_corrected <= cycle_number_corrected_v;
@@ -545,7 +547,7 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
  
      fifo_wr_en_delay<= fifo_wr_en;
     fifo_wr_en_delay2 <= fifo_wr_en_delay;
- 
+ fifo_wr_en_delay3 <= fifo_wr_en_delay2;
      end if;
  end if;
  end process;
@@ -669,11 +671,11 @@ variable current_subBuffer_v: std_logic_vector(14 downto 0) ;
                    stm_2windows <= two_windowsB;
                    
              when two_windowsB=>
-                     if (jump_flag_v= '1') and (cycle_number_corrected_var  = ("1111" or "1110") ) then
+                     if ( (jump_flag_v= '1') and (  unsigned(cycle_number_corrected_var) > 13  )  ) then
                          rd_add_i <=std_logic_vector(unsigned(window2read_v) +3);  -- special case for jump subBuffer 
-                       elsif  (inter_buffer_flag_w0_v= '1') and (cycle_number_corrected_var = ("0111" or "0110") ) then
+                       elsif (  (inter_buffer_flag_w0_v= '1') and (   (cycle_number_corrected_var = "0111") or   (cycle_number_corrected_var= "0110") )     ) then
                          rd_add_i <=std_logic_vector(unsigned(window2read_v) -2); -- special case for first wr address handling to avoid going to window 512
-                      elsif  (inter_buffer_flag_w0_v = '1') and (cycle_number_corrected_var= ("1111" or "1110") ) then
+                       elsif (  (inter_buffer_flag_w0_v= '1') and (   (cycle_number_corrected_var = "1111") or   (cycle_number_corrected_var= "1110") )     ) then
                          rd_add_i <=std_logic_vector(unsigned(window2read_v) -3); -- special case for first wr address handling to avoid going to window 512
                      else
                          rd_add_i <=std_logic_vector(unsigned(window2read_v) +1); 
