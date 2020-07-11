@@ -19,7 +19,7 @@ def plot_pulse(fileName, rango, repeticiones):
     #print(df)
     
     total= int(rango*repeticiones)
-    startWindow=0
+    startWindow=20
     fontsizeAxis=28
     std3windowsList = list()
     maxList = list()
@@ -37,7 +37,7 @@ def plot_pulse(fileName, rango, repeticiones):
     #
     """
     maximums= pd.DataFrame()
-    rows = 2
+    rows = 6
     
     df.plot(kind='line', subplots= True, layout= (5,rows), sharex=True, sharey=False, legend=False, marker='o' )
     

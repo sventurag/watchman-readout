@@ -115,7 +115,7 @@ time.sleep(sec2wait)
 #time.sleep(2)
 #triggerMode()
 
-pedestalFlat(10)
+#pedestalFlat(0)
 
 #  freq, amp, offset
 #wave_gen().apply(1000,0.1,0)

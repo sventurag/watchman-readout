@@ -117,14 +117,14 @@ wave_gen().Output1(out=False)
 wave_gen().Output1(out=False)  
 wave_gen().loadHz(50)
 wave_gen().pulseEdgeTrailing(5e-9)
-wave_gen().pulseEdgeLeading(10e-9)
-wave_gen().pulseWidth(20e-9)
+wave_gen().pulseEdgeLeading(3e-9)
+wave_gen().pulseWidth(7e-9)
 time.sleep(5)
 
 #pedestalFlat(10)
 
 #  freq, amp, offset
-wave_gen().apply(10,0.3,0)
+wave_gen().apply(10,0.1,0)
 time.sleep(5)
 
 wave_gen().Query()
