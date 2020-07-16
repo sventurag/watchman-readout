@@ -99,6 +99,10 @@ uint16_t lookup_table[2048];
 int fstWindowValue;
 /** Value from the GUI for the number of windows   */
 int nmbrWindows;
+/** Value from the GUI for the total number of windows   */
+int totalWindows;
+/** Value from the GUI for the channel to send over the udp   */
+int channel;
 /** Value from the GUI for delay in update WR   */
 int  delay_UpdateWR;
 ///** Value of trigger delay for correction of the window number in the circular buffer  */

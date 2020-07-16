@@ -71,6 +71,12 @@ extern int fstWindowValue;
 /** Value from the GUI for the number of windows   */
 extern int nmbrWindows;
 
+/** Value from the GUI for the total number of windows   */
+extern int totalWindows;
+
+/** Value from the GUI for the channel to send over the udp   */
+extern int channel;
+
 /** Value from the GUI for delay in update WR   */
 extern int  delay_UpdateWR;
 
@@ -368,6 +374,18 @@ int command_parser(struct pbuf *p, char* return_buf){
 
 
 				   }
+
+				    else if((regID_one_reg == TOTAL_WINDOWS)){
+				    	totalWindows = regVal_one_reg;
+						//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+
+				   			         }
+				    else if((regID_one_reg == CHANNEL2SEND)){
+				    	channel = regVal_one_reg;
+						//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+
+				   			         }
+
 				    else if((regID_one_reg == TC_Delay_RB))
 				  				    {
 				  				    	delay_RB = regVal_one_reg;
@@ -375,14 +393,7 @@ int command_parser(struct pbuf *p, char* return_buf){
                                         regptr[TC_Delay_RB]= delay_RB;
 				  				   }
 
-//				    else if((regID_one_reg == PEDESTAL_TRIGGER))
-//
-//				  				    {
-//
-//				  						xil_printf("PEDESTAL_TRIGGER = %d\r\n", regID_one_reg);
-//				  						pedestalTriggerModeFlag= true;
-//
-//				  				   }
+
 				    else if((regID_one_reg == PEDESTAL_TRIGGER_AVG))
 
 				 				  				    {

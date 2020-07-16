@@ -122,8 +122,10 @@
 
 /** @brief  Number of average elements for pedestal acquisition in trigger mode */
 #define PEDESTAL_TRIGGER_AVG     97
-
-
+/** Value from the GUI for the total number of windows   */
+#define TOTAL_WINDOWS            98
+/** Value from the GUI for the channel to send over the udp   */
+#define CHANNEL2SEND                  99
 /** @brief  Test pattern generator Register */
 #define TC_TPG_REG				128
 

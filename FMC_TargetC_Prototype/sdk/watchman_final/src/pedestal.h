@@ -23,7 +23,7 @@ int get_pedestal(int avg, int nmbrofWindows);
 int get_windowsRaw(int startWindow, int nmbrofWindows);
 int get_windows(int startWindow, int nmbrofWindows);
 
-int get_15_windows_fct(void);
+//int get_15_windows_fct(void);
 void pedestal_triggerMode_init(void);
 int pedestal_triggerMode_getArrays(volatile InboundRingManager_t *datatosave );
 int divideByAverageNumber(void);
