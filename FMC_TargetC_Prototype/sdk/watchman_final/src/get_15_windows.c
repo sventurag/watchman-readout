@@ -30,15 +30,53 @@ extern volatile bool flag_scu_timer;
 extern XScuWdt WdtScuInstance;
 /** Value from the GUI for first window   */
 extern int fstWindowValue;
-/** Value from the GUI for the number of windows   */
+/** Value from the GUI for the number of windows per iteration  */
 extern int nmbrWindows;
+/** Value from the GUI for the total number of windows   */
+extern int totalWindows;
+/** Value from the GUI for the channel to send over the udp   */
+extern int channel;
 /** Value from the GUI for delay in update WR   */
 //extern int  delay_UpdateWR;
 extern uint32_t  data_raw[512][16][32];
 
+
+
 /****************************************************************************/
 /**
-* @brief	Recover 20 consecutive windows and send them to the computer
+* @brief	Pulse sweep
+*
+* @param	-
+*
+* @return	XST_SUCCESS or XST_FAILURE (defined in xstatus.h)
+*
+* @note		Requires that variables fstWindowValue, totalWindows and nmbrWindows to be updated
+*
+****************************************************************************/
+
+int PulseSweep(){
+int fstWindow;
+	for (fstWindow=fstWindowValue ; fstWindow<totalWindows ; fstWindow+=nmbrWindows ){
+		if(SendWindows(fstWindow,nmbrWindows)!= XST_SUCCESS){
+	       xil_printf("Error in SendWindows \r\n");
+
+		}
+		usleep(50);
+	}
+	return XST_SUCCESS;
+};
+
+
+
+
+
+
+
+
+
+/****************************************************************************/
+/**
+* @brief	Recover consecutive windows and send them to the computer
 *
 * @param	-
 *
@@ -47,8 +85,8 @@ extern uint32_t  data_raw[512][16][32];
 * @note		-
 *
 ****************************************************************************/
-int get_15_windows_fct(void){
-	int window_start;
+int SendWindows(int firstWindow, int numWindows){
+	//int window_start;
 	int timeout;
 	int window,i,j,index;
 	uint16_t data_tmp;
@@ -67,9 +105,9 @@ int get_15_windows_fct(void){
 	tmp_ptr->previous = NULL;
 
 	/* First window */
-	window_start = fstWindowValue;
+	//window_start = fstWindowValue;
     usleep(10);
-    printf("fstWindowValue %d \r\n", fstWindowValue);
+    //printf("fstWindow %d \r\n", firstWindow);
 	/* Number of windows */
 	//nmbrWindows = 16;
 
@@ -78,15 +116,15 @@ int get_15_windows_fct(void){
 	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
     usleep(10);
 	/* Initiate transfer and measure */
-	regptr[TC_FSTWINDOW_REG] = fstWindowValue;
-	regptr[TC_NBRWINDOW_REG] = nmbrWindows;
+	regptr[TC_FSTWINDOW_REG] = firstWindow;
+	regptr[TC_NBRWINDOW_REG] = numWindows;
 	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 	ControlRegisterWrite(WINDOW_MASK,ENABLE);
 	usleep(50);
 	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
 
-	for(window =window_start ; window<nmbrWindows+window_start; window++){
+	for(window =firstWindow ; window<numWindows+firstWindow; window++){
 
 	//	if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 		XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
@@ -155,10 +193,10 @@ int get_15_windows_fct(void){
 			frame_buf[index++] = (char)(window >> 8);
 
 			//printf("\r\n window = %d\r\n",window);
-			for(i=0; i<16; i++){
+
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[i][j]-  pedestal[window][i][j]+ offset_avoid_negative);
+					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[channel][j]-  pedestal[window][channel][j]+ offset_avoid_negative);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));
@@ -169,7 +207,7 @@ int get_15_windows_fct(void){
 				}
 
 				//printf("\r\n");
-			}
+
 			//printf("\r\n");
 			frame_buf[index++] = 0x33;
 		//    printf("Test\r\n");

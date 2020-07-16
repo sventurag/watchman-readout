@@ -534,7 +534,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS:
-				if(get_15_windows_fct() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				if(PulseSweep() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
 				return -1;

@@ -163,11 +163,11 @@ class targetc():
    #       payload.append(int(param2 % 256))
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-          self.init_UDP_connection_data()
-          self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
-          #thread_timer_2=Timer(10,thread_timer_int_2)
-          self.thread_user_mode_obj.start()
-          self.get_windows_flag = True
+   #       self.init_UDP_connection_data()
+   #       self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
+   #       #thread_timer_2=Timer(10,thread_timer_int_2)
+   #       self.thread_user_mode_obj.start()
+   #       self.get_windows_flag = True
       # print("Tx: " + cmd[comando] + " rand=" + str(payload[3])) 
        #payload.append(int("0x33", 0)) # frame's end code 0x33CC
        #payload.append(int("0xCC", 0))
