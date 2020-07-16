@@ -19,27 +19,26 @@ from plot_delays_max import plot_pulse
 tc = targetc.targetc()
 
 wave_gen().Output1(out=False)
+time.sleep(2)
+wave_gen().pulseWidth(5e-9)
+time.sleep(2)
+
+wave_gen().Query()
+
 time.sleep(10)
-tc.send_command(9,100,1)
+tc.send_command(9,100,1) # Pedestals
 time.sleep(10)
-rango = list((range(0,100,1)))  # number of steps in delay values for the waveformigenerator
+rango = list((range(0,32*4,1)))  # number of steps in delay values for the waveformigenerator
 #rango = list( range(0,1,1) )
 
-repeticiones = list( range(0,1,1)   )
-fileToSave = './data/test10July2020.txt'
+repeticiones = list( range(0,40,1)   )
+fileToSave = './data/amplCalTest_40reps_128delays.txt'
 
-#print ('Setting ssToutFB')
-#regID = 65
-#regValue = 59
-#time.sleep(2)
-
-nmbrWindows = 4
-#tc.send_command(8,93,15) # pedestal
-time.sleep(3)
+nmbrWindows = 1
 
 time.sleep(1)
 regID = 151
-regValue = 0
+regValue = 4
 tc.send_command(8,regID,regValue) # first window
 time.sleep(1)
 
@@ -51,7 +50,7 @@ time.sleep(1)
 
 
 
-startWindow=0
+startWindow=4
 totalWindows=8
 
 Windows512 = np.zeros((totalWindows*31))
@@ -79,12 +78,11 @@ for j in repeticiones: # # Number of waveforms for the same delay value
        Windows512 = [int(i)] + Windows512.tolist()
        Windows512_delays.append(Windows512)
        time.sleep(1)
-
+       print("REP:{}".format(j))
 np.savetxt(os.path.abspath(fileToSave), np.array(Windows512_delays).T, fmt='%5.3f')
 time.sleep(1)
 
 Windows512_delays = Windows512_delays * 0 
-    
 wave_gen().Output1(out=True)
 print("end")
 
