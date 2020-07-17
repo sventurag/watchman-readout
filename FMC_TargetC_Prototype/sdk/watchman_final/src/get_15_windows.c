@@ -111,6 +111,7 @@ int SendWindows(int firstWindow, int numWindows){
 	/* Number of windows */
 	//nmbrWindows = 16;
 
+
 	/* Give the element's address to the DMA */
 	 XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
