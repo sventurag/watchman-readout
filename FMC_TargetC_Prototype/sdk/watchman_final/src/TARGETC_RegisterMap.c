@@ -29,7 +29,7 @@ void SetTargetCRegisters(void){
 		WriteRegister(TC_VDLYTUNE_REG + i,	0);
 	}
 //	*** TARGETC Register Initial Values
-	WriteRegister(TC_SSTOUTFB_REG,		59); //0x03a
+	WriteRegister(TC_SSTOUTFB_REG,		60); //0x03a
 
 	WriteRegister(TC_SSPIN_LE_REG,		51);	//TEST with SSPIN
 	WriteRegister(TC_SSPIN_TE_REG,		7);
@@ -77,7 +77,7 @@ void SetTargetCRegisters(void){
 	xil_printf("Turning DLL ON \r\n");
 	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019
 	WriteRegister(TC_VANBUFF_REG,	1042);	// 1,300 Meeting 07/02/2019, 1062  0x44C
-	sleep(5);
+	sleep(30);
 
 	WriteRegister(TC_QBIAS_REG,	1500);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
 	WriteRegister(TC_VANBUFF_REG,	0);	// // 1,300 Meeting 07/02/2019
