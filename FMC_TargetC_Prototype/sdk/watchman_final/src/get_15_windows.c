@@ -61,7 +61,7 @@ int fstWindow;
 	       xil_printf("Error in SendWindows \r\n");
 
 		}
-		usleep(50);
+		usleep(10);
 	}
 	return XST_SUCCESS;
 };
