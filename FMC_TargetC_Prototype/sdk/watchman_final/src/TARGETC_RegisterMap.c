@@ -77,7 +77,7 @@ void SetTargetCRegisters(void){
 	xil_printf("Turning DLL ON \r\n");
 	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019
 	WriteRegister(TC_VANBUFF_REG,	1042);	// 1,300 Meeting 07/02/2019, 1062  0x44C
-	sleep(30);
+	sleep(5);
 
 	WriteRegister(TC_QBIAS_REG,	1500);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
 	WriteRegister(TC_VANBUFF_REG,	0);	// // 1,300 Meeting 07/02/2019
@@ -87,7 +87,7 @@ void SetTargetCRegisters(void){
 
  // */
 	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
-	WriteRegister(TC_MONTIMING_REG, 0);		//INIT MonTiming PASS disable
+	WriteRegister(TC_MONTIMING_REG, 128);		//INIT MonTiming PASS disable
 
 	xil_printf("TragetC's registers initialized!\r\n");
 }
