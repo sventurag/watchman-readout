@@ -59,17 +59,17 @@ def pulseSweepInit(nmbrWindows,firstWindow,totalWindows,channel):
     
 pulseSweepInit(nmbrWindows,firstWindow,totalWindows,channel)
 
-repeticiones = list( range(0,100,1)   )
-rango = list((range(0,128,1)))  # number of steps in delay values for the waveformigenerator
+repeticiones = list( range(0,10,1)   )
+rango = list((range(0,5,1)))  # number of steps in delay values for the waveformigenerator
 
 wave_gen().Output1(out=True)
 time.sleep(5)
 
-for j in repeticiones: # # Number of waveforms for the same delay value
-    print(j)
-    for i in rango:
-       wave_gen().trigDelay(i*.000000001)
-       time.sleep(.1)
+for i in rango:
+   print(i)
+   wave_gen().trigDelay(i*.000000001)
+   time.sleep(.2)
+   for j in repeticiones: # # Number of waveforms for the same delay value
        tc.send_command(7,0,0) # get windows
        time.sleep(.1)
 wave_gen().Output1(out=False)
