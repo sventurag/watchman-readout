@@ -42,6 +42,7 @@ extern uint32_t  data_raw[512][16][32];
 
 
 
+
 /****************************************************************************/
 /**
 * @brief	Pulse sweep
@@ -55,6 +56,38 @@ extern uint32_t  data_raw[512][16][32];
 ****************************************************************************/
 
 int PulseSweep(){
+int rep;
+
+
+	for ( rep =0; rep<100 ; rep++ ){
+		if(PulseRange()!= XST_SUCCESS){
+	       xil_printf("Error in WindowRange \r\n");
+		}
+		usleep(50);
+	}
+	return XST_SUCCESS;
+};
+
+
+
+
+
+
+
+/****************************************************************************/
+/**
+* @brief   Selecting the window range to do the Pulse Sweep.
+* This function allows specify the number of windows to be digitized in each iteration
+*
+* @param	-
+*
+* @return	XST_SUCCESS or XST_FAILURE (defined in xstatus.h)
+*
+* @note		Requires that variables fstWindowValue, totalWindows and nmbrWindows to be updated
+*
+****************************************************************************/
+
+int PulseRange(){
 int fstWindow;
 ControlRegisterWrite(SMODE_MASK ,ENABLE);
 ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
