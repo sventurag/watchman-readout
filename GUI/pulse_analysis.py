@@ -9,8 +9,7 @@ import pandas as pd
 #from scipy.signal import argrelextrema
 import scipy.stats as stats          
 from scipy import signal
-from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
-#%matplotlib  inline
+#from mpl_toolkits.mplot3d import Axes3D  # noqa: F401 unused import
 num_channels =1
 def bin2dec(pkt):
 #    payloadSize=512
@@ -23,7 +22,7 @@ def bin2dec(pkt):
 #sniff(offline='traffic.pcap', prn=processPacket,store=0 )
 
 
-def process_packet(filename,channel):
+def process_packet(filename,channel, plotWindows):
     scapy_cap = rdpcap(filename)
     payloads_list = []
     num_elements = (32*num_channels) + 2
@@ -35,7 +34,7 @@ def process_packet(filename,channel):
         temp_payload = temp[1:num_elements] # Taking the payload only
         temp_rsh = temp_payload.reshape(num_channels,-1)
         payloads_list.append(temp_rsh[channel].tolist())
-        window_numbers.append(temp[0]) # Taking the window number only:
+        window_numbers.append(temp[0]) # Taking the window number only
         numberofwindows+=1
     print(numberofwindows)
    #     average.append(np.mean(temp_rsh[channel])-1115)
@@ -56,32 +55,6 @@ def process_packet(filename,channel):
     df = pd.DataFrame(payloads_list_flat, columns=['payload'])
     df = df-offset
     #payload_minus_offset = [ x - offset for x in payloads_list_flat] 
-    
-    #Plot pulses
-    fig= plt.figure()
-    ax = fig.add_subplot(111)
-    ax.plot(df.payload, '-o', markersize=1.5, mfc='k')
-    ax.tick_params(axis='both',labelsize=fonttam)
-    ax.legend(['Pedestal subtracted Pulses'])
-    ax.set_xlim(0,1000)
-    ax.yaxis.grid(True)
-    newTickLoc = list(range(0,numberofwindows*32,32))
-    #for j in range(0,int(32*(numberofwindows+1)),32):
-     #  ax.axvline(j, color='g', linewidth=1)
-    ax2= ax.twiny()    #https://stackoverflow.com/questions/10514315/how-to-add-a-second-x-axis-in-matplotlib
-    ax2.set_xlim(ax.get_xlim())
-    ax2.set_xticks(newTickLoc)
-    ax2.set_xticklabels(window_numbers, fontsize=9, rotation=70)
-    ax2.set_label("Window number")
-    ax.set_ylabel('Counts',fontsize= fonttam)
-    ax.set_xlabel('Time [ns]',fontsize= fonttam)
-#    
-#    # High pass filter
-#    filtered_sig = highpass_filter(payload_minus_offset,1/(1e-9) )
-#    ax.plot(filtered_sig[0:100])
-#    ax.legend(['Raw pulses', 'Filtered pulses'])
-    # Using pandas dataframe to find rising edge and maximums
-   # df['numberofwindows']= numberofwindows;
     df['countsIndx']=list(range(0,32,1))*numberofwindows
     col_window_numbers=[]
     for item in window_numbers:
@@ -89,10 +62,98 @@ def process_packet(filename,channel):
             col_window_numbers.append(item)
     
     df['windowNumbers'] = col_window_numbers;
+    df['numberofwindows']= numberofwindows
+    df['flatWindowNumbers']=0 
+    df.flatWindowNumbers[0:numberofwindows]= window_numbers
     return df
+
+def process_packet_pulseSweep(filename,channel,nmbrWin):
+    scapy_cap = rdpcap(filename)
+    payloads_list = []
+    num_elements = (32*num_channels) + 2
+    window_numbers=[]
+    numberofwindows=0
+  #  average=[]
+    for packet in scapy_cap:
+        temp = bin2dec(packet)
+        temp_payload = temp[1:num_elements] # Taking the payload only
+        temp_rsh = temp_payload.reshape(num_channels,-1)
+        payloads_list.append(temp_rsh[channel].tolist())
+        window_numbers.append(temp[0]) # Taking the window number only
+        numberofwindows+=1
+    print(numberofwindows)
+   #     average.append(np.mean(temp_rsh[channel])-1115)
+   # print("AVERAGE",average)
+    payloads_list_flat = [ [item for  sublist in payloads_list[i:i+nmbrWin] for item in sublist] for i in range(0,numberofwindows,nmbrWin)]
+    df = pd.DataFrame(payloads_list_flat).transpose()   
+#    offset = 200
+#    df = pd.DataFrame(payloads_list).transpose()
+#    df= df -offset
+    print("ALL PACKETS CONVERTED")
+    
+#   # Subtract offset
+#    offset = 200
+#    df = pd.DataFrame(payloads_list_flat, columns=['payload'])
+#    df = df-offset
+#    #payload_minus_offset = [ x - offset for x in payloads_list_flat] 
+#    df['countsIndx']=list(range(0,32,1))*numberofwindows
+#    col_window_numbers=[]
+#    for item in window_numbers:
+#        for i in range(0,32,1):
+#            col_window_numbers.append(item)
+#    
+#    df['windowNumbers'] = col_window_numbers;
+#    df['numberofwindows']= numberofwindows
+#    df['flatWindowNumbers']=0 
+#    df.flatWindowNumbers[0:numberofwindows]= window_numbers
+#   """
+    return df
+
+
+
+def plotPulses(df,xlim1, xlim2, ylim1,ylim2):
+
+    #fig= plt.figure()
+    fig,ax = plt.subplots()
+    ax.plot(df.payload, '-o', markersize=1.5, mfc='k', label= 'Window as first')
+#    plt.plot(df.payload[16384:-1].values, '-o', markersize=1.5, mfc='r', label='Window as Second')
+
+    ax.set_xlim(xlim1,xlim2)
+    ax.set_ylim(ylim1,ylim2)
+    plt.xticks(fontsize=fonttam)
+    plt.yticks(fontsize=fonttam)
+    ax.grid(axis='y')
+#    ax.set_title("Pedestal subtracted data in trigger mode")
+    #plt.legend(['Pedestal subtracted Pulses'])
+    #plt.legend()
+    ax.yaxis.grid(True)
+    newTickLoc = list(range(0,df.numberofwindows[0]*32,32))
+    #for j in range(0,int(32*(numberofwindows+1)),32):
+     #  ax.axvline(j, color='g', linewidth=1)
+    ax2= ax.twiny()    #https://stackoverflow.com/questions/10514315/how-to-add-a-second-x-axis-in-matplotlib
+    ax2.set_xlim(ax.get_xlim()) 
+    ax2.set_xticks(newTickLoc)
+    ax2.set_xticklabels(df.flatWindowNumbers[0:df.numberofwindows[0]], fontsize=9, rotation=70)
+    ax2.set_label("Window number")
+    ax2.grid(axis='x')
+    ax.set_ylabel('ADC Counts',fontsize= 12)
+    ax.set_xlabel('Time [ns]',fontsize= fonttam)
+    plt.xlim(xlim1,xlim2)
+    return ax
+# plt.title('Pedestal subtracted data')
+   # return df
+    
+    #    
+#    # High pass filter
+#    filtered_sig = highpass_filter(payload_minus_offset,1/(1e-9) )
+#    ax.plot(filtered_sig[0:100])
+#    ax.legend(['Raw pulses', 'Filtered pulses'])
+    # Using pandas dataframe to find rising edge and maximums
+   # df['numberofwindows']= numberofwindows;
     #df_filt = pd.DataFrame(filtered_sig, columns=['payload'])
 
 def pulseMax (df, diffSamples, minThreshold):
+    """ estimate max for pulses """
     fonttam=20
     # Identifying rising edge points of the pulses, there may be more than one point identified as rising edge for the same
     # pulse.
@@ -104,7 +165,14 @@ def pulseMax (df, diffSamples, minThreshold):
     indx_max = []
     temp = []
     for i in range( len( rising_index ) ):
-       temp= df.payload[rising_index[i]: rising_index[i]+16].idxmax()
+       if rising_index[i] >= 10:
+           range_max_inf = 10;
+           range_max_sup = 10;
+       else:
+           range_max_inf = 0;
+           range_max_sup = 10;
+            
+       temp= df.payload[rising_index[i]- range_max_inf: rising_index[i]+ range_max_sup].idxmax()
        if i==0:
            indx_max.append(temp)
        elif (temp != indx_max[-1]):
@@ -112,62 +180,6 @@ def pulseMax (df, diffSamples, minThreshold):
 
     df['maximum'] = df.payload[indx_max]
     return df
-
-def baseline(df_baseline,sample, width, numberofPointsBefore, numberofPointsAfter, ncols, plotPulse):
-    if sample== -1:
-        df_baseline['maxSample']=df_baseline.maximum[df_baseline.maximum.notnull()]
-    else:
-        df_baseline['maxSample'] =  df_baseline.maximum[df_baseline.maximum.notnull()].loc[ df_baseline['countsIndx']== sample]
-        
-
-    df_maxSample= df_baseline[ df_baseline.iloc [:,-1].notnull() ]
-   
-    shift_ = np.int(width/2)
-    list_maxSample = df_maxSample.index.values-shift_
-    
-    list_maxSample=np.delete( list_maxSample,0,0)
-    list_maxSample=np.delete( list_maxSample,-1,0) 
-    print('LEN MAXSAMPLE ARRAY',len(list_maxSample))
-    df_baseline['MeanBeforePulse']= np.nan
-    df_baseline['MeanAfterPulse']= np.nan
-    
-    for list_ind in list_maxSample:
-        amplitudVector= df_baseline.payload[ list_ind : (list_ind+width) ].values
-        df_baseline.loc[df_baseline.index==(list_ind+shift_), 'MeanBeforePulse']= np.mean(amplitudVector[0:np.int(numberofPointsBefore)])
-        df_baseline.loc[df_baseline.index==(list_ind+shift_), 'MeanAfterPulse']= np.mean(amplitudVector[ (np.int(numberofPointsAfter))*(-1):-1])
-    
-    if plotPulse == True:
-        fig, axes = plt.subplots(nrows= 5, ncols=ncols)
-        fig.subplots_adjust(hspace=0.5)
-        fig.suptitle('Sample {}'.format(sample))
-        for ax in axes.flatten():
-            indx = np.where(axes.flatten()==ax)[0][0]
-            list_ind = list_maxSample[indx]
-            print(indx)
-            amplitudVector= df_baseline.payload[ list_ind : (list_ind+width) ].values
-           #Plotting pulse
-            ax.plot(  df_baseline.index[ list_ind : (list_ind+width) ],       amplitudVector   , '-ok')
-            #Plotting maximum
-            ax.plot( df_baseline.index[ (list_ind +shift_)],df_baseline.payload[ (list_ind + shift_) ], '>')
-            
-           
-
-        ax.set(title='{}'.format(df_baseline.payload[ (list_ind + shift_) ]))
-        ax.grid()
-   #     ax.set_ylim(-20,10)
-    fig2,(ax1, ax2) = plt.subplots(nrows=1, ncols=2)
-    if sample==-1:
-        plt.suptitle('All samples')
-    else:
-        plt.suptitle('Sample{}'.format(sample))
-
-    df_baseline.hist('MeanBeforePulse', ax=ax1, grid=True)#
-    df_baseline.hist('MeanAfterPulse', ax=ax2, grid=True)#, xlabel= 'Mean value after pulse [ADC counts]')
-    ax1.set(title='MeanBeforePulse', xlabel= 'Mean value before pulse [ADC counts]')
-    ax2.set(title='MeanAfterPulse', xlabel= 'Mean value before pulse [ADC counts]')
-    
-    return df_baseline
-
 
 def plot_hist(df):
     fonttam=20
@@ -177,13 +189,13 @@ def plot_hist(df):
     std_max = df.payload[df.maximum>0].std()
     print('mean_max',mean_max)
 
-    minHist = int(df.maximum.loc[df_payload.maximum.notnull()].min())
-    maxHist =int( df.maximum.loc[df_payload.maximum.notnull()].max())
+    minHist = int(df.maximum.loc[df_payload.maximum > 0].min())
+    maxHist =int( df.maximum.loc[df_payload.maximum > 0].max())
     hist =  df.maximum[df.maximum>0].hist(bins=(maxHist-minHist)+1,range=(minHist,maxHist), ec='k')
     print(df.maximum[df.maximum>0].values)
     #hist = df.payload.plot(kind='bar')
     #print(hist)
-    props = dict(boxstyle='round', facecolor='wheat', alpha=0.5)
+    props = idict(boxstyle='round', facecolor='wheat', alpha=0.5)
     textstr = '\n'.join((
             '%.f Pulses' % (len(df.maximum[df.maximum>0]),),
             'Maximum Amplitude',
@@ -222,7 +234,7 @@ def highpass_filter(y, sr):
     return filtered_audio
 
 
-fonttam=20
+fonttam=13
 
 #filename='20000Hz100pulses.pcap'
 #filename= 'traffic.pcap'
@@ -232,7 +244,7 @@ fonttam=20
 
 #filename = './bunches/1000Hzpulses_2117110307303_cycles12nsVolt070load50_sp_sp1'
 #filename = './4000Hz/4000Hzpulses_3452729986_cycles12nsVolt070load50_sp'
-#filename = '/home/salvador/vivado/data/1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
+#filename = './1000Hz/1000Hzpulses_6899474890_cycles12nsVolt070load50_sp1'
 #filename = './40kHz/40000Hzpulses_184521586246_cycles12nsVolt070load50_sp1'
 #filename = './load5k/1000Hzpulses_8972137529_cycles12nsVolt070load5k_sp1'
 #filename = './load75/1000Hzpulses_15123268129_cycles12nsVolt070load75_sp1'
@@ -246,73 +258,114 @@ fonttam=20
 #filename = './amp50mV/1000Hzpulses_16526659222_cycles12nsVolt050load75_sp1'
 #filename = './load75/1000Hzpulses_37252155670_cycles12nsVolt070load75_sp1'
 #filename = './load75/1000Hzpulses_12749085115_cycles12nsVolt070load75_sp1'
-#filename= '/home/salvador/vivado/data/load75/1000Hzpulses_31904512932_cycles12nsVolt070load75_sp1'
-#filename = '/home/salvador/vivado/data/load75/1000Hzpulses_57538107850_cycles12nsVolt070load75_incrwait_sp1'
-#filename = '/home/salvador/vivado/data/load100/1000Hzpulses_65426331829_cycles12nsVolt070load100_incrwait_sp1'
-#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_xxx_cycles12nsVolt070load50_disch400_sp1'
-#filename = '/home/salvador/vivado/data/load75/1000Hzpulses_60252166477_cycles12nsVolt070load75_disch400_sp1'
-#filename = '/home/salvador/vivado/data/load05/1000Hzpulses_43805187438_cycles12nsVolt070load05_disch400_sp1'
-#filename = '/home/salvador/vivado/data/load30/1000Hzpulses_37921322656_cycles12nsVolt020load30_disch400_sp1'
-#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_30367922792_cycles12nsVolt070load50_sp1'
-#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_26657078385_cycles12ns100mV50ohm_sp1'
-#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_25119085331_cycles12ns100mV75ohm_sp1'
-#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_25119085331_cycles12ns100mV100ohm_sp1'
-#filename = '/home/salvador/vivado/data/load50/1000Hzpulses_79711080063_cycles12ns150mV100ohm_sp1'
-#filename = '/home/salvador/vivado/data/load150/1000Hzpulses_12749800203_cycles12ns150mV150ohm_sp1'
-#filename = '/home/salvador/vivado/data/load250/1000Hzpulses_25553906384_cycles12ns150mV250ohm_sp1'
-#filename = '/home/salvador/vivado/data/load500/1000Hzpulses_13719295240_cycles12ns150mV500ohm_sp1'
-#filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_52498850295_cycles12ns150mV10000ohm_sp1'
-#filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_xx_cycles12ns130mV10000ohm_sp1'
-#filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_65637282744_cycles12ns200mV10000ohm_sp1'
-filename = '/home/salvador/vivado/data/load10k/1000Hzpulses_85585679113_cycles12ns150mV10000ohm_sp1'
+#filename = './test_pedestal/test_pedestal_data.pcap'
+#filename = './dataPedTriggerMode/dataPedTriggerMode10.pcap'
+#df = process_packet(filename, 0, True)
 
-df = process_packet(filename, 0)
+
 #plt.show()
-df_payload = pulseMax(df, -100, 200)
-
+#df_payload = pulseMax(df, -100, 200)
 #df_filtered = pulseMax(df_filt, -70,150)
 
-plt.plot(df_payload.maximum,'ok', markersize= 5, mfc='red')
-plt.xlim(0,1000)
+##### plt.plot(df_payload.maximum,'ok', markersize= 5, mfc='red')
+##### #plt.xlim(0,1000)
+##### plt.figure()
+##### 
+##### 
+##### 
+##### #plt.show()
+##### 
+##### ## 3D PLOT
+##### 
+##### #######
+##### 
+##### #fig= plt.figure()
+##### #ax20=fig.add_subplot(111, projection='3d')
+##### #yticks=list(range(0,32,1))
+##### #
+##### #for k in yticks:
+##### #    
+##### #    df_no31 = df_payload.loc[df_payload['ciountsIndx'] == k ]
+##### #    #ys= df_no31.maximum[df_no31.maximum>0]
+##### #    df_group = df_no31.groupby('maximum')['windowNumbers'].count()
+##### #    xs = df_group.index.values
+##### #    ys= df_group.values
+##### #    print('ys',ys)
+##### #    print('xs',xs)
+##### #    #xs = list( range(0,len(ys),1) ) 
+##### #    ax20.bar(xs,ys, zs=k, zdir='y', alpha=0.8)
+##### #
+##### #ax20.set_xlabel('Maximum')
+##### #ax20.set_ylabel('Sample Number')
+##### #ax20.set_zlabel('Frequency')
+##### #ax20.set_yticks(yticks)
+##### #
+def saveHeights(df_payload, filenameCSV):
 
-
-#
-
-#
-df_countsAndMaximum = df_payload[['countsIndx', 'maximum']].loc[df_payload['maximum'] > 0]
-df_windowAndMaximum = df_payload[['windowNumbers', 'maximum']].loc[df_payload['maximum'] > 0]
-df_countsAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_countsIndxVsMaximum_150mVLoad10k_disch400_incrwait.txt', header=False, index=False, sep='\t', mode='a')
-df_windowAndMaximum.to_csv('/home/salvador/vivado/data/1000Hzpulses_windowVsMaximum_150mVLoad10k_disch400_incrwait.txt', header=False, index=False, sep='\t', mode='a')
-
-print('countsAndMaximum',df_countsAndMaximum.head())
-#
-
-#df_payload['maxSampleX'] =  df_payload.maximum[df_payload.maximum.notnull()].loc[ df_payload['countsIndx']== sample]
-
-
-
-print("---------------------")
-
-
-
-#df_baselineAll=  baseline(df_payload, -1, 40, 10, 6, 30, False) 
-
-#sample =0
-#
-#df_baseline0 = baseline(df_payload, sample, 40, 10, 6, 19, False)
-#
-#plt.figure()
-#minHist = int(df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].min())
-#maxHist =int( df_baselineAll.maxSample.loc[df_baselineAll.maxSample.notnull()].max())
-#plt.hist(df_baselineAll.maxSample, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
-#plt.title("Sample{}".format(sample))
-#
-#print(df_baselineAll.head())
-
-
-plot_hist(df_payload)
-
-plt.show()
-
-
+    df_countsAndMaximum = df_payload[['countsIndx', 'maximum']].loc[df_payload['maximum'] > 0]
+    df_windowAndMaximum = df_payload[['windowNumbers', 'maximum']].loc[df_payload['maximum'] > 0]
+    df_countsAndMaximum.to_csv( filenameCSV+'_sample_VsMaximum.txt', header=False, index=False, sep='\t', mode='w')
+    df_windowAndMaximum.to_csv(filenameCSV+'_windowVsMaximum.txt', header=False, index=False, sep='\t', mode='w')
+##### 
+##### print('countsAndMaximum',df_countsAndMaximum.head())
+##### #
+##### 
+##### sample =0
+##### df_payload['maxSampleX'] =  df_payload.maximum[df_payload['maximum']>0].loc[ df_payload['countsIndx']== sample]
+##### 
+##### 
+##### 
+##### print("---------------------")
+##### 
+##### 
+##### print(df_payload[df_payload['maxSampleX']>0])
+##### #df['rising'] = df.payload[ ( (df.payload.shift(1) - df.payload) <diffSamples ) & (df.payload > minThreshold) ]   
+##### df_maxSample= df_payload[ df_payload.iloc [:,-1] >0 ]
+##### 
+##### shift_ = 20
+##### list_maxSample = df_maxSample.index.values-shift_
+##### print('list_maxSample',list_maxSample)
+##### #list_maxSample2 = [list_maxSample-10 for x in list_maxSample]
+##### 
+##### #print('list_maxSample2',list_maxSample2)
+##### #print('list_maxSample',list_maxSample[0:10])
+##### #print('list_maxSample', df_payload.payload[ list_maxSample[0]: list_maxSample[20]] )
+##### 
+##### width=40
+##### 
+##### fig, axes = plt.subplots(nrows= 5, ncols=20)
+##### fig.subplots_adjust(hspace=0.5)
+##### fig.suptitle('Sample {}'.format(sample))
+##### for ax in axes.flatten():
+#####     indx = np.where(axes.flatten()==ax)[0][0]
+#####     list_ind = list_maxSample[indx]
+#####     print(indx)
+#####     ax.plot(  df_payload.index[ list_ind : (list_ind+width) ],          df_payload.payload[ list_ind : (list_ind+width) ], '-ok')
+#####  
+#####     ax.plot( df_payload.index[ (list_ind +shift_)],df_payload.payload[ (list_ind + shift_) ], '>')
+#####     
+#####     ax.set(title='{}'.format(df_payload.payload[ (list_ind + shift_) ]))
+#####     ax.grid()
+#####     ax.set_ylim(-20,10)
+##### #df_pulsesZero = df_payload.plot ( df_payload.payload  [  df_payload['maxSample0'].iloc[ ]       ])  
+##### 
+##### 
+##### df_payload['maxSampleX'] =  df_payload.maximum[df_payload['maximum']>0].loc[ df_payload['countsIndx']== sample]
+##### 
+##### 
+##### 
+##### 
+##### plt.figure()
+##### minHist = int(df_payload.maxSampleX.loc[df_payload.maxSampleX > 0].min())
+##### maxHist =int( df_payload.maxSampleX.loc[df_payload.maxSampleX > 0].max())
+##### plt.hist(df_payload.maxSampleX, range=( minHist, maxHist), bins= (maxHist-minHist)+1 )
+##### 
+##### 
+##### #print(df_payload.maxSampleX, bins=61,  range=(540,600))
+##### print(df_payload.head())
+##### 
+##### 
+##### plot_hist(df_payload)
+##### 
+#plt.show()
 
