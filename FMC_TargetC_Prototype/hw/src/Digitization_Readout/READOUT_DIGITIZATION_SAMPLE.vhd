@@ -264,31 +264,20 @@ component SyncBuffer is
 	signal CH13_intl : std_logic_vector(11 downto 0);
 	signal CH14_intl : std_logic_vector(11 downto 0);
 	signal CH15_intl : std_logic_vector(11 downto 0);
-    
-    signal readCounter: std_logic_vector(25 downto 0);  -- Digitization counter
-    signal read_stme_idle: std_logic;
-    attribute dont_touch              : boolean;
-    attribute dont_touch of readCounter    : signal is true;
-    attribute dont_touch of read_stme_idle    : signal is true;
-
-    attribute KEEP : string;
-    attribute KEEP of readCounter : signal is "TRUE";
-    attribute KEEP of read_stme_idle : signal is "TRUE";
-
     attribute mark_debug : string;
     
-    attribute mark_debug of read_stme_idle: signal is "true";
-    attribute mark_debug of readCounter: signal is "true";
-    attribute mark_debug of RAMP: signal is "true";
-    attribute mark_debug of RAMP_CNT: signal is "true";
-    attribute mark_debug of RDAD_CLK: signal is "true";
-    attribute mark_debug of RDAD_SIN: signal is "true";
-    attribute mark_debug of RDAD_DIR: signal is "true";
-    attribute mark_debug of CH0: signal is "true";
-    attribute mark_debug of GCC_RESET: signal is "true";
-    attribute mark_debug of SS_INCR: signal is "true";
-    attribute mark_debug of WL_CNT_INTL: signal is "true";
-    attribute mark_debug of DO: signal is "true";
+--    attribute mark_debug of HSCLK: signal is "true";
+--    attribute mark_debug of SS_CNT_INTL: signal is "true";
+--    attribute mark_debug of RAMP: signal is "true";
+--    attribute mark_debug of RAMP_CNT: signal is "true";
+--    attribute mark_debug of RDAD_CLK: signal is "true";
+--    attribute mark_debug of RDAD_SIN: signal is "true";
+--    attribute mark_debug of RDAD_DIR: signal is "true";
+--    attribute mark_debug of CH0: signal is "true";
+--    attribute mark_debug of GCC_RESET: signal is "true";
+--    attribute mark_debug of SS_INCR: signal is "true";
+--    attribute mark_debug of WL_CNT_INTL: signal is "true";
+--    attribute mark_debug of DO: signal is "true";
 
     
 
@@ -425,7 +414,13 @@ begin
 
 
 
-   process(CtrlBus_IxSL.SW_nRST,ClockBus.RDAD_CLK)
+
+
+
+
+
+
+	process(CtrlBus_IxSL.SW_nRST,ClockBus.RDAD_CLK)
 	begin
 		if CtrlBus_IxSL.SW_nRST = '0' then
 			RDAD_ReadEn <= '0';
@@ -434,10 +429,8 @@ begin
 				case rdad_stm is
 					when FIFOREAD =>
 						RDAD_ReadEn <= '1';
-						readCounter <= (others => '0');
 					when others	=>
 						RDAD_ReadEn <= '0';
-						readCounter <= std_logic_vector(unsigned(readCounter)+ 1);
 				end case;
 			end if;
 		end if;
@@ -457,9 +450,7 @@ begin
 			RDAD.response <= '0';
 			RDAD.ready <= '0';
 			RDAD.busy <= '0';
-			RDAD.valid <= '0'; 
-			read_stme_idle <= '0';
-
+			RDAD.valid <= '0';
 			RDAD_stm <= IDLE;
 
 		else
@@ -475,7 +466,6 @@ begin
 						--BitCnt <= 10;
 						BitCnt <= 0;
 						RDAD.response <= '0';
-						read_stme_idle <= '1';
 
 --						if(StorageBusy = '0' and WL.busy = '0' and SS.busy = '0' and done_flg = '0') then -- Storage Done Digitilization can start
 --							rdad_stm <= LOW_SET0;
@@ -491,7 +481,6 @@ begin
 						else
 							rdad_stm <= READY;
 						end if;
-					    read_stme_idle <= '0';
 					when FIFOREAD =>
 						RDAD.response <= '1';
 						RDAD.busy <= '1';
@@ -880,7 +869,7 @@ begin
 							SS_INCR_intl <= '1';
 							--hsout_stm <= LOW_SET0;
 							SS_CNT_EN <= '1';
-							hsout_stm <= INCRWAIT;
+							hsout_stm <= LOW_SET0;
 
 							-- WDOTime	<= 	WDOTime_WL;
 							-- DIGTime <= 	DIGTime_WL;
@@ -893,17 +882,17 @@ begin
 							SS.response <= '1';
 							hsout_stm <= RESPREADY;
 						end if;
-					when INCRWAIT =>
-						SS_INCR_intl <= '1';
+--					when INCRWAIT =>
+--						SS_INCR_intl <= '1';
 
-						if SS_CNT_INTL = UNSIGNED(INCR_WAIT_PERIOD) then
-                        SS_CNT_EN <= '0';
-                        SS_RESET_intl <= '0';
-                        hsout_stm <= LOW_SET0;
-						else
-							SS_CNT_EN <= '1';
-							hsout_stm <= INCRWAIT;
-						end if;
+----						if SS_CNT_INTL = UNSIGNED(INCR_WAIT_PERIOD) then
+--                        SS_CNT_EN <= '0';
+--                        SS_RESET_intl <= '0';
+--                        hsout_stm <= LOW_SET0;
+----						else
+----							SS_CNT_EN <= '1';
+----							hsout_stm <= INCRWAIT;
+----						end if;
 					when LOW_SET0 =>
 						HSCLK_intl <= '1';   --'0'
 						if SSBitCnt = 0  then
@@ -995,7 +984,7 @@ begin
 								SScnt <= SScnt + 1;
 								if(SScnt < 31) then
 									--hsout_stm <= LOW_SET0;
-									hsout_stm	<= INCRWAIT;
+									hsout_stm	<= LOW_SET0;
 									SS.busy <= '1';
 								else
 									--SS_RESET_intl <= '1';

@@ -65,13 +65,14 @@ rango = list((range(0,128,1)))  # number of steps in delay values for the wavefo
 wave_gen().Output1(out=True)
 time.sleep(5)
 
-for j in repeticiones: # # Number of waveforms for the same delay value
-    print(j)
-    for i in rango:
-       wave_gen().trigDelay(i*.000000001)
-       time.sleep(.1)
-       tc.send_command(7,0,0) # get windows
-       time.sleep(.1)
+for i in rango:
+   wave_gen().trigDelay(i*.000000001)
+   time.sleep(.5)
+   print(i)
+#   for j in repeticiones: # # Number of waveforms for the same delay value
+   tc.send_command(7,0,0) # get windows
+   time.sleep(1)
+
 wave_gen().Output1(out=False)
 print("end")
 

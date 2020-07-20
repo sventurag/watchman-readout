@@ -20,6 +20,7 @@
 
 /*** Function prototypes *********************************************/
 int PulseSweep();
+int PulseRange();
 int SendWindows(int firstWindow, int nmbrWindows);
 int get_windowsRaw(int startWindow, int nmbrofWindows);
 int get_windows(int startWindow, int nmbrofWindows);

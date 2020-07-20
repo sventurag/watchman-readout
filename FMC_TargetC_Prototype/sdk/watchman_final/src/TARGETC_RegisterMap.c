@@ -29,7 +29,7 @@ void SetTargetCRegisters(void){
 		WriteRegister(TC_VDLYTUNE_REG + i,	0);
 	}
 //	*** TARGETC Register Initial Values
-	WriteRegister(TC_SSTOUTFB_REG,		59); //0x03a
+	WriteRegister(TC_SSTOUTFB_REG,		60); //0x03a
 
 	WriteRegister(TC_SSPIN_LE_REG,		51);	//TEST with SSPIN
 	WriteRegister(TC_SSPIN_TE_REG,		7);
@@ -87,7 +87,7 @@ void SetTargetCRegisters(void){
 
  // */
 	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
-	WriteRegister(TC_MONTIMING_REG, 0);		//INIT MonTiming PASS disable
+	WriteRegister(TC_MONTIMING_REG, 128);		//INIT MonTiming PASS disable
 
 	xil_printf("TragetC's registers initialized!\r\n");
 }

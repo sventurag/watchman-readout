@@ -669,7 +669,7 @@ WR_update_inst: process(ClockBus.CLK125MHz, nrst,TimeStamp.samplecnt,CPUMODE_edg
                          end if;
                          
                     when SSTIN_SYNC =>         
-                         if TimeStamp.samplecnt= "010" then
+                         if TimeStamp.samplecnt= "110" then
                             sstin_sync_st <= EVALUATE;
                          else
                             sstin_sync_st <= SSTIN_SYNC;

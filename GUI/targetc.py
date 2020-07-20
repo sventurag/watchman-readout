@@ -92,7 +92,7 @@ class targetc():
         self.sock_trigger.close()
     
     def send_command(self,comando,param1,param2):
-       print("received command {}".format(self.cmd[comando]))
+       #print("received command {}".format(self.cmd[comando]))
        # Build the frame
        payload = bytearray()
        payload.append(int("0x55", 0)) # frame's start code 0x55AA

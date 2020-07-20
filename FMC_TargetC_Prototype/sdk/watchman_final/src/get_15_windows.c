@@ -42,6 +42,7 @@ extern uint32_t  data_raw[512][16][32];
 
 
 
+
 /****************************************************************************/
 /**
 * @brief	Pulse sweep
@@ -55,13 +56,49 @@ extern uint32_t  data_raw[512][16][32];
 ****************************************************************************/
 
 int PulseSweep(){
+int rep;
+
+
+	for ( rep =0; rep<100 ; rep++ ){
+		if(PulseRange()!= XST_SUCCESS){
+	       xil_printf("Error in WindowRange \r\n");
+		}
+		usleep(50);
+	}
+	return XST_SUCCESS;
+};
+
+
+
+
+
+
+
+/****************************************************************************/
+/**
+* @brief   Selecting the window range to do the Pulse Sweep.
+* This function allows specify the number of windows to be digitized in each iteration
+*
+* @param	-
+*
+* @return	XST_SUCCESS or XST_FAILURE (defined in xstatus.h)
+*
+* @note		Requires that variables fstWindowValue, totalWindows and nmbrWindows to be updated
+*
+****************************************************************************/
+
+int PulseRange(){
 int fstWindow;
+ControlRegisterWrite(SMODE_MASK ,ENABLE);
+ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
+
+
 	for (fstWindow=fstWindowValue ; fstWindow<totalWindows ; fstWindow+=nmbrWindows ){
 		if(SendWindows(fstWindow,nmbrWindows)!= XST_SUCCESS){
 	       xil_printf("Error in SendWindows \r\n");
 
 		}
-		usleep(50);
+//		usleep(25);
 	}
 	return XST_SUCCESS;
 };
@@ -97,32 +134,33 @@ int SendWindows(int firstWindow, int numWindows){
     int offset_avoid_negative=200;
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
+/*
 	if(!tmp_ptr){
 		printf("malloc for tmp_ptr failed in function, %s!\r\n", __func__);
 		return XST_FAILURE;
 	}
 	tmp_ptr->next = NULL;
 	tmp_ptr->previous = NULL;
-
+*/
 	/* First window */
 	//window_start = fstWindowValue;
-    usleep(10);
+     //usleep(10);
     //printf("fstWindow %d \r\n", firstWindow);
 	/* Number of windows */
 	//nmbrWindows = 16;
 
 
 	/* Give the element's address to the DMA */
-	 XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
-	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
-    usleep(10);
+//	 XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+//	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
+   // usleep(10);
 	/* Initiate transfer and measure */
 	regptr[TC_FSTWINDOW_REG] = firstWindow;
 	regptr[TC_NBRWINDOW_REG] = numWindows;
-	ControlRegisterWrite(SMODE_MASK ,ENABLE);
-	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
+//	ControlRegisterWrite(SMODE_MASK ,ENABLE);
+//	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 	ControlRegisterWrite(WINDOW_MASK,ENABLE);
-	usleep(50);
+	usleep(1);
 	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
 
 	for(window =firstWindow ; window<numWindows+firstWindow; window++){
@@ -133,25 +171,26 @@ int SendWindows(int firstWindow, int numWindows){
 		/* Wait on DMA transfer to be done */
 		timeout = 200000; // Timeout of 10 sec
 		do{
-			/* If needed, update timefile */
+
+	/* If needed, update timefile
 			if(flag_ttcps_timer){
 				update_timefile();
 				flag_ttcps_timer = false;
 			}
-
+*/
 			/* If needed, reload watchdog's counter */
 			if(flag_scu_timer){
 				XScuWdt_RestartWdt(&WdtScuInstance);
 				flag_scu_timer = false;
 			}
 
-			/* The DMA had a problem */
+			/* The DMA had a problem
 			if(flag_axidma_error){
 				printf("Error with DMA interrupt: TPG !\r\n");
 				return XST_FAILURE;
 			}
-
-			usleep(50);
+*/
+//			usleep(50);
 			timeout--;
 		}while(timeout && !flag_axidma_rx_done);
 
