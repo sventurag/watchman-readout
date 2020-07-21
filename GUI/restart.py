@@ -16,7 +16,6 @@ import targetc as targetc
 import pandas as pd
 from plot_delays_max import plot_pulse
 tc = targetc.targetc()
-fileToSave = './data/pulse_gen_test.txt'
 
 def setFreq(frequency):
     print("{:.9f}".format(frequency))

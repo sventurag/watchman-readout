@@ -59,11 +59,11 @@ int PulseSweep(){
 int rep;
 
 
-	for ( rep =0; rep<100 ; rep++ ){
+	for ( rep =0; rep<10 ; rep++ ){
 		if(PulseRange()!= XST_SUCCESS){
 	       xil_printf("Error in WindowRange \r\n");
 		}
-		usleep(50);
+	//	usleep(150);
 	}
 	return XST_SUCCESS;
 };
@@ -98,7 +98,7 @@ ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 	       xil_printf("Error in SendWindows \r\n");
 
 		}
-//		usleep(25);
+	//	usleep(30);
 	}
 	return XST_SUCCESS;
 };
@@ -162,7 +162,7 @@ int SendWindows(int firstWindow, int numWindows){
 	ControlRegisterWrite(WINDOW_MASK,ENABLE);
 	usleep(1);
 	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
-
+	//usleep(1);
 	for(window =firstWindow ; window<numWindows+firstWindow; window++){
 
 	//	if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
