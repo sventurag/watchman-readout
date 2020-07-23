@@ -59,7 +59,7 @@ int PulseSweep(){
 int rep;
 
 
-	for ( rep =0; rep<10 ; rep++ ){
+	for ( rep =0; rep<100 ; rep++ ){
 		if(PulseRange()!= XST_SUCCESS){
 	       xil_printf("Error in WindowRange \r\n");
 		}
