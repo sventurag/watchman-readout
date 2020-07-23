@@ -101,6 +101,7 @@ class wave_gen(object):
         time.sleep(1)
     def volt(self, voltage):
         self.inst.write("VOLT {:.9f}".format(voltage))
+        print(voltage)
         time.sleep(1)
         
 
