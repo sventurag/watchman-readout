@@ -57,7 +57,7 @@ def setFreq(frequency):
     time.sleep(1)
 #setFreq(1e3)
 #wave_gen().query()
-setFreq(1e7)
+setFreq(1e3)
 nmbrWindows = 1
 firstWindow= 0
 totalWindows = 16
@@ -77,21 +77,22 @@ time.sleep(1)
 
 #amplitudes=np.arange(1e-3, 2.8,100e-3) #For dynamic range, charge, cfd, etc
 #amplitudes=np.arange(20, 200,50) #For dynamic range, charge, cfd, etc
-wave_gen().ncyc(3)
+#wave_gen().ncyc(3)
 time.sleep(1)
-pulseAmpl(300e-3)
+pulseAmpl(ampl)
 time.sleep(1)
-wave_gen().functionSine()
+#wave_gen().functionSine()
 time.sleep(1)
-wave_gen().loadHz(50)
+#wave_gen().loadHz(50)
 time.sleep(1)
 wave_gen().Query()
 amplitudes = np.arange(2100,2650,50)
-#amplitudes= np.arange(0.1,0.2 ,1)
+amplitudes= np.arange(0.1,0.2 ,1)
 #amplitudes=list(range(2100,2900,20))
+rango = list((range(10,128,1)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
 for item in amplitudes:
     print("Amp=",item)
-    #pulseAmpl(item)
+#    pulseAmpl(item)
 #    wave_gen().loadHz(item)
     time.sleep(1)
     tc.send_command(8, 87, item) # ISEL
@@ -102,7 +103,6 @@ for item in amplitudes:
     time.sleep(1)
 
     #repeticiones = list( range(0,5,1)   )
-    rango = list((range(10,11,1)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
     #rango = list(range(0,128,1)) # for pulse sweep
         
     for i in rango:
