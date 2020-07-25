@@ -47,11 +47,17 @@ def softTrigger():
  #   time.sleep(1)
 #wave_gen().Output1(out=True)
 #time.sleep(1)
+
+#wave_gen().Query()
 restart()
 time.sleep(3)
 restart()
 
-#wave_gen().Output1(out=False)  
+#setFreq(1e3)
+#wave_gen().Query()
+#setFreq(1e7)
+#wave_gen().Query()
+##wave_gen().Output1(out=False)  
 
 #setDelay(3)
 #triggerMode(10)
