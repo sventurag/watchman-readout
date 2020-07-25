@@ -58,7 +58,17 @@ def pedestalFlat(avg):
 def dividePedestals():
     tc.send_command(13,0,0)
     time.sleep(1)
+def pulseAmpl(ampl):
+    wave_gen().volt(ampl)
+    time.sleep(1)
 #restart()
+wave_gen().functionPulse()
+time.sleep(1)
+wave_gen().bursSettings(1)
+#wave_gen().ncyc(1)
+time.sleep(1)
+pulseAmpl(200e-3)
+time.sleep(1)
 
 #import subprocess
 #subprocess.call("./tcpdumpWatchmanData", cwd="/home/salvador/bin")
@@ -95,7 +105,7 @@ time.sleep(1)
 
 
 
-avgNmbr = 999
+avgNmbr = 99
 
 #pedestalTriggerMode(avgNmbr)
 sec2wait= int(((avgNmbr*1024)/4000))
@@ -104,6 +114,7 @@ sec2wait= int(((avgNmbr*1024)/4000))
 pedestalTriggerMode(avgNmbr)
     #print(i)
 time.sleep(sec2wait)
+wave_gen().Output1(out=True)  
 
 #dividePedestals()
 #print('Divide Pedestals')
@@ -118,6 +129,7 @@ time.sleep(sec2wait)
 #pedestalFlat(0)
 
 #  freq, amp, offset
+
 #wave_gen().apply(1000,0.1,0)
 #time.sleep(5)
 
@@ -125,8 +137,12 @@ time.sleep(sec2wait)
 #time.sleep(5)
 
 #wave_gen().Output1(out=True)  
+for i in range(0,100,1):
 
-#softTrigger()
+    softTrigger()
+    time.sleep(0.01)
+
+
 #####
 #
 print("end")

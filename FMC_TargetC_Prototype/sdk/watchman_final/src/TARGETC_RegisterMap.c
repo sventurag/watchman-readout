@@ -62,7 +62,7 @@ void SetTargetCRegisters(void){
 	WriteRegister(TC_SBBIAS_REG,	0x78E);
 	WriteRegister(TC_VDISCH_REG,	0);
 	//WriteRegister(TC_ISEL_REG,		2600);
-	WriteRegister(TC_ISEL_REG,	0x8fc);	// 2300 good for Vped around 512
+	WriteRegister(TC_ISEL_REG,	2600);	// 2300 good for Vped around 512
 
 	WriteRegister(TC_DBBIAS_REG,	0x690);
 
