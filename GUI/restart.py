@@ -61,8 +61,9 @@ restart()
 
 #setDelay(3)
 #triggerMode(10)
-#softTrigger#
-
+#for i in range(1,1000):
+#    softTrigger()
+#    time.sleep(1)
 print("end")
 
 
