@@ -43,6 +43,7 @@ class pulseGen:
         regID = 98
         tc.send_command(8,regID,totalWindows) # total windows
         time.sleep(1)
+
     def setFreq(self,frequency):
         print("{:.9f}".format(frequency))
         wave_gen().Freq(frequency)
@@ -53,3 +54,27 @@ class pulseGen:
 
     def getWindows(self):
         tc.send_command(7,0,0) # get windows 
+
+    def restart(self):
+        tc.send_command(3, 0, 0) # triggerMode 
+        time.sleep(1)
+        tc.send_command(11,0,0) #restartAll
+
+    def setDelay(self,nmbrCycles):
+        regID=95;
+        tc.send_command(8, regID, nmbrCycles)
+        time.sleep(1)
+
+    def triggerMode(self,nmbrBursts):
+        wave_gen().bursSettings(nmbrBursts)
+        time.sleep(1)
+        tc.send_command(3, 0, 0) # triggerMode 
+        time.sleep(1)
+    
+    def triggerMode_exit(self):
+        tc.send_command(3, 0, 0) # triggerMode 
+        time.sleep(1)
+
+    def softTrigger(self):
+        wave_gen().softTrigger()
+      
