@@ -1,13 +1,13 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Wed Dec  4 16:00:16 2019
--- Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
--- Command     : write_vhdl -force -mode synth_stub -rename_top base_zynq_axi_dma_0_0 -prefix
---               base_zynq_axi_dma_0_0_ base_zynq_axi_dma_0_0_stub.vhdl
+-- Date        : Tue Sep  8 19:33:47 2020
+-- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
+-- Command     : write_vhdl -force -mode synth_stub
+--               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axi_dma_0_0/base_zynq_axi_dma_0_0_stub.vhdl
 -- Design      : base_zynq_axi_dma_0_0
 -- Purpose     : Stub declaration of top-level module interface
--- Device      : xc7z010clg400-1
+-- Device      : xc7z020clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;

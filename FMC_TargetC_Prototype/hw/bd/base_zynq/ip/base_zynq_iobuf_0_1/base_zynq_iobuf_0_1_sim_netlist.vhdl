@@ -1,14 +1,14 @@
 -- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Sat Jun 13 12:51:06 2020
+-- Date        : Tue Sep  8 19:23:26 2020
 -- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_iobuf_0_1/base_zynq_iobuf_0_1_sim_netlist.vhdl
+--               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_iobuf_0_1/base_zynq_iobuf_0_1_sim_netlist.vhdl
 -- Design      : base_zynq_iobuf_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z010clg400-1
+-- Device      : xc7z020clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
