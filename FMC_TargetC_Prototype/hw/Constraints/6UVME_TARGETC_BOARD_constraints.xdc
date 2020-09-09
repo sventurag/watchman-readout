@@ -2,6 +2,9 @@
 # 6U VME WATCHMAN BOARD  
 # Authors: Blaine Furman, Salvador Ventura 
 # 2020-08-28 
+#REG_CLR 
+#ISEL
+
 set_property PULLUP true [get_ports SDA] 
 set_property PULLUP true [get_ports SCL]  
 #### #### #### #### #### #### #### #### #### #### #### #### 
@@ -50,18 +53,18 @@ set_property PACKAGE_PIN W14 [get_ports A_SHOUT]	# 30
 set_property PACKAGE_PIN Y14 [get_ports A_TRIG4]	# 32
 set_property PACKAGE_PIN V15 [get_ports A_HSCLK_P]	# 36
 set_property PACKAGE_PIN W15 [get_ports A_HSCLK_N]	# 38
-set_property PACKAGE_PIN U18 [get_ports BIT_CLK_N]	# 42
-set_property PACKAGE_PIN U19 [get_ports BIT_CLK_P]	# 44
+set_property PACKAGE_PIN U19 [get_ports BIT_CLK_N]	# 42   THIS PORTS WERE MANUALLY SWAPPED HERE U18
+set_property PACKAGE_PIN U18 [get_ports BIT_CLK_P]	# 44   THIS PORTS WERE MANUALLY SWAPPED HERE U19
 set_property PACKAGE_PIN N20 [get_ports A_TRIG3]	# 48
 set_property PACKAGE_PIN P20 [get_ports A_TRIG2]	# 50
 set_property PACKAGE_PIN V20 [get_ports RESET]	# 54
 set_property PACKAGE_PIN W20 [get_ports A_WR_RS_S0]	# 56
 set_property PACKAGE_PIN V16 [get_ports A_WR_RS_S1]	# 62
 set_property PACKAGE_PIN W16 [get_ports A_WR_CS_S0]	# 64
-set_property PACKAGE_PIN T17 [get_ports CH1_OUTB_N]	# 68
-set_property PACKAGE_PIN R18 [get_ports CH1_OUTB_P]	# 70
-set_property PACKAGE_PIN W18 [get_ports CH1_OUTA_N]	# 74
-set_property PACKAGE_PIN W19 [get_ports CH1_OUTA_P]	# 76
+set_property PACKAGE_PIN R18 [get_ports CH1_OUTB_N]	# 68  THIS PORTS WERE MANUALLY SWAPPED HERE  T17
+set_property PACKAGE_PIN T17 [get_ports CH1_OUTB_P]	# 70  THIS PORTS WERE MANUALLY SWAPPED HERE  R18
+set_property PACKAGE_PIN W19 [get_ports CH1_OUTA_N]	# 74  THIS PORTS WERE MANUALLY SWAPPED HERE  W18
+set_property PACKAGE_PIN W18 [get_ports CH1_OUTA_P]	# 76  THIS PORTS WERE MANUALLY SWAPPED HERE  W19
 set_property PACKAGE_PIN P15 [get_ports A_WR_CS_S1]	# 82
 set_property PACKAGE_PIN P16 [get_ports A_WR_CS_S2]	# 84
 set_property PACKAGE_PIN T9 [get_ports A_WR_CS_S3]	# 88
@@ -72,7 +75,7 @@ set_property PACKAGE_PIN U5 [get_ports A_GCC_RESET]	# 94
 set_property PACKAGE_PIN E8 [get_ports SDATA]	# 1
 set_property PACKAGE_PIN C6 [get_ports SCL]	# 3
 set_property PACKAGE_PIN E6 [get_ports SPI_SCLK]	# 5
-set_property PACKAGE_PIN C5 [get_ports MIO0]	# 7
+set_property PACKAGE_PIN C5 [get_ports MIO0]	# 7G
 set_property PACKAGE_PIN C7 [get_ports PG_ZED]	# 11
 set_property PACKAGE_PIN G14 [get_ports B_TRIG3]	# 13
 set_property PACKAGE_PIN C20 [get_ports B_TRIG2]	# 17
@@ -83,10 +86,10 @@ set_property PACKAGE_PIN E18 [get_ports B_SS_LD_SIN]	# 29
 set_property PACKAGE_PIN E19 [get_ports B_SS_RESET]	# 31
 set_property PACKAGE_PIN L19 [get_ports B_DONE]	# 35
 set_property PACKAGE_PIN L20 [get_ports B_DO_1]	# 37
-set_property PACKAGE_PIN M17 [get_ports SYNCACK_N]	# 41
-set_property PACKAGE_PIN M18 [get_ports SYNCACK_P]	# 43
-set_property PACKAGE_PIN L16 [get_ports SYNCCLK_N]	# 47
-set_property PACKAGE_PIN L17 [get_ports SYNCCLK_P]	# 49
+set_property PACKAGE_PIN M18 [get_ports SYNCACK_N]	# 41  THIS PORTS WERE MANUALLY SWAPPED HERE  M17
+set_property PACKAGE_PIN M17 [get_ports SYNCACK_P]	# 43  THIS PORTS WERE MANUALLY SWAPPED HERE  M18
+set_property PACKAGE_PIN L17 [get_ports SYNCCLK_N]	# 47  THIS PORTS WERE MANUALLY SWAPPED HERE  L16
+set_property PACKAGE_PIN L16 [get_ports SYNCCLK_P]	# 49  THIS PORTS WERE MANUALLY SWAPPED HERE  L17
 set_property PACKAGE_PIN H16 [get_ports SYNCTRIG_P]	# 53
 set_property PACKAGE_PIN H17 [get_ports SYNCTRIG_N]	# 55
 set_property PACKAGE_PIN G17 [get_ports FRAME_CLK_P]	# 61
@@ -95,8 +98,8 @@ set_property PACKAGE_PIN G19 [get_ports CH2_OUTA_P]	# 67
 set_property PACKAGE_PIN G20 [get_ports CH2_OUTA_N]	# 69
 set_property PACKAGE_PIN K14 [get_ports CH2_OUTB_P]	# 73
 set_property PACKAGE_PIN J14 [get_ports CH2_OUTB_N]	# 75
-set_property PACKAGE_PIN N15 [get_ports INPUT_CLK_N]	# 81
-set_property PACKAGE_PIN N16 [get_ports INPUT_CLK_P]	# 83
+set_property PACKAGE_PIN N16 [get_ports INPUT_CLK_N]	# 81     THIS PORTS WERE MANUALLY SWAPPED HERE N15
+set_property PACKAGE_PIN N15 [get_ports INPUT_CLK_P]	# 83     THIS PORTS WERE MANUALLY SWAPPED HERE N16
 set_property PACKAGE_PIN M14 [get_ports B_DO_2]	# 87
 set_property PACKAGE_PIN M15 [get_ports B_DO_3]	# 89
 set_property PACKAGE_PIN Y12 [get_ports B_DO_4]	# 93
