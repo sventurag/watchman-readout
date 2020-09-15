@@ -13,14 +13,14 @@
 #include "xscugic.h"
 #include "xil_printf.h"
 #include "xtime_l.h"
-#include "xiic.h"
+#include "xiicps.h"
 
 #include "global.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/
 /** @brief Base address for device I2C (from xparameters.h) */
-#define IIC_DEVICE_ID		XPAR_AXI_IIC_0_DEVICE_ID
+#define IIC_DEVICE_ID		XPAR_XIICPS_0_DEVICE_ID
 /** @brief I2C address of the DAC */
 #define IIC_SLAVE_ADDRESS	0x10
 /** @brief Channel A register */
@@ -56,8 +56,10 @@
 
 
 /*** Function prototypes *********************************************/
-int DAC_LTC2657_initialize();
-int DAC_LTC2657_SetChannelVoltage(int channel, float voltage);
+//int DAC_LTC2657_initialize();
+//int DAC_LTC2657_SetChannelVoltage(int channel, float voltage);
+int DAC_LTC2657_initialize_PS(void);
+int DAC_LTC2657_SetChannelVoltage_PS(int channel, float voltage);
 
 #endif
 

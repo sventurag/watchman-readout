@@ -228,28 +228,28 @@ int main()
 	enable_interrupts();
 
 	/* Initialize the DAC (Vped, Comparator value) */
-	if(DAC_LTC2657_initialize() == XST_SUCCESS) xil_printf("DAC initialization pass!\r\n");
+	if(DAC_LTC2657_initialize_PS() == XST_SUCCESS) xil_printf("DAC initialization pass!\r\n");
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
 	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_0,THRESHOLD_CMP) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_0,THRESHOLD_CMP) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_1,THRESHOLD_CMP) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_1,THRESHOLD_CMP) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 1 voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_2,THRESHOLD_CMP) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_2,THRESHOLD_CMP) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_3,THRESHOLD_CMP) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_3,THRESHOLD_CMP) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
 		return -1;
 	}

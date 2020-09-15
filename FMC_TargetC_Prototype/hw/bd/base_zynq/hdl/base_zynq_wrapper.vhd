@@ -1,7 +1,7 @@
 --Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Tue Sep  8 20:52:15 2020
+--Date        : Thu Sep 10 18:37:31 2020
 --Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
@@ -79,7 +79,6 @@ entity base_zynq_wrapper is
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     MONTIMING_N : in STD_LOGIC;
     MONTIMING_P : in STD_LOGIC;
-    REGCLR : out STD_LOGIC;
     SCLK : out STD_LOGIC;
     SIN : out STD_LOGIC;
     SSTIN_N : out STD_LOGIC;
@@ -151,7 +150,6 @@ architecture STRUCTURE of base_zynq_wrapper is
     A_SAMPLESEL_ANY : out STD_LOGIC;
     A_SS_INCR : out STD_LOGIC;
     A_SS_RESET : out STD_LOGIC;
-    REGCLR : out STD_LOGIC;
     A_SS_LD_SIN : out STD_LOGIC;
     A_SS_LD_DIR : out STD_LOGIC;
     A_RAMP : out STD_LOGIC;
@@ -236,7 +234,6 @@ base_zynq_i: component base_zynq
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
       MONTIMING_N => MONTIMING_N,
       MONTIMING_P => MONTIMING_P,
-      REGCLR => REGCLR,
       SCLK => SCLK,
       SIN => SIN,
       SSTIN_N => SSTIN_N,

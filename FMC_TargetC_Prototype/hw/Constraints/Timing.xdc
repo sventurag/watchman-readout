@@ -50,12 +50,3 @@ set_property DIFF_TERM TRUE [get_ports MONTIMING_P]
 
 
 
-connect_debug_port u_ila_0/probe8 [get_nets [list {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/circBuffer/Timestamp[samplecnt][0]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/circBuffer/Timestamp[samplecnt][1]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/circBuffer/Timestamp[samplecnt][2]}]]
-
-connect_debug_port u_ila_0/probe3 [get_nets [list {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[0]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[1]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[2]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[3]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[4]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[5]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[6]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[7]} {base_zynq_i/TARGET_C_TopLevel_Sy_0/U0/TC_RoundBuffer/pedestalTrigger_inst/cnt_average[8]}]]
-
-
-
-connect_debug_port u_ila_0/probe2 [get_nets [list RAMP_OBUF]]
-connect_debug_port u_ila_0/probe3 [get_nets [list GCC_RESET_OBUF]]
-

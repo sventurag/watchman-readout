@@ -67,7 +67,7 @@ int init_transfer_function(void){
 	for(voltage=0; voltage< 11; voltage ++){
 		data_tmp[voltage] = 0;
 		/* Set the voltage k*0.25V to Vped */
-		if(DAC_LTC2657_SetChannelVoltage(DAC_VPED, voltage*0.25) != XST_SUCCESS){
+		if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED, voltage*0.25) != XST_SUCCESS){
 			xil_printf("DAC: setting vped voltage failed!\r\n");
 			return XST_FAILURE;
 		}
@@ -191,7 +191,7 @@ int init_transfer_function(void){
 //	printf("%d]\r\n", lookup_table[2047]);
 
 	/* Set Vped voltage to the right voltage */
-	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED, VPED_ANALOG) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED, VPED_ANALOG) != XST_SUCCESS){
 		xil_printf("DAC: setting vped voltage failed!\r\n");
 		return XST_FAILURE;
 	}

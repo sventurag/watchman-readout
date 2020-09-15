@@ -59,7 +59,7 @@ int send_data_transfer_fct(void){
 	/* For 11 voltage between 0V and 2.5V */
 	for(k=0; k< 11; k ++){
 		/* Set the voltage k*0.25V to Vped */
-		if(DAC_LTC2657_SetChannelVoltage(DAC_VPED, k*0.25) != XST_SUCCESS){
+		if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED, k*0.25) != XST_SUCCESS){
 			xil_printf("DAC: setting vped voltage failed!\r\n");
 			return XST_FAILURE;
 		}
@@ -159,7 +159,7 @@ int send_data_transfer_fct(void){
 	}
 	free(tmp_ptr);
 
-	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED, VPED_ANALOG) != XST_SUCCESS){
+	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED, VPED_ANALOG) != XST_SUCCESS){
 		xil_printf("DAC: setting vped voltage failed!\r\n");
 		return XST_FAILURE;
 	}
