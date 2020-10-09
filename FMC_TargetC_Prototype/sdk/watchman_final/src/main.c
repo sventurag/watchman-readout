@@ -308,13 +308,17 @@ int main()
 	SetTargetCRegisters();
 	printf("sleep to set the debug core\r\n");
 
-	/* Test pattern */
+/*
+	 Test pattern
 	if(test_TPG() == XST_SUCCESS) printf("TestPattern Generator pass!\r\n");
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
 		return -1;
 	}
     sleep(5);
+
+*/
+
 	/* Initialize pedestal
 	if(get_pedestal(50, 1) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 //	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");

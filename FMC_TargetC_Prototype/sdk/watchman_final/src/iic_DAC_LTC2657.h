@@ -60,6 +60,8 @@
 //int DAC_LTC2657_SetChannelVoltage(int channel, float voltage);
 int DAC_LTC2657_initialize_PS(void);
 int DAC_LTC2657_SetChannelVoltage_PS(int channel, float voltage);
+void XIicPs_MasterSendNOint(XIicPs *InstancePtr, u8 *MsgPtr, s32 ByteCount,
+		u16 SlaveAddr);
 
 #endif
 
