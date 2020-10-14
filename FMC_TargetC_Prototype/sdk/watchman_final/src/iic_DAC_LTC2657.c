@@ -7,25 +7,25 @@
 
 #include "iic_DAC_LTC2657.h"
 
-static s32 XIicPs_SetupMaster_2(XIicPs *InstancePtr, s32 Role);
+//static s32 XcPs_SetupMaster_2(XIicPs *InstancePtr, s32 Role);
 static void bin(int n);
 // C Program for the binary
 // representation of a given number
-void bin(int n)
-{
-    /* step 1 */
-    if (n > 1)
-        bin(n/2);
-
-    /* step 2 */
-    printf("%d\r\n", n % 2);
-}
+//void bin(int n)
+//{
+//    /* step 1 */
+//    if (n > 1)
+//        bin(n/2);
+//
+//    /* step 2 */
+//    printf("%d\r\n", n % 2);
+//}
 
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Instance of the I2C device */
 // XIic I2cInstance;
-XIicPs Iic;			/* Instance of the IIC Device */
+ XIicPs Iic;			/* Instance of the IIC Device */
 
 
 /****************************************************************************/
@@ -263,7 +263,7 @@ int DAC_LTC2657_SetChannelVoltage_PS(int channel, float voltage){
 	}
 	int i;
 //	for(i=0; i <10 ; i++){			// 5 time, because sometime it's busy
-		XIicPs_MasterSendNOint(&Iic, WriteBuffer, (int) 4, IIC_SLAVE_ADDRESS);
+	XIicPs_MasterSendPolled(&Iic, &WriteBuffer, (int) 4, IIC_SLAVE_ADDRESS);
 //	}
 	Status = XST_SUCCESS;
 // 		"CHANGE BUFFER SIZE"
@@ -303,116 +303,116 @@ int DAC_LTC2657_SetChannelVoltage_PS(int channel, float voltage){
 * @note		This send routine is for interrupt-driven transfer only.
 *
  ****************************************************************************/
-void XIicPs_MasterSendNOint(XIicPs *InstancePtr, u8 *MsgPtr, s32 ByteCount,u16 SlaveAddr)
-{
-	u32 BaseAddr;
-	u32 Platform = XGetPlatform_Info();
-
-	/*
-	 * Assert validates the input arguments.
-	 */
-	Xil_AssertVoid(InstancePtr != NULL);
-	Xil_AssertVoid(MsgPtr != NULL);
-	Xil_AssertVoid(InstancePtr->IsReady == (u32)XIL_COMPONENT_IS_READY);
-	Xil_AssertVoid(XIICPS_ADDR_MASK >= SlaveAddr);
-
-
-	BaseAddr = InstancePtr->Config.BaseAddress;
-	InstancePtr->SendBufferPtr = MsgPtr;
-	InstancePtr->SendByteCount = ByteCount;
-	InstancePtr->RecvBufferPtr = NULL;
-	InstancePtr->IsSend = 1;
-
+//void XIicPs_MasterSendNOint(XIicPs *InstancePtr, u8 *MsgPtr, s32 ByteCount,u16 SlaveAddr)
+//{
+//	u32 BaseAddr;
+//	u32 Platform = XGetPlatform_Info();
 //
 //	/*
-//	 * Set repeated start if sending more than FIFO of data.
+//	 * Assert validates the input arguments.
 //	 */
-//	if (((InstancePtr->IsRepeatedStart) != 0)||
-//		((ByteCount > XIICPS_FIFO_DEPTH) != 0U)) {
-//		XIicPs_WriteReg(BaseAddr, (u32)XIICPS_CR_OFFSET,
-//			XIicPs_ReadReg(BaseAddr, (u32)XIICPS_CR_OFFSET) |
-//				(u32)XIICPS_CR_HOLD_MASK);
-//	}
-
-	/*
-	 * Setup as a master sending role.
-	 */
-	(void)XIicPs_SetupMaster_2(InstancePtr, SENDING_ROLE);
-
-	(void)TransmitFifoFill(InstancePtr);
+//	Xil_AssertVoid(InstancePtr != NULL);
+//	Xil_AssertVoid(MsgPtr != NULL);
+//	Xil_AssertVoid(InstancePtr->IsReady == (u32)XIL_COMPONENT_IS_READY);
+//	Xil_AssertVoid(XIICPS_ADDR_MASK >= SlaveAddr);
 //
-//	XIicPs_EnableInterrupts(BaseAddr,
-//		(u32)XIICPS_IXR_NACK_MASK | (u32)XIICPS_IXR_COMP_MASK |
-//		(u32)XIICPS_IXR_ARB_LOST_MASK);
-	/*
-	 * Do the address transfer to notify the slave.
-	 */
-	XIicPs_WriteReg(BaseAddr, XIICPS_ADDR_OFFSET, (u32)SlaveAddr);
-
-	/* Clear the Hold bit in ZYNQ if receive byte count is less than
-	 * the FIFO depth to get the completion interrupt properly.
-	 */
-	if ((ByteCount < XIICPS_FIFO_DEPTH) && (Platform == (u32)XPLAT_ZYNQ))
-	{
-		XIicPs_WriteReg(BaseAddr, XIICPS_CR_OFFSET,
-				XIicPs_ReadReg(BaseAddr, (u32)XIICPS_CR_OFFSET) &
-				(u32)(~XIICPS_CR_HOLD_MASK));
-	}
-
-}
-
-/*****************************************************************************/
-/*
-* This function prepares a device to transfers as a master.
-*
-* @param	InstancePtr is a pointer to the XIicPs instance.
-*
-* @param	Role specifies whether the device is sending or receiving.
-*
-* @return
-*		- XST_SUCCESS if everything went well.
-*		- XST_FAILURE if bus is busy.
-*
-* @note		Interrupts are always disabled, device which needs to use
-*		interrupts needs to setup interrupts after this call.
-*
-****************************************************************************/
-static s32 XIicPs_SetupMaster_2(XIicPs *InstancePtr, s32 Role)
-{
-	u32 ControlReg;
-	u32 BaseAddr;
-
-	Xil_AssertNonvoid(InstancePtr != NULL);
-
-	BaseAddr = InstancePtr->Config.BaseAddress;
-	ControlReg = XIicPs_ReadReg(BaseAddr, XIICPS_CR_OFFSET);
-
-
-	/*
-	 * Only check if bus is busy when repeated start option is not set.
-	 */
-	if ((ControlReg & XIICPS_CR_HOLD_MASK) == 0U) {
-		if (XIicPs_BusIsBusy(InstancePtr) == (s32)1) {
-			return (s32)XST_FAILURE;
-		}
-	}
-
-	/*
-	 * Set up master, AckEn, nea and also clear fifo.
-	 */
-	ControlReg |= (u32)XIICPS_CR_ACKEN_MASK | (u32)XIICPS_CR_CLR_FIFO_MASK |
-			(u32)XIICPS_CR_NEA_MASK | (u32)XIICPS_CR_MS_MASK;
-
-	if (Role == RECVING_ROLE) {
-		ControlReg |= (u32)XIICPS_CR_RD_WR_MASK;
-	}else {
-		ControlReg &= (u32)(~XIICPS_CR_RD_WR_MASK);
-	}
-
-	XIicPs_WriteReg(BaseAddr, XIICPS_CR_OFFSET, ControlReg);
-
-//	XIicPs_DisableAllInterrupts(BaseAddr);
-
-	return (s32)XST_SUCCESS;
-}
-
+//
+//	BaseAddr = InstancePtr->Config.BaseAddress;
+//	InstancePtr->SendBufferPtr = MsgPtr;
+//	InstancePtr->SendByteCount = ByteCount;
+//	InstancePtr->RecvBufferPtr = NULL;
+//	InstancePtr->IsSend = 1;
+//
+////
+////	/*
+////	 * Set repeated start if sending more than FIFO of data.
+////	 */
+////	if (((InstancePtr->IsRepeatedStart) != 0)||
+////		((ByteCount > XIICPS_FIFO_DEPTH) != 0U)) {
+////		XIicPs_WriteReg(BaseAddr, (u32)XIICPS_CR_OFFSET,
+////			XIicPs_ReadReg(BaseAddr, (u32)XIICPS_CR_OFFSET) |
+////				(u32)XIICPS_CR_HOLD_MASK);
+////	}
+//
+//	/*
+//	 * Setup as a master sending role.
+//	 */
+//	(void)XIicPs_SetupMaster_2(InstancePtr, SENDING_ROLE);
+//
+//	(void)TransmitFifoFill(InstancePtr);
+////
+////	XIicPs_EnableInterrupts(BaseAddr,
+////		(u32)XIICPS_IXR_NACK_MASK | (u32)XIICPS_IXR_COMP_MASK |
+////		(u32)XIICPS_IXR_ARB_LOST_MASK);
+//	/*
+//	 * Do the address transfer to notify the slave.
+//	 */
+//	XIicPs_WriteReg(BaseAddr, XIICPS_ADDR_OFFSET, (u32)SlaveAddr);
+//
+//	/* Clear the Hold bit in ZYNQ if receive byte count is less than
+//	 * the FIFO depth to get the completion interrupt properly.
+//	 */
+//	if ((ByteCount < XIICPS_FIFO_DEPTH) && (Platform == (u32)XPLAT_ZYNQ))
+//	{
+//		XIicPs_WriteReg(BaseAddr, XIICPS_CR_OFFSET,
+//				XIicPs_ReadReg(BaseAddr, (u32)XIICPS_CR_OFFSET) &
+//				(u32)(~XIICPS_CR_HOLD_MASK));
+//	}
+//
+//}
+//
+///*****************************************************************************/
+///*
+//* This function prepares a device to transfers as a master.
+//*
+//* @param	InstancePtr is a pointer to the XIicPs instance.
+//*
+//* @param	Role specifies whether the device is sending or receiving.
+//*
+//* @return
+//*		- XST_SUCCESS if everything went well.
+//*		- XST_FAILURE if bus is busy.
+//*
+//* @note		Interrupts are always disabled, device which needs to use
+//*		interrupts needs to setup interrupts after this call.
+//*
+//****************************************************************************/
+//static s32 XIicPs_SetupMaster_2(XIicPs *InstancePtr, s32 Role)
+//{
+//	u32 ControlReg;
+//	u32 BaseAddr;
+//
+//	Xil_AssertNonvoid(InstancePtr != NULL);
+//
+//	BaseAddr = InstancePtr->Config.BaseAddress;
+//	ControlReg = XIicPs_ReadReg(BaseAddr, XIICPS_CR_OFFSET);
+//
+//
+//	/*
+//	 * Only check if bus is busy when repeated start option is not set.
+//	 */
+//	if ((ControlReg & XIICPS_CR_HOLD_MASK) == 0U) {
+//		if (XIicPs_BusIsBusy(InstancePtr) == (s32)1) {
+//			return (s32)XST_FAILURE;
+//		}
+//	}
+//
+//	/*
+//	 * Set up master, AckEn, nea and also clear fifo.
+//	 */
+//	ControlReg |= (u32)XIICPS_CR_ACKEN_MASK | (u32)XIICPS_CR_CLR_FIFO_MASK |
+//			(u32)XIICPS_CR_NEA_MASK | (u32)XIICPS_CR_MS_MASK;
+//
+//	if (Role == RECVING_ROLE) {
+//		ControlReg |= (u32)XIICPS_CR_RD_WR_MASK;
+//	}else {
+//		ControlReg &= (u32)(~XIICPS_CR_RD_WR_MASK);
+//	}
+//
+//	XIicPs_WriteReg(BaseAddr, XIICPS_CR_OFFSET, ControlReg);
+//
+////	XIicPs_DisableAllInterrupts(BaseAddr);
+//
+//	return (s32)XST_SUCCESS;
+//}
+//
