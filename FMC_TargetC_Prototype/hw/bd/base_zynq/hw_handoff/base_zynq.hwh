@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Mon Oct 12 19:52:44 2020" VIVADOVERSION="2018.2">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Oct 14 17:18:53 2020" VIVADOVERSION="2018.2">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="base_zynq" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -3280,7 +3280,7 @@
         <PARAMETER NAME="PCW_ENET_RESET_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_ENET_RESET_SELECT" VALUE="Share reset pin"/>
         <PARAMETER NAME="PCW_ENET0_RESET_ENABLE" VALUE="1"/>
-        <PARAMETER NAME="PCW_ENET0_RESET_IO" VALUE="MIO 11"/>
+        <PARAMETER NAME="PCW_ENET0_RESET_IO" VALUE="MIO 14"/>
         <PARAMETER NAME="PCW_ENET1_PERIPHERAL_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_ENET1_ENET1_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_ENET1_GRP_MDIO_ENABLE" VALUE="0"/>
@@ -3367,7 +3367,7 @@
         <PARAMETER NAME="PCW_USB1_RESET_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_USB1_RESET_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C0_PERIPHERAL_ENABLE" VALUE="1"/>
-        <PARAMETER NAME="PCW_I2C0_I2C0_IO" VALUE="MIO 14 .. 15"/>
+        <PARAMETER NAME="PCW_I2C0_I2C0_IO" VALUE="MIO 10 .. 11"/>
         <PARAMETER NAME="PCW_I2C0_GRP_INT_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C0_GRP_INT_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C0_RESET_ENABLE" VALUE="0"/>
@@ -3376,8 +3376,8 @@
         <PARAMETER NAME="PCW_I2C1_I2C1_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C1_GRP_INT_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C1_GRP_INT_IO" VALUE="&lt;Select>"/>
-        <PARAMETER NAME="PCW_I2C_RESET_ENABLE" VALUE="1"/>
-        <PARAMETER NAME="PCW_I2C_RESET_SELECT" VALUE="Share reset pin"/>
+        <PARAMETER NAME="PCW_I2C_RESET_ENABLE" VALUE="0"/>
+        <PARAMETER NAME="PCW_I2C_RESET_SELECT" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_I2C1_RESET_ENABLE" VALUE="0"/>
         <PARAMETER NAME="PCW_I2C1_RESET_IO" VALUE="&lt;Select>"/>
         <PARAMETER NAME="PCW_GPIO_PERIPHERAL_ENABLE" VALUE="0"/>
@@ -3463,7 +3463,7 @@
         <PARAMETER NAME="PCW_MIO_10_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_11_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_11_IOTYPE" VALUE="LVCMOS 2.5V"/>
-        <PARAMETER NAME="PCW_MIO_11_DIRECTION" VALUE="out"/>
+        <PARAMETER NAME="PCW_MIO_11_DIRECTION" VALUE="inout"/>
         <PARAMETER NAME="PCW_MIO_11_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_12_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_12_IOTYPE" VALUE="LVCMOS 2.5V"/>
@@ -3475,7 +3475,7 @@
         <PARAMETER NAME="PCW_MIO_13_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_14_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_14_IOTYPE" VALUE="LVCMOS 2.5V"/>
-        <PARAMETER NAME="PCW_MIO_14_DIRECTION" VALUE="inout"/>
+        <PARAMETER NAME="PCW_MIO_14_DIRECTION" VALUE="out"/>
         <PARAMETER NAME="PCW_MIO_14_SLEW" VALUE="slow"/>
         <PARAMETER NAME="PCW_MIO_15_PULLUP" VALUE="enabled"/>
         <PARAMETER NAME="PCW_MIO_15_IOTYPE" VALUE="LVCMOS 2.5V"/>
@@ -3635,8 +3635,8 @@
         <PARAMETER NAME="PCW_MIO_53_SLEW" VALUE="slow"/>
         <PARAMETER NAME="preset" VALUE="ZC702"/>
         <PARAMETER NAME="PCW_UIPARAM_GENERATE_SUMMARY" VALUE="NA"/>
-        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#ENET Reset#GPIO#GPIO#I2C 0#I2C 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0"/>
-        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#reset#gpio[12]#gpio[13]#scl#sda#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio"/>
+        <PARAMETER NAME="PCW_MIO_TREE_PERIPHERALS" VALUE="GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#I2C 0#I2C 0#GPIO#GPIO#ENET Reset#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0"/>
+        <PARAMETER NAME="PCW_MIO_TREE_SIGNALS" VALUE="gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#scl#sda#gpio[12]#gpio[13]#reset#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio"/>
         <PARAMETER NAME="PCW_PS7_SI_REV" VALUE="PRODUCTION"/>
         <PARAMETER NAME="PCW_FPGA_FCLK0_ENABLE" VALUE="1"/>
         <PARAMETER NAME="PCW_FPGA_FCLK1_ENABLE" VALUE="0"/>

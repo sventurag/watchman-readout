@@ -383,10 +383,10 @@ inout
 <B>MIO 10</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-GPIO
+I2C 0
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-gpio[10]
+scl
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 LVCMOS 2.5V
@@ -406,10 +406,10 @@ inout
 <B>MIO 11</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-ENET Reset
+I2C 0
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-reset
+sda
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 LVCMOS 2.5V
@@ -421,7 +421,7 @@ slow
 enabled
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-out
+inout
 </TD>
 </TR>
 <TR valign="top">
@@ -475,10 +475,10 @@ inout
 <B>MIO 14</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-I2C 0
+ENET Reset
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-scl
+reset
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 LVCMOS 2.5V
@@ -490,7 +490,7 @@ slow
 enabled
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-inout
+out
 </TD>
 </TR>
 <TR valign="top">
@@ -498,10 +498,10 @@ inout
 <B>MIO 15</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-I2C 0
+GPIO
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-sda
+gpio[15]
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
 LVCMOS 2.5V
@@ -31368,10 +31368,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>40</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 10 (bank 0), Input/Output 001: CAN 0 Rx, Input 010: I2C 0 Serial Clock, Input/Ouput 011: PJTAG TDI, Input 100: SDIO 1 IO Bit 0, Input/Output 101: SPI 1 MOSI, Input/Output 110: reserved 111: UART 0 RxD, Input</B>
@@ -31471,7 +31471,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1400</B>
+<B>1440</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 10 Control</B>
@@ -31635,10 +31635,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>40</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 11 (bank 0), Input/Output 001: CAN 0 Tx, Output 010: I2C 0 Serial Data, Input/Output 011: PJTAG TDO, Output 100: SDIO 1 Command, Input/Output 101: SPI 1 MISO, Input/Output 110: reserved 111: UART 0 TxD, Output</B>
@@ -31738,7 +31738,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1400</B>
+<B>1440</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 11 Control</B>
@@ -32436,10 +32436,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>2</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 14 (bank 0), Input/Output 001: CAN 0 Rx, Input 010: I2C 0 Serial Clock, Input/Ouput 011: SWDT Clock, Input 100: SDIO 1 IO Bit 2, Input/Output 101: SPI 1 slave select 1, Output 110: reserved 111: UART 0 RxD, Input</B>
@@ -32539,7 +32539,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1440</B>
+<B>1400</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 14 Control</B>
@@ -32703,10 +32703,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>2</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 15 (bank 0), Input/Output 001: CAN 0 Tx, Output 010: I2C 0 Serial Data, Input/Output 011: SWDT Reset, Output 100: SDIO 1 IO Bit 3, Input/Output 101: SPI 1 Slave Select 2, Output 110: reserved 111: UART 0 TxD, Output</B>
@@ -32806,7 +32806,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1440</B>
+<B>1400</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 15 Control</B>
@@ -45158,10 +45158,10 @@ MASK_DATA_0_LSW
 <B>ffffffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Direction mode 0: input 1: output Each bit configures the corresponding pin within the 32-bit bank NOTE: bits[8:7] of bank0 cannot be used as inputs. The DIRM bits can be set to 0, but reading DATA_RO does not reflect the input value. See the GPIO chapter for more information.</B>
@@ -45181,7 +45181,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Direction mode (GPIO Bank0, MIO)</B>
@@ -45267,10 +45267,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, only bits with a corresponding deasserted mask will change the output value. 0: pin value is updated 1: pin is masked Each bit controls the corresponding pin within the 16-bit half-bank. Reads return 0's.</B>
@@ -45287,10 +45287,10 @@ MASK_DATA_0_LSW
 <B>ffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, these are the data values for the corresponding GPIO output bits. Each bit controls the corresponding pin within the 16-bit half-bank. Reads return the previous value written to this register or DATA_0[15:0]. Reads do not return the value on the GPIO pin.</B>
@@ -45310,7 +45310,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0800</B>
+<B>bfff4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)</B>
@@ -45398,10 +45398,10 @@ MASK_DATA_0_LSW
 <B>ffffffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Output enables 0: disabled 1: enabled Each bit configures the corresponding pin within the 32-bit bank</B>
@@ -45421,7 +45421,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Output enable (GPIO Bank0, MIO)</B>
@@ -45507,10 +45507,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, only bits with a corresponding deasserted mask will change the output value. 0: pin value is updated 1: pin is masked Each bit controls the corresponding pin within the 16-bit half-bank. Reads return 0's.</B>
@@ -45550,7 +45550,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)</B>
@@ -45639,10 +45639,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, only bits with a corresponding deasserted mask will change the output value. 0: pin value is updated 1: pin is masked Each bit controls the corresponding pin within the 16-bit half-bank. Reads return 0's.</B>
@@ -45659,10 +45659,10 @@ MASK_DATA_0_LSW
 <B>ffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, these are the data values for the corresponding GPIO output bits. Each bit controls the corresponding pin within the 16-bit half-bank. Reads return the previous value written to this register or DATA_0[15:0]. Reads do not return the value on the GPIO pin.</B>
@@ -45682,7 +45682,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0800</B>
+<B>bfff4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)</B>
@@ -78035,10 +78035,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>40</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 10 (bank 0) 001: CAN 0 Rx 010: I2C 0 Serial Clock 011: PJTAG TDI 100: SDIO 1 IO Bit 0 101: SPI 1 MOSI 110: reserved 111: UART 0 RxD</B>
@@ -78138,7 +78138,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1400</B>
+<B>1440</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 10 Control</B>
@@ -78302,10 +78302,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>40</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 11 (bank 0) 001: CAN 0 Tx 010: I2C Serial Data 011: PJTAG TDO 100: SDIO 1 Command 101: SPI 1 MISO 110: reserved 111: UART 0 TxD</B>
@@ -78405,7 +78405,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1400</B>
+<B>1440</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 11 Control</B>
@@ -79103,10 +79103,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>2</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 14 (bank 0) 001: CAN 0 Rx 010: I2C 0 Serial Clock 011: SWDT Clock Input 100: SDIO 1 IO Bit 2 101: SPI 1 slave select 1 110: reserved 111: UART 0 RxD</B>
@@ -79206,7 +79206,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1440</B>
+<B>1400</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 14 Control</B>
@@ -79370,10 +79370,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>2</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 000: GPIO 15 (bank 0) 001: CAN 0 Tx 010: I2C 0 Serial Data 011: SWDT Reset Out 100: SDIO 1 IO Bit 3 101: SPI 1 Slave Select 2 110: reserved 111: UART 0 TxD</B>
@@ -79473,7 +79473,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1440</B>
+<B>1400</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Pin 15 Control</B>
@@ -91865,10 +91865,10 @@ MASK_DATA_0_LSW
 <B>ffffffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Direction mode 0: input 1: output Each bit configures the corresponding pin within the 32-bit bank NOTE: bits[8:7] of bank0 cannot be used as inputs. The DIRM bits can be set to 0, but reading DATA_RO does not reflect the input value. See the GPIO chapter for more information.</B>
@@ -91888,7 +91888,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Direction mode (GPIO Bank0, MIO)</B>
@@ -91974,10 +91974,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, only bits with a corresponding deasserted mask will change the output value. 0: pin value is updated 1: pin is masked Each bit controls the corresponding pin within the 16-bit half-bank. Reads return 0's.</B>
@@ -91994,10 +91994,10 @@ MASK_DATA_0_LSW
 <B>ffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, these are the data values for the corresponding GPIO output bits. Each bit controls the corresponding pin within the 16-bit half-bank. Reads return the previous value written to this register or DATA_0[15:0]. Reads do not return the value on the GPIO pin.</B>
@@ -92017,7 +92017,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0800</B>
+<B>bfff4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)</B>
@@ -92105,10 +92105,10 @@ MASK_DATA_0_LSW
 <B>ffffffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Output enables 0: disabled 1: enabled Each bit configures the corresponding pin within the 32-bit bank</B>
@@ -92128,7 +92128,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Output enable (GPIO Bank0, MIO)</B>
@@ -92214,10 +92214,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, only bits with a corresponding deasserted mask will change the output value. 0: pin value is updated 1: pin is masked Each bit controls the corresponding pin within the 16-bit half-bank. Reads return 0's.</B>
@@ -92257,7 +92257,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)</B>
@@ -92346,10 +92346,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, only bits with a corresponding deasserted mask will change the output value. 0: pin value is updated 1: pin is masked Each bit controls the corresponding pin within the 16-bit half-bank. Reads return 0's.</B>
@@ -92366,10 +92366,10 @@ MASK_DATA_0_LSW
 <B>ffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>On a write, these are the data values for the corresponding GPIO output bits. Each bit controls the corresponding pin within the 16-bit half-bank. Reads return the previous value written to this register or DATA_0[15:0]. Reads do not return the value on the GPIO pin.</B>
@@ -92389,7 +92389,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0800</B>
+<B>bfff4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable Output Data (GPIO Bank0, MIO, Lower 16bits)</B>
@@ -124063,10 +124063,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>40</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 0= gpio0, Input, gpio_0_pin_in[10]- (GPIO bank 0) 0= gpio0, Output, gpio_0_pin_out[10]- (GPIO bank 0) 1= can0, Input, can0_phy_rx- (Can RX signal) 2= i2c0, Input, i2c0_scl_input- (SCL signal) 2= i2c0, Output, i2c0_scl_out- (SCL signal) 3= Not Used 4= sd1, Input, sd1_data_in[0]- (4-bit Data bus) 4= sd1, Output, sd1_data_out[0]- (4-bit Data bus) 5= spi1, Output, spi1_mo- (MOSI signal) 5= spi1, Input, spi1_si- (MOSI signal) 6= Not Used 7= ua0, Input, ua0_rxd- (UART receiver serial input)</B>
@@ -124166,7 +124166,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1400</B>
+<B>1440</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Control for Pin 10</B>
@@ -124330,10 +124330,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>2</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>0</B>
+<B>40</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 0= gpio0, Input, gpio_0_pin_in[11]- (GPIO bank 0) 0= gpio0, Output, gpio_0_pin_out[11]- (GPIO bank 0) 1= can0, Output, can0_phy_tx- (Can TX signal) 2= i2c0, Input, i2c0_sda_input- (SDA signal) 2= i2c0, Output, i2c0_sda_out- (SDA signal) 3= Not Used 4= sd1, Input, sd1_cmd_in- (Command Indicator) 4= sd1, Output, sd1_cmd_out- (Command Indicator) 5= spi1, Input, spi1_mi- (MISO signal) 5= spi1, Output, spi1_so- (MISO signal) 6= Not Used 7= ua0, Output, ua0_txd- (UART transmitter serial output)</B>
@@ -124433,7 +124433,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1400</B>
+<B>1440</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Control for Pin 11</B>
@@ -125131,10 +125131,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>2</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 0= gpio0, Input, gpio_0_pin_in[14]- (GPIO bank 0) 0= gpio0, Output, gpio_0_pin_out[14]- (GPIO bank 0) 1= can0, Input, can0_phy_rx- (Can RX signal) 2= i2c0, Input, i2c0_scl_input- (SCL signal) 2= i2c0, Output, i2c0_scl_out- (SCL signal) 3= wdt, Input, wdt_clk_in- (Watch Dog Timer Input clock) 4= sd1, Input, sd1_data_in[2]- (4-bit Data bus) 4= sd1, Output, sd1_data_out[2]- (4-bit Data bus) 5= spi1, Output, spi1_n_ss_out[1]- (SPI Master Selects) 6= Not Used 7= ua0, Input, ua0_rxd- (UART receiver serial input)</B>
@@ -125234,7 +125234,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1440</B>
+<B>1400</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Control for Pin 14</B>
@@ -125398,10 +125398,10 @@ SLCR_LOCK
 <B>e0</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>2</B>
+<B>0</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>40</B>
+<B>0</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Level 3 Mux Select 0= gpio0, Input, gpio_0_pin_in[15]- (GPIO bank 0) 0= gpio0, Output, gpio_0_pin_out[15]- (GPIO bank 0) 1= can0, Output, can0_phy_tx- (Can TX signal) 2= i2c0, Input, i2c0_sda_input- (SDA signal) 2= i2c0, Output, i2c0_sda_out- (SDA signal) 3= wdt, Output, wdt_rst_out- (Watch Dog Timer Output clock) 4= sd1, Input, sd1_data_in[3]- (4-bit Data bus) 4= sd1, Output, sd1_data_out[3]- (4-bit Data bus) 5= spi1, Output, spi1_n_ss_out[2]- (SPI Master Selects) 6= Not Used 7= ua0, Output, ua0_txd- (UART transmitter serial output)</B>
@@ -125501,7 +125501,7 @@ SLCR_LOCK
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>1440</B>
+<B>1400</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>MIO Control for Pin 15</B>
@@ -137893,10 +137893,10 @@ MASK_DATA_0_LSW
 <B>ffffffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Direction mode for bank 0 0 = input 1 = output Each bit configures the corresponding pin within the 32-bit bank</B>
@@ -137916,7 +137916,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Direction mode configuration register: Configures bank 0 for direction mode, either input or output</B>
@@ -138002,10 +138002,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Mask values to be applied on writes to the corresponding GPIO pins 0 = pin value is updated 1 = pin is masked Each bit controls the corresponding pin within the 16-bit half-bank Write Only, Read back as zero</B>
@@ -138022,10 +138022,10 @@ MASK_DATA_0_LSW
 <B>ffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Data values read from or written to the corresponding GPIO pins Each bit controls the corresponding pin within the 16-bit half-bank Note: Bit[6], bit[7] default value = 0</B>
@@ -138045,7 +138045,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0800</B>
+<B>bfff4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable single-word-based data access register: Mask and data access for the least significant word of this bank of GPIO pins</B>
@@ -138133,10 +138133,10 @@ MASK_DATA_0_LSW
 <B>ffffffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Output enables for bank 0 0 = disabled 1 = enabled Each bit configures the corresponding pin within the 32-bit bank</B>
@@ -138156,7 +138156,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Output enable register: Configures the output enables of bank 0</B>
@@ -138242,10 +138242,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Mask values to be applied on writes to the corresponding GPIO pins 0 = pin value is updated 1 = pin is masked Each bit controls the corresponding pin within the 16-bit half-bank Write Only, Read back as zero</B>
@@ -138285,7 +138285,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable single-word-based data access register: Mask and data access for the least significant word of this bank of GPIO pins</B>
@@ -138374,10 +138374,10 @@ MASK_DATA_0_LSW
 <B>ffff0000</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>f7ff</B>
+<B>bfff</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>f7ff0000</B>
+<B>bfff0000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Mask values to be applied on writes to the corresponding GPIO pins 0 = pin value is updated 1 = pin is masked Each bit controls the corresponding pin within the 16-bit half-bank Write Only, Read back as zero</B>
@@ -138394,10 +138394,10 @@ MASK_DATA_0_LSW
 <B>ffff</B>
 </TD>
 <TD width=10% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=15% BGCOLOR=#FBF5EF>
-<B>800</B>
+<B>4000</B>
 </TD>
 <TD width=35% BGCOLOR=#FBF5EF>
 <B>Data values read from or written to the corresponding GPIO pins Each bit controls the corresponding pin within the 16-bit half-bank Note: Bit[6], bit[7] default value = 0</B>
@@ -138417,7 +138417,7 @@ MASK_DATA_0_LSW
 <B></B>
 </TD>
 <TD width=15% BGCOLOR=#C0C0C0>
-<B>f7ff0800</B>
+<B>bfff4000</B>
 </TD>
 <TD width=35% BGCOLOR=#C0C0C0>
 <B>Maskable single-word-based data access register: Mask and data access for the least significant word of this bank of GPIO pins</B>
