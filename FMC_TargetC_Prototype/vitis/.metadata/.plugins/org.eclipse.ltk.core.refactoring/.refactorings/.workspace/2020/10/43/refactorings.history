@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Delete resource &apos;6UVME/src/gpio_ctrl.c&apos;" deleteContents="false" description="Delete resource &apos;6UVME/src/gpio_ctrl.c&apos;" element1="/6UVME/src/gpio_ctrl.c" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1603244178791"/>
-</session>

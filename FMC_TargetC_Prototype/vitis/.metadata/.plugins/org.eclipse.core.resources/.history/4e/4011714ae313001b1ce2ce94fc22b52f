@@ -1,9 +1,0 @@
-#ifndef gpio_ctrl_H   /* prevent circular inclusions */
-#define gpio_ctrl_H   /* by using protection macros */
-
-#include "xparameters.h"
-#include "xil_printf.h"
-#include "xgpiops.h"
-#include "xstatus.h"
-#include "sleep.h"
-#include "global.h"

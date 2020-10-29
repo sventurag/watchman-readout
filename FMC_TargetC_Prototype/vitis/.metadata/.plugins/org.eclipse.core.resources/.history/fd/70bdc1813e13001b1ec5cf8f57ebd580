@@ -1,9 +1,0 @@
-#ifndef IIC_DAC_LTC2657_H   /* prevent circular inclusions */
-#define IIC_DAC_LTC2657_H   /* by using protection macros */
-
-#include "xparameters.h"
-#include "xil_printf.h"
-#include "xgpiops.h"
-
-
-#include "global.h"
