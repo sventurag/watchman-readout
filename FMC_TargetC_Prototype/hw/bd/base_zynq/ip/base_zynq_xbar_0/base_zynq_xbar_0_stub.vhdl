@@ -1,10 +1,10 @@
--- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Thu Sep 10 18:17:04 2020
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Thu Oct 15 11:41:25 2020
 -- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_0/base_zynq_xbar_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top base_zynq_xbar_0 -prefix
+--               base_zynq_xbar_0_ base_zynq_xbar_0_stub.vhdl
 -- Design      : base_zynq_xbar_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1
@@ -64,6 +64,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "aclk,aresetn,s_axi_awaddr[31:0],s_axi_awprot[2:0],s_axi_awvalid[0:0],s_axi_awready[0:0],s_axi_wdata[31:0],s_axi_wstrb[3:0],s_axi_wvalid[0:0],s_axi_wready[0:0],s_axi_bresp[1:0],s_axi_bvalid[0:0],s_axi_bready[0:0],s_axi_araddr[31:0],s_axi_arprot[2:0],s_axi_arvalid[0:0],s_axi_arready[0:0],s_axi_rdata[31:0],s_axi_rresp[1:0],s_axi_rvalid[0:0],s_axi_rready[0:0],m_axi_awaddr[63:0],m_axi_awprot[5:0],m_axi_awvalid[1:0],m_axi_awready[1:0],m_axi_wdata[63:0],m_axi_wstrb[7:0],m_axi_wvalid[1:0],m_axi_wready[1:0],m_axi_bresp[3:0],m_axi_bvalid[1:0],m_axi_bready[1:0],m_axi_araddr[63:0],m_axi_arprot[5:0],m_axi_arvalid[1:0],m_axi_arready[1:0],m_axi_rdata[63:0],m_axi_rresp[3:0],m_axi_rvalid[1:0],m_axi_rready[1:0]";
 attribute X_CORE_INFO : string;
-attribute X_CORE_INFO of stub : architecture is "axi_crossbar_v2_1_18_axi_crossbar,Vivado 2018.2";
+attribute X_CORE_INFO of stub : architecture is "axi_crossbar_v2_1_22_axi_crossbar,Vivado 2020.1";
 begin
 end;

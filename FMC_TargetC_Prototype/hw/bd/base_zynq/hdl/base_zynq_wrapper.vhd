@@ -1,7 +1,7 @@
---Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+--Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Wed Oct 14 17:18:19 2020
+--Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+--Date        : Wed Oct 28 14:58:38 2020
 --Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
@@ -91,27 +91,6 @@ end base_zynq_wrapper;
 architecture STRUCTURE of base_zynq_wrapper is
   component base_zynq is
   port (
-    DDR_cas_n : inout STD_LOGIC;
-    DDR_cke : inout STD_LOGIC;
-    DDR_ck_n : inout STD_LOGIC;
-    DDR_ck_p : inout STD_LOGIC;
-    DDR_cs_n : inout STD_LOGIC;
-    DDR_reset_n : inout STD_LOGIC;
-    DDR_odt : inout STD_LOGIC;
-    DDR_ras_n : inout STD_LOGIC;
-    DDR_we_n : inout STD_LOGIC;
-    DDR_ba : inout STD_LOGIC_VECTOR ( 2 downto 0 );
-    DDR_addr : inout STD_LOGIC_VECTOR ( 14 downto 0 );
-    DDR_dm : inout STD_LOGIC_VECTOR ( 3 downto 0 );
-    DDR_dq : inout STD_LOGIC_VECTOR ( 31 downto 0 );
-    DDR_dqs_n : inout STD_LOGIC_VECTOR ( 3 downto 0 );
-    DDR_dqs_p : inout STD_LOGIC_VECTOR ( 3 downto 0 );
-    FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
-    FIXED_IO_ddr_vrn : inout STD_LOGIC;
-    FIXED_IO_ddr_vrp : inout STD_LOGIC;
-    FIXED_IO_ps_srstb : inout STD_LOGIC;
-    FIXED_IO_ps_clk : inout STD_LOGIC;
-    FIXED_IO_ps_porb : inout STD_LOGIC;
     A_DO_16 : in STD_LOGIC;
     A_DO_15 : in STD_LOGIC;
     A_DO_1 : in STD_LOGIC;
@@ -162,7 +141,28 @@ architecture STRUCTURE of base_zynq_wrapper is
     A_TRIG1 : in STD_LOGIC;
     A_TRIG2 : in STD_LOGIC;
     A_TRIG3 : in STD_LOGIC;
-    A_TRIG4 : in STD_LOGIC
+    A_TRIG4 : in STD_LOGIC;
+    FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
+    FIXED_IO_ddr_vrn : inout STD_LOGIC;
+    FIXED_IO_ddr_vrp : inout STD_LOGIC;
+    FIXED_IO_ps_srstb : inout STD_LOGIC;
+    FIXED_IO_ps_clk : inout STD_LOGIC;
+    FIXED_IO_ps_porb : inout STD_LOGIC;
+    DDR_cas_n : inout STD_LOGIC;
+    DDR_cke : inout STD_LOGIC;
+    DDR_ck_n : inout STD_LOGIC;
+    DDR_ck_p : inout STD_LOGIC;
+    DDR_cs_n : inout STD_LOGIC;
+    DDR_reset_n : inout STD_LOGIC;
+    DDR_odt : inout STD_LOGIC;
+    DDR_ras_n : inout STD_LOGIC;
+    DDR_we_n : inout STD_LOGIC;
+    DDR_ba : inout STD_LOGIC_VECTOR ( 2 downto 0 );
+    DDR_addr : inout STD_LOGIC_VECTOR ( 14 downto 0 );
+    DDR_dm : inout STD_LOGIC_VECTOR ( 3 downto 0 );
+    DDR_dq : inout STD_LOGIC_VECTOR ( 31 downto 0 );
+    DDR_dqs_n : inout STD_LOGIC_VECTOR ( 3 downto 0 );
+    DDR_dqs_p : inout STD_LOGIC_VECTOR ( 3 downto 0 )
   );
   end component base_zynq;
 begin

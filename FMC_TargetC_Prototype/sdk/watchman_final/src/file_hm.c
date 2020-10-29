@@ -104,7 +104,7 @@ FRESULT log_event(char *tmp_text, uint length)
 		if(result != FR_OK) printf("Write log file failed during f_open, result = %d\r\n", result);
 		else {
 			/* index to end of file */
-			file_index = file_size(&log_file);
+			file_index = f_size(&log_file);
 			result = f_lseek(&log_file,file_index);
 			if(result != FR_OK) printf("Write log file failed during f_lseek, result = %d\r\n", result);
 			else{

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/XilinxBuild" key="scw_hwspec_file_selection"/>
+	<item value="/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/XilinxBuild/FMC_TARGETC_Prototype.hw" key="scw_hwspec"/>
+</section>

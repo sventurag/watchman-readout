@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">&#x0A;<refactoring comment="Rename resource &apos;6UVME/src/gpio_ctrl&apos; to &apos;gpio_ctrl.c&apos;" description="Rename resource &apos;gpio_ctrl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/gpio_ctrl" name="gpio_ctrl.c" stamp="1603243800241" updateReferences="true"/>&#x0A;<refactoring comment="Rename resource &apos;6UVME/src/gpio_ctrl&apos; to &apos;gpio_ctrl.c&apos;" description="Rename resource &apos;gpio_ctrl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/gpio_ctrl" name="gpio_ctrl.c" stamp="1603244209520" updateReferences="true"/>
+</session>

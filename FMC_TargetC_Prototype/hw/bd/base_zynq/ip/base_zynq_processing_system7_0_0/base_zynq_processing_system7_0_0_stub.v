@@ -1,10 +1,10 @@
-// Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Wed Oct 14 17:22:23 2020
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Wed Oct 21 16:24:16 2020
 // Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_processing_system7_0_0/base_zynq_processing_system7_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top base_zynq_processing_system7_0_0 -prefix
+//               base_zynq_processing_system7_0_0_ base_zynq_processing_system7_0_0_stub.v
 // Design      : base_zynq_processing_system7_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "processing_system7_v5_5_processing_system7,Vivado 2018.2" *)
+(* X_CORE_INFO = "processing_system7_v5_5_processing_system7,Vivado 2020.1" *)
 module base_zynq_processing_system7_0_0(TTC0_WAVE0_OUT, TTC0_WAVE1_OUT, 
   TTC0_WAVE2_OUT, M_AXI_GP0_ARVALID, M_AXI_GP0_AWVALID, M_AXI_GP0_BREADY, M_AXI_GP0_RREADY, 
   M_AXI_GP0_WLAST, M_AXI_GP0_WVALID, M_AXI_GP0_ARID, M_AXI_GP0_AWID, M_AXI_GP0_WID, 

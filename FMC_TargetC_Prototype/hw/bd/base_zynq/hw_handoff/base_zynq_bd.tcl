@@ -20,12 +20,12 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2018.2
+set scripts_vivado_version 2020.1
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
    puts ""
-   catch {common::send_msg_id "BD_TCL-109" "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
+   catch {common::send_gid_msg -ssname BD::TCL -id 2041 -severity "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
 
    return 1
 }
@@ -77,9 +77,9 @@ if { $run_remote_bd_flow == 1 } {
 
   # Check if remote design exists on disk
   if { [file exists $str_bd_filepath ] == 1 } {
-     catch {common::send_msg_id "BD_TCL-110" "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
-     common::send_msg_id "BD_TCL-008" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
-     common::send_msg_id "BD_TCL-009" "INFO" "Also make sure there is no design <$design_name> existing in your current project."
+     catch {common::send_gid_msg -ssname BD::TCL -id 2030 -severity "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
+     common::send_gid_msg -ssname BD::TCL -id 2031 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
+     common::send_gid_msg -ssname BD::TCL -id 2032 -severity "INFO" "Also make sure there is no design <$design_name> existing in your current project."
 
      return 1
   }
@@ -87,9 +87,9 @@ if { $run_remote_bd_flow == 1 } {
   # Check if design exists in memory
   set list_existing_designs [get_bd_designs -quiet $design_name]
   if { $list_existing_designs ne "" } {
-     catch {common::send_msg_id "BD_TCL-111" "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2033 -severity "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-     common::send_msg_id "BD_TCL-010" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2034 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
      return 1
   }
@@ -97,11 +97,11 @@ if { $run_remote_bd_flow == 1 } {
   # Check if design exists on disk within project
   set list_existing_designs [get_files -quiet */${design_name}.bd]
   if { $list_existing_designs ne "" } {
-     catch {common::send_msg_id "BD_TCL-112" "ERROR" "The design <$design_name> already exists in this project at location:
+     catch {common::send_gid_msg -ssname BD::TCL -id 2035 -severity "ERROR" "The design <$design_name> already exists in this project at location:
     $list_existing_designs"}
-     catch {common::send_msg_id "BD_TCL-113" "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2036 -severity "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-     common::send_msg_id "BD_TCL-011" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2037 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
      return 1
   }
@@ -113,7 +113,7 @@ if { $run_remote_bd_flow == 1 } {
 
   # Create regular design
   if { [catch {create_bd_design $design_name} errmsg] } {
-     common::send_msg_id "BD_TCL-012" "INFO" "Please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2038 -severity "INFO" "Please set a different value to variable <design_name>."
 
      return 1
   }
@@ -141,14 +141,14 @@ proc create_root_design { parentCell } {
   # Get object for parentCell
   set parentObj [get_bd_cells $parentCell]
   if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
      return
   }
 
   # Make sure parentObj is hier blk
   set parentType [get_property TYPE $parentObj]
   if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
      return
   }
 
@@ -161,7 +161,9 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
+
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
+
 
   # Create ports
   set A_DONE [ create_bd_port -dir I A_DONE ]
@@ -220,10 +222,10 @@ proc create_root_design { parentCell } {
   set block_name TARGET_C_TopLevel_System
   set block_cell_name TARGET_C_TopLevel_Sy_0
   if { [catch {set TARGET_C_TopLevel_Sy_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $TARGET_C_TopLevel_Sy_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
@@ -249,10 +251,10 @@ proc create_root_design { parentCell } {
   set block_name axistream
   set block_cell_name axistream_0
   if { [catch {set axistream_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $axistream_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
@@ -353,8 +355,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ENET0_PERIPHERAL_DIVISOR1 {5} \
    CONFIG.PCW_ENET0_PERIPHERAL_ENABLE {1} \
    CONFIG.PCW_ENET0_PERIPHERAL_FREQMHZ {100 Mbps} \
-   CONFIG.PCW_ENET0_RESET_ENABLE {1} \
-   CONFIG.PCW_ENET0_RESET_IO {MIO 14} \
+   CONFIG.PCW_ENET0_RESET_ENABLE {0} \
+   CONFIG.PCW_ENET0_RESET_IO {<Select>} \
    CONFIG.PCW_ENET1_BASEADDR {0xE000C000} \
    CONFIG.PCW_ENET1_ENET1_IO {<Select>} \
    CONFIG.PCW_ENET1_GRP_MDIO_ENABLE {0} \
@@ -408,7 +410,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_EN_ENET0 {1} \
    CONFIG.PCW_EN_ENET1 {0} \
    CONFIG.PCW_EN_GPIO {1} \
-   CONFIG.PCW_EN_I2C0 {1} \
+   CONFIG.PCW_EN_I2C0 {0} \
    CONFIG.PCW_EN_I2C1 {0} \
    CONFIG.PCW_EN_MODEM_UART0 {0} \
    CONFIG.PCW_EN_MODEM_UART1 {0} \
@@ -481,8 +483,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_I2C0_BASEADDR {0xE0004000} \
    CONFIG.PCW_I2C0_GRP_INT_ENABLE {0} \
    CONFIG.PCW_I2C0_HIGHADDR {0xE0004FFF} \
-   CONFIG.PCW_I2C0_I2C0_IO {MIO 10 .. 11} \
-   CONFIG.PCW_I2C0_PERIPHERAL_ENABLE {1} \
+   CONFIG.PCW_I2C0_I2C0_IO {<Select>} \
+   CONFIG.PCW_I2C0_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_I2C0_RESET_ENABLE {0} \
    CONFIG.PCW_I2C0_RESET_IO {<Select>} \
    CONFIG.PCW_I2C1_BASEADDR {0xE0005000} \
@@ -503,31 +505,31 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_IRQ_F2P_INTR {1} \
    CONFIG.PCW_IRQ_F2P_MODE {DIRECT} \
    CONFIG.PCW_MIO_0_DIRECTION {inout} \
-   CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_0_PULLUP {enabled} \
    CONFIG.PCW_MIO_0_SLEW {slow} \
    CONFIG.PCW_MIO_10_DIRECTION {inout} \
-   CONFIG.PCW_MIO_10_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_10_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_10_PULLUP {enabled} \
    CONFIG.PCW_MIO_10_SLEW {slow} \
    CONFIG.PCW_MIO_11_DIRECTION {inout} \
-   CONFIG.PCW_MIO_11_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_11_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_11_PULLUP {enabled} \
    CONFIG.PCW_MIO_11_SLEW {slow} \
    CONFIG.PCW_MIO_12_DIRECTION {inout} \
-   CONFIG.PCW_MIO_12_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_12_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_12_PULLUP {enabled} \
    CONFIG.PCW_MIO_12_SLEW {slow} \
    CONFIG.PCW_MIO_13_DIRECTION {inout} \
-   CONFIG.PCW_MIO_13_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_13_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_13_PULLUP {enabled} \
    CONFIG.PCW_MIO_13_SLEW {slow} \
-   CONFIG.PCW_MIO_14_DIRECTION {out} \
-   CONFIG.PCW_MIO_14_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_14_DIRECTION {inout} \
+   CONFIG.PCW_MIO_14_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_14_PULLUP {enabled} \
    CONFIG.PCW_MIO_14_SLEW {slow} \
    CONFIG.PCW_MIO_15_DIRECTION {inout} \
-   CONFIG.PCW_MIO_15_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_15_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_15_PULLUP {enabled} \
    CONFIG.PCW_MIO_15_SLEW {slow} \
    CONFIG.PCW_MIO_16_DIRECTION {out} \
@@ -547,7 +549,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_19_PULLUP {disabled} \
    CONFIG.PCW_MIO_19_SLEW {slow} \
    CONFIG.PCW_MIO_1_DIRECTION {out} \
-   CONFIG.PCW_MIO_1_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_1_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_1_PULLUP {enabled} \
    CONFIG.PCW_MIO_1_SLEW {slow} \
    CONFIG.PCW_MIO_20_DIRECTION {out} \
@@ -584,58 +586,58 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_27_SLEW {slow} \
    CONFIG.PCW_MIO_28_DIRECTION {inout} \
    CONFIG.PCW_MIO_28_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_28_PULLUP {disabled} \
+   CONFIG.PCW_MIO_28_PULLUP {enabled} \
    CONFIG.PCW_MIO_28_SLEW {slow} \
    CONFIG.PCW_MIO_29_DIRECTION {inout} \
    CONFIG.PCW_MIO_29_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_29_PULLUP {disabled} \
+   CONFIG.PCW_MIO_29_PULLUP {enabled} \
    CONFIG.PCW_MIO_29_SLEW {slow} \
    CONFIG.PCW_MIO_2_DIRECTION {inout} \
-   CONFIG.PCW_MIO_2_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_2_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_2_PULLUP {disabled} \
    CONFIG.PCW_MIO_2_SLEW {slow} \
    CONFIG.PCW_MIO_30_DIRECTION {inout} \
    CONFIG.PCW_MIO_30_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_30_PULLUP {disabled} \
+   CONFIG.PCW_MIO_30_PULLUP {enabled} \
    CONFIG.PCW_MIO_30_SLEW {slow} \
    CONFIG.PCW_MIO_31_DIRECTION {inout} \
    CONFIG.PCW_MIO_31_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_31_PULLUP {disabled} \
+   CONFIG.PCW_MIO_31_PULLUP {enabled} \
    CONFIG.PCW_MIO_31_SLEW {slow} \
    CONFIG.PCW_MIO_32_DIRECTION {inout} \
    CONFIG.PCW_MIO_32_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_32_PULLUP {disabled} \
+   CONFIG.PCW_MIO_32_PULLUP {enabled} \
    CONFIG.PCW_MIO_32_SLEW {slow} \
    CONFIG.PCW_MIO_33_DIRECTION {inout} \
    CONFIG.PCW_MIO_33_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_33_PULLUP {disabled} \
+   CONFIG.PCW_MIO_33_PULLUP {enabled} \
    CONFIG.PCW_MIO_33_SLEW {slow} \
    CONFIG.PCW_MIO_34_DIRECTION {inout} \
    CONFIG.PCW_MIO_34_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_34_PULLUP {disabled} \
+   CONFIG.PCW_MIO_34_PULLUP {enabled} \
    CONFIG.PCW_MIO_34_SLEW {slow} \
    CONFIG.PCW_MIO_35_DIRECTION {inout} \
    CONFIG.PCW_MIO_35_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_35_PULLUP {disabled} \
+   CONFIG.PCW_MIO_35_PULLUP {enabled} \
    CONFIG.PCW_MIO_35_SLEW {slow} \
    CONFIG.PCW_MIO_36_DIRECTION {inout} \
    CONFIG.PCW_MIO_36_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_36_PULLUP {disabled} \
+   CONFIG.PCW_MIO_36_PULLUP {enabled} \
    CONFIG.PCW_MIO_36_SLEW {slow} \
    CONFIG.PCW_MIO_37_DIRECTION {inout} \
    CONFIG.PCW_MIO_37_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_37_PULLUP {disabled} \
+   CONFIG.PCW_MIO_37_PULLUP {enabled} \
    CONFIG.PCW_MIO_37_SLEW {slow} \
    CONFIG.PCW_MIO_38_DIRECTION {inout} \
    CONFIG.PCW_MIO_38_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_38_PULLUP {disabled} \
+   CONFIG.PCW_MIO_38_PULLUP {enabled} \
    CONFIG.PCW_MIO_38_SLEW {slow} \
    CONFIG.PCW_MIO_39_DIRECTION {inout} \
    CONFIG.PCW_MIO_39_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_39_PULLUP {disabled} \
+   CONFIG.PCW_MIO_39_PULLUP {enabled} \
    CONFIG.PCW_MIO_39_SLEW {slow} \
    CONFIG.PCW_MIO_3_DIRECTION {inout} \
-   CONFIG.PCW_MIO_3_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_3_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_3_PULLUP {disabled} \
    CONFIG.PCW_MIO_3_SLEW {slow} \
    CONFIG.PCW_MIO_40_DIRECTION {inout} \
@@ -679,7 +681,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_49_PULLUP {disabled} \
    CONFIG.PCW_MIO_49_SLEW {slow} \
    CONFIG.PCW_MIO_4_DIRECTION {inout} \
-   CONFIG.PCW_MIO_4_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_4_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_4_PULLUP {disabled} \
    CONFIG.PCW_MIO_4_SLEW {slow} \
    CONFIG.PCW_MIO_50_DIRECTION {in} \
@@ -699,28 +701,28 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_53_PULLUP {disabled} \
    CONFIG.PCW_MIO_53_SLEW {slow} \
    CONFIG.PCW_MIO_5_DIRECTION {inout} \
-   CONFIG.PCW_MIO_5_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_5_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_5_PULLUP {disabled} \
    CONFIG.PCW_MIO_5_SLEW {slow} \
    CONFIG.PCW_MIO_6_DIRECTION {out} \
-   CONFIG.PCW_MIO_6_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_6_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_6_PULLUP {disabled} \
    CONFIG.PCW_MIO_6_SLEW {slow} \
    CONFIG.PCW_MIO_7_DIRECTION {out} \
-   CONFIG.PCW_MIO_7_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_7_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_7_PULLUP {disabled} \
    CONFIG.PCW_MIO_7_SLEW {slow} \
    CONFIG.PCW_MIO_8_DIRECTION {out} \
-   CONFIG.PCW_MIO_8_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_8_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_8_PULLUP {disabled} \
    CONFIG.PCW_MIO_8_SLEW {slow} \
    CONFIG.PCW_MIO_9_DIRECTION {inout} \
-   CONFIG.PCW_MIO_9_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_9_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_9_PULLUP {enabled} \
    CONFIG.PCW_MIO_9_SLEW {slow} \
    CONFIG.PCW_MIO_PRIMITIVE {54} \
-   CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#I2C 0#I2C 0#GPIO#GPIO#ENET Reset#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0} \
-   CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#scl#sda#gpio[12]#gpio[13]#reset#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio} \
+   CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0} \
+   CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio} \
    CONFIG.PCW_M_AXI_GP0_ENABLE_STATIC_REMAP {0} \
    CONFIG.PCW_M_AXI_GP0_ID_WIDTH {12} \
    CONFIG.PCW_M_AXI_GP0_SUPPORT_NARROW_BURST {0} \
@@ -817,7 +819,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_PJTAG_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_PJTAG_PJTAG_IO {<Select>} \
    CONFIG.PCW_PLL_BYPASSMODE_ENABLE {0} \
-   CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 2.5V} \
+   CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V} \
    CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V} \
    CONFIG.PCW_PS7_SI_REV {PRODUCTION} \
    CONFIG.PCW_QSPI_GRP_FBCLK_ENABLE {1} \
@@ -1178,14 +1180,15 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xlconcat_1_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_1/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x40000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
-  create_bd_addr_seg -range 0x20000000 -offset 0x60000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGET_C_TopLevel_Sy_0/tc_axi/reg0] SEG_TARGET_C_TopLevel_Sy_0_reg0
-  create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
+  assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
+  assign_bd_address -offset 0x60000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGET_C_TopLevel_Sy_0/tc_axi/reg0] -force
+  assign_bd_address -offset 0x40400000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] -force
 
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()

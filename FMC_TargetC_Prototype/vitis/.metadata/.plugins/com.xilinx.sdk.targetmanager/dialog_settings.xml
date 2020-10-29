@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="false" key="6UVME-partial_bit"/>
+	<item value="{&quot;cables&quot;:[{&quot;name&quot;:&quot;Digilent JTAG-HS1 210205329388A&quot;,&quot;indexContextMap&quot;:{&quot;2&quot;:&quot;jsn-JTAG-HS1-210205329388A-4ba00477-0&quot;,&quot;3&quot;:&quot;jsn-JTAG-HS1-210205329388A-23727093-0&quot;}}]}" key="devices_info_Local"/>
+	<item value="" key="6UVME-bmmFile"/>
+	<item value="false" key="6UVME-skip_rev_check"/>
+	<item value="6UVME" key="programfpga.sdxproject"/>
+	<item value="Auto Detect" key="6UVME-device"/>
+	<item value="Local" key="6UVME-target"/>
+	<item value="_ide/bitstream/base_zynq_wrapper.bit" key="6UVME-bitFile"/>
+</section>

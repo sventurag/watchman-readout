@@ -1,7 +1,7 @@
---Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+--Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
---Date        : Wed Oct 14 17:18:19 2020
+--Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+--Date        : Wed Oct 28 14:58:38 2020
 --Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -1576,52 +1576,6 @@ architecture STRUCTURE of base_zynq is
     M_AXIS_TREADY : in STD_LOGIC
   );
   end component base_zynq_axistream_0_0;
-  component base_zynq_axi_dma_0_0 is
-  port (
-    s_axi_lite_aclk : in STD_LOGIC;
-    m_axi_s2mm_aclk : in STD_LOGIC;
-    axi_resetn : in STD_LOGIC;
-    s_axi_lite_awvalid : in STD_LOGIC;
-    s_axi_lite_awready : out STD_LOGIC;
-    s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    s_axi_lite_wvalid : in STD_LOGIC;
-    s_axi_lite_wready : out STD_LOGIC;
-    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_lite_bvalid : out STD_LOGIC;
-    s_axi_lite_bready : in STD_LOGIC;
-    s_axi_lite_arvalid : in STD_LOGIC;
-    s_axi_lite_arready : out STD_LOGIC;
-    s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    s_axi_lite_rvalid : out STD_LOGIC;
-    s_axi_lite_rready : in STD_LOGIC;
-    s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_s2mm_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    m_axi_s2mm_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_s2mm_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_s2mm_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_s2mm_awvalid : out STD_LOGIC;
-    m_axi_s2mm_awready : in STD_LOGIC;
-    m_axi_s2mm_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_s2mm_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_s2mm_wlast : out STD_LOGIC;
-    m_axi_s2mm_wvalid : out STD_LOGIC;
-    m_axi_s2mm_wready : in STD_LOGIC;
-    m_axi_s2mm_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_bvalid : in STD_LOGIC;
-    m_axi_s2mm_bready : out STD_LOGIC;
-    s2mm_prmry_reset_out_n : out STD_LOGIC;
-    s_axis_s2mm_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axis_s2mm_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axis_s2mm_tvalid : in STD_LOGIC;
-    s_axis_s2mm_tready : out STD_LOGIC;
-    s_axis_s2mm_tlast : in STD_LOGIC;
-    s2mm_introut : out STD_LOGIC
-  );
-  end component base_zynq_axi_dma_0_0;
   component base_zynq_processing_system7_0_0 is
   port (
     TTC0_WAVE0_OUT : out STD_LOGIC;
@@ -1737,6 +1691,52 @@ architecture STRUCTURE of base_zynq is
     PS_PORB : inout STD_LOGIC
   );
   end component base_zynq_processing_system7_0_0;
+  component base_zynq_axi_dma_0_0 is
+  port (
+    s_axi_lite_aclk : in STD_LOGIC;
+    m_axi_s2mm_aclk : in STD_LOGIC;
+    axi_resetn : in STD_LOGIC;
+    s_axi_lite_awvalid : in STD_LOGIC;
+    s_axi_lite_awready : out STD_LOGIC;
+    s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    s_axi_lite_wvalid : in STD_LOGIC;
+    s_axi_lite_wready : out STD_LOGIC;
+    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_lite_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_lite_bvalid : out STD_LOGIC;
+    s_axi_lite_bready : in STD_LOGIC;
+    s_axi_lite_arvalid : in STD_LOGIC;
+    s_axi_lite_arready : out STD_LOGIC;
+    s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    s_axi_lite_rvalid : out STD_LOGIC;
+    s_axi_lite_rready : in STD_LOGIC;
+    s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_lite_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_s2mm_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    m_axi_s2mm_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_s2mm_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_s2mm_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_s2mm_awvalid : out STD_LOGIC;
+    m_axi_s2mm_awready : in STD_LOGIC;
+    m_axi_s2mm_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_s2mm_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_s2mm_wlast : out STD_LOGIC;
+    m_axi_s2mm_wvalid : out STD_LOGIC;
+    m_axi_s2mm_wready : in STD_LOGIC;
+    m_axi_s2mm_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_bvalid : in STD_LOGIC;
+    m_axi_s2mm_bready : out STD_LOGIC;
+    s2mm_prmry_reset_out_n : out STD_LOGIC;
+    s_axis_s2mm_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axis_s2mm_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axis_s2mm_tvalid : in STD_LOGIC;
+    s_axis_s2mm_tready : out STD_LOGIC;
+    s_axis_s2mm_tlast : in STD_LOGIC;
+    s2mm_introut : out STD_LOGIC
+  );
+  end component base_zynq_axi_dma_0_0;
   component base_zynq_rst_ps7_0_50M_0 is
   port (
     slowest_sync_clk : in STD_LOGIC;
@@ -2084,7 +2084,7 @@ architecture STRUCTURE of base_zynq is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of A_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.A_SS_RESET RST";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, POLARITY ACTIVE_LOW";
+  attribute X_INTERFACE_PARAMETER of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
   attribute X_INTERFACE_INFO of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
   attribute X_INTERFACE_INFO of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
   attribute X_INTERFACE_INFO of DDR_ck_p : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_P";
@@ -2101,9 +2101,9 @@ architecture STRUCTURE of base_zynq is
   attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
   attribute X_INTERFACE_INFO of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK_N, FREQ_HZ 100000000, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
   attribute X_INTERFACE_INFO of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK_P, FREQ_HZ 100000000, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
   attribute X_INTERFACE_INFO of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
   attribute X_INTERFACE_PARAMETER of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
   attribute X_INTERFACE_INFO of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";

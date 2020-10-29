@@ -1,0 +1,14 @@
+#ifndef SRC_GPIO_CTRL_H_  /* prevent circular inclusions */
+#define SRC_GPIO_CTRL_H_   /* by using protection macros */
+
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xgpiops.h"
+#include "xstatus.h"
+#include "sleep.h"
+#include "global.h"
+
+
+/*** Function prototypes *********************************************/
+int gpio_toggling();
+#endif /* SRC_GPIO_CTRL_H_ */

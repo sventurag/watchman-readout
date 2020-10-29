@@ -13,7 +13,7 @@
 #include "xscugic.h"
 #include "xil_printf.h"
 #include "xtime_l.h"
-#include "xiicps.h"
+//#include "xiicps.h"
 
 #include "global.h"
 
@@ -60,9 +60,9 @@
 //int DAC_LTC2657_SetChannelVoltage(int channel, float voltage);
 int DAC_LTC2657_initialize_PS(void);
 int DAC_LTC2657_SetChannelVoltage_PS(int channel, float voltage);
-void XIicPs_MasterSendNOint(XIicPs *InstancePtr, u8 *MsgPtr, s32 ByteCount,
-		u16 SlaveAddr);
-int iicps_example(void);
+//void XIicPs_MasterSendNOint(XIicPs *InstancePtr, u8 *MsgPtr, s32 ByteCount,
+//		u16 SlaveAddr);
+//int iicps_example(void);
 
 
 #endif

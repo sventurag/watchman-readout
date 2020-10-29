@@ -1,7 +1,7 @@
-// Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Thu Sep 10 16:29:02 2020
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Thu Oct 15 14:29:00 2020
 // Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 // Command     : write_verilog -force -mode synth_stub
 //               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGET_C_TopLevel_Sy_0_0/base_zynq_TARGET_C_TopLevel_Sy_0_0_stub.v
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* x_core_info = "TARGET_C_TopLevel_System,Vivado 2018.2" *)
+(* x_core_info = "TARGET_C_TopLevel_System,Vivado 2020.1" *)
 module base_zynq_TARGET_C_TopLevel_Sy_0_0(SW_nRST, RefCLK_i1, RefCLK_i2, tc_axi_aclk, 
   tc_axi_aresetn, tc_axi_awaddr, tc_axi_awprot, tc_axi_awvalid, tc_axi_awready, tc_axi_wdata, 
   tc_axi_wstrb, tc_axi_wvalid, tc_axi_wready, tc_axi_bresp, tc_axi_bvalid, tc_axi_bready, 

@@ -1,7 +1,7 @@
-// Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+// Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
-// Date        : Tue Sep  8 19:23:27 2020
+// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+// Date        : Thu Oct 15 14:24:24 2020
 // Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 // Command     : write_verilog -force -mode funcsim
 //               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axistream_0_0/base_zynq_axistream_0_0_sim_netlist.v
@@ -13,7 +13,7 @@
 `timescale 1 ps / 1 ps
 
 (* CHECK_LICENSE_TYPE = "base_zynq_axistream_0_0,axistream,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* ip_definition_source = "module_ref" *) 
-(* x_core_info = "axistream,Vivado 2018.2" *) 
+(* x_core_info = "axistream,Vivado 2020.1" *) 
 (* NotValidForBitStream *)
 module base_zynq_axistream_0_0
    (SW_nRST,
@@ -37,9 +37,9 @@ module base_zynq_axistream_0_0
   output StreamReady;
   output [9:0]Cnt_AXIS_DATA;
   input CNT_CLR;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_BUSIF M_AXIS, ASSOCIATED_RESET M_AXIS_ARESETN, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0" *) input M_AXIS_ACLK;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW" *) input M_AXIS_ARESETN;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS TVALID" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef" *) output M_AXIS_TVALID;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_BUSIF M_AXIS, ASSOCIATED_RESET M_AXIS_ARESETN, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0" *) input M_AXIS_ACLK;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input M_AXIS_ARESETN;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS TVALID" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *) output M_AXIS_TVALID;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS TDATA" *) output [31:0]M_AXIS_TDATA;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS TSTRB" *) output [3:0]M_AXIS_TSTRB;
   (* x_interface_info = "xilinx.com:interface:axis:1.0 M_AXIS TLAST" *) output M_AXIS_TLAST;
@@ -89,8 +89,8 @@ module base_zynq_axistream_0_0_axistream
     M_AXIS_TDATA,
     M_AXIS_TVALID,
     M_AXIS_TLAST,
-    M_AXIS_ARESETN,
     SW_nRST,
+    M_AXIS_ARESETN,
     TestStream,
     FIFOvalid,
     M_AXIS_TREADY,
@@ -102,8 +102,8 @@ module base_zynq_axistream_0_0_axistream
   output [31:0]M_AXIS_TDATA;
   output M_AXIS_TVALID;
   output M_AXIS_TLAST;
-  input M_AXIS_ARESETN;
   input SW_nRST;
+  input M_AXIS_ARESETN;
   input TestStream;
   input FIFOvalid;
   input M_AXIS_TREADY;
@@ -115,7 +115,6 @@ module base_zynq_axistream_0_0_axistream
   wire [31:0]FIFOdata;
   wire FIFOvalid;
   wire \FSM_sequential_mst_exec_state[0]_i_1_n_0 ;
-  wire \FSM_sequential_mst_exec_state[0]_i_2_n_0 ;
   wire \FSM_sequential_mst_exec_state[1]_i_1_n_0 ;
   wire \FSM_sequential_mst_exec_state[1]_i_2_n_0 ;
   wire \FSM_sequential_mst_exec_state[2]_i_1_n_0 ;
@@ -205,7 +204,7 @@ module base_zynq_axistream_0_0_axistream
   wire \cnt_stream_out_reg_n_0_[30] ;
   wire \cnt_stream_out_reg_n_0_[31] ;
   wire [31:1]in13;
-  (* RTL_KEEP = "yes" *) wire [2:0]mst_exec_state;
+  wire [2:0]mst_exec_state;
   wire mst_exec_state1;
   wire mst_exec_state1_carry__0_i_1_n_0;
   wire mst_exec_state1_carry__0_i_2_n_0;
@@ -241,8 +240,9 @@ module base_zynq_axistream_0_0_axistream
   wire mst_exec_state1_carry_n_1;
   wire mst_exec_state1_carry_n_2;
   wire mst_exec_state1_carry_n_3;
+  wire [1:1]p_0_in;
   wire tx_en;
-  wire [1:0]tx_state;
+  wire \tx_state_reg_n_0_[1] ;
   wire [3:2]\NLW_cnt_stream_out_reg[31]_i_2_CO_UNCONNECTED ;
   wire [3:3]\NLW_cnt_stream_out_reg[31]_i_2_O_UNCONNECTED ;
   wire [3:0]NLW_mst_exec_state1_carry_O_UNCONNECTED;
@@ -250,42 +250,33 @@ module base_zynq_axistream_0_0_axistream
   wire [3:0]NLW_mst_exec_state1_carry__1_O_UNCONNECTED;
   wire [3:0]NLW_mst_exec_state1_carry__2_O_UNCONNECTED;
 
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT6 #(
+    .INIT(64'h00000000F9FB2008)) 
+    \FSM_sequential_mst_exec_state[0]_i_1 
+       (.I0(mst_exec_state1),
+        .I1(mst_exec_state[1]),
+        .I2(mst_exec_state[2]),
+        .I3(M_AXIS_TREADY),
+        .I4(mst_exec_state[0]),
+        .I5(\cnt_stream_out[9]_i_1_n_0 ),
+        .O(\FSM_sequential_mst_exec_state[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'h80)) 
-    \FSM_sequential_mst_exec_state[0]_i_1 
-       (.I0(\FSM_sequential_mst_exec_state[0]_i_2_n_0 ),
-        .I1(SW_nRST),
-        .I2(M_AXIS_ARESETN),
-        .O(\FSM_sequential_mst_exec_state[0]_i_1_n_0 ));
-  LUT6 #(
-    .INIT(64'hFBF2F0FA0142000A)) 
-    \FSM_sequential_mst_exec_state[0]_i_2 
-       (.I0(mst_exec_state[0]),
-        .I1(M_AXIS_TREADY),
-        .I2(mst_exec_state[2]),
-        .I3(mst_exec_state[1]),
-        .I4(mst_exec_state1),
-        .I5(mst_exec_state[0]),
-        .O(\FSM_sequential_mst_exec_state[0]_i_2_n_0 ));
-  LUT5 #(
-    .INIT(32'hE2000000)) 
     \FSM_sequential_mst_exec_state[1]_i_1 
-       (.I0(mst_exec_state[1]),
-        .I1(\FSM_sequential_mst_exec_state[2]_i_2_n_0 ),
-        .I2(\FSM_sequential_mst_exec_state[1]_i_2_n_0 ),
-        .I3(SW_nRST),
-        .I4(M_AXIS_ARESETN),
+       (.I0(\FSM_sequential_mst_exec_state[1]_i_2_n_0 ),
+        .I1(M_AXIS_ARESETN),
+        .I2(SW_nRST),
         .O(\FSM_sequential_mst_exec_state[1]_i_1_n_0 ));
   LUT6 #(
-    .INIT(64'h0040004040FF40AA)) 
+    .INIT(64'hFFFC30E2FF000022)) 
     \FSM_sequential_mst_exec_state[1]_i_2 
-       (.I0(mst_exec_state[2]),
-        .I1(M_AXIS_TREADY),
-        .I2(mst_exec_state1),
-        .I3(mst_exec_state[1]),
-        .I4(FIFOvalid),
-        .I5(mst_exec_state[0]),
+       (.I0(FIFOvalid),
+        .I1(mst_exec_state[0]),
+        .I2(M_AXIS_TREADY),
+        .I3(mst_exec_state[2]),
+        .I4(mst_exec_state[1]),
+        .I5(mst_exec_state1),
         .O(\FSM_sequential_mst_exec_state[1]_i_2_n_0 ));
   LUT6 #(
     .INIT(64'h000000002222E222)) 
@@ -297,6 +288,7 @@ module base_zynq_axistream_0_0_axistream
         .I4(FIFOvalid),
         .I5(\cnt_stream_out[9]_i_1_n_0 ),
         .O(\FSM_sequential_mst_exec_state[2]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h054F0F0F)) 
     \FSM_sequential_mst_exec_state[2]_i_2 
@@ -306,6 +298,7 @@ module base_zynq_axistream_0_0_axistream
         .I3(mst_exec_state[1]),
         .I4(mst_exec_state1),
         .O(\FSM_sequential_mst_exec_state[2]_i_2_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
     .INIT(8'h01)) 
     \FSM_sequential_mst_exec_state[2]_i_3 
@@ -314,7 +307,6 @@ module base_zynq_axistream_0_0_axistream
         .I2(mst_exec_state[1]),
         .O(\FSM_sequential_mst_exec_state[2]_i_3_n_0 ));
   (* FSM_ENCODED_STATES = "send_test_stream:011,start_test_stream:100,idle:000,data_stream_stall:001,data_stream:010" *) 
-  (* KEEP = "yes" *) 
   FDRE \FSM_sequential_mst_exec_state_reg[0] 
        (.C(M_AXIS_ACLK),
         .CE(1'b1),
@@ -322,7 +314,6 @@ module base_zynq_axistream_0_0_axistream
         .Q(mst_exec_state[0]),
         .R(1'b0));
   (* FSM_ENCODED_STATES = "send_test_stream:011,start_test_stream:100,idle:000,data_stream_stall:001,data_stream:010" *) 
-  (* KEEP = "yes" *) 
   FDRE \FSM_sequential_mst_exec_state_reg[1] 
        (.C(M_AXIS_ACLK),
         .CE(1'b1),
@@ -330,14 +321,13 @@ module base_zynq_axistream_0_0_axistream
         .Q(mst_exec_state[1]),
         .R(1'b0));
   (* FSM_ENCODED_STATES = "send_test_stream:011,start_test_stream:100,idle:000,data_stream_stall:001,data_stream:010" *) 
-  (* KEEP = "yes" *) 
   FDRE \FSM_sequential_mst_exec_state_reg[2] 
        (.C(M_AXIS_ACLK),
         .CE(1'b1),
         .D(\FSM_sequential_mst_exec_state[2]_i_1_n_0 ),
         .Q(mst_exec_state[2]),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[0]_INST_0 
@@ -345,7 +335,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[0]),
         .O(M_AXIS_TDATA[0]));
-  (* SOFT_HLUTNM = "soft_lutpair5" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[10]_INST_0 
@@ -353,7 +343,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[10]),
         .O(M_AXIS_TDATA[10]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair8" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[11]_INST_0 
@@ -361,7 +351,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[11]),
         .O(M_AXIS_TDATA[11]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[12]_INST_0 
@@ -369,7 +359,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[12]),
         .O(M_AXIS_TDATA[12]));
-  (* SOFT_HLUTNM = "soft_lutpair7" *) 
+  (* SOFT_HLUTNM = "soft_lutpair9" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[13]_INST_0 
@@ -377,7 +367,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[13]),
         .O(M_AXIS_TDATA[13]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[14]_INST_0 
@@ -385,7 +375,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[14]),
         .O(M_AXIS_TDATA[14]));
-  (* SOFT_HLUTNM = "soft_lutpair8" *) 
+  (* SOFT_HLUTNM = "soft_lutpair10" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[15]_INST_0 
@@ -393,7 +383,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[15]),
         .O(M_AXIS_TDATA[15]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[16]_INST_0 
@@ -401,7 +391,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[16]),
         .O(M_AXIS_TDATA[16]));
-  (* SOFT_HLUTNM = "soft_lutpair9" *) 
+  (* SOFT_HLUTNM = "soft_lutpair11" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[17]_INST_0 
@@ -409,7 +399,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[17]),
         .O(M_AXIS_TDATA[17]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[18]_INST_0 
@@ -417,7 +407,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[18]),
         .O(M_AXIS_TDATA[18]));
-  (* SOFT_HLUTNM = "soft_lutpair10" *) 
+  (* SOFT_HLUTNM = "soft_lutpair12" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[19]_INST_0 
@@ -425,7 +415,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[19]),
         .O(M_AXIS_TDATA[19]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[1]_INST_0 
@@ -433,7 +423,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[1]),
         .O(M_AXIS_TDATA[1]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[20]_INST_0 
@@ -441,7 +431,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[20]),
         .O(M_AXIS_TDATA[20]));
-  (* SOFT_HLUTNM = "soft_lutpair11" *) 
+  (* SOFT_HLUTNM = "soft_lutpair13" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[21]_INST_0 
@@ -449,7 +439,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[21]),
         .O(M_AXIS_TDATA[21]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[22]_INST_0 
@@ -457,7 +447,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[22]),
         .O(M_AXIS_TDATA[22]));
-  (* SOFT_HLUTNM = "soft_lutpair12" *) 
+  (* SOFT_HLUTNM = "soft_lutpair14" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[23]_INST_0 
@@ -465,7 +455,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[23]),
         .O(M_AXIS_TDATA[23]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[24]_INST_0 
@@ -473,7 +463,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[24]),
         .O(M_AXIS_TDATA[24]));
-  (* SOFT_HLUTNM = "soft_lutpair13" *) 
+  (* SOFT_HLUTNM = "soft_lutpair15" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[25]_INST_0 
@@ -481,7 +471,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[25]),
         .O(M_AXIS_TDATA[25]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[26]_INST_0 
@@ -489,7 +479,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[26]),
         .O(M_AXIS_TDATA[26]));
-  (* SOFT_HLUTNM = "soft_lutpair14" *) 
+  (* SOFT_HLUTNM = "soft_lutpair16" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[27]_INST_0 
@@ -497,7 +487,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[27]),
         .O(M_AXIS_TDATA[27]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[28]_INST_0 
@@ -505,7 +495,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[28]),
         .O(M_AXIS_TDATA[28]));
-  (* SOFT_HLUTNM = "soft_lutpair15" *) 
+  (* SOFT_HLUTNM = "soft_lutpair17" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[29]_INST_0 
@@ -513,7 +503,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[29]),
         .O(M_AXIS_TDATA[29]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair4" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[2]_INST_0 
@@ -521,7 +511,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[2]),
         .O(M_AXIS_TDATA[2]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[30]_INST_0 
@@ -529,7 +519,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[30]),
         .O(M_AXIS_TDATA[30]));
-  (* SOFT_HLUTNM = "soft_lutpair16" *) 
+  (* SOFT_HLUTNM = "soft_lutpair18" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[31]_INST_0 
@@ -540,8 +530,8 @@ module base_zynq_axistream_0_0_axistream
   LUT5 #(
     .INIT(32'hDFDDDDFD)) 
     \M_AXIS_TDATA[31]_INST_0_i_1 
-       (.I0(tx_state[0]),
-        .I1(tx_state[1]),
+       (.I0(p_0_in),
+        .I1(\tx_state_reg_n_0_[1] ),
         .I2(mst_exec_state[2]),
         .I3(mst_exec_state[0]),
         .I4(mst_exec_state[1]),
@@ -562,7 +552,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[4]),
         .O(M_AXIS_TDATA[4]));
-  (* SOFT_HLUTNM = "soft_lutpair6" *) 
+  (* SOFT_HLUTNM = "soft_lutpair5" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[5]_INST_0 
@@ -570,7 +560,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[5]),
         .O(M_AXIS_TDATA[5]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[6]_INST_0 
@@ -578,7 +568,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[6]),
         .O(M_AXIS_TDATA[6]));
-  (* SOFT_HLUTNM = "soft_lutpair2" *) 
+  (* SOFT_HLUTNM = "soft_lutpair6" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[7]_INST_0 
@@ -586,7 +576,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[7]),
         .O(M_AXIS_TDATA[7]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[8]_INST_0 
@@ -594,7 +584,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[8]),
         .O(M_AXIS_TDATA[8]));
-  (* SOFT_HLUTNM = "soft_lutpair4" *) 
+  (* SOFT_HLUTNM = "soft_lutpair7" *) 
   LUT3 #(
     .INIT(8'hB8)) 
     \M_AXIS_TDATA[9]_INST_0 
@@ -602,6 +592,7 @@ module base_zynq_axistream_0_0_axistream
         .I1(\M_AXIS_TDATA[31]_INST_0_i_1_n_0 ),
         .I2(M_AXIS_TDATA_last[9]),
         .O(M_AXIS_TDATA[9]));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT5 #(
     .INIT(32'h000CCCAA)) 
     \M_AXIS_TDATA_intl[0]_i_1 
@@ -1313,11 +1304,12 @@ module base_zynq_axistream_0_0_axistream
         .I4(mst_exec_state1),
         .I5(StreamReady_intl_reg_n_0),
         .O(StreamReady_intl_i_1_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT4 #(
     .INIT(16'h0008)) 
     StreamReady_intl_i_2
-       (.I0(M_AXIS_ARESETN),
-        .I1(SW_nRST),
+       (.I0(SW_nRST),
+        .I1(M_AXIS_ARESETN),
         .I2(mst_exec_state[2]),
         .I3(mst_exec_state[0]),
         .O(StreamReady_intl_i_2_n_0));
@@ -1329,14 +1321,13 @@ module base_zynq_axistream_0_0_axistream
         .D(StreamReady_intl_i_1_n_0),
         .Q(StreamReady_intl_reg_n_0),
         .R(1'b0));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT4 #(
     .INIT(16'h8000)) 
     axis_tlast_delay_i_1
        (.I0(axis_tlast_delay_i_2_n_0),
         .I1(axis_tlast_delay_i_3_n_0),
-        .I2(SW_nRST),
-        .I3(M_AXIS_ARESETN),
+        .I2(M_AXIS_ARESETN),
+        .I3(SW_nRST),
         .O(axis_tlast_delay_i_1_n_0));
   LUT6 #(
     .INIT(64'h0000000000000001)) 
@@ -1411,8 +1402,8 @@ module base_zynq_axistream_0_0_axistream
         .I1(mst_exec_state[1]),
         .I2(mst_exec_state[2]),
         .I3(mst_exec_state[0]),
-        .I4(SW_nRST),
-        .I5(M_AXIS_ARESETN),
+        .I4(M_AXIS_ARESETN),
+        .I5(SW_nRST),
         .O(axis_tvalid_delay_i_1_n_0));
   FDRE axis_tvalid_delay_reg
        (.C(M_AXIS_ACLK),
@@ -1702,8 +1693,8 @@ module base_zynq_axistream_0_0_axistream
   LUT2 #(
     .INIT(4'h7)) 
     \cnt_stream_out[9]_i_1 
-       (.I0(M_AXIS_ARESETN),
-        .I1(SW_nRST),
+       (.I0(SW_nRST),
+        .I1(M_AXIS_ARESETN),
         .O(\cnt_stream_out[9]_i_1_n_0 ));
   LUT6 #(
     .INIT(64'hAAAAAAAFAAAAAAAE)) 
@@ -1782,6 +1773,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[16]),
         .Q(\cnt_stream_out_reg_n_0_[16] ),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[16]_i_2 
        (.CI(\cnt_stream_out_reg[9]_i_5_n_0 ),
         .CO({\cnt_stream_out_reg[16]_i_2_n_0 ,\cnt_stream_out_reg[16]_i_2_n_1 ,\cnt_stream_out_reg[16]_i_2_n_2 ,\cnt_stream_out_reg[16]_i_2_n_3 }),
@@ -1819,6 +1811,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[20]),
         .Q(\cnt_stream_out_reg_n_0_[20] ),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[20]_i_2 
        (.CI(\cnt_stream_out_reg[16]_i_2_n_0 ),
         .CO({\cnt_stream_out_reg[20]_i_2_n_0 ,\cnt_stream_out_reg[20]_i_2_n_1 ,\cnt_stream_out_reg[20]_i_2_n_2 ,\cnt_stream_out_reg[20]_i_2_n_3 }),
@@ -1850,6 +1843,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[24]),
         .Q(\cnt_stream_out_reg_n_0_[24] ),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[24]_i_2 
        (.CI(\cnt_stream_out_reg[20]_i_2_n_0 ),
         .CO({\cnt_stream_out_reg[24]_i_2_n_0 ,\cnt_stream_out_reg[24]_i_2_n_1 ,\cnt_stream_out_reg[24]_i_2_n_2 ,\cnt_stream_out_reg[24]_i_2_n_3 }),
@@ -1881,6 +1875,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[28]),
         .Q(\cnt_stream_out_reg_n_0_[28] ),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[28]_i_2 
        (.CI(\cnt_stream_out_reg[24]_i_2_n_0 ),
         .CO({\cnt_stream_out_reg[28]_i_2_n_0 ,\cnt_stream_out_reg[28]_i_2_n_1 ,\cnt_stream_out_reg[28]_i_2_n_2 ,\cnt_stream_out_reg[28]_i_2_n_3 }),
@@ -1912,6 +1907,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[31]),
         .Q(\cnt_stream_out_reg_n_0_[31] ),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[31]_i_2 
        (.CI(\cnt_stream_out_reg[28]_i_2_n_0 ),
         .CO({\NLW_cnt_stream_out_reg[31]_i_2_CO_UNCONNECTED [3:2],\cnt_stream_out_reg[31]_i_2_n_2 ,\cnt_stream_out_reg[31]_i_2_n_3 }),
@@ -1931,6 +1927,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[4]),
         .Q(Q[4]),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[4]_i_2 
        (.CI(1'b0),
         .CO({\cnt_stream_out_reg[4]_i_2_n_0 ,\cnt_stream_out_reg[4]_i_2_n_1 ,\cnt_stream_out_reg[4]_i_2_n_2 ,\cnt_stream_out_reg[4]_i_2_n_3 }),
@@ -1962,6 +1959,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[8]),
         .Q(Q[8]),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[8]_i_2 
        (.CI(\cnt_stream_out_reg[4]_i_2_n_0 ),
         .CO({\cnt_stream_out_reg[8]_i_2_n_0 ,\cnt_stream_out_reg[8]_i_2_n_1 ,\cnt_stream_out_reg[8]_i_2_n_2 ,\cnt_stream_out_reg[8]_i_2_n_3 }),
@@ -1975,6 +1973,7 @@ module base_zynq_axistream_0_0_axistream
         .D(cnt_stream_out[9]),
         .Q(Q[9]),
         .R(\cnt_stream_out[9]_i_1_n_0 ));
+  (* ADDER_THRESHOLD = "35" *) 
   CARRY4 \cnt_stream_out_reg[9]_i_5 
        (.CI(\cnt_stream_out_reg[8]_i_2_n_0 ),
         .CO({\cnt_stream_out_reg[9]_i_5_n_0 ,\cnt_stream_out_reg[9]_i_5_n_1 ,\cnt_stream_out_reg[9]_i_5_n_2 ,\cnt_stream_out_reg[9]_i_5_n_3 }),
@@ -1982,6 +1981,7 @@ module base_zynq_axistream_0_0_axistream
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(in13[12:9]),
         .S({\cnt_stream_out_reg_n_0_[12] ,\cnt_stream_out_reg_n_0_[11] ,\cnt_stream_out_reg_n_0_[10] ,Q[9]}));
+  (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 mst_exec_state1_carry
        (.CI(1'b0),
         .CO({mst_exec_state1_carry_n_0,mst_exec_state1_carry_n_1,mst_exec_state1_carry_n_2,mst_exec_state1_carry_n_3}),
@@ -1989,6 +1989,7 @@ module base_zynq_axistream_0_0_axistream
         .DI({1'b0,1'b0,mst_exec_state1_carry_i_1_n_0,mst_exec_state1_carry_i_2_n_0}),
         .O(NLW_mst_exec_state1_carry_O_UNCONNECTED[3:0]),
         .S({mst_exec_state1_carry_i_3_n_0,mst_exec_state1_carry_i_4_n_0,mst_exec_state1_carry_i_5_n_0,mst_exec_state1_carry_i_6_n_0}));
+  (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 mst_exec_state1_carry__0
        (.CI(mst_exec_state1_carry_n_0),
         .CO({mst_exec_state1_carry__0_n_0,mst_exec_state1_carry__0_n_1,mst_exec_state1_carry__0_n_2,mst_exec_state1_carry__0_n_3}),
@@ -2004,20 +2005,20 @@ module base_zynq_axistream_0_0_axistream
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__0_i_2
-       (.I0(\cnt_stream_out_reg_n_0_[15] ),
-        .I1(\cnt_stream_out_reg_n_0_[14] ),
+       (.I0(\cnt_stream_out_reg_n_0_[14] ),
+        .I1(\cnt_stream_out_reg_n_0_[15] ),
         .O(mst_exec_state1_carry__0_i_2_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__0_i_3
-       (.I0(\cnt_stream_out_reg_n_0_[13] ),
-        .I1(\cnt_stream_out_reg_n_0_[12] ),
+       (.I0(\cnt_stream_out_reg_n_0_[12] ),
+        .I1(\cnt_stream_out_reg_n_0_[13] ),
         .O(mst_exec_state1_carry__0_i_3_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__0_i_4
-       (.I0(\cnt_stream_out_reg_n_0_[11] ),
-        .I1(\cnt_stream_out_reg_n_0_[10] ),
+       (.I0(\cnt_stream_out_reg_n_0_[10] ),
+        .I1(\cnt_stream_out_reg_n_0_[11] ),
         .O(mst_exec_state1_carry__0_i_4_n_0));
   LUT2 #(
     .INIT(4'h2)) 
@@ -2025,6 +2026,7 @@ module base_zynq_axistream_0_0_axistream
        (.I0(Q[9]),
         .I1(Q[8]),
         .O(mst_exec_state1_carry__0_i_5_n_0));
+  (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 mst_exec_state1_carry__1
        (.CI(mst_exec_state1_carry__0_n_0),
         .CO({mst_exec_state1_carry__1_n_0,mst_exec_state1_carry__1_n_1,mst_exec_state1_carry__1_n_2,mst_exec_state1_carry__1_n_3}),
@@ -2035,27 +2037,28 @@ module base_zynq_axistream_0_0_axistream
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__1_i_1
-       (.I0(\cnt_stream_out_reg_n_0_[23] ),
-        .I1(\cnt_stream_out_reg_n_0_[22] ),
+       (.I0(\cnt_stream_out_reg_n_0_[22] ),
+        .I1(\cnt_stream_out_reg_n_0_[23] ),
         .O(mst_exec_state1_carry__1_i_1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__1_i_2
-       (.I0(\cnt_stream_out_reg_n_0_[21] ),
-        .I1(\cnt_stream_out_reg_n_0_[20] ),
+       (.I0(\cnt_stream_out_reg_n_0_[20] ),
+        .I1(\cnt_stream_out_reg_n_0_[21] ),
         .O(mst_exec_state1_carry__1_i_2_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__1_i_3
-       (.I0(\cnt_stream_out_reg_n_0_[19] ),
-        .I1(\cnt_stream_out_reg_n_0_[18] ),
+       (.I0(\cnt_stream_out_reg_n_0_[18] ),
+        .I1(\cnt_stream_out_reg_n_0_[19] ),
         .O(mst_exec_state1_carry__1_i_3_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__1_i_4
-       (.I0(\cnt_stream_out_reg_n_0_[17] ),
-        .I1(\cnt_stream_out_reg_n_0_[16] ),
+       (.I0(\cnt_stream_out_reg_n_0_[16] ),
+        .I1(\cnt_stream_out_reg_n_0_[17] ),
         .O(mst_exec_state1_carry__1_i_4_n_0));
+  (* COMPARATOR_THRESHOLD = "11" *) 
   CARRY4 mst_exec_state1_carry__2
        (.CI(mst_exec_state1_carry__1_n_0),
         .CO({mst_exec_state1,mst_exec_state1_carry__2_n_1,mst_exec_state1_carry__2_n_2,mst_exec_state1_carry__2_n_3}),
@@ -2066,26 +2069,26 @@ module base_zynq_axistream_0_0_axistream
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__2_i_1
-       (.I0(\cnt_stream_out_reg_n_0_[31] ),
-        .I1(\cnt_stream_out_reg_n_0_[30] ),
+       (.I0(\cnt_stream_out_reg_n_0_[30] ),
+        .I1(\cnt_stream_out_reg_n_0_[31] ),
         .O(mst_exec_state1_carry__2_i_1_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__2_i_2
-       (.I0(\cnt_stream_out_reg_n_0_[29] ),
-        .I1(\cnt_stream_out_reg_n_0_[28] ),
+       (.I0(\cnt_stream_out_reg_n_0_[28] ),
+        .I1(\cnt_stream_out_reg_n_0_[29] ),
         .O(mst_exec_state1_carry__2_i_2_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__2_i_3
-       (.I0(\cnt_stream_out_reg_n_0_[27] ),
-        .I1(\cnt_stream_out_reg_n_0_[26] ),
+       (.I0(\cnt_stream_out_reg_n_0_[26] ),
+        .I1(\cnt_stream_out_reg_n_0_[27] ),
         .O(mst_exec_state1_carry__2_i_3_n_0));
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry__2_i_4
-       (.I0(\cnt_stream_out_reg_n_0_[25] ),
-        .I1(\cnt_stream_out_reg_n_0_[24] ),
+       (.I0(\cnt_stream_out_reg_n_0_[24] ),
+        .I1(\cnt_stream_out_reg_n_0_[25] ),
         .O(mst_exec_state1_carry__2_i_4_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -2101,8 +2104,8 @@ module base_zynq_axistream_0_0_axistream
   LUT2 #(
     .INIT(4'h1)) 
     mst_exec_state1_carry_i_3
-       (.I0(Q[7]),
-        .I1(Q[6]),
+       (.I0(Q[6]),
+        .I1(Q[7]),
         .O(mst_exec_state1_carry_i_3_n_0));
   LUT2 #(
     .INIT(4'h1)) 
@@ -2122,6 +2125,7 @@ module base_zynq_axistream_0_0_axistream
        (.I0(Q[1]),
         .I1(Q[0]),
         .O(mst_exec_state1_carry_i_6_n_0));
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
     .INIT(32'h0040C080)) 
     \tx_state[0]_i_1 
@@ -2135,13 +2139,13 @@ module base_zynq_axistream_0_0_axistream
        (.C(M_AXIS_ACLK),
         .CE(1'b1),
         .D(tx_en),
-        .Q(tx_state[0]),
+        .Q(p_0_in),
         .R(1'b0));
   FDRE \tx_state_reg[1] 
        (.C(M_AXIS_ACLK),
         .CE(1'b1),
-        .D(tx_state[0]),
-        .Q(tx_state[1]),
+        .D(p_0_in),
+        .Q(\tx_state_reg_n_0_[1] ),
         .R(1'b0));
 endmodule
 `ifndef GLBL
@@ -2152,12 +2156,15 @@ module glbl ();
 
     parameter ROC_WIDTH = 100000;
     parameter TOC_WIDTH = 0;
+    parameter GRES_WIDTH = 10000;
+    parameter GRES_START = 10000;
 
 //--------   STARTUP Globals --------------
     wire GSR;
     wire GTS;
     wire GWE;
     wire PRLD;
+    wire GRESTORE;
     tri1 p_up_tmp;
     tri (weak1, strong0) PLL_LOCKG = p_up_tmp;
 
@@ -2170,6 +2177,7 @@ module glbl ();
     reg GSR_int;
     reg GTS_int;
     reg PRLD_int;
+    reg GRESTORE_int;
 
 //--------   JTAG Globals --------------
     wire JTAG_TDO_GLBL;
@@ -2197,6 +2205,7 @@ module glbl ();
     assign (strong1, weak0) GSR = GSR_int;
     assign (strong1, weak0) GTS = GTS_int;
     assign (weak1, weak0) PRLD = PRLD_int;
+    assign (strong1, weak0) GRESTORE = GRESTORE_int;
 
     initial begin
 	GSR_int = 1'b1;
@@ -2210,6 +2219,14 @@ module glbl ();
 	GTS_int = 1'b1;
 	#(TOC_WIDTH)
 	GTS_int = 1'b0;
+    end
+
+    initial begin 
+	GRESTORE_int = 1'b0;
+	#(GRES_START);
+	GRESTORE_int = 1'b1;
+	#(GRES_WIDTH);
+	GRESTORE_int = 1'b0;
     end
 
 endmodule

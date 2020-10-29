@@ -14,9 +14,8 @@
 #include "axis_peripheral.h"
 #include "file_hm.h"
 #include "global.h"
-#include "iic_DAC_LTC2657.h"
+//#include "iic_DAC_LTC2657.h"
 #include "pedestal.h"
-#include "xtime_l.h"
 #include "xscuwdt.h"
 //#include "xiicps.h"
 #include "get_15_windows.h"
@@ -24,6 +23,7 @@
 #include "transfer_function.h"
 #include "xtime_l.h"
 #include "data_analysis.h"
+//#include "gpio_ctrl.h"
 /**************** External global variables ****************/
 /*********************************************************/
 /** @brief Pointer on the network interface */
@@ -232,7 +232,7 @@ int main()
 //	else{
 //		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
 //		return -1;
-//	}
+////	}
 //	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
 //	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
 //		return -1;
@@ -256,6 +256,11 @@ int main()
 //
 //
 //
+//	if(gpio_toggling() != XST_SUCCESS){
+//				end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
+//				return -1;
+//			}
+////
 	if(iicps_example() != XST_SUCCESS){
 			end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
 			return -1;
