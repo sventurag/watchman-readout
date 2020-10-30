@@ -36,6 +36,16 @@
 			<locationURI>PARENT-2-PROJECT_LOC/sdk/watchman_final/src/GM_SubLibrary.c</locationURI>
 		</link>
 		<link>
+			<name>src/I2C_bit_banging.c</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/sdk/watchman_final/src/I2C_bit_banging.c</locationURI>
+		</link>
+		<link>
+			<name>src/I2C_bit_banging.h</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/sdk/watchman_final/src/I2C_bit_banging.h</locationURI>
+		</link>
+		<link>
 			<name>src/TARGETC_RegisterMap.c</name>
 			<type>1</type>
 			<locationURI>PARENT-2-PROJECT_LOC/sdk/watchman_final/src/TARGETC_RegisterMap.c</locationURI>

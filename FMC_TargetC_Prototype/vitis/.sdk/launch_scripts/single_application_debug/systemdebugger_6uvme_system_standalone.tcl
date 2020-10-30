@@ -14,4 +14,5 @@ ps7_post_config
 targets -set -nocase -filter {name =~ "*A9*#0"}
 dow /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf
 configparams force-mem-access 0
-bpadd -addr &main
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con

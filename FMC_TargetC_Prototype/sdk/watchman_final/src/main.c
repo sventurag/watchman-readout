@@ -23,6 +23,8 @@
 #include "transfer_function.h"
 #include "xtime_l.h"
 #include "data_analysis.h"
+#include "I2C_bit_banging.h"
+#include "gpio_ctrl.h"
 //#include "gpio_ctrl.h"
 /**************** External global variables ****************/
 /*********************************************************/
@@ -256,15 +258,34 @@ int main()
 //
 //
 //
-//	if(gpio_toggling() != XST_SUCCESS){
+
+
+
+//	if( gpio_toggling() != XST_SUCCESS){
 //				end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
 //				return -1;
 //			}
+//	if( gpio_toggling() != XST_SUCCESS){
+//				end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
+//				return -1;
+//			}
+
+if( gpio_toggling() != XST_SUCCESS){
+					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
+					return -1;
+				}
+
+//		sleep(3);
+//gpio_write(11,0);
+//usleep(1);
+//gpio_write(11,1);
+//	if( set_DAC_CHANNEL(0, 1.7) != XST_SUCCESS){
+//					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
+//					return -1;
+//				}
+//
 ////
-	if(iicps_example() != XST_SUCCESS){
-			end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-			return -1;
-		}
+
 
 
 	/* Add network interface to the netif_list, and set it as default */

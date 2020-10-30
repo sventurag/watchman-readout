@@ -11,4 +11,7 @@
 
 /*** Function prototypes *********************************************/
 int gpio_toggling(void);
+int gpio_init(void);
+void gpio_write(int pin, u32 value);
+void gpio_set_direction(int pin, u32 direction);
 #endif /* SRC_GPIO_CTRL_H_ */
