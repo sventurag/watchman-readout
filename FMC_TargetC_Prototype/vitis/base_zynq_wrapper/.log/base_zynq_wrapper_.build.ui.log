@@ -1,950 +1,6 @@
-2020-10-29T19:47:12.3379900255-19:47:12 **** Build of project base_zynq_wrapper ****
+2020-10-29T21:32:53.94358700255-21:32:53 **** Build of project base_zynq_wrapper ****
 000-buildplatform.sh 35893 base_zynq_wrapper  
-000-XSDB Server Channel: tcfchan#208
-000-Building the zynq_fsbl application.
-000-make -C zynq_fsbl_bsp
-000-
-000-make[1]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/gpiops_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/gpiops_v3_7/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/gpiops_v3_7/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/axidma_v9_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/axidma_v9_11/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/axidma_v9_11/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/axidma_v9_11/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-non
-000-e-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=
-000-hard -nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/xilffs_v4_3/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilffs_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilffs_v4_3/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilffs_v4_3/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/standalone_v7_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/standalone_v7_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-
-000-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=ha
-000-rd -nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src'
-000-
-000-make[3]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/profile'
-000-
-000-make[3]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/profile'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scuwdt_v2_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scuwdt_v2_2/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scuwdt_v2_2/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/dmaps_v2_6/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
-000-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
-000-ostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/dmaps_v2_6/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/dmaps_v2_6/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/xilrsa_v1_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilrsa_v1_6/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilrsa_v1_6/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilrsa_v1_6/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scutimer_v2_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-ea
-000-bi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard
-000- -nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scutimer_v2_2/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scutimer_v2_2/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_4/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xadcps_v2_4/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xadcps_v2_4/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xadcps_v2_4/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/sdps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/sdps_v3_9/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/sdps_v3_9/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/sdps_v3_9/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_1/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ddrps_v1_1/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
-000-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
-000-ostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ddrps_v1_1/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ddrps_v1_1/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/uartps_v3_9/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/uartps_v3_9/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/uartps_v3_9/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-
-000-none-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-a
-000-bi=hard -nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/devcfg_v3_6/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/devcfg_v3_6/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/devcfg_v3_6/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/scugic_v4_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scugic_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scugic_v4_2/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scugic_v4_2/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/qspips_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/qspips_v3_7/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/qspips_v3_7/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/emacps_v3_11/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/emacps_v3_11/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/emacps_v3_11/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/ttcps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ttcps_v3_11/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ttcps_v3_11/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ttcps_v3_11/src'
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/lwip211_v1_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/lwip211_v1_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_2/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_2/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/gpiops_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/gpiops_v3_7/src'
-000-
-000-Compiling gpiops
-000-
-000-/tools/Xilinx/Vitis/2020.1/gnu/aarch32/lin/gcc-arm-none-eabi/bin/../x86_64-oesdk-linux/usr/bin/arm-xilinx-eabi/arm-xilinx-eabi-ar.real: creating ../../../lib/libxil.a
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/gpiops_v3_7/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/axidma_v9_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/axidma_v9_11/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/axidma_v9_11/src'
-000-
-000-Compiling axidma
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/axidma_v9_11/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-e
-000-abi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=har
-000-d -nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src'
-000-
-000-Compiling cpu_cortexa9
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/xilffs_v4_3/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilffs_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilffs_v4_3/src'
-000-
-000-Compiling XilFFs Library
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilffs_v4_3/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/standalone_v7_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/standalone_v7_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src'
-000-
-000-Compiling standalone
-000-
-000-In file included from sleep.c:31:
-000/base_zynq_wrapper65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-In file included from xtime_l.c:27:
-000/base_zynq_wrapper65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-In file included from xil_sleeptimer.c:32:
-000/base_zynq_wrapper65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-In file included from usleep.c:34:
-000/base_zynq_wrapper65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-make[3]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/profile'
-000-
-000-make[3]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/profile'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scuwdt_v2_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scuwdt_v2_2/src'
-000-
-000-Compiling scuwdt
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scuwdt_v2_2/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/dmaps_v2_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as"
-000- "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nost
-000-artfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/dmaps_v2_6/src'
-000-
-000-Compiling dmaps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/dmaps_v2_6/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/xilrsa_v1_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilrsa_v1_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilrsa_v1_6/src'
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xilrsa_v1_6/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scutimer_v2_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
-000-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
-000-ostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scutimer_v2_2/src'
-000-
-000-Compiling scutimer
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scutimer_v2_2/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_4/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xadcps_v2_4/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xadcps_v2_4/src'
-000-
-000-Compiling xadcps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/xadcps_v2_4/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/sdps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/sdps_v3_9/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as" 
-000-"ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nosta
-000-rtfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/sdps_v3_9/src'
-000-
-000-Compiling sdps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/sdps_v3_9/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_1/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ddrps_v1_1/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as"
-000- "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nost
-000-artfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ddrps_v1_1/src'
-000-
-000-Compiling ddrps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ddrps_v1_1/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/uartps_v3_9/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/uartps_v3_9/src'
-000-
-000-Compiling uartps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/uartps_v3_9/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-non
-000-e-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=
-000-hard -nostartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src'
-000-
-000-Compiling coresightps_dcc
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/devcfg_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/devcfg_v3_6/src'
-000-
-000-Compiling devcfg
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/devcfg_v3_6/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/scugic_v4_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scugic_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scugic_v4_2/src'
-000-
-000-Compiling scugic
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/scugic_v4_2/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/qspips_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/qspips_v3_7/src'
-000-
-000-Compiling qspips
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/qspips_v3_7/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/emacps_v3_11/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/emacps_v3_11/src'
-000-
-000-Compiling emacps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/emacps_v3_11/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/ttcps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ttcps_v3_11/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ttcps_v3_11/src'
-000-
-000-Compiling ttcps
-000-
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/ttcps_v3_11/src'
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/lwip211_v1_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/lwip211_v1_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-make[2]: Entering directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_f
-000-sbl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_2/src'
-000-
-000-Compiling lwip src and adapter files
-000-
-000-In file included from ../../../include/xemacps.h:328,
-000-                 from ../../../include/netif/xemacpsif.h:56,
-000-                 from contrib/ports/xilinx/netif/xemacpsif_dma.c:37:
-000-contrib/ports/xilinx/netif/xemacpsif_dma.c: In function 'init_dma':
-000/base_zynq_wrapper593-1-1'bdrxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]1-../../../include/xemacps_hw.h:593:23: warning: 'bdrxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]
-000-  593 | #define XEmacPs_Out32 Xil_Out32
-000-      |                       ^~~~~~~~~
-000/base_zynq_wrapper561-1-1'bdrxterminate' was declared here0-contrib/ports/xilinx/netif/xemacpsif_dma.c:561:14: note: 'bdrxterminate' was declared here
-000-  561 |  XEmacPs_Bd *bdrxterminate;
-000-      |              ^~~~~~~~~~~~~
-000-In file included from ../../../include/xemacps.h:329,
-000-                 from ../../../include/netif/xemacpsif.h:56,
-000-                 from contrib/ports/xilinx/netif/xemacpsif_dma.c:37:
-000/base_zynq_wrapper120-1-1'bdtxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]1-../../../include/xemacps_bd.h:120:12: warning: 'bdtxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]
-000-  120 |  (*(u32 *)((UINTPTR)((void*)(BaseAddress)) + (u32)(Offset)))
-000-      |            ^
-000/base_zynq_wrapper560-1-1'bdtxterminate' was declared here0-contrib/ports/xilinx/netif/xemacpsif_dma.c:560:14: note: 'bdtxterminate' was declared here
-000-  560 |  XEmacPs_Bd *bdtxterminate;
-000-      |              ^~~~~~~~~~~~~
-000-make[2]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp/ps7_cortexa9_0/libsrc/lwip211_v1_2/src'
-000-
-000-Finished building libraries
-000-
-000-make[1]: Leaving directory '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fs
-000-bl/zynq_fsbl_bsp'
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c pcap.c -o pcap.o -Izynq_fsbl_bsp/ps7_
-000-cortexa9_0/include -I.
-000-
-000-In file included from pcap.c:78:
-000/base_zynq_wrapper/zynq_fsbl/zynq_fsbl_bsp/ps7_cortexa9_0/include/xtime_l.h65-1-1#pragma message: For the sleep routines, Global timer is being used0-zynq_fsbl_bsp/ps7_cortexa9_0/include/xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c qspi.c -o qspi.o -Izynq_fsbl_bsp/ps7_
-000-cortexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c rsa.c -o rsa.o -Izynq_fsbl_bsp/ps7_co
-000-rtexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c nor.c -o nor.o -Izynq_fsbl_bsp/ps7_co
-000-rtexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c main.c -o main.o -Izynq_fsbl_bsp/ps7_
-000-cortexa9_0/include -I.
-000-
-000-In file included from main.c:115:
-000/base_zynq_wrapper/zynq_fsbl/zynq_fsbl_bsp/ps7_cortexa9_0/include/xtime_l.h65-1-1#pragma message: For the sleep routines, Global timer is being used0-zynq_fsbl_bsp/ps7_cortexa9_0/include/xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c md5.c -o md5.o -Izynq_fsbl_bsp/ps7_co
-000-rtexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c image_mover.c -o image_mover.o -Izynq
-000-_fsbl_bsp/ps7_cortexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c ps7_init.c -o ps7_init.o -Izynq_fsbl_
-000-bsp/ps7_cortexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c nand.c -o nand.o -Izynq_fsbl_bsp/ps7_
-000-cortexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c fsbl_hooks.c -o fsbl_hooks.o -Izynq_f
-000-sbl_bsp/ps7_cortexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c sd.c -o sd.o -Izynq_fsbl_bsp/ps7_cort
-000-exa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -O2 -c -c fsbl_handoff.S -o fsbl_handoff.o -Izy
-000-nq_fsbl_bsp/ps7_cortexa9_0/include -I.
-000-
-000-arm-none-eabi-gcc -o executable.elf  pcap.o  qspi.o  rsa.o  nor.o  main.o  md5.o  image_mover.o  ps7_init.o  nand.o  fsbl_hooks
-000-.o  sd.o  fsbl_handoff.o  -MMD -MP       -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard   -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi
-000-=hard -Wl,-build-id=none -specs=Xilinx.spec  -lrsa -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilffs,-lx
-000-il,-lgcc,-lc,--end-group -Wl,--start-group,-lxil,-llwip4,-lgcc,-lc,--end-group -Wl,--start-group,-lrsa,-lxil,-lgcc,-lc,--end-gr
-000-oup                                     -Wl,--gc-sections -Lzynq_fsbl_bsp/ps7_cortexa9_0/lib -L./ -Tlscript.ld
-000-
-000-Building the BSP Library for domain  - domain_ps7_cortexa9_0 on processor ps7_cortexa9_0
-000-Running Make include in ps7_cortexa9_0/libsrc/gpiops_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/gpiops_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/axidma_v9_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/axidma_v9_11/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-non
-000-e-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=
-000-hard -nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/xilffs_v4_3/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilffs_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/standalone_v7_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/standalone_v7_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-
-000-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=ha
-000-rd -nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/scuwdt_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scuwdt_v2_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/dmaps_v2_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/dmaps_v2_6/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
-000-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
-000-ostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/xilrsa_v1_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilrsa_v1_6/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/scutimer_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scutimer_v2_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-ea
-000-bi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard
-000- -nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/xadcps_v2_4/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xadcps_v2_4/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/sdps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/sdps_v3_9/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/ddrps_v1_1/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ddrps_v1_1/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
-000-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
-000-ostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/uartps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/uartps_v3_9/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-
-000-none-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-a
-000-bi=hard -nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/devcfg_v3_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/devcfg_v3_6/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/scugic_v4_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scugic_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/qspips_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/qspips_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/emacps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/emacps_v3_11/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/ttcps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ttcps_v3_11/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi
-000--as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -
-000-nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make include in ps7_cortexa9_0/libsrc/lwip211_v1_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/lwip211_v1_2/src -s include  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/gpiops_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/gpiops_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling gpiops
-000-
-000-/tools/Xilinx/Vitis/2020.1/gnu/aarch32/lin/gcc-arm-none-eabi/bin/../x86_64-oesdk-linux/usr/bin/arm-xilinx-eabi/arm-xilinx-eabi-ar.real: creating ../../../lib/libxil.a
-000-Running Make libs in ps7_cortexa9_0/libsrc/axidma_v9_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/axidma_v9_11/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-Compiling axidma
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/cpu_cortexa9_v2_9/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-e
-000-abi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=har
-000-d -nostartfiles -g -Wall -Wextra"
-000-
-000-Compiling cpu_cortexa9
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/xilffs_v4_3/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilffs_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling XilFFs Library
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/standalone_v7_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/standalone_v7_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eab
-000-i-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard 
-000--nostartfiles -g -Wall -Wextra"
-000-
-000-Compiling standalone
-000-
-000-In file included from sleep.c:31:
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/xtime_l.h65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-In file included from xtime_l.c:27:
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/xtime_l.h65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-In file included from xil_sleeptimer.c:32:
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/xtime_l.h65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-In file included from usleep.c:34:
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/standalone_v7_2/src/xtime_l.h65-1-1#pragma message: For the sleep routines, Global timer is being used0-xtime_l.h:65:9: note: #pragma message: For the sleep routines, Global timer is being used
-000-   65 | #pragma message ("For the sleep routines, Global timer is being used")
-000-      |         ^~~~~~~
-000-Running Make libs in ps7_cortexa9_0/libsrc/scuwdt_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scuwdt_v2_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling scuwdt
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/dmaps_v2_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/dmaps_v2_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as"
-000- "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nost
-000-artfiles -g -Wall -Wextra"
-000-
-000-Compiling dmaps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/xilrsa_v1_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xilrsa_v1_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/scutimer_v2_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scutimer_v2_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-
-000-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -n
-000-ostartfiles -g -Wall -Wextra"
-000-
-000-Compiling scutimer
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/xadcps_v2_4/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/xadcps_v2_4/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling xadcps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/sdps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/sdps_v3_9/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as" 
-000-"ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nosta
-000-rtfiles -g -Wall -Wextra"
-000-
-000-Compiling sdps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/ddrps_v1_1/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ddrps_v1_1/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as"
-000- "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nost
-000-artfiles -g -Wall -Wextra"
-000-
-000-Compiling ddrps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/uartps_v3_9/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/uartps_v3_9/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling uartps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/coresightps_dcc_v1_7/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-non
-000-e-eabi-as" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=
-000-hard -nostartfiles -g -Wall -Wextra"
-000-
-000-Compiling coresightps_dcc
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/devcfg_v3_6/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/devcfg_v3_6/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling devcfg
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/scugic_v4_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/scugic_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling scugic
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/qspips_v3_7/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/qspips_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling qspips
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/emacps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/emacps_v3_11/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-Compiling emacps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/ttcps_v3_11/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/ttcps_v3_11/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-as
-000-" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -nos
-000-tartfiles -g -Wall -Wextra"
-000-
-000-Compiling ttcps
-000-
-000-Running Make libs in ps7_cortexa9_0/libsrc/lwip211_v1_2/src
-000-
-000-make -C ps7_cortexa9_0/libsrc/lwip211_v1_2/src -s libs  "SHELL=/bin/sh" "COMPILER=arm-none-eabi-gcc" "ASSEMBLER=arm-none-eabi-a
-000-s" "ARCHIVER=arm-none-eabi-ar" "COMPILER_FLAGS=  -O2 -c" "EXTRA_COMPILER_FLAGS=-mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -no
-000-startfiles -g -Wall -Wextra"
-000-
-000-Compiling lwip src and adapter files
-000-
-000-In file included from ../../../include/xemacps.h:328,
-000-                 from ../../../include/netif/xemacpsif.h:56,
-000-                 from contrib/ports/xilinx/netif/xemacpsif_dma.c:37:
-000-contrib/ports/xilinx/netif/xemacpsif_dma.c: In function 'init_dma':
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/include/xemacps_hw.h593-1-1'bdrxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]1-../../../include/xemacps_hw.h:593:23: warning: 'bdrxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]
-000-  593 | #define XEmacPs_Out32 Xil_Out32
-000-      |                       ^~~~~~~~~
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/lwip211_v1_2/src/contrib/ports/xilinx/netif/xemacpsif_dma.c561-1-1'bdrxterminate' was declared here0-contrib/ports/xilinx/netif/xemacpsif_dma.c:561:14: note: 'bdrxterminate' was declared here
-000-  561 |  XEmacPs_Bd *bdrxterminate;
-000-      |              ^~~~~~~~~~~~~
-000-In file included from ../../../include/xemacps.h:329,
-000-                 from ../../../include/netif/xemacpsif.h:56,
-000-                 from contrib/ports/xilinx/netif/xemacpsif_dma.c:37:
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/include/xemacps_bd.h120-1-1'bdtxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]1-../../../include/xemacps_bd.h:120:12: warning: 'bdtxterminate' may be used uninitialized in this function [-Wmaybe-uninitialized]
-000-  120 |  (*(u32 *)((UINTPTR)((void*)(BaseAddress)) + (u32)(Offset)))
-000-      |            ^
-000/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/ps7_cortexa9_0/libsrc/lwip211_v1_2/src/contrib/ports/xilinx/netif/xemacpsif_dma.c560-1-1'bdtxterminate' was declared here0-contrib/ports/xilinx/netif/xemacpsif_dma.c:560:14: note: 'bdtxterminate' was declared here
-000-  560 |  XEmacPs_Bd *bdtxterminate;
-000-      |              ^~~~~~~~~~~~~
-000-Finished building libraries
-000-
+000-Cannot run program "buildplatform.sh": Unknown reason
 00255-
-19:47:57 Build Finished (took 45s.155ms)
+21:32:53 Build Finished (took 7ms)
 

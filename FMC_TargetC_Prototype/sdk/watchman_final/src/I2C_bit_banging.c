@@ -27,11 +27,7 @@
 #include <stdbool.h>
 
 
-static void _start_condition( void );
-static void _stop_condition( void );
-static void _write_bit( uint8_t );
-//static uint8_t _read_bit( void );
-static bool _write_byte( uint8_t, bool, bool );
+
 //static uint8_t _read_byte( bool, bool );
 
 /* Basic I2C functions */
@@ -105,7 +101,7 @@ void I2C_DELAY(void){
 
 
 /* Initiating a start condition */
-static void _start_condition( void )
+ void _start_condition( void )
 {
     I2C_SET_SCL();
     I2C_SET_SDA();
@@ -124,7 +120,7 @@ static void _start_condition( void )
 
 
 /* Initiating a stop condition */
-static void _stop_condition( void )
+ void _stop_condition( void )
 {
     I2C_CLR_SDA();
 
@@ -141,7 +137,7 @@ static void _stop_condition( void )
 
 
 /* Writing a bit */
-static void _write_bit( uint8_t b )
+ void _write_bit( uint8_t b )
 {
     if( b > 0 )
     	I2C_SET_SDA();
@@ -182,7 +178,7 @@ static void _write_bit( uint8_t b )
 
 
 /* Writing a byte */
-static bool _write_byte( uint8_t B,
+ bool _write_byte( uint8_t B,
                          bool start,
                          bool stop )
 {
@@ -230,6 +226,14 @@ static bool _write_byte( uint8_t B,
 
 
 /* Sending a byte with I2C */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Sends slave address plus write bit and one byte of data.
+Params:
+    address = 7-bit slave address
+    data = one byte of data to send following slave address
+Returns:
+    true if slave has ACK'd both sent bytes
+*/
 bool i2c_send_byte( uint8_t address,
                     uint8_t data )
 {
@@ -248,6 +252,14 @@ bool i2c_send_byte( uint8_t address,
 
 //
 ///* Receiving a byte with I2C */
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Sends slave address plus read bit and receives one byte of data.
+Params:
+    address = 7-bit slave address
+Returns:
+    byte received from slave
+*/
 //uint8_t i2c_receive_byte( uint8_t address )
 //{
 //    /* Start, send address */
@@ -263,6 +275,17 @@ bool i2c_send_byte( uint8_t address,
 
 
 /* Sending a byte of data with I2C */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Sends slave address plus write bit, then two consecutive data bytes.
+(The first byte is typically used as a register address, and the second
+as a data byte.)
+Params:
+    address = 7-bit slave address
+    reg = first byte of data after the slave address
+    data = second byte of data after the slave address
+Returns:
+    true if slave has ACK'd all three sent bytes
+*/
 bool i2c_send_byte_data( uint8_t address,
                          uint8_t reg,
                          uint8_t data )
@@ -288,6 +311,16 @@ bool i2c_send_byte_data( uint8_t address,
 
 
 ///* Receiving a byte of data with I2C */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Sends slave address plus read bit and a data byte, and receives one byte
+of data.
+Params:
+    address = 7-bit slave address
+    data = one byte of data to send following slave address
+Returns:
+    byte received from slave
+*/
+
 //uint8_t i2c_receive_byte_data( uint8_t address,
 //                               uint8_t reg )
 //{
