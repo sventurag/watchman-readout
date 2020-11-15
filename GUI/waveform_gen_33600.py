@@ -35,6 +35,24 @@ class wave_gen(object):
         self.inst.write("DISP:TEXT ''")
         #close device connection
         self.inst.close()
+   
+    def Output2(self,out=True):
+        if out == True:
+            cmd = "OUTPUT2 ON"
+        else:
+            cmd = "OUTPUT2 OFF"
+            
+        message="Controlling\nRemotely"
+        self.inst.write("DISP:TEXT '"+message+"'")
+        
+        #sent commands to device
+        self.inst.write(cmd)
+        print(cmd)
+        #
+        #clear message
+        self.inst.write("DISP:TEXT ''")
+        #close device connection
+        self.inst.close()
     
     def trigDelay(self,trig_delay):
         cmd = "TRIG1:DEL {:.9f}".format(trig_delay)

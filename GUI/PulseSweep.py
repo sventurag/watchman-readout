@@ -18,10 +18,10 @@ import pandas as pd
 pg = pulseGen()
 nmbrWindows = 1
 firstWindow= 0
-totalWindows = 512
+totalWindows = 16
 nmbrPedestals = 100
 channel = 2
-width = 3e-9
+width = 6e-9
 ampl = 1e-1 
 isel = 2300
 
@@ -31,8 +31,6 @@ pg.windows(nmbrWindows,firstWindow,totalWindows)
 pg.pulseSweepInit(channel,nmbrPedestals)
 pg.pulseInit(width)
 time.sleep(10)
-wave_gen().Output1(out=False)
-time.sleep(1)
 
 #amplitudes=np.arange(1e-3, 3.5,100e-3) #For dynamic range, charge, cfd, etc
 #amplitudes=np.arange(20, 200,50) #For dynamic range, charge, cfd, etc
@@ -42,9 +40,15 @@ pg.pulseAmpl(ampl)
 time.sleep(1)
 wave_gen().Query()
 #amplitudes = np.arange(2100,2650,50)
-amplitudes= np.arange(0.1,0.2 ,1)
+#amplitudes= np.arange(0.00,1e-1,1e-3) channel 3
+#amplitudes= np.arange(1e-3,3,100e-3)# channel 2
+amplitudes= np.arange(400e-3,450e-3,100e-3)
 #amplitudes=list(range(2100,2900,20))
-rango = list((range(10,11,1)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
+rango = list(range(50,70,1))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
+wave_gen().Output1(out=True)
+wave_gen().Output2(out=True)
+
+time.sleep(1)
 for item in amplitudes:
     print("Amp=",item)
     pg.pulseAmpl(item)
@@ -61,9 +65,10 @@ for item in amplitudes:
       # pg.softTrigger()
        pg.getWindows()
       # tc.send_command(7,0,0) # get windows
-       time.sleep(3)
+       time.sleep(0.5)
     
 wave_gen().Output1(out=False)
+wave_gen().Output2(out=False)
 print("end")
 
 #plot_pulse(fileToSave,10,1)
