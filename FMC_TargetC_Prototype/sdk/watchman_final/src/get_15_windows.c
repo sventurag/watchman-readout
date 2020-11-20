@@ -59,7 +59,7 @@ int PulseSweep(){
 int rep;
 
 
-	for ( rep =0; rep<1000 ; rep++ ){
+	for ( rep =0; rep<3000; rep++ ){
 		if(PulseRange()!= XST_SUCCESS){
 	       xil_printf("Error in WindowRange \r\n");
 		}
@@ -132,6 +132,7 @@ int SendWindows(int firstWindow, int numWindows){
 	//uint16_t int_decimal;
 	//int pedestal_avg = 1;
     int offset_avoid_negative=200;
+    int channel_local;
 	/* Create an element for the DMA */
 	data_list* tmp_ptr  = (data_list *)malloc(sizeof(data_list));
 /*
@@ -233,10 +234,10 @@ int SendWindows(int firstWindow, int numWindows){
 			frame_buf[index++] = (char)(window >> 8);
 
 			//printf("\r\n window = %d\r\n",window);
-
+                for (channel_local =2; channel_local<8;channel_local+=4){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[channel][j]-  pedestal[window][channel][j]+ offset_avoid_negative);
+					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[channel_local][j]-  pedestal[window][channel_local][j]+ offset_avoid_negative);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));
@@ -245,6 +246,8 @@ int SendWindows(int firstWindow, int numWindows){
 					//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
 
 				}
+                }
+
 
 				//printf("\r\n");
 
@@ -254,6 +257,7 @@ int SendWindows(int firstWindow, int numWindows){
 			frame_buf[index++] = 0xCC;
 		//	printf("%d\r\n", index);
 			transfer_data(frame_buf, index);
+
 		}
 		/* Release the DMA */
 		ControlRegisterWrite(PSBUSY_MASK,DISABLE);

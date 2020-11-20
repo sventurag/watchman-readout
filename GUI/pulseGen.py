@@ -19,14 +19,16 @@ class pulseGen:
         time.sleep(1)
         tc.send_command(9,100,1) # Pedestals
     
-    def pulseInit(self,width):
+    def pulseInit(self,width,edge_T, edge_L):
                 
         time.sleep(2)
         wave_gen().pulseWidth(width)
        # time.sleep(2)
        # wave_gen().volt(ampl)
         #wave_gen().Query()
-            
+        wave_gen().pulseEdgeTrailing(edge_T)
+
+        wave_gen().pulseEdgeLeading(edge_L)
     def pulseAmpl(self,ampl):
         wave_gen().volt(ampl)
         time.sleep(1)

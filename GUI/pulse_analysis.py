@@ -25,7 +25,7 @@ def bin2dec(pkt):
 def process_packet(filename,channel, plotWindows):
     scapy_cap = rdpcap(filename)
     payloads_list = []
-    num_elements = (32*num_channels) + 2
+    num_elements = (31*num_channels) + 2
     window_numbers=[]
     numberofwindows=0
   #  average=[]
