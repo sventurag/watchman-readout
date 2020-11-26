@@ -1,6 +1,21 @@
-2020-10-29T21:32:53.94358700255-21:32:53 **** Build of project base_zynq_wrapper ****
-000-buildplatform.sh 35893 base_zynq_wrapper  
-000-Cannot run program "buildplatform.sh": Unknown reason
+2020-11-26T13:01:30.04810200255-13:01:30 **** Build of project base_zynq_wrapper ****
+000-buildplatform.sh 44135 base_zynq_wrapper  
+000-XSDB Server Channel: tcfchan#3
+000-Failed to generate the platform.
+000-Reason: No domains added, please add domain,before generating platform : base_zynq_wrapper
+000-    invoked from within
+000-"::tcf::eval -progress {apply {{msg} {puts $msg}}} {tcf_send_command tcfchan#0 xsdb eval s es {{platform active base_zynq_wrapper; platform generate }}}"
+000-    (procedure "::tcf::send_command" line 4)
+000-    invoked from within
+000-"tcf send_command $::xsdb::curchan xsdb eval s es [list "platform active $PLATFORM_NAME; platform generate $target"]"
+000-    invoked from within
+000-"if { $iswindows == 1 } {    
+000-
+000-    set XSDB_PORT [lindex $argv 0]
+000-    set PLATFORM_NAME [lindex $argv 1]
+000-    set arglen [llength $argv]
+000-    set lastind..."
+000-    (file "/tools/Xilinx/Vitis/2020.1/scripts/vitis/util/buildplatform.tcl" line 11)
 00255-
-21:32:53 Build Finished (took 7ms)
+13:01:35 Build Finished (took 5s.746ms)
 

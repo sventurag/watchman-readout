@@ -24767,3 +24767,39 @@ TRACE::2020-10-29.19:47:54::SCWMssOS::DEBUG:  swdes dump  /home/salvador/salvado
 /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/zynq_fsbl/zynq_fsbl_bsp/system.mss|system||
 
 TRACE::2020-10-29.19:47:54::SCWMssOS::Sw design exists and opened at  /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/ps7_cortexa9_0/domain_ps7_cortexa9_0/bsp/system.mss
+TRACE::2020-11-26.12:56:17::SCWPlatform::Trying to open the hw design at /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:17::SCWPlatform::DSA given /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:17::SCWPlatform::DSA absoulate path /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:17::SCWPlatform::DSA directory /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw
+TRACE::2020-11-26.12:56:17::SCWPlatform:: Platform Path /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:17::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2020-11-26.12:56:17::SCWPlatform::Do not have an existing db opened. 
+TRACE::2020-11-26.12:56:19::SCWPlatform::Opened new HwDB with name base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWReader::Active system found as  base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWReader::Handling sysconfig base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWDomain::checking for install qemu data   : 
+TRACE::2020-11-26.12:56:19::SCWDomain:: Using the QEMU Data from install at  : /tools/Xilinx/Vitis/2020.1/data/emulation/platforms/zynq/qemu/
+TRACE::2020-11-26.12:56:19::SCWDomain:: Using the QEMU args  from install at  : /tools/Xilinx/Vitis/2020.1/data/emulation/platforms/zynq/qemu/qemu_args.txt
+TRACE::2020-11-26.12:56:19::SCWPlatform::Trying to open the hw design at /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform::DSA given /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform::DSA absoulate path /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform::DSA directory /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw
+TRACE::2020-11-26.12:56:19::SCWPlatform:: Platform Path /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2020-11-26.12:56:19::SCWPlatform::Trying to set the existing hwdb with name base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWPlatform::Opened existing hwdb base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2020-11-26.12:56:19::SCWPlatform::Trying to open the hw design at /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform::DSA given /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform::DSA absoulate path /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform::DSA directory /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw
+TRACE::2020-11-26.12:56:19::SCWPlatform:: Platform Path /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/hw/base_zynq_wrapper.xsa
+TRACE::2020-11-26.12:56:19::SCWPlatform:: Unique name xilinx:::0.0
+TRACE::2020-11-26.12:56:19::SCWPlatform::Trying to set the existing hwdb with name base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWPlatform::Opened existing hwdb base_zynq_wrapper
+TRACE::2020-11-26.12:56:19::SCWPlatform::Found the Hw Db part of the input DSA
+TRACE::2020-11-26.12:56:19::SCWBDomain::clearing the fsbl build
+LOG::2020-11-26.12:56:19::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-26.12:56:19::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-26.13:01:32::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-26.13:01:32::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
