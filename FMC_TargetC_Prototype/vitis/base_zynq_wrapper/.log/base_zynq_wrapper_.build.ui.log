@@ -1,6 +1,6 @@
-2020-11-26T13:01:30.04810200255-13:01:30 **** Build of project base_zynq_wrapper ****
+2020-11-26T13:39:20.08393500255-13:39:20 **** Build of project base_zynq_wrapper ****
 000-buildplatform.sh 44135 base_zynq_wrapper  
-000-XSDB Server Channel: tcfchan#3
+000-XSDB Server Channel: tcfchan#20
 000-Failed to generate the platform.
 000-Reason: No domains added, please add domain,before generating platform : base_zynq_wrapper
 000-    invoked from within
@@ -17,5 +17,5 @@
 000-    set lastind..."
 000-    (file "/tools/Xilinx/Vitis/2020.1/scripts/vitis/util/buildplatform.tcl" line 11)
 00255-
-13:01:35 Build Finished (took 5s.746ms)
+13:39:25 Build Finished (took 5s.776ms)
 

@@ -49,7 +49,7 @@ void I2C_CLR_SDA(void){
 //
 //
 void I2C_DELAY(void){
-	usleep( 5 );
+	usleep(5);
 };
 //
 ///* PIC */
@@ -352,7 +352,7 @@ int intvolt;
 		if(voltage >= 2.5) intvolt = 65535;
 		else intvolt = (int)(65536.0 * voltage / 2.5);
 		xil_printf("%lf V\r\n",voltage);
-	_start_condition();
+//	_start_condition();
 
 	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,WRITE_REG| channel, intvolt)) {
 		return XST_SUCCESS;
