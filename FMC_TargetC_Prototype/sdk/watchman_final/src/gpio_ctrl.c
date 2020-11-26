@@ -33,8 +33,30 @@ return XST_FAILURE;
 	usleep(10);
 	XGpioPs_WritePin(&Gpio, pin_a, 1);
 	XGpioPs_WritePin(&Gpio, pin_b, 1);
+    usleep(10);
+	XGpioPs_WritePin(&Gpio, pin_a, 0);
+	XGpioPs_WritePin(&Gpio, pin_b, 0);
+
+	usleep(10);
+	XGpioPs_WritePin(&Gpio, pin_a, 1);
+	XGpioPs_WritePin(&Gpio, pin_b, 1);
+    usleep(10);
+	XGpioPs_WritePin(&Gpio, pin_a, 0);
+	XGpioPs_WritePin(&Gpio, pin_b, 0);
+
+	usleep(10);
+	XGpioPs_WritePin(&Gpio, pin_a, 1);
+	XGpioPs_WritePin(&Gpio, pin_b, 1);
+	usleep(10);
+	XGpioPs_WritePin(&Gpio, pin_a, 0);
+	XGpioPs_WritePin(&Gpio, pin_b, 0);
+
+	usleep(10);
+	XGpioPs_WritePin(&Gpio, pin_a, 1);
+	XGpioPs_WritePin(&Gpio, pin_b, 1);
 //	//usleep(10);
 
+	xil_printf("Toggling finished \r\n");
 
 //}
 return XST_SUCCESS;
