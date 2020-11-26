@@ -69,6 +69,7 @@
 //#include "xgpiops.h"
 #include <unistd.h>
 #include "gpio_ctrl.h"
+#include <stdbool.h>
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
  * Initializing I2C with PIC
  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
@@ -126,7 +127,7 @@ void I2C_CLR_SDA(void);
 void I2C_DELAY(void);
 void _start_condition( void );
 void _stop_condition( void );
-_write_bit( uint8_t );
+void _write_bit( uint8_t b);
 //static uint8_t _read_bit( void );
 bool _write_byte( uint8_t, bool, bool );
 
