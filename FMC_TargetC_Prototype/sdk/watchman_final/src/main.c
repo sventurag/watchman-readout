@@ -269,7 +269,10 @@ int main()
 //				end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
 //				return -1;
 //			}
-
+if( gpio_init() != XST_SUCCESS){
+						end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
+						return -1;
+					}
 if( gpio_toggling() != XST_SUCCESS){
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
 					return -1;
