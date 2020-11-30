@@ -111,7 +111,7 @@ uint8_t i2c_receive_byte( uint8_t );
 
 
 
-bool i2c_send_byte_data( uint8_t, uint8_t, uint8_t );
+bool i2c_send_byte_data( uint8_t, uint8_t, uint16_t );
 
 
 

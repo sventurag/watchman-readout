@@ -24909,3 +24909,65 @@ LOG::2020-11-30.09:08:26::SCWPlatform::Started generating the artifacts platform
 ERROR::2020-11-30.09:08:26::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
 LOG::2020-11-30.09:11:48::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
 ERROR::2020-11-30.09:11:48::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.10:08:53::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.10:08:53::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.10:51:37::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.10:51:37::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.10:58:44::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.10:58:44::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:07:22::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:07:22::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:25:45::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:25:45::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:29:07::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:29:07::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:31:48::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:31:48::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:32:07::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:32:07::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:36:54::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:36:54::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:37:13::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:37:13::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:39:59::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:39:59::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:43:15::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:43:15::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:49:40::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:49:40::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.11:55:38::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.11:55:38::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:28:28::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:28:28::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:35:28::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:35:28::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:37:41::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:37:41::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:46:16::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:46:16::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:46:47::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:46:47::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:50:52::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:50:52::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:51:34::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:51:34::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:55:33::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:55:33::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:55:49::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:55:49::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.12:56:25::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.12:56:25::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:13:11::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:13:11::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:14:24::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:14:24::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:20:25::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:20:25::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:21:20::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:21:20::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:22:09::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:22:09::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:22:25::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:22:25::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper
+LOG::2020-11-30.13:23:02::SCWPlatform::Started generating the artifacts platform base_zynq_wrapper
+ERROR::2020-11-30.13:23:02::SCWPlatform::No domains added, please add domain,before generating platform : base_zynq_wrapper

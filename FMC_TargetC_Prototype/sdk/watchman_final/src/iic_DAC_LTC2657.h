@@ -49,8 +49,15 @@
 #define DAC_GRP_2	CHANNEL_C
 /** @brief Channel D register */
 #define DAC_GRP_3	CHANNEL_D
+/** @brief Channel A register */
+#define DAC_GRP_4	CHANNEL_E
+/** @brief Channel B register */
+#define DAC_GRP_5	CHANNEL_F
+/** @brief Channel C register */
+#define DAC_GRP_6	CHANNEL_G
+
 /** @brief Channel H register */
-#define DAC_VPED	CHANNEL_H
+#define DAC_GRP_7	CHANNEL_H
 
 
 

@@ -49,7 +49,7 @@ void I2C_CLR_SDA(void){
 //
 //
 void I2C_DELAY(void){
-	usleep(4);
+	usleep(3);
 };
 //
 ///* PIC */
@@ -126,13 +126,22 @@ void I2C_DELAY(void){
 
     I2C_DELAY();
 
-	I2C_SET_SCL();
-
-    I2C_DELAY();
-
     I2C_SET_SDA();
 
     I2C_DELAY();
+
+    I2C_CLR_SDA();
+
+    I2C_DELAY();
+
+	I2C_SET_SCL();
+
+    I2C_DELAY();
+    I2C_DELAY();
+
+      I2C_SET_SDA();
+
+
 }
 
 
@@ -257,7 +266,10 @@ void I2C_DELAY(void){
 
   //  ack = _read_bit();
 
-    if( stop ) _stop_condition();
+    if( stop ){
+        _wait_ack();
+    	_stop_condition();
+    }
 
     return true; //Not ack in account
 }
@@ -348,9 +360,9 @@ Returns:
 */
 bool i2c_send_byte_data( uint8_t address,
                          uint8_t reg,
-                         uint8_t data )
+                         uint16_t data )
 {
-	uint8_t msbData= data;
+	uint8_t msbData= data >> 8;
 	uint8_t lsbData = data & 0x00FF;
     /* Start, send address */
     if( _write_byte( address, true, true, false ) )
@@ -417,16 +429,16 @@ int set_DAC_CHANNEL(int channel, float voltage ){
 	xil_printf("set channel % \r\n", channel);
 
 int Status;
-int intvolt;
+uint16_t intvolt;
 		if(voltage >= 2.5) intvolt = 65535;
-		else intvolt = (int)(65536.0 * voltage / 2.5);
-		xil_printf("%d V\r\n",intvolt);
+		else intvolt = (uint16_t)(65535.0 * voltage / 3.68);
+		xil_printf("%f V\r\n",voltage);
 //	_start_condition();
 
-//	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,WRITE_REG| channel, intvolt)) {
-	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,0x30, intvolt)) {
+	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,WRITE_REG| channel, intvolt)) {
+//	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,0x30|2, intvolt)) {
 		return XST_SUCCESS;
 	}
-
+return XST_SUCCESS;
 
 }

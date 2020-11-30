@@ -38,7 +38,23 @@
 /** @brief Vped voltage to set up in DAC (in float)*/
 #define VPED_ANALOG		1.0//1.6 //1.75
 /** @brief Threshold voltage to set up in DAC for the comparator of the trigger system (in float)*/
-#define THRESHOLD_CMP	1.0  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
+#define THRESHOLD_CMP_0	0.25  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
+
+#define THRESHOLD_CMP_1	0.50
+
+#define THRESHOLD_CMP_2	0.75
+
+#define THRESHOLD_CMP_3	1.00
+
+#define THRESHOLD_CMP_4	1.25
+
+#define THRESHOLD_CMP_5	1.5
+
+#define THRESHOLD_CMP_6	1.75
+
+#define THRESHOLD_CMP_7	2.0
+
+
 #define THRESHOLD_PULSE	500
 
 #define WAVE_BUFFER_SIZE 2000

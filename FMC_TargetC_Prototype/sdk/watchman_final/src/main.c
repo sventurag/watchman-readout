@@ -230,64 +230,47 @@ int main()
 	enable_interrupts();
 //
 //	/* Initialize the DAC (Vped, Comparator value) */
-//	if(DAC_LTC2657_initialize_PS() == XST_SUCCESS) xil_printf("DAC initialization pass!\r\n");
-//	else{
-//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
-//		return -1;
-////	}
-//	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
+	if(gpio_init() == XST_SUCCESS) xil_printf("DAC initialization pass!\r\n");
+	else{
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
+		return -1;
+	}
+//	if(set_DAC_CHANNEL(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
 //	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
 //		return -1;
 //	}
-//	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_0,THRESHOLD_CMP) != XST_SUCCESS){
-//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
-//		return -1;
-//	}
-//	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_1,THRESHOLD_CMP) != XST_SUCCESS){
-//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 1 voltage failed!");
-//		return -1;
-//	}
-//	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_2,THRESHOLD_CMP) != XST_SUCCESS){
-//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
-//		return -1;
-//	}
-//	if(DAC_LTC2657_SetChannelVoltage_PS(DAC_GRP_3,THRESHOLD_CMP) != XST_SUCCESS){
-//		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-//		return -1;
-//	}
-//
-//
-//
-
-
-
-//	if( gpio_toggling() != XST_SUCCESS){
-//				end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-//				return -1;
-//			}
-//	if( gpio_toggling() != XST_SUCCESS){
-//				end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-//				return -1;
-//			}
-if( gpio_init() != XST_SUCCESS){
-						end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-						return -1;
-					}
-//if( gpio_toggling() != XST_SUCCESS){
-//					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-//					return -1;
-//				}
-
-//		sleep(3);
-//gpio_write(11,0);
-//usleep(1);
-//gpio_write(11,1);
-	if( set_DAC_CHANNEL(0, 1.7) != XST_SUCCESS){
-					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
-					return -1;
-				}
-//
-////
+	if(set_DAC_CHANNEL(DAC_GRP_0,THRESHOLD_CMP_0) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_1,THRESHOLD_CMP_1) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 1 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_2,THRESHOLD_CMP_2) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_3,THRESHOLD_CMP_3) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_4,THRESHOLD_CMP_4) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_5,THRESHOLD_CMP_5) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 1 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_6,THRESHOLD_CMP_6) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_7,THRESHOLD_CMP_7) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
+		return -1;
+	}
 
 
 
