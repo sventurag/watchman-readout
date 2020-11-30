@@ -49,7 +49,7 @@ void I2C_CLR_SDA(void){
 //
 //
 void I2C_DELAY(void){
-	usleep(5);
+	usleep(4);
 };
 //
 ///* PIC */
@@ -115,7 +115,7 @@ void I2C_DELAY(void){
     I2C_CLR_SCL();
 
     I2C_DELAY();
-    xil_printf("start_condition finished \r\n");
+//    xil_printf("start_condition finished \r\n");
 }
 
 
@@ -177,20 +177,81 @@ void I2C_DELAY(void){
 //}
 
 
+
+ /* Write */
+
+  bool _wait_write(void){
+
+         I2C_DELAY();
+
+ 	     I2C_SET_SCL();
+
+ 	     I2C_DELAY();
+
+ 	     I2C_CLR_SCL();
+
+// 	     I2C_DELAY();
+//
+// 	     I2C_SET_SCL();
+//
+// 	   	 I2C_DELAY();
+//
+// 	     I2C_CLR_SCL();
+
+
+ 	     return true;
+
+  }
+
+/* Acknowledge */
+
+ bool _wait_ack(void){
+
+        I2C_DELAY();
+
+	     I2C_SET_SCL();
+
+	     I2C_DELAY();
+
+	     I2C_CLR_SCL();
+//
+//	     I2C_DELAY();
+//
+//	     I2C_SET_SCL();
+//
+//	   	 I2C_DELAY();
+//
+//	     I2C_CLR_SCL();
+
+
+	     return true;
+
+ }
+
 /* Writing a byte */
- bool _write_byte( uint8_t B,
+ bool _write_byte( uint8_t B,bool isSlaveADDRESS,
                          bool start,
                          bool stop )
 {
-    uint8_t ack = 0;
+	int numBits;
+	int msbMask;
+    if (isSlaveADDRESS){
+    	numBits=7; //Slave address is 7-bit
+        msbMask=0x40;
+    }
+    else {numBits=8; //It is a command or data
+        msbMask=0x80;
+    }
+	//uint8_t ack = 0;
 
     if( start ) _start_condition();
 
     uint8_t i;
-    for( i = 0; i < 8; i++ )
+
+    for( i = 0; i < numBits; i++ )
     {
         /* Write the most-significant bit */
-        _write_bit( B & 0x80 );
+        _write_bit( B & msbMask );
         B <<= 1;
     }
 
@@ -198,9 +259,8 @@ void I2C_DELAY(void){
 
     if( stop ) _stop_condition();
 
-    return ack;
+    return true; //Not ack in account
 }
-
 
 
 ///* Reading a byte */
@@ -234,21 +294,21 @@ Params:
 Returns:
     true if slave has ACK'd both sent bytes
 */
-bool i2c_send_byte( uint8_t address,
-                    uint8_t data )
-{
-    /* Start, send address */
-    if( _write_byte( address << 1, true, false ) )
-    {
-        /* Send data, stop */
-        if( _write_byte( data, false, true ) ) return true;
-    }
-
-    /* Make sure to impose a stop if NAK'd */
-    _stop_condition();
-    return false;
-}
-
+//bool i2c_send_byte( uint8_t address,
+//                    uint8_t data )
+//{
+//    /* Start, send address */
+//    if( _write_byte( address << 1, true, false ) )
+//    {
+//        /* Send data, stop */
+//        if( _write_byte( data, false, true ) ) return true;
+//    }
+//
+//    /* Make sure to impose a stop if NAK'd */
+//    _stop_condition();
+//    return false;
+//}
+//
 
 //
 ///* Receiving a byte with I2C */
@@ -290,22 +350,31 @@ bool i2c_send_byte_data( uint8_t address,
                          uint8_t reg,
                          uint8_t data )
 {
+	uint8_t msbData= data;
+	uint8_t lsbData = data & 0x00FF;
     /* Start, send address */
-    if( _write_byte( address << 1, true, false ) )
+    if( _write_byte( address, true, true, false ) )
     {
+    	_wait_write();
+    	_wait_ack();
         /* Send register */
-        if( _write_byte( reg, false, false ) )
+        if( _write_byte( reg,false ,false, false ) )
         {
+        	_wait_ack();
             /* Send data, stop */
-            if( _write_byte( data>>8, false, true ) ) return true;
-            usleep(1);
-            if( _write_byte( data & 0x00FF, false, true ) ) return true;
+            if( _write_byte( msbData,false , false, false ) ){
+                _wait_ack();
+                if( _write_byte( lsbData,false, false, true ) ){
+                 	return true;
+
+                }
+            }
 
         }
     }
 
     /* Make sure to impose a stop if NAK'd */
-    _stop_condition();
+//    _stop_condition();
     return false;
 }
 
@@ -351,10 +420,11 @@ int Status;
 int intvolt;
 		if(voltage >= 2.5) intvolt = 65535;
 		else intvolt = (int)(65536.0 * voltage / 2.5);
-		xil_printf("%lf V\r\n",voltage);
+		xil_printf("%d V\r\n",intvolt);
 //	_start_condition();
 
-	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,WRITE_REG| channel, intvolt)) {
+//	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,WRITE_REG| channel, intvolt)) {
+	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,0x30, intvolt)) {
 		return XST_SUCCESS;
 	}
 

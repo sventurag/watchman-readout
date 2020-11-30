@@ -128,8 +128,11 @@ void I2C_DELAY(void);
 void _start_condition( void );
 void _stop_condition( void );
 void _write_bit( uint8_t b);
+bool _wait_ack(void);
+bool _wait_write(void);
+
 //static uint8_t _read_bit( void );
-bool _write_byte( uint8_t, bool, bool );
+bool _write_byte( uint8_t,bool isSlaveADDRESS, bool, bool );
 
 #endif /* SRC_I2C_BIT_BANGING_ */
 

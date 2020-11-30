@@ -402,3 +402,99 @@ timestamp=[2020-11-26 13:27:56], mode=BUILD, duration=0:00:00.877, duration_ms=8
 timestamp=[2020-11-26 13:39:25], mode=PLATFORM_GENERATION, duration=0:00:05.831, duration_ms=5831, data={name=base_zynq_wrapper}
 timestamp=[2020-11-26 13:39:26], mode=BUILD, duration=0:00:00.585, duration_ms=585, data={name=6UVME, configuration=Debug, clean_build=false}
 timestamp=[2020-11-26 13:39:35], mode=BUILD, duration=0:00:08.099, duration_ms=8099, data={name=6UVME_system, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 11:21:35], mode=PLATFORM_GENERATION, duration=0:00:05.774, duration_ms=5774, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 11:21:36], mode=BUILD, duration=0:00:00.876, duration_ms=876, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 11:25:15], mode=PLATFORM_GENERATION, duration=0:00:05.824, duration_ms=5824, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 11:25:16], mode=BUILD, duration=0:00:00.887, duration_ms=887, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 11:49:35], mode=PLATFORM_GENERATION, duration=0:00:05.777, duration_ms=5777, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 11:49:36], mode=BUILD, duration=0:00:00.886, duration_ms=886, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 11:50:00], mode=PLATFORM_GENERATION, duration=0:00:05.876, duration_ms=5876, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 11:50:01], mode=BUILD, duration=0:00:00.884, duration_ms=884, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 11:51:35], mode=PLATFORM_GENERATION, duration=0:00:05.829, duration_ms=5829, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 11:51:36], mode=BUILD, duration=0:00:00.979, duration_ms=979, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 11:59:59], mode=PLATFORM_GENERATION, duration=0:00:05.826, duration_ms=5826, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:00:00], mode=BUILD, duration=0:00:00.830, duration_ms=830, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:02:03], mode=PLATFORM_GENERATION, duration=0:00:05.773, duration_ms=5773, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:02:04], mode=BUILD, duration=0:00:00.853, duration_ms=853, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:02:54], mode=PLATFORM_GENERATION, duration=0:00:05.786, duration_ms=5786, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:02:55], mode=BUILD, duration=0:00:00.848, duration_ms=848, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:10:13], mode=PLATFORM_GENERATION, duration=0:00:05.834, duration_ms=5834, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:10:14], mode=BUILD, duration=0:00:00.882, duration_ms=882, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:15:04], mode=PLATFORM_GENERATION, duration=0:00:05.877, duration_ms=5877, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:15:05], mode=BUILD, duration=0:00:00.630, duration_ms=630, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:16:41], mode=PLATFORM_GENERATION, duration=0:00:05.827, duration_ms=5827, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:16:42], mode=BUILD, duration=0:00:00.577, duration_ms=577, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:21:56], mode=PLATFORM_GENERATION, duration=0:00:05.784, duration_ms=5784, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:21:57], mode=BUILD, duration=0:00:00.828, duration_ms=828, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:23:45], mode=PLATFORM_GENERATION, duration=0:00:05.794, duration_ms=5794, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:23:46], mode=BUILD, duration=0:00:00.829, duration_ms=829, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:31:58], mode=PLATFORM_GENERATION, duration=0:00:05.830, duration_ms=5830, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:31:59], mode=BUILD, duration=0:00:00.879, duration_ms=879, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:33:42], mode=PLATFORM_GENERATION, duration=0:00:05.826, duration_ms=5826, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:33:43], mode=BUILD, duration=0:00:00.878, duration_ms=878, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:41:06], mode=PLATFORM_GENERATION, duration=0:00:05.881, duration_ms=5881, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:41:07], mode=BUILD, duration=0:00:00.831, duration_ms=831, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:43:38], mode=PLATFORM_GENERATION, duration=0:00:05.828, duration_ms=5828, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:43:39], mode=BUILD, duration=0:00:00.628, duration_ms=628, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:48:10], mode=PLATFORM_GENERATION, duration=0:00:05.772, duration_ms=5772, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:48:11], mode=BUILD, duration=0:00:00.829, duration_ms=829, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:54:41], mode=PLATFORM_GENERATION, duration=0:00:05.825, duration_ms=5825, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:54:42], mode=BUILD, duration=0:00:00.629, duration_ms=629, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 12:59:49], mode=PLATFORM_GENERATION, duration=0:00:05.836, duration_ms=5836, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 12:59:50], mode=BUILD, duration=0:00:01.030, duration_ms=1030, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:10:27], mode=PLATFORM_GENERATION, duration=0:00:05.882, duration_ms=5882, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:10:28], mode=BUILD, duration=0:00:01.047, duration_ms=1047, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:20:25], mode=PLATFORM_GENERATION, duration=0:00:05.879, duration_ms=5879, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:20:26], mode=BUILD, duration=0:00:00.830, duration_ms=830, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:23:55], mode=PLATFORM_GENERATION, duration=0:00:05.879, duration_ms=5879, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:23:56], mode=BUILD, duration=0:00:00.826, duration_ms=826, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:28:20], mode=PLATFORM_GENERATION, duration=0:00:05.875, duration_ms=5875, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:28:21], mode=BUILD, duration=0:00:00.828, duration_ms=828, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:32:32], mode=PLATFORM_GENERATION, duration=0:00:05.824, duration_ms=5824, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:32:33], mode=BUILD, duration=0:00:00.836, duration_ms=836, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:38:14], mode=PLATFORM_GENERATION, duration=0:00:05.778, duration_ms=5778, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:38:15], mode=BUILD, duration=0:00:00.880, duration_ms=880, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:41:24], mode=PLATFORM_GENERATION, duration=0:00:05.879, duration_ms=5879, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:41:25], mode=BUILD, duration=0:00:00.884, duration_ms=884, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:43:01], mode=PLATFORM_GENERATION, duration=0:00:05.877, duration_ms=5877, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:43:02], mode=BUILD, duration=0:00:00.883, duration_ms=883, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:45:13], mode=PLATFORM_GENERATION, duration=0:00:05.828, duration_ms=5828, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:45:14], mode=BUILD, duration=0:00:00.877, duration_ms=877, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:47:38], mode=PLATFORM_GENERATION, duration=0:00:05.889, duration_ms=5889, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:47:39], mode=BUILD, duration=0:00:00.879, duration_ms=879, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:49:31], mode=PLATFORM_GENERATION, duration=0:00:05.876, duration_ms=5876, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:49:32], mode=BUILD, duration=0:00:00.876, duration_ms=876, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:53:25], mode=PLATFORM_GENERATION, duration=0:00:05.878, duration_ms=5878, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:53:26], mode=BUILD, duration=0:00:01.032, duration_ms=1032, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 13:56:25], mode=PLATFORM_GENERATION, duration=0:00:05.832, duration_ms=5832, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 13:56:26], mode=BUILD, duration=0:00:00.829, duration_ms=829, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:06:18], mode=PLATFORM_GENERATION, duration=0:00:05.833, duration_ms=5833, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:06:19], mode=BUILD, duration=0:00:00.878, duration_ms=878, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:08:06], mode=PLATFORM_GENERATION, duration=0:00:05.824, duration_ms=5824, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:08:06], mode=BUILD, duration=0:00:00.577, duration_ms=577, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:19:12], mode=PLATFORM_GENERATION, duration=0:00:05.839, duration_ms=5839, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:19:13], mode=BUILD, duration=0:00:00.876, duration_ms=876, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:24:29], mode=PLATFORM_GENERATION, duration=0:00:05.828, duration_ms=5828, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:24:30], mode=BUILD, duration=0:00:01.026, duration_ms=1026, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:39:00], mode=PLATFORM_GENERATION, duration=0:00:05.825, duration_ms=5825, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:39:01], mode=BUILD, duration=0:00:00.627, duration_ms=627, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:39:52], mode=PLATFORM_GENERATION, duration=0:00:05.876, duration_ms=5876, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:39:53], mode=BUILD, duration=0:00:00.878, duration_ms=878, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:40:56], mode=PLATFORM_GENERATION, duration=0:00:05.829, duration_ms=5829, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:40:57], mode=BUILD, duration=0:00:00.880, duration_ms=880, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:42:13], mode=PLATFORM_GENERATION, duration=0:00:05.825, duration_ms=5825, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:42:14], mode=BUILD, duration=0:00:00.876, duration_ms=876, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:45:00], mode=PLATFORM_GENERATION, duration=0:00:05.879, duration_ms=5879, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:45:02], mode=BUILD, duration=0:00:01.030, duration_ms=1030, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:47:56], mode=PLATFORM_GENERATION, duration=0:00:05.836, duration_ms=5836, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:47:57], mode=BUILD, duration=0:00:00.878, duration_ms=878, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:48:44], mode=PLATFORM_GENERATION, duration=0:00:05.825, duration_ms=5825, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:48:45], mode=BUILD, duration=0:00:00.879, duration_ms=879, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:55:27], mode=PLATFORM_GENERATION, duration=0:00:05.831, duration_ms=5831, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:55:28], mode=BUILD, duration=0:00:00.828, duration_ms=828, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-29 14:57:12], mode=PLATFORM_GENERATION, duration=0:00:05.834, duration_ms=5834, data={name=base_zynq_wrapper}
+timestamp=[2020-11-29 14:57:13], mode=BUILD, duration=0:00:00.879, duration_ms=879, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-30 09:08:29], mode=PLATFORM_GENERATION, duration=0:00:05.834, duration_ms=5834, data={name=base_zynq_wrapper}
+timestamp=[2020-11-30 09:08:30], mode=BUILD, duration=0:00:00.878, duration_ms=878, data={name=6UVME, configuration=Debug, clean_build=false}
+timestamp=[2020-11-30 09:11:51], mode=PLATFORM_GENERATION, duration=0:00:05.834, duration_ms=5834, data={name=base_zynq_wrapper}
+timestamp=[2020-11-30 09:11:52], mode=BUILD, duration=0:00:00.833, duration_ms=833, data={name=6UVME, configuration=Debug, clean_build=false}
