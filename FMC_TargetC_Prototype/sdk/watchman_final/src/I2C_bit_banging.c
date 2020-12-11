@@ -49,7 +49,7 @@ void I2C_CLR_SDA(void){
 //
 //
 void I2C_DELAY(void){
-	usleep(3);
+	usleep(2.5);
 };
 //
 ///* PIC */
@@ -390,6 +390,59 @@ bool i2c_send_byte_data( uint8_t address,
     return false;
 }
 
+/* Sending a byte of data with I2C */
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Sends slave address plus write bit, then two consecutive data bytes.
+(The first byte is typically used as a register address, and the second
+as a data byte.)
+Params:
+    address = 7-bit slave address
+    reg = first byte of data after the slave address
+    data = second byte of data after the slave address
+Returns:
+    true if slave has ACK'd all three sent bytes
+*/
+bool i2c_send_byte_data_8574( uint8_t address,
+                         uint8_t reg,
+                         uint16_t data )
+{
+	uint8_t msbData= data >> 8;
+	uint8_t lsbData = data & 0x00FF;
+    /* Start, send address */
+    if( _write_byte( address, false, true, false ) )
+    {
+   // 	_wait_write();
+    	_wait_ack();
+        /* Send register */
+        if( _write_byte( reg,false ,false, false ) )
+        {
+        	_wait_ack();
+            /* Send data, stop */
+            if( _write_byte( msbData,false , false, false ) ){
+                _wait_ack();
+                if( _write_byte( lsbData,false, false, false ) ){
+                	_wait_ack();
+
+                	   I2C_DELAY();
+
+                		I2C_SET_SCL();
+
+                	    I2C_DELAY();
+                	    I2C_DELAY();
+
+                	      I2C_SET_SDA();
+                	return true;
+
+                }
+            }
+
+        }
+    }
+
+    /* Make sure to impose a stop if NAK'd */
+//    _stop_condition();
+    return false;
+}
 
 ///* Receiving a byte of data with I2C */
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
@@ -442,3 +495,22 @@ uint16_t intvolt;
 return XST_SUCCESS;
 
 }
+
+int set_DAC_CHANNEL_8574( float voltage ){
+
+int Status;
+uint16_t intvolt;
+		if(voltage >= 2.5) intvolt = 65535;
+		else intvolt = (uint16_t)(65535.0 * voltage / 2.5);
+		xil_printf("%f V\r\n",voltage);
+//	_start_condition();
+
+	if (i2c_send_byte_data_8574(IIC_SLAVE_ADDRESS_8574,0x10, intvolt)) {
+//	if (i2c_send_byte_data(IIC_SLAVE_ADDRESS,0x30|2, intvolt)) {
+		return XST_SUCCESS;
+	}
+return XST_SUCCESS;
+
+}
+
+

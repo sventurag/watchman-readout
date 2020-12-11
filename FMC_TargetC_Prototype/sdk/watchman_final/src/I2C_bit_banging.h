@@ -81,6 +81,8 @@
 #define WRITE_REG           0x30
 //#include <xc.h>
 
+#define IIC_SLAVE_ADDRESS_8574	0x98
+
 /* Define crystal frequency for delay function */
 //#define _XTAL_FREQ     8000000
 
@@ -120,6 +122,8 @@ uint8_t i2c_receive_byte_data( uint8_t, uint8_t );
 
 
 int set_DAC_CHANNEL(int channel, float voltage );
+int set_DAC_CHANNEL_8574( float voltage );
+bool i2c_send_byte_data_8574( uint8_t address,uint8_t reg, uint16_t data );
 void I2C_SET_SCL(void);
 void I2C_CLR_SCL(void);
 void I2C_SET_SDA(void);
