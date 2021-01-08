@@ -86,9 +86,9 @@
 /* Define crystal frequency for delay function */
 //#define _XTAL_FREQ     8000000
 
-/* I2C ports in 6UVME */
-#define gpio_SCL      12
-#define gpio_SDA      11
+///* I2C ports in 6UVME */
+//#define gpio_SCL      11
+//#define gpio_SDA      12
 
 
 

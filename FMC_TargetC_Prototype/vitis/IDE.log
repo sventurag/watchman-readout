@@ -11891,3 +11891,153 @@ con
 ----------------End of Script----------------
 
 16:41:11 INFO  : Launch script is exported to file '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_6uvme_system_standalone.tcl'
+09:20:55 INFO  : Disconnected from the channel tcfchan#3.
+09:27:03 INFO  : Launching XSCT server: xsct -n  -interactive /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/temp_xsdb_launch_script.tcl
+09:27:06 INFO  : XSCT server has started successfully.
+09:27:06 INFO  : Successfully done setting XSCT server connection channel  
+09:27:06 INFO  : plnx-install-location is set to ''
+09:27:06 INFO  : Successfully done setting workspace for the tool. 
+09:27:08 INFO  : Platform repository initialization has completed.
+09:27:08 INFO  : Successfully done query RDI_DATADIR 
+09:27:09 INFO  : Registering command handlers for Vitis TCF services
+10:09:27 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+10:09:27 INFO  : Jtag cable 'Digilent JTAG-HS1 210205329388A' is selected.
+10:09:27 INFO  : 'jtag frequency' command is executed.
+10:09:27 INFO  : Context for 'APU' is selected.
+10:09:27 INFO  : System reset is completed.
+10:09:30 INFO  : 'after 3000' command is executed.
+10:09:31 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS1 210205329388A" && level==0 && jtag_device_ctx=="jsn-JTAG-HS1-210205329388A-23727093-0"}' command is executed.
+10:09:34 INFO  : FPGA configured successfully with bitstream "/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/bitstream/base_zynq_wrapper.bit"
+10:09:34 INFO  : Context for 'APU' is selected.
+10:09:34 INFO  : Hardware design and registers information is loaded from '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/hw/base_zynq_wrapper.xsa'.
+10:09:34 INFO  : 'configparams force-mem-access 1' command is executed.
+10:09:34 INFO  : Context for 'APU' is selected.
+10:09:34 INFO  : Sourcing of '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/psinit/ps7_init.tcl' is done.
+10:09:35 INFO  : 'ps7_init' command is executed.
+10:09:35 INFO  : 'ps7_post_config' command is executed.
+10:09:35 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+10:09:46 INFO  : The application '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf' is downloaded to processor 'ps7_cortexa9_0'.
+10:09:46 INFO  : 'configparams force-mem-access 0' command is executed.
+10:09:46 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS1 210205329388A" && level==0 && jtag_device_ctx=="jsn-JTAG-HS1-210205329388A-23727093-0"}
+fpga -file /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/bitstream/base_zynq_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/hw/base_zynq_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+10:09:46 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+10:09:46 INFO  : 'con' command is executed.
+10:09:46 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+10:09:46 INFO  : Launch script is exported to file '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_6uvme_system_standalone.tcl'
+10:12:53 INFO  : Result from executing command 'getProjects': base_zynq_wrapper
+10:12:53 INFO  : Result from executing command 'getPlatforms': base_zynq_wrapper|/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/base_zynq_wrapper.xpfm
+10:12:56 INFO  : Checking for BSP changes to sync application flags for project '6UVME'...
+10:15:30 INFO  : Disconnected from the channel tcfchan#1.
+10:15:31 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+10:15:31 INFO  : Jtag cable 'Digilent JTAG-HS1 210205329388A' is selected.
+10:15:31 INFO  : 'jtag frequency' command is executed.
+10:15:31 INFO  : Context for 'APU' is selected.
+10:15:31 INFO  : System reset is completed.
+10:15:34 INFO  : 'after 3000' command is executed.
+10:15:35 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS1 210205329388A" && level==0 && jtag_device_ctx=="jsn-JTAG-HS1-210205329388A-23727093-0"}' command is executed.
+10:15:38 INFO  : FPGA configured successfully with bitstream "/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/bitstream/base_zynq_wrapper.bit"
+10:15:38 INFO  : Context for 'APU' is selected.
+10:15:39 INFO  : Hardware design and registers information is loaded from '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/hw/base_zynq_wrapper.xsa'.
+10:15:39 INFO  : 'configparams force-mem-access 1' command is executed.
+10:15:39 INFO  : Context for 'APU' is selected.
+10:15:39 INFO  : Sourcing of '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/psinit/ps7_init.tcl' is done.
+10:15:39 INFO  : 'ps7_init' command is executed.
+10:15:39 INFO  : 'ps7_post_config' command is executed.
+10:15:39 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+10:15:50 INFO  : The application '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf' is downloaded to processor 'ps7_cortexa9_0'.
+10:15:50 INFO  : 'configparams force-mem-access 0' command is executed.
+10:15:50 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS1 210205329388A" && level==0 && jtag_device_ctx=="jsn-JTAG-HS1-210205329388A-23727093-0"}
+fpga -file /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/bitstream/base_zynq_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/hw/base_zynq_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+10:15:50 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+10:15:50 INFO  : 'con' command is executed.
+10:15:50 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+10:15:50 INFO  : Launch script is exported to file '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_6uvme_system_standalone.tcl'
+10:48:36 INFO  : Checking for BSP changes to sync application flags for project '6UVME'...
+10:48:43 INFO  : Disconnected from the channel tcfchan#3.
+10:48:43 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+10:48:43 INFO  : Jtag cable 'Digilent JTAG-HS1 210205329388A' is selected.
+10:48:43 INFO  : 'jtag frequency' command is executed.
+10:48:43 INFO  : Context for 'APU' is selected.
+10:48:43 INFO  : System reset is completed.
+10:48:46 INFO  : 'after 3000' command is executed.
+10:48:47 INFO  : 'targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS1 210205329388A" && level==0 && jtag_device_ctx=="jsn-JTAG-HS1-210205329388A-23727093-0"}' command is executed.
+10:48:50 INFO  : FPGA configured successfully with bitstream "/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/bitstream/base_zynq_wrapper.bit"
+10:48:50 INFO  : Context for 'APU' is selected.
+10:48:51 INFO  : Hardware design and registers information is loaded from '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/hw/base_zynq_wrapper.xsa'.
+10:48:51 INFO  : 'configparams force-mem-access 1' command is executed.
+10:48:51 INFO  : Context for 'APU' is selected.
+10:48:51 INFO  : Sourcing of '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/psinit/ps7_init.tcl' is done.
+10:48:51 INFO  : 'ps7_init' command is executed.
+10:48:51 INFO  : 'ps7_post_config' command is executed.
+10:48:51 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+10:49:02 INFO  : The application '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf' is downloaded to processor 'ps7_cortexa9_0'.
+10:49:02 INFO  : 'configparams force-mem-access 0' command is executed.
+10:49:02 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+targets -set -nocase -filter {name =~"APU*"}
+rst -system
+after 3000
+targets -set -filter {jtag_cable_name =~ "Digilent JTAG-HS1 210205329388A" && level==0 && jtag_device_ctx=="jsn-JTAG-HS1-210205329388A-23727093-0"}
+fpga -file /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/bitstream/base_zynq_wrapper.bit
+targets -set -nocase -filter {name =~"APU*"}
+loadhw -hw /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/hw/base_zynq_wrapper.xsa -mem-ranges [list {0x40000000 0xbfffffff}] -regs
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*"}
+source /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/_ide/psinit/ps7_init.tcl
+ps7_init
+ps7_post_config
+targets -set -nocase -filter {name =~ "*A9*#0"}
+dow /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME/Debug/6UVME.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+10:49:02 INFO  : Context for processor 'ps7_cortexa9_0' is selected.
+10:49:02 INFO  : 'con' command is executed.
+10:49:02 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~ "*A9*#0"}
+con
+----------------End of Script----------------
+
+10:49:02 INFO  : Launch script is exported to file '/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/.sdk/launch_scripts/single_application_debug/systemdebugger_6uvme_system_standalone.tcl'

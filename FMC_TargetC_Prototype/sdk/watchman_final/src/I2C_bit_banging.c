@@ -25,7 +25,8 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-
+int gpio_SCL;
+int gpio_SDA;
 
 
 //static uint8_t _read_byte( bool, bool );
@@ -488,7 +489,8 @@ Returns:
 
 int set_DAC_CHANNEL(int channel, float voltage ){
 	xil_printf("set channel % \r\n", channel);
-
+gpio_SCL=11;
+gpio_SDA=12;
 int Status;
 uint16_t intvolt;
 		if(voltage >= 2.5) intvolt = 65535;
@@ -505,7 +507,8 @@ return XST_SUCCESS;
 }
 
 int set_DAC_CHANNEL_8574( float voltage ){
-
+gpio_SCL=12;
+gpio_SDA=11;
 int Status;
 uint16_t intvolt;
 		if(voltage >= 2.5) intvolt = 65535;
