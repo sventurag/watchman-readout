@@ -235,10 +235,7 @@ int main()
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
 		return -1;
 	}
-	if(set_DAC_CHANNEL_8574(VPED_ANALOG) != XST_SUCCESS){
-	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
-		return -1;
-	}
+//
 //	if(set_DAC_CHANNEL(DAC_GRP_0,THRESHOLD_CMP_0) != XST_SUCCESS){
 //		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
 //		return -1;
@@ -271,8 +268,11 @@ int main()
 //		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
 //		return -1;
 //	}
-
-
+   usleep(30);
+	if(set_DAC_CHANNEL_8574(VPED_ANALOG) != XST_SUCCESS){
+	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
+		return -1;
+	}
 
 	/* Add network interface to the netif_list, and set it as default */
 	ipaddr.addr = 0;
