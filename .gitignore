@@ -19,9 +19,9 @@ GUI/traffic.pcap
 
 GUI/untitled
 
-FMC_TargetC_Prototype/vitis/.metadata/
-FMC_TargetC_Prototype/vitis/.analytics
 FMC_TargetC_Prototype/vitis/IDE.log
+FMC_TargetC_Prototype/vitis/.analytics
 FMC_TargetC_Prototype/vitis/base_zynq_wrapper/.log/base_zynq_wrapper_.build.ui.log
+FMC_TargetC_Prototype/vitis/.metadata/
 FMC_TargetC_Prototype/vitis/base_zynq_wrapper/logs/platform.log
 
