@@ -26,6 +26,7 @@ FMC_TargetC_Prototype/vitis/.metadata/
 FMC_TargetC_Prototype/vitis/base_zynq_wrapper/logs/platform.log
 GUI/notebooks/
 GUI/data/
+GUI/data/*.ipynb
 FMC_TargetC_Prototype/vitis/6UVME/_ide/
 FMC_TargetC_Prototype/vitis/base_zynq_wrapper/
 
