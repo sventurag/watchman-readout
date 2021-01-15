@@ -30,6 +30,6 @@ GUI/data/*.ipynb
 GUI/oldScripts/
 FMC_TargetC_Prototype/vitis/6UVME/_ide/
 FMC_TargetC_Prototype/vitis/base_zynq_wrapper/
-
+GUI/doxygen_doc/
 
 
