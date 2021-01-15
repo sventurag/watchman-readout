@@ -1,6 +1,0 @@
-# GitIgnore
-*.pcap
-*.py.swn
-.lookIntoPackets.py.swn
-data/
-.spyproject/

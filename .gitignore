@@ -32,4 +32,10 @@ FMC_TargetC_Prototype/vitis/6UVME/_ide/
 FMC_TargetC_Prototype/vitis/base_zynq_wrapper/
 GUI/doxygen_doc/
 
+GUI/*.pcap
+GUI/*.py.swn
+.GUI/*lookIntoPackets.py.swn
+GUI/*data/
+GUI/*.spyproject/
+
 
