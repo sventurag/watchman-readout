@@ -13,7 +13,7 @@ import waveform_gen_33600 as wv_gen
 from waveform_gen_33600 import wave_gen
 import os
 from tempfile import TemporaryFile
-from plotPulse import plot_pulse
+#from plotPulse import plot_pulse
 from waiting import wait
 class targetc():
 
@@ -331,7 +331,7 @@ class targetc():
         np.savetxt(os.path.abspath(self.fileToSave), np.array(WindowsData_txt).T, fmt='%5.3f')
         print("dataSaved") 
         self.flag_transfer_done=False
-        plot_pulse(self.fileToSave)
+      #  plot_pulse(self.fileToSave)
         self.send_command(3,0,0)# send command to PS to start trigger mode
                 
 
