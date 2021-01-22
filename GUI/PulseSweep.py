@@ -31,7 +31,7 @@ pg.windows(nmbrWindows,firstWindow,totalWindows)
 pg.pulseSweepInit(channel,nmbrPedestals)
 pg.pulseInit(width)
 time.sleep(10)
-wave_gen().Output1(out=False)
+wave_gen().Output1(out=True)
 time.sleep(1)
 
 #amplitudes=np.arange(1e-3, 3.5,100e-3) #For dynamic range, charge, cfd, etc
@@ -44,7 +44,7 @@ wave_gen().Query()
 #amplitudes = np.arange(2100,2650,50)
 amplitudes= np.arange(0.1,0.2 ,1)
 #amplitudes=list(range(2100,2900,20))
-rango = list((range(10,11,1)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
+rango = list((range(10,15,1)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
 for item in amplitudes:
     print("Amp=",item)
     pg.pulseAmpl(item)
