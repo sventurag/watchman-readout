@@ -18,7 +18,7 @@ class pulseGen:
         tc.send_command(8,regID,channel) # channel number
         time.sleep(1)
         tc.send_command(9,100,1) # Pedestals
-    
+
     def pulseInit(self,width):
                 
         time.sleep(2)
@@ -68,8 +68,8 @@ class pulseGen:
     def triggerMode(self,nmbrBursts):
         wave_gen().bursSettings(nmbrBursts)
         time.sleep(1)
-        tc.send_command(3, 0, 0) # triggerMode 
-        time.sleep(1)
+        #tc.send_command(3, 0, 0) # triggerMode 
+        #time.sleep(1)
     
     def triggerMode_exit(self):
         tc.send_command(3, 0, 0) # triggerMode 
@@ -78,3 +78,5 @@ class pulseGen:
     def softTrigger(self):
         wave_gen().softTrigger()
       
+    def impedanceLoadHz(self,impedance):
+        wave_gen().loadHz(impedance)
