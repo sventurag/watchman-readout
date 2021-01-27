@@ -54,17 +54,19 @@ class wave_gen(object):
         self.inst.close()
 
     def bursSettings(self, ncyccount):
-        self.inst.write("BURS:MODE TRIG")
+        #self.inst.write("BURS:MODE TRIG")
+        #self.inst.write("BURS:MODE TRIG")
         time.sleep(1)
-        self.inst.write("TRIG: BUS")
+        #self.inst.write("TRIG: BUS")
+        self.inst.write("TRIG1:SOUR IMM")
         time.sleep(1)
-        self.inst.write("BURS:NCYC {:.9f}".format(ncyccount))
+        #self.inst.write("BURS:NCYC {:.9f}".format(ncyccount))
        
         #self.inst.write("BURS:NCYC INF")
-        time.sleep(1)
-        self.inst.write("BURS:STAT ON")
-        time.sleep(1)
-        print("BURS:NCYC {:.9f}".format(ncyccount))
+       # time.sleep(1)
+        #self.inst.write("BURS:STAT ON")
+        #time.sleep(1)
+       # print("BURS:NCYC {:.9f}".format(ncyccount))
 
     def ncyc(self,ncyccount):
         self.inst.write("BURS:NCYC {:.9f}".format(ncyccount))
@@ -82,7 +84,7 @@ class wave_gen(object):
 
 
     def softTrigger(self):
-        self.inst.write("TRIG")
+        self.inst.write("TRIG1")
         self.inst.close()
     
     def Freq(self,freq): 
