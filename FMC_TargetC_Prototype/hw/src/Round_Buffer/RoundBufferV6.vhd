@@ -92,11 +92,12 @@ component circularBuffer is
   RST :             in  std_logic;  
   trigger :         in std_logic;
   full_fifo :        in std_logic;          
-   windowStorage:     in std_logic; 
+   mode:     in std_logic; 
  -- ptr_window :      out std_logic_vector(8 downto 0);
  -- sstin :           out std_logic;
 --   wr:     out unsigned(8 downto 0);
   enable_write :    out std_logic;
+  TriggerInfo : out std_logic_vector(11 downto 0);
    -- enable_write_fifo :    out std_logic;
 
 --  counter :          out std_logic_vector(2 downto 0);        
@@ -109,7 +110,7 @@ component circularBuffer is
 
   WR_CS:            out std_logic_vector(5 downto 0);
   delay_trigger:    in std_logic_vector(3 downto 0);
-    Timestamp:        in T_timestamp
+    sstin :        in std_logic_vector(2 downto 0)
 
   
 
@@ -210,7 +211,7 @@ end component circularBuffer;
 		-- Interface to WindowCPU
 		CPUBus:			out	std_logic_vector(10 downto 0);
 		CPUTime:		out	T_Timestamp;
-		TriggerInfo :	out std_logic_vector(11 downto 0);
+	--	TriggerInfo :	out std_logic_vector(11 downto 0);
 
 		WR_RS_S:		out std_logic_vector(1 downto 0);
 		WR_CS_S:		out std_logic_vector(5 downto 0);
@@ -283,12 +284,27 @@ end component CPU_CONTROLLERV3;
            ); 
         end component;
         
+        component pedestalTrigger is 
+            Port ( 
+                        clk : in STD_LOGIC;
+                       rst : in STD_LOGIC;
+                       trigger : out STD_LOGIC;
+                       mode : in STD_LOGIC;
+                       pedestals: in std_logic;
+                       average: in std_logic_vector(31 downto 0);
+                       wr_rs:  in std_logic_vector(1 downto 0); -- To synchronize WR and start at window 0
+                       sstin : in std_logic_vector(2 downto 0)
+                       );
+
+               end component; 
+        
+        
      
 	-- -------------------------------------------------------------
 	-- SIGNALS
 	-- -------------------------------------------------------------
 
-	signal TrigInfo_intl:		std_logic_vector(11 downto 0);
+	signal TriggerInfo_i:		std_logic_vector(11 downto 0);
 	signal Bus_intl :			std_logic_vector(10 downto 0);
 	
 
@@ -361,7 +377,8 @@ end component CPU_CONTROLLERV3;
 );
 
 signal sstin_sync_st : SSTIN_synch_st:=USERMODE;
-
+signal trigger_ped : std_logic;
+signal trigger_intl : std_logic;
 --signal Bus_intl_dly :			std_logic_vector(10 downto 0);
 --signal Bus_intl_delay :			std_logic_vector(10 downto 0);
 --signal read_enable_dly: std_logic;
@@ -438,10 +455,11 @@ circBuffer: circularBuffer
     
   clk    =>          ClockBus.CLK125MHz  ,
   RST    =>             nrst,  
-  trigger   =>        trigger_s ,
+  trigger   =>        trigger_intl ,
   full_fifo   =>      RDAD_Full_s  ,    
-  windowStorage=>     CtrlBus_IxSL.WindowStorage,       
+  mode =>     CtrlBus_IxSL.WindowStorage,       
   enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
+  TriggerInfo => TriggerInfo_i,
  --   enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
 
   RD_add    =>          RDAD_Data_s ,
@@ -450,7 +468,7 @@ circBuffer: circularBuffer
   WR_RS    =>           WR_RS_S_trig,
   WR_CS   =>            WR_CS_S_trig,
   delay_trigger => delay_trigger_intl,
-  Timestamp=>         Timestamp
+  sstin =>         Timestamp.samplecnt
  -- ptr_window   =>         ,
   -- sstin =>           out std_logic,
  --   wr=>     out unsigned(8 downto 0);
@@ -497,7 +515,7 @@ SyncBitNrst: SyncBit
 
 			CPUBus		=> Bus_intl,
 			CPUTime		=> Time_intl,
-			TriggerInfo	=> TrigInfo_intl,
+--			TriggerInfo	=> TrigInfo_intl,
 
 			WR_RS_S			=> WR_RS_S_user,
 			WR_CS_S			=> WR_CS_S_user,
@@ -537,7 +555,7 @@ SyncBitNrst: SyncBit
 
 		CPUBus		=> Bus_intl,
 		CPUTime		=> Time_intl,
-		TriggerInfo	=> TrigInfo_intl,
+		TriggerInfo	=> TriggerInfo_i,
 	--	trigger=>       trigger,
 
 		  -- Control Signals
@@ -578,6 +596,18 @@ SyncBitNrst: SyncBit
         address_is_zero => address_is_zero_out
 
         ); 
+        
+ pedestalTrigger_inst : pedestalTrigger
+     Port map ( 
+                clk => ClockBus.CLK125MHz,
+               rst => nrst ,
+               trigger => trigger_ped,
+               mode => CtrlBus_IxSL.WindowStorage,
+               pedestals =>CtrlBus_IxSL.TriggerModePed,
+               average => CtrlBus_IxSL.pedestalTriggerAvg,
+               wr_rs =>  WR_RS_S_trig, -- To synchronize WR and start at window 0
+               sstin => Timestamp.samplecnt
+               );
 
 
      edge_detect_cpu: process(ClockBus.CLK125MHz,nrst,CtrlBus_IxSL.CPUMode)
@@ -639,7 +669,7 @@ WR_update_inst: process(ClockBus.CLK125MHz, nrst,TimeStamp.samplecnt,CPUMODE_edg
                          end if;
                          
                     when SSTIN_SYNC =>         
-                         if TimeStamp.samplecnt= "010" then
+                         if TimeStamp.samplecnt= "110" then
                             sstin_sync_st <= EVALUATE;
                          else
                             sstin_sync_st <= SSTIN_SYNC;
@@ -693,7 +723,13 @@ WR_C <= WR_C_sig ;
 
 trigger_s <= '0' when trigger= "0000" else '1';
 
+trigger_intl <= trigger_s or trigger_ped;
+
 delay_trigger_intl <= CtrlBus_IxSL.TC_Delay_RB(3 downto 0);
 --TrigInfo_dly<=TrigInfo_dly;
+
+
+
+
 
 end implementation;

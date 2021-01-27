@@ -13,7 +13,7 @@ import waveform_gen_33600 as wv_gen
 from waveform_gen_33600 import wave_gen
 import os
 from tempfile import TemporaryFile
-from plotPulse import plot_pulse
+#from plotPulse import plot_pulse
 from waiting import wait
 class targetc():
 
@@ -32,7 +32,7 @@ class targetc():
 ##     List of all the commands
 ##     Flag which indicates if the streaming is running
         self.flag_transfer_done = False
-        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'get_windows_raw', 'restartAll', 'stopStream']
+        self.cmd = ['write_all_reg', 'read_all_reg', 'ping', 'trigger_mode', 'stop_uC', 'settime', 'recover_data', 'get_windows','write_register','pedestal', 'pedestalTriggerMode', 'restartAll', 'flat_pedestal', 'dividePedestals']
         self.stream_flag = False
         ## Flag which indicates that the user want to close the GUI (to avoid problem when accessing graphical object after "WM_DELETE_WINDOW" event)
         self.destroy_flag = False 
@@ -92,7 +92,7 @@ class targetc():
         self.sock_trigger.close()
     
     def send_command(self,comando,param1,param2):
-       print("received command {}".format(self.cmd[comando]))
+       #print("received command {}".format(self.cmd[comando]))
        # Build the frame
        payload = bytearray()
        payload.append(int("0x55", 0)) # frame's start code 0x55AA
@@ -106,7 +106,7 @@ class targetc():
     #           payload.append(int(numb / 256))
     #           payload.append(int(numb % 256))
     #         #  print(int(numb / 256))
-    #         #  print(int(numb % 256))
+    #         #  print(int(n
        if(self.cmd[comando] == 'restartAll'): # restart main()
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
@@ -121,7 +121,7 @@ class targetc():
 
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-          print("stream command sent")
+ #         print("stream command sent")
        if(self.cmd[comando] == 'write_register'): # if the command is write register, add the register's value
                                                 
            payload.append(param1) # regID
@@ -135,19 +135,39 @@ class targetc():
            payload.append(param2) # number of windows
            payload.append(int("0x33", 0)) # frame's end code 0x33CC
            payload.append(int("0xCC", 0))
-   
+
+       if(self.cmd[comando] == 'pedestalTriggerMode'): # start pedestals in trigger mode, the trigger mode should started a priori
+                                                
+           payload.append(param1) # NOT USED
+           payload.append(int(param2 / 256)) # number of Pedestal average
+           payload.append(int(param2 % 256))
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
       
-       if(self.cmd[comando] == 'get_windows' or self.cmd[comando] == 'get_windows_raw'):
+       if(self.cmd[comando] == 'flat_pedestal'): # start pedestals in trigger mode, the trigger mode should started a priori
+                                                
+           payload.append(param1) # NOT USED
+           payload.append(int(param2 / 256)) # number of Pedestal average
+           payload.append(int(param2 % 256))
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
+      
+       if(self.cmd[comando] == 'dividePedestals'):
+           payload.append(int("0x33", 0)) # frame's end code 0x33CC
+           payload.append(int("0xCC", 0))
+
+
+       if(self.cmd[comando] == 'get_windows'):
    #       payload.append(param1)
    #       payload.append(int(param2 / 256)) 
    #       payload.append(int(param2 % 256))
           payload.append(int("0x33", 0)) # frame's end code 0x33CC
           payload.append(int("0xCC", 0))
-          self.init_UDP_connection_data()
-          self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
-          #thread_timer_2=Timer(10,thread_timer_int_2)
-          self.thread_user_mode_obj.start()
-          self.get_windows_flag = True
+   #       self.init_UDP_connection_data()
+   #       self.thread_user_mode_obj=Thread(target=self.thread_user_mode, args=())
+   #       #thread_timer_2=Timer(10,thread_timer_int_2)
+   #       self.thread_user_mode_obj.start()
+   #       self.get_windows_flag = True
       # print("Tx: " + cmd[comando] + " rand=" + str(payload[3])) 
        #payload.append(int("0x33", 0)) # frame's end code 0x33CC
        #payload.append(int("0xCC", 0))
@@ -311,7 +331,7 @@ class targetc():
         np.savetxt(os.path.abspath(self.fileToSave), np.array(WindowsData_txt).T, fmt='%5.3f')
         print("dataSaved") 
         self.flag_transfer_done=False
-        plot_pulse(self.fileToSave)
+      #  plot_pulse(self.fileToSave)
         self.send_command(3,0,0)# send command to PS to start trigger mode
                 
 

@@ -18,3 +18,24 @@ GUI/.test_pulses.py.swn
 GUI/traffic.pcap
 
 GUI/untitled
+
+FMC_TargetC_Prototype/vitis/IDE.log
+FMC_TargetC_Prototype/vitis/.analytics
+FMC_TargetC_Prototype/vitis/base_zynq_wrapper/.log/base_zynq_wrapper_.build.ui.log
+FMC_TargetC_Prototype/vitis/.metadata/
+FMC_TargetC_Prototype/vitis/base_zynq_wrapper/logs/platform.log
+GUI/notebooks/
+GUI/data/
+GUI/data/*.ipynb
+GUI/oldScripts/
+FMC_TargetC_Prototype/vitis/6UVME/_ide/
+FMC_TargetC_Prototype/vitis/base_zynq_wrapper/
+GUI/doxygen_doc/
+
+GUI/*.pcap
+GUI/*.py.swn
+.GUI/*lookIntoPackets.py.swn
+GUI/*data/
+GUI/*.spyproject/
+
+

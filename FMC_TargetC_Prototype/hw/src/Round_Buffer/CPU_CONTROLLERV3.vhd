@@ -39,7 +39,7 @@ entity CPU_CONTROLLERV3 is
 	-- Interface to WindowCPU and WindowStore
 	CPUBus:			out	std_logic_vector(10 downto 0);
 	CPUTime:		out	T_timestamp;
-	TriggerInfo :	out std_logic_vector(11 downto 0);
+--	TriggerInfo :	out std_logic_vector(11 downto 0);
 
 	-- Storage pins of TargetC
 	WR_RS_S:		out std_logic_vector(1 downto 0);
@@ -92,20 +92,20 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 
 	end component BlockDelay;
 
-	component TRIGGER_CONTROLLER is
-		Generic(
-			LONG_TRIGGER: integer := 32
-		);
-		Port (
-		nrst : 			in	STD_Logic;
-		clk:			in	std_Logic;
+--	component TRIGGER_CONTROLLER is
+--		Generic(
+--			LONG_TRIGGER: integer := 32
+--		);
+--		Port (
+--		nrst : 			in	STD_Logic;
+--		clk:			in	std_Logic;
 
-		trigger : 		in std_logic_vector(3 downto 0);
+--		trigger : 		in std_logic_vector(3 downto 0);
 
-		-- Interface to WindowCPU
-		TriggerInfo :		out std_logic_vector(11 downto 0)
-		);
-	end component;
+--		-- Interface to WindowCPU
+--		TriggerInfo :		out std_logic_vector(11 downto 0)
+--		);
+--	end component;
 
 	component aFifoV2 is
     generic (

@@ -13,14 +13,14 @@
 #include "xscugic.h"
 #include "xil_printf.h"
 #include "xtime_l.h"
-#include "xiic.h"
+//#include "xiicps.h"
 
 #include "global.h"
 
 /*** DEFINES *********************************************************/
 /*********************************************************************/
 /** @brief Base address for device I2C (from xparameters.h) */
-#define IIC_DEVICE_ID		XPAR_AXI_IIC_0_DEVICE_ID
+#define IIC_DEVICE_ID		XPAR_XIICPS_0_DEVICE_ID
 /** @brief I2C address of the DAC */
 #define IIC_SLAVE_ADDRESS	0x10
 /** @brief Channel A register */
@@ -49,15 +49,28 @@
 #define DAC_GRP_2	CHANNEL_C
 /** @brief Channel D register */
 #define DAC_GRP_3	CHANNEL_D
+/** @brief Channel A register */
+#define DAC_GRP_4	CHANNEL_E
+/** @brief Channel B register */
+#define DAC_GRP_5	CHANNEL_F
+/** @brief Channel C register */
+#define DAC_GRP_6	CHANNEL_G
+
 /** @brief Channel H register */
-#define DAC_VPED	CHANNEL_H
+#define DAC_GRP_7	CHANNEL_H
 
 
 
 
 /*** Function prototypes *********************************************/
-int DAC_LTC2657_initialize();
-int DAC_LTC2657_SetChannelVoltage(int channel, float voltage);
+//int DAC_LTC2657_initialize();
+//int DAC_LTC2657_SetChannelVoltage(int channel, float voltage);
+int DAC_LTC2657_initialize_PS(void);
+int DAC_LTC2657_SetChannelVoltage_PS(int channel, float voltage);
+//void XIicPs_MasterSendNOint(XIicPs *InstancePtr, u8 *MsgPtr, s32 ByteCount,
+//		u16 SlaveAddr);
+//int iicps_example(void);
+
 
 #endif
 

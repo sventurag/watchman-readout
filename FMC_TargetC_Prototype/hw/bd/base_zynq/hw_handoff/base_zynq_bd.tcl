@@ -20,12 +20,12 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2018.2
+set scripts_vivado_version 2020.1
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
    puts ""
-   catch {common::send_msg_id "BD_TCL-109" "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
+   catch {common::send_gid_msg -ssname BD::TCL -id 2041 -severity "ERROR" "This script was generated using Vivado <$scripts_vivado_version> and is being run in <$current_vivado_version> of Vivado. Please run the script in Vivado <$scripts_vivado_version> then open the design in Vivado <$current_vivado_version>. Upgrade the design by running \"Tools => Report => Report IP Status...\", then run write_bd_tcl to create an updated script."}
 
    return 1
 }
@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# TARGET_C_TopLevel_System, axistream, iobuf, iobuf
+# TARGET_C_TopLevel_System, axistream
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -50,7 +50,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project project_1 myproj -part xc7z010clg400-1
+   create_project project_1 myproj -part xc7z020clg400-1
 }
 
 
@@ -65,7 +65,7 @@ set run_remote_bd_flow 1
 if { $run_remote_bd_flow == 1 } {
   # Set the reference directory for source file relative paths (by default 
   # the value is script directory path)
-  set origin_dir ./salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd
+  set origin_dir ./salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd
 
   # Use origin directory path location variable, if specified in the tcl shell
   if { [info exists ::origin_dir_loc] } {
@@ -77,9 +77,9 @@ if { $run_remote_bd_flow == 1 } {
 
   # Check if remote design exists on disk
   if { [file exists $str_bd_filepath ] == 1 } {
-     catch {common::send_msg_id "BD_TCL-110" "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
-     common::send_msg_id "BD_TCL-008" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
-     common::send_msg_id "BD_TCL-009" "INFO" "Also make sure there is no design <$design_name> existing in your current project."
+     catch {common::send_gid_msg -ssname BD::TCL -id 2030 -severity "ERROR" "The remote BD file path <$str_bd_filepath> already exists!"}
+     common::send_gid_msg -ssname BD::TCL -id 2031 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0>."
+     common::send_gid_msg -ssname BD::TCL -id 2032 -severity "INFO" "Also make sure there is no design <$design_name> existing in your current project."
 
      return 1
   }
@@ -87,9 +87,9 @@ if { $run_remote_bd_flow == 1 } {
   # Check if design exists in memory
   set list_existing_designs [get_bd_designs -quiet $design_name]
   if { $list_existing_designs ne "" } {
-     catch {common::send_msg_id "BD_TCL-111" "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2033 -severity "ERROR" "The design <$design_name> already exists in this project! Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-     common::send_msg_id "BD_TCL-010" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2034 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
      return 1
   }
@@ -97,11 +97,11 @@ if { $run_remote_bd_flow == 1 } {
   # Check if design exists on disk within project
   set list_existing_designs [get_files -quiet */${design_name}.bd]
   if { $list_existing_designs ne "" } {
-     catch {common::send_msg_id "BD_TCL-112" "ERROR" "The design <$design_name> already exists in this project at location:
+     catch {common::send_gid_msg -ssname BD::TCL -id 2035 -severity "ERROR" "The design <$design_name> already exists in this project at location:
     $list_existing_designs"}
-     catch {common::send_msg_id "BD_TCL-113" "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2036 -severity "ERROR" "Will not create the remote BD <$design_name> at the folder <$str_bd_folder>."}
 
-     common::send_msg_id "BD_TCL-011" "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2037 -severity "INFO" "To create a non-remote BD, change the variable <run_remote_bd_flow> to <0> or please set a different value to variable <design_name>."
 
      return 1
   }
@@ -113,7 +113,7 @@ if { $run_remote_bd_flow == 1 } {
 
   # Create regular design
   if { [catch {create_bd_design $design_name} errmsg] } {
-     common::send_msg_id "BD_TCL-012" "INFO" "Please set a different value to variable <design_name>."
+     common::send_gid_msg -ssname BD::TCL -id 2038 -severity "INFO" "Please set a different value to variable <design_name>."
 
      return 1
   }
@@ -141,14 +141,14 @@ proc create_root_design { parentCell } {
   # Get object for parentCell
   set parentObj [get_bd_cells $parentCell]
   if { $parentObj == "" } {
-     catch {common::send_msg_id "BD_TCL-100" "ERROR" "Unable to find parent cell <$parentCell>!"}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2090 -severity "ERROR" "Unable to find parent cell <$parentCell>!"}
      return
   }
 
   # Make sure parentObj is hier blk
   set parentType [get_property TYPE $parentObj]
   if { $parentType ne "hier" } {
-     catch {common::send_msg_id "BD_TCL-101" "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2091 -severity "ERROR" "Parent <$parentObj> has TYPE = <$parentType>. Expected to be <hier>."}
      return
   }
 
@@ -161,81 +161,71 @@ proc create_root_design { parentCell } {
 
   # Create interface ports
   set DDR [ create_bd_intf_port -mode Master -vlnv xilinx.com:interface:ddrx_rtl:1.0 DDR ]
+
   set FIXED_IO [ create_bd_intf_port -mode Master -vlnv xilinx.com:display_processing_system7:fixedio_rtl:1.0 FIXED_IO ]
 
+
   # Create ports
-  set BB1 [ create_bd_port -dir O BB1 ]
-  set BB2 [ create_bd_port -dir O BB2 ]
-  set BB3 [ create_bd_port -dir O BB3 ]
-  set BB4 [ create_bd_port -dir O BB4 ]
-  set BB5 [ create_bd_port -dir O BB5 ]
-  set DONE [ create_bd_port -dir I DONE ]
-  set DO_1 [ create_bd_port -dir I DO_1 ]
-  set DO_2 [ create_bd_port -dir I DO_2 ]
-  set DO_3 [ create_bd_port -dir I DO_3 ]
-  set DO_4 [ create_bd_port -dir I DO_4 ]
-  set DO_5 [ create_bd_port -dir I DO_5 ]
-  set DO_6 [ create_bd_port -dir I DO_6 ]
-  set DO_7 [ create_bd_port -dir I DO_7 ]
-  set DO_8 [ create_bd_port -dir I DO_8 ]
-  set DO_9 [ create_bd_port -dir I DO_9 ]
-  set DO_10 [ create_bd_port -dir I DO_10 ]
-  set DO_11 [ create_bd_port -dir I DO_11 ]
-  set DO_12 [ create_bd_port -dir I DO_12 ]
-  set DO_13 [ create_bd_port -dir I DO_13 ]
-  set DO_14 [ create_bd_port -dir I DO_14 ]
-  set DO_15 [ create_bd_port -dir I DO_15 ]
-  set DO_16 [ create_bd_port -dir I DO_16 ]
-  set GCC_RESET [ create_bd_port -dir O GCC_RESET ]
-  set HCMPA [ create_bd_port -dir O -from 0 -to 0 HCMPA ]
-  set HCMPB [ create_bd_port -dir O -from 0 -to 0 HCMPB ]
-  set HCMPC [ create_bd_port -dir O -from 0 -to 0 HCMPC ]
-  set HCMPD [ create_bd_port -dir O -from 0 -to 0 HCMPD ]
-  set HSCLK_N [ create_bd_port -dir O HSCLK_N ]
-  set HSCLK_P [ create_bd_port -dir O HSCLK_P ]
+  set A_DONE [ create_bd_port -dir I A_DONE ]
+  set A_DO_1 [ create_bd_port -dir I A_DO_1 ]
+  set A_DO_2 [ create_bd_port -dir I A_DO_2 ]
+  set A_DO_3 [ create_bd_port -dir I A_DO_3 ]
+  set A_DO_4 [ create_bd_port -dir I A_DO_4 ]
+  set A_DO_5 [ create_bd_port -dir I A_DO_5 ]
+  set A_DO_6 [ create_bd_port -dir I A_DO_6 ]
+  set A_DO_7 [ create_bd_port -dir I A_DO_7 ]
+  set A_DO_8 [ create_bd_port -dir I A_DO_8 ]
+  set A_DO_9 [ create_bd_port -dir I A_DO_9 ]
+  set A_DO_10 [ create_bd_port -dir I A_DO_10 ]
+  set A_DO_11 [ create_bd_port -dir I A_DO_11 ]
+  set A_DO_12 [ create_bd_port -dir I A_DO_12 ]
+  set A_DO_13 [ create_bd_port -dir I A_DO_13 ]
+  set A_DO_14 [ create_bd_port -dir I A_DO_14 ]
+  set A_DO_15 [ create_bd_port -dir I A_DO_15 ]
+  set A_DO_16 [ create_bd_port -dir I A_DO_16 ]
+  set A_GCC_RESET [ create_bd_port -dir O A_GCC_RESET ]
+  set A_HSCLK_N [ create_bd_port -dir O A_HSCLK_N ]
+  set A_HSCLK_P [ create_bd_port -dir O A_HSCLK_P ]
+  set A_PCLK [ create_bd_port -dir O A_PCLK ]
+  set A_RAMP [ create_bd_port -dir O A_RAMP ]
+  set A_RDAD_CLK [ create_bd_port -dir O A_RDAD_CLK ]
+  set A_RDAD_DIR [ create_bd_port -dir O A_RDAD_DIR ]
+  set A_RDAD_SIN [ create_bd_port -dir O A_RDAD_SIN ]
+  set A_SAMPLESEL_ANY [ create_bd_port -dir O A_SAMPLESEL_ANY ]
+  set A_SHOUT [ create_bd_port -dir I A_SHOUT ]
+  set A_SS_INCR [ create_bd_port -dir O A_SS_INCR ]
+  set A_SS_LD_DIR [ create_bd_port -dir O A_SS_LD_DIR ]
+  set A_SS_LD_SIN [ create_bd_port -dir O A_SS_LD_SIN ]
+  set A_SS_RESET [ create_bd_port -dir O -type rst A_SS_RESET ]
+  set A_TRIG1 [ create_bd_port -dir I A_TRIG1 ]
+  set A_TRIG2 [ create_bd_port -dir I A_TRIG2 ]
+  set A_TRIG3 [ create_bd_port -dir I A_TRIG3 ]
+  set A_TRIG4 [ create_bd_port -dir I A_TRIG4 ]
+  set A_WR_CS_S0 [ create_bd_port -dir O A_WR_CS_S0 ]
+  set A_WR_CS_S1 [ create_bd_port -dir O A_WR_CS_S1 ]
+  set A_WR_CS_S2 [ create_bd_port -dir O A_WR_CS_S2 ]
+  set A_WR_CS_S3 [ create_bd_port -dir O A_WR_CS_S3 ]
+  set A_WR_CS_S4 [ create_bd_port -dir O A_WR_CS_S4 ]
+  set A_WR_CS_S5 [ create_bd_port -dir O A_WR_CS_S5 ]
+  set A_WR_RS_S0 [ create_bd_port -dir O A_WR_RS_S0 ]
+  set A_WR_RS_S1 [ create_bd_port -dir O A_WR_RS_S1 ]
   set MONTIMING_N [ create_bd_port -dir I MONTIMING_N ]
   set MONTIMING_P [ create_bd_port -dir I MONTIMING_P ]
-  set PCLK [ create_bd_port -dir O PCLK ]
-  set RAMP [ create_bd_port -dir O RAMP ]
-  set RDAD_CLK [ create_bd_port -dir O RDAD_CLK ]
-  set RDAD_DIR [ create_bd_port -dir O RDAD_DIR ]
-  set RDAD_SIN [ create_bd_port -dir O RDAD_SIN ]
-  set REGCLR [ create_bd_port -dir O REGCLR ]
-  set SAMPLESEL_ANY [ create_bd_port -dir O SAMPLESEL_ANY ]
-  set SCL [ create_bd_port -dir IO SCL ]
   set SCLK [ create_bd_port -dir O SCLK ]
-  set SDA [ create_bd_port -dir IO SDA ]
-  set SHOUT [ create_bd_port -dir I SHOUT ]
   set SIN [ create_bd_port -dir O SIN ]
   set SSTIN_N [ create_bd_port -dir O SSTIN_N ]
   set SSTIN_P [ create_bd_port -dir O SSTIN_P ]
-  set SS_INCR [ create_bd_port -dir O SS_INCR ]
-  set SS_LD_DIR [ create_bd_port -dir O SS_LD_DIR ]
-  set SS_LD_SIN [ create_bd_port -dir O SS_LD_SIN ]
-  set SS_RESET [ create_bd_port -dir O -type rst SS_RESET ]
-  set TRIGA [ create_bd_port -dir I TRIGA ]
-  set TRIGB [ create_bd_port -dir I TRIGB ]
-  set TRIGC [ create_bd_port -dir I TRIGC ]
-  set TRIGD [ create_bd_port -dir I TRIGD ]
   set WL_CLK_N [ create_bd_port -dir O -type clk WL_CLK_N ]
   set WL_CLK_P [ create_bd_port -dir O -type clk WL_CLK_P ]
-  set WR_CS_S0 [ create_bd_port -dir O WR_CS_S0 ]
-  set WR_CS_S1 [ create_bd_port -dir O WR_CS_S1 ]
-  set WR_CS_S2 [ create_bd_port -dir O WR_CS_S2 ]
-  set WR_CS_S3 [ create_bd_port -dir O WR_CS_S3 ]
-  set WR_CS_S4 [ create_bd_port -dir O WR_CS_S4 ]
-  set WR_CS_S5 [ create_bd_port -dir O WR_CS_S5 ]
-  set WR_RS_S0 [ create_bd_port -dir O WR_RS_S0 ]
-  set WR_RS_S1 [ create_bd_port -dir O WR_RS_S1 ]
 
   # Create instance: TARGET_C_TopLevel_Sy_0, and set properties
   set block_name TARGET_C_TopLevel_System
   set block_cell_name TARGET_C_TopLevel_Sy_0
   if { [catch {set TARGET_C_TopLevel_Sy_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $TARGET_C_TopLevel_Sy_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
@@ -251,9 +241,6 @@ proc create_root_design { parentCell } {
    CONFIG.c_sg_include_stscntrl_strm {0} \
  ] $axi_dma_0
 
-  # Create instance: axi_iic_0, and set properties
-  set axi_iic_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_iic:2.0 axi_iic_0 ]
-
   # Create instance: axi_interconnect_0, and set properties
   set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
   set_property -dict [ list \
@@ -264,32 +251,10 @@ proc create_root_design { parentCell } {
   set block_name axistream
   set block_cell_name axistream_0
   if { [catch {set axistream_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    } elseif { $axistream_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: iobuf_0, and set properties
-  set block_name iobuf
-  set block_cell_name iobuf_0
-  if { [catch {set iobuf_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $iobuf_0 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: iobuf_1, and set properties
-  set block_name iobuf
-  set block_cell_name iobuf_1
-  if { [catch {set iobuf_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $iobuf_1 eq "" } {
-     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
   
@@ -390,9 +355,10 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_ENET0_PERIPHERAL_DIVISOR1 {5} \
    CONFIG.PCW_ENET0_PERIPHERAL_ENABLE {1} \
    CONFIG.PCW_ENET0_PERIPHERAL_FREQMHZ {100 Mbps} \
-   CONFIG.PCW_ENET0_RESET_ENABLE {1} \
-   CONFIG.PCW_ENET0_RESET_IO {MIO 11} \
+   CONFIG.PCW_ENET0_RESET_ENABLE {0} \
+   CONFIG.PCW_ENET0_RESET_IO {<Select>} \
    CONFIG.PCW_ENET1_BASEADDR {0xE000C000} \
+   CONFIG.PCW_ENET1_ENET1_IO {<Select>} \
    CONFIG.PCW_ENET1_GRP_MDIO_ENABLE {0} \
    CONFIG.PCW_ENET1_HIGHADDR {0xE000CFFF} \
    CONFIG.PCW_ENET1_PERIPHERAL_CLKSRC {IO PLL} \
@@ -444,7 +410,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_EN_ENET0 {1} \
    CONFIG.PCW_EN_ENET1 {0} \
    CONFIG.PCW_EN_GPIO {1} \
-   CONFIG.PCW_EN_I2C0 {1} \
+   CONFIG.PCW_EN_I2C0 {0} \
    CONFIG.PCW_EN_I2C1 {0} \
    CONFIG.PCW_EN_MODEM_UART0 {0} \
    CONFIG.PCW_EN_MODEM_UART1 {0} \
@@ -517,8 +483,8 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_I2C0_BASEADDR {0xE0004000} \
    CONFIG.PCW_I2C0_GRP_INT_ENABLE {0} \
    CONFIG.PCW_I2C0_HIGHADDR {0xE0004FFF} \
-   CONFIG.PCW_I2C0_I2C0_IO {MIO 14 .. 15} \
-   CONFIG.PCW_I2C0_PERIPHERAL_ENABLE {1} \
+   CONFIG.PCW_I2C0_I2C0_IO {<Select>} \
+   CONFIG.PCW_I2C0_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_I2C0_RESET_ENABLE {0} \
    CONFIG.PCW_I2C0_RESET_IO {<Select>} \
    CONFIG.PCW_I2C1_BASEADDR {0xE0005000} \
@@ -528,9 +494,9 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_I2C1_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_I2C1_RESET_ENABLE {0} \
    CONFIG.PCW_I2C_PERIPHERAL_FREQMHZ {111.111115} \
-   CONFIG.PCW_I2C_RESET_ENABLE {1} \
+   CONFIG.PCW_I2C_RESET_ENABLE {0} \
    CONFIG.PCW_I2C_RESET_POLARITY {Active Low} \
-   CONFIG.PCW_I2C_RESET_SELECT {Share reset pin} \
+   CONFIG.PCW_I2C_RESET_SELECT {<Select>} \
    CONFIG.PCW_IMPORT_BOARD_PRESET {None} \
    CONFIG.PCW_INCLUDE_ACP_TRANS_CHECK {0} \
    CONFIG.PCW_INCLUDE_TRACE_BUFFER {0} \
@@ -539,31 +505,31 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_IRQ_F2P_INTR {1} \
    CONFIG.PCW_IRQ_F2P_MODE {DIRECT} \
    CONFIG.PCW_MIO_0_DIRECTION {inout} \
-   CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_0_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_0_PULLUP {enabled} \
    CONFIG.PCW_MIO_0_SLEW {slow} \
    CONFIG.PCW_MIO_10_DIRECTION {inout} \
-   CONFIG.PCW_MIO_10_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_10_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_10_PULLUP {enabled} \
    CONFIG.PCW_MIO_10_SLEW {slow} \
-   CONFIG.PCW_MIO_11_DIRECTION {out} \
-   CONFIG.PCW_MIO_11_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_11_DIRECTION {inout} \
+   CONFIG.PCW_MIO_11_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_11_PULLUP {enabled} \
    CONFIG.PCW_MIO_11_SLEW {slow} \
    CONFIG.PCW_MIO_12_DIRECTION {inout} \
-   CONFIG.PCW_MIO_12_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_12_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_12_PULLUP {enabled} \
    CONFIG.PCW_MIO_12_SLEW {slow} \
    CONFIG.PCW_MIO_13_DIRECTION {inout} \
-   CONFIG.PCW_MIO_13_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_13_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_13_PULLUP {enabled} \
    CONFIG.PCW_MIO_13_SLEW {slow} \
    CONFIG.PCW_MIO_14_DIRECTION {inout} \
-   CONFIG.PCW_MIO_14_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_14_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_14_PULLUP {enabled} \
    CONFIG.PCW_MIO_14_SLEW {slow} \
    CONFIG.PCW_MIO_15_DIRECTION {inout} \
-   CONFIG.PCW_MIO_15_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_15_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_15_PULLUP {enabled} \
    CONFIG.PCW_MIO_15_SLEW {slow} \
    CONFIG.PCW_MIO_16_DIRECTION {out} \
@@ -583,7 +549,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_19_PULLUP {disabled} \
    CONFIG.PCW_MIO_19_SLEW {slow} \
    CONFIG.PCW_MIO_1_DIRECTION {out} \
-   CONFIG.PCW_MIO_1_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_1_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_1_PULLUP {enabled} \
    CONFIG.PCW_MIO_1_SLEW {slow} \
    CONFIG.PCW_MIO_20_DIRECTION {out} \
@@ -620,58 +586,58 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_27_SLEW {slow} \
    CONFIG.PCW_MIO_28_DIRECTION {inout} \
    CONFIG.PCW_MIO_28_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_28_PULLUP {disabled} \
+   CONFIG.PCW_MIO_28_PULLUP {enabled} \
    CONFIG.PCW_MIO_28_SLEW {slow} \
    CONFIG.PCW_MIO_29_DIRECTION {inout} \
    CONFIG.PCW_MIO_29_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_29_PULLUP {disabled} \
+   CONFIG.PCW_MIO_29_PULLUP {enabled} \
    CONFIG.PCW_MIO_29_SLEW {slow} \
    CONFIG.PCW_MIO_2_DIRECTION {inout} \
-   CONFIG.PCW_MIO_2_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_2_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_2_PULLUP {disabled} \
    CONFIG.PCW_MIO_2_SLEW {slow} \
    CONFIG.PCW_MIO_30_DIRECTION {inout} \
    CONFIG.PCW_MIO_30_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_30_PULLUP {disabled} \
+   CONFIG.PCW_MIO_30_PULLUP {enabled} \
    CONFIG.PCW_MIO_30_SLEW {slow} \
    CONFIG.PCW_MIO_31_DIRECTION {inout} \
    CONFIG.PCW_MIO_31_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_31_PULLUP {disabled} \
+   CONFIG.PCW_MIO_31_PULLUP {enabled} \
    CONFIG.PCW_MIO_31_SLEW {slow} \
    CONFIG.PCW_MIO_32_DIRECTION {inout} \
    CONFIG.PCW_MIO_32_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_32_PULLUP {disabled} \
+   CONFIG.PCW_MIO_32_PULLUP {enabled} \
    CONFIG.PCW_MIO_32_SLEW {slow} \
    CONFIG.PCW_MIO_33_DIRECTION {inout} \
    CONFIG.PCW_MIO_33_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_33_PULLUP {disabled} \
+   CONFIG.PCW_MIO_33_PULLUP {enabled} \
    CONFIG.PCW_MIO_33_SLEW {slow} \
    CONFIG.PCW_MIO_34_DIRECTION {inout} \
    CONFIG.PCW_MIO_34_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_34_PULLUP {disabled} \
+   CONFIG.PCW_MIO_34_PULLUP {enabled} \
    CONFIG.PCW_MIO_34_SLEW {slow} \
    CONFIG.PCW_MIO_35_DIRECTION {inout} \
    CONFIG.PCW_MIO_35_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_35_PULLUP {disabled} \
+   CONFIG.PCW_MIO_35_PULLUP {enabled} \
    CONFIG.PCW_MIO_35_SLEW {slow} \
    CONFIG.PCW_MIO_36_DIRECTION {inout} \
    CONFIG.PCW_MIO_36_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_36_PULLUP {disabled} \
+   CONFIG.PCW_MIO_36_PULLUP {enabled} \
    CONFIG.PCW_MIO_36_SLEW {slow} \
    CONFIG.PCW_MIO_37_DIRECTION {inout} \
    CONFIG.PCW_MIO_37_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_37_PULLUP {disabled} \
+   CONFIG.PCW_MIO_37_PULLUP {enabled} \
    CONFIG.PCW_MIO_37_SLEW {slow} \
    CONFIG.PCW_MIO_38_DIRECTION {inout} \
    CONFIG.PCW_MIO_38_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_38_PULLUP {disabled} \
+   CONFIG.PCW_MIO_38_PULLUP {enabled} \
    CONFIG.PCW_MIO_38_SLEW {slow} \
    CONFIG.PCW_MIO_39_DIRECTION {inout} \
    CONFIG.PCW_MIO_39_IOTYPE {LVCMOS 1.8V} \
-   CONFIG.PCW_MIO_39_PULLUP {disabled} \
+   CONFIG.PCW_MIO_39_PULLUP {enabled} \
    CONFIG.PCW_MIO_39_SLEW {slow} \
    CONFIG.PCW_MIO_3_DIRECTION {inout} \
-   CONFIG.PCW_MIO_3_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_3_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_3_PULLUP {disabled} \
    CONFIG.PCW_MIO_3_SLEW {slow} \
    CONFIG.PCW_MIO_40_DIRECTION {inout} \
@@ -715,7 +681,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_49_PULLUP {disabled} \
    CONFIG.PCW_MIO_49_SLEW {slow} \
    CONFIG.PCW_MIO_4_DIRECTION {inout} \
-   CONFIG.PCW_MIO_4_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_4_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_4_PULLUP {disabled} \
    CONFIG.PCW_MIO_4_SLEW {slow} \
    CONFIG.PCW_MIO_50_DIRECTION {in} \
@@ -735,28 +701,28 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_MIO_53_PULLUP {disabled} \
    CONFIG.PCW_MIO_53_SLEW {slow} \
    CONFIG.PCW_MIO_5_DIRECTION {inout} \
-   CONFIG.PCW_MIO_5_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_5_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_5_PULLUP {disabled} \
    CONFIG.PCW_MIO_5_SLEW {slow} \
    CONFIG.PCW_MIO_6_DIRECTION {out} \
-   CONFIG.PCW_MIO_6_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_6_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_6_PULLUP {disabled} \
    CONFIG.PCW_MIO_6_SLEW {slow} \
    CONFIG.PCW_MIO_7_DIRECTION {out} \
-   CONFIG.PCW_MIO_7_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_7_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_7_PULLUP {disabled} \
    CONFIG.PCW_MIO_7_SLEW {slow} \
    CONFIG.PCW_MIO_8_DIRECTION {out} \
-   CONFIG.PCW_MIO_8_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_8_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_8_PULLUP {disabled} \
    CONFIG.PCW_MIO_8_SLEW {slow} \
    CONFIG.PCW_MIO_9_DIRECTION {inout} \
-   CONFIG.PCW_MIO_9_IOTYPE {LVCMOS 2.5V} \
+   CONFIG.PCW_MIO_9_IOTYPE {LVCMOS 3.3V} \
    CONFIG.PCW_MIO_9_PULLUP {enabled} \
    CONFIG.PCW_MIO_9_SLEW {slow} \
    CONFIG.PCW_MIO_PRIMITIVE {54} \
-   CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#ENET Reset#GPIO#GPIO#I2C 0#I2C 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0} \
-   CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#reset#gpio[12]#gpio[13]#scl#sda#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio} \
+   CONFIG.PCW_MIO_TREE_PERIPHERALS {GPIO#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#Quad SPI Flash#GPIO#Quad SPI Flash#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#Enet 0#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#GPIO#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#SD 0#GPIO#UART 1#UART 1#SD 0#GPIO#Enet 0#Enet 0} \
+   CONFIG.PCW_MIO_TREE_SIGNALS {gpio[0]#qspi0_ss_b#qspi0_io[0]#qspi0_io[1]#qspi0_io[2]#qspi0_io[3]/HOLD_B#qspi0_sclk#gpio[7]#qspi_fbclk#gpio[9]#gpio[10]#gpio[11]#gpio[12]#gpio[13]#gpio[14]#gpio[15]#tx_clk#txd[0]#txd[1]#txd[2]#txd[3]#tx_ctl#rx_clk#rxd[0]#rxd[1]#rxd[2]#rxd[3]#rx_ctl#gpio[28]#gpio[29]#gpio[30]#gpio[31]#gpio[32]#gpio[33]#gpio[34]#gpio[35]#gpio[36]#gpio[37]#gpio[38]#gpio[39]#clk#cmd#data[0]#data[1]#data[2]#data[3]#cd#gpio[47]#tx#rx#wp#gpio[51]#mdc#mdio} \
    CONFIG.PCW_M_AXI_GP0_ENABLE_STATIC_REMAP {0} \
    CONFIG.PCW_M_AXI_GP0_ID_WIDTH {12} \
    CONFIG.PCW_M_AXI_GP0_SUPPORT_NARROW_BURST {0} \
@@ -851,8 +817,9 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_PCAP_PERIPHERAL_FREQMHZ {200} \
    CONFIG.PCW_PERIPHERAL_BOARD_PRESET {part0} \
    CONFIG.PCW_PJTAG_PERIPHERAL_ENABLE {0} \
+   CONFIG.PCW_PJTAG_PJTAG_IO {<Select>} \
    CONFIG.PCW_PLL_BYPASSMODE_ENABLE {0} \
-   CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 2.5V} \
+   CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V} \
    CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V} \
    CONFIG.PCW_PS7_SI_REV {PRODUCTION} \
    CONFIG.PCW_QSPI_GRP_FBCLK_ENABLE {1} \
@@ -878,6 +845,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_SD1_GRP_POW_ENABLE {0} \
    CONFIG.PCW_SD1_GRP_WP_ENABLE {0} \
    CONFIG.PCW_SD1_PERIPHERAL_ENABLE {0} \
+   CONFIG.PCW_SD1_SD1_IO {<Select>} \
    CONFIG.PCW_SDIO0_BASEADDR {0xE0100000} \
    CONFIG.PCW_SDIO0_HIGHADDR {0xE0100FFF} \
    CONFIG.PCW_SDIO1_BASEADDR {0xE0101000} \
@@ -934,12 +902,14 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_TRACE_BUFFER_FIFO_SIZE {128} \
    CONFIG.PCW_TRACE_GRP_16BIT_ENABLE {0} \
    CONFIG.PCW_TRACE_GRP_2BIT_ENABLE {0} \
+   CONFIG.PCW_TRACE_GRP_2BIT_IO {<Select>} \
    CONFIG.PCW_TRACE_GRP_32BIT_ENABLE {0} \
    CONFIG.PCW_TRACE_GRP_4BIT_ENABLE {0} \
    CONFIG.PCW_TRACE_GRP_8BIT_ENABLE {0} \
    CONFIG.PCW_TRACE_INTERNAL_WIDTH {2} \
    CONFIG.PCW_TRACE_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_TRACE_PIPELINE_WIDTH {8} \
+   CONFIG.PCW_TRACE_TRACE_IO {<Select>} \
    CONFIG.PCW_TTC0_BASEADDR {0xE0104000} \
    CONFIG.PCW_TTC0_CLK0_PERIPHERAL_CLKSRC {CPU_1X} \
    CONFIG.PCW_TTC0_CLK0_PERIPHERAL_DIVISOR0 {1} \
@@ -971,6 +941,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_UART0_GRP_FULL_ENABLE {0} \
    CONFIG.PCW_UART0_HIGHADDR {0xE0000FFF} \
    CONFIG.PCW_UART0_PERIPHERAL_ENABLE {0} \
+   CONFIG.PCW_UART0_UART0_IO {<Select>} \
    CONFIG.PCW_UART1_BASEADDR {0xE0001000} \
    CONFIG.PCW_UART1_BAUD_RATE {115200} \
    CONFIG.PCW_UART1_GRP_FULL_ENABLE {0} \
@@ -1104,13 +1075,14 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_WDT_PERIPHERAL_DIVISOR0 {1} \
    CONFIG.PCW_WDT_PERIPHERAL_ENABLE {0} \
    CONFIG.PCW_WDT_PERIPHERAL_FREQMHZ {133.333333} \
+   CONFIG.PCW_WDT_WDT_IO {<Select>} \
    CONFIG.preset {ZC702} \
  ] $processing_system7_0
 
   # Create instance: ps7_0_axi_periph, and set properties
   set ps7_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 ps7_0_axi_periph ]
   set_property -dict [ list \
-   CONFIG.NUM_MI {3} \
+   CONFIG.NUM_MI {2} \
    CONFIG.NUM_SI {1} \
  ] $ps7_0_axi_periph
 
@@ -1129,13 +1101,6 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_PORTS {2} \
  ] $xlconcat_1
 
-  # Create instance: xlconstant_0, and set properties
-  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
-  set_property -dict [ list \
-   CONFIG.CONST_VAL {1} \
-   CONFIG.CONST_WIDTH {1} \
- ] $xlconstant_0
-
   # Create interface connections
   connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
@@ -1144,102 +1109,86 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
   connect_bd_intf_net -intf_net ps7_0_axi_periph_M00_AXI [get_bd_intf_pins TARGET_C_TopLevel_Sy_0/tc_axi] [get_bd_intf_pins ps7_0_axi_periph/M00_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_iic_0/S_AXI] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
-  connect_bd_intf_net -intf_net ps7_0_axi_periph_M02_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M02_AXI]
+  connect_bd_intf_net -intf_net ps7_0_axi_periph_M01_AXI [get_bd_intf_pins axi_dma_0/S_AXI_LITE] [get_bd_intf_pins ps7_0_axi_periph/M01_AXI]
 
   # Create port connections
   connect_bd_net -net ARESETN_1 [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins rst_ps7_0_50M/interconnect_aresetn]
-  connect_bd_net -net DONE_1 [get_bd_ports DONE] [get_bd_pins TARGET_C_TopLevel_Sy_0/DONE]
-  connect_bd_net -net DO_10_1 [get_bd_ports DO_10] [get_bd_pins xlconcat_0/In9]
-  connect_bd_net -net DO_11_1 [get_bd_ports DO_11] [get_bd_pins xlconcat_0/In10]
-  connect_bd_net -net DO_12_1 [get_bd_ports DO_12] [get_bd_pins xlconcat_0/In11]
-  connect_bd_net -net DO_13_1 [get_bd_ports DO_13] [get_bd_pins xlconcat_0/In12]
-  connect_bd_net -net DO_14_1 [get_bd_ports DO_14] [get_bd_pins xlconcat_0/In13]
-  connect_bd_net -net DO_15_1 [get_bd_ports DO_15] [get_bd_pins xlconcat_0/In14]
-  connect_bd_net -net DO_16_1 [get_bd_ports DO_16] [get_bd_pins xlconcat_0/In15]
-  connect_bd_net -net DO_1_1 [get_bd_ports DO_1] [get_bd_pins xlconcat_0/In0]
-  connect_bd_net -net DO_2_1 [get_bd_ports DO_2] [get_bd_pins xlconcat_0/In1]
-  connect_bd_net -net DO_3_1 [get_bd_ports DO_3] [get_bd_pins xlconcat_0/In2]
-  connect_bd_net -net DO_4_1 [get_bd_ports DO_4] [get_bd_pins xlconcat_0/In3]
-  connect_bd_net -net DO_5_1 [get_bd_ports DO_5] [get_bd_pins xlconcat_0/In4]
-  connect_bd_net -net DO_6_1 [get_bd_ports DO_6] [get_bd_pins xlconcat_0/In5]
-  connect_bd_net -net DO_7_1 [get_bd_ports DO_7] [get_bd_pins xlconcat_0/In6]
-  connect_bd_net -net DO_8_1 [get_bd_ports DO_8] [get_bd_pins xlconcat_0/In7]
-  connect_bd_net -net DO_9_1 [get_bd_ports DO_9] [get_bd_pins xlconcat_0/In8]
+  connect_bd_net -net DONE_1 [get_bd_ports A_DONE] [get_bd_pins TARGET_C_TopLevel_Sy_0/DONE]
+  connect_bd_net -net DO_10_1 [get_bd_ports A_DO_10] [get_bd_pins xlconcat_0/In9]
+  connect_bd_net -net DO_11_1 [get_bd_ports A_DO_11] [get_bd_pins xlconcat_0/In10]
+  connect_bd_net -net DO_12_1 [get_bd_ports A_DO_12] [get_bd_pins xlconcat_0/In11]
+  connect_bd_net -net DO_13_1 [get_bd_ports A_DO_13] [get_bd_pins xlconcat_0/In12]
+  connect_bd_net -net DO_14_1 [get_bd_ports A_DO_14] [get_bd_pins xlconcat_0/In13]
+  connect_bd_net -net DO_15_1 [get_bd_ports A_DO_15] [get_bd_pins xlconcat_0/In14]
+  connect_bd_net -net DO_16_1 [get_bd_ports A_DO_16] [get_bd_pins xlconcat_0/In15]
+  connect_bd_net -net DO_1_1 [get_bd_ports A_DO_1] [get_bd_pins xlconcat_0/In0]
+  connect_bd_net -net DO_2_1 [get_bd_ports A_DO_2] [get_bd_pins xlconcat_0/In1]
+  connect_bd_net -net DO_3_1 [get_bd_ports A_DO_3] [get_bd_pins xlconcat_0/In2]
+  connect_bd_net -net DO_4_1 [get_bd_ports A_DO_4] [get_bd_pins xlconcat_0/In3]
+  connect_bd_net -net DO_5_1 [get_bd_ports A_DO_5] [get_bd_pins xlconcat_0/In4]
+  connect_bd_net -net DO_6_1 [get_bd_ports A_DO_6] [get_bd_pins xlconcat_0/In5]
+  connect_bd_net -net DO_7_1 [get_bd_ports A_DO_7] [get_bd_pins xlconcat_0/In6]
+  connect_bd_net -net DO_8_1 [get_bd_ports A_DO_8] [get_bd_pins xlconcat_0/In7]
+  connect_bd_net -net DO_9_1 [get_bd_ports A_DO_9] [get_bd_pins xlconcat_0/In8]
   connect_bd_net -net MONTIMING_N_1 [get_bd_ports MONTIMING_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_N]
   connect_bd_net -net MONTIMING_P_1 [get_bd_ports MONTIMING_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_P]
-  connect_bd_net -net Net [get_bd_ports SDA] [get_bd_pins iobuf_0/IO]
-  connect_bd_net -net Net1 [get_bd_ports SCL] [get_bd_pins iobuf_1/IO]
-  connect_bd_net -net SHOUT_1 [get_bd_ports SHOUT] [get_bd_pins TARGET_C_TopLevel_Sy_0/SHOUT]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_BB1 [get_bd_ports BB1] [get_bd_pins TARGET_C_TopLevel_Sy_0/BB1]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_BB2 [get_bd_ports BB2] [get_bd_pins TARGET_C_TopLevel_Sy_0/BB2]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_BB3 [get_bd_ports BB3] [get_bd_pins TARGET_C_TopLevel_Sy_0/BB3]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_BB4 [get_bd_ports BB4] [get_bd_pins TARGET_C_TopLevel_Sy_0/BB4]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_BB5 [get_bd_ports BB5] [get_bd_pins TARGET_C_TopLevel_Sy_0/BB5]
+  connect_bd_net -net SHOUT_1 [get_bd_ports A_SHOUT] [get_bd_pins TARGET_C_TopLevel_Sy_0/SHOUT]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_CNT_CLR [get_bd_pins TARGET_C_TopLevel_Sy_0/CNT_CLR] [get_bd_pins axistream_0/CNT_CLR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOdata [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOdata] [get_bd_pins axistream_0/FIFOdata]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOvalid [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOvalid] [get_bd_pins axistream_0/FIFOvalid]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_GCC_RESET [get_bd_ports GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/GCC_RESET]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_N [get_bd_ports HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_N]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_P [get_bd_ports HSCLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_P]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_PCLK [get_bd_ports PCLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/PCLK]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RAMP [get_bd_ports RAMP] [get_bd_pins TARGET_C_TopLevel_Sy_0/RAMP]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RDAD_CLK [get_bd_ports RDAD_CLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/RDAD_CLK]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RDAD_DIR [get_bd_ports RDAD_DIR] [get_bd_pins TARGET_C_TopLevel_Sy_0/RDAD_DIR]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RDAD_SIN [get_bd_ports RDAD_SIN] [get_bd_pins TARGET_C_TopLevel_Sy_0/RDAD_SIN]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_REGCLR [get_bd_ports REGCLR] [get_bd_pins TARGET_C_TopLevel_Sy_0/REGCLR]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SAMPLESEL_ANY [get_bd_ports SAMPLESEL_ANY] [get_bd_pins TARGET_C_TopLevel_Sy_0/SAMPLESEL_ANY]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_GCC_RESET [get_bd_ports A_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/GCC_RESET]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_N [get_bd_ports A_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_N]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_P [get_bd_ports A_HSCLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_P]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_PCLK [get_bd_ports A_PCLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/PCLK]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RAMP [get_bd_ports A_RAMP] [get_bd_pins TARGET_C_TopLevel_Sy_0/RAMP]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RDAD_CLK [get_bd_ports A_RDAD_CLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/RDAD_CLK]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RDAD_DIR [get_bd_ports A_RDAD_DIR] [get_bd_pins TARGET_C_TopLevel_Sy_0/RDAD_DIR]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_RDAD_SIN [get_bd_ports A_RDAD_SIN] [get_bd_pins TARGET_C_TopLevel_Sy_0/RDAD_SIN]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SAMPLESEL_ANY [get_bd_ports A_SAMPLESEL_ANY] [get_bd_pins TARGET_C_TopLevel_Sy_0/SAMPLESEL_ANY]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SCLK [get_bd_ports SCLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/SCLK]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SIN [get_bd_ports SIN] [get_bd_pins TARGET_C_TopLevel_Sy_0/SIN]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SSTIN_N [get_bd_ports SSTIN_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/SSTIN_N]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SSTIN_P [get_bd_ports SSTIN_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/SSTIN_P]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SSVALID_INTR [get_bd_pins TARGET_C_TopLevel_Sy_0/SSVALID_INTR] [get_bd_pins xlconcat_1/In0]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_INCR [get_bd_ports SS_INCR] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_INCR]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_LD_DIR [get_bd_ports SS_LD_DIR] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_LD_DIR]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_LD_SIN [get_bd_ports SS_LD_SIN] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_LD_SIN]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_RESET [get_bd_ports SS_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_RESET]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_INCR [get_bd_ports A_SS_INCR] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_INCR]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_LD_DIR [get_bd_ports A_SS_LD_DIR] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_LD_DIR]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_LD_SIN [get_bd_ports A_SS_LD_SIN] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_LD_SIN]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_RESET [get_bd_ports A_SS_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SW_nRST [get_bd_pins TARGET_C_TopLevel_Sy_0/SW_nRST] [get_bd_pins axistream_0/SW_nRST]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_TestStream [get_bd_pins TARGET_C_TopLevel_Sy_0/TestStream] [get_bd_pins axistream_0/TestStream]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_N [get_bd_ports WL_CLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/WL_CLK_N]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_P [get_bd_ports WL_CLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/WL_CLK_P]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S0 [get_bd_ports WR_CS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S0]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S1 [get_bd_ports WR_CS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S1]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S2 [get_bd_ports WR_CS_S2] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S2]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S3 [get_bd_ports WR_CS_S3] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S3]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S4 [get_bd_ports WR_CS_S4] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S4]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S5 [get_bd_ports WR_CS_S5] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S5]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S0 [get_bd_ports WR_RS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S0]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S1 [get_bd_ports WR_RS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S1]
-  connect_bd_net -net TRIGA_1 [get_bd_ports TRIGA] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigA]
-  connect_bd_net -net TRIGB_1 [get_bd_ports TRIGB] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigB]
-  connect_bd_net -net TRIGC_1 [get_bd_ports TRIGC] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigC]
-  connect_bd_net -net TRIGD_1 [get_bd_ports TRIGD] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigD]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S0 [get_bd_ports A_WR_CS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S0]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S1 [get_bd_ports A_WR_CS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S1]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S2 [get_bd_ports A_WR_CS_S2] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S2]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S3 [get_bd_ports A_WR_CS_S3] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S3]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S4 [get_bd_ports A_WR_CS_S4] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S4]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S5 [get_bd_ports A_WR_CS_S5] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S5]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S0 [get_bd_ports A_WR_RS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S0]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S1 [get_bd_ports A_WR_RS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S1]
+  connect_bd_net -net TRIGA_1 [get_bd_ports A_TRIG1] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigA]
+  connect_bd_net -net TRIGB_1 [get_bd_ports A_TRIG2] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigB]
+  connect_bd_net -net TRIGC_1 [get_bd_ports A_TRIG3] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigC]
+  connect_bd_net -net TRIGD_1 [get_bd_ports A_TRIG4] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigD]
   connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_1/In1]
-  connect_bd_net -net axi_iic_0_scl_o [get_bd_pins axi_iic_0/scl_o] [get_bd_pins iobuf_1/I]
-  connect_bd_net -net axi_iic_0_scl_t [get_bd_pins axi_iic_0/scl_t] [get_bd_pins iobuf_1/T]
-  connect_bd_net -net axi_iic_0_sda_o [get_bd_pins axi_iic_0/sda_o] [get_bd_pins iobuf_0/I]
-  connect_bd_net -net axi_iic_0_sda_t [get_bd_pins axi_iic_0/sda_t] [get_bd_pins iobuf_0/T]
   connect_bd_net -net axistream_0_Cnt_AXIS_DATA [get_bd_pins TARGET_C_TopLevel_Sy_0/Cnt_AXIS_DATA] [get_bd_pins axistream_0/Cnt_AXIS_DATA]
   connect_bd_net -net axistream_0_StreamReady [get_bd_pins TARGET_C_TopLevel_Sy_0/StreamReady] [get_bd_pins axistream_0/StreamReady]
-  connect_bd_net -net iobuf_0_O [get_bd_pins axi_iic_0/sda_i] [get_bd_pins iobuf_0/O]
-  connect_bd_net -net iobuf_1_O [get_bd_pins axi_iic_0/scl_i] [get_bd_pins iobuf_1/O]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_iic_0/s_axi_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axistream_0/M_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axistream_0/M_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_iic_0/s_axi_aresetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axistream_0/M_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axistream_0/M_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins TARGET_C_TopLevel_Sy_0/DO] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net xlconcat_1_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_1/dout]
-  connect_bd_net -net xlconstant_0_dout [get_bd_ports HCMPA] [get_bd_ports HCMPB] [get_bd_ports HCMPC] [get_bd_ports HCMPD] [get_bd_pins xlconstant_0/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x40000000 -offset 0x00000000 [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] SEG_processing_system7_0_HP0_DDR_LOWOCM
-  create_bd_addr_seg -range 0x20000000 -offset 0x60000000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGET_C_TopLevel_Sy_0/tc_axi/reg0] SEG_TARGET_C_TopLevel_Sy_0_reg0
-  create_bd_addr_seg -range 0x00010000 -offset 0x40400000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] SEG_axi_dma_0_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x41600000 [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_iic_0/S_AXI/Reg] SEG_axi_iic_0_Reg
+  assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
+  assign_bd_address -offset 0x60000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGET_C_TopLevel_Sy_0/tc_axi/reg0] -force
+  assign_bd_address -offset 0x40400000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] -force
 
 
   # Restore current instance
   current_bd_instance $oldCurInst
 
+  validate_bd_design
   save_bd_design
 }
 # End of create_root_design()

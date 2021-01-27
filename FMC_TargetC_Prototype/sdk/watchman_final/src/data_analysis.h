@@ -1,12 +1,12 @@
 /**
- * @file 	features_extraction.h
+ * @file 	data_analysis.h
  * @author	Anthony Schluchin
  * @date	28th November 2018
  * @version 0.0
  */
 
-#ifndef SRC_FEATURES_EXTRACTION_H_
-#define SRC_FEATURES_EXTRACTION_H_
+#ifndef SRC_DATA_ANALYSIS_H_
+#define SRC_DATA_ANALYSIS_H_
 
 #include <math.h>
 #include <stdbool.h>
@@ -36,9 +36,25 @@
 /** @brief Vped value, but in digital (2.5V <=> 2047 -> 1.75V <=> 1434 or 1.25V <=> 1024)*/
 #define VPED_DIGITAL	1434
 /** @brief Vped voltage to set up in DAC (in float)*/
-#define VPED_ANALOG		1.75 //1.75
+#define VPED_ANALOG		1.75//1.6 //1.75
 /** @brief Threshold voltage to set up in DAC for the comparator of the trigger system (in float)*/
-#define THRESHOLD_CMP	1.78  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
+#define THRESHOLD_CMP_0	1.78  //1.78//1.78 //1.25/** @brief Treshold used to select the gain stage in function correct_data to send (digital value)*/
+
+#define THRESHOLD_CMP_1 1.78
+
+#define THRESHOLD_CMP_2	1.78
+
+#define THRESHOLD_CMP_3	1.78
+
+#define THRESHOLD_CMP_4	1.78
+
+#define THRESHOLD_CMP_5	1.78
+
+#define THRESHOLD_CMP_6	1.78
+
+#define THRESHOLD_CMP_7	1.78
+
+
 #define THRESHOLD_PULSE	500
 
 #define WAVE_BUFFER_SIZE 2000
@@ -128,6 +144,7 @@ typedef struct {
 	u16 writeLocation;
 	// Pointer where next packet should be processed
 	data_axi *procPointer;
+
 	u16 procLocation;
 	// First/last allowed pointers that can be used
 	data_axi *firstAllowedPointer;

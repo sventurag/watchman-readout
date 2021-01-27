@@ -1,14 +1,14 @@
--- Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+-- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2018.2 (lin64) Build 2258646 Thu Jun 14 20:02:38 MDT 2018
--- Date        : Mon Feb 24 16:22:45 2020
--- Host        : watchman running 64-bit Ubuntu 18.04.3 LTS
+-- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
+-- Date        : Thu Oct 15 14:24:24 2020
+-- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/salvador_fork/fixTImingFirmware/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axistream_0_0/base_zynq_axistream_0_0_sim_netlist.vhdl
+--               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axistream_0_0/base_zynq_axistream_0_0_sim_netlist.vhdl
 -- Design      : base_zynq_axistream_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z010clg400-1
+-- Device      : xc7z020clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -21,8 +21,8 @@ entity base_zynq_axistream_0_0_axistream is
     M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXIS_TVALID : out STD_LOGIC;
     M_AXIS_TLAST : out STD_LOGIC;
-    M_AXIS_ARESETN : in STD_LOGIC;
     SW_nRST : in STD_LOGIC;
+    M_AXIS_ARESETN : in STD_LOGIC;
     TestStream : in STD_LOGIC;
     FIFOvalid : in STD_LOGIC;
     M_AXIS_TREADY : in STD_LOGIC;
@@ -36,7 +36,6 @@ end base_zynq_axistream_0_0_axistream;
 
 architecture STRUCTURE of base_zynq_axistream_0_0_axistream is
   signal \FSM_sequential_mst_exec_state[0]_i_1_n_0\ : STD_LOGIC;
-  signal \FSM_sequential_mst_exec_state[0]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_mst_exec_state[1]_i_1_n_0\ : STD_LOGIC;
   signal \FSM_sequential_mst_exec_state[1]_i_2_n_0\ : STD_LOGIC;
   signal \FSM_sequential_mst_exec_state[2]_i_1_n_0\ : STD_LOGIC;
@@ -118,8 +117,6 @@ architecture STRUCTURE of base_zynq_axistream_0_0_axistream is
   signal \cnt_stream_out_reg_n_0_[31]\ : STD_LOGIC;
   signal in13 : STD_LOGIC_VECTOR ( 31 downto 1 );
   signal mst_exec_state : STD_LOGIC_VECTOR ( 2 downto 0 );
-  attribute RTL_KEEP : string;
-  attribute RTL_KEEP of mst_exec_state : signal is "yes";
   signal mst_exec_state1 : STD_LOGIC;
   signal \mst_exec_state1_carry__0_i_1_n_0\ : STD_LOGIC;
   signal \mst_exec_state1_carry__0_i_2_n_0\ : STD_LOGIC;
@@ -155,8 +152,9 @@ architecture STRUCTURE of base_zynq_axistream_0_0_axistream is
   signal mst_exec_state1_carry_n_1 : STD_LOGIC;
   signal mst_exec_state1_carry_n_2 : STD_LOGIC;
   signal mst_exec_state1_carry_n_3 : STD_LOGIC;
+  signal p_0_in : STD_LOGIC_VECTOR ( 1 to 1 );
   signal tx_en : STD_LOGIC;
-  signal tx_state : STD_LOGIC_VECTOR ( 1 downto 0 );
+  signal \tx_state_reg_n_0_[1]\ : STD_LOGIC;
   signal \NLW_cnt_stream_out_reg[31]_i_2_CO_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 2 );
   signal \NLW_cnt_stream_out_reg[31]_i_2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 to 3 );
   signal NLW_mst_exec_state1_carry_O_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -164,96 +162,98 @@ architecture STRUCTURE of base_zynq_axistream_0_0_axistream is
   signal \NLW_mst_exec_state1_carry__1_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_mst_exec_state1_carry__2_O_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \FSM_sequential_mst_exec_state[0]_i_1\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_sequential_mst_exec_state[1]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \FSM_sequential_mst_exec_state[2]_i_2\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \FSM_sequential_mst_exec_state[2]_i_3\ : label is "soft_lutpair1";
   attribute FSM_ENCODED_STATES : string;
   attribute FSM_ENCODED_STATES of \FSM_sequential_mst_exec_state_reg[0]\ : label is "send_test_stream:011,start_test_stream:100,idle:000,data_stream_stall:001,data_stream:010";
-  attribute KEEP : string;
-  attribute KEEP of \FSM_sequential_mst_exec_state_reg[0]\ : label is "yes";
   attribute FSM_ENCODED_STATES of \FSM_sequential_mst_exec_state_reg[1]\ : label is "send_test_stream:011,start_test_stream:100,idle:000,data_stream_stall:001,data_stream:010";
-  attribute KEEP of \FSM_sequential_mst_exec_state_reg[1]\ : label is "yes";
   attribute FSM_ENCODED_STATES of \FSM_sequential_mst_exec_state_reg[2]\ : label is "send_test_stream:011,start_test_stream:100,idle:000,data_stream_stall:001,data_stream:010";
-  attribute KEEP of \FSM_sequential_mst_exec_state_reg[2]\ : label is "yes";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[0]_INST_0\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[10]_INST_0\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[11]_INST_0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[12]_INST_0\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[13]_INST_0\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[14]_INST_0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[15]_INST_0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[16]_INST_0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[17]_INST_0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[18]_INST_0\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[19]_INST_0\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[1]_INST_0\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[20]_INST_0\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[21]_INST_0\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[22]_INST_0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[23]_INST_0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[24]_INST_0\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[25]_INST_0\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[26]_INST_0\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[27]_INST_0\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[28]_INST_0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[29]_INST_0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[2]_INST_0\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[30]_INST_0\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[31]_INST_0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[0]_INST_0\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[10]_INST_0\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[11]_INST_0\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[12]_INST_0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[13]_INST_0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[14]_INST_0\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[15]_INST_0\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[16]_INST_0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[17]_INST_0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[18]_INST_0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[19]_INST_0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[1]_INST_0\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[20]_INST_0\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[21]_INST_0\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[22]_INST_0\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[23]_INST_0\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[24]_INST_0\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[25]_INST_0\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[26]_INST_0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[27]_INST_0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[28]_INST_0\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[29]_INST_0\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[2]_INST_0\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[30]_INST_0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[31]_INST_0\ : label is "soft_lutpair18";
   attribute SOFT_HLUTNM of \M_AXIS_TDATA[3]_INST_0\ : label is "soft_lutpair4";
   attribute SOFT_HLUTNM of \M_AXIS_TDATA[4]_INST_0\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[5]_INST_0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[6]_INST_0\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[7]_INST_0\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[8]_INST_0\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \M_AXIS_TDATA[9]_INST_0\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of axis_tlast_delay_i_1 : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[5]_INST_0\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[6]_INST_0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[7]_INST_0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[8]_INST_0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA[9]_INST_0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \M_AXIS_TDATA_intl[0]_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of StreamReady_intl_i_2 : label is "soft_lutpair2";
+  attribute ADDER_THRESHOLD : integer;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[16]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[20]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[24]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[28]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[31]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[4]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[8]_i_2\ : label is 35;
+  attribute ADDER_THRESHOLD of \cnt_stream_out_reg[9]_i_5\ : label is 35;
+  attribute COMPARATOR_THRESHOLD : integer;
+  attribute COMPARATOR_THRESHOLD of mst_exec_state1_carry : label is 11;
+  attribute COMPARATOR_THRESHOLD of \mst_exec_state1_carry__0\ : label is 11;
+  attribute COMPARATOR_THRESHOLD of \mst_exec_state1_carry__1\ : label is 11;
+  attribute COMPARATOR_THRESHOLD of \mst_exec_state1_carry__2\ : label is 11;
+  attribute SOFT_HLUTNM of \tx_state[0]_i_1\ : label is "soft_lutpair0";
 begin
   Q(9 downto 0) <= \^q\(9 downto 0);
-\FSM_sequential_mst_exec_state[0]_i_1\: unisim.vcomponents.LUT3
+\FSM_sequential_mst_exec_state[0]_i_1\: unisim.vcomponents.LUT6
+    generic map(
+      INIT => X"00000000F9FB2008"
+    )
+        port map (
+      I0 => mst_exec_state1,
+      I1 => mst_exec_state(1),
+      I2 => mst_exec_state(2),
+      I3 => M_AXIS_TREADY,
+      I4 => mst_exec_state(0),
+      I5 => \cnt_stream_out[9]_i_1_n_0\,
+      O => \FSM_sequential_mst_exec_state[0]_i_1_n_0\
+    );
+\FSM_sequential_mst_exec_state[1]_i_1\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"80"
     )
         port map (
-      I0 => \FSM_sequential_mst_exec_state[0]_i_2_n_0\,
-      I1 => SW_nRST,
-      I2 => M_AXIS_ARESETN,
-      O => \FSM_sequential_mst_exec_state[0]_i_1_n_0\
-    );
-\FSM_sequential_mst_exec_state[0]_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FBF2F0FA0142000A"
-    )
-        port map (
-      I0 => mst_exec_state(0),
-      I1 => M_AXIS_TREADY,
-      I2 => mst_exec_state(2),
-      I3 => mst_exec_state(1),
-      I4 => mst_exec_state1,
-      I5 => mst_exec_state(0),
-      O => \FSM_sequential_mst_exec_state[0]_i_2_n_0\
-    );
-\FSM_sequential_mst_exec_state[1]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"E2000000"
-    )
-        port map (
-      I0 => mst_exec_state(1),
-      I1 => \FSM_sequential_mst_exec_state[2]_i_2_n_0\,
-      I2 => \FSM_sequential_mst_exec_state[1]_i_2_n_0\,
-      I3 => SW_nRST,
-      I4 => M_AXIS_ARESETN,
+      I0 => \FSM_sequential_mst_exec_state[1]_i_2_n_0\,
+      I1 => M_AXIS_ARESETN,
+      I2 => SW_nRST,
       O => \FSM_sequential_mst_exec_state[1]_i_1_n_0\
     );
 \FSM_sequential_mst_exec_state[1]_i_2\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"0040004040FF40AA"
+      INIT => X"FFFC30E2FF000022"
     )
         port map (
-      I0 => mst_exec_state(2),
-      I1 => M_AXIS_TREADY,
-      I2 => mst_exec_state1,
-      I3 => mst_exec_state(1),
-      I4 => FIFOvalid,
-      I5 => mst_exec_state(0),
+      I0 => FIFOvalid,
+      I1 => mst_exec_state(0),
+      I2 => M_AXIS_TREADY,
+      I3 => mst_exec_state(2),
+      I4 => mst_exec_state(1),
+      I5 => mst_exec_state1,
       O => \FSM_sequential_mst_exec_state[1]_i_2_n_0\
     );
 \FSM_sequential_mst_exec_state[2]_i_1\: unisim.vcomponents.LUT6
@@ -570,8 +570,8 @@ begin
       INIT => X"DFDDDDFD"
     )
         port map (
-      I0 => tx_state(0),
-      I1 => tx_state(1),
+      I0 => p_0_in(1),
+      I1 => \tx_state_reg_n_0_[1]\,
       I2 => mst_exec_state(2),
       I3 => mst_exec_state(0),
       I4 => mst_exec_state(1),
@@ -1599,8 +1599,8 @@ StreamReady_intl_i_2: unisim.vcomponents.LUT4
       INIT => X"0008"
     )
         port map (
-      I0 => M_AXIS_ARESETN,
-      I1 => SW_nRST,
+      I0 => SW_nRST,
+      I1 => M_AXIS_ARESETN,
       I2 => mst_exec_state(2),
       I3 => mst_exec_state(0),
       O => StreamReady_intl_i_2_n_0
@@ -1623,8 +1623,8 @@ axis_tlast_delay_i_1: unisim.vcomponents.LUT4
         port map (
       I0 => axis_tlast_delay_i_2_n_0,
       I1 => axis_tlast_delay_i_3_n_0,
-      I2 => SW_nRST,
-      I3 => M_AXIS_ARESETN,
+      I2 => M_AXIS_ARESETN,
+      I3 => SW_nRST,
       O => axis_tlast_delay_i_1_n_0
     );
 axis_tlast_delay_i_2: unisim.vcomponents.LUT6
@@ -1722,8 +1722,8 @@ axis_tvalid_delay_i_1: unisim.vcomponents.LUT6
       I1 => mst_exec_state(1),
       I2 => mst_exec_state(2),
       I3 => mst_exec_state(0),
-      I4 => SW_nRST,
-      I5 => M_AXIS_ARESETN,
+      I4 => M_AXIS_ARESETN,
+      I5 => SW_nRST,
       O => axis_tvalid_delay_i_1_n_0
     );
 axis_tvalid_delay_reg: unisim.vcomponents.FDRE
@@ -2111,8 +2111,8 @@ axis_tvalid_delay_reg: unisim.vcomponents.FDRE
       INIT => X"7"
     )
         port map (
-      I0 => M_AXIS_ARESETN,
-      I1 => SW_nRST,
+      I0 => SW_nRST,
+      I1 => M_AXIS_ARESETN,
       O => \cnt_stream_out[9]_i_1_n_0\
     );
 \cnt_stream_out[9]_i_2\: unisim.vcomponents.LUT6
@@ -2569,8 +2569,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[15]\,
-      I1 => \cnt_stream_out_reg_n_0_[14]\,
+      I0 => \cnt_stream_out_reg_n_0_[14]\,
+      I1 => \cnt_stream_out_reg_n_0_[15]\,
       O => \mst_exec_state1_carry__0_i_2_n_0\
     );
 \mst_exec_state1_carry__0_i_3\: unisim.vcomponents.LUT2
@@ -2578,8 +2578,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[13]\,
-      I1 => \cnt_stream_out_reg_n_0_[12]\,
+      I0 => \cnt_stream_out_reg_n_0_[12]\,
+      I1 => \cnt_stream_out_reg_n_0_[13]\,
       O => \mst_exec_state1_carry__0_i_3_n_0\
     );
 \mst_exec_state1_carry__0_i_4\: unisim.vcomponents.LUT2
@@ -2587,8 +2587,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[11]\,
-      I1 => \cnt_stream_out_reg_n_0_[10]\,
+      I0 => \cnt_stream_out_reg_n_0_[10]\,
+      I1 => \cnt_stream_out_reg_n_0_[11]\,
       O => \mst_exec_state1_carry__0_i_4_n_0\
     );
 \mst_exec_state1_carry__0_i_5\: unisim.vcomponents.LUT2
@@ -2620,8 +2620,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[23]\,
-      I1 => \cnt_stream_out_reg_n_0_[22]\,
+      I0 => \cnt_stream_out_reg_n_0_[22]\,
+      I1 => \cnt_stream_out_reg_n_0_[23]\,
       O => \mst_exec_state1_carry__1_i_1_n_0\
     );
 \mst_exec_state1_carry__1_i_2\: unisim.vcomponents.LUT2
@@ -2629,8 +2629,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[21]\,
-      I1 => \cnt_stream_out_reg_n_0_[20]\,
+      I0 => \cnt_stream_out_reg_n_0_[20]\,
+      I1 => \cnt_stream_out_reg_n_0_[21]\,
       O => \mst_exec_state1_carry__1_i_2_n_0\
     );
 \mst_exec_state1_carry__1_i_3\: unisim.vcomponents.LUT2
@@ -2638,8 +2638,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[19]\,
-      I1 => \cnt_stream_out_reg_n_0_[18]\,
+      I0 => \cnt_stream_out_reg_n_0_[18]\,
+      I1 => \cnt_stream_out_reg_n_0_[19]\,
       O => \mst_exec_state1_carry__1_i_3_n_0\
     );
 \mst_exec_state1_carry__1_i_4\: unisim.vcomponents.LUT2
@@ -2647,8 +2647,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[17]\,
-      I1 => \cnt_stream_out_reg_n_0_[16]\,
+      I0 => \cnt_stream_out_reg_n_0_[16]\,
+      I1 => \cnt_stream_out_reg_n_0_[17]\,
       O => \mst_exec_state1_carry__1_i_4_n_0\
     );
 \mst_exec_state1_carry__2\: unisim.vcomponents.CARRY4
@@ -2672,8 +2672,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[31]\,
-      I1 => \cnt_stream_out_reg_n_0_[30]\,
+      I0 => \cnt_stream_out_reg_n_0_[30]\,
+      I1 => \cnt_stream_out_reg_n_0_[31]\,
       O => \mst_exec_state1_carry__2_i_1_n_0\
     );
 \mst_exec_state1_carry__2_i_2\: unisim.vcomponents.LUT2
@@ -2681,8 +2681,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[29]\,
-      I1 => \cnt_stream_out_reg_n_0_[28]\,
+      I0 => \cnt_stream_out_reg_n_0_[28]\,
+      I1 => \cnt_stream_out_reg_n_0_[29]\,
       O => \mst_exec_state1_carry__2_i_2_n_0\
     );
 \mst_exec_state1_carry__2_i_3\: unisim.vcomponents.LUT2
@@ -2690,8 +2690,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[27]\,
-      I1 => \cnt_stream_out_reg_n_0_[26]\,
+      I0 => \cnt_stream_out_reg_n_0_[26]\,
+      I1 => \cnt_stream_out_reg_n_0_[27]\,
       O => \mst_exec_state1_carry__2_i_3_n_0\
     );
 \mst_exec_state1_carry__2_i_4\: unisim.vcomponents.LUT2
@@ -2699,8 +2699,8 @@ mst_exec_state1_carry: unisim.vcomponents.CARRY4
       INIT => X"1"
     )
         port map (
-      I0 => \cnt_stream_out_reg_n_0_[25]\,
-      I1 => \cnt_stream_out_reg_n_0_[24]\,
+      I0 => \cnt_stream_out_reg_n_0_[24]\,
+      I1 => \cnt_stream_out_reg_n_0_[25]\,
       O => \mst_exec_state1_carry__2_i_4_n_0\
     );
 mst_exec_state1_carry_i_1: unisim.vcomponents.LUT2
@@ -2725,8 +2725,8 @@ mst_exec_state1_carry_i_3: unisim.vcomponents.LUT2
       INIT => X"1"
     )
         port map (
-      I0 => \^q\(7),
-      I1 => \^q\(6),
+      I0 => \^q\(6),
+      I1 => \^q\(7),
       O => mst_exec_state1_carry_i_3_n_0
     );
 mst_exec_state1_carry_i_4: unisim.vcomponents.LUT2
@@ -2773,15 +2773,15 @@ mst_exec_state1_carry_i_6: unisim.vcomponents.LUT2
       C => M_AXIS_ACLK,
       CE => '1',
       D => tx_en,
-      Q => tx_state(0),
+      Q => p_0_in(1),
       R => '0'
     );
 \tx_state_reg[1]\: unisim.vcomponents.FDRE
      port map (
       C => M_AXIS_ACLK,
       CE => '1',
-      D => tx_state(0),
-      Q => tx_state(1),
+      D => p_0_in(1),
+      Q => \tx_state_reg_n_0_[1]\,
       R => '0'
     );
 end STRUCTURE;
@@ -2815,7 +2815,7 @@ entity base_zynq_axistream_0_0 is
   attribute ip_definition_source : string;
   attribute ip_definition_source of base_zynq_axistream_0_0 : entity is "module_ref";
   attribute x_core_info : string;
-  attribute x_core_info of base_zynq_axistream_0_0 : entity is "axistream,Vivado 2018.2";
+  attribute x_core_info of base_zynq_axistream_0_0 : entity is "axistream,Vivado 2020.1";
 end base_zynq_axistream_0_0;
 
 architecture STRUCTURE of base_zynq_axistream_0_0 is
@@ -2823,13 +2823,13 @@ architecture STRUCTURE of base_zynq_axistream_0_0 is
   attribute x_interface_info : string;
   attribute x_interface_info of M_AXIS_ACLK : signal is "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of M_AXIS_ACLK : signal is "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_BUSIF M_AXIS, ASSOCIATED_RESET M_AXIS_ARESETN, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0";
+  attribute x_interface_parameter of M_AXIS_ACLK : signal is "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_BUSIF M_AXIS, ASSOCIATED_RESET M_AXIS_ARESETN, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0";
   attribute x_interface_info of M_AXIS_ARESETN : signal is "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST";
-  attribute x_interface_parameter of M_AXIS_ARESETN : signal is "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW";
+  attribute x_interface_parameter of M_AXIS_ARESETN : signal is "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute x_interface_info of M_AXIS_TLAST : signal is "xilinx.com:interface:axis:1.0 M_AXIS TLAST";
   attribute x_interface_info of M_AXIS_TREADY : signal is "xilinx.com:interface:axis:1.0 M_AXIS TREADY";
   attribute x_interface_info of M_AXIS_TVALID : signal is "xilinx.com:interface:axis:1.0 M_AXIS TVALID";
-  attribute x_interface_parameter of M_AXIS_TVALID : signal is "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef";
+  attribute x_interface_parameter of M_AXIS_TVALID : signal is "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute x_interface_info of M_AXIS_TDATA : signal is "xilinx.com:interface:axis:1.0 M_AXIS TDATA";
   attribute x_interface_info of M_AXIS_TSTRB : signal is "xilinx.com:interface:axis:1.0 M_AXIS TSTRB";
 begin

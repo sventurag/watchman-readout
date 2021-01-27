@@ -14,9 +14,8 @@
 #include "axis_peripheral.h"
 #include "file_hm.h"
 #include "global.h"
-#include "iic_DAC_LTC2657.h"
+//#include "iic_DAC_LTC2657.h"
 #include "pedestal.h"
-#include "xtime_l.h"
 #include "xscuwdt.h"
 //#include "xiicps.h"
 #include "get_15_windows.h"
@@ -24,6 +23,9 @@
 #include "transfer_function.h"
 #include "xtime_l.h"
 #include "data_analysis.h"
+#include "I2C_bit_banging.h"
+#include "gpio_ctrl.h"
+//#include "gpio_ctrl.h"
 /**************** External global variables ****************/
 /*********************************************************/
 /** @brief Pointer on the network interface */
@@ -98,6 +100,14 @@ extern int nmbrWindowsPed;
  /* data structure from PL */
  extern InboundRingManager_t inboundRingManager;
 
+ /** Flag to start pedestal mode pedestal acquisition */
+ extern bool pedestalTriggerModeFlag;
+
+ /**number of average for pedestals in trigger mode*/
+ extern int nbr_avg_ped_triggerMode;
+ /** Flag to start division by  nbr_avg_ped_triggerMode */
+ extern bool dividePedestalsFlag;
+
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Network interface */
@@ -124,6 +134,7 @@ typedef enum dma_stm_enum{
 	GET_WINDOWS,		/**< System sending the data of consecutive windows in response to the corresponding command */
 	GET_PEDESTAL,      /**< System getting the pedestal for an specific voltage and nmbr of windows, data saved into the pedestal variable */
 	GET_WINDOWS_RAW,   /**< System getting the pedestal for an specific voltage and nmbr of windows, dat */
+	DIVIDE_PEDESTALS,
 	RESTART,           /**< Restart main() */
 } dma_stm_en;
 
@@ -148,6 +159,7 @@ int main()
 //    int window;
 //	uint16_t data_tmp, data_tmp2;
 //	int Windows_triggerMode;
+    int cnt_avg_number=0;
 
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
@@ -161,6 +173,8 @@ int main()
 
 	/* the mac address of the board. this should be unique per board */
 	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
+
+	int cnt_pedestal_windows =0;
 
 	xil_printf("\n\r\n\r------START------\r\n");
 
@@ -214,34 +228,51 @@ int main()
 
 	/* now enable interrupts */
 	enable_interrupts();
-
-	/* Initialize the DAC (Vped, Comparator value) */
-	if(DAC_LTC2657_initialize() == XST_SUCCESS) xil_printf("DAC initialization pass!\r\n");
+//
+//	/* Initialize the DAC (Vped, Comparator value) */
+	if(gpio_init() == XST_SUCCESS) xil_printf("DAC initialization pass!\r\n");
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC initialization failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_VPED,VPED_ANALOG) != XST_SUCCESS){
-	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
-		return -1;
-	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_0,THRESHOLD_CMP) != XST_SUCCESS){
+
+	if(set_DAC_CHANNEL(DAC_GRP_0,THRESHOLD_CMP_0) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_1,THRESHOLD_CMP) != XST_SUCCESS){
+	if(set_DAC_CHANNEL(DAC_GRP_1,THRESHOLD_CMP_1) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 1 voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_2,THRESHOLD_CMP) != XST_SUCCESS){
+	if(set_DAC_CHANNEL(DAC_GRP_2,THRESHOLD_CMP_2) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
 		return -1;
 	}
-	if(DAC_LTC2657_SetChannelVoltage(DAC_GRP_3,THRESHOLD_CMP) != XST_SUCCESS){
+	if(set_DAC_CHANNEL(DAC_GRP_3,THRESHOLD_CMP_3) != XST_SUCCESS){
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 3 voltage failed!");
 		return -1;
 	}
-
+	if(set_DAC_CHANNEL(DAC_GRP_4,THRESHOLD_CMP_4) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 0 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_5,THRESHOLD_CMP_5) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 1 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_6,THRESHOLD_CMP_6) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
+		return -1;
+	}
+	if(set_DAC_CHANNEL(DAC_GRP_7,THRESHOLD_CMP_7) != XST_SUCCESS){
+		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting group threshold PMT 2 voltage failed!");
+		return -1;
+	}
+   usleep(30);
+	if(set_DAC_CHANNEL_8574(VPED_ANALOG) != XST_SUCCESS){
+	    end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT, "DAC: setting Vped voltage failed!");
+		return -1;
+	}
 
 	/* Add network interface to the netif_list, and set it as default */
 	ipaddr.addr = 0;
@@ -296,13 +327,17 @@ int main()
 	SetTargetCRegisters();
 	printf("sleep to set the debug core\r\n");
 
-	/* Test pattern */
+/*
+	 Test pattern
 	if(test_TPG() == XST_SUCCESS) printf("TestPattern Generator pass!\r\n");
 	else{
 		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
 		return -1;
 	}
     sleep(5);
+
+*/
+
 	/* Initialize pedestal
 	if(get_pedestal(50, 1) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
 //	if(init_pedestals() == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
@@ -329,7 +364,8 @@ int main()
 */
 	//get_pedestal(100,4);
 	flag_while_loop = true;
-
+	pedestal_triggerMode_init();
+	usleep(100);
 	printf("Start while loop\r\n");
 	while (run_flag){
 		/* Simulate a infinity loop to trigger the watchdog  */
@@ -399,6 +435,9 @@ int main()
 						ControlRegisterWrite(CPUMODE_MASK,DISABLE);
 						state_main = GET_WINDOWS_RAW;
 					}
+				if(dividePedestalsFlag){
+					state_main = DIVIDE_PEDESTALS;
+					}
 				break;
 			case STREAM:
 				if((!stream_flag)){
@@ -437,6 +476,7 @@ int main()
 				usleep(100);
 				clearInboundBuffer();
 				usleep(100);
+				// INIT PEDESTALS
 
 			///	PrintInboundRingStatus(inboundRingManager);
 				usleep(100);
@@ -446,16 +486,23 @@ int main()
 			     usleep(100);
 				 ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
 			     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-
-				usleep(100);
+					usleep(100);
+			     xil_printf(" pendingCountBefore: %d \r\n",inboundRingManager.pendingCount);
+			     usleep(100);
 				printf("after inboundRingManager print, starting while loop \r\n");
 				 usleep(100);
-				 XTime_GetTime(&tStart);
+
+			//	 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
-							udp_transfer_WM( &(inboundRingManager)); //Last argument is "process as pedestal"
-						//	xil_printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
-		                      Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+							if (pedestalTriggerModeFlag == true) {
+                            pedestal_triggerMode_getArrays(&(inboundRingManager));
+							}
+							if (pedestalTriggerModeFlag != true) {
+								udp_transfer_WM( &(inboundRingManager));
+							}
+
+							Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 						     updateInboundCircBuffer();
 
 						//     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
@@ -465,11 +512,11 @@ int main()
 					//	timeout = 200000;
 						}
 
-							/* If needed, update timefile */
-							if(flag_ttcps_timer){
-								update_timefile();
-								flag_ttcps_timer = false;
-							}
+//							/* If needed, update timefile */
+//							if(flag_ttcps_timer){
+//								update_timefile();
+//								flag_ttcps_timer = false;
+//							}
 
 							/* If needed, reload watchdog's counter */
 							if(flag_scu_timer){
@@ -489,15 +536,15 @@ int main()
 
 
 
-
 				stream_flag= FALSE;
-				XTime_GetTime(&tEnd);
+			//	XTime_GetTime(&tEnd);
 				usleep(100);
 				printf("leaving trigger mode\r\n");
 			    xil_printf("p %d \r\n", (uint16_t)(inboundRingManager.processedCount));
-				printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
+				PrintInboundRingStatus(inboundRingManager);
+			//	printf("Time1 %lld, Time2 %lld, Diff %lld \r\n", tStart, tEnd, tEnd-tStart);
 				state_main = IDLE;
-
+				clearInboundBuffer();
 
 				break;
 			case GET_TRANSFER_FCT:
@@ -510,7 +557,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS:
-				if(get_15_windows_fct() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				if(PulseSweep() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
 				return -1;
@@ -536,6 +583,15 @@ int main()
 				}
 				pedestal_flag = false;
 				state_main = IDLE;
+				break;
+			case DIVIDE_PEDESTALS:
+			    if(dividePedestalsFlag) {
+			     divideByAverageNumber();
+			     usleep(10);
+			     dividePedestalsFlag=false;
+
+			    printf("Restarting");
+			    }
 				break;
 			case RESTART:
 			    if(restart_flag) {

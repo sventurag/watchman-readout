@@ -18,7 +18,7 @@ entity WindowStoreV4 is
 	CPUBus:			in 	std_logic_vector(10 downto 0);
 	CPUTime:		in	T_timestamp;
 	TriggerInfo:	in 	std_logic_vector(11 downto 0);
-	trigger:        in  std_logic_vector(3 downto 0);
+	--trigger:        in  std_logic_vector(3 downto 0);
 
 	
     -- Control Signals
@@ -107,7 +107,21 @@ COMPONENT axi_time_fifo_64W_32D
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
-COMPONENT axi_trig_afifo_12W_32D
+--COMPONENT axi_trig_afifo_12W_32D
+--  PORT (
+--    wr_clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
+--    din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
+--    wr_en : IN STD_LOGIC;
+--    rd_en : IN STD_LOGIC;
+--    dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
+--    full : OUT STD_LOGIC;
+--    empty : OUT STD_LOGIC
+--  );
+--END COMPONENT;
+        
+        
+        COMPONENT AXI_TRIG_AFIFO
   PORT (
     wr_clk : IN STD_LOGIC;
     rd_clk : IN STD_LOGIC;
@@ -119,7 +133,6 @@ COMPONENT axi_trig_afifo_12W_32D
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
-        
 --COMPONENT trig_fifo_3W_16D
 --  PORT (
 --    wr_clk : IN STD_LOGIC;
@@ -156,7 +169,7 @@ END COMPONENT;
 
 	--signal TrigInfoDly, TrigInfoBuf, TrigInfoBuf_dly : std_logic_vector(11 downto 0);
 
-	signal Trig:	std_logic_vector(11 downto 0);
+--	signal Trig:	std_logic_vector(11 downto 0);
 
 	signal Wdo1:	std_logic_vector(8 downto 0);
     signal WdoNumber:	std_logic_vector(8 downto 0);
@@ -203,7 +216,7 @@ begin
 			--RDAD_WriteEn_intl <= '0';
 			--AXI_WriteEn_intl <= '0';
 			NbrOfPackets_intl <= (others => '0');
-			trig <= (others => '0');
+--			trig <= (others => '0');
 			Wdo1 <= (others => '0');
 			counter <= (others => '0');
 			cmd_s1 <= (others => '0');
@@ -342,7 +355,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 	WriteEn <= 	WriteEn_mult;
 	WdoNumber<= WdoNumber_mult;
     Cmd_s<= (others => '0');
-    Trig <= (others => '0');
+--    Trig <= (others => '0');
     counter <= (others => '0');
 -- Window address to RDAD_ADD module
 
@@ -429,7 +442,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 
 -- Trigger info  for FIFO_TrigInfo in FIFO MANAGER
     
-    AXI_Trig_AFIFO :  axi_trig_afifo_12W_32D
+    AXI_Trig_AFIFO_inst :  AXI_TRIG_AFIFO
     port map (
 
      dout => AXI_TrigInfo_DataOut,
@@ -438,7 +451,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
      rd_clk => ClockBus.AXI_CLK,
 
      
-     din => Trig,
+     din => TriggerInfo,
      full => axi_full_s(3),
      wr_en => WriteEn,
      wr_clk => ClockBus.CLK125MHz

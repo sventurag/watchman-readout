@@ -47,48 +47,103 @@ def softTrigger():
     wave_gen().softTrigger()
     time.sleep(1)
 
+def pedestalTriggerMode(avg):
+    tc.send_command(10,0,avg)
+    time.sleep(1)
+
+def pedestalFlat(avg):
+    tc.send_command(12,0,avg)
+    time.sleep(1)
+
+def dividePedestals():
+    tc.send_command(13,0,0)
+    time.sleep(1)
+def pulseAmpl(ampl):
+    wave_gen().volt(ampl)
+    time.sleep(1)
 #restart()
+wave_gen().functionPulse()
+time.sleep(1)
+wave_gen().bursSettings(1)
+#wave_gen().ncyc(1)
+time.sleep(1)
+pulseAmpl(200e-3)
+time.sleep(1)
 
 #import subprocess
 #subprocess.call("./tcpdumpWatchmanData", cwd="/home/salvador/bin")
 
 # Taking Pedestals 
 
-tc.send_command(9,100,1)
-time.sleep(15)
-print("conf waveform generator")
-wave_gen().loadHz(1000)
+#tc.send_command(9,100,1)
+#time.sleep(15)
+#
+#print("conf waveform generator")
+#wave_gen().loadHz(75)
+#
+#wave_gen().pulseWidth(12e-9)
+#time.sleep(1)
+#
+##  freq, amp, offset
+#wave_gen().apply(1000,0.15,0)
+#
+#wave_gen().Query()
+#time.sleep(1)
+#
+#
+wave_gen().Output1(out=False)  
+time.sleep(2)#
+##setFreq(10000)
 
-wave_gen().pulseWidth(12e-9)
+setDelay(7)
 time.sleep(1)
+#time.sleep(2)
+
+triggerMode()
+
+time.sleep(1)
+
+
+
+avgNmbr = 99
+
+#pedestalTriggerMode(avgNmbr)
+sec2wait= int(((avgNmbr*1024)/4000))
+
+#for i in range(0,1,1):
+pedestalTriggerMode(avgNmbr)
+    #print(i)
+time.sleep(sec2wait)
+wave_gen().Output1(out=True)  
+
+#dividePedestals()
+#print('Divide Pedestals')
+#time.sleep(10)
+#
+
+#triggerMode()
+
+#time.sleep(2)
+#triggerMode()
+
+#pedestalFlat(0)
 
 #  freq, amp, offset
-wave_gen().apply(1000,0.15,0)
 
-wave_gen().Query()
-time.sleep(1)
+#wave_gen().apply(1000,0.1,0)
+#time.sleep(5)
 
+#wave_gen().Query()
+#time.sleep(5)
 
+#wave_gen().Output1(out=True)  
+for i in range(0,100,1):
 
-#setFreq(10000)
-setDelay(7)
-time.sleep(5)
-triggerMode()
-#softTrigger()
+    softTrigger()
+    time.sleep(0.01)
 
 
 #####
 #
-
-
 print("end")
-
-
-
-
-
-
-
-
-
 
