@@ -72,15 +72,15 @@ set_property PACKAGE_PIN U5 [get_ports A_GCC_RESET]
 #set_property PACKAGE_PIN C5 [get_ports MIO0]	; # 7G
 #set_property PACKAGE_PIN C7 [get_ports PG_ZED]	; # 11
 #########################################
-#set_property PACKAGE_PIN G14 [get_ports B_TRIG3]	; # 13
-#set_property PACKAGE_PIN C20 [get_ports B_TRIG2]	; # 17
-#set_property PACKAGE_PIN B20 [get_ports B_TRIG1]	; # 19
-#set_property PACKAGE_PIN E17 [get_ports B_RAMP]	; # 23
-#set_property PACKAGE_PIN D18 [get_ports B_SS_LD_DIR]	; # 25
-#set_property PACKAGE_PIN E18 [get_ports B_SS_LD_SIN]	; # 29
-#set_property PACKAGE_PIN E19 [get_ports B_SS_RESET]	; # 31
-#set_property PACKAGE_PIN L19 [get_ports B_DONE]	; # 35
-#set_property PACKAGE_PIN L20 [get_ports B_DO_1]	; # 37
+set_property PACKAGE_PIN G14 [get_ports B_TRIG3]	; # 13
+set_property PACKAGE_PIN C20 [get_ports B_TRIG2]	; # 17
+set_property PACKAGE_PIN B20 [get_ports B_TRIG1]	; # 19
+set_property PACKAGE_PIN E17 [get_ports B_RAMP]	; # 23
+set_property PACKAGE_PIN D18 [get_ports B_SS_LD_DIR]	; # 25
+set_property PACKAGE_PIN E18 [get_ports B_SS_LD_SIN]	; # 29
+set_property PACKAGE_PIN E19 [get_ports B_SS_RESET]	; # 31
+set_property PACKAGE_PIN L19 [get_ports B_DONE]	; # 35
+set_property PACKAGE_PIN L20 [get_ports B_DO_1]	; # 37
 ###################################################
 #set_property PACKAGE_PIN M18 [get_ports SYNCACK_N]	; # 41  THIS PORTS WERE MANUALLY SWAPPED HERE  M17
 #set_property PACKAGE_PIN M17 [get_ports SYNCACK_P]	; # 43  THIS PORTS WERE MANUALLY SWAPPED HERE  M18
@@ -97,46 +97,46 @@ set_property PACKAGE_PIN U5 [get_ports A_GCC_RESET]
 #set_property PACKAGE_PIN N16 [get_ports INPUT_CLK_N]	; # 81     THIS PORTS WERE MANUALLY SWAPPED HERE N15
 #set_property PACKAGE_PIN N15 [get_ports INPUT_CLK_P]	; # 83     THIS PORTS WERE MANUALLY SWAPPED HERE N16
 ###############################################################
-#set_property PACKAGE_PIN M14 [get_ports B_DO_2]	; # 87
-#set_property PACKAGE_PIN M15 [get_ports B_DO_3]	; # 89
-#set_property PACKAGE_PIN Y12 [get_ports B_DO_4]	; # 93
-#set_property PACKAGE_PIN Y13 [get_ports B_DO_5]	; # 95
-#set_property PACKAGE_PIN V6 [get_ports B_DO_6]	; # 97
-#set_property PACKAGE_PIN W6 [get_ports B_DO_7]	; # 99
+set_property PACKAGE_PIN M14 [get_ports B_DO_2]	; # 87
+set_property PACKAGE_PIN M15 [get_ports B_DO_3]	; # 89
+set_property PACKAGE_PIN Y12 [get_ports B_DO_4]	; # 93
+set_property PACKAGE_PIN Y13 [get_ports B_DO_5]	; # 95
+set_property PACKAGE_PIN V6 [get_ports B_DO_6]	; # 97
+set_property PACKAGE_PIN W6 [get_ports B_DO_7]	; # 99
 ########################################################
 # JX2 even pins
 #set_property PACKAGE_PIN E9 [get_ports CS_ENABLE]	; # 2
 #set_property PACKAGE_PIN D9 [get_ports SDA]	; # 4
 #set_property PACKAGE_PIN C8 [get_ports MIO9]	; # 8
 #############################################
-#set_property PACKAGE_PIN J15 [get_ports B_TRIG4]	; # 14
-#set_property PACKAGE_PIN B19 [get_ports B_HSCLK_P]	; # 18
-#set_property PACKAGE_PIN A20 [get_ports B_HSCLK_N]	; # 20
-#set_property PACKAGE_PIN D19 [get_ports B_PCLK]	; # 24
-#set_property PACKAGE_PIN D20 [get_ports B_SHOUT]	; # 26
-#set_property PACKAGE_PIN F16 [get_ports B_WR_RS_S0]	; # 30
-#set_property PACKAGE_PIN F17 [get_ports B_WR_RS_S1]	; # 32
-#set_property PACKAGE_PIN M19 [get_ports B_WR_CS_S0]	; # 36
-#set_property PACKAGE_PIN M20 [get_ports B_WR_CS_S1]	; # 38
-#set_property PACKAGE_PIN K19 [get_ports B_WR_CS_S2]	; # 42
-#set_property PACKAGE_PIN J19 [get_ports B_WR_CS_S3]	; # 44
-#set_property PACKAGE_PIN K17 [get_ports B_WR_CS_S4]	; # 48
-#set_property PACKAGE_PIN K18 [get_ports B_WR_CS_S5]	; # 50
-#set_property PACKAGE_PIN J18 [get_ports B_GCC_RESET]	; # 54
-#set_property PACKAGE_PIN H18 [get_ports B_RDAD_CLK]	; # 56
-#set_property PACKAGE_PIN F19 [get_ports B_RDAD_SIN]	; # 62
-#set_property PACKAGE_PIN F20 [get_ports B_RDAD_DIR]	; # 64
-#set_property PACKAGE_PIN J20 [get_ports B_SAMPLESEL_ANY]	; # 68
-#set_property PACKAGE_PIN H20 [get_ports B_DO_16]	; # 70
-#set_property PACKAGE_PIN H15 [get_ports B_DO_15]	; # 74
-#set_property PACKAGE_PIN G15 [get_ports B_DO_14]	; # 76
-#set_property PACKAGE_PIN L14 [get_ports B_DO_13]	; # 82
-#set_property PACKAGE_PIN L15 [get_ports B_DO_12]	; # 84
-#set_property PACKAGE_PIN K16 [get_ports B_DO_11]	; # 88
-#set_property PACKAGE_PIN J16 [get_ports B_DO_10]	; # 90
-#set_property PACKAGE_PIN V11 [get_ports B_DO_9]	; # 94
-#set_property PACKAGE_PIN V10 [get_ports B_SS_INCR]	; # 96
-#set_property PACKAGE_PIN V5 [get_ports B_DO_8]	; # 100
+set_property PACKAGE_PIN J15 [get_ports B_TRIG4]	; # 14
+set_property PACKAGE_PIN B19 [get_ports B_HSCLK_P]	; # 18
+set_property PACKAGE_PIN A20 [get_ports B_HSCLK_N]	; # 20
+set_property PACKAGE_PIN D19 [get_ports B_PCLK]	; # 24
+set_property PACKAGE_PIN D20 [get_ports B_SHOUT]	; # 26
+set_property PACKAGE_PIN F16 [get_ports B_WR_RS_S0]	; # 30
+set_property PACKAGE_PIN F17 [get_ports B_WR_RS_S1]	; # 32
+set_property PACKAGE_PIN M19 [get_ports B_WR_CS_S0]	; # 36
+set_property PACKAGE_PIN M20 [get_ports B_WR_CS_S1]	; # 38
+set_property PACKAGE_PIN K19 [get_ports B_WR_CS_S2]	; # 42
+set_property PACKAGE_PIN J19 [get_ports B_WR_CS_S3]	; # 44
+set_property PACKAGE_PIN K17 [get_ports B_WR_CS_S4]	; # 48
+set_property PACKAGE_PIN K18 [get_ports B_WR_CS_S5]	; # 50
+set_property PACKAGE_PIN J18 [get_ports B_GCC_RESET]	; # 54
+set_property PACKAGE_PIN H18 [get_ports B_RDAD_CLK]	; # 56
+set_property PACKAGE_PIN F19 [get_ports B_RDAD_SIN]	; # 62
+set_property PACKAGE_PIN F20 [get_ports B_RDAD_DIR]	; # 64
+set_property PACKAGE_PIN J20 [get_ports B_SAMPLESEL_ANY]	; # 68
+set_property PACKAGE_PIN H20 [get_ports B_DO_16]	; # 70
+set_property PACKAGE_PIN H15 [get_ports B_DO_15]	; # 74
+set_property PACKAGE_PIN G15 [get_ports B_DO_14]	; # 76
+set_property PACKAGE_PIN L14 [get_ports B_DO_13]	; # 82
+set_property PACKAGE_PIN L15 [get_ports B_DO_12]	; # 84
+set_property PACKAGE_PIN K16 [get_ports B_DO_11]	; # 88
+set_property PACKAGE_PIN J16 [get_ports B_DO_10]	; # 90
+set_property PACKAGE_PIN V11 [get_ports B_DO_9]	; # 94
+set_property PACKAGE_PIN V10 [get_ports B_SS_INCR]	; # 96
+set_property PACKAGE_PIN V5 [get_ports B_DO_8]	; # 100
 #### #### #### #### #### #### #### #### #### #### #### ####
 # IOSTANDARD
 #### #### #### #### #### #### #### #### #### #### #### ####
@@ -214,15 +214,15 @@ set_property IOSTANDARD LVCMOS25 [get_ports A_GCC_RESET]
 #set_property IOSTANDARD LVCMOS25 [get_ports MIO0]	; # 7
 #set_property IOSTANDARD LVCMOS25 [get_ports PG_ZED]	; # 11
 #######################3333
-#set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG3]	; # 13
-#set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG2]	; # 17
-#set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG1]	; # 19
-#set_property IOSTANDARD LVCMOS25 [get_ports B_RAMP]	; # 23
-#set_property IOSTANDARD LVCMOS25 [get_ports B_SS_LD_DIR]	; # 25
-#set_property IOSTANDARD LVCMOS25 [get_ports B_SS_LD_SIN]	; # 29
-#set_property IOSTANDARD LVCMOS25 [get_ports B_SS_RESET]	; # 31
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DONE]	; # 35
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_1]	; # 37
+set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG3]	; # 13
+set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG2]	; # 17
+set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG1]	; # 19
+set_property IOSTANDARD LVCMOS25 [get_ports B_RAMP]	; # 23
+set_property IOSTANDARD LVCMOS25 [get_ports B_SS_LD_DIR]	; # 25
+set_property IOSTANDARD LVCMOS25 [get_ports B_SS_LD_SIN]	; # 29
+set_property IOSTANDARD LVCMOS25 [get_ports B_SS_RESET]	; # 31
+set_property IOSTANDARD LVCMOS25 [get_ports B_DONE]	; # 35
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_1]	; # 37
 ##########################33
 #set_property IOSTANDARD LVDS_25 [get_ports SYNCACK_N]	; # 41
 #set_property IOSTANDARD LVDS_25 [get_ports SYNCACK_P]	; # 43
@@ -239,44 +239,44 @@ set_property IOSTANDARD LVCMOS25 [get_ports A_GCC_RESET]
 #set_property IOSTANDARD LVDS_25 [get_ports INPUT_CLK_N]	; # 81
 #set_property IOSTANDARD LVDS_25 [get_ports INPUT_CLK_P]	; # 83
 ###########33
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_2]	; # 87
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_3]	; # 89
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_4]	; # 93
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_5]	; # 95
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_6]	; # 97
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_7]	; # 99
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_2]	; # 87
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_3]	; # 89
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_4]	; # 93
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_5]	; # 95
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_6]	; # 97
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_7]	; # 99
 # JX2 even pins
 #set_property IOSTANDARD LVCMOS25 [get_ports CS_ENABLE]	; # 2
 #set_property IOSTANDARD LVCMOS25 [get_ports SDA]	; # 4
 #set_property IOSTANDARD LVCMOS25 [get_ports MIO9]	; # 8
 ########################33333
-#set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG4]	; # 14
-#set_property IOSTANDARD LVDS_25 [get_ports B_HSCLK_P]	; # 18
-#set_property IOSTANDARD LVDS_25 [get_ports B_HSCLK_N]	; # 20
-#set_property IOSTANDARD LVCMOS25 [get_ports B_PCLK]	; # 24
-#set_property IOSTANDARD LVCMOS25 [get_ports B_SHOUT]	; # 26
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_RS_S0]	; # 30
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_RS_S1]	; # 32
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S0]	; # 36
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S1]	; # 38
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S2]	; # 42
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S3]	; # 44
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S4]	; # 48
-#set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S5]	; # 50
-#set_property IOSTANDARD LVCMOS25 [get_ports B_GCC_RESET]	; # 54
-#set_property IOSTANDARD LVCMOS25 [get_ports B_RDAD_CLK]	; # 56
-#set_property IOSTANDARD LVCMOS25 [get_ports B_RDAD_SIN]	; # 62
-#set_property IOSTANDARD LVCMOS25 [get_ports B_RDAD_DIR]	; # 64
-#set_property IOSTANDARD LVCMOS25 [get_ports B_SAMPLESEL_ANY]	; # 68
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_16]	; # 70
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_15]	; # 74
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_14]	; # 76
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_13]	; # 82
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_12]	; # 84
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_11]	; # 88
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_10]	; # 90
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_9]	; # 94
-#set_property IOSTANDARD LVCMOS25 [get_ports B_SS_INCR]	; # 96
-#set_property IOSTANDARD LVCMOS25 [get_ports B_DO_8]	; # 100
+set_property IOSTANDARD LVCMOS25 [get_ports B_TRIG4]	; # 14
+set_property IOSTANDARD LVDS_25 [get_ports B_HSCLK_P]	; # 18
+set_property IOSTANDARD LVDS_25 [get_ports B_HSCLK_N]	; # 20
+set_property IOSTANDARD LVCMOS25 [get_ports B_PCLK]	; # 24
+set_property IOSTANDARD LVCMOS25 [get_ports B_SHOUT]	; # 26
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_RS_S0]	; # 30
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_RS_S1]	; # 32
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S0]	; # 36
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S1]	; # 38
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S2]	; # 42
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S3]	; # 44
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S4]	; # 48
+set_property IOSTANDARD LVCMOS25 [get_ports B_WR_CS_S5]	; # 50
+set_property IOSTANDARD LVCMOS25 [get_ports B_GCC_RESET]	; # 54
+set_property IOSTANDARD LVCMOS25 [get_ports B_RDAD_CLK]	; # 56
+set_property IOSTANDARD LVCMOS25 [get_ports B_RDAD_SIN]	; # 62
+set_property IOSTANDARD LVCMOS25 [get_ports B_RDAD_DIR]	; # 64
+set_property IOSTANDARD LVCMOS25 [get_ports B_SAMPLESEL_ANY]	; # 68
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_16]	; # 70
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_15]	; # 74
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_14]	; # 76
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_13]	; # 82
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_12]	; # 84
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_11]	; # 88
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_10]	; # 90
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_9]	; # 94
+set_property IOSTANDARD LVCMOS25 [get_ports B_SS_INCR]	; # 96
+set_property IOSTANDARD LVCMOS25 [get_ports B_DO_8]	; # 100
 
 
