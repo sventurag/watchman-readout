@@ -129,16 +129,16 @@ entity TARGET_C_TopLevel_System is
 		TrigD :			in std_logic;
 
 		-- Interrupt SIGNALS
-		SSVALID_INTR:	out	std_logic;
+		SSVALID_INTR:	out	std_logic
 
 
 
-		-- DEBUG OUTPUTs
-		BB1 :	out std_logic;
-		BB2 :	out std_logic;
-		BB3 :	out std_logic;
-		BB4 :	out std_logic;
-		BB5 :	out std_logic
+--		-- DEBUG OUTPUTs
+--		BB1 :	out std_logic;
+--		BB2 :	out std_logic;
+--		BB3 :	out std_logic;
+--		BB4 :	out std_logic;
+--		BB5 :	out std_logic
 	
 	
 		
@@ -848,39 +848,39 @@ SyncBitCNT_CLR: SyncBit
 	TestStream <= CtrlBusOut_intl.TestStream;
 
 
- -- Debug pins
+ -- Debug pins for FMC board
 
 -- For triggering a signal every time WR_CS and WR_RS are equal to zero 
 
 
 -- Debug pins
 
-process (WR_CS_S_intl, WR_RS_S_intl)
-begin
-      if (WR_CS_S_intl = "000000" and WR_RS_S_intl= "00") then
-              BB2 <= '0';
-      else
-              BB2 <= '1';
-      end if;
-end process;
-
-
---process (address_is_zero_intl)
+--process (WR_CS_S_intl, WR_RS_S_intl)
 --begin
---	if (address_is_zero_intl = '1' ) then
---		BB5 <= '0';
-----		BB2 <= '0';
---	else
---		BB5 <= '1';
---	--	BB2 <= '1';
---	end if;
+--      if (WR_CS_S_intl = "000000" and WR_RS_S_intl= "00") then
+--              BB2 <= '0';
+--      else
+--              BB2 <= '1';
+--      end if;
 --end process;
 
+
+----process (address_is_zero_intl)
+----begin
+----	if (address_is_zero_intl = '1' ) then
+----		BB5 <= '0';
+------		BB2 <= '0';
+----	else
+----		BB5 <= '1';
+----	--	BB2 <= '1';
+----	end if;
+----end process;
+
 	
-	BB5 <= ClockBus_intl.SSTIN;
-   -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
-	BB4 <= CtrlBusIn_intl.SSvalid;
-	BB3 <= MONTIMING_inverted;
+--	BB5 <= ClockBus_intl.SSTIN;
+--   -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
+--	BB4 <= CtrlBusIn_intl.SSvalid;
+--	BB3 <= MONTIMING_inverted;
 
 
 
