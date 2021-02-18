@@ -4,7 +4,8 @@
 # 2020-08-28
 #REG_CLR
 #ISEL
-
+#For nonused ports in TARGETC
+set_property IO_BUFFER_TYPE none [get_ports unused_port_name]
 #set_property PULLUP true [get_ports SDA]
 #set_property PULLUP true [get_ports SCL]
 #### #### #### #### #### #### #### #### #### #### #### ####

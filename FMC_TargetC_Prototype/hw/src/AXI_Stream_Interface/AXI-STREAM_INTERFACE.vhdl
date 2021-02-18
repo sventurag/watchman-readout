@@ -32,6 +32,7 @@ entity axistream is
 		M_AXIS_TVALID	: out std_logic;
 		M_AXIS_TDATA	: out std_logic_vector(C_M_AXIS_TDATA_WIDTH-1 downto 0);
 		M_AXIS_TSTRB	: out std_logic_vector((C_M_AXIS_TDATA_WIDTH/8)-1 downto 0);
+		M_AXIS_TDEST    : out std_logic_vector(9 downto 0);
 		M_AXIS_TLAST	: out std_logic;
 		M_AXIS_TREADY	: in std_logic
 	);

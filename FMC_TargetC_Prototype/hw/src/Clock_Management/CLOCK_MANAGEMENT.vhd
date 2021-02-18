@@ -42,10 +42,10 @@ entity TC_ClockManagementV3 is
 		HSCLK_N:		out std_logic;		-- Pin#44
 
 		WL_CLK_P:		out std_logic;		-- Pin#57
-		WL_CLK_N:		out std_logic;		-- Pin#58
+		WL_CLK_N:		out std_logic		-- Pin#58
 
-		SSTIN_P:		out std_logic;		-- Pin#125
-		SSTIN_N:		out std_logic		-- Pin#126
+--		SSTIN_P:		out std_logic;		-- Pin#125
+--		SSTIN_N:		out std_logic		-- Pin#126
 
 	);
 end TC_ClockManagementV3;
@@ -382,16 +382,16 @@ begin
 
 	SSTIN_intl	<= not Timecounter_intl(2);
 
-	OBUFDF_SSTIN : OBUFDS
-	generic map(
-		IOSTANDARD  => "BLVDS_25"
-	)
-	port map(
-		O	=> SSTIN_P,
-		OB	=> SSTIN_N,
+--	OBUFDF_SSTIN : OBUFDS
+--	generic map(
+--		IOSTANDARD  => "BLVDS_25"
+--	)
+--	port map(
+--		O	=> SSTIN_P,
+--		OB	=> SSTIN_N,
 
-		I	=> SSTIN_intl
-	);
+--		I	=> SSTIN_intl
+--	);
 	
 
 

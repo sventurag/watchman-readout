@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Oct 15 14:24:24 2020
--- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
+-- Date        : Fri Feb 12 18:56:59 2021
+-- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
 -- Command     : write_vhdl -force -mode synth_stub
 --               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_axistream_0_0/base_zynq_axistream_0_0_stub.vhdl
 -- Design      : base_zynq_axistream_0_0
@@ -26,6 +26,7 @@ entity base_zynq_axistream_0_0 is
     M_AXIS_TVALID : out STD_LOGIC;
     M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
     M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
     M_AXIS_TLAST : out STD_LOGIC;
     M_AXIS_TREADY : in STD_LOGIC
   );
@@ -36,7 +37,7 @@ architecture stub of base_zynq_axistream_0_0 is
 attribute syn_black_box : boolean;
 attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
-attribute black_box_pad_pin of stub : architecture is "SW_nRST,TestStream,FIFOvalid,FIFOdata[31:0],StreamReady,Cnt_AXIS_DATA[9:0],CNT_CLR,M_AXIS_ACLK,M_AXIS_ARESETN,M_AXIS_TVALID,M_AXIS_TDATA[31:0],M_AXIS_TSTRB[3:0],M_AXIS_TLAST,M_AXIS_TREADY";
+attribute black_box_pad_pin of stub : architecture is "SW_nRST,TestStream,FIFOvalid,FIFOdata[31:0],StreamReady,Cnt_AXIS_DATA[9:0],CNT_CLR,M_AXIS_ACLK,M_AXIS_ARESETN,M_AXIS_TVALID,M_AXIS_TDATA[31:0],M_AXIS_TSTRB[3:0],M_AXIS_TDEST[9:0],M_AXIS_TLAST,M_AXIS_TREADY";
 attribute x_core_info : string;
 attribute x_core_info of stub : architecture is "axistream,Vivado 2020.1";
 begin

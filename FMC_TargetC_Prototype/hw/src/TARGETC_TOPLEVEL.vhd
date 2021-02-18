@@ -107,8 +107,9 @@ entity TARGET_C_TopLevel_System is
 
 		RAMP:			out	std_logic;		-- Pin#108
 
-		SSTIN_P:		out std_logic;		-- Pin#125
-		SSTIN_N:		out std_logic;		-- Pin#126
+--		SSTIN_P:		out std_logic;		-- Pin#125
+--		SSTIN_N:		out std_logic;		-- Pin#126
+        SSTIN :         out std_logic;
 
 		MONTIMING_P:	in	std_logic;		-- Pin#118
 		MONTIMING_N:	in	std_logic;		-- Pin#117
@@ -184,10 +185,10 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		HSCLK_N:		out std_logic;		-- Pin#44
 
 		WL_CLK_P:		out std_logic;		-- Pin#57
-		WL_CLK_N:		out std_logic;		-- Pin#58
+		WL_CLK_N:		out std_logic		-- Pin#58
 
-		SSTIN_P:		out std_logic;		-- Pin#125
-		SSTIN_N:		out std_logic		-- Pin#126
+--		SSTIN_P:		out std_logic;		-- Pin#125
+--		SSTIN_N:		out std_logic		-- Pin#126
 
 	);
 	end component TC_ClockManagementV3;
@@ -549,10 +550,10 @@ begin
 		HSCLK_N 		=> HSCLK_N,
 
 		WL_CLK_P 		=> WL_CLK_P,
-		WL_CLK_N 		=> WL_CLK_N,
+		WL_CLK_N 		=> WL_CLK_N
 
-		SSTIN_P 		=> SSTIN_P,
-		SSTIN_N 		=> SSTIN_N
+--		SSTIN_P 		=> SSTIN_P,
+--		SSTIN_N 		=> SSTIN_N
 	);
 
 	TC_Control_inst : TC_Control
@@ -877,7 +878,7 @@ SyncBitCNT_CLR: SyncBit
 ----end process;
 
 	
---	BB5 <= ClockBus_intl.SSTIN;
+ SSTIN <= ClockBus_intl.SSTIN;
 --   -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
 --	BB4 <= CtrlBusIn_intl.SSvalid;
 --	BB3 <= MONTIMING_inverted;
