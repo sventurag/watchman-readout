@@ -61,8 +61,10 @@ char* frame_buf;
 char* frame_buf_cmd_tmp;
 /** @brief Buffer used to send the command (50 bytes above it reserved for protocol header) */
 char* frame_buf_cmd;
-/** @brief Array containing registers of AXI-lite */
-int* regptr;
+/** @brief Array containing registers of AXI-lite for TARGETC_0 */
+int* regptr_0;
+/** @brief Array containing registers of AXI-lite TARGETC_1 */
+int* regptr_1;
 /** @brief Array containing the pedestal correction for every sample */
 uint32_t  pedestal[512][16][32];
 
@@ -191,8 +193,11 @@ int init_global_var(void){
 		return XST_FAILURE;
 	}
 	frame_buf_cmd = &frame_buf_cmd_tmp[BUF_HEADER_SIZE];
-	regptr = (int *)XPAR_TARGET_C_TOPLEVEL_SY_0_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_0_BASEADDR;
-	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr[i] = 0;
+	regptr_0 = (int *)XPAR_TARGET_C_TOPLEVEL_SY_0_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_0_BASEADDR;
+	regptr_1 =(int *)XPAR_TARGET_C_TOPLEVEL_SY_1_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_1_BASEADDR;
+
+	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_0[i] = 0;
+	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_1[i] = 0;
 	return XST_SUCCESS;
 }
 
