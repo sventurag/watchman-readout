@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Wed Feb 17 14:34:29 2021
+--Date        : Fri Feb 26 14:58:45 2021
 --Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
@@ -227,6 +227,7 @@ architecture STRUCTURE of base_zynq_wrapper is
     B_RAMP : out STD_LOGIC;
     B_SS_LD_SIN : out STD_LOGIC;
     B_SS_LD_DIR : out STD_LOGIC;
+    B_PCLK : out STD_LOGIC;
     DDR_cas_n : inout STD_LOGIC;
     DDR_cke : inout STD_LOGIC;
     DDR_ck_n : inout STD_LOGIC;
@@ -247,8 +248,7 @@ architecture STRUCTURE of base_zynq_wrapper is
     FIXED_IO_ddr_vrp : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
     FIXED_IO_ps_clk : inout STD_LOGIC;
-    FIXED_IO_ps_porb : inout STD_LOGIC;
-    B_PCLK : out STD_LOGIC
+    FIXED_IO_ps_porb : inout STD_LOGIC
   );
   end component base_zynq;
 begin

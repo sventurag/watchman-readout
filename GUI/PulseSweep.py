@@ -20,9 +20,9 @@ nmbrWindows = 1
 firstWindow= 0
 totalWindows = 512
 nmbrPedestals = 100
-channel = 2
+channel = 6
 width = 10e-9
-ampl = 0.5 
+ampl = 1 
 isel = 2300
 
 pg.isel(isel)
@@ -48,7 +48,7 @@ amplitudes= np.arange(0.5,2 ,2)
 repeticiones = list( range(0,5,1)   )
 
 #amplitudes=list(range(2100,2900,20))
-rango = list((range(0,110,100)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
+rango = list((range(100,110,100)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
 for item in repeticiones:
    # print("Amp=",item)
    # pg.pulseAmpl(item)
@@ -66,7 +66,7 @@ for item in repeticiones:
        pg.getWindows()
       # tc.send_command(7,0,0) # get windows
        time.sleep(1)
-    
+
 wave_gen().Output1(out=False)
 print("end")
 

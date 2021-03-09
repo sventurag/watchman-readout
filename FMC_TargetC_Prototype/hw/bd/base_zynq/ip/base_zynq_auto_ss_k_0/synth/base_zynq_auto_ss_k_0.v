@@ -52,8 +52,8 @@
 
 (* X_CORE_INFO = "top_base_zynq_auto_ss_k_0,Vivado 2020.1" *)
 (* CHECK_LICENSE_TYPE = "base_zynq_auto_ss_k_0,top_base_zynq_auto_ss_k_0,{}" *)
-(* CORE_GENERATION_INFO = "base_zynq_auto_ss_k_0,top_base_zynq_auto_ss_k_0,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_subset_converter,x_ipVersion=1.1,x_ipCoreRevision=21,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_S_AXIS_TDATA_WIDTH=32,C_S_AXIS_TID_WIDTH=1,C_S_AXIS_TDEST_WIDTH=10,C_S_AXIS_TUSER_WIDTH=1,C_S_AXIS_SIGNAL_SET=0b00000000000000000000000001010111,C_M_AXIS_TDATA_WIDTH=32,C_M_AXIS_TID_WIDTH=1,C_M_AXIS_TDEST_WIDTH=10,C_M_AXIS_SIGNAL_SET=0b00000000000000000000000001011\
-111,C_M_AXIS_TUSER_WIDTH=1,C_DEFAULT_TLAST=0}" *)
+(* CORE_GENERATION_INFO = "base_zynq_auto_ss_k_0,top_base_zynq_auto_ss_k_0,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_subset_converter,x_ipVersion=1.1,x_ipCoreRevision=21,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_S_AXIS_TDATA_WIDTH=32,C_S_AXIS_TID_WIDTH=2,C_S_AXIS_TDEST_WIDTH=1,C_S_AXIS_TUSER_WIDTH=1,C_S_AXIS_SIGNAL_SET=0b00000000000000000000000000110111,C_M_AXIS_TDATA_WIDTH=32,C_M_AXIS_TID_WIDTH=2,C_M_AXIS_TDEST_WIDTH=1,C_M_AXIS_SIGNAL_SET=0b0000000000000000000000000011111\
+1,C_M_AXIS_TUSER_WIDTH=1,C_DEFAULT_TLAST=0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module base_zynq_auto_ss_k_0 (
   aclk,
@@ -63,14 +63,14 @@ module base_zynq_auto_ss_k_0 (
   s_axis_tdata,
   s_axis_tstrb,
   s_axis_tlast,
-  s_axis_tdest,
+  s_axis_tid,
   m_axis_tvalid,
   m_axis_tready,
   m_axis_tdata,
   m_axis_tstrb,
   m_axis_tkeep,
   m_axis_tlast,
-  m_axis_tdest
+  m_axis_tid
 );
 
 (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME CLKIF, FREQ_HZ 1.25e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, ASSOCIATED_BUSIF S_AXIS:M_AXIS, ASSOCIATED_RESET aresetn, INSERT_VIP 0, ASSOCIATED_CLKEN aclken" *)
@@ -89,9 +89,9 @@ input wire [31 : 0] s_axis_tdata;
 input wire [3 : 0] s_axis_tstrb;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TLAST" *)
 input wire s_axis_tlast;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TDEST" *)
-input wire [9 : 0] s_axis_tdest;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 S_AXIS TID" *)
+input wire [1 : 0] s_axis_tid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TVALID" *)
 output wire m_axis_tvalid;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TREADY" *)
@@ -104,21 +104,21 @@ output wire [3 : 0] m_axis_tstrb;
 output wire [3 : 0] m_axis_tkeep;
 (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TLAST" *)
 output wire m_axis_tlast;
-(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 10, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *)
-(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TDEST" *)
-output wire [9 : 0] m_axis_tdest;
+(* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *)
+(* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TID" *)
+output wire [1 : 0] m_axis_tid;
 
   top_base_zynq_auto_ss_k_0 #(
     .C_FAMILY("zynq"),
     .C_S_AXIS_TDATA_WIDTH(32),
-    .C_S_AXIS_TID_WIDTH(1),
-    .C_S_AXIS_TDEST_WIDTH(10),
+    .C_S_AXIS_TID_WIDTH(2),
+    .C_S_AXIS_TDEST_WIDTH(1),
     .C_S_AXIS_TUSER_WIDTH(1),
-    .C_S_AXIS_SIGNAL_SET('B00000000000000000000000001010111),
+    .C_S_AXIS_SIGNAL_SET('B00000000000000000000000000110111),
     .C_M_AXIS_TDATA_WIDTH(32),
-    .C_M_AXIS_TID_WIDTH(1),
-    .C_M_AXIS_TDEST_WIDTH(10),
-    .C_M_AXIS_SIGNAL_SET('B00000000000000000000000001011111),
+    .C_M_AXIS_TID_WIDTH(2),
+    .C_M_AXIS_TDEST_WIDTH(1),
+    .C_M_AXIS_SIGNAL_SET('B00000000000000000000000000111111),
     .C_M_AXIS_TUSER_WIDTH(1),
     .C_DEFAULT_TLAST(0)
   ) inst (
@@ -131,8 +131,8 @@ output wire [9 : 0] m_axis_tdest;
     .s_axis_tstrb(s_axis_tstrb),
     .s_axis_tkeep(4'HF),
     .s_axis_tlast(s_axis_tlast),
-    .s_axis_tid(1'H0),
-    .s_axis_tdest(s_axis_tdest),
+    .s_axis_tid(s_axis_tid),
+    .s_axis_tdest(1'H0),
     .s_axis_tuser(1'H0),
     .m_axis_tvalid(m_axis_tvalid),
     .m_axis_tready(m_axis_tready),
@@ -140,8 +140,8 @@ output wire [9 : 0] m_axis_tdest;
     .m_axis_tstrb(m_axis_tstrb),
     .m_axis_tkeep(m_axis_tkeep),
     .m_axis_tlast(m_axis_tlast),
-    .m_axis_tid(),
-    .m_axis_tdest(m_axis_tdest),
+    .m_axis_tid(m_axis_tid),
+    .m_axis_tdest(),
     .m_axis_tuser(),
     .transfer_dropped(),
     .sparse_tkeep_removed()

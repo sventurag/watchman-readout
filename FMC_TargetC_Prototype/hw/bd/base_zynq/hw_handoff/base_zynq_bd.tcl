@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# TARGET_C_TopLevel_System, TARGET_C_TopLevel_System, axistream, axistream
+# TARGET_C_TopLevel_System, TARGET_C_TopLevel_System
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -261,6 +261,12 @@ proc create_root_design { parentCell } {
   set WL_CLK_N [ create_bd_port -dir O -type clk WL_CLK_N ]
   set WL_CLK_P [ create_bd_port -dir O -type clk WL_CLK_P ]
 
+  # Create instance: TARGETC_axi_int_0, and set properties
+  set TARGETC_axi_int_0 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:1.0 TARGETC_axi_int_0 ]
+
+  # Create instance: TARGETC_axi_int_1, and set properties
+  set TARGETC_axi_int_1 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:1.0 TARGETC_axi_int_1 ]
+
   # Create instance: TARGET_C_TopLevel_Sy_0, and set properties
   set block_name TARGET_C_TopLevel_System
   set block_cell_name TARGET_C_TopLevel_Sy_0
@@ -307,32 +313,10 @@ proc create_root_design { parentCell } {
    CONFIG.ARB_ALGORITHM {1} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {2} \
-   CONFIG.S00_FIFO_DEPTH {128} \
-   CONFIG.S01_FIFO_DEPTH {128} \
+   CONFIG.S00_FIFO_DEPTH {1024} \
+   CONFIG.S01_FIFO_DEPTH {1024} \
  ] $axis_interconnect_0
 
-  # Create instance: axistream_0, and set properties
-  set block_name axistream
-  set block_cell_name axistream_0
-  if { [catch {set axistream_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axistream_0 eq "" } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
-  # Create instance: axistream_1, and set properties
-  set block_name axistream
-  set block_cell_name axistream_1
-  if { [catch {set axistream_1 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2095 -severity "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   } elseif { $axistream_1 eq "" } {
-     catch {common::send_gid_msg -ssname BD::TCL -id 2096 -severity "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
-     return 1
-   }
-  
   # Create instance: processing_system7_0, and set properties
   set processing_system7_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:processing_system7:5.5 processing_system7_0 ]
   set_property -dict [ list \
@@ -1188,12 +1172,26 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_PORTS {16} \
  ] $xlconcat_2
 
+  # Create instance: xlconstant_0, and set properties
+  set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+   CONFIG.CONST_WIDTH {2} \
+ ] $xlconstant_0
+
+  # Create instance: xlconstant_1, and set properties
+  set xlconstant_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_1 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {1} \
+   CONFIG.CONST_WIDTH {2} \
+ ] $xlconstant_1
+
   # Create interface connections
+  connect_bd_intf_net -intf_net TARGETC_axi_int_0_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_0/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S00_AXIS]
+  connect_bd_intf_net -intf_net TARGETC_axi_int_1_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_1/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S01_AXIS]
   connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
   connect_bd_intf_net -intf_net axis_interconnect_0_M00_AXIS [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM] [get_bd_intf_pins axis_interconnect_0/M00_AXIS]
-  connect_bd_intf_net -intf_net axistream_0_M_AXIS [get_bd_intf_pins axis_interconnect_0/S00_AXIS] [get_bd_intf_pins axistream_0/M_AXIS]
-  connect_bd_intf_net -intf_net axistream_1_M_AXIS [get_bd_intf_pins axis_interconnect_0/S01_AXIS] [get_bd_intf_pins axistream_1/M_AXIS]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
@@ -1245,9 +1243,13 @@ proc create_root_design { parentCell } {
   connect_bd_net -net MONTIMING_N_1 [get_bd_ports MONTIMING_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_N] [get_bd_pins TARGET_C_TopLevel_Sy_1/MONTIMING_N]
   connect_bd_net -net MONTIMING_P_1 [get_bd_ports MONTIMING_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_P] [get_bd_pins TARGET_C_TopLevel_Sy_1/MONTIMING_P]
   connect_bd_net -net SHOUT_1 [get_bd_ports A_SHOUT] [get_bd_pins TARGET_C_TopLevel_Sy_0/SHOUT]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_CNT_CLR [get_bd_pins TARGET_C_TopLevel_Sy_0/CNT_CLR] [get_bd_pins axistream_0/CNT_CLR]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOdata [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOdata] [get_bd_pins axistream_0/FIFOdata]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOvalid [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOvalid] [get_bd_pins axistream_0/FIFOvalid]
+  connect_bd_net -net TARGETC_axi_int_0_Cnt_AXIS_DATA [get_bd_pins TARGETC_axi_int_0/Cnt_AXIS_DATA] [get_bd_pins TARGET_C_TopLevel_Sy_0/Cnt_AXIS_DATA]
+  connect_bd_net -net TARGETC_axi_int_0_StreamReady [get_bd_pins TARGETC_axi_int_0/StreamReady] [get_bd_pins TARGET_C_TopLevel_Sy_0/StreamReady]
+  connect_bd_net -net TARGETC_axi_int_1_Cnt_AXIS_DATA [get_bd_pins TARGETC_axi_int_1/Cnt_AXIS_DATA] [get_bd_pins TARGET_C_TopLevel_Sy_1/Cnt_AXIS_DATA]
+  connect_bd_net -net TARGETC_axi_int_1_StreamReady [get_bd_pins TARGETC_axi_int_1/StreamReady] [get_bd_pins TARGET_C_TopLevel_Sy_1/StreamReady]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_CNT_CLR [get_bd_pins TARGETC_axi_int_0/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_0/CNT_CLR]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOdata [get_bd_pins TARGETC_axi_int_0/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOdata]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOvalid [get_bd_pins TARGETC_axi_int_0/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOvalid]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_GCC_RESET [get_bd_ports A_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/GCC_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_N [get_bd_ports A_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_N]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_P [get_bd_ports A_HSCLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_P]
@@ -1265,8 +1267,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_LD_DIR [get_bd_ports A_SS_LD_DIR] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_LD_DIR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_LD_SIN [get_bd_ports A_SS_LD_SIN] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_LD_SIN]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_RESET [get_bd_ports A_SS_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_RESET]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SW_nRST [get_bd_pins TARGET_C_TopLevel_Sy_0/SW_nRST] [get_bd_pins axistream_0/SW_nRST]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_TestStream [get_bd_pins TARGET_C_TopLevel_Sy_0/TestStream] [get_bd_pins axistream_0/TestStream]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_SW_nRST [get_bd_pins TARGETC_axi_int_0/SW_nRST] [get_bd_pins TARGET_C_TopLevel_Sy_0/SW_nRST]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_TestStream [get_bd_pins TARGETC_axi_int_0/TestStream] [get_bd_pins TARGET_C_TopLevel_Sy_0/TestStream]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_N [get_bd_ports WL_CLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/WL_CLK_N]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_P [get_bd_ports WL_CLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/WL_CLK_P]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S0 [get_bd_ports A_WR_CS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S0]
@@ -1277,9 +1279,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S5 [get_bd_ports A_WR_CS_S5] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S5]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S0 [get_bd_ports A_WR_RS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S0]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S1 [get_bd_ports A_WR_RS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S1]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_1_CNT_CLR [get_bd_pins TARGET_C_TopLevel_Sy_1/CNT_CLR] [get_bd_pins axistream_1/CNT_CLR]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOdata [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOdata] [get_bd_pins axistream_1/FIFOdata]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOvalid [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOvalid] [get_bd_pins axistream_1/FIFOvalid]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_1_CNT_CLR [get_bd_pins TARGETC_axi_int_1/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_1/CNT_CLR]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOdata [get_bd_pins TARGETC_axi_int_1/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOdata]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOvalid [get_bd_pins TARGETC_axi_int_1/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOvalid]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_GCC_RESET [get_bd_ports B_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_1/GCC_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_HSCLK_N [get_bd_ports B_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_1/HSCLK_N]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_HSCLK_P [get_bd_ports B_HSCLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_1/HSCLK_P]
@@ -1294,8 +1296,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_SS_LD_DIR [get_bd_ports B_SS_LD_DIR] [get_bd_pins TARGET_C_TopLevel_Sy_1/SS_LD_DIR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_SS_LD_SIN [get_bd_ports B_SS_LD_SIN] [get_bd_pins TARGET_C_TopLevel_Sy_1/SS_LD_SIN]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_SS_RESET [get_bd_ports B_SS_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_1/SS_RESET]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_1_SW_nRST [get_bd_pins TARGET_C_TopLevel_Sy_1/SW_nRST] [get_bd_pins axistream_1/SW_nRST]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_1_TestStream [get_bd_pins TARGET_C_TopLevel_Sy_1/TestStream] [get_bd_pins axistream_1/TestStream]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_1_SW_nRST [get_bd_pins TARGETC_axi_int_1/SW_nRST] [get_bd_pins TARGET_C_TopLevel_Sy_1/SW_nRST]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_1_TestStream [get_bd_pins TARGETC_axi_int_1/TestStream] [get_bd_pins TARGET_C_TopLevel_Sy_1/TestStream]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_WR_CS_S0 [get_bd_ports B_WR_CS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_1/WR_CS_S0]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_WR_CS_S1 [get_bd_ports B_WR_CS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_1/WR_CS_S1]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_WR_CS_S2 [get_bd_ports B_WR_CS_S2] [get_bd_pins TARGET_C_TopLevel_Sy_1/WR_CS_S2]
@@ -1309,18 +1311,16 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TRIGC_1 [get_bd_ports A_TRIG3] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigC]
   connect_bd_net -net TRIGD_1 [get_bd_ports A_TRIG4] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigD]
   connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_1/In1]
-  connect_bd_net -net axistream_0_Cnt_AXIS_DATA [get_bd_pins TARGET_C_TopLevel_Sy_0/Cnt_AXIS_DATA] [get_bd_pins axistream_0/Cnt_AXIS_DATA]
-  connect_bd_net -net axistream_0_StreamReady [get_bd_pins TARGET_C_TopLevel_Sy_0/StreamReady] [get_bd_pins axistream_0/StreamReady]
-  connect_bd_net -net axistream_1_Cnt_AXIS_DATA [get_bd_pins TARGET_C_TopLevel_Sy_1/Cnt_AXIS_DATA] [get_bd_pins axistream_1/Cnt_AXIS_DATA]
-  connect_bd_net -net axistream_1_StreamReady [get_bd_pins TARGET_C_TopLevel_Sy_1/StreamReady] [get_bd_pins axistream_1/StreamReady]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aclk] [get_bd_pins TARGET_C_TopLevel_Sy_1/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_1/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_1/tc_axi_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S01_AXIS_ACLK] [get_bd_pins axistream_0/M_AXIS_ACLK] [get_bd_pins axistream_1/M_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins TARGETC_axi_int_0/M_AXIS_ACLK] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ACLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aclk] [get_bd_pins TARGET_C_TopLevel_Sy_1/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_1/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_1/tc_axi_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S01_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aresetn] [get_bd_pins TARGET_C_TopLevel_Sy_1/tc_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S01_AXIS_ARESETN] [get_bd_pins axistream_0/M_AXIS_ARESETN] [get_bd_pins axistream_1/M_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins TARGETC_axi_int_0/M_AXIS_ARESETN] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ARESETN] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aresetn] [get_bd_pins TARGET_C_TopLevel_Sy_1/tc_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S01_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_N [get_bd_ports SSTIN_N] [get_bd_pins util_ds_buf_0/OBUF_DS_N]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_P [get_bd_ports SSTIN_P] [get_bd_pins util_ds_buf_0/OBUF_DS_P]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins TARGET_C_TopLevel_Sy_0/DO] [get_bd_pins xlconcat_0/dout]
   connect_bd_net -net xlconcat_1_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_1/dout]
   connect_bd_net -net xlconcat_2_dout [get_bd_pins TARGET_C_TopLevel_Sy_1/DO] [get_bd_pins xlconcat_2/dout]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins TARGETC_axi_int_0/TID] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins TARGETC_axi_int_1/TID] [get_bd_pins xlconstant_1/dout]
 
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
