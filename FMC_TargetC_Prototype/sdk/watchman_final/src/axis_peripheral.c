@@ -16,7 +16,7 @@ extern data_list* last_element;
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
+//extern int* regptr;
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -210,7 +210,7 @@ void dma_received_data(int pmt){
 * @note		-
 *
 ****************************************************************************/
-int test_TPG(void){
+int test_TPG(int* regptr){
 	int timeout,i,j;
 
 	/* Create an element for the DMA */
