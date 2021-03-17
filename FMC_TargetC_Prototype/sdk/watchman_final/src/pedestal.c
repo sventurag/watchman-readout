@@ -10,9 +10,11 @@
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
-/** @brief Array containing the pedestal correction for every sample */
-extern uint32_t  pedestal[512][16][32];
+//extern int* regptr;
+/** @brief Array containing the pedestal correction for every sample TARGETC_0 */
+extern uint32_t  pedestal_0[512][16][32];
+/** @brief Array containing the pedestal correction for every sample TARGETC_1*/
+extern uint32_t  pedestal_1[512][16][32];
 /** @brief Array containing raw data of the whole array */
 extern uint32_t  data_raw[512][16][32];
 /** @brief Flag raised when AXI-DMA has an error */
@@ -70,7 +72,7 @@ int cnt_average;
 * @note		-
 *
 ****************************************************************************/
-int init_pedestals(void){
+int init_pedestals(int* regptr, int targetcID){
 
 	uint64_t sqr_val[4][16][32];
 	//double rms[4][16][32];
@@ -189,15 +191,31 @@ int init_pedestals(void){
 		//window = window_index;
 		for(pair=0; pair<nmbrwindows; pair++){
 			window = window_index + pair;
-			for(i=0; i<16; i++){
-				for(j=0; j<32; j++){
-					/* Divide the average by avg to have the pedestal value */
-					pedestal[window][i][j]= data[pair][i][j]/avg;
-					sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
-				//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
-					//printf("%d, ",pedestal[window][i][j]);
-				}
+			if (!targetcID){
+				for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Divide the average by avg to have the pedestal value */
+						pedestal_0[window][i][j]= data[pair][i][j]/avg;
+						sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
+					//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
+						//printf("%d, ",pedestal[window][i][j]);
+					}
 			}
+
+			}
+
+			else{
+				for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Divide the average by avg to have the pedestal value */
+						pedestal_1[window][i][j]= data[pair][i][j]/avg;
+						sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
+					//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
+						//printf("%d, ",pedestal[window][i][j]);
+					}
+					}
+			}
+
 //			if(window == 0){
 //				printf("RMS values\r\n");
 //				for(j=0; j<32; j++){
@@ -240,7 +258,7 @@ int init_pedestals(void){
 */
 
 
-int get_pedestal(int avg, int nmbrofWindows){
+int get_pedestal(int avg, int nmbrofWindows,int* regptr){
 
 int i,j,k,window,channel,sample;
 
@@ -275,7 +293,7 @@ printf("Getting data");
 for (i=0; i<avg; i++ ){
 	for(j=0; j<512; j+=nmbrofWindows){
 
-         if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
+         if (get_windowsRaw(j,nmbrofWindows,regptr)== XST_SUCCESS);
              else { printf("get Windows raw failed\r\n");
     //     usleep(300);
          }

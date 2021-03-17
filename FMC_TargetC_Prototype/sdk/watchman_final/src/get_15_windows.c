@@ -11,7 +11,7 @@
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
+//extern int* regptr;
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -55,7 +55,7 @@ extern uint32_t  data_raw[512][16][32];
 *
 ****************************************************************************/
 
-int PulseSweep(){
+int PulseSweep(int* regptr){
 int rep;
 
 
@@ -87,14 +87,14 @@ int rep;
 *
 ****************************************************************************/
 
-int PulseRange(){
+int PulseRange(int* regptr){
 int fstWindow;
 ControlRegisterWrite(SMODE_MASK ,ENABLE);
 ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 
 
 	for (fstWindow=fstWindowValue ; fstWindow<totalWindows ; fstWindow+=nmbrWindows ){
-		if(SendWindows(fstWindow,nmbrWindows)!= XST_SUCCESS){
+		if(SendWindows(fstWindow,nmbrWindows, regptr)!= XST_SUCCESS){
 	       xil_printf("Error in SendWindows \r\n");
 
 		}
@@ -122,7 +122,7 @@ ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 * @note		-
 *
 ****************************************************************************/
-int SendWindows(int firstWindow, int numWindows){
+int SendWindows(int firstWindow, int numWindows, int* regptr){
 	//int window_start;
 	int timeout;
 	int window,i,j,index;
@@ -274,7 +274,7 @@ int SendWindows(int firstWindow, int numWindows){
 * @note		-
 *
 ****************************************************************************/
-int get_windowsRaw(int startWindow, int nmbrofWindows){
+int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 	int window_start;
 		int timeout;
 		int window,i,j;
@@ -403,7 +403,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 * @note		-
 *
 ****************************************************************************/
-int get_windows( int startWindow, int nmbrofWindows ){
+int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
 	int window_start;
 	int timeout;
 	int window,i,j,index;

@@ -252,7 +252,7 @@ void WriteRegister(int regID, int regData,int* regptr){
 * @note		Result is printed
 *
 ****************************************************************************/
-void WriteReadBackRegister(int regID, int regData){
+void WriteReadBackRegister(int regID, int regData,int* regptr){
 
 	//int* regptr = XPAR_TARGETC_0_TC_AXI_BASEADDR;
 

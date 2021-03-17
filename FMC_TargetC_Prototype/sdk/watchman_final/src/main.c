@@ -319,7 +319,7 @@ int main()
 
 
 	// Waiting on PL's clocks to be ready
-	while((regptr[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
+	while((regptr_0[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
 		sleep(1); //sleep 100ms
 	}
 	printf("PL's clock ready\r\n");

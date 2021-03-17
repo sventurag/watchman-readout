@@ -15,13 +15,14 @@
 #include "TARGETC_RegisterMap.h"
 #include "file_hm.h"
 #include "xscuwdt.h"
+//#include "get_15_windows"
 //#include "udp_peripheral.h"
 
 /*** Function prototypes *********************************************/
-int init_pedestals(void);
-int get_pedestal(int avg, int nmbrofWindows);
-int get_windowsRaw(int startWindow, int nmbrofWindows);
-int get_windows(int startWindow, int nmbrofWindows);
+int init_pedestals(int* regptr);
+int get_pedestal(int avg, int nmbrofWindows,int* regptr);
+int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr); // FIX
+int get_windows(int startWindow, int nmbrofWindows,int* regptr);
 
 //int get_15_windows_fct(void);
 void pedestal_triggerMode_init(void);

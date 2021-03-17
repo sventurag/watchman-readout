@@ -10,7 +10,7 @@
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
+//extern int* regptr;
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -41,7 +41,7 @@ extern XScuWdt WdtScuInstance;
 * @note		-
 *
 ****************************************************************************/
-int send_data_transfer_fct(void){
+int send_data_transfer_fct(int* regptr){
 	int window = 0;
 	int timeout;
 	int k,i,j,index;
