@@ -259,11 +259,11 @@
 #define INIT		2
 
 /*** Function prototypes *********************************************/
-void SetTargetCRegisters(void);
-void GetTargetCStatus();
-void GetTargetCControl();
-void ControlRegisterWrite(int mask, int actionID);
-void WriteRegister(int regID, int regData);
-void WriteReadBackRegister(int regID, int regData);
+void SetTargetCRegisters(int* regptr);
+void GetTargetCStatus(int* regptr);
+void GetTargetCControl(int* regptr);
+void ControlRegisterWrite(int mask, int actionID,int* regptr);
+void WriteRegister(int regID, int regData,int* regptr);
+void WriteReadBackRegister(int regID, int regData,int* regptr);
 
 #endif  /* end of protection macro */

@@ -10,7 +10,7 @@
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
+//extern int* regptr;
 
 /** **********************************************************
  * @brief 	Set the TargetC Registers to default value using AXI Lite control
@@ -23,7 +23,7 @@ extern int* regptr;
  *
  ************************************************************* */
 
-void SetTargetCRegisters(void){
+void SetTargetCRegisters(int* regptr){
 
 	for(int i=0; i<64; i++){
 		WriteRegister(TC_VDLYTUNE_REG + i,	0);
@@ -104,7 +104,7 @@ void SetTargetCRegisters(void){
 *
 ****************************************************************************/
 
-void GetTargetCStatus(){
+void GetTargetCStatus(int* regptr){
 	xil_printf(">> STATUS:\t ");
 	decToHexa(regptr[TC_STATUS_REG] );
 	//xil_printf(" :");
@@ -131,7 +131,7 @@ void GetTargetCStatus(){
 * @note		-
 *
 ****************************************************************************/
-void GetTargetCControl(){
+void GetTargetCControl(int * regptr){
 	xil_printf(">> CONTROL:\t ");
 	decToHexa(regptr[TC_CONTROL_REG] );
 	//xil_printf(" :");
@@ -169,7 +169,7 @@ void GetTargetCControl(){
 * @note		-
 *
 ****************************************************************************/
-void ControlRegisterWrite(int mask, int actionID){
+void ControlRegisterWrite(int mask, int actionID,int* regptr){
 
 	//int* regptr = XPAR_TARGETC_0_TC_AXI_BASEADDR;
 	if(actionID == ENABLE){
@@ -222,7 +222,7 @@ void ControlRegisterWrite(int mask, int actionID){
 * @note		-
 *
 ****************************************************************************/
-void WriteRegister(int regID, int regData){
+void WriteRegister(int regID, int regData,int* regptr){
 //	if(regID <= TC_MISCDIG_REG || regID == TC_TPG_REG){
 	if(regID <= TC_FSTWINDOW_REG || regID <= TC_MISCDIG_REG|| regID == TC_TPG_REG){
 
