@@ -60,7 +60,7 @@ int rep;
 
 
 	for ( rep =0; rep<1 ; rep++ ){
-		if(PulseRange()!= XST_SUCCESS){
+		if(PulseRange(regptr)!= XST_SUCCESS){
 	       xil_printf("Error in WindowRange \r\n");
 		}
 	//	usleep(150);
@@ -89,8 +89,8 @@ int rep;
 
 int PulseRange(int* regptr){
 int fstWindow;
-ControlRegisterWrite(SMODE_MASK ,ENABLE);
-ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
+ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr);
+ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
 
 
 	for (fstWindow=fstWindowValue ; fstWindow<totalWindows ; fstWindow+=nmbrWindows ){
@@ -159,9 +159,9 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 	regptr[TC_NBRWINDOW_REG] = numWindows;
 //	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 //	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-	ControlRegisterWrite(WINDOW_MASK,ENABLE);
+	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 	usleep(1);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 	//usleep(1);
 	for(window =firstWindow ; window<numWindows+firstWindow; window++){
 
@@ -256,7 +256,7 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 	}
 
 	free(tmp_ptr);
@@ -302,11 +302,11 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 		/* Initiate transfer and measure */
 		regptr[TC_FSTWINDOW_REG] = startWindow;
 		regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
-		ControlRegisterWrite(SMODE_MASK ,ENABLE);
-		ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-		ControlRegisterWrite(WINDOW_MASK,ENABLE);
+		ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 		usleep(50);
-		ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+		ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 		for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
@@ -384,7 +384,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 
 			}
 			/* Release the DMA */
-			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 		}
 
 		free(tmp_ptr);
@@ -436,11 +436,11 @@ int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
 	/* Initiate transfer and measure */
 	regptr[TC_FSTWINDOW_REG] = startWindow;
 	regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
-	ControlRegisterWrite(SMODE_MASK ,ENABLE);
-	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-	ControlRegisterWrite(WINDOW_MASK,ENABLE);
+	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 	usleep(50);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 	for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
@@ -534,7 +534,7 @@ int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 	}
 
 	free(tmp_ptr);

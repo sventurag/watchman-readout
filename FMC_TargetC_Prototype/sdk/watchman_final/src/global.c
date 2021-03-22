@@ -67,6 +67,11 @@ int* regptr_0;
 int* regptr_1;
 /** @brief Array containing the pedestal correction for every sample */
 uint32_t  pedestal[512][16][32];
+/** @brief Array containing the pedestal correction for every sample TARGETC_0 */
+uint32_t  pedestal_0[512][16][32];
+
+/** @brief Array containing the pedestal correction for every sample TARGETC_1 */
+uint32_t  pedestal_1[512][16][32];
 
 /** @brief Array containing the pedestal correction for every sample, the pedestal values
  * in trigger Mode follow the way is done with real data to minimize the differences

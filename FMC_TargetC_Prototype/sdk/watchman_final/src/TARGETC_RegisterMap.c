@@ -26,68 +26,68 @@
 void SetTargetCRegisters(int* regptr){
 
 	for(int i=0; i<64; i++){
-		WriteRegister(TC_VDLYTUNE_REG + i,	0);
+		WriteRegister(TC_VDLYTUNE_REG + i,	0, regptr);
 	}
 //	*** TARGETC Register Initial Values
-	WriteRegister(TC_SSTOUTFB_REG,		60); //0x03a
+	WriteRegister(TC_SSTOUTFB_REG,		60, regptr); //0x03a
 
-	WriteRegister(TC_SSPIN_LE_REG,		51);	//TEST with SSPIN
-	WriteRegister(TC_SSPIN_TE_REG,		7);
+	WriteRegister(TC_SSPIN_LE_REG,		51, regptr);	//TEST with SSPIN
+	WriteRegister(TC_SSPIN_TE_REG,		7, regptr);
 
-	WriteRegister(TC_WR_STRB2_LE_REG,	58); //58
-	WriteRegister(TC_WR_STRB2_TE_REG,	12); //12
+	WriteRegister(TC_WR_STRB2_LE_REG,	58, regptr); //58
+	WriteRegister(TC_WR_STRB2_TE_REG,	12, regptr); //12
 
-	WriteRegister(TC_WR2_ADDR_LE_REG,	5); // Adrian's numbers work from here
-	WriteRegister(TC_WR2_ADDR_TE_REG,	25);  // 25
+	WriteRegister(TC_WR2_ADDR_LE_REG,	5, regptr); // Adrian's numbers work from here
+	WriteRegister(TC_WR2_ADDR_TE_REG,	25, regptr);  // 25
 
-	WriteRegister(TC_WR_STRB1_LE_REG,	26);  // 20
-	WriteRegister(TC_WR_STRB1_TE_REG,	40); // 40
+	WriteRegister(TC_WR_STRB1_LE_REG,	26, regptr);  // 20
+	WriteRegister(TC_WR_STRB1_TE_REG,	40, regptr); // 40
 
-	WriteRegister(TC_WR1_ADDR_LE_REG,	39);// 33
-	WriteRegister(TC_WR1_ADDR_TE_REG,	53);// 53
+	WriteRegister(TC_WR1_ADDR_LE_REG,	39, regptr);// 33
+	WriteRegister(TC_WR1_ADDR_TE_REG,	53, regptr);// 53
 
-	WriteRegister(TC_VQBUFF_REG,	1100); ///// 1100
-	WriteRegister(TC_QBIAS_REG,		0);
-	WriteRegister(TC_VTRIMT_REG,	2500); ///  0x4d8
-	WriteRegister(TC_VBIAS_REG,		0x4B0);	//
-	WriteRegister(TC_VAPBUFF_REG,	0x3D9);	// 985(10)
+	WriteRegister(TC_VQBUFF_REG,	1100, regptr); ///// 1100
+	WriteRegister(TC_QBIAS_REG,		0, regptr);
+	WriteRegister(TC_VTRIMT_REG,	2500, regptr); ///  0x4d8
+	WriteRegister(TC_VBIAS_REG,		0x4B0, regptr);	//
+	WriteRegister(TC_VAPBUFF_REG,	0x3D9, regptr);	// 985(10)
 	//WriteRegister(TC_VADJP_REG,		0x480);	// 1152
-	WriteRegister(TC_VADJP_REG,		1020);  //1020
-	WriteRegister(TC_VANBUFF_REG,	1042);	// 1062
+	WriteRegister(TC_VADJP_REG,		1020, regptr);  //1020
+	WriteRegister(TC_VANBUFF_REG,	1042, regptr);	// 1062
 
 	//WriteRegister(TC_VADJN_REG,		0x8BB);	// 2235
 //	xil_printf("VADJN=0 \r\n");
 //
-	WriteRegister(TC_VADJN_REG,		2690);	//2420 - 2450  2430
-	WriteRegister(TC_SBBIAS_REG,	0x78E);
-	WriteRegister(TC_VDISCH_REG,	0);
+	WriteRegister(TC_VADJN_REG,		2690, regptr);	//2420 - 2450  2430
+	WriteRegister(TC_SBBIAS_REG,	0x78E, regptr);
+	WriteRegister(TC_VDISCH_REG,	0, regptr);
 	//WriteRegister(TC_ISEL_REG,		2600);
-	WriteRegister(TC_ISEL_REG,	2600);	// 2300 good for Vped around 512
+	WriteRegister(TC_ISEL_REG,	2600, regptr);	// 2300 good for Vped around 512
 
-	WriteRegister(TC_DBBIAS_REG,	0x690);
+	WriteRegister(TC_DBBIAS_REG,	0x690, regptr);
 
 	// Initial Base Value
-	WriteRegister(TC_CMPBIAS2_REG,	0x2D6); //726
-	WriteRegister(TC_PUBIAS_REG,	0xBCA);	//3018
-	WriteRegister(TC_CMPBIASIN_REG,	0x654); //1620
+	WriteRegister(TC_CMPBIAS2_REG,	0x2D6, regptr); //726
+	WriteRegister(TC_PUBIAS_REG,	0xBCA, regptr);	//3018
+	WriteRegister(TC_CMPBIASIN_REG,	0x654, regptr); //1620
 
 //	usleep(5000000);
 //  /*
     // To operate DLL
 	xil_printf("Turning DLL ON \r\n");
-	WriteRegister(TC_QBIAS_REG,	0);// 1,300 Meeting 07/02/2019
-	WriteRegister(TC_VANBUFF_REG,	1042);	// 1,300 Meeting 07/02/2019, 1062  0x44C
+	WriteRegister(TC_QBIAS_REG,	0, regptr);// 1,300 Meeting 07/02/2019
+	WriteRegister(TC_VANBUFF_REG,	1042, regptr);	// 1,300 Meeting 07/02/2019, 1062  0x44C
 	sleep(5);
 
-	WriteRegister(TC_QBIAS_REG,	1500);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
-	WriteRegister(TC_VANBUFF_REG,	0);	// // 1,300 Meeting 07/02/2019
+	WriteRegister(TC_QBIAS_REG,	1500, regptr);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
+	WriteRegister(TC_VANBUFF_REG,	0, regptr);	// // 1,300 Meeting 07/02/2019
  //	usleep(20);
 
 
 
  // */
-	WriteRegister(TC_MISCDIG_REG,	0);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
-	WriteRegister(TC_MONTIMING_REG, 128);		//INIT MonTiming PASS disable
+	WriteRegister(TC_MISCDIG_REG,	0, regptr);		//nRD_EN, nWR1_Enable nWR2_Enable are set to
+	WriteRegister(TC_MONTIMING_REG, 128, regptr);		//INIT MonTiming PASS disable
 
 	xil_printf("TragetC's registers initialized!\r\n");
 }
@@ -226,16 +226,16 @@ void WriteRegister(int regID, int regData,int* regptr){
 //	if(regID <= TC_MISCDIG_REG || regID == TC_TPG_REG){
 	if(regID <= TC_FSTWINDOW_REG || regID <= TC_MISCDIG_REG|| regID == TC_TPG_REG){
 
-	ControlRegisterWrite(WRITE_MASK,DISABLE);
+	ControlRegisterWrite(WRITE_MASK,DISABLE, regptr);
 
 		regptr[regID] = regData;
 		regptr[TC_ADDR_REG] = regID;
 
-		ControlRegisterWrite(WRITE_MASK ,ENABLE);
+		ControlRegisterWrite(WRITE_MASK ,ENABLE, regptr);
 		while(regptr[TC_STATUS_REG] & BUSY_MASK){
 			usleep(100); //sleep 100ms
 		}
-		ControlRegisterWrite(WRITE_MASK,DISABLE);
+		ControlRegisterWrite(WRITE_MASK,DISABLE, regptr);
 	}
 	else printf("Invalid register!\r\n");
 }
@@ -257,18 +257,18 @@ void WriteReadBackRegister(int regID, int regData,int* regptr){
 	//int* regptr = XPAR_TARGETC_0_TC_AXI_BASEADDR;
 
 	//regptr[TC_CONTROL_REG] = 0;
-	ControlRegisterWrite(WRITE_MASK,DISABLE);
+	ControlRegisterWrite(WRITE_MASK,DISABLE, regptr);
 
 	regptr[regID] = regData;
 	regptr[TC_ADDR_REG] = regID;
 
-	ControlRegisterWrite(WRITE_MASK ,ENABLE);
+	ControlRegisterWrite(WRITE_MASK,ENABLE, regptr);
 	//regptr[TC_CONTROL_REG] = 1 | RAMP_MASK;
 
 	while(regptr[TC_STATUS_REG] & BUSY_MASK){
 		usleep(100000); //sleep 100ms
 	}
-	ControlRegisterWrite(WRITE_MASK,DISABLE);
+	ControlRegisterWrite(WRITE_MASK,DISABLE, regptr);
 
 	xil_printf("W:\tReg: ");
 	decToHexa(regID);
@@ -277,11 +277,11 @@ void WriteReadBackRegister(int regID, int regData,int* regptr){
 	xil_printf("\r\n");
 
 	//Dummy Write
-	ControlRegisterWrite(WRITE_MASK ,ENABLE);
+	ControlRegisterWrite(WRITE_MASK ,ENABLE, regptr);
 	while(regptr[TC_STATUS_REG] & BUSY_MASK){
 		usleep(100000); //sleep 100ms
 	}
-	ControlRegisterWrite(WRITE_MASK ,DISABLE);
+	ControlRegisterWrite(WRITE_MASK ,DISABLE, regptr);
 
 	//xil_printf(">>\tRB:\tReg:%d\tData:%d\r\n",regptr[TC_DATA_OUT_REG]>>12,regptr[TC_DATA_OUT_REG] & 0x00000FFF);
 	xil_printf("RB:\t%d\t",regptr[TC_DATA_OUT_REG]);

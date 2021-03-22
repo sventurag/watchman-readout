@@ -618,7 +618,7 @@ begin
 
     --CtrlBus_OxMS.WindowStorage		<= '1' when startstorage_stm = PULSE else '0';
 	--CtrlBus_OxMS.WindowStorage		<= '0' when startstorage_stm = IDLE else '1';
-	WindowStorage_intl		<= '0' when startstorage_stm = IDLE else '1';
+	WindowStorage_intl	<= '0' when ((startstorage_stm = IDLE) and (WS_master_ctrl=0)) else '1';
 
  ----------------------------------------------------------------------------------
        -- Start Storage Command Start

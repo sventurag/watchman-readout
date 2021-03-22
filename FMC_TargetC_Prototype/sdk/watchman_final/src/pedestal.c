@@ -114,11 +114,11 @@ int init_pedestals(int* regptr, int targetcID){
 				regptr[TC_FSTWINDOW_REG] = window;
 				regptr[TC_NBRWINDOW_REG] = 1;
 				regptr[TC_Delay_UpdateWR] = 0;
-				ControlRegisterWrite(SMODE_MASK ,ENABLE);
-				ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-				ControlRegisterWrite(WINDOW_MASK,ENABLE);
+				ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+				ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 				usleep(50);
-				ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+				ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 				/* Wait on DMA transfer to be done */
 				timeout = 200000; // 10sec
@@ -184,7 +184,7 @@ int init_pedestals(int* regptr, int targetcID){
 					}
 				}
 				/* Release the DMA */
-				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+				ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 			}
 		}
 
@@ -229,7 +229,7 @@ int init_pedestals(int* regptr, int targetcID){
 	for (ped_channel = 0; ped_channel <16; ped_channel++ ){
         printf("channel = %d,", ped_channel);
 		for (ped_sample=0; ped_sample<32; ped_sample++ ){
-			printf("%d,",pedestal[0][ped_channel][ped_sample]);
+			printf("%d,",pedestal_0[0][ped_channel][ped_sample]);
 
 		}
 		printf("\r\n");
@@ -279,7 +279,7 @@ for(window = 0; window< 512; window++ ){
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
-			pedestal[window][channel][sample] = 0;
+			pedestal_0[window][channel][sample] = 0;
 		//	usleep(10);
 		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
 
@@ -307,7 +307,7 @@ for (i=0; i<avg; i++ ){
 	 for(window=0; window<512; window++){
 			for(channel=0; channel<16; channel++){
 				for(sample = 0; sample <32;sample++){
-					pedestal[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+					pedestal_0[window][channel][sample] = data_raw[window][channel][sample] /avg ;
 
 	     		}
 	     	}

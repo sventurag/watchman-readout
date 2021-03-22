@@ -71,11 +71,11 @@ int send_data_transfer_fct(int* regptr){
 			/* Initiate transfer and measure */
 			regptr[TC_FSTWINDOW_REG] = window;
 			regptr[TC_NBRWINDOW_REG] = 1;
-			ControlRegisterWrite(SMODE_MASK ,ENABLE);
-			ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-			ControlRegisterWrite(WINDOW_MASK,ENABLE);
+			ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+			ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+			ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 			usleep(50);
-			ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+			ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 			/* Wait on DMA transfer to be done */
 			timeout = 200000; // Timeout of 10 sec
@@ -153,7 +153,7 @@ int send_data_transfer_fct(int* regptr){
 				transfer_data(frame_buf, index);
 			}
 			/* Release the DMA */
-			ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 		}
 		printf("transfer function -> vped = %lf\r\n", k*0.25);
 	}

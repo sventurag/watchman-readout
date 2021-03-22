@@ -108,6 +108,8 @@ extern int nmbrWindowsPed;
  /** Flag to start division by  nbr_avg_ped_triggerMode */
  extern bool dividePedestalsFlag;
 
+ extern int *regptr_0;
+
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Network interface */
@@ -152,14 +154,14 @@ void clearInboundBuffer(void) {
 
 int main()
 {
-	XTime tStart, tEnd;
+//	XTime tStart, tEnd;
 //    int i,j;
-    int timeout;
+//    int timeout;
 //    int index;
 //    int window;
 //	uint16_t data_tmp, data_tmp2;
 //	int Windows_triggerMode;
-    int cnt_avg_number=0;
+//    int cnt_avg_number=0;
 
 	//static XTime tStart, tEnd;
 	ip_addr_t ipaddr, netmask, gw, pc_ipaddr;
@@ -174,7 +176,7 @@ int main()
 	/* the mac address of the board. this should be unique per board */
 	unsigned char mac_ethernet_address[] = { 0x00, 0x0a, 0x35, 0x00, 0x01, 0x02 };
 
-	int cnt_pedestal_windows =0;
+//	int cnt_pedestal_windows =0;
 
 	xil_printf("\n\r\n\r------START------\r\n");
 
@@ -308,13 +310,13 @@ int main()
 	else xil_printf("UDP started @ port %d for data and @ port %d for commands\n\r", PORT_DATA, PORT_CMD);
 
 	// Initialise control register
-	ControlRegisterWrite((int)NULL,INIT);
+	ControlRegisterWrite((int)NULL,INIT, regptr_0);
 	// software reset PL side
-	ControlRegisterWrite(SWRESET_MASK,DISABLE);
+	ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_0);
 	// Reset TargetC's registers
-	ControlRegisterWrite(REGCLR_MASK,DISABLE);
+	ControlRegisterWrite(REGCLR_MASK,DISABLE, regptr_0);
 	usleep(100000);
-	ControlRegisterWrite(SWRESET_MASK,ENABLE);
+	ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_0);
 	usleep(1000);
 
 
@@ -324,7 +326,9 @@ int main()
 	}
 	printf("PL's clock ready\r\n");
 	// Initialize TargetC's registers
-	SetTargetCRegisters();
+	SetTargetCRegisters(regptr_0);
+	SetTargetCRegisters(regptr_1);
+
 	printf("sleep to set the debug core\r\n");
 
 /*
@@ -415,24 +419,24 @@ int main()
 					state_main = STREAM;
 				}
 				if(get_transfer_fct_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
 					state_main = GET_TRANSFER_FCT;
 				}
 				if(get_windows_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
 					state_main = GET_WINDOWS;
 				}
 				if(pedestal_flag && (!stream_flag) && empty_flag){
-					ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
 					state_main = GET_PEDESTAL;
 				}
 				if(restart_flag){
-								ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+								ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
 								printf("restarting at idle\r\n");
 								state_main = RESTART;
 							}
 				if(get_windows_raw_flag && (!stream_flag) && empty_flag){
-						ControlRegisterWrite(CPUMODE_MASK,DISABLE);
+						ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
 						state_main = GET_WINDOWS_RAW;
 					}
 				if(dividePedestalsFlag){
@@ -442,19 +446,19 @@ int main()
 			case STREAM:
 				if((!stream_flag)){
 					usleep(100);
-		     		ControlRegisterWrite(SWRESET_MASK,DISABLE);
-					ControlRegisterWrite(SWRESET_MASK,ENABLE);
+		     		ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_0);
+					ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_0);
 					usleep(100);
 					state_main = IDLE;
 				}
 
-				ControlRegisterWrite(SMODE_MASK ,ENABLE); // mode for selecting the interrupt, 1 for dma
+				ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_0); // mode for selecting the interrupt, 1 for dma
 				usleep(100);
 
-				ControlRegisterWrite(SS_TPG_MASK ,ENABLE); // 0 for test pattern mode, 1 for sample mode (normal mode)
+				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0); // 0 for test pattern mode, 1 for sample mode (normal mode)
 				usleep(100);
 
-				ControlRegisterWrite(CPUMODE_MASK,ENABLE); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
+				ControlRegisterWrite(CPUMODE_MASK,ENABLE, regptr_0); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
 
 				usleep(100);
 
@@ -484,7 +488,7 @@ int main()
 
 				XAxiDma_SimpleTransfer_hm((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 			     usleep(100);
-				 ControlRegisterWrite(WINDOW_MASK,ENABLE); //  register for starting the round buffer in trigger mode
+				 ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_0); //  register for starting the round buffer in trigger mode
 			     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 					usleep(100);
 			     xil_printf(" pendingCountBefore: %d \r\n",inboundRingManager.pendingCount);
@@ -548,7 +552,7 @@ int main()
 
 				break;
 			case GET_TRANSFER_FCT:
-				if(send_data_transfer_fct() == XST_SUCCESS) printf("Recover data pass!\r\n");
+				if(send_data_transfer_fct(regptr_0) == XST_SUCCESS) printf("Recover data pass!\r\n");
 				else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Recover data failed!");
 					return -1;
@@ -557,7 +561,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS:
-				if(PulseSweep() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				if(PulseSweep(regptr_0) != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
 				return -1;
@@ -576,7 +580,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_PEDESTAL:
-				if(get_pedestal(pedestalAvg,nmbrWindowsPed) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);
+				if(get_pedestal(pedestalAvg,nmbrWindowsPed, regptr_0) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);
 				else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get pedestal failed!");
 					return -1;

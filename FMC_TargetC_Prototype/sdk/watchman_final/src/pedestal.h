@@ -19,7 +19,7 @@
 //#include "udp_peripheral.h"
 
 /*** Function prototypes *********************************************/
-int init_pedestals(int* regptr);
+int init_pedestals(int* regptr, int targetcID);
 int get_pedestal(int avg, int nmbrofWindows,int* regptr);
 int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr); // FIX
 int get_windows(int startWindow, int nmbrofWindows,int* regptr);

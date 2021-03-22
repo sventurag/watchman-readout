@@ -230,13 +230,13 @@ int test_TPG(int* regptr){
 	regptr[TC_NBRWINDOW_REG] = 1;
 	regptr[TC_Delay_UpdateWR] = 0;
 
-	WriteRegister(TC_TPG_REG,	0x50A);	// TPG value
+	WriteRegister(TC_TPG_REG,	0x50A, regptr);	// TPG value
 
-	ControlRegisterWrite(SMODE_MASK ,ENABLE);
-	ControlRegisterWrite(SS_TPG_MASK ,DISABLE); // Enable mode TestPattern
-	ControlRegisterWrite(WINDOW_MASK,ENABLE);
+	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr); // Enable mode TestPattern
+	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 	usleep(50);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 	/* Wait on DMA transfer to be done */
 	timeout = 200000; // Timeout of 10 sec
@@ -313,7 +313,7 @@ int test_TPG(int* regptr){
 	free(tmp_ptr);
 
 	/* Release the DMA */
-	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+	ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 
 	return XST_SUCCESS;
 }
