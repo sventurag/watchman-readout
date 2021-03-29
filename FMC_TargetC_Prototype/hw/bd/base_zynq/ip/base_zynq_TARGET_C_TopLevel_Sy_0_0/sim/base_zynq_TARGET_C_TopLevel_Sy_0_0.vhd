@@ -122,6 +122,8 @@ ENTITY base_zynq_TARGET_C_TopLevel_Sy_0_0 IS
     TrigB : IN STD_LOGIC;
     TrigC : IN STD_LOGIC;
     TrigD : IN STD_LOGIC;
+    WS_masterctrl_in : IN STD_LOGIC;
+    WS_masterctrl_out : OUT STD_LOGIC;
     SSVALID_INTR : OUT STD_LOGIC
   );
 END base_zynq_TARGET_C_TopLevel_Sy_0_0;
@@ -198,6 +200,8 @@ ARCHITECTURE base_zynq_TARGET_C_TopLevel_Sy_0_0_arch OF base_zynq_TARGET_C_TopLe
       TrigB : IN STD_LOGIC;
       TrigC : IN STD_LOGIC;
       TrigD : IN STD_LOGIC;
+      WS_masterctrl_in : IN STD_LOGIC;
+      WS_masterctrl_out : OUT STD_LOGIC;
       SSVALID_INTR : OUT STD_LOGIC
     );
   END COMPONENT TARGET_C_TopLevel_System;
@@ -312,6 +316,8 @@ BEGIN
       TrigB => TrigB,
       TrigC => TrigC,
       TrigD => TrigD,
+      WS_masterctrl_in => WS_masterctrl_in,
+      WS_masterctrl_out => WS_masterctrl_out,
       SSVALID_INTR => SSVALID_INTR
     );
 END base_zynq_TARGET_C_TopLevel_Sy_0_0_arch;

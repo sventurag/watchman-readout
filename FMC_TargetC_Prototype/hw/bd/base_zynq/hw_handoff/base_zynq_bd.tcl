@@ -1186,6 +1186,12 @@ proc create_root_design { parentCell } {
    CONFIG.CONST_WIDTH {2} \
  ] $xlconstant_1
 
+  # Create instance: xlconstant_2, and set properties
+  set xlconstant_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_2 ]
+  set_property -dict [ list \
+   CONFIG.CONST_VAL {0} \
+ ] $xlconstant_2
+
   # Create interface connections
   connect_bd_intf_net -intf_net TARGETC_axi_int_0_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_0/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S00_AXIS]
   connect_bd_intf_net -intf_net TARGETC_axi_int_1_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_1/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S01_AXIS]
@@ -1279,6 +1285,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S5 [get_bd_ports A_WR_CS_S5] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S5]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S0 [get_bd_ports A_WR_RS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S0]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S1 [get_bd_ports A_WR_RS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S1]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WS_masterctrl_out [get_bd_pins TARGET_C_TopLevel_Sy_0/WS_masterctrl_out] [get_bd_pins TARGET_C_TopLevel_Sy_1/WS_masterctrl_in]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_CNT_CLR [get_bd_pins TARGETC_axi_int_1/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_1/CNT_CLR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOdata [get_bd_pins TARGETC_axi_int_1/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOdata]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOvalid [get_bd_pins TARGETC_axi_int_1/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOvalid]
@@ -1321,6 +1328,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net xlconcat_2_dout [get_bd_pins TARGET_C_TopLevel_Sy_1/DO] [get_bd_pins xlconcat_2/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins TARGETC_axi_int_0/TID] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins TARGETC_axi_int_1/TID] [get_bd_pins xlconstant_1/dout]
+  connect_bd_net -net xlconstant_2_dout [get_bd_pins TARGET_C_TopLevel_Sy_0/WS_masterctrl_in] [get_bd_pins xlconstant_2/dout]
 
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force

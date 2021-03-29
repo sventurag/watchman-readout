@@ -129,6 +129,10 @@ entity TARGET_C_TopLevel_System is
 		TrigC :			in std_logic;
 		TrigD :			in std_logic;
 
+        -- window storage master control
+        WS_masterctrl_in :  in std_logic;
+        WS_masterctrl_out : out std_logic;
+        
 		-- Interrupt SIGNALS
 		SSVALID_INTR:	out	std_logic
 
@@ -202,7 +206,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		AxiBusOut:		out AXI_Lite_Outputs;
 
 		ClockBus:		in T_ClockBus;
-
+        WS_master_ctrl:   in std_logic;
 		CtrlBus_OxMS:		out T_CtrlBus_OxMS;
 		CtrlBus_IxMS:		in 	T_CtrlBus_IxMS
 	);
@@ -514,6 +518,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
     
     signal address_is_zero_intl :  std_logic;
     signal cnt_clr_intl :  std_logic;
+    signal WS_master_ctrl_intl:  std_logic;
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -581,12 +586,16 @@ begin
 		AxiBusOut.RRESP		=> tc_axi_rresp,
 		AxiBusOut.RVALID	=> tc_axi_rvalid,
 		AxiBusOut.intr		=> tc_axi_intr,
-
+        
 		ClockBus			=> ClockBus_intl,
 
+        WS_master_ctrl      => WS_masterctrl_in,
 		CtrlBus_OxMS			=> CtrlBusOut_intl,
 		CtrlBus_IxMS			=> CtrlBusIn_intl
 	);
+
+       WS_masterctrl_out <= CtrlBusOut_intl.WindowStorage; 
+
 
 	TC_SerialRegCtrl_inst : TARGETX_DAC_CONTROL
 		generic map(

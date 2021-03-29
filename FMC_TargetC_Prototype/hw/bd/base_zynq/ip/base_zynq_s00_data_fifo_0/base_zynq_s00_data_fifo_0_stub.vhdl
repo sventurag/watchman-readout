@@ -3,8 +3,8 @@
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
 -- Date        : Fri Feb 26 15:28:41 2021
 -- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_s00_data_fifo_0/base_zynq_s00_data_fifo_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top base_zynq_s00_data_fifo_0 -prefix
+--               base_zynq_s00_data_fifo_0_ base_zynq_s00_data_fifo_0_stub.vhdl
 -- Design      : base_zynq_s00_data_fifo_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

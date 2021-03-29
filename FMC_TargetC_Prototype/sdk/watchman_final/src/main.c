@@ -110,6 +110,8 @@ extern int nmbrWindowsPed;
 
  extern int *regptr_0;
 
+ extern int *regptr_1;
+
 /*********************** Global variables ****************/
 /*********************************************************/
 /** @brief Network interface */

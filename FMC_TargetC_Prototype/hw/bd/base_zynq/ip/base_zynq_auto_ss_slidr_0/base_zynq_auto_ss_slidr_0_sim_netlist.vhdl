@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Feb 26 15:29:58 2021
+-- Date        : Fri Feb 26 15:29:57 2021
 -- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_auto_ss_slidr_0/base_zynq_auto_ss_slidr_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_auto_ss_slidr_0 -prefix
+--               base_zynq_auto_ss_slidr_0_ base_zynq_auto_ss_slidr_0_sim_netlist.vhdl
 -- Design      : base_zynq_auto_ss_slidr_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -102,8 +102,6 @@ entity base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0 is
   attribute G_TASK_SEVERITY_INFO of base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0 : entity is 0;
   attribute G_TASK_SEVERITY_WARNING : integer;
   attribute G_TASK_SEVERITY_WARNING of base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0 : entity is 1;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0 : entity is "top_base_zynq_auto_ss_slidr_0";
 end base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0;
 
 architecture STRUCTURE of base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0 is

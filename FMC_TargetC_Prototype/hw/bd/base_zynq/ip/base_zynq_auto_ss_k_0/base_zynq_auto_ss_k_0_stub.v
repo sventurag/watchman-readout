@@ -1,10 +1,10 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Fri Feb 26 15:29:01 2021
+// Date        : Fri Feb 26 15:29:00 2021
 // Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_auto_ss_k_0/base_zynq_auto_ss_k_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top base_zynq_auto_ss_k_0 -prefix
+//               base_zynq_auto_ss_k_0_ base_zynq_auto_ss_k_0_stub.v
 // Design      : base_zynq_auto_ss_k_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7z020clg400-1
