@@ -17,6 +17,8 @@ extern uint32_t  pedestal_0[512][16][32];
 extern uint32_t  pedestal_1[512][16][32];
 /** @brief Array containing raw data of the whole array */
 extern uint32_t  data_raw[512][16][32];
+/** @brief Array containing raw data of the whole array */
+extern uint32_t  data_raw_1[512][16][32];
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -267,6 +269,8 @@ for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_raw[window][channel][sample] = 0;
+			data_raw_1[window][channel][sample] = 0;
+
      //       usleep(10);
 	//		printf("%d\r\n", data_raw[window][channel][sample]);
 
@@ -289,7 +293,6 @@ for(window = 0; window< 512; window++ ){
 
 
 printf("Getting data");
-
 for (i=0; i<avg; i++ ){
 	for(j=0; j<512; j+=nmbrofWindows){
 
@@ -308,6 +311,7 @@ for (i=0; i<avg; i++ ){
 			for(channel=0; channel<16; channel++){
 				for(sample = 0; sample <32;sample++){
 					pedestal_0[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+					pedestal_1[window][channel][sample] = data_raw_1[window][channel][sample] /avg ;
 
 	     		}
 	     	}

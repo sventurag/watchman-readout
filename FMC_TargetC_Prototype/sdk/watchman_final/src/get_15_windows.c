@@ -38,8 +38,11 @@ extern int totalWindows;
 extern int channel;
 /** Value from the GUI for delay in update WR   */
 //extern int  delay_UpdateWR;
+
+/** Raw data for pedestal calculation   */
 extern uint32_t  data_raw[512][16][32];
 
+extern uint32_t  data_raw_1[512][16][32];
 
 
 
@@ -389,12 +392,16 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						data_raw[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
-                        if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
+						data_raw_1[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data_1[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
+
+						//         if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
                 //        	printf("Value= 0");
                  //       	usleep(300);
-                        }
+                 //       }
 					}
 				}
+
+
 
 			}
 			/* Release the DMA */

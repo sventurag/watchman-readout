@@ -92,8 +92,10 @@ uint32_t  pedestal_B[512][16][32];
 volatile bool pedestalTriggerModeFlag;
 /** Flag to start division by  nbr_avg_ped_triggerMode */
 volatile bool dividePedestalsFlag;
-/** @brief Array containing raw data of the whole array */
+/** @brief Array containing raw data of the whole array TARGETC_0 */
 uint32_t  data_raw[512][16][32];
+/** @brief Array containing raw data of the whole array TARGETC_1 */
+uint32_t  data_raw_1[512][16][32];
 /** @brief Array containing raw data of the whole array */
 uint32_t  data_rawA[512][16][32];
 /** @brief Array containing raw data of the whole array */
