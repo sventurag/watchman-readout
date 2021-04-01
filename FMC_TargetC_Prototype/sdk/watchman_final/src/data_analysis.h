@@ -90,7 +90,7 @@ typedef struct coordinates_st {
 /**
  * @brief Structure of an element of the list which represent a window.
  */
-typedef struct data_axi_st {data_axi_st
+typedef struct data_axi_st {
 	uint64_t wdo_time; /**< Timestampe of the window */
 	uint64_t PL_spare; /**< Spare bits for the development used to return the command send to the round buffer */
 	uint32_t info; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
