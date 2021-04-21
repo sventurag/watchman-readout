@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Tue Mar 23 17:05:20 2021" VIVADOVERSION="2020.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Apr 21 10:55:18 2021" VIVADOVERSION="2020.1">
 
   <SYSTEMINFO ARCH="zynq" DEVICE="7z020" NAME="base_zynq" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -222,7 +222,6 @@
     <PORT DIR="I" NAME="MONTIMING_P" SIGIS="undef" SIGNAME="External_Ports_MONTIMING_P">
       <CONNECTIONS>
         <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="MONTIMING_P"/>
-        <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_1" PORT="MONTIMING_P"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="A_DONE" SIGIS="undef" SIGNAME="External_Ports_A_DONE">
@@ -238,7 +237,6 @@
     <PORT DIR="I" NAME="MONTIMING_N" SIGIS="undef" SIGNAME="External_Ports_MONTIMING_N">
       <CONNECTIONS>
         <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="MONTIMING_N"/>
-        <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_1" PORT="MONTIMING_N"/>
       </CONNECTIONS>
     </PORT>
     <PORT DIR="I" NAME="A_TRIG1" SIGIS="undef" SIGNAME="External_Ports_A_TRIG1">
@@ -681,7 +679,7 @@
             <CONNECTION INSTANCE="xlconstant_0" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="M_AXIS_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="M_AXIS_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -693,33 +691,33 @@
         </PORT>
         <PORT DIR="O" NAME="M_AXIS_TVALID" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TVALID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tvalid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tvalid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M_AXIS_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TDATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tdata"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tdata"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="M_AXIS_TSTRB" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TSTRB">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tstrb"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tstrb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="9" NAME="M_AXIS_TDEST" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="M_AXIS_TLAST" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TLAST">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tlast"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tlast"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="M_AXIS_TID" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="M_AXIS_TREADY" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TREADY">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tready"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tready"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -734,7 +732,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -800,7 +798,7 @@
             <CONNECTION INSTANCE="xlconstant_1" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="M_AXIS_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="M_AXIS_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -812,33 +810,33 @@
         </PORT>
         <PORT DIR="O" NAME="M_AXIS_TVALID" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TVALID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tvalid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tvalid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="31" NAME="M_AXIS_TDATA" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TDATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tdata"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tdata"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="3" NAME="M_AXIS_TSTRB" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TSTRB">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tstrb"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tstrb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="9" NAME="M_AXIS_TDEST" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="M_AXIS_TLAST" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TLAST">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tlast"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tlast"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" LEFT="1" NAME="M_AXIS_TID" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="M_AXIS_TREADY" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TREADY">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_tready"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_tready"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -853,7 +851,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -896,7 +894,7 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="tc_axi_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="tc_axi_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -1228,7 +1226,7 @@
         <BUSINTERFACE BUSNAME="ps7_0_axi_periph_M00_AXI" DATAWIDTH="32" NAME="tc_axi" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -1308,7 +1306,7 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="tc_axi_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="tc_axi_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -1540,16 +1538,8 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="SSTIN" SIGIS="undef"/>
-        <PORT DIR="I" NAME="MONTIMING_P" SIGIS="undef" SIGNAME="External_Ports_MONTIMING_P">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="MONTIMING_P"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="MONTIMING_N" SIGIS="undef" SIGNAME="External_Ports_MONTIMING_N">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="External_Ports" PORT="MONTIMING_N"/>
-          </CONNECTIONS>
-        </PORT>
+        <PORT DIR="I" NAME="MONTIMING_P" SIGIS="undef"/>
+        <PORT DIR="I" NAME="MONTIMING_N" SIGIS="undef"/>
         <PORT DIR="I" LEFT="9" NAME="Cnt_AXIS_DATA" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_Cnt_AXIS_DATA">
           <CONNECTIONS>
             <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="Cnt_AXIS_DATA"/>
@@ -1616,7 +1606,7 @@
         <BUSINTERFACE BUSNAME="ps7_0_axi_periph_M02_AXI" DATAWIDTH="32" NAME="tc_axi" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -2553,12 +2543,12 @@
         <PARAMETER NAME="C_HIGHADDR" VALUE="0x4040FFFF"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="s_axi_lite_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="s_axi_lite_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="m_axi_s2mm_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="m_axi_s2mm_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -2764,7 +2754,7 @@
         <BUSINTERFACE BUSNAME="ps7_0_axi_periph_M01_AXI" DATAWIDTH="32" NAME="S_AXI_LITE" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4LITE"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="10"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -2817,7 +2807,7 @@
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -2872,7 +2862,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3246,89 +3236,6 @@
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="7" NAME="S00_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awlen">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awlen"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awsize">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awsize"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="S00_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awburst">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awburst"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_awlock" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awcache">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awcache"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_awregion" SIGIS="undef"/>
-        <PORT DIR="I" NAME="S00_AXI_awqos" SIGIS="undef"/>
-        <PORT DIR="I" NAME="S00_AXI_awvalid" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_awready" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_wlast" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wlast">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wlast"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_wvalid" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_wready" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="S00_AXI_bvalid" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_bready"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_interconnect_0_M00_AXI_awaddr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_AWADDR"/>
@@ -3417,6 +3324,89 @@
         <PORT DIR="O" NAME="M00_AXI_bready" SIGIS="undef" SIGNAME="axi_interconnect_0_M00_AXI_bready">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_BREADY"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="S00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="7" NAME="S00_AXI_awlen" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awlen">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awlen"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awsize" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awsize">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awsize"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="S00_AXI_awburst" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awburst">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awburst"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_awlock" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_awcache" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awcache">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awcache"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="2" NAME="S00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_awregion" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S00_AXI_awqos" SIGIS="undef"/>
+        <PORT DIR="I" NAME="S00_AXI_awvalid" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_awready" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_wlast" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_wvalid" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_wready" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="S00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="S00_AXI_bvalid" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="S00_AXI_bready" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_bready"/>
           </CONNECTIONS>
         </PORT>
       </PORTS>
@@ -3514,7 +3504,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -3526,32 +3516,32 @@
         </PORT>
         <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tvalid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="m_axis_tvalid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tready"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="m_axis_tready"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tdata"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="m_axis_tdata"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="3" NAME="s_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tstrb">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tstrb"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="m_axis_tstrb"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" NAME="s_axis_tlast" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tlast">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tlast"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="m_axis_tlast"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="1" NAME="s_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="m_axis_tid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_axis_tvalid" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_m_axis_tvalid">
@@ -3591,7 +3581,7 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="axis_interconnect_0_xbar_M00_AXIS" NAME="S_AXIS" TYPE="SLAVE" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_M_AXIS" NAME="S_AXIS" TYPE="SLAVE" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
@@ -3600,7 +3590,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3623,7 +3613,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3686,7 +3676,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -3767,7 +3757,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3791,7 +3781,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="0"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="1"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3801,6 +3791,177 @@
             <PORTMAP LOGICAL="TKEEP" PHYSICAL="m_axis_tkeep"/>
             <PORTMAP LOGICAL="TLAST" PHYSICAL="m_axis_tlast"/>
             <PORTMAP LOGICAL="TREADY" PHYSICAL="m_axis_tready"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="m_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+      </BUSINTERFACES>
+    </MODULE>
+    <MODULE COREREVISION="3" FULLNAME="/axis_interconnect_0/m00_couplers/m00_data_fifo" HWVERSION="2.0" INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" IPTYPE="BUS" IS_ENABLE="1" MODCLASS="BUS" MODTYPE="axis_data_fifo" VLNV="xilinx.com:ip:axis_data_fifo:2.0">
+      <DOCUMENTS>
+        <DOCUMENT SOURCE="https://www.xilinx.com/cgi-bin/docs/ipdoc?c=axis_data_fifo;v=v2_0;d=pg085-axi4stream-infrastructure.pdf"/>
+      </DOCUMENTS>
+      <PARAMETERS>
+        <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
+        <PARAMETER NAME="C_AXIS_TDATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_AXIS_TID_WIDTH" VALUE="2"/>
+        <PARAMETER NAME="C_AXIS_TDEST_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_AXIS_TUSER_WIDTH" VALUE="1"/>
+        <PARAMETER NAME="C_AXIS_SIGNAL_SET" VALUE="0b00000000000000000000000000110111"/>
+        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="64"/>
+        <PARAMETER NAME="C_FIFO_MODE" VALUE="1"/>
+        <PARAMETER NAME="C_IS_ACLK_ASYNC" VALUE="0"/>
+        <PARAMETER NAME="C_SYNCHRONIZER_STAGE" VALUE="3"/>
+        <PARAMETER NAME="C_ACLKEN_CONV_MODE" VALUE="0"/>
+        <PARAMETER NAME="C_ECC_MODE" VALUE="0"/>
+        <PARAMETER NAME="C_FIFO_MEMORY_TYPE" VALUE="auto"/>
+        <PARAMETER NAME="C_USE_ADV_FEATURES" VALUE="825503796"/>
+        <PARAMETER NAME="C_PROG_EMPTY_THRESH" VALUE="5"/>
+        <PARAMETER NAME="C_PROG_FULL_THRESH" VALUE="11"/>
+        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+        <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
+        <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+        <PARAMETER NAME="FIFO_DEPTH" VALUE="64"/>
+        <PARAMETER NAME="FIFO_MODE" VALUE="1"/>
+        <PARAMETER NAME="IS_ACLK_ASYNC" VALUE="0"/>
+        <PARAMETER NAME="ACLKEN_CONV_MODE" VALUE="0"/>
+        <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+        <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
+        <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+        <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+        <PARAMETER NAME="SYNCHRONIZATION_STAGES" VALUE="3"/>
+        <PARAMETER NAME="HAS_WR_DATA_COUNT" VALUE="1"/>
+        <PARAMETER NAME="HAS_RD_DATA_COUNT" VALUE="1"/>
+        <PARAMETER NAME="HAS_AEMPTY" VALUE="0"/>
+        <PARAMETER NAME="HAS_PROG_EMPTY" VALUE="0"/>
+        <PARAMETER NAME="PROG_EMPTY_THRESH" VALUE="5"/>
+        <PARAMETER NAME="HAS_AFULL" VALUE="0"/>
+        <PARAMETER NAME="HAS_PROG_FULL" VALUE="0"/>
+        <PARAMETER NAME="PROG_FULL_THRESH" VALUE="11"/>
+        <PARAMETER NAME="ENABLE_ECC" VALUE="0"/>
+        <PARAMETER NAME="HAS_ECC_ERR_INJECT" VALUE="0"/>
+        <PARAMETER NAME="FIFO_MEMORY_TYPE" VALUE="auto"/>
+        <PARAMETER NAME="Component_Name" VALUE="base_zynq_m00_data_fifo_0"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="s_axis_aresetn" POLARITY="ACTIVE_LOW" SIGIS="rst" SIGNAME="rst_ps7_0_50M_peripheral_aresetn">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="3" NAME="s_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="s_axis_tlast" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="s_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="m_axis_tid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_tvalid" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="m_axis_tready" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="m_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="m_axis_tlast" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tlast">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tlast"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="1" NAME="m_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="axis_wr_data_count" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="31" NAME="axis_rd_data_count" RIGHT="0" SIGIS="undef"/>
+      </PORTS>
+      <BUSINTERFACES>
+        <BUSINTERFACE BUSNAME="axis_interconnect_0_xbar_M00_AXIS" NAME="S_AXIS" TYPE="SLAVE" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="s_axis_tdata"/>
+            <PORTMAP LOGICAL="TID" PHYSICAL="s_axis_tid"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="s_axis_tlast"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="s_axis_tready"/>
+            <PORTMAP LOGICAL="TSTRB" PHYSICAL="s_axis_tstrb"/>
+            <PORTMAP LOGICAL="TVALID" PHYSICAL="s_axis_tvalid"/>
+          </PORTMAPS>
+        </BUSINTERFACE>
+        <BUSINTERFACE BUSNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_M_AXIS" NAME="M_AXIS" TYPE="MASTER" VLNV="xilinx.com:interface:axis:1.0">
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
+          <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
+          <PARAMETER NAME="HAS_TREADY" VALUE="1"/>
+          <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
+          <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
+          <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
+          <PARAMETER NAME="PHASE" VALUE="0.000"/>
+          <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
+          <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
+          <PARAMETER NAME="INSERT_VIP" VALUE="0"/>
+          <PORTMAPS>
+            <PORTMAP LOGICAL="TDATA" PHYSICAL="m_axis_tdata"/>
+            <PORTMAP LOGICAL="TID" PHYSICAL="m_axis_tid"/>
+            <PORTMAP LOGICAL="TLAST" PHYSICAL="m_axis_tlast"/>
+            <PORTMAP LOGICAL="TREADY" PHYSICAL="m_axis_tready"/>
+            <PORTMAP LOGICAL="TSTRB" PHYSICAL="m_axis_tstrb"/>
             <PORTMAP LOGICAL="TVALID" PHYSICAL="m_axis_tvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
@@ -3817,7 +3978,7 @@
         <PARAMETER NAME="C_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_SIGNAL_SET" VALUE="0b00000000000000000000000000110111"/>
-        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="1024"/>
+        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="32"/>
         <PARAMETER NAME="C_FIFO_MODE" VALUE="1"/>
         <PARAMETER NAME="C_IS_ACLK_ASYNC" VALUE="0"/>
         <PARAMETER NAME="C_SYNCHRONIZER_STAGE" VALUE="3"/>
@@ -3831,7 +3992,7 @@
         <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
         <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
-        <PARAMETER NAME="FIFO_DEPTH" VALUE="1024"/>
+        <PARAMETER NAME="FIFO_DEPTH" VALUE="32"/>
         <PARAMETER NAME="FIFO_MODE" VALUE="1"/>
         <PARAMETER NAME="IS_ACLK_ASYNC" VALUE="0"/>
         <PARAMETER NAME="ACLKEN_CONV_MODE" VALUE="0"/>
@@ -3860,39 +4021,39 @@
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TVALID">
+        <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TVALID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TVALID"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TVALID"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TREADY">
+        <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TREADY">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TREADY"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TDATA">
+        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TDATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TDATA"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TDATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="s_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TSTRB">
+        <PORT DIR="I" LEFT="3" NAME="s_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TSTRB">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TSTRB"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TSTRB"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axis_tlast" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TLAST">
+        <PORT DIR="I" NAME="s_axis_tlast" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TLAST">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TLAST"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TLAST"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="s_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TID">
+        <PORT DIR="I" LEFT="1" NAME="s_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TID"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TID"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_axis_tvalid" SIGIS="undef" SIGNAME="axis_interconnect_0_s00_couplers_s00_data_fifo_m_axis_tvalid">
@@ -3929,7 +4090,7 @@
         <PORT DIR="O" LEFT="31" NAME="axis_rd_data_count" RIGHT="0" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="TARGETC_axi_int_0_M00_AXIS" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="TARGETC_axi_int_1_M00_AXIS" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
@@ -3938,7 +4099,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3961,7 +4122,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -3988,7 +4149,7 @@
         <PARAMETER NAME="C_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_SIGNAL_SET" VALUE="0b00000000000000000000000000110111"/>
-        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="1024"/>
+        <PARAMETER NAME="C_FIFO_DEPTH" VALUE="32"/>
         <PARAMETER NAME="C_FIFO_MODE" VALUE="1"/>
         <PARAMETER NAME="C_IS_ACLK_ASYNC" VALUE="0"/>
         <PARAMETER NAME="C_SYNCHRONIZER_STAGE" VALUE="3"/>
@@ -4002,7 +4163,7 @@
         <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
         <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
-        <PARAMETER NAME="FIFO_DEPTH" VALUE="1024"/>
+        <PARAMETER NAME="FIFO_DEPTH" VALUE="32"/>
         <PARAMETER NAME="FIFO_MODE" VALUE="1"/>
         <PARAMETER NAME="IS_ACLK_ASYNC" VALUE="0"/>
         <PARAMETER NAME="ACLKEN_CONV_MODE" VALUE="0"/>
@@ -4031,39 +4192,39 @@
             <CONNECTION INSTANCE="rst_ps7_0_50M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="s_axis_aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TVALID">
+        <PORT DIR="I" NAME="s_axis_tvalid" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TVALID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TVALID"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TVALID"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TREADY">
+        <PORT DIR="O" NAME="s_axis_tready" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TREADY">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TREADY"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TDATA">
+        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TDATA">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TDATA"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TDATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="s_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TSTRB">
+        <PORT DIR="I" LEFT="3" NAME="s_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TSTRB">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TSTRB"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TSTRB"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" NAME="s_axis_tlast" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TLAST">
+        <PORT DIR="I" NAME="s_axis_tlast" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TLAST">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TLAST"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TLAST"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="1" NAME="s_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_1_M_AXIS_TID">
+        <PORT DIR="I" LEFT="1" NAME="s_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="TARGETC_axi_int_0_M_AXIS_TID">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGETC_axi_int_1" PORT="M_AXIS_TID"/>
+            <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_TID"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="m_axis_tvalid" SIGIS="undef" SIGNAME="axis_interconnect_0_s01_couplers_s01_data_fifo_m_axis_tvalid">
@@ -4100,7 +4261,7 @@
         <PORT DIR="O" LEFT="31" NAME="axis_rd_data_count" RIGHT="0" SIGIS="undef"/>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="TARGETC_axi_int_1_M00_AXIS" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
+        <BUSINTERFACE BUSNAME="TARGETC_axi_int_0_M00_AXIS" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
           <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="2"/>
@@ -4109,7 +4270,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -4132,7 +4293,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -4213,9 +4374,9 @@
         <PARAMETER NAME="C_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TUSER_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_SIGNAL_SET" VALUE="0b00000000000000000000000000110111"/>
-        <PARAMETER NAME="C_ARB_ON_MAX_XFERS" VALUE="1"/>
+        <PARAMETER NAME="C_ARB_ON_MAX_XFERS" VALUE="0"/>
         <PARAMETER NAME="C_ARB_ON_NUM_CYCLES" VALUE="0"/>
-        <PARAMETER NAME="C_ARB_ON_TLAST" VALUE="0"/>
+        <PARAMETER NAME="C_ARB_ON_TLAST" VALUE="1"/>
         <PARAMETER NAME="C_INCLUDE_ARBITER" VALUE="1"/>
         <PARAMETER NAME="C_ARB_ALGORITHM" VALUE="1"/>
         <PARAMETER NAME="C_OUTPUT_REG" VALUE="0"/>
@@ -4239,9 +4400,9 @@
         <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
         <PARAMETER NAME="HAS_ACLKEN" VALUE="0"/>
-        <PARAMETER NAME="ARB_ON_MAX_XFERS" VALUE="1"/>
+        <PARAMETER NAME="ARB_ON_MAX_XFERS" VALUE="0"/>
         <PARAMETER NAME="ARB_ON_NUM_CYCLES" VALUE="0"/>
-        <PARAMETER NAME="ARB_ON_TLAST" VALUE="0"/>
+        <PARAMETER NAME="ARB_ON_TLAST" VALUE="1"/>
         <PARAMETER NAME="ARB_ALGORITHM" VALUE="1"/>
         <PARAMETER NAME="DECODER_REG" VALUE="0"/>
         <PARAMETER NAME="OUTPUT_REG" VALUE="0"/>
@@ -4538,7 +4699,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="BUS"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="aclk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -4596,34 +4757,34 @@
             <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="m_axis_tid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="m_axis_tvalid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tvalid">
+        <PORT DIR="O" LEFT="0" NAME="m_axis_tvalid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tvalid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tvalid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_tvalid"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="0" NAME="m_axis_tready" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tready">
+        <PORT DIR="I" LEFT="0" NAME="m_axis_tready" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tready">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tready"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_tready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tdata">
+        <PORT DIR="O" LEFT="31" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tdata">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tdata"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="m_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tstrb">
+        <PORT DIR="O" LEFT="3" NAME="m_axis_tstrb" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tstrb">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tstrb"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_tstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="0" NAME="m_axis_tlast" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tlast">
+        <PORT DIR="O" LEFT="0" NAME="m_axis_tlast" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tlast">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tlast"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_tlast"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="1" NAME="m_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_auto_ss_k_s_axis_tid">
+        <PORT DIR="O" LEFT="1" NAME="m_axis_tid" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_m00_couplers_m00_data_fifo_s_axis_tid">
           <CONNECTIONS>
-            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="s_axis_tid"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_tid"/>
           </CONNECTIONS>
         </PORT>
         <PORT DIR="I" LEFT="1" NAME="s_req_suppress" RIGHT="0" SIGIS="undef" SIGNAME="axis_interconnect_0_s_arb_req_suppress_concat_dout">
@@ -4643,7 +4804,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -4666,7 +4827,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -4689,7 +4850,7 @@
           <PARAMETER NAME="HAS_TSTRB" VALUE="1"/>
           <PARAMETER NAME="HAS_TKEEP" VALUE="0"/>
           <PARAMETER NAME="HAS_TLAST" VALUE="1"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="PHASE" VALUE="0.000"/>
           <PARAMETER NAME="CLK_DOMAIN" VALUE="base_zynq_processing_system7_0_0_FCLK_CLK0"/>
           <PARAMETER NAME="LAYERED_METADATA" VALUE="undef"/>
@@ -5013,12 +5174,12 @@
         <PARAMETER NAME="PCW_USE_S_AXI_HP1" VALUE="0"/>
         <PARAMETER NAME="PCW_USE_S_AXI_HP2" VALUE="0"/>
         <PARAMETER NAME="PCW_USE_S_AXI_HP3" VALUE="0"/>
-        <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="125.0"/>
+        <PARAMETER NAME="PCW_M_AXI_GP0_FREQMHZ" VALUE="125"/>
         <PARAMETER NAME="PCW_M_AXI_GP1_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_GP0_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_GP1_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_ACP_FREQMHZ" VALUE="10"/>
-        <PARAMETER NAME="PCW_S_AXI_HP0_FREQMHZ" VALUE="125.0"/>
+        <PARAMETER NAME="PCW_S_AXI_HP0_FREQMHZ" VALUE="125"/>
         <PARAMETER NAME="PCW_S_AXI_HP1_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_HP2_FREQMHZ" VALUE="10"/>
         <PARAMETER NAME="PCW_S_AXI_HP3_FREQMHZ" VALUE="10"/>
@@ -5787,7 +5948,7 @@
             <CONNECTION INSTANCE="ps7_0_axi_periph" PORT="S00_AXI_wstrb"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="M_AXI_GP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="M_AXI_GP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -5878,7 +6039,7 @@
         <PORT DIR="O" LEFT="7" NAME="S_AXI_HP0_WCOUNT" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="S_AXI_HP0_RACOUNT" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="5" NAME="S_AXI_HP0_WACOUNT" RIGHT="0" SIGIS="undef"/>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="S_AXI_HP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="S_AXI_HP0_ACLK" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -5973,7 +6134,7 @@
             <CONNECTION INSTANCE="xlconcat_1" PORT="dout"/>
           </CONNECTIONS>
         </PORT>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="O" NAME="FCLK_CLK0" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="O" NAME="FCLK_CLK0" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_ACLK"/>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_ACLK"/>
@@ -5991,6 +6152,7 @@
             <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="aclk"/>
             <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_aclk"/>
             <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_aclk"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_aclk"/>
             <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="aclk"/>
             <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_slidr" PORT="aclk"/>
             <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_ACLK"/>
@@ -6175,7 +6337,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="12"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -6246,7 +6408,7 @@
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
-          <PARAMETER NAME="FREQ_HZ" VALUE="1.25e+08"/>
+          <PARAMETER NAME="FREQ_HZ" VALUE="125000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="6"/>
           <PARAMETER NAME="ADDR_WIDTH" VALUE="32"/>
           <PARAMETER NAME="AWUSER_WIDTH" VALUE="0"/>
@@ -6793,184 +6955,6 @@
             <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_1" PORT="tc_axi_rready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M00_AXI_awvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_awready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wstrb">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wstrb"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M00_AXI_wvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_wready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_bvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M00_AXI_bready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="2" NAME="M00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_arprot">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_arprot"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M00_AXI_arvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_arready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" NAME="M00_AXI_rvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M00_AXI_rready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_awaddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_awaddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_awprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M01_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_awvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_awvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M01_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_awready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_awready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_wdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_wdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_wstrb" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M01_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_wvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_wvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M01_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_wready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_wready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M01_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_bresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_bresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M01_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_bvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_bvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M01_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_bready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_bready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M01_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_araddr">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_araddr"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" NAME="M01_AXI_arprot" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="0" NAME="M01_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_arvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_arvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M01_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_arready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_arready"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M01_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rdata">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rdata"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="1" NAME="M01_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rresp">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rresp"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="I" LEFT="0" NAME="M01_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rvalid">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rvalid"/>
-          </CONNECTIONS>
-        </PORT>
-        <PORT DIR="O" LEFT="0" NAME="M01_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rready">
-          <CONNECTIONS>
-            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rready"/>
-          </CONNECTIONS>
-        </PORT>
         <PORT DIR="I" LEFT="11" NAME="S00_AXI_awid" RIGHT="0" SIGIS="undef" SIGNAME="processing_system7_0_M_AXI_GP0_AWID">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_AWID"/>
@@ -7161,6 +7145,184 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="M_AXI_GP0_RREADY"/>
           </CONNECTIONS>
         </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_awprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_awvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_awready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_wstrb" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_wvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_wready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M01_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_bvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_bready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M01_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M01_AXI_arprot" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_arvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_arready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M01_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M01_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="0" NAME="M01_AXI_rvalid" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="0" NAME="M01_AXI_rready" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axi_lite_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="axi_dma_0" PORT="s_axi_lite_rready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_awaddr" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awaddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awaddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M00_AXI_awprot" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_awvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_awready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_awready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_awready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="3" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wstrb">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wstrb"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_wvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_wready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_wready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_wready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_bresp" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_bresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_bresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_bvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_bvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_bvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_bready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_bready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_bready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="31" NAME="M00_AXI_araddr" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_araddr">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_araddr"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" LEFT="2" NAME="M00_AXI_arprot" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_arprot">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_arprot"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_arvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_arvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_arvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_arready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_arready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_arready"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rdata">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rdata"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" LEFT="1" NAME="M00_AXI_rresp" RIGHT="0" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rresp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rresp"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="I" NAME="M00_AXI_rvalid" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rvalid">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rvalid"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="M00_AXI_rready" SIGIS="undef" SIGNAME="TARGET_C_TopLevel_Sy_0_tc_axi_rready">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="TARGET_C_TopLevel_Sy_0" PORT="tc_axi_rready"/>
+          </CONNECTIONS>
+        </PORT>
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="processing_system7_0_M_AXI_GP0" DATAWIDTH="32" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
@@ -7296,7 +7458,7 @@
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
       <PORTS>
-        <PORT CLKFREQUENCY="1.25e+08" DIR="I" NAME="slowest_sync_clk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
+        <PORT CLKFREQUENCY="125000000" DIR="I" NAME="slowest_sync_clk" SIGIS="clk" SIGNAME="processing_system7_0_FCLK_CLK0">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="FCLK_CLK0"/>
           </CONNECTIONS>
@@ -7330,6 +7492,7 @@
             <CONNECTION INSTANCE="axis_interconnect_0_xbar" PORT="aresetn"/>
             <CONNECTION INSTANCE="axis_interconnect_0_s00_couplers_s00_data_fifo" PORT="s_axis_aresetn"/>
             <CONNECTION INSTANCE="axis_interconnect_0_s01_couplers_s01_data_fifo" PORT="s_axis_aresetn"/>
+            <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_m00_data_fifo" PORT="s_axis_aresetn"/>
             <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_k" PORT="aresetn"/>
             <CONNECTION INSTANCE="axis_interconnect_0_m00_couplers_auto_ss_slidr" PORT="aresetn"/>
             <CONNECTION INSTANCE="TARGETC_axi_int_0" PORT="M_AXIS_ARESETN"/>

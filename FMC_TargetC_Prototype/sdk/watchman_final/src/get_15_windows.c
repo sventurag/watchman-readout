@@ -18,6 +18,11 @@ extern volatile bool flag_axidma_error;
 extern volatile bool flag_axidma_rx_done;
 /** @brief Array containing the pedestal correction for every sample */
 extern uint32_t  pedestal[512][16][32];
+/** @brief Array containing the pedestal correction for every sample TARGETC_0 */
+extern uint32_t  pedestal_0[512][16][32];
+/** @brief Array containing the pedestal correction for every sample TARGETC_1 */
+extern uint32_t  pedestal_1[512][16][32];
+
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
 /** @brief Lookup table to correct the transfer function */
@@ -239,7 +244,7 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[channel][j]-  pedestal[window][channel][j]+ offset_avoid_negative);
+					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[channel][j]-  pedestal_0[window][channel][j]+ offset_avoid_negative);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));
@@ -250,9 +255,9 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 				}
 
 
-				for(j=0; j<32; j++){
+				for(int k=0; k<32; k++){
 					/* Pedestal subtraction */
-					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data_1[channel][j]-  pedestal[window][channel][j]+ offset_avoid_negative);
+					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data_1[channel][k]); //-  pedestal_1[window][channel][k]+ offset_avoid_negative);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));

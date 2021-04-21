@@ -158,8 +158,9 @@ architecture arch_imp of TC_ClockManagementV3 is
 	
 	attribute mark_debug : string;
     attribute mark_debug of SSTIN_intl: signal is "true";
+	attribute mark_debug of AXI_CLK : signal is "TRUE";
+	attribute mark_debug of nrst : signal is "TRUE";
 
-	
 
 begin
 

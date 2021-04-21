@@ -311,10 +311,14 @@ proc create_root_design { parentCell } {
   set axis_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_interconnect:2.1 axis_interconnect_0 ]
   set_property -dict [ list \
    CONFIG.ARB_ALGORITHM {1} \
+   CONFIG.ARB_ON_MAX_XFERS {0} \
+   CONFIG.ARB_ON_TLAST {1} \
+   CONFIG.M00_FIFO_DEPTH {64} \
+   CONFIG.M00_FIFO_MODE {0} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {2} \
-   CONFIG.S00_FIFO_DEPTH {1024} \
-   CONFIG.S01_FIFO_DEPTH {1024} \
+   CONFIG.S00_FIFO_DEPTH {32} \
+   CONFIG.S01_FIFO_DEPTH {32} \
  ] $axis_interconnect_0
 
   # Create instance: processing_system7_0, and set properties
@@ -1193,11 +1197,12 @@ proc create_root_design { parentCell } {
  ] $xlconstant_2
 
   # Create interface connections
-  connect_bd_intf_net -intf_net TARGETC_axi_int_0_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_0/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S00_AXIS]
-  connect_bd_intf_net -intf_net TARGETC_axi_int_1_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_1/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S01_AXIS]
+  connect_bd_intf_net -intf_net S00_AXIS_1 [get_bd_intf_pins TARGETC_axi_int_1/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S00_AXIS]
+  connect_bd_intf_net -intf_net TARGETC_axi_int_0_M00_AXIS [get_bd_intf_pins TARGETC_axi_int_0/M00_AXIS] [get_bd_intf_pins axis_interconnect_0/S01_AXIS]
   connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
   connect_bd_intf_net -intf_net axis_interconnect_0_M00_AXIS [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM] [get_bd_intf_pins axis_interconnect_0/M00_AXIS]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets axis_interconnect_0_M00_AXIS]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
@@ -1246,8 +1251,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net DO_7_1 [get_bd_ports A_DO_7] [get_bd_pins xlconcat_0/In6]
   connect_bd_net -net DO_8_1 [get_bd_ports A_DO_8] [get_bd_pins xlconcat_0/In7]
   connect_bd_net -net DO_9_1 [get_bd_ports A_DO_9] [get_bd_pins xlconcat_0/In8]
-  connect_bd_net -net MONTIMING_N_1 [get_bd_ports MONTIMING_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_N] [get_bd_pins TARGET_C_TopLevel_Sy_1/MONTIMING_N]
-  connect_bd_net -net MONTIMING_P_1 [get_bd_ports MONTIMING_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_P] [get_bd_pins TARGET_C_TopLevel_Sy_1/MONTIMING_P]
+  connect_bd_net -net MONTIMING_N_1 [get_bd_ports MONTIMING_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_N]
+  connect_bd_net -net MONTIMING_P_1 [get_bd_ports MONTIMING_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/MONTIMING_P]
   connect_bd_net -net SHOUT_1 [get_bd_ports A_SHOUT] [get_bd_pins TARGET_C_TopLevel_Sy_0/SHOUT]
   connect_bd_net -net TARGETC_axi_int_0_Cnt_AXIS_DATA [get_bd_pins TARGETC_axi_int_0/Cnt_AXIS_DATA] [get_bd_pins TARGET_C_TopLevel_Sy_0/Cnt_AXIS_DATA]
   connect_bd_net -net TARGETC_axi_int_0_StreamReady [get_bd_pins TARGETC_axi_int_0/StreamReady] [get_bd_pins TARGET_C_TopLevel_Sy_0/StreamReady]
@@ -1255,6 +1260,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_axi_int_1_StreamReady [get_bd_pins TARGETC_axi_int_1/StreamReady] [get_bd_pins TARGET_C_TopLevel_Sy_1/StreamReady]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_CNT_CLR [get_bd_pins TARGETC_axi_int_0/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_0/CNT_CLR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOdata [get_bd_pins TARGETC_axi_int_0/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOdata]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets TARGET_C_TopLevel_Sy_0_FIFOdata]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOvalid [get_bd_pins TARGETC_axi_int_0/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOvalid]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_GCC_RESET [get_bd_ports A_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/GCC_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_N [get_bd_ports A_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_N]
@@ -1286,8 +1292,10 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S0 [get_bd_ports A_WR_RS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S0]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S1 [get_bd_ports A_WR_RS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S1]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WS_masterctrl_out [get_bd_pins TARGET_C_TopLevel_Sy_0/WS_masterctrl_out] [get_bd_pins TARGET_C_TopLevel_Sy_1/WS_masterctrl_in]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets TARGET_C_TopLevel_Sy_0_WS_masterctrl_out]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_CNT_CLR [get_bd_pins TARGETC_axi_int_1/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_1/CNT_CLR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOdata [get_bd_pins TARGETC_axi_int_1/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOdata]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets TARGET_C_TopLevel_Sy_1_FIFOdata]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOvalid [get_bd_pins TARGETC_axi_int_1/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOvalid]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_GCC_RESET [get_bd_ports B_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_1/GCC_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_HSCLK_N [get_bd_ports B_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_1/HSCLK_N]
@@ -1318,6 +1326,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TRIGC_1 [get_bd_ports A_TRIG3] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigC]
   connect_bd_net -net TRIGD_1 [get_bd_ports A_TRIG4] [get_bd_pins TARGET_C_TopLevel_Sy_0/TrigD]
   connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_1/In1]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets axi_dma_0_s2mm_introut]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins TARGETC_axi_int_0/M_AXIS_ACLK] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ACLK] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_0/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aclk] [get_bd_pins TARGET_C_TopLevel_Sy_1/RefCLK_i1] [get_bd_pins TARGET_C_TopLevel_Sy_1/RefCLK_i2] [get_bd_pins TARGET_C_TopLevel_Sy_1/tc_axi_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S01_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins TARGETC_axi_int_0/M_AXIS_ARESETN] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ARESETN] [get_bd_pins TARGET_C_TopLevel_Sy_0/tc_axi_aresetn] [get_bd_pins TARGET_C_TopLevel_Sy_1/tc_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S01_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]

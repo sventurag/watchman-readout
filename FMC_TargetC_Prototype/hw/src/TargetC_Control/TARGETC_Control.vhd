@@ -127,6 +127,11 @@ architecture arch_imp of TC_Control is
 	signal Cnt_AXIS_intl: std_logic_vector(9 downto 0);
 	signal WindowStorage_intl : std_logic;
     signal startTriggerModePed_intl: std_logic;
+    
+    attribute mark_debug : string; 
+    attribute mark_debug of WindowStorage_intl: signal is "true";
+    attribute mark_debug of WS_master_ctrl: signal is "true";
+    
 begin
 	-- I/O Connections assignments
 

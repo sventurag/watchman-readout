@@ -7,8 +7,8 @@
    "Color Coded_ScaleFactor":"0.351912",
    "Color Coded_TopLeft":"-889,0",
    "Default View_Layers":"/TARGET_C_TopLevel_Sy_0_WL_CLK_P:true|/processing_system7_0_FCLK_RESET0_N:true|/TARGET_C_TopLevel_Sy_0_GCC_RESET:true|/processing_system7_0_FCLK_CLK0:true|/axi_dma_0_s2mm_introut:true|/TARGET_C_TopLevel_Sy_0_SS_RESET:true|/TARGET_C_TopLevel_Sy_0_SSVALID_INTR:true|/ARESETN_1:true|/TARGET_C_TopLevel_Sy_0_WL_CLK_N:true|/TARGET_C_TopLevel_Sy_0_RDAD_CLK:true|/rst_ps7_0_50M_peripheral_aresetn:true|/TARGET_C_TopLevel_Sy_1_GCC_RESET:true|/B_DO_10_1:true|/B_DO_11_1:true|/B_DO_14_1:true|/B_DO_13:true|/B_DO_4_1:true|/B_DO_6_1:true|/TARGET_C_TopLevel_Sy_1_SS_RESET:true|/B_DO_5_1:true|/B_DO_7_1:true|/B_DO_3_1:true|/B_DO_15_1:true|/TARGET_C_TopLevel_Sy_1_RDAD_CLK:true|/B_DO_9_1:true|/B_DO_8_1:true|/B_DO_16_1:true|/TARGET_C_TopLevel_Sy_1_SSVALID_INTR:true|/util_ds_buf_0_OBUF_DS_N:true|/util_ds_buf_0_OBUF_DS_P:true|",
-   "Default View_ScaleFactor":"1.06353",
-   "Default View_TopLeft":"1938,1928",
+   "Default View_ScaleFactor":"1.4",
+   "Default View_TopLeft":"2814,1993",
    "Display-PortTypeClock":"true",
    "Display-PortTypeData":"true",
    "Display-PortTypeInterrupt":"true",
@@ -107,8 +107,8 @@ pagesize -pg 1 -db -bbox -sgen -160 0 1780 830
    "Reduced Jogs_TopLeft":"-1499,0",
    "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:9.0 TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 9 -x 3930 -y 1630 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 9 -x 3930 -y 1650 -defaultsOSRD
+preplace port DDR -pg 1 -lvl 10 -x 4120 -y 1630 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 10 -x 4120 -y 1650 -defaultsOSRD
 preplace port A_DO_16 -pg 1 -lvl 0 -x -20 -y 350 -defaultsOSRD
 preplace port A_DO_15 -pg 1 -lvl 0 -x -20 -y 330 -defaultsOSRD
 preplace port A_DO_1 -pg 1 -lvl 0 -x -20 -y 50 -defaultsOSRD
@@ -125,31 +125,31 @@ preplace port A_DO_11 -pg 1 -lvl 0 -x -20 -y 250 -defaultsOSRD
 preplace port A_DO_10 -pg 1 -lvl 0 -x -20 -y 230 -defaultsOSRD
 preplace port A_DO_8 -pg 1 -lvl 0 -x -20 -y 190 -defaultsOSRD
 preplace port A_DO_9 -pg 1 -lvl 0 -x -20 -y 210 -defaultsOSRD
-preplace port SIN -pg 1 -lvl 9 -x 3930 -y 490 -defaultsOSRD
-preplace port SCLK -pg 1 -lvl 9 -x 3930 -y 510 -defaultsOSRD
-preplace port A_PCLK -pg 1 -lvl 9 -x 3930 -y 530 -defaultsOSRD
-preplace port A_HSCLK_P -pg 1 -lvl 9 -x 3930 -y 550 -defaultsOSRD
-preplace port A_HSCLK_N -pg 1 -lvl 9 -x 3930 -y 570 -defaultsOSRD
-preplace port A_WR_RS_S0 -pg 1 -lvl 9 -x 3930 -y 590 -defaultsOSRD
-preplace port A_WR_RS_S1 -pg 1 -lvl 9 -x 3930 -y 610 -defaultsOSRD
-preplace port A_WR_CS_S0 -pg 1 -lvl 9 -x 3930 -y 630 -defaultsOSRD
-preplace port A_WR_CS_S1 -pg 1 -lvl 9 -x 3930 -y 650 -defaultsOSRD
-preplace port A_WR_CS_S2 -pg 1 -lvl 9 -x 3930 -y 670 -defaultsOSRD
-preplace port A_WR_CS_S3 -pg 1 -lvl 9 -x 3930 -y 690 -defaultsOSRD
-preplace port A_WR_CS_S4 -pg 1 -lvl 9 -x 3930 -y 710 -defaultsOSRD
-preplace port A_WR_CS_S5 -pg 1 -lvl 9 -x 3930 -y 730 -defaultsOSRD
-preplace port A_GCC_RESET -pg 1 -lvl 9 -x 3930 -y 750 -defaultsOSRD
-preplace port WL_CLK_P -pg 1 -lvl 9 -x 3930 -y 770 -defaultsOSRD
-preplace port WL_CLK_N -pg 1 -lvl 9 -x 3930 -y 790 -defaultsOSRD
-preplace port A_RDAD_CLK -pg 1 -lvl 9 -x 3930 -y 810 -defaultsOSRD
-preplace port A_RDAD_SIN -pg 1 -lvl 9 -x 3930 -y 830 -defaultsOSRD
-preplace port A_RDAD_DIR -pg 1 -lvl 9 -x 3930 -y 850 -defaultsOSRD
-preplace port A_SAMPLESEL_ANY -pg 1 -lvl 9 -x 3930 -y 870 -defaultsOSRD
-preplace port A_SS_INCR -pg 1 -lvl 9 -x 3930 -y 890 -defaultsOSRD
-preplace port A_SS_RESET -pg 1 -lvl 9 -x 3930 -y 930 -defaultsOSRD
-preplace port A_SS_LD_SIN -pg 1 -lvl 9 -x 3930 -y 970 -defaultsOSRD
-preplace port A_SS_LD_DIR -pg 1 -lvl 9 -x 3930 -y 990 -defaultsOSRD
-preplace port A_RAMP -pg 1 -lvl 9 -x 3930 -y 1010 -defaultsOSRD
+preplace port SIN -pg 1 -lvl 10 -x 4120 -y 490 -defaultsOSRD
+preplace port SCLK -pg 1 -lvl 10 -x 4120 -y 510 -defaultsOSRD
+preplace port A_PCLK -pg 1 -lvl 10 -x 4120 -y 530 -defaultsOSRD
+preplace port A_HSCLK_P -pg 1 -lvl 10 -x 4120 -y 550 -defaultsOSRD
+preplace port A_HSCLK_N -pg 1 -lvl 10 -x 4120 -y 570 -defaultsOSRD
+preplace port A_WR_RS_S0 -pg 1 -lvl 10 -x 4120 -y 590 -defaultsOSRD
+preplace port A_WR_RS_S1 -pg 1 -lvl 10 -x 4120 -y 610 -defaultsOSRD
+preplace port A_WR_CS_S0 -pg 1 -lvl 10 -x 4120 -y 630 -defaultsOSRD
+preplace port A_WR_CS_S1 -pg 1 -lvl 10 -x 4120 -y 650 -defaultsOSRD
+preplace port A_WR_CS_S2 -pg 1 -lvl 10 -x 4120 -y 670 -defaultsOSRD
+preplace port A_WR_CS_S3 -pg 1 -lvl 10 -x 4120 -y 690 -defaultsOSRD
+preplace port A_WR_CS_S4 -pg 1 -lvl 10 -x 4120 -y 710 -defaultsOSRD
+preplace port A_WR_CS_S5 -pg 1 -lvl 10 -x 4120 -y 730 -defaultsOSRD
+preplace port A_GCC_RESET -pg 1 -lvl 10 -x 4120 -y 750 -defaultsOSRD
+preplace port WL_CLK_P -pg 1 -lvl 10 -x 4120 -y 770 -defaultsOSRD
+preplace port WL_CLK_N -pg 1 -lvl 10 -x 4120 -y 790 -defaultsOSRD
+preplace port A_RDAD_CLK -pg 1 -lvl 10 -x 4120 -y 810 -defaultsOSRD
+preplace port A_RDAD_SIN -pg 1 -lvl 10 -x 4120 -y 830 -defaultsOSRD
+preplace port A_RDAD_DIR -pg 1 -lvl 10 -x 4120 -y 850 -defaultsOSRD
+preplace port A_SAMPLESEL_ANY -pg 1 -lvl 10 -x 4120 -y 870 -defaultsOSRD
+preplace port A_SS_INCR -pg 1 -lvl 10 -x 4120 -y 890 -defaultsOSRD
+preplace port A_SS_RESET -pg 1 -lvl 10 -x 4120 -y 930 -defaultsOSRD
+preplace port A_SS_LD_SIN -pg 1 -lvl 10 -x 4120 -y 970 -defaultsOSRD
+preplace port A_SS_LD_DIR -pg 1 -lvl 10 -x 4120 -y 990 -defaultsOSRD
+preplace port A_RAMP -pg 1 -lvl 10 -x 4120 -y 1010 -defaultsOSRD
 preplace port MONTIMING_P -pg 1 -lvl 0 -x -20 -y 1860 -defaultsOSRD
 preplace port A_DONE -pg 1 -lvl 0 -x -20 -y 790 -defaultsOSRD
 preplace port A_SHOUT -pg 1 -lvl 0 -x -20 -y 750 -defaultsOSRD
@@ -158,35 +158,35 @@ preplace port A_TRIG1 -pg 1 -lvl 0 -x -20 -y 890 -defaultsOSRD
 preplace port A_TRIG2 -pg 1 -lvl 0 -x -20 -y 910 -defaultsOSRD
 preplace port A_TRIG3 -pg 1 -lvl 0 -x -20 -y 930 -defaultsOSRD
 preplace port A_TRIG4 -pg 1 -lvl 0 -x -20 -y 950 -defaultsOSRD
-preplace port B_HSCLK_P -pg 1 -lvl 9 -x 3930 -y 1990 -defaultsOSRD
-preplace port B_HSCLK_N -pg 1 -lvl 9 -x 3930 -y 2010 -defaultsOSRD
+preplace port B_HSCLK_P -pg 1 -lvl 10 -x 4120 -y 1990 -defaultsOSRD
+preplace port B_HSCLK_N -pg 1 -lvl 10 -x 4120 -y 2010 -defaultsOSRD
 preplace port B_TRIG1 -pg 1 -lvl 0 -x -20 -y 2330 -defaultsOSRD
 preplace port B_TRIG2 -pg 1 -lvl 0 -x -20 -y 2350 -defaultsOSRD
 preplace port B_TRIG3 -pg 1 -lvl 0 -x -20 -y 2370 -defaultsOSRD
 preplace port B_TRIG4 -pg 1 -lvl 0 -x -20 -y 2390 -defaultsOSRD
 preplace port B_SHOUT -pg 1 -lvl 0 -x -20 -y 2070 -defaultsOSRD
 preplace port B_DONE -pg 1 -lvl 0 -x -20 -y 2090 -defaultsOSRD
-preplace port B_WR_RS_S0 -pg 1 -lvl 9 -x 3930 -y 2030 -defaultsOSRD
-preplace port B_WR_RS_S1 -pg 1 -lvl 9 -x 3930 -y 2050 -defaultsOSRD
-preplace port B_WR_CS_S0 -pg 1 -lvl 9 -x 3930 -y 2070 -defaultsOSRD
-preplace port B_WR_CS_S1 -pg 1 -lvl 9 -x 3930 -y 2090 -defaultsOSRD
-preplace port B_WR_CS_S2 -pg 1 -lvl 9 -x 3930 -y 2110 -defaultsOSRD
-preplace port B_WR_CS_S3 -pg 1 -lvl 9 -x 3930 -y 2130 -defaultsOSRD
-preplace port B_WR_CS_S4 -pg 1 -lvl 9 -x 3930 -y 2150 -defaultsOSRD
-preplace port B_WR_CS_S5 -pg 1 -lvl 9 -x 3930 -y 2170 -defaultsOSRD
-preplace port B_GCC_RESET -pg 1 -lvl 9 -x 3930 -y 2190 -defaultsOSRD
-preplace port B_RDAD_CLK -pg 1 -lvl 9 -x 3930 -y 2250 -defaultsOSRD
-preplace port B_RDAD_SIN -pg 1 -lvl 9 -x 3930 -y 2270 -defaultsOSRD
-preplace port B_RDAD_DIR -pg 1 -lvl 9 -x 3930 -y 2290 -defaultsOSRD
-preplace port B_SAMPLESEL_ANY -pg 1 -lvl 9 -x 3930 -y 2310 -defaultsOSRD
-preplace port B_SS_INCR -pg 1 -lvl 9 -x 3930 -y 2330 -defaultsOSRD
-preplace port B_SS_RESET -pg 1 -lvl 9 -x 3930 -y 2370 -defaultsOSRD
-preplace port B_RAMP -pg 1 -lvl 9 -x 3930 -y 2450 -defaultsOSRD
-preplace port B_SS_LD_SIN -pg 1 -lvl 9 -x 3930 -y 2410 -defaultsOSRD
-preplace port B_SS_LD_DIR -pg 1 -lvl 9 -x 3930 -y 2430 -defaultsOSRD
-preplace port B_PCLK -pg 1 -lvl 9 -x 3930 -y 1970 -defaultsOSRD
-preplace portBus SSTIN_P -pg 1 -lvl 9 -x 3930 -y 1070 -defaultsOSRD
-preplace portBus SSTIN_N -pg 1 -lvl 9 -x 3930 -y 1090 -defaultsOSRD
+preplace port B_WR_RS_S0 -pg 1 -lvl 10 -x 4120 -y 2030 -defaultsOSRD
+preplace port B_WR_RS_S1 -pg 1 -lvl 10 -x 4120 -y 2050 -defaultsOSRD
+preplace port B_WR_CS_S0 -pg 1 -lvl 10 -x 4120 -y 2070 -defaultsOSRD
+preplace port B_WR_CS_S1 -pg 1 -lvl 10 -x 4120 -y 2090 -defaultsOSRD
+preplace port B_WR_CS_S2 -pg 1 -lvl 10 -x 4120 -y 2110 -defaultsOSRD
+preplace port B_WR_CS_S3 -pg 1 -lvl 10 -x 4120 -y 2130 -defaultsOSRD
+preplace port B_WR_CS_S4 -pg 1 -lvl 10 -x 4120 -y 2150 -defaultsOSRD
+preplace port B_WR_CS_S5 -pg 1 -lvl 10 -x 4120 -y 2170 -defaultsOSRD
+preplace port B_GCC_RESET -pg 1 -lvl 10 -x 4120 -y 2190 -defaultsOSRD
+preplace port B_RDAD_CLK -pg 1 -lvl 10 -x 4120 -y 2250 -defaultsOSRD
+preplace port B_RDAD_SIN -pg 1 -lvl 10 -x 4120 -y 2270 -defaultsOSRD
+preplace port B_RDAD_DIR -pg 1 -lvl 10 -x 4120 -y 2290 -defaultsOSRD
+preplace port B_SAMPLESEL_ANY -pg 1 -lvl 10 -x 4120 -y 2310 -defaultsOSRD
+preplace port B_SS_INCR -pg 1 -lvl 10 -x 4120 -y 2330 -defaultsOSRD
+preplace port B_SS_RESET -pg 1 -lvl 10 -x 4120 -y 2370 -defaultsOSRD
+preplace port B_RAMP -pg 1 -lvl 10 -x 4120 -y 2450 -defaultsOSRD
+preplace port B_SS_LD_SIN -pg 1 -lvl 10 -x 4120 -y 2410 -defaultsOSRD
+preplace port B_SS_LD_DIR -pg 1 -lvl 10 -x 4120 -y 2430 -defaultsOSRD
+preplace port B_PCLK -pg 1 -lvl 10 -x 4120 -y 1970 -defaultsOSRD
+preplace portBus SSTIN_P -pg 1 -lvl 10 -x 4120 -y 1070 -defaultsOSRD
+preplace portBus SSTIN_N -pg 1 -lvl 10 -x 4120 -y 1090 -defaultsOSRD
 preplace portBus B_DO_1 -pg 1 -lvl 0 -x -20 -y 1210 -defaultsOSRD
 preplace portBus B_DO_2 -pg 1 -lvl 0 -x -20 -y 1230 -defaultsOSRD
 preplace portBus B_DO_3 -pg 1 -lvl 0 -x -20 -y 1250 -defaultsOSRD
@@ -203,159 +203,159 @@ preplace portBus B_DO_13 -pg 1 -lvl 0 -x -20 -y 1450 -defaultsOSRD
 preplace portBus B_DO_14 -pg 1 -lvl 0 -x -20 -y 1470 -defaultsOSRD
 preplace portBus B_DO_15 -pg 1 -lvl 0 -x -20 -y 1490 -defaultsOSRD
 preplace portBus B_DO_16 -pg 1 -lvl 0 -x -20 -y 1510 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 7 -x 2900 -y 1700 -defaultsOSRD
-preplace inst axi_dma_0 -pg 1 -lvl 4 -x 1720 -y 1730 -defaultsOSRD
-preplace inst axi_interconnect_0 -pg 1 -lvl 5 -x 2100 -y 1700 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 3 -x 1350 -y 1690 -defaultsOSRD
-preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 260 -y 1640 -swap {1 0 2 3 4 5 6 7 8 9} -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 5 -x 2100 -y 200 -defaultsOSRD
-preplace inst xlconcat_1 -pg 1 -lvl 5 -x 2100 -y 1920 -defaultsOSRD
-preplace inst axis_interconnect_0 -pg 1 -lvl 3 -x 1350 -y 2050 -swap {0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 21 27 23 22 20 24 26 25 28 29} -defaultsOSRD
-preplace inst xlconcat_2 -pg 1 -lvl 5 -x 2100 -y 1360 -defaultsOSRD
-preplace inst util_ds_buf_0 -pg 1 -lvl 8 -x 3530 -y 1080 -defaultsOSRD
-preplace inst TARGETC_axi_int_0 -pg 1 -lvl 2 -x 780 -y 1140 -defaultsOSRD
-preplace inst TARGETC_axi_int_1 -pg 1 -lvl 2 -x 780 -y 2250 -defaultsOSRD
-preplace inst xlconstant_0 -pg 1 -lvl 1 -x 260 -y 1060 -defaultsOSRD
-preplace inst xlconstant_1 -pg 1 -lvl 1 -x 260 -y 2190 -defaultsOSRD
-preplace inst xlconstant_2 -pg 1 -lvl 6 -x 2430 -y 960 -defaultsOSRD
-preplace inst TARGET_C_TopLevel_Sy_0 -pg 1 -lvl 7 -x 2900 -y 520 -defaultsOSRD
-preplace inst TARGET_C_TopLevel_Sy_1 -pg 1 -lvl 7 -x 2900 -y 2240 -defaultsOSRD
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 8 10 1510 NJ 1510 NJ 1510 NJ 1510 1930J 1840 NJ 1840 N 1840 3140
-preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 6 500 1500 1020 1500 1540 1630 1920 1820 N 1820 2630
-preplace netloc ARESETN_1 1 1 2 NJ 1660 1030
-preplace netloc DO_16_1 1 0 5 NJ 350 NJ 350 NJ 350 NJ 350 NJ
-preplace netloc DO_15_1 1 0 5 NJ 330 NJ 330 NJ 330 NJ 330 NJ
-preplace netloc DO_1_1 1 0 5 NJ 50 NJ 50 NJ 50 NJ 50 NJ
-preplace netloc DO_2_1 1 0 5 NJ 70 NJ 70 NJ 70 NJ 70 NJ
-preplace netloc DO_3_1 1 0 5 NJ 90 NJ 90 NJ 90 NJ 90 NJ
-preplace netloc DO_4_1 1 0 5 NJ 110 NJ 110 NJ 110 NJ 110 NJ
-preplace netloc DO_5_1 1 0 5 NJ 130 NJ 130 NJ 130 NJ 130 NJ
-preplace netloc DO_6_1 1 0 5 NJ 150 NJ 150 NJ 150 NJ 150 NJ
-preplace netloc DO_7_1 1 0 5 NJ 170 NJ 170 NJ 170 NJ 170 NJ
-preplace netloc DO_14_1 1 0 5 NJ 310 NJ 310 NJ 310 NJ 310 NJ
-preplace netloc DO_13_1 1 0 5 NJ 290 NJ 290 NJ 290 NJ 290 NJ
-preplace netloc DO_12_1 1 0 5 NJ 270 NJ 270 NJ 270 NJ 270 NJ
-preplace netloc DO_11_1 1 0 5 NJ 250 NJ 250 NJ 250 NJ 250 NJ
-preplace netloc DO_10_1 1 0 5 NJ 230 NJ 230 NJ 230 NJ 230 NJ
-preplace netloc DO_8_1 1 0 5 NJ 190 NJ 190 NJ 190 NJ 190 NJ
-preplace netloc DO_9_1 1 0 5 NJ 210 NJ 210 NJ 210 NJ 210 NJ
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 8 20 1540 490 1610 1010 1860 1550 1860 1940 2000 N 2000 2620 1560 3140
-preplace netloc axi_dma_0_s2mm_introut 1 4 1 1910 1750n
-preplace netloc xlconcat_1_dout 1 5 2 2250 1740 N
-preplace netloc TARGET_C_TopLevel_Sy_0_SIN 1 7 2 NJ 200 3910J
-preplace netloc TARGET_C_TopLevel_Sy_0_SCLK 1 7 2 NJ 220 3900J
-preplace netloc TARGET_C_TopLevel_Sy_0_PCLK 1 7 2 NJ 240 3890J
-preplace netloc TARGET_C_TopLevel_Sy_0_HSCLK_P 1 7 2 NJ 260 3880J
-preplace netloc TARGET_C_TopLevel_Sy_0_HSCLK_N 1 7 2 NJ 280 3870J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_RS_S0 1 7 2 NJ 300 3860J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_RS_S1 1 7 2 NJ 320 3850J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S0 1 7 2 NJ 340 3840J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S1 1 7 2 NJ 360 3830J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S2 1 7 2 NJ 380 3820J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S3 1 7 2 NJ 400 3810J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S4 1 7 2 NJ 420 3800J
-preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S5 1 7 2 NJ 440 3790J
-preplace netloc TARGET_C_TopLevel_Sy_0_GCC_RESET 1 7 2 NJ 460 3780J
-preplace netloc TARGET_C_TopLevel_Sy_0_WL_CLK_P 1 7 2 NJ 480 3770J
-preplace netloc TARGET_C_TopLevel_Sy_0_WL_CLK_N 1 7 2 NJ 500 3760J
-preplace netloc TARGET_C_TopLevel_Sy_0_RDAD_CLK 1 7 2 NJ 520 3750J
-preplace netloc TARGET_C_TopLevel_Sy_0_RDAD_SIN 1 7 2 NJ 540 3740J
-preplace netloc TARGET_C_TopLevel_Sy_0_RDAD_DIR 1 7 2 NJ 560 3730J
-preplace netloc TARGET_C_TopLevel_Sy_0_SAMPLESEL_ANY 1 7 2 NJ 580 3720J
-preplace netloc TARGET_C_TopLevel_Sy_0_SS_INCR 1 7 2 NJ 600 3710J
-preplace netloc TARGET_C_TopLevel_Sy_0_SS_RESET 1 7 2 NJ 640 3700J
-preplace netloc TARGET_C_TopLevel_Sy_0_SS_LD_SIN 1 7 2 NJ 680 3690J
-preplace netloc TARGET_C_TopLevel_Sy_0_SS_LD_DIR 1 7 2 NJ 700 3680J
-preplace netloc TARGET_C_TopLevel_Sy_0_RAMP 1 7 2 NJ 720 3670J
-preplace netloc TARGET_C_TopLevel_Sy_0_SSVALID_INTR 1 4 4 1950 1580 2250J 1560 2550 1550 3150
-preplace netloc xlconcat_0_dout 1 5 2 2260 480 N
-preplace netloc TARGET_C_TopLevel_Sy_0_FIFOdata 1 1 7 500 880 NJ 880 NJ 880 NJ 880 NJ 880 2600 930 3130
-preplace netloc TARGET_C_TopLevel_Sy_0_CNT_CLR 1 1 7 520 890 NJ 890 NJ 890 NJ 890 NJ 890 2570 920 3160
-preplace netloc TARGET_C_TopLevel_Sy_0_FIFOvalid 1 1 7 540 1320 970J 1150 NJ 1150 NJ 1150 NJ 1150 N 1150 3180
-preplace netloc TARGET_C_TopLevel_Sy_0_SW_nRST 1 1 7 530 790 NJ 790 NJ 790 NJ 790 2250J 470 2510 120 3190
-preplace netloc MONTIMING_P_1 1 0 7 NJ 1860 NJ 1860 950J 1880 NJ 1880 1890J 2020 N 2020 2640
-preplace netloc DONE_1 1 0 7 NJ 790 440J 810 NJ 810 NJ 810 NJ 810 NJ 810 2540
-preplace netloc SHOUT_1 1 0 7 NJ 750 450J 800 NJ 800 NJ 800 NJ 800 NJ 800 2530
-preplace netloc MONTIMING_N_1 1 0 7 10J 1870 NJ 1870 NJ 1870 NJ 1870 1900J 2010 N 2010 2650
-preplace netloc TRIGA_1 1 0 7 NJ 890 440J 840 NJ 840 NJ 840 NJ 840 NJ 840 2570
-preplace netloc TRIGB_1 1 0 7 NJ 910 450J 850 NJ 850 NJ 850 NJ 850 NJ 850 2580
-preplace netloc TRIGC_1 1 0 7 NJ 930 460J 860 NJ 860 NJ 860 NJ 860 NJ 860 2590
-preplace netloc TRIGD_1 1 0 7 NJ 950 470J 870 NJ 870 NJ 870 NJ 870 NJ 870 2600
-preplace netloc TARGET_C_TopLevel_Sy_0_TestStream 1 1 7 540 900 NJ 900 NJ 900 NJ 900 NJ 900 2530 940 3170
-preplace netloc TARGET_C_TopLevel_Sy_1_SW_nRST 1 1 7 540 1850 NJ 1850 NJ 1850 1920J 1830 NJ 1830 N 1830 3130
-preplace netloc TARGET_C_TopLevel_Sy_1_TestStream 1 1 7 520 2640 NJ 2640 NJ 2640 NJ 2640 NJ 2640 N 2640 3140
-preplace netloc TARGET_C_TopLevel_Sy_1_FIFOdata 1 1 7 530 2670 NJ 2670 NJ 2670 NJ 2670 NJ 2670 N 2670 3150
-preplace netloc TARGET_C_TopLevel_Sy_1_FIFOvalid 1 1 7 510 2680 NJ 2680 NJ 2680 NJ 2680 NJ 2680 N 2680 3170
-preplace netloc TARGET_C_TopLevel_Sy_1_CNT_CLR 1 1 7 540 2650 NJ 2650 NJ 2650 NJ 2650 NJ 2650 N 2650 3160
-preplace netloc TARGET_C_TopLevel_Sy_1_HSCLK_P 1 7 2 NJ 1980 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_HSCLK_N 1 7 2 NJ 2000 3790J
-preplace netloc B_TRIG1_1 1 0 7 0J 2100 NJ 2100 970J 2260 NJ 2260 NJ 2260 NJ 2260 2540
-preplace netloc B_TRIG2_1 1 0 7 10J 2110 NJ 2110 960J 2270 NJ 2270 NJ 2270 NJ 2270 2520
-preplace netloc B_TRIG3_1 1 0 7 20J 2120 NJ 2120 950J 2280 NJ 2280 NJ 2280 NJ 2280 2510
-preplace netloc B_TRIG4_1 1 0 7 NJ 2390 NJ 2390 NJ 2390 NJ 2390 NJ 2390 NJ 2390 2580
-preplace netloc B_SHOUT_1 1 0 7 NJ 2070 NJ 2070 1000J 2230 1540J 2210 NJ 2210 NJ 2210 2660
-preplace netloc B_DONE_1 1 0 7 NJ 2090 NJ 2090 980J 2220 NJ 2220 NJ 2220 NJ 2220 N
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_RS_S0 1 7 2 NJ 2020 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_RS_S1 1 7 2 NJ 2040 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S0 1 7 2 NJ 2060 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S1 1 7 2 NJ 2080 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S2 1 7 2 NJ 2100 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S3 1 7 2 NJ 2120 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S4 1 7 2 NJ 2140 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S5 1 7 2 NJ 2160 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_GCC_RESET 1 7 2 NJ 2180 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_RDAD_CLK 1 7 2 NJ 2240 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_RDAD_SIN 1 7 2 NJ 2260 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_RDAD_DIR 1 7 2 NJ 2280 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_SAMPLESEL_ANY 1 7 2 NJ 2300 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_SS_INCR 1 7 2 NJ 2320 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_SS_RESET 1 7 2 NJ 2360 3790J
-preplace netloc xlconcat_2_dout 1 5 2 N 1360 2560
-preplace netloc B_DO_1_1 1 0 5 NJ 1210 470J 1290 950J 1210 NJ 1210 NJ
-preplace netloc B_DO_2_1 1 0 5 NJ 1230 480J 1270 940J 1230 NJ 1230 NJ
-preplace netloc B_DO_3_1 1 0 5 NJ 1250 460J 1280 960J 1250 NJ 1250 NJ
-preplace netloc B_DO_4_1 1 0 5 NJ 1270 450J 1310 980J 1270 NJ 1270 NJ
-preplace netloc B_DO_5_1 1 0 5 NJ 1290 440J 1300 990J 1290 NJ 1290 NJ
-preplace netloc B_DO_6_1 1 0 5 NJ 1310 440J 1330 990J 1310 NJ 1310 NJ
-preplace netloc B_DO_7_1 1 0 5 NJ 1330 430J 1340 1030J 1330 NJ 1330 NJ
-preplace netloc B_DO_8_1 1 0 5 NJ 1350 NJ 1350 NJ 1350 NJ 1350 NJ
-preplace netloc B_DO_9_1 1 0 5 NJ 1370 NJ 1370 NJ 1370 NJ 1370 NJ
-preplace netloc B_DO_10_1 1 0 5 NJ 1390 NJ 1390 NJ 1390 NJ 1390 NJ
-preplace netloc B_DO_11_1 1 0 5 NJ 1410 NJ 1410 NJ 1410 NJ 1410 NJ
-preplace netloc B_DO_12_1 1 0 5 NJ 1430 NJ 1430 NJ 1430 NJ 1430 NJ
-preplace netloc B_DO_13 1 0 5 NJ 1450 NJ 1450 NJ 1450 NJ 1450 NJ
-preplace netloc B_DO_14_1 1 0 5 NJ 1470 NJ 1470 NJ 1470 NJ 1470 NJ
-preplace netloc B_DO_15_1 1 0 5 NJ 1490 NJ 1490 NJ 1490 NJ 1490 NJ
-preplace netloc B_DO_16_1 1 0 5 0J 1520 NJ 1520 NJ 1520 NJ 1520 1950J
-preplace netloc TARGET_C_TopLevel_Sy_1_RAMP 1 7 2 NJ 2440 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_SS_LD_SIN 1 7 2 NJ 2400 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_SS_LD_DIR 1 7 2 NJ 2420 3790J
-preplace netloc TARGET_C_TopLevel_Sy_1_SSVALID_INTR 1 4 4 1950 2660 NJ 2660 N 2660 3130
-preplace netloc TARGET_C_TopLevel_Sy_1_PCLK 1 7 2 NJ 1960 3790J
-preplace netloc TARGET_C_TopLevel_Sy_0_SSTIN 1 7 1 3190 740n
-preplace netloc util_ds_buf_0_OBUF_DS_P 1 8 1 NJ 1070
-preplace netloc util_ds_buf_0_OBUF_DS_N 1 8 1 NJ 1090
-preplace netloc TARGETC_axi_int_0_StreamReady 1 2 5 970J 830 NJ 830 NJ 830 N 830 2560
-preplace netloc TARGETC_axi_int_0_Cnt_AXIS_DATA 1 2 5 940J 820 NJ 820 NJ 820 N 820 2550
-preplace netloc TARGETC_axi_int_1_StreamReady 1 2 5 NJ 2240 NJ 2240 NJ 2240 N 2240 2590
-preplace netloc TARGETC_axi_int_1_Cnt_AXIS_DATA 1 2 5 940J 2250 NJ 2250 NJ 2250 N 2250 2560
-preplace netloc xlconstant_0_dout 1 1 1 450 1060n
-preplace netloc xlconstant_1_dout 1 1 1 440 2190n
-preplace netloc xlconstant_2_dout 1 6 1 2610 680n
-preplace netloc TARGET_C_TopLevel_Sy_0_WS_masterctrl_out 1 6 2 2670 950 3140
-preplace netloc TARGETC_axi_int_1_M00_AXIS 1 2 1 940 1960n
-preplace netloc processing_system7_0_FIXED_IO 1 7 2 NJ 1650 NJ
-preplace netloc axi_dma_0_M_AXI_S2MM 1 4 1 1910 1640n
-preplace netloc axis_interconnect_0_M00_AXIS 1 3 1 1530 1710n
-preplace netloc axi_interconnect_0_M00_AXI 1 5 2 2260 1680 N
-preplace netloc ps7_0_axi_periph_M01_AXI 1 3 1 N 1690
-preplace netloc ps7_0_axi_periph_M02_AXI 1 3 4 1520 2080 NJ 2080 NJ 2080 N
-preplace netloc processing_system7_0_DDR 1 7 2 NJ 1630 NJ
-preplace netloc processing_system7_0_M_AXI_GP0 1 2 6 1030 1530 NJ 1530 1950J 1570 NJ 1570 N 1570 3130
-preplace netloc ps7_0_axi_periph_M00_AXI 1 3 4 1520J 780 NJ 780 2260 490 2520
-preplace netloc TARGETC_axi_int_0_M00_AXIS 1 2 1 1000 1110n
-levelinfo -pg 1 -20 260 780 1350 1720 2100 2430 2900 3530 3930
-pagesize -pg 1 -db -bbox -sgen -180 0 4120 2720
+preplace inst processing_system7_0 -pg 1 -lvl 8 -x 3290 -y 1700 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 5 -x 2126 -y 1730 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 6 -x 2512 -y 1700 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 4 -x 1700 -y 1690 -defaultsOSRD
+preplace inst rst_ps7_0_50M -pg 1 -lvl 1 -x 240 -y 1640 -swap {1 0 2 3 4 5 6 7 8 9} -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 6 -x 2512 -y 200 -defaultsOSRD
+preplace inst xlconcat_1 -pg 1 -lvl 6 -x 2512 -y 1920 -defaultsOSRD
+preplace inst axis_interconnect_0 -pg 1 -lvl 4 -x 1700 -y 2110 -defaultsOSRD
+preplace inst xlconcat_2 -pg 1 -lvl 6 -x 2512 -y 1360 -defaultsOSRD
+preplace inst util_ds_buf_0 -pg 1 -lvl 9 -x 3720 -y 1080 -defaultsOSRD
+preplace inst TARGETC_axi_int_0 -pg 1 -lvl 2 -x 750 -y 1160 -defaultsOSRD
+preplace inst TARGETC_axi_int_1 -pg 1 -lvl 2 -x 750 -y 2310 -defaultsOSRD
+preplace inst xlconstant_0 -pg 1 -lvl 1 -x 240 -y 1060 -defaultsOSRD
+preplace inst xlconstant_1 -pg 1 -lvl 1 -x 240 -y 2190 -defaultsOSRD
+preplace inst xlconstant_2 -pg 1 -lvl 7 -x 2776 -y 960 -defaultsOSRD
+preplace inst TARGET_C_TopLevel_Sy_0 -pg 1 -lvl 8 -x 3290 -y 520 -defaultsOSRD
+preplace inst TARGET_C_TopLevel_Sy_1 -pg 1 -lvl 8 -x 3290 -y 2240 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 9 40 1530 NJ 1530 NJ 1530 1010 1510 NJ 1510 2300J 1580 2680J 1560 N 1560 3530
+preplace netloc rst_ps7_0_50M_peripheral_aresetn 1 1 7 470 1540 N 1540 1040 1520 1880 1830 2330 1830 N 1830 2990
+preplace netloc ARESETN_1 1 1 3 NJ 1660 N 1660 1000
+preplace netloc DO_16_1 1 0 6 NJ 350 NJ 350 NJ 350 N 350 NJ 350 NJ
+preplace netloc DO_15_1 1 0 6 NJ 330 NJ 330 NJ 330 N 330 NJ 330 NJ
+preplace netloc DO_1_1 1 0 6 NJ 50 NJ 50 NJ 50 N 50 NJ 50 NJ
+preplace netloc DO_2_1 1 0 6 NJ 70 NJ 70 NJ 70 N 70 NJ 70 NJ
+preplace netloc DO_3_1 1 0 6 NJ 90 NJ 90 NJ 90 N 90 NJ 90 NJ
+preplace netloc DO_4_1 1 0 6 NJ 110 NJ 110 NJ 110 N 110 NJ 110 NJ
+preplace netloc DO_5_1 1 0 6 NJ 130 NJ 130 NJ 130 N 130 NJ 130 NJ
+preplace netloc DO_6_1 1 0 6 NJ 150 NJ 150 NJ 150 N 150 NJ 150 NJ
+preplace netloc DO_7_1 1 0 6 NJ 170 NJ 170 NJ 170 N 170 NJ 170 NJ
+preplace netloc DO_14_1 1 0 6 NJ 310 NJ 310 NJ 310 N 310 NJ 310 NJ
+preplace netloc DO_13_1 1 0 6 NJ 290 NJ 290 NJ 290 N 290 NJ 290 NJ
+preplace netloc DO_12_1 1 0 6 NJ 270 NJ 270 NJ 270 N 270 NJ 270 NJ
+preplace netloc DO_11_1 1 0 6 NJ 250 NJ 250 NJ 250 N 250 NJ 250 NJ
+preplace netloc DO_10_1 1 0 6 NJ 230 NJ 230 NJ 230 N 230 NJ 230 NJ
+preplace netloc DO_8_1 1 0 6 NJ 190 NJ 190 NJ 190 N 190 NJ 190 NJ
+preplace netloc DO_9_1 1 0 6 NJ 210 NJ 210 NJ 210 N 210 NJ 210 NJ
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 9 50 1540 460 1520 N 1520 1020 1500 1900 1630 2310 1820 N 1820 2980 1550 3540
+preplace netloc axi_dma_0_s2mm_introut 1 5 1 2300 1750n
+preplace netloc xlconcat_1_dout 1 6 2 2680 1740 N
+preplace netloc TARGET_C_TopLevel_Sy_0_SIN 1 8 2 NJ 200 4100J
+preplace netloc TARGET_C_TopLevel_Sy_0_SCLK 1 8 2 NJ 220 4090J
+preplace netloc TARGET_C_TopLevel_Sy_0_PCLK 1 8 2 NJ 240 4080J
+preplace netloc TARGET_C_TopLevel_Sy_0_HSCLK_P 1 8 2 NJ 260 4070J
+preplace netloc TARGET_C_TopLevel_Sy_0_HSCLK_N 1 8 2 NJ 280 4060J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_RS_S0 1 8 2 NJ 300 4050J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_RS_S1 1 8 2 NJ 320 4040J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S0 1 8 2 NJ 340 4030J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S1 1 8 2 NJ 360 4020J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S2 1 8 2 NJ 380 4010J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S3 1 8 2 NJ 400 4000J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S4 1 8 2 NJ 420 3990J
+preplace netloc TARGET_C_TopLevel_Sy_0_WR_CS_S5 1 8 2 NJ 440 3980J
+preplace netloc TARGET_C_TopLevel_Sy_0_GCC_RESET 1 8 2 NJ 460 3970J
+preplace netloc TARGET_C_TopLevel_Sy_0_WL_CLK_P 1 8 2 NJ 480 3960J
+preplace netloc TARGET_C_TopLevel_Sy_0_WL_CLK_N 1 8 2 NJ 500 3950J
+preplace netloc TARGET_C_TopLevel_Sy_0_RDAD_CLK 1 8 2 NJ 520 3940J
+preplace netloc TARGET_C_TopLevel_Sy_0_RDAD_SIN 1 8 2 NJ 540 3930J
+preplace netloc TARGET_C_TopLevel_Sy_0_RDAD_DIR 1 8 2 NJ 560 3920J
+preplace netloc TARGET_C_TopLevel_Sy_0_SAMPLESEL_ANY 1 8 2 NJ 580 3910J
+preplace netloc TARGET_C_TopLevel_Sy_0_SS_INCR 1 8 2 NJ 600 3900J
+preplace netloc TARGET_C_TopLevel_Sy_0_SS_RESET 1 8 2 NJ 640 3890J
+preplace netloc TARGET_C_TopLevel_Sy_0_SS_LD_SIN 1 8 2 NJ 680 3880J
+preplace netloc TARGET_C_TopLevel_Sy_0_SS_LD_DIR 1 8 2 NJ 700 3870J
+preplace netloc TARGET_C_TopLevel_Sy_0_RAMP 1 8 2 NJ 720 3860J
+preplace netloc TARGET_C_TopLevel_Sy_0_SSVALID_INTR 1 5 4 2310 2000 NJ 2000 3000 1840 3570
+preplace netloc xlconcat_0_dout 1 6 2 2680 480 N
+preplace netloc TARGET_C_TopLevel_Sy_0_FIFOdata 1 1 8 440 1010 NJ 1010 1000 1020 NJ 1020 NJ 1020 2670J 1040 N 1040 3530
+preplace netloc TARGET_C_TopLevel_Sy_0_CNT_CLR 1 1 8 460 1020 NJ 1020 980 1030 NJ 1030 NJ 1030 NJ 1030 N 1030 3560
+preplace netloc TARGET_C_TopLevel_Sy_0_FIFOvalid 1 1 8 520 1030 NJ 1030 970 1050 NJ 1050 NJ 1050 NJ 1050 N 1050 3550
+preplace netloc TARGET_C_TopLevel_Sy_0_SW_nRST 1 1 8 470 770 NJ 770 990 800 NJ 800 NJ 800 2670J 470 2860 120 3580
+preplace netloc DONE_1 1 0 8 NJ 790 NJ 790 NJ 790 970 820 NJ 820 NJ 820 NJ 820 2890
+preplace netloc SHOUT_1 1 0 8 NJ 750 430J 780 NJ 780 980 810 NJ 810 NJ 810 NJ 810 2880
+preplace netloc TRIGA_1 1 0 8 NJ 890 NJ 890 NJ 890 1000 870 NJ 870 NJ 870 NJ 870 2940
+preplace netloc TRIGB_1 1 0 8 NJ 910 NJ 910 NJ 910 1020 880 NJ 880 NJ 880 NJ 880 2950
+preplace netloc TRIGC_1 1 0 8 NJ 930 NJ 930 NJ 930 1040 890 NJ 890 NJ 890 NJ 890 2960
+preplace netloc TRIGD_1 1 0 8 NJ 950 NJ 950 NJ 950 1050 900 NJ 900 NJ 900 NJ 900 2970
+preplace netloc TARGET_C_TopLevel_Sy_0_TestStream 1 1 8 510 1000 NJ 1000 1040 1010 NJ 1010 NJ 1010 2680J 1020 N 1020 3540
+preplace netloc TARGET_C_TopLevel_Sy_1_SW_nRST 1 1 8 490 2650 NJ 2650 N 2650 NJ 2650 NJ 2650 NJ 2650 N 2650 3570
+preplace netloc TARGET_C_TopLevel_Sy_1_TestStream 1 1 8 500 2660 NJ 2660 N 2660 NJ 2660 NJ 2660 NJ 2660 N 2660 3550
+preplace netloc TARGET_C_TopLevel_Sy_1_FIFOdata 1 1 8 510 2670 NJ 2670 N 2670 NJ 2670 NJ 2670 NJ 2670 N 2670 3520
+preplace netloc TARGET_C_TopLevel_Sy_1_FIFOvalid 1 1 8 480 2680 NJ 2680 N 2680 NJ 2680 NJ 2680 NJ 2680 N 2680 3560
+preplace netloc TARGET_C_TopLevel_Sy_1_CNT_CLR 1 1 8 520 2640 NJ 2640 N 2640 NJ 2640 NJ 2640 NJ 2640 N 2640 3530
+preplace netloc TARGET_C_TopLevel_Sy_1_HSCLK_P 1 8 2 NJ 1980 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_HSCLK_N 1 8 2 NJ 2000 3980J
+preplace netloc B_TRIG1_1 1 0 8 NJ 2330 440J 2440 NJ 2440 N 2440 NJ 2440 NJ 2440 NJ 2440 2880
+preplace netloc B_TRIG2_1 1 0 8 NJ 2350 430J 2450 NJ 2450 N 2450 NJ 2450 NJ 2450 NJ 2450 2910
+preplace netloc B_TRIG3_1 1 0 8 NJ 2370 420J 2460 NJ 2460 N 2460 NJ 2460 NJ 2460 NJ 2460 2950
+preplace netloc B_TRIG4_1 1 0 8 NJ 2390 410J 2470 NJ 2470 N 2470 NJ 2470 NJ 2470 NJ 2470 2990
+preplace netloc B_SHOUT_1 1 0 8 NJ 2070 NJ 2070 NJ 2070 1030 1850 NJ 1850 2320J 1840 NJ 1840 2910
+preplace netloc B_DONE_1 1 0 8 NJ 2090 NJ 2090 NJ 2090 1050 1940 NJ 1940 2300J 2010 NJ 2010 2860
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_RS_S0 1 8 2 NJ 2020 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_RS_S1 1 8 2 NJ 2040 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S0 1 8 2 NJ 2060 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S1 1 8 2 NJ 2080 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S2 1 8 2 NJ 2100 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S3 1 8 2 NJ 2120 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S4 1 8 2 NJ 2140 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_WR_CS_S5 1 8 2 NJ 2160 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_GCC_RESET 1 8 2 NJ 2180 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_RDAD_CLK 1 8 2 NJ 2240 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_RDAD_SIN 1 8 2 NJ 2260 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_RDAD_DIR 1 8 2 NJ 2280 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_SAMPLESEL_ANY 1 8 2 NJ 2300 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_SS_INCR 1 8 2 NJ 2320 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_SS_RESET 1 8 2 NJ 2360 3980J
+preplace netloc xlconcat_2_dout 1 6 2 N 1360 2960
+preplace netloc B_DO_1_1 1 0 6 NJ 1210 430J 1290 910J 1280 970 1210 NJ 1210 NJ
+preplace netloc B_DO_2_1 1 0 6 NJ 1230 420J 1300 920J 1290 990 1230 NJ 1230 NJ
+preplace netloc B_DO_3_1 1 0 6 NJ 1250 440J 1330 930J 1300 1000 1250 NJ 1250 NJ
+preplace netloc B_DO_4_1 1 0 6 NJ 1270 450J 1310 NJ 1310 1040 1270 NJ 1270 NJ
+preplace netloc B_DO_5_1 1 0 6 NJ 1290 410J 1320 NJ 1320 1050 1290 NJ 1290 NJ
+preplace netloc B_DO_6_1 1 0 6 20J 1350 NJ 1350 NJ 1350 1040 1340 NJ 1340 2330J
+preplace netloc B_DO_7_1 1 0 6 NJ 1330 420J 1340 NJ 1340 1000 1330 NJ 1330 NJ
+preplace netloc B_DO_8_1 1 0 6 0J 1360 NJ 1360 NJ 1360 1050 1350 NJ 1350 NJ
+preplace netloc B_DO_9_1 1 0 6 NJ 1370 NJ 1370 NJ 1370 N 1370 NJ 1370 NJ
+preplace netloc B_DO_10_1 1 0 6 NJ 1390 NJ 1390 NJ 1390 N 1390 NJ 1390 NJ
+preplace netloc B_DO_11_1 1 0 6 NJ 1410 NJ 1410 NJ 1410 N 1410 NJ 1410 NJ
+preplace netloc B_DO_12_1 1 0 6 NJ 1430 NJ 1430 NJ 1430 N 1430 NJ 1430 NJ
+preplace netloc B_DO_13 1 0 6 NJ 1450 NJ 1450 NJ 1450 N 1450 NJ 1450 NJ
+preplace netloc B_DO_14_1 1 0 6 NJ 1470 NJ 1470 NJ 1470 N 1470 NJ 1470 NJ
+preplace netloc B_DO_15_1 1 0 6 NJ 1490 NJ 1490 NJ 1490 990 1480 NJ 1480 2330J
+preplace netloc B_DO_16_1 1 0 6 NJ 1510 NJ 1510 NJ 1510 1000 1490 NJ 1490 2310J
+preplace netloc TARGET_C_TopLevel_Sy_1_RAMP 1 8 2 NJ 2440 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_SS_LD_SIN 1 8 2 NJ 2400 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_SS_LD_DIR 1 8 2 NJ 2420 3980J
+preplace netloc TARGET_C_TopLevel_Sy_1_SSVALID_INTR 1 5 4 2320 2690 NJ 2690 N 2690 3540
+preplace netloc TARGET_C_TopLevel_Sy_1_PCLK 1 8 2 NJ 1960 3980J
+preplace netloc TARGET_C_TopLevel_Sy_0_SSTIN 1 8 1 3580 740n
+preplace netloc util_ds_buf_0_OBUF_DS_P 1 9 1 NJ 1070
+preplace netloc util_ds_buf_0_OBUF_DS_N 1 9 1 NJ 1090
+preplace netloc TARGETC_axi_int_0_StreamReady 1 2 6 920J 880 990 860 NJ 860 NJ 860 N 860 2930
+preplace netloc TARGETC_axi_int_0_Cnt_AXIS_DATA 1 2 6 910J 870 980 850 NJ 850 NJ 850 N 850 2920
+preplace netloc TARGETC_axi_int_1_StreamReady 1 2 6 NJ 2300 N 2300 NJ 2300 NJ 2300 N 2300 N
+preplace netloc TARGETC_axi_int_1_Cnt_AXIS_DATA 1 2 6 920J 2290 N 2290 NJ 2290 NJ 2290 N 2290 2930
+preplace netloc xlconstant_0_dout 1 1 1 430 1060n
+preplace netloc xlconstant_1_dout 1 1 1 450 2190n
+preplace netloc xlconstant_2_dout 1 7 1 3000 680n
+preplace netloc TARGET_C_TopLevel_Sy_0_WS_masterctrl_out 1 7 2 3010 920 3520
+preplace netloc MONTIMING_P_1 1 0 8 10J 830 NJ 830 NJ 830 NJ 830 NJ 830 NJ 830 NJ 830 2900
+preplace netloc MONTIMING_N_1 1 0 8 30J 850 NJ 850 NJ 850 970J 840 NJ 840 NJ 840 NJ 840 2910
+preplace netloc processing_system7_0_FIXED_IO 1 8 2 NJ 1650 NJ
+preplace netloc ps7_0_axi_periph_M02_AXI 1 4 4 1870 2080 NJ 2080 NJ 2080 N
+preplace netloc processing_system7_0_M_AXI_GP0 1 3 6 1050 1530 1890J 1570 NJ 1570 NJ 1570 N 1570 3520
+preplace netloc axis_interconnect_0_M00_AXIS 1 4 1 1890 1710n
+preplace netloc S00_AXIS_1 1 2 2 920 2100 1000
+preplace netloc ps7_0_axi_periph_M01_AXI 1 4 1 N 1690
+preplace netloc ps7_0_axi_periph_M00_AXI 1 4 4 1870J 790 NJ 790 2680 490 2870
+preplace netloc axi_dma_0_M_AXI_S2MM 1 5 1 2320 1640n
+preplace netloc processing_system7_0_DDR 1 8 2 NJ 1630 NJ
+preplace netloc axi_interconnect_0_M00_AXI 1 6 2 2670 1680 N
+preplace netloc TARGETC_axi_int_0_M00_AXIS 1 2 2 N 1130 980
+levelinfo -pg 1 -20 240 750 950 1700 2126 2512 2776 3290 3720 4120
+pagesize -pg 1 -db -bbox -sgen -180 0 4310 2950
 "
 }
 {

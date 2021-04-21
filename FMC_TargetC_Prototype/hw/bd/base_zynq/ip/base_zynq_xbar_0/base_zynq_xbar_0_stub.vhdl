@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Tue Feb 16 09:36:38 2021
+-- Date        : Fri Feb 12 18:52:38 2021
 -- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode synth_stub
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_0/base_zynq_xbar_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub -rename_top base_zynq_xbar_0 -prefix
+--               base_zynq_xbar_0_ base_zynq_xbar_0_stub.vhdl
 -- Design      : base_zynq_xbar_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

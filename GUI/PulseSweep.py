@@ -18,7 +18,7 @@ import pandas as pd
 pg = pulseGen()
 nmbrWindows = 1
 firstWindow= 0
-totalWindows = 512
+totalWindows = 8
 nmbrPedestals = 100
 channel = 6
 width = 10e-9
@@ -32,7 +32,7 @@ pg.impedanceLoadHz(50)
 pg.pulseSweepInit(channel,nmbrPedestals)
 pg.pulseInit(width)
 time.sleep(10)
-wave_gen().Output1(out=True)
+#wave_gen().Output1(out=True)
 time.sleep(1)
 #pg.triggerMode(1000)
 #pg.softTrigger()
@@ -42,10 +42,10 @@ time.sleep(1)
 time.sleep(1)
 pg.pulseAmpl(ampl)
 time.sleep(1)
-wave_gen().Query()
+#wave_gen().Query()
 #amplitudes = np.arange(2100,2650,50)
 amplitudes= np.arange(0.5,2 ,2)
-repeticiones = list( range(0,5,1)   )
+repeticiones = list( range(0,2,1)   )
 
 #amplitudes=list(range(2100,2900,20))
 rango = list((range(100,110,100)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc

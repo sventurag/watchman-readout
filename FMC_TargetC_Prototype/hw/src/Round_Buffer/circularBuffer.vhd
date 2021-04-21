@@ -128,13 +128,13 @@ type longPulse_type is(
 );
 
 signal longpulse_stm : longpulse_type := IDLE;
-attribute mark_debug of subBuffer_triggered: signal is "true";
-attribute mark_debug of trigger: signal is "true";
-attribute mark_debug of WR_CS: signal is "true";
-attribute mark_debug of WR_RS: signal is "true";
-attribute mark_debug of ptr_wr: signal is "true";
-attribute mark_debug of ptr_1st_window_of_subBuffer: signal is "true";
-attribute mark_debug of cycle_number_corrected: signal is "true";
+--attribute mark_debug of subBuffer_triggered: signal is "true";
+--attribute mark_debug of trigger: signal is "true";
+--attribute mark_debug of WR_CS: signal is "true";
+--attribute mark_debug of WR_RS: signal is "true";
+--attribute mark_debug of ptr_wr: signal is "true";
+--attribute mark_debug of ptr_1st_window_of_subBuffer: signal is "true";
+--attribute mark_debug of cycle_number_corrected: signal is "true";
 
 attribute fsm_encoding : string;
 attribute fsm_encoding of stm_circularBuffer   : signal is "sequential"; 
