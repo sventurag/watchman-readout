@@ -37,5 +37,5 @@ GUI/*.py.swn
 .GUI/*lookIntoPackets.py.swn
 GUI/*data/
 GUI/*.spyproject/
-
-
+GUI/.vscode
+GUI/pulseSweep.ipynb
