@@ -8,7 +8,7 @@
    "Color Coded_TopLeft":"-889,0",
    "Default View_Layers":"/TARGET_C_TopLevel_Sy_0_WL_CLK_P:true|/processing_system7_0_FCLK_RESET0_N:true|/TARGET_C_TopLevel_Sy_0_GCC_RESET:true|/processing_system7_0_FCLK_CLK0:true|/axi_dma_0_s2mm_introut:true|/TARGET_C_TopLevel_Sy_0_SS_RESET:true|/TARGET_C_TopLevel_Sy_0_SSVALID_INTR:true|/ARESETN_1:true|/TARGET_C_TopLevel_Sy_0_WL_CLK_N:true|/TARGET_C_TopLevel_Sy_0_RDAD_CLK:true|/rst_ps7_0_50M_peripheral_aresetn:true|/TARGET_C_TopLevel_Sy_1_GCC_RESET:true|/B_DO_10_1:true|/B_DO_11_1:true|/B_DO_14_1:true|/B_DO_13:true|/B_DO_4_1:true|/B_DO_6_1:true|/TARGET_C_TopLevel_Sy_1_SS_RESET:true|/B_DO_5_1:true|/B_DO_7_1:true|/B_DO_3_1:true|/B_DO_15_1:true|/TARGET_C_TopLevel_Sy_1_RDAD_CLK:true|/B_DO_9_1:true|/B_DO_8_1:true|/B_DO_16_1:true|/TARGET_C_TopLevel_Sy_1_SSVALID_INTR:true|/util_ds_buf_0_OBUF_DS_N:true|/util_ds_buf_0_OBUF_DS_P:true|",
    "Default View_ScaleFactor":"1.06353",
-   "Default View_TopLeft":"1938,1928",
+   "Default View_TopLeft":"1942,1928",
    "Display-PortTypeClock":"true",
    "Display-PortTypeData":"true",
    "Display-PortTypeInterrupt":"true",

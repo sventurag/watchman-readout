@@ -311,10 +311,14 @@ proc create_root_design { parentCell } {
   set axis_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_interconnect:2.1 axis_interconnect_0 ]
   set_property -dict [ list \
    CONFIG.ARB_ALGORITHM {1} \
+   CONFIG.ARB_ON_MAX_XFERS {0} \
+   CONFIG.ARB_ON_TLAST {1} \
+   CONFIG.M00_FIFO_DEPTH {64} \
+   CONFIG.M00_FIFO_MODE {0} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {2} \
-   CONFIG.S00_FIFO_DEPTH {1024} \
-   CONFIG.S01_FIFO_DEPTH {1024} \
+   CONFIG.S00_FIFO_DEPTH {32} \
+   CONFIG.S01_FIFO_DEPTH {32} \
  ] $axis_interconnect_0
 
   # Create instance: processing_system7_0, and set properties
