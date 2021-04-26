@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Feb 26 15:27:41 2021
+-- Date        : Thu Apr 15 16:55:01 2021
 -- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_3/base_zynq_xbar_3_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_xbar_3 -prefix
+--               base_zynq_xbar_3_ base_zynq_xbar_3_sim_netlist.vhdl
 -- Design      : base_zynq_xbar_3
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -16,202 +16,202 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr is
   port (
-    \arb_sel_r_reg[0]_0\ : out STD_LOGIC;
-    s_axis_tvalid_1_sp_1 : out STD_LOGIC;
-    \gen_tdest_routing.busy_ns\ : out STD_LOGIC;
-    \arb_gnt_r_reg[0]_0\ : out STD_LOGIC;
-    \gen_tdest_routing.busy_ns_0\ : out STD_LOGIC;
-    \arb_gnt_r_reg[1]_0\ : out STD_LOGIC;
     s_axis_tready : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axis_tid : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \arb_gnt_r_reg[0]_0\ : out STD_LOGIC;
+    \arb_gnt_r_reg[1]_0\ : out STD_LOGIC;
+    \gen_tdest_routing.busy_ns\ : out STD_LOGIC;
+    m_axis_tready_0_sp_1 : out STD_LOGIC;
+    \gen_tdest_routing.busy_ns_0\ : out STD_LOGIC;
     m_axis_tlast : out STD_LOGIC_VECTOR ( 0 to 0 );
-    m_axis_tstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    \arb_sel_r_reg[0]_1\ : in STD_LOGIC;
+    m_axis_tstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axis_tid : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \arb_sel_r_reg[0]_0\ : in STD_LOGIC;
     aclken : in STD_LOGIC;
     aclk : in STD_LOGIC;
-    arb_busy_r_reg_0 : in STD_LOGIC;
-    \gen_tdest_routing.busy_r_reg[0]\ : in STD_LOGIC;
-    \gen_tdest_router.busy_r\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \gen_tdest_routing.busy_r_reg[0]_0\ : in STD_LOGIC;
     s_axis_tvalid : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \gen_tdest_router.busy_r\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     m_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \gen_tdest_routing.busy_r_reg[0]\ : in STD_LOGIC;
     s_req_suppress : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axis_tlast : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axis_tstrb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    \arb_req_i__1\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \gen_tdest_routing.busy_r_reg[0]_0\ : in STD_LOGIC;
+    \gen_tdest_routing.busy_r_reg[0]_1\ : in STD_LOGIC;
     s_axis_tdata : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    \arb_sel_r_reg[0]_2\ : in STD_LOGIC;
-    \arb_sel_r_reg[0]_3\ : in STD_LOGIC
+    s_axis_tstrb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    s_axis_tlast : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr : entity is "axis_switch_v1_1_21_arb_rr";
 end base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr is
-  signal arb_busy_ns : STD_LOGIC;
   signal arb_busy_r : STD_LOGIC;
-  signal arb_busy_r_i_3_n_0 : STD_LOGIC;
-  signal arb_busy_r_i_5_n_0 : STD_LOGIC;
+  signal arb_busy_r_i_1_n_0 : STD_LOGIC;
   signal \arb_gnt_r[0]_i_1_n_0\ : STD_LOGIC;
-  signal \arb_gnt_r[0]_i_2_n_0\ : STD_LOGIC;
   signal \arb_gnt_r[1]_i_1_n_0\ : STD_LOGIC;
-  signal \arb_gnt_r[1]_i_2_n_0\ : STD_LOGIC;
+  signal \arb_gnt_r[1]_i_4_n_0\ : STD_LOGIC;
+  signal \arb_gnt_r[1]_i_5_n_0\ : STD_LOGIC;
   signal \^arb_gnt_r_reg[0]_0\ : STD_LOGIC;
   signal \^arb_gnt_r_reg[1]_0\ : STD_LOGIC;
+  signal arb_sel_i : STD_LOGIC;
   signal \arb_sel_r[0]_i_1_n_0\ : STD_LOGIC;
-  signal \^arb_sel_r_reg[0]_0\ : STD_LOGIC;
-  signal \gen_tdest_routing.busy_r[0]_i_2_n_0\ : STD_LOGIC;
-  signal s_axis_tvalid_1_sn_1 : STD_LOGIC;
+  signal f_mux_return : STD_LOGIC;
+  signal \^m_axis_tlast\ : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal m_axis_tready_0_sn_1 : STD_LOGIC;
+  signal \m_axis_tvalid[0]_INST_0_i_1_n_0\ : STD_LOGIC;
+  signal valid_i : STD_LOGIC;
   attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of arb_busy_r_i_2 : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \gen_tdest_routing.busy_r[0]_i_2\ : label is "soft_lutpair0";
-  attribute SOFT_HLUTNM of \m_axis_tdata[10]_INST_0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \m_axis_tdata[11]_INST_0\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \m_axis_tdata[12]_INST_0\ : label is "soft_lutpair14";
-  attribute SOFT_HLUTNM of \m_axis_tdata[13]_INST_0\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \m_axis_tdata[14]_INST_0\ : label is "soft_lutpair13";
-  attribute SOFT_HLUTNM of \m_axis_tdata[15]_INST_0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \arb_gnt_r[1]_i_5\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \arb_gnt_r[1]_i_6\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \gen_tdest_routing.busy_r[0]_i_1\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \gen_tdest_routing.busy_r[0]_i_1__0\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \m_axis_tdata[0]_INST_0\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \m_axis_tdata[10]_INST_0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \m_axis_tdata[11]_INST_0\ : label is "soft_lutpair9";
+  attribute SOFT_HLUTNM of \m_axis_tdata[12]_INST_0\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \m_axis_tdata[13]_INST_0\ : label is "soft_lutpair10";
+  attribute SOFT_HLUTNM of \m_axis_tdata[14]_INST_0\ : label is "soft_lutpair11";
+  attribute SOFT_HLUTNM of \m_axis_tdata[15]_INST_0\ : label is "soft_lutpair11";
   attribute SOFT_HLUTNM of \m_axis_tdata[16]_INST_0\ : label is "soft_lutpair12";
-  attribute SOFT_HLUTNM of \m_axis_tdata[17]_INST_0\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \m_axis_tdata[18]_INST_0\ : label is "soft_lutpair11";
-  attribute SOFT_HLUTNM of \m_axis_tdata[19]_INST_0\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \m_axis_tdata[1]_INST_0\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \m_axis_tdata[20]_INST_0\ : label is "soft_lutpair10";
-  attribute SOFT_HLUTNM of \m_axis_tdata[21]_INST_0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \m_axis_tdata[22]_INST_0\ : label is "soft_lutpair9";
-  attribute SOFT_HLUTNM of \m_axis_tdata[23]_INST_0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \m_axis_tdata[24]_INST_0\ : label is "soft_lutpair8";
-  attribute SOFT_HLUTNM of \m_axis_tdata[25]_INST_0\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \m_axis_tdata[26]_INST_0\ : label is "soft_lutpair7";
-  attribute SOFT_HLUTNM of \m_axis_tdata[27]_INST_0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \m_axis_tdata[28]_INST_0\ : label is "soft_lutpair6";
-  attribute SOFT_HLUTNM of \m_axis_tdata[29]_INST_0\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \m_axis_tdata[2]_INST_0\ : label is "soft_lutpair19";
-  attribute SOFT_HLUTNM of \m_axis_tdata[30]_INST_0\ : label is "soft_lutpair5";
-  attribute SOFT_HLUTNM of \m_axis_tdata[31]_INST_0\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \m_axis_tdata[3]_INST_0\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \m_axis_tdata[4]_INST_0\ : label is "soft_lutpair18";
-  attribute SOFT_HLUTNM of \m_axis_tdata[5]_INST_0\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \m_axis_tdata[6]_INST_0\ : label is "soft_lutpair17";
-  attribute SOFT_HLUTNM of \m_axis_tdata[7]_INST_0\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \m_axis_tdata[8]_INST_0\ : label is "soft_lutpair16";
-  attribute SOFT_HLUTNM of \m_axis_tdata[9]_INST_0\ : label is "soft_lutpair15";
-  attribute SOFT_HLUTNM of \m_axis_tid[0]_INST_0\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \m_axis_tid[1]_INST_0\ : label is "soft_lutpair1";
-  attribute SOFT_HLUTNM of \m_axis_tlast[0]_INST_0\ : label is "soft_lutpair2";
-  attribute SOFT_HLUTNM of \m_axis_tstrb[0]_INST_0\ : label is "soft_lutpair4";
-  attribute SOFT_HLUTNM of \m_axis_tstrb[1]_INST_0\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \m_axis_tstrb[2]_INST_0\ : label is "soft_lutpair3";
-  attribute SOFT_HLUTNM of \m_axis_tstrb[3]_INST_0\ : label is "soft_lutpair2";
+  attribute SOFT_HLUTNM of \m_axis_tdata[17]_INST_0\ : label is "soft_lutpair12";
+  attribute SOFT_HLUTNM of \m_axis_tdata[18]_INST_0\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \m_axis_tdata[19]_INST_0\ : label is "soft_lutpair13";
+  attribute SOFT_HLUTNM of \m_axis_tdata[1]_INST_0\ : label is "soft_lutpair4";
+  attribute SOFT_HLUTNM of \m_axis_tdata[20]_INST_0\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \m_axis_tdata[21]_INST_0\ : label is "soft_lutpair14";
+  attribute SOFT_HLUTNM of \m_axis_tdata[22]_INST_0\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \m_axis_tdata[23]_INST_0\ : label is "soft_lutpair15";
+  attribute SOFT_HLUTNM of \m_axis_tdata[24]_INST_0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \m_axis_tdata[25]_INST_0\ : label is "soft_lutpair16";
+  attribute SOFT_HLUTNM of \m_axis_tdata[26]_INST_0\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \m_axis_tdata[27]_INST_0\ : label is "soft_lutpair17";
+  attribute SOFT_HLUTNM of \m_axis_tdata[28]_INST_0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \m_axis_tdata[29]_INST_0\ : label is "soft_lutpair18";
+  attribute SOFT_HLUTNM of \m_axis_tdata[2]_INST_0\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \m_axis_tdata[30]_INST_0\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \m_axis_tdata[31]_INST_0\ : label is "soft_lutpair19";
+  attribute SOFT_HLUTNM of \m_axis_tdata[3]_INST_0\ : label is "soft_lutpair5";
+  attribute SOFT_HLUTNM of \m_axis_tdata[4]_INST_0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \m_axis_tdata[5]_INST_0\ : label is "soft_lutpair6";
+  attribute SOFT_HLUTNM of \m_axis_tdata[6]_INST_0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \m_axis_tdata[7]_INST_0\ : label is "soft_lutpair7";
+  attribute SOFT_HLUTNM of \m_axis_tdata[8]_INST_0\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \m_axis_tdata[9]_INST_0\ : label is "soft_lutpair8";
+  attribute SOFT_HLUTNM of \m_axis_tid[0]_INST_0\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \m_axis_tid[1]_INST_0\ : label is "soft_lutpair22";
+  attribute SOFT_HLUTNM of \m_axis_tlast[0]_INST_0\ : label is "soft_lutpair3";
+  attribute SOFT_HLUTNM of \m_axis_tstrb[0]_INST_0\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \m_axis_tstrb[1]_INST_0\ : label is "soft_lutpair20";
+  attribute SOFT_HLUTNM of \m_axis_tstrb[2]_INST_0\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \m_axis_tstrb[3]_INST_0\ : label is "soft_lutpair21";
+  attribute SOFT_HLUTNM of \m_axis_tvalid[0]_INST_0_i_1\ : label is "soft_lutpair1";
+  attribute SOFT_HLUTNM of \s_axis_tready[0]_INST_0\ : label is "soft_lutpair0";
+  attribute SOFT_HLUTNM of \s_axis_tready[1]_INST_0\ : label is "soft_lutpair1";
 begin
   \arb_gnt_r_reg[0]_0\ <= \^arb_gnt_r_reg[0]_0\;
   \arb_gnt_r_reg[1]_0\ <= \^arb_gnt_r_reg[1]_0\;
-  \arb_sel_r_reg[0]_0\ <= \^arb_sel_r_reg[0]_0\;
-  s_axis_tvalid_1_sp_1 <= s_axis_tvalid_1_sn_1;
-arb_busy_r_i_1: unisim.vcomponents.LUT4
+  m_axis_tlast(0) <= \^m_axis_tlast\(0);
+  m_axis_tready_0_sp_1 <= m_axis_tready_0_sn_1;
+arb_busy_r_i_1: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"4FFF"
+      INIT => X"AE"
     )
         port map (
-      I0 => s_axis_tvalid_1_sn_1,
+      I0 => valid_i,
       I1 => arb_busy_r,
-      I2 => arb_busy_r_i_3_n_0,
-      I3 => arb_busy_r_reg_0,
-      O => arb_busy_ns
+      I2 => m_axis_tready_0_sn_1,
+      O => arb_busy_r_i_1_n_0
     );
 arb_busy_r_i_2: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"8A800000"
+      INIT => X"FFFF0010"
     )
         port map (
-      I0 => arb_busy_r_i_5_n_0,
-      I1 => s_axis_tvalid(1),
-      I2 => \^arb_sel_r_reg[0]_0\,
-      I3 => s_axis_tvalid(0),
-      I4 => m_axis_tready(0),
-      O => s_axis_tvalid_1_sn_1
-    );
-arb_busy_r_i_3: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"FFEF"
-    )
-        port map (
-      I0 => \^arb_gnt_r_reg[1]_0\,
-      I1 => \gen_tdest_routing.busy_r_reg[0]_0\,
-      I2 => s_axis_tvalid(1),
+      I0 => \^arb_gnt_r_reg[0]_0\,
+      I1 => \gen_tdest_routing.busy_r_reg[0]\,
+      I2 => s_axis_tvalid(0),
       I3 => s_req_suppress(0),
-      O => arb_busy_r_i_3_n_0
+      I4 => \arb_req_i__1\(1),
+      O => valid_i
     );
-arb_busy_r_i_5: unisim.vcomponents.LUT4
+arb_busy_r_i_3: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"FFFE"
+      INIT => X"A280000000000000"
     )
         port map (
-      I0 => \^arb_gnt_r_reg[1]_0\,
-      I1 => \gen_tdest_router.busy_r\(1),
-      I2 => \^arb_gnt_r_reg[0]_0\,
-      I3 => \gen_tdest_router.busy_r\(0),
-      O => arb_busy_r_i_5_n_0
+      I0 => m_axis_tready(0),
+      I1 => arb_sel_i,
+      I2 => s_axis_tvalid(1),
+      I3 => s_axis_tvalid(0),
+      I4 => \gen_tdest_routing.busy_r_reg[0]_1\,
+      I5 => \^m_axis_tlast\(0),
+      O => m_axis_tready_0_sn_1
     );
 arb_busy_r_reg: unisim.vcomponents.FDRE
      port map (
       C => aclk,
       CE => aclken,
-      D => arb_busy_ns,
+      D => arb_busy_r_i_1_n_0,
       Q => arb_busy_r,
-      R => \arb_sel_r_reg[0]_1\
+      R => \arb_sel_r_reg[0]_0\
     );
 \arb_gnt_r[0]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"002F0020"
+      INIT => X"00C000AA"
     )
         port map (
-      I0 => \arb_gnt_r[0]_i_2_n_0\,
-      I1 => arb_busy_r_reg_0,
-      I2 => aclken,
-      I3 => \arb_sel_r_reg[0]_1\,
-      I4 => \^arb_gnt_r_reg[0]_0\,
+      I0 => \^arb_gnt_r_reg[0]_0\,
+      I1 => \arb_req_i__1\(0),
+      I2 => \arb_gnt_r[1]_i_4_n_0\,
+      I3 => \arb_sel_r_reg[0]_0\,
+      I4 => aclken,
       O => \arb_gnt_r[0]_i_1_n_0\
-    );
-\arb_gnt_r[0]_i_2\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"B0B0B000FFFFFFFF"
-    )
-        port map (
-      I0 => s_axis_tvalid(1),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => m_axis_tready(0),
-      I3 => \gen_tdest_router.busy_r\(0),
-      I4 => \arb_sel_r_reg[0]_2\,
-      I5 => arb_busy_r,
-      O => \arb_gnt_r[0]_i_2_n_0\
     );
 \arb_gnt_r[1]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"000008FF00000800"
+      INIT => X"00000C000000AAAA"
     )
         port map (
-      I0 => \arb_gnt_r[1]_i_2_n_0\,
-      I1 => arb_busy_r_reg_0,
-      I2 => arb_busy_r_i_3_n_0,
-      I3 => aclken,
-      I4 => \arb_sel_r_reg[0]_1\,
-      I5 => \^arb_gnt_r_reg[1]_0\,
+      I0 => \^arb_gnt_r_reg[1]_0\,
+      I1 => \arb_req_i__1\(1),
+      I2 => \arb_req_i__1\(0),
+      I3 => \arb_gnt_r[1]_i_4_n_0\,
+      I4 => \arb_sel_r_reg[0]_0\,
+      I5 => aclken,
       O => \arb_gnt_r[1]_i_1_n_0\
     );
-\arb_gnt_r[1]_i_2\: unisim.vcomponents.LUT6
+\arb_gnt_r[1]_i_4\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E0E0E000FFFFFFFF"
+      INIT => X"A8000000FFFFFFFF"
     )
         port map (
-      I0 => \^arb_sel_r_reg[0]_0\,
-      I1 => s_axis_tvalid(0),
-      I2 => m_axis_tready(0),
-      I3 => \gen_tdest_router.busy_r\(1),
-      I4 => \arb_sel_r_reg[0]_3\,
+      I0 => \^m_axis_tlast\(0),
+      I1 => \arb_gnt_r[1]_i_5_n_0\,
+      I2 => \m_axis_tvalid[0]_INST_0_i_1_n_0\,
+      I3 => f_mux_return,
+      I4 => m_axis_tready(0),
       I5 => arb_busy_r,
-      O => \arb_gnt_r[1]_i_2_n_0\
+      O => \arb_gnt_r[1]_i_4_n_0\
+    );
+\arb_gnt_r[1]_i_5\: unisim.vcomponents.LUT2
+    generic map(
+      INIT => X"E"
+    )
+        port map (
+      I0 => \^arb_gnt_r_reg[0]_0\,
+      I1 => \gen_tdest_router.busy_r\(0),
+      O => \arb_gnt_r[1]_i_5_n_0\
+    );
+\arb_gnt_r[1]_i_6\: unisim.vcomponents.LUT3
+    generic map(
+      INIT => X"CA"
+    )
+        port map (
+      I0 => s_axis_tvalid(0),
+      I1 => s_axis_tvalid(1),
+      I2 => arb_sel_i,
+      O => f_mux_return
     );
 \arb_gnt_r_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -231,15 +231,15 @@ arb_busy_r_reg: unisim.vcomponents.FDRE
     );
 \arb_sel_r[0]_i_1\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"F0FFFBFF40004000"
+      INIT => X"75FF75FF008A0000"
     )
         port map (
-      I0 => arb_busy_r_i_3_n_0,
-      I1 => \arb_gnt_r[1]_i_2_n_0\,
-      I2 => arb_busy_r_reg_0,
-      I3 => aclken,
-      I4 => \arb_gnt_r[0]_i_2_n_0\,
-      I5 => \^arb_sel_r_reg[0]_0\,
+      I0 => aclken,
+      I1 => m_axis_tready_0_sn_1,
+      I2 => arb_busy_r,
+      I3 => \arb_req_i__1\(0),
+      I4 => \arb_req_i__1\(1),
+      I5 => arb_sel_i,
       O => \arb_sel_r[0]_i_1_n_0\
     );
 \arb_sel_r_reg[0]\: unisim.vcomponents.FDRE
@@ -247,452 +247,460 @@ arb_busy_r_reg: unisim.vcomponents.FDRE
       C => aclk,
       CE => '1',
       D => \arb_sel_r[0]_i_1_n_0\,
-      Q => \^arb_sel_r_reg[0]_0\,
-      R => \arb_sel_r_reg[0]_1\
+      Q => arb_sel_i,
+      R => \arb_sel_r_reg[0]_0\
     );
 \gen_tdest_routing.busy_r[0]_i_1\: unisim.vcomponents.LUT3
     generic map(
       INIT => X"0E"
     )
         port map (
-      I0 => \gen_tdest_routing.busy_r_reg[0]\,
-      I1 => \^arb_gnt_r_reg[0]_0\,
-      I2 => s_axis_tvalid_1_sn_1,
+      I0 => \gen_tdest_routing.busy_r_reg[0]_0\,
+      I1 => \^arb_gnt_r_reg[1]_0\,
+      I2 => m_axis_tready_0_sn_1,
       O => \gen_tdest_routing.busy_ns\
     );
-\gen_tdest_routing.busy_r[0]_i_1__0\: unisim.vcomponents.LUT6
+\gen_tdest_routing.busy_r[0]_i_1__0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"FF00FF00FF010000"
+      INIT => X"0E"
     )
         port map (
-      I0 => \gen_tdest_router.busy_r\(1),
+      I0 => \gen_tdest_routing.busy_r_reg[0]\,
       I1 => \^arb_gnt_r_reg[0]_0\,
-      I2 => \gen_tdest_router.busy_r\(0),
-      I3 => \gen_tdest_routing.busy_r[0]_i_2_n_0\,
-      I4 => \gen_tdest_routing.busy_r_reg[0]_0\,
-      I5 => \^arb_gnt_r_reg[1]_0\,
+      I2 => m_axis_tready_0_sn_1,
       O => \gen_tdest_routing.busy_ns_0\
-    );
-\gen_tdest_routing.busy_r[0]_i_2\: unisim.vcomponents.LUT4
-    generic map(
-      INIT => X"57F7"
-    )
-        port map (
-      I0 => m_axis_tready(0),
-      I1 => s_axis_tvalid(0),
-      I2 => \^arb_sel_r_reg[0]_0\,
-      I3 => s_axis_tvalid(1),
-      O => \gen_tdest_routing.busy_r[0]_i_2_n_0\
     );
 \m_axis_tdata[0]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(32),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(0),
+      I0 => s_axis_tdata(0),
+      I1 => s_axis_tdata(32),
+      I2 => arb_sel_i,
       O => m_axis_tdata(0)
     );
 \m_axis_tdata[10]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(42),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(10),
+      I0 => s_axis_tdata(10),
+      I1 => s_axis_tdata(42),
+      I2 => arb_sel_i,
       O => m_axis_tdata(10)
     );
 \m_axis_tdata[11]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(43),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(11),
+      I0 => s_axis_tdata(11),
+      I1 => s_axis_tdata(43),
+      I2 => arb_sel_i,
       O => m_axis_tdata(11)
     );
 \m_axis_tdata[12]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(44),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(12),
+      I0 => s_axis_tdata(12),
+      I1 => s_axis_tdata(44),
+      I2 => arb_sel_i,
       O => m_axis_tdata(12)
     );
 \m_axis_tdata[13]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(45),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(13),
+      I0 => s_axis_tdata(13),
+      I1 => s_axis_tdata(45),
+      I2 => arb_sel_i,
       O => m_axis_tdata(13)
     );
 \m_axis_tdata[14]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(46),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(14),
+      I0 => s_axis_tdata(14),
+      I1 => s_axis_tdata(46),
+      I2 => arb_sel_i,
       O => m_axis_tdata(14)
     );
 \m_axis_tdata[15]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(47),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(15),
+      I0 => s_axis_tdata(15),
+      I1 => s_axis_tdata(47),
+      I2 => arb_sel_i,
       O => m_axis_tdata(15)
     );
 \m_axis_tdata[16]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(48),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(16),
+      I0 => s_axis_tdata(16),
+      I1 => s_axis_tdata(48),
+      I2 => arb_sel_i,
       O => m_axis_tdata(16)
     );
 \m_axis_tdata[17]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(49),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(17),
+      I0 => s_axis_tdata(17),
+      I1 => s_axis_tdata(49),
+      I2 => arb_sel_i,
       O => m_axis_tdata(17)
     );
 \m_axis_tdata[18]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(50),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(18),
+      I0 => s_axis_tdata(18),
+      I1 => s_axis_tdata(50),
+      I2 => arb_sel_i,
       O => m_axis_tdata(18)
     );
 \m_axis_tdata[19]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(51),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(19),
+      I0 => s_axis_tdata(19),
+      I1 => s_axis_tdata(51),
+      I2 => arb_sel_i,
       O => m_axis_tdata(19)
     );
 \m_axis_tdata[1]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(33),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(1),
+      I0 => s_axis_tdata(1),
+      I1 => s_axis_tdata(33),
+      I2 => arb_sel_i,
       O => m_axis_tdata(1)
     );
 \m_axis_tdata[20]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(52),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(20),
+      I0 => s_axis_tdata(20),
+      I1 => s_axis_tdata(52),
+      I2 => arb_sel_i,
       O => m_axis_tdata(20)
     );
 \m_axis_tdata[21]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(53),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(21),
+      I0 => s_axis_tdata(21),
+      I1 => s_axis_tdata(53),
+      I2 => arb_sel_i,
       O => m_axis_tdata(21)
     );
 \m_axis_tdata[22]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(54),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(22),
+      I0 => s_axis_tdata(22),
+      I1 => s_axis_tdata(54),
+      I2 => arb_sel_i,
       O => m_axis_tdata(22)
     );
 \m_axis_tdata[23]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(55),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(23),
+      I0 => s_axis_tdata(23),
+      I1 => s_axis_tdata(55),
+      I2 => arb_sel_i,
       O => m_axis_tdata(23)
     );
 \m_axis_tdata[24]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(56),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(24),
+      I0 => s_axis_tdata(24),
+      I1 => s_axis_tdata(56),
+      I2 => arb_sel_i,
       O => m_axis_tdata(24)
     );
 \m_axis_tdata[25]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(57),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(25),
+      I0 => s_axis_tdata(25),
+      I1 => s_axis_tdata(57),
+      I2 => arb_sel_i,
       O => m_axis_tdata(25)
     );
 \m_axis_tdata[26]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(58),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(26),
+      I0 => s_axis_tdata(26),
+      I1 => s_axis_tdata(58),
+      I2 => arb_sel_i,
       O => m_axis_tdata(26)
     );
 \m_axis_tdata[27]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(59),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(27),
+      I0 => s_axis_tdata(27),
+      I1 => s_axis_tdata(59),
+      I2 => arb_sel_i,
       O => m_axis_tdata(27)
     );
 \m_axis_tdata[28]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(60),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(28),
+      I0 => s_axis_tdata(28),
+      I1 => s_axis_tdata(60),
+      I2 => arb_sel_i,
       O => m_axis_tdata(28)
     );
 \m_axis_tdata[29]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(61),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(29),
+      I0 => s_axis_tdata(29),
+      I1 => s_axis_tdata(61),
+      I2 => arb_sel_i,
       O => m_axis_tdata(29)
     );
 \m_axis_tdata[2]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(34),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(2),
+      I0 => s_axis_tdata(2),
+      I1 => s_axis_tdata(34),
+      I2 => arb_sel_i,
       O => m_axis_tdata(2)
     );
 \m_axis_tdata[30]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(62),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(30),
+      I0 => s_axis_tdata(30),
+      I1 => s_axis_tdata(62),
+      I2 => arb_sel_i,
       O => m_axis_tdata(30)
     );
 \m_axis_tdata[31]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(63),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(31),
+      I0 => s_axis_tdata(31),
+      I1 => s_axis_tdata(63),
+      I2 => arb_sel_i,
       O => m_axis_tdata(31)
     );
 \m_axis_tdata[3]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(35),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(3),
+      I0 => s_axis_tdata(3),
+      I1 => s_axis_tdata(35),
+      I2 => arb_sel_i,
       O => m_axis_tdata(3)
     );
 \m_axis_tdata[4]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(36),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(4),
+      I0 => s_axis_tdata(4),
+      I1 => s_axis_tdata(36),
+      I2 => arb_sel_i,
       O => m_axis_tdata(4)
     );
 \m_axis_tdata[5]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(37),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(5),
+      I0 => s_axis_tdata(5),
+      I1 => s_axis_tdata(37),
+      I2 => arb_sel_i,
       O => m_axis_tdata(5)
     );
 \m_axis_tdata[6]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(38),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(6),
+      I0 => s_axis_tdata(6),
+      I1 => s_axis_tdata(38),
+      I2 => arb_sel_i,
       O => m_axis_tdata(6)
     );
 \m_axis_tdata[7]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(39),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(7),
+      I0 => s_axis_tdata(7),
+      I1 => s_axis_tdata(39),
+      I2 => arb_sel_i,
       O => m_axis_tdata(7)
     );
 \m_axis_tdata[8]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(40),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(8),
+      I0 => s_axis_tdata(8),
+      I1 => s_axis_tdata(40),
+      I2 => arb_sel_i,
       O => m_axis_tdata(8)
     );
 \m_axis_tdata[9]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tdata(41),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tdata(9),
+      I0 => s_axis_tdata(9),
+      I1 => s_axis_tdata(41),
+      I2 => arb_sel_i,
       O => m_axis_tdata(9)
     );
 \m_axis_tid[0]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tid(2),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tid(0),
+      I0 => s_axis_tid(0),
+      I1 => s_axis_tid(2),
+      I2 => arb_sel_i,
       O => m_axis_tid(0)
     );
 \m_axis_tid[1]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tid(3),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tid(1),
+      I0 => s_axis_tid(1),
+      I1 => s_axis_tid(3),
+      I2 => arb_sel_i,
       O => m_axis_tid(1)
     );
 \m_axis_tlast[0]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tlast(1),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tlast(0),
-      O => m_axis_tlast(0)
+      I0 => s_axis_tlast(0),
+      I1 => s_axis_tlast(1),
+      I2 => arb_sel_i,
+      O => \^m_axis_tlast\(0)
     );
 \m_axis_tstrb[0]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tstrb(4),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tstrb(0),
+      I0 => s_axis_tstrb(0),
+      I1 => s_axis_tstrb(4),
+      I2 => arb_sel_i,
       O => m_axis_tstrb(0)
     );
 \m_axis_tstrb[1]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tstrb(5),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tstrb(1),
+      I0 => s_axis_tstrb(1),
+      I1 => s_axis_tstrb(5),
+      I2 => arb_sel_i,
       O => m_axis_tstrb(1)
     );
 \m_axis_tstrb[2]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tstrb(6),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tstrb(2),
+      I0 => s_axis_tstrb(2),
+      I1 => s_axis_tstrb(6),
+      I2 => arb_sel_i,
       O => m_axis_tstrb(2)
     );
 \m_axis_tstrb[3]_INST_0\: unisim.vcomponents.LUT3
     generic map(
-      INIT => X"B8"
+      INIT => X"CA"
     )
         port map (
-      I0 => s_axis_tstrb(7),
-      I1 => \^arb_sel_r_reg[0]_0\,
-      I2 => s_axis_tstrb(3),
+      I0 => s_axis_tstrb(3),
+      I1 => s_axis_tstrb(7),
+      I2 => arb_sel_i,
       O => m_axis_tstrb(3)
     );
-\s_axis_tready[0]_INST_0\: unisim.vcomponents.LUT4
+\m_axis_tvalid[0]_INST_0\: unisim.vcomponents.LUT6
     generic map(
-      INIT => X"E000"
+      INIT => X"D8D8D8D8D8D8D800"
     )
         port map (
-      I0 => \^arb_gnt_r_reg[0]_0\,
-      I1 => \gen_tdest_router.busy_r\(0),
-      I2 => m_axis_tready(0),
-      I3 => s_axis_tvalid(0),
-      O => s_axis_tready(0)
+      I0 => arb_sel_i,
+      I1 => s_axis_tvalid(1),
+      I2 => s_axis_tvalid(0),
+      I3 => \m_axis_tvalid[0]_INST_0_i_1_n_0\,
+      I4 => \^arb_gnt_r_reg[0]_0\,
+      I5 => \gen_tdest_router.busy_r\(0),
+      O => m_axis_tvalid(0)
     );
-\s_axis_tready[1]_INST_0\: unisim.vcomponents.LUT4
+\m_axis_tvalid[0]_INST_0_i_1\: unisim.vcomponents.LUT2
     generic map(
-      INIT => X"E000"
+      INIT => X"E"
     )
         port map (
       I0 => \^arb_gnt_r_reg[1]_0\,
       I1 => \gen_tdest_router.busy_r\(1),
-      I2 => s_axis_tvalid(1),
+      O => \m_axis_tvalid[0]_INST_0_i_1_n_0\
+    );
+\s_axis_tready[0]_INST_0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A800"
+    )
+        port map (
+      I0 => s_axis_tvalid(0),
+      I1 => \^arb_gnt_r_reg[0]_0\,
+      I2 => \gen_tdest_router.busy_r\(0),
+      I3 => m_axis_tready(0),
+      O => s_axis_tready(0)
+    );
+\s_axis_tready[1]_INST_0\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"A800"
+    )
+        port map (
+      I0 => s_axis_tvalid(1),
+      I1 => \^arb_gnt_r_reg[1]_0\,
+      I2 => \gen_tdest_router.busy_r\(1),
       I3 => m_axis_tready(0),
       O => s_axis_tready(1)
     );
@@ -703,68 +711,54 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder is
   port (
-    m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     \busy_r_reg[0]_0\ : out STD_LOGIC;
-    \busy_r_reg[1]_0\ : out STD_LOGIC;
-    \busy_r_reg[1]_1\ : out STD_LOGIC;
-    \gen_tdest_router.busy_r\ : out STD_LOGIC_VECTOR ( 0 to 0 );
+    \gen_tdest_router.busy_r\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
     arb_gnt_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axis_tvalid : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    arb_sel_i : in STD_LOGIC;
-    \busy_r_reg[0]_1\ : in STD_LOGIC;
     aclken : in STD_LOGIC;
+    arb_done_i : in STD_LOGIC;
     areset_r : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder : entity is "axis_switch_v1_1_21_axisc_arb_responder";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder is
   signal \busy_r[0]_i_1_n_0\ : STD_LOGIC;
   signal \busy_r[1]_i_1_n_0\ : STD_LOGIC;
-  signal \^busy_r_reg[0]_0\ : STD_LOGIC;
-  signal \^busy_r_reg[1]_0\ : STD_LOGIC;
-  signal \^gen_tdest_router.busy_r\ : STD_LOGIC_VECTOR ( 0 to 0 );
-  attribute SOFT_HLUTNM : string;
-  attribute SOFT_HLUTNM of \arb_gnt_r[0]_i_3\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \busy_r[0]_i_1\ : label is "soft_lutpair21";
-  attribute SOFT_HLUTNM of \busy_r[1]_i_1\ : label is "soft_lutpair20";
-  attribute SOFT_HLUTNM of \m_axis_tvalid[0]_INST_0_i_1\ : label is "soft_lutpair21";
+  signal \^gen_tdest_router.busy_r\ : STD_LOGIC_VECTOR ( 1 downto 0 );
 begin
-  \busy_r_reg[0]_0\ <= \^busy_r_reg[0]_0\;
-  \busy_r_reg[1]_0\ <= \^busy_r_reg[1]_0\;
-  \gen_tdest_router.busy_r\(0) <= \^gen_tdest_router.busy_r\(0);
-\arb_gnt_r[0]_i_3\: unisim.vcomponents.LUT2
+  \gen_tdest_router.busy_r\(1 downto 0) <= \^gen_tdest_router.busy_r\(1 downto 0);
+arb_busy_r_i_4: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => \^busy_r_reg[1]_0\,
-      I1 => arb_gnt_i(1),
-      O => \busy_r_reg[1]_1\
-    );
-\busy_r[0]_i_1\: unisim.vcomponents.LUT5
-    generic map(
-      INIT => X"00000EAA"
+      INIT => X"FFFE"
     )
         port map (
       I0 => \^gen_tdest_router.busy_r\(0),
       I1 => arb_gnt_i(0),
-      I2 => \busy_r_reg[0]_1\,
-      I3 => aclken,
+      I2 => \^gen_tdest_router.busy_r\(1),
+      I3 => arb_gnt_i(1),
+      O => \busy_r_reg[0]_0\
+    );
+\busy_r[0]_i_1\: unisim.vcomponents.LUT5
+    generic map(
+      INIT => X"00000AEA"
+    )
+        port map (
+      I0 => \^gen_tdest_router.busy_r\(0),
+      I1 => arb_gnt_i(0),
+      I2 => aclken,
+      I3 => arb_done_i,
       I4 => areset_r,
       O => \busy_r[0]_i_1_n_0\
     );
 \busy_r[1]_i_1\: unisim.vcomponents.LUT5
     generic map(
-      INIT => X"00000EAA"
+      INIT => X"00000AEA"
     )
         port map (
-      I0 => \^busy_r_reg[1]_0\,
+      I0 => \^gen_tdest_router.busy_r\(1),
       I1 => arb_gnt_i(1),
-      I2 => \busy_r_reg[0]_1\,
-      I3 => aclken,
+      I2 => aclken,
+      I3 => arb_done_i,
       I4 => areset_r,
       O => \busy_r[1]_i_1_n_0\
     );
@@ -781,30 +775,8 @@ begin
       C => aclk,
       CE => '1',
       D => \busy_r[1]_i_1_n_0\,
-      Q => \^busy_r_reg[1]_0\,
+      Q => \^gen_tdest_router.busy_r\(1),
       R => '0'
-    );
-\m_axis_tvalid[0]_INST_0\: unisim.vcomponents.LUT6
-    generic map(
-      INIT => X"FEFEFE000000FE00"
-    )
-        port map (
-      I0 => \^busy_r_reg[0]_0\,
-      I1 => \^busy_r_reg[1]_0\,
-      I2 => arb_gnt_i(1),
-      I3 => s_axis_tvalid(0),
-      I4 => arb_sel_i,
-      I5 => s_axis_tvalid(1),
-      O => m_axis_tvalid(0)
-    );
-\m_axis_tvalid[0]_INST_0_i_1\: unisim.vcomponents.LUT2
-    generic map(
-      INIT => X"E"
-    )
-        port map (
-      I0 => \^gen_tdest_router.busy_r\(0),
-      I1 => arb_gnt_i(0),
-      O => \^busy_r_reg[0]_0\
     );
 end STRUCTURE;
 library IEEE;
@@ -814,33 +786,31 @@ use UNISIM.VCOMPONENTS.ALL;
 entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder is
   port (
     \gen_tdest_routing.busy_r_reg[0]_0\ : out STD_LOGIC;
-    \gen_tdest_routing.busy_r_reg[0]_1\ : out STD_LOGIC;
+    \arb_req_i__1\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     areset_r : in STD_LOGIC;
     aclken : in STD_LOGIC;
     \gen_tdest_routing.busy_ns\ : in STD_LOGIC;
     aclk : in STD_LOGIC;
-    arb_gnt_i : in STD_LOGIC_VECTOR ( 0 to 0 );
     s_req_suppress : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 )
+    s_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
+    arb_gnt_i : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder : entity is "axis_switch_v1_1_21_axisc_decoder";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder is
   signal \^gen_tdest_routing.busy_r_reg[0]_0\ : STD_LOGIC;
 begin
   \gen_tdest_routing.busy_r_reg[0]_0\ <= \^gen_tdest_routing.busy_r_reg[0]_0\;
-arb_busy_r_i_4: unisim.vcomponents.LUT4
+\arb_gnt_r[1]_i_3\: unisim.vcomponents.LUT4
     generic map(
-      INIT => X"FEFF"
+      INIT => X"0004"
     )
         port map (
-      I0 => \^gen_tdest_routing.busy_r_reg[0]_0\,
-      I1 => arb_gnt_i(0),
-      I2 => s_req_suppress(0),
-      I3 => s_axis_tvalid(0),
-      O => \gen_tdest_routing.busy_r_reg[0]_1\
+      I0 => s_req_suppress(0),
+      I1 => s_axis_tvalid(0),
+      I2 => \^gen_tdest_routing.busy_r_reg[0]_0\,
+      I3 => arb_gnt_i(0),
+      O => \arb_req_i__1\(0)
     );
 \gen_tdest_routing.busy_r_reg[0]\: unisim.vcomponents.FDRE
      port map (
@@ -858,23 +828,40 @@ use UNISIM.VCOMPONENTS.ALL;
 entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder_0 is
   port (
     \gen_tdest_routing.busy_r_reg[0]_0\ : out STD_LOGIC;
+    \arb_req_i__1\ : out STD_LOGIC_VECTOR ( 0 to 0 );
     areset_r : in STD_LOGIC;
     aclken : in STD_LOGIC;
     \gen_tdest_routing.busy_ns\ : in STD_LOGIC;
-    aclk : in STD_LOGIC
+    aclk : in STD_LOGIC;
+    s_req_suppress : in STD_LOGIC_VECTOR ( 0 to 0 );
+    s_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
+    arb_gnt_i : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute ORIG_REF_NAME : string;
   attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder_0 : entity is "axis_switch_v1_1_21_axisc_decoder";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder_0;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder_0 is
+  signal \^gen_tdest_routing.busy_r_reg[0]_0\ : STD_LOGIC;
 begin
+  \gen_tdest_routing.busy_r_reg[0]_0\ <= \^gen_tdest_routing.busy_r_reg[0]_0\;
+\arb_gnt_r[1]_i_2\: unisim.vcomponents.LUT4
+    generic map(
+      INIT => X"0004"
+    )
+        port map (
+      I0 => s_req_suppress(0),
+      I1 => s_axis_tvalid(0),
+      I2 => \^gen_tdest_routing.busy_r_reg[0]_0\,
+      I3 => arb_gnt_i(0),
+      O => \arb_req_i__1\(0)
+    );
 \gen_tdest_routing.busy_r_reg[0]\: unisim.vcomponents.FDRE
      port map (
       C => aclk,
       CE => aclken,
       D => \gen_tdest_routing.busy_ns\,
-      Q => \gen_tdest_routing.busy_r_reg[0]_0\,
+      Q => \^gen_tdest_routing.busy_r_reg[0]_0\,
       R => areset_r
     );
 end STRUCTURE;
@@ -885,44 +872,39 @@ use UNISIM.VCOMPONENTS.ALL;
 entity base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter is
   port (
     areset_r : out STD_LOGIC;
-    arb_sel_i : out STD_LOGIC;
-    s_axis_tvalid_1_sp_1 : out STD_LOGIC;
-    \gen_tdest_routing.busy_ns\ : out STD_LOGIC;
-    arb_gnt_i : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    \gen_tdest_routing.busy_ns_0\ : out STD_LOGIC;
     s_axis_tready : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axis_tid : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    arb_gnt_i : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    \gen_tdest_routing.busy_ns\ : out STD_LOGIC;
+    arb_done_i : out STD_LOGIC;
+    \gen_tdest_routing.busy_ns_0\ : out STD_LOGIC;
     m_axis_tlast : out STD_LOGIC_VECTOR ( 0 to 0 );
-    m_axis_tstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     m_axis_tdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axis_tstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axis_tid : out STD_LOGIC_VECTOR ( 1 downto 0 );
     aclk : in STD_LOGIC;
     aclken : in STD_LOGIC;
-    arb_busy_r_reg : in STD_LOGIC;
-    \gen_tdest_routing.busy_r_reg[0]\ : in STD_LOGIC;
-    \gen_tdest_router.busy_r\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    \gen_tdest_routing.busy_r_reg[0]_0\ : in STD_LOGIC;
     s_axis_tvalid : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \gen_tdest_router.busy_r\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
     m_axis_tready : in STD_LOGIC_VECTOR ( 0 to 0 );
+    \gen_tdest_routing.busy_r_reg[0]\ : in STD_LOGIC;
     s_req_suppress : in STD_LOGIC_VECTOR ( 0 to 0 );
-    s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axis_tlast : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axis_tstrb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    \arb_req_i__1\ : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    \gen_tdest_routing.busy_r_reg[0]_0\ : in STD_LOGIC;
+    \gen_tdest_routing.busy_r_reg[0]_1\ : in STD_LOGIC;
     s_axis_tdata : in STD_LOGIC_VECTOR ( 63 downto 0 );
-    aresetn : in STD_LOGIC;
-    \arb_sel_r_reg[0]\ : in STD_LOGIC;
-    \arb_sel_r_reg[0]_0\ : in STD_LOGIC
+    s_axis_tstrb : in STD_LOGIC_VECTOR ( 7 downto 0 );
+    s_axis_tlast : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    aresetn : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter : entity is "axis_switch_v1_1_21_axis_switch_arbiter";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter is
   signal \^areset_r\ : STD_LOGIC;
   signal p_0_in : STD_LOGIC;
-  signal s_axis_tvalid_1_sn_1 : STD_LOGIC;
 begin
   areset_r <= \^areset_r\;
-  s_axis_tvalid_1_sp_1 <= s_axis_tvalid_1_sn_1;
 areset_i_1: unisim.vcomponents.LUT1
     generic map(
       INIT => X"1"
@@ -943,30 +925,29 @@ areset_reg: unisim.vcomponents.FDRE
      port map (
       aclk => aclk,
       aclken => aclken,
-      arb_busy_r_reg_0 => arb_busy_r_reg,
       \arb_gnt_r_reg[0]_0\ => arb_gnt_i(0),
       \arb_gnt_r_reg[1]_0\ => arb_gnt_i(1),
-      \arb_sel_r_reg[0]_0\ => arb_sel_i,
-      \arb_sel_r_reg[0]_1\ => \^areset_r\,
-      \arb_sel_r_reg[0]_2\ => \arb_sel_r_reg[0]\,
-      \arb_sel_r_reg[0]_3\ => \arb_sel_r_reg[0]_0\,
+      \arb_req_i__1\(1 downto 0) => \arb_req_i__1\(1 downto 0),
+      \arb_sel_r_reg[0]_0\ => \^areset_r\,
       \gen_tdest_router.busy_r\(1 downto 0) => \gen_tdest_router.busy_r\(1 downto 0),
       \gen_tdest_routing.busy_ns\ => \gen_tdest_routing.busy_ns\,
       \gen_tdest_routing.busy_ns_0\ => \gen_tdest_routing.busy_ns_0\,
       \gen_tdest_routing.busy_r_reg[0]\ => \gen_tdest_routing.busy_r_reg[0]\,
       \gen_tdest_routing.busy_r_reg[0]_0\ => \gen_tdest_routing.busy_r_reg[0]_0\,
+      \gen_tdest_routing.busy_r_reg[0]_1\ => \gen_tdest_routing.busy_r_reg[0]_1\,
       m_axis_tdata(31 downto 0) => m_axis_tdata(31 downto 0),
       m_axis_tid(1 downto 0) => m_axis_tid(1 downto 0),
       m_axis_tlast(0) => m_axis_tlast(0),
       m_axis_tready(0) => m_axis_tready(0),
+      m_axis_tready_0_sp_1 => arb_done_i,
       m_axis_tstrb(3 downto 0) => m_axis_tstrb(3 downto 0),
+      m_axis_tvalid(0) => m_axis_tvalid(0),
       s_axis_tdata(63 downto 0) => s_axis_tdata(63 downto 0),
       s_axis_tid(3 downto 0) => s_axis_tid(3 downto 0),
       s_axis_tlast(1 downto 0) => s_axis_tlast(1 downto 0),
       s_axis_tready(1 downto 0) => s_axis_tready(1 downto 0),
       s_axis_tstrb(7 downto 0) => s_axis_tstrb(7 downto 0),
       s_axis_tvalid(1 downto 0) => s_axis_tvalid(1 downto 0),
-      s_axis_tvalid_1_sp_1 => s_axis_tvalid_1_sn_1,
       s_req_suppress(0) => s_req_suppress(0)
     );
 end STRUCTURE;
@@ -976,20 +957,14 @@ library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
 entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux is
   port (
-    m_axis_tvalid : out STD_LOGIC_VECTOR ( 0 to 0 );
     \busy_r_reg[0]\ : out STD_LOGIC;
     \gen_tdest_router.busy_r\ : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    \busy_r_reg[1]\ : out STD_LOGIC;
     arb_gnt_i : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axis_tvalid : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    arb_sel_i : in STD_LOGIC;
-    \busy_r_reg[0]_0\ : in STD_LOGIC;
     aclken : in STD_LOGIC;
+    arb_done_i : in STD_LOGIC;
     areset_r : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux : entity is "axis_switch_v1_1_21_axisc_transfer_mux";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux is
@@ -998,16 +973,11 @@ begin
      port map (
       aclk => aclk,
       aclken => aclken,
+      arb_done_i => arb_done_i,
       arb_gnt_i(1 downto 0) => arb_gnt_i(1 downto 0),
-      arb_sel_i => arb_sel_i,
       areset_r => areset_r,
       \busy_r_reg[0]_0\ => \busy_r_reg[0]\,
-      \busy_r_reg[0]_1\ => \busy_r_reg[0]_0\,
-      \busy_r_reg[1]_0\ => \gen_tdest_router.busy_r\(1),
-      \busy_r_reg[1]_1\ => \busy_r_reg[1]\,
-      \gen_tdest_router.busy_r\(0) => \gen_tdest_router.busy_r\(0),
-      m_axis_tvalid(0) => m_axis_tvalid(0),
-      s_axis_tvalid(1 downto 0) => s_axis_tvalid(1 downto 0)
+      \gen_tdest_router.busy_r\(1 downto 0) => \gen_tdest_router.busy_r\(1 downto 0)
     );
 end STRUCTURE;
 library IEEE;
@@ -1069,11 +1039,11 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch is
   attribute C_ARB_ALGORITHM : integer;
   attribute C_ARB_ALGORITHM of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 1;
   attribute C_ARB_ON_MAX_XFERS : integer;
-  attribute C_ARB_ON_MAX_XFERS of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 1;
+  attribute C_ARB_ON_MAX_XFERS of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 0;
   attribute C_ARB_ON_NUM_CYCLES : integer;
   attribute C_ARB_ON_NUM_CYCLES of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 0;
   attribute C_ARB_ON_TLAST : integer;
-  attribute C_ARB_ON_TLAST of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 0;
+  attribute C_ARB_ON_TLAST of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 1;
   attribute C_AXIS_SIGNAL_SET : integer;
   attribute C_AXIS_SIGNAL_SET of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 55;
   attribute C_AXIS_TDATA_WIDTH : integer;
@@ -1158,8 +1128,6 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch is
   attribute LP_MERGEDOWN_MUX of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 0;
   attribute LP_NUM_SYNCHRONIZER_STAGES : integer;
   attribute LP_NUM_SYNCHRONIZER_STAGES of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 4;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is "axis_switch_v1_1_21_axis_switch";
   attribute P_DECODER_CONNECTIVITY_ARRAY : string;
   attribute P_DECODER_CONNECTIVITY_ARRAY of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is "2'b11";
   attribute P_SINGLE_SLAVE_CONNECTIVITY_ARRAY : string;
@@ -1171,18 +1139,16 @@ end base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch;
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch is
   signal \<const0>\ : STD_LOGIC;
   signal \<const1>\ : STD_LOGIC;
+  signal arb_done_i : STD_LOGIC;
   signal arb_gnt_i : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal arb_sel_i : STD_LOGIC;
   signal areset_r : STD_LOGIC;
   signal \gen_decoder[0].axisc_decoder_0_n_0\ : STD_LOGIC;
-  signal \gen_decoder[0].axisc_decoder_0_n_1\ : STD_LOGIC;
   signal \gen_decoder[1].axisc_decoder_0_n_0\ : STD_LOGIC;
-  signal \gen_int_arbiter.gen_arbiter.axis_switch_v1_1_21_axis_switch_arbiter_n_2\ : STD_LOGIC;
+  signal \gen_mi_arb[0].gen_arb_algorithm.gen_fixed_priority.inst_arb_rr_1/arb_req_i__1\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \gen_tdest_router.busy_r\ : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal \gen_tdest_routing.busy_ns\ : STD_LOGIC;
   signal \gen_tdest_routing.busy_ns_0\ : STD_LOGIC;
-  signal \gen_transfer_mux[0].axisc_transfer_mux_0_n_1\ : STD_LOGIC;
-  signal \gen_transfer_mux[0].axisc_transfer_mux_0_n_4\ : STD_LOGIC;
+  signal \gen_transfer_mux[0].axisc_transfer_mux_0_n_0\ : STD_LOGIC;
 begin
   arb_dest(1) <= \<const0>\;
   arb_dest(0) <= \<const0>\;
@@ -1259,10 +1225,10 @@ VCC: unisim.vcomponents.VCC
       aclk => aclk,
       aclken => aclken,
       arb_gnt_i(0) => arb_gnt_i(0),
+      \arb_req_i__1\(0) => \gen_mi_arb[0].gen_arb_algorithm.gen_fixed_priority.inst_arb_rr_1/arb_req_i__1\(0),
       areset_r => areset_r,
-      \gen_tdest_routing.busy_ns\ => \gen_tdest_routing.busy_ns_0\,
+      \gen_tdest_routing.busy_ns\ => \gen_tdest_routing.busy_ns\,
       \gen_tdest_routing.busy_r_reg[0]_0\ => \gen_decoder[0].axisc_decoder_0_n_0\,
-      \gen_tdest_routing.busy_r_reg[0]_1\ => \gen_decoder[0].axisc_decoder_0_n_1\,
       s_axis_tvalid(0) => s_axis_tvalid(0),
       s_req_suppress(0) => s_req_suppress(0)
     );
@@ -1270,19 +1236,21 @@ VCC: unisim.vcomponents.VCC
      port map (
       aclk => aclk,
       aclken => aclken,
+      arb_gnt_i(0) => arb_gnt_i(1),
+      \arb_req_i__1\(0) => \gen_mi_arb[0].gen_arb_algorithm.gen_fixed_priority.inst_arb_rr_1/arb_req_i__1\(1),
       areset_r => areset_r,
-      \gen_tdest_routing.busy_ns\ => \gen_tdest_routing.busy_ns\,
-      \gen_tdest_routing.busy_r_reg[0]_0\ => \gen_decoder[1].axisc_decoder_0_n_0\
+      \gen_tdest_routing.busy_ns\ => \gen_tdest_routing.busy_ns_0\,
+      \gen_tdest_routing.busy_r_reg[0]_0\ => \gen_decoder[1].axisc_decoder_0_n_0\,
+      s_axis_tvalid(0) => s_axis_tvalid(1),
+      s_req_suppress(0) => s_req_suppress(1)
     );
 \gen_int_arbiter.gen_arbiter.axis_switch_v1_1_21_axis_switch_arbiter\: entity work.base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter
      port map (
       aclk => aclk,
       aclken => aclken,
-      arb_busy_r_reg => \gen_decoder[0].axisc_decoder_0_n_1\,
+      arb_done_i => arb_done_i,
       arb_gnt_i(1 downto 0) => arb_gnt_i(1 downto 0),
-      arb_sel_i => arb_sel_i,
-      \arb_sel_r_reg[0]\ => \gen_transfer_mux[0].axisc_transfer_mux_0_n_4\,
-      \arb_sel_r_reg[0]_0\ => \gen_transfer_mux[0].axisc_transfer_mux_0_n_1\,
+      \arb_req_i__1\(1 downto 0) => \gen_mi_arb[0].gen_arb_algorithm.gen_fixed_priority.inst_arb_rr_1/arb_req_i__1\(1 downto 0),
       areset_r => areset_r,
       aresetn => aresetn,
       \gen_tdest_router.busy_r\(1 downto 0) => \gen_tdest_router.busy_r\(1 downto 0),
@@ -1290,33 +1258,30 @@ VCC: unisim.vcomponents.VCC
       \gen_tdest_routing.busy_ns_0\ => \gen_tdest_routing.busy_ns\,
       \gen_tdest_routing.busy_r_reg[0]\ => \gen_decoder[0].axisc_decoder_0_n_0\,
       \gen_tdest_routing.busy_r_reg[0]_0\ => \gen_decoder[1].axisc_decoder_0_n_0\,
+      \gen_tdest_routing.busy_r_reg[0]_1\ => \gen_transfer_mux[0].axisc_transfer_mux_0_n_0\,
       m_axis_tdata(31 downto 0) => m_axis_tdata(31 downto 0),
       m_axis_tid(1 downto 0) => m_axis_tid(1 downto 0),
       m_axis_tlast(0) => m_axis_tlast(0),
       m_axis_tready(0) => m_axis_tready(0),
       m_axis_tstrb(3 downto 0) => m_axis_tstrb(3 downto 0),
+      m_axis_tvalid(0) => m_axis_tvalid(0),
       s_axis_tdata(63 downto 0) => s_axis_tdata(63 downto 0),
       s_axis_tid(3 downto 0) => s_axis_tid(3 downto 0),
       s_axis_tlast(1 downto 0) => s_axis_tlast(1 downto 0),
       s_axis_tready(1 downto 0) => s_axis_tready(1 downto 0),
       s_axis_tstrb(7 downto 0) => s_axis_tstrb(7 downto 0),
       s_axis_tvalid(1 downto 0) => s_axis_tvalid(1 downto 0),
-      s_axis_tvalid_1_sp_1 => \gen_int_arbiter.gen_arbiter.axis_switch_v1_1_21_axis_switch_arbiter_n_2\,
-      s_req_suppress(0) => s_req_suppress(1)
+      s_req_suppress(0) => s_req_suppress(0)
     );
 \gen_transfer_mux[0].axisc_transfer_mux_0\: entity work.base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux
      port map (
       aclk => aclk,
       aclken => aclken,
+      arb_done_i => arb_done_i,
       arb_gnt_i(1 downto 0) => arb_gnt_i(1 downto 0),
-      arb_sel_i => arb_sel_i,
       areset_r => areset_r,
-      \busy_r_reg[0]\ => \gen_transfer_mux[0].axisc_transfer_mux_0_n_1\,
-      \busy_r_reg[0]_0\ => \gen_int_arbiter.gen_arbiter.axis_switch_v1_1_21_axis_switch_arbiter_n_2\,
-      \busy_r_reg[1]\ => \gen_transfer_mux[0].axisc_transfer_mux_0_n_4\,
-      \gen_tdest_router.busy_r\(1 downto 0) => \gen_tdest_router.busy_r\(1 downto 0),
-      m_axis_tvalid(0) => m_axis_tvalid(0),
-      s_axis_tvalid(1 downto 0) => s_axis_tvalid(1 downto 0)
+      \busy_r_reg[0]\ => \gen_transfer_mux[0].axisc_transfer_mux_0_n_0\,
+      \gen_tdest_router.busy_r\(1 downto 0) => \gen_tdest_router.busy_r\(1 downto 0)
     );
 end STRUCTURE;
 library IEEE;
@@ -1373,11 +1338,11 @@ architecture STRUCTURE of base_zynq_xbar_3 is
   attribute C_ARB_ALGORITHM : integer;
   attribute C_ARB_ALGORITHM of inst : label is 1;
   attribute C_ARB_ON_MAX_XFERS : integer;
-  attribute C_ARB_ON_MAX_XFERS of inst : label is 1;
+  attribute C_ARB_ON_MAX_XFERS of inst : label is 0;
   attribute C_ARB_ON_NUM_CYCLES : integer;
   attribute C_ARB_ON_NUM_CYCLES of inst : label is 0;
   attribute C_ARB_ON_TLAST : integer;
-  attribute C_ARB_ON_TLAST of inst : label is 0;
+  attribute C_ARB_ON_TLAST of inst : label is 1;
   attribute C_AXIS_SIGNAL_SET : integer;
   attribute C_AXIS_SIGNAL_SET of inst : label is 55;
   attribute C_AXIS_TDATA_WIDTH : integer;

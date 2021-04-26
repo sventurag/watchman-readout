@@ -80,6 +80,9 @@ public:
 
   // module pin-to-pin RTL interface
 
+  sc_core::sc_in< sc_dt::sc_bv<1> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_T;
   sc_core::sc_out< bool > TTC0_WAVE0_OUT;
   sc_core::sc_out< bool > TTC0_WAVE1_OUT;
   sc_core::sc_out< bool > TTC0_WAVE2_OUT;
@@ -235,6 +238,9 @@ public:
 
   // module pin-to-pin RTL interface
 
+  sc_core::sc_in< sc_dt::sc_bv<1> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_T;
   sc_core::sc_out< bool > TTC0_WAVE0_OUT;
   sc_core::sc_out< bool > TTC0_WAVE1_OUT;
   sc_core::sc_out< bool > TTC0_WAVE2_OUT;
@@ -390,6 +396,9 @@ public:
 
   // module pin-to-pin RTL interface
 
+  sc_core::sc_in< sc_dt::sc_bv<1> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_T;
   sc_core::sc_out< bool > TTC0_WAVE0_OUT;
   sc_core::sc_out< bool > TTC0_WAVE1_OUT;
   sc_core::sc_out< bool > TTC0_WAVE2_OUT;
@@ -549,6 +558,9 @@ public:
 
   // module pin-to-pin RTL interface
 
+  sc_core::sc_in< sc_dt::sc_bv<1> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_T;
   sc_core::sc_out< bool > TTC0_WAVE0_OUT;
   sc_core::sc_out< bool > TTC0_WAVE1_OUT;
   sc_core::sc_out< bool > TTC0_WAVE2_OUT;
@@ -716,6 +728,9 @@ public:
 
   // module pin-to-pin RTL interface
 
+  sc_core::sc_in< sc_dt::sc_bv<1> > GPIO_I;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_O;
+  sc_core::sc_out< sc_dt::sc_bv<1> > GPIO_T;
   sc_core::sc_out< bool > TTC0_WAVE0_OUT;
   sc_core::sc_out< bool > TTC0_WAVE1_OUT;
   sc_core::sc_out< bool > TTC0_WAVE2_OUT;

@@ -319,3 +319,10 @@ int test_TPG(int* regptr){
 }
 
 
+
+void startDig(int value){
+	Xil_Out(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 1);
+	usleep(1);
+	Xil_Out(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
+
+}

@@ -56,53 +56,7 @@ void I2C_CLR_SDA(void){
 void I2C_DELAY(void){
 	usleep(20);
 };
-//
-///* PIC */
-//#ifdef PIC
-//
-//void i2c_init( void )
-//{
-//    /* Enable digital I/O */
-//    I2C_ANSEL &= ~( SCL | SDA );
-//
-//    I2C_SET_SCL
-//    I2C_SET_SDA
-//
-//    I2C_DELAY
-//}
-//
-//#endif
-//
-//
-///* MSP430 */
-//#ifdef MSP430
-//
-//void i2c_init( void )
-//{
-//    /* Enable digital I/O */
-//    I2C_PSEL &= ~( SCL | SDA );
-//    I2C_P2SEL &= ~( SCL | SDA );
-//
-//    I2C_SET_SCL
-//    I2C_SET_SDA
-//
-//    I2C_DELAY
-//}
-//#endif
-//
-//
-///* AVR */
-//#ifdef AVR
-//
-//void i2c_init( void )
-//{
-//    I2C_SET_SCL
-//    I2C_SET_SDA
-//
-//    I2C_DELAY
-//}
-//
-//#endif
+
 
 
 /* Initiating a start condition */
@@ -169,29 +123,6 @@ void I2C_DELAY(void){
 
 
 
-///* Reading a bit */
-//static uint8_t _read_bit( void )
-//{
-//    uint8_t b;
-//
-//    I2C_SET_SDA
-//
-//    I2C_DELAY
-//
-//    I2C_SET_SCL
-//
-//    I2C_DELAY
-//
-//    if( ( I2C_INPORT & SDA ) > 0 ) b = 1;
-//    else b = 0;
-//
-//    I2C_CLR_SCL
-//
-//    return b;
-//}
-
-
-
  /* Write */
 
   bool _wait_write(void){
@@ -231,14 +162,7 @@ void I2C_DELAY(void){
 
 	     I2C_CLR_SCL();
 
-//
-//	     I2C_DELAY();
-//
-//	     I2C_SET_SCL();
-//
-//	   	 I2C_DELAY();
-//
-//	     I2C_CLR_SCL();
+
 
 
 	     return true;
@@ -281,91 +205,6 @@ void I2C_DELAY(void){
 
     return true; //Not ack in account
 }
-
-
-///* Reading a byte */
-//static uint8_t _read_byte( bool ack,
-//                           bool stop )
-//{
-//    uint8_t B = 0;
-//
-//    uint8_t i;
-//    for( i = 0; i < 8; i++ )
-//    {
-//        B <<= 1;
-//        B |= _read_bit();
-//    }
-//
-//    if( ack ) _write_bit( 0 );
-//    else _write_bit( 1 );
-//
-//    if( stop ) _stop_condition();
-//
-//    return B;
-//}
-
-
-/* Sending a byte with I2C */
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Sends slave address plus write bit and one byte of data.
-Params:
-    address = 7-bit slave address
-    data = one byte of data to send following slave address
-Returns:
-    true if slave has ACK'd both sent bytes
-*/
-//bool i2c_send_byte( uint8_t address,
-//                    uint8_t data )
-//{
-//    /* Start, send address */
-//    if( _write_byte( address << 1, true, false ) )
-//    {
-//        /* Send data, stop */
-//        if( _write_byte( data, false, true ) ) return true;
-//    }
-//
-//    /* Make sure to impose a stop if NAK'd */
-//    _stop_condition();
-//    return false;
-//}
-//
-
-//
-///* Receiving a byte with I2C */
-
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Sends slave address plus read bit and receives one byte of data.
-Params:
-    address = 7-bit slave address
-Returns:
-    byte received from slave
-*/
-//uint8_t i2c_receive_byte( uint8_t address )
-//{
-//    /* Start, send address */
-//    if( _write_byte( ( address << 1 ) | 0x01, true, false ) )
-//    {
-//        /* Read, stop */
-//        return _read_byte( false, true );
-//    }
-//
-//    /* Return zero if NAK'd */
-//    return 0;
-//}
-
-
-/* Sending a byte of data with I2C */
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Sends slave address plus write bit, then two consecutive data bytes.
-(The first byte is typically used as a register address, and the second
-as a data byte.)
-Params:
-    address = 7-bit slave address
-    reg = first byte of data after the slave address
-    data = second byte of data after the slave address
-Returns:
-    true if slave has ACK'd all three sent bytes
-*/
 bool i2c_send_byte_data( uint8_t address,
                          uint8_t reg,
                          uint16_t data )
@@ -453,39 +292,6 @@ bool i2c_send_byte_data_8574( uint8_t address,
     return false;
 }
 
-///* Receiving a byte of data with I2C */
-/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-Sends slave address plus read bit and a data byte, and receives one byte
-of data.
-Params:
-    address = 7-bit slave address
-    data = one byte of data to send following slave address
-Returns:
-    byte received from slave
-*/
-
-//uint8_t i2c_receive_byte_data( uint8_t address,
-//                               uint8_t reg )
-//{
-//    /* Start, send address */
-//    if( _write_byte( address << 1, true, false ) )
-//    {
-//        /* Send desired register */
-//        if( _write_byte( reg, false, false ) )
-//        {
-//            /* Start again, send address */
-//            if( _write_byte( ( address << 1 ) | 0x01, true, false ) )
-//            {
-//                /* Read, stop */
-//                return _read_byte( false, true );
-//            }
-//        }
-//    }
-//
-//    /* Make sure to impose a stop if NAK'd */
-//    _stop_condition();
-//    return 0;
-//}
 
 int set_DAC_CHANNEL(int channel, float voltage ){
 	xil_printf("set channel % \r\n", channel);

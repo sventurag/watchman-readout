@@ -45,7 +45,7 @@ time.sleep(1)
 #wave_gen().Query()
 #amplitudes = np.arange(2100,2650,50)
 amplitudes= np.arange(0.5,2 ,2)
-repeticiones = list( range(0,2,1)   )
+repeticiones = list( range(0,1,1)   )
 
 #amplitudes=list(range(2100,2900,20))
 rango = list((range(100,110,100)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc

@@ -322,8 +322,21 @@ int main()
 	usleep(1000);
 
 
+	// Initialise control register
+		ControlRegisterWrite((int)NULL,INIT, regptr_1);
+		// software reset PL side
+		ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1);
+		// Reset TargetC's registers
+		ControlRegisterWrite(REGCLR_MASK,DISABLE, regptr_1);
+		usleep(100000);
+		ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_1);
+		usleep(1000);
+
 	// Waiting on PL's clocks to be ready
 	while((regptr_0[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
+		sleep(1); //sleep 100ms
+	}
+	while((regptr_1[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
 		sleep(1); //sleep 100ms
 	}
 	printf("PL's clock ready\r\n");
