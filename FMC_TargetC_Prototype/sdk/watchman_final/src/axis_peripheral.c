@@ -234,10 +234,10 @@ int test_TPG(int* regptr){
 
 	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
 	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr); // Enable mode TestPattern
-	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-	usleep(50);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
-
+//	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
+//	usleep(50);
+//	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+	startDig();
 	/* Wait on DMA transfer to be done */
 	timeout = 200000; // Timeout of 10 sec
 	do{
@@ -320,9 +320,11 @@ int test_TPG(int* regptr){
 
 
 
-void startDig(int value){
-	Xil_Out(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 1);
-	usleep(1);
-	Xil_Out(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
+void startDig(){
+	usleep(10);
+	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 10);
+	usleep(10);
+	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
+	//usleep(50);
 
 }

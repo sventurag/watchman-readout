@@ -73,9 +73,10 @@ int send_data_transfer_fct(int* regptr){
 			regptr[TC_NBRWINDOW_REG] = 1;
 			ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
 			ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
-			ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-			usleep(50);
-			ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+//			ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
+//			usleep(50);
+//			ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+			startDig();
 
 			/* Wait on DMA transfer to be done */
 			timeout = 200000; // Timeout of 10 sec

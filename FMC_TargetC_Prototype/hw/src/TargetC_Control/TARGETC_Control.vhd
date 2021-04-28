@@ -589,36 +589,37 @@ begin
 
     -- --------------------------------------------------------------------------------
 	-- Start Storage Command Start
-    process(AxiBusIn.ARESETN,ClockBus.SSTIN) is
-    begin
-    	if (AxiBusIn.ARESETN = '0') then
-        	startstorage_stm <= IDLE;
-        else
-            if (rising_edge(ClockBus.SSTIN)) then
-                case startstorage_stm is
-                    when IDLE =>
-                        if ((TCReg(TC_CONTROL_REG) and C_WINDOW_MASK) = C_WINDOW_MASK) then
-                            startstorage_stm <= PULSE;
-                        else
-                            startstorage_stm <= IDLE;
-                        end if;
-                    when PULSE =>
-                        startstorage_stm <= RESET;
-                    when RESET =>	-- Wait for user PS clear register
-                        if ((TCReg(TC_CONTROL_REG) and C_WINDOW_MASK) = C_WINDOW_MASK)then
-                            startstorage_stm <= RESET;
-                        else
-                            startstorage_stm <= IDLE;
-                        end if;
-                   end case;
-             end if;
-        end if;
-    end process;
+--    process(AxiBusIn.ARESETN,ClockBus.SSTIN) is
+--    begin
+--    	if (AxiBusIn.ARESETN = '0') then
+--        	startstorage_stm <= IDLE;
+--        else
+--            if (rising_edge(ClockBus.SSTIN)) then
+--                case startstorage_stm is
+--                    when IDLE =>
+--                        if ((TCReg(TC_CONTROL_REG) and C_WINDOW_MASK) = C_WINDOW_MASK) then
+--                            startstorage_stm <= PULSE;
+--                        else
+--                            startstorage_stm <= IDLE;
+--                        end if;
+--                    when PULSE =>
+--                        startstorage_stm <= RESET;
+--                    when RESET =>	-- Wait for user PS clear register
+--                        if ((TCReg(TC_CONTROL_REG) and C_WINDOW_MASK) = C_WINDOW_MASK)then
+--                            startstorage_stm <= RESET;
+--                        else
+--                            startstorage_stm <= IDLE;
+--                        end if;
+--                   end case;
+--             end if;
+--        end if;
+--    end process;
 
 
     --CtrlBus_OxMS.WindowStorage		<= '1' when startstorage_stm = PULSE else '0';
 	--CtrlBus_OxMS.WindowStorage		<= '0' when startstorage_stm = IDLE else '1';
-	WindowStorage_intl	<= '0' when ((startstorage_stm = IDLE) and (WS_master_ctrl='0')) else '1';
+	--OVERWRITE Start storage with WS_master_ctrl
+	WindowStorage_intl	<= WS_master_ctrl; --'0' when ((startstorage_stm = IDLE) and (WS_master_ctrl='0')) else '1';
 
  ----------------------------------------------------------------------------------
        -- Start Storage Command Start

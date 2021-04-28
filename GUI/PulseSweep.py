@@ -18,7 +18,7 @@ import pandas as pd
 pg = pulseGen()
 nmbrWindows = 1
 firstWindow= 0
-totalWindows = 8
+totalWindows = 4
 nmbrPedestals = 100
 channel = 6
 width = 10e-9

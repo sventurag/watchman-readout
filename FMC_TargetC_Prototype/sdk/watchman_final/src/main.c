@@ -383,7 +383,7 @@ int main()
 */
 	//get_pedestal(100,4);
 	flag_while_loop = true;
-	pedestal_triggerMode_init();
+	//pedestal_triggerMode_init();
 	usleep(100);
 	printf("Start while loop\r\n");
 	while (run_flag){

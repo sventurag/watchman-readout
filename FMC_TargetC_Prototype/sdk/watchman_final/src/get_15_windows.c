@@ -167,10 +167,11 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 	regptr[TC_NBRWINDOW_REG] = numWindows;
 //	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 //	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-	usleep(1);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+//	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
+//	usleep(1);
+//	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 	//usleep(1);
+	startDig();
 	for(window =firstWindow ; window<numWindows+firstWindow; window++){
 
 	//	if(window != window_start) XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
@@ -326,9 +327,10 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 		regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
 		ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
 		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
-		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-		usleep(50);
-		ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+//		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
+//		usleep(50);
+//		ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+		startDig();
 
 		for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
@@ -464,9 +466,10 @@ int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
 	regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
 	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
 	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
-	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-	usleep(50);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+//	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
+//	usleep(50);
+//	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
+	startDig();
 
 	for(window =window_start ; window<nmbrofWindows+window_start; window++){
 
