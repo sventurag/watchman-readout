@@ -70,8 +70,8 @@ architecture Behavioral of WindowStoreV4 is
 COMPONENT axi_wdo_addr_fifo
   PORT (
    -- rst : IN STD_LOGIC;
-    wr_clk : IN STD_LOGIC;
-    rd_clk : IN STD_LOGIC;
+    clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
@@ -84,8 +84,8 @@ END COMPONENT;
 
 COMPONENT axi_cmd_fifo_11W_5D
   PORT (
-    wr_clk : IN STD_LOGIC;
-    rd_clk : IN STD_LOGIC;
+    clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(10 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
@@ -97,8 +97,8 @@ END COMPONENT;
 
 COMPONENT axi_time_fifo_64W_32D
   PORT (
-    wr_clk : IN STD_LOGIC;
-    rd_clk : IN STD_LOGIC;
+    clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(63 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
@@ -123,8 +123,8 @@ END COMPONENT;
         
         COMPONENT AXI_TRIG_AFIFO
   PORT (
-    wr_clk : IN STD_LOGIC;
-    rd_clk : IN STD_LOGIC;
+    clk : IN STD_LOGIC;
+--    rd_clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
@@ -133,18 +133,6 @@ END COMPONENT;
     empty : OUT STD_LOGIC
   );
 END COMPONENT;
---COMPONENT trig_fifo_3W_16D
---  PORT (
---    wr_clk : IN STD_LOGIC;
---    rd_clk : IN STD_LOGIC;
---    din : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
---    wr_en : IN STD_LOGIC;
---    rd_en : IN STD_LOGIC;
---    dout : OUT STD_LOGIC_VECTOR(3 DOWNTO 0);
---    full : OUT STD_LOGIC;
---    empty : OUT STD_LOGIC
---  );
---END COMPONENT;
 
 
 	type T_storestate is(
@@ -366,13 +354,13 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
         dout => RDAD_DataOut,
         empty => RDAD_Empty,
         rd_en => RDAD_ReadEn,
-        rd_clk => ClockBus.RDAD_CLK,
+--        rd_clk => ClockBus.RDAD_CLK,
 
         
         din => WdoNumber,
         full => Full_out_intl,
         wr_en => WriteEn,
-        wr_clk => ClockBus.CLK125MHz
+        clk => ClockBus.RDAD_CLK
 
       );
     
@@ -386,13 +374,13 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
      dout => AXI_Spare_DataOut, 
      empty => axi_empty_s(0),
      rd_en => AXI_ReadEn,
-     rd_clk => ClockBus.AXI_CLK,
+--     rd_clk => ClockBus.AXI_CLK,
 
      
      din => Cmd_s,
      full => axi_full_s(0),
      wr_en => WriteEn,
-     wr_clk => ClockBus.CLK125MHz
+     clk => ClockBus.AXI_CLK
      );
      
  
@@ -406,13 +394,13 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
      dout => AXI_Time_DataOut,
      empty => axi_empty_s(1),
      rd_en => AXI_ReadEn,
-     rd_clk => ClockBus.AXI_CLK,
+--     rd_clk => ClockBus.AXI_CLK,
 
      
      din => Counter,
      full => axi_full_s(1),
      wr_en => WriteEn,
-     wr_clk => ClockBus.CLK125MHz
+     clk => ClockBus.AXI_CLK
      );
      
     
@@ -427,13 +415,13 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
         dout => AXI_WdoAddr_DataOut,
         empty => axi_empty_s(2),
         rd_en => AXI_ReadEn,
-        rd_clk => ClockBus.AXI_CLK,
+--        rd_clk => ClockBus.AXI_CLK,
 
         
         din => WdoNumber,
         full => axi_full_s(2),
         wr_en => WriteEn,
-        wr_clk => ClockBus.CLK125MHz
+        clk => ClockBus.AXI_CLK
 
       );
     
@@ -448,13 +436,13 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
      dout => AXI_TrigInfo_DataOut,
      empty => axi_empty_s(3),
      rd_en => AXI_ReadEn,
-     rd_clk => ClockBus.AXI_CLK,
+--     rd_clk => ClockBus.AXI_CLK,
 
      
      din => TriggerInfo,
      full => axi_full_s(3),
      wr_en => WriteEn,
-     wr_clk => ClockBus.CLK125MHz
+     clk => ClockBus.AXI_CLK
      );
      
 
@@ -465,23 +453,6 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 	
 	
 	
-	
---        trigger_100to125MHz : trig_fifo_3W_16D
---        port map (
-    
---         dout => trigger125MHz_s,
---         empty => trigger_empty_s,
---         rd_en => AXI_ReadEn,
---         rd_clk => ClockBus.CLK125MHz,
-    
-         
---         din => trigger,
---         full => trigger_full_s,
---         wr_en => CtrlBus_IxSL.WindowStorage,
---         wr_clk => ClockBus.AXI_CLK
---         );
-         
 
-	
 	
 end Behavioral;

@@ -92,20 +92,7 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 
 	end component BlockDelay;
 
---	component TRIGGER_CONTROLLER is
---		Generic(
---			LONG_TRIGGER: integer := 32
---		);
---		Port (
---		nrst : 			in	STD_Logic;
---		clk:			in	std_Logic;
 
---		trigger : 		in std_logic_vector(3 downto 0);
-
---		-- Interface to WindowCPU
---		TriggerInfo :		out std_logic_vector(11 downto 0)
---		);
---	end component;
 
 	component aFifoV2 is
     generic (
@@ -170,8 +157,8 @@ architecture Behavioral of CPU_CONTROLLERV3 is
    end component RisingEdge_DFlipFlop;
    COMPONENT dig_sto_fifo_9W_16D
      PORT (
-       wr_clk : IN STD_LOGIC;
-       rd_clk : IN STD_LOGIC;
+       clk : IN STD_LOGIC;
+--       rd_clk : IN STD_LOGIC;
        din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
        wr_en : IN STD_LOGIC;
        rd_en : IN STD_LOGIC;
@@ -181,56 +168,6 @@ architecture Behavioral of CPU_CONTROLLERV3 is
      );
    END COMPONENT;
    
---   COMPONENT axi_wdo_addr_fifo
---     PORT (
---      -- rst : IN STD_LOGIC;
---       wr_clk : IN STD_LOGIC;
---       rd_clk : IN STD_LOGIC;
---       din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
---       wr_en : IN STD_LOGIC;
---       rd_en : IN STD_LOGIC;
---       dout : OUT STD_LOGIC_VECTOR(8 DOWNTO 0);
---       full : OUT STD_LOGIC;
---       empty : OUT STD_LOGIC
---     );
---   END COMPONENT;
-   
-   
-COMPONENT trig0_fifo_10W_16D
-     PORT (
-       wr_clk : IN STD_LOGIC;
-       rd_clk : IN STD_LOGIC;
-       din : IN STD_LOGIC_VECTOR(9 DOWNTO 0);
-       wr_en : IN STD_LOGIC;
-       rd_en : IN STD_LOGIC;
-       dout : OUT STD_LOGIC_VECTOR(9 DOWNTO 0);
-       full : OUT STD_LOGIC;
-       empty : OUT STD_LOGIC
-     );
-   END COMPONENT;
-  COMPONENT axi_trig_afifo_12W_32D
-     PORT (
-       wr_clk : IN STD_LOGIC;
-       rd_clk : IN STD_LOGIC;
-       din : IN STD_LOGIC_VECTOR(11 DOWNTO 0);
-       wr_en : IN STD_LOGIC;
-       rd_en : IN STD_LOGIC;
-       dout : OUT STD_LOGIC_VECTOR(11 DOWNTO 0);
-       full : OUT STD_LOGIC;
-       empty : OUT STD_LOGIC
-     );
-   END COMPONENT;
-	-- component LookupTable_TE is
-	-- 	generic(
-	-- 		MIN_TE_TIME : integer := 1
-	-- 	);
-	-- 	Port (
-	-- 		Clk:		in 	std_logic;
-	-- 		SCnt:		in 	std_logic_vector(3 downto 0);
-	-- 		nextWdo :	out	std_logic
-	-- 	);
-	-- end component LookupTable_TE;
-
 	type storagestate is (
 		IDLE,
 		READY,
@@ -487,13 +424,13 @@ begin
         dout => DIG_DataOut_intl,
         empty => DIG_Empty_intl,
         rd_en => STO_ReadEn,
-        rd_clk => ClockBus.CLK125MHz,
+--        rd_clk => ClockBus.CLK125MHz,
 
         
         din => DIG_DataIn,
         full => DIG_Full,
         wr_en => DIG_WriteEn,
-        wr_clk => ClockBus.WL_CLK
+        clk => ClockBus.CLK125MHz
 
       );
     
