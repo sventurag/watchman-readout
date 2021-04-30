@@ -1,14 +1,3 @@
-
--- Clock Wizard for :
-		-- |	Name	|	Period	|	Frequency	|
-		--  ------------|-----------|---------------|
-		-- |	SSTIN	|	64 ns	|	15.625 MHz	|
-		-- |	SCLK	|	...		|	250 MHz		|	Derived from SSTIN main clock 16*SSTIN
-		-- |	RDAD_CLK|	...		|	250 MHz		|	Derived from SSTIN main clock 16*SSTIN
-		-- |	HSCLK	|	...		|	250 MHz		|	Derived from SSTIN main clock 16*SSTIN
-		-- |	WL_CLK	|	...		|	MAXFREQ		|	Derived from SSTIN main clock but Variable [SSTIN:MAXFREQ]
-
-
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
@@ -26,7 +15,6 @@ entity TC_ClockManagementV3 is
 		clk2:			in 	std_logic;	-- Clock for the TARGETC SCLK
 		AXI_Clk:		in	std_logic;
 
-		WL_CLK_DIV:		in 	std_logic_vector(31 downto 0); -- Clock Divider Through DFF
 
 		PLL_LOCKED:		out	std_logic;
 
@@ -37,9 +25,6 @@ entity TC_ClockManagementV3 is
 
 		HSCLKdif:		in std_logic;		-- Pin#43 to Pin#44
 
-		-- LVDS Differential Pair
-		HSCLK_P:		out std_logic;		-- Pin#43
-		HSCLK_N:		out std_logic;		-- Pin#44
 
 		WL_CLK_P:		out std_logic;		-- Pin#57
 		WL_CLK_N:		out std_logic		-- Pin#58
@@ -54,19 +39,6 @@ architecture arch_imp of TC_ClockManagementV3 is
 
 	-- --------------------------------------------------------------------------------
 	-- Component Declaration
-	component OBUFDS is
-	generic(
-		CAPACITANCE : string     := "DONT_CARE";
-		IOSTANDARD  : string     := "DEFAULT"
-	);
-
-	port(
-		O  : out std_ulogic;
-		OB : out std_ulogic;
-
-		I : in std_ulogic
-	);
-	end component OBUFDS;
 
 	component counter is
 	generic(
@@ -210,17 +182,6 @@ begin
 		I	=> clk1
 	);
 
-	OBUFDF_HSCLK : OBUFDS
-	generic map(
-		IOSTANDARD  => "LVDS_25"
-	)
-	port map(
-		O	=> HSCLK_P,
-		OB	=> HSCLK_N,
-
-		I	=> HSCLKdif
-	);
-	
 	
 	-- CLOCK BUS OUTPUTS
 	
