@@ -54,8 +54,7 @@
 ------------- Begin Cut here for COMPONENT Declaration ------ COMP_TAG
 COMPONENT axi_wdo_addr_fifo
   PORT (
-    wr_clk : IN STD_LOGIC;
-    rd_clk : IN STD_LOGIC;
+    clk : IN STD_LOGIC;
     din : IN STD_LOGIC_VECTOR(8 DOWNTO 0);
     wr_en : IN STD_LOGIC;
     rd_en : IN STD_LOGIC;
@@ -72,8 +71,7 @@ END COMPONENT;
 ------------- Begin Cut here for INSTANTIATION Template ----- INST_TAG
 your_instance_name : axi_wdo_addr_fifo
   PORT MAP (
-    wr_clk => wr_clk,
-    rd_clk => rd_clk,
+    clk => clk,
     din => din,
     wr_en => wr_en,
     rd_en => rd_en,

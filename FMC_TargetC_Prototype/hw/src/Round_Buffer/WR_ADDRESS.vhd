@@ -15,7 +15,7 @@ use ieee.numeric_std.all;
 use work.TARGETC_pkg.all;
 use work.WindowCPU_pkg.all;
 
-entity RoundBufferV6 is
+entity WR_ADDRESS is
 --	generic(
 --		NBRWINDOWS : integer := 16
 --	);
@@ -61,9 +61,9 @@ entity RoundBufferV6 is
 
 	    
 	);
-end RoundBufferV6;
+end WR_ADDRESS;
 
-architecture implementation of RoundBufferV6 is
+architecture implementation of WR_ADDRESS is
 
 
 

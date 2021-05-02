@@ -25,7 +25,7 @@ use work.AXI_Lite_pkg.all;
 -------------------------------------------------------
 --! Entity declaration for TARGETC_IP_Prototype .
 -------------------------------------------------------
-entity TARGET_C_TopLevel_System is
+entity TARGETC_system is
 	-- Generic Parameters :
 
 	-- Port Parameters :
@@ -160,11 +160,11 @@ entity TARGET_C_TopLevel_System is
 	     
 	      
 	      
-end TARGET_C_TopLevel_System;
+end TARGETC_system;
 
 -------------------------------------------------------
 --! @brief architecture definition of TARGETC_IP_Prototype
-architecture arch_imp of TARGET_C_TopLevel_System is
+architecture arch_imp of TARGETC_system is
 
 	-------------------------------------------------------
 	-- Component Declaration
@@ -243,7 +243,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		       	SHOUT: in	STD_LOGIC);
 	end component TARGETX_DAC_CONTROL;
 
-	component RoundBufferV6 is
+	component WR_ADDRESS is
 --		generic(
 --			NBRWINDOWS : integer := 128
 --		);
@@ -284,7 +284,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		    address_is_zero_out : out std_logic
 		 
 		);
-	end component RoundBufferV6;
+	end component WR_ADDRESS;
 	
 
 	component TARGETC_RDAD_WL_SMPL is
@@ -419,13 +419,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		);
 	end component;
 
-	component DebugCore is
-	port(
-		O : 		out std_logic ;
-		sel:		in	std_logic_vector(2 downto 0);
-		I : 		in std_logic_vector(7 downto 0)
-		);
-	end component;
+
 	
 	component SyncBit is 
                   generic (
@@ -540,7 +534,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
 	attribute DONT_TOUCH : string;
-	attribute DONT_TOUCH of TC_RoundBuffer: label is "TRUE";
+	attribute DONT_TOUCH of TC_WR_ADDRESS: label is "TRUE";
 	
 	attribute mark_debug : string; 
     attribute mark_debug of WR_CS_S_intl: signal is "true";
@@ -613,7 +607,7 @@ begin
 		SHOUT	=> SHOUT
 	);
 
-	TC_RoundBuffer : RoundBufferV6
+	TC_WR_ADDRESS : WR_ADDRESS
 --		generic map(
 --			NBRWINDOWS => 256
 --		)

@@ -12,7 +12,6 @@ entity TC_ClockManagementV3 is
 	-- TARGET C Ports for control and function
 		nrst:			in	std_logic;
 		clk1:			in 	std_logic;	-- Clock for the TARGETC SCLK
-		clk2:			in 	std_logic;	-- Clock for the TARGETC SCLK
 		AXI_Clk:		in	std_logic;
 
 
@@ -23,7 +22,6 @@ entity TC_ClockManagementV3 is
 		Timecounter:	out std_logic_vector(63 downto 0);
 		Timestamp:		out T_timestamp;
 
-		HSCLKdif:		in std_logic;		-- Pin#43 to Pin#44
 
 
 		WL_CLK_P:		out std_logic;		-- Pin#57

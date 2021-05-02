@@ -1,0 +1,12 @@
+#-----------------------------------------------------------
+# Vivado v2020.1 (64-bit)
+# SW Build 2902540 on Wed May 27 19:54:35 MDT 2020
+# IP Build 2902112 on Wed May 27 22:43:36 MDT 2020
+# Start of session at: Fri Apr 30 09:53:24 2021
+# Process ID: 17083
+# Current directory: /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/ip_repo/TC_clkManagment/tc_clk_ipPrj/tc_clk_ipPrj.runs/synth_1
+# Command line: vivado -log TC_ClockManagementV3.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source TC_ClockManagementV3.tcl
+# Log file: /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/ip_repo/TC_clkManagment/tc_clk_ipPrj/tc_clk_ipPrj.runs/synth_1/TC_ClockManagementV3.vds
+# Journal file: /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/ip_repo/TC_clkManagment/tc_clk_ipPrj/tc_clk_ipPrj.runs/synth_1/vivado.jou
+#-----------------------------------------------------------
+source TC_ClockManagementV3.tcl -notrace

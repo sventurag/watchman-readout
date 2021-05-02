@@ -153,7 +153,7 @@ END COMPONENT;
 	signal WriteEn_intl  : std_logic;
 	signal WriteEn  : std_logic;
 
-	signal Counter:		std_logic_vector(63 downto 0);
+	signal Counter:		std_logic_vector(63 downto 0):=(others =>'0');
 
 	--signal TrigInfoDly, TrigInfoBuf, TrigInfoBuf_dly : std_logic_vector(11 downto 0);
 
@@ -206,7 +206,7 @@ begin
 			NbrOfPackets_intl <= (others => '0');
 --			trig <= (others => '0');
 			Wdo1 <= (others => '0');
-			counter <= (others => '0');
+--			counter <= (others => '0');
 			cmd_s1 <= (others => '0');
 		else
 			if rising_edge(ClockBus.Clk125MHz) then
@@ -344,7 +344,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 	WdoNumber<= WdoNumber_mult;
     Cmd_s<= (others => '0');
 --    Trig <= (others => '0');
-    counter <= (others => '0');
+--    counter <= (others => '0');
 -- Window address to RDAD_ADD module
 
     RDAD_STO_AFIFO : axi_wdo_addr_fifo
