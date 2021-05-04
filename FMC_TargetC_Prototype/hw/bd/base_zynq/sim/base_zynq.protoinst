@@ -32,7 +32,9 @@
 				"/TARGETC_2ASICS_0/tcA_axi": {
 					"interface": "xilinx.com:interface:aximm:1.0",
 					"ports": {
+						"ACLK": { "actual": "tcA_axi_aclk"},
 						"ARADDR": { "actual": "tcA_axi_araddr"},
+						"ARESETN": { "actual": "tcA_axi_aresetn"},
 						"ARPROT": { "actual": "tcA_axi_arprot"},
 						"ARREADY": { "actual": "tcA_axi_arready"},
 						"ARVALID": { "actual": "tcA_axi_arvalid"},

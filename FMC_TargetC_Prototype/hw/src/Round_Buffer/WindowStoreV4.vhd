@@ -177,13 +177,13 @@ END COMPONENT;
    
    attribute mark_debug : string;
 
-   attribute mark_debug of WriteEn: signal is "true";
-   attribute mark_debug of WdoNumber: signal is "true";
-   attribute mark_debug of WdoNumber_mult: signal is "true";
-   attribute mark_debug of WriteEn_mult: signal is "true";
-   attribute mark_debug of RDAD_WriteEn_trig: signal is "true";
-   attribute mark_debug of RDAD_Data_trig: signal is "true";
-   attribute mark_debug of WriteEn_intl: signal is "true";
+--   attribute mark_debug of WriteEn: signal is "true";
+--   attribute mark_debug of WdoNumber: signal is "true";
+--   attribute mark_debug of WdoNumber_mult: signal is "true";
+--   attribute mark_debug of WriteEn_mult: signal is "true";
+--   attribute mark_debug of RDAD_WriteEn_trig: signal is "true";
+--   attribute mark_debug of RDAD_Data_trig: signal is "true";
+--   attribute mark_debug of WriteEn_intl: signal is "true";
 
    
    

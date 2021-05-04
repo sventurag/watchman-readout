@@ -539,7 +539,7 @@ architecture arch_imp of TARGETC_system is
 	attribute mark_debug : string; 
     attribute mark_debug of WR_CS_S_intl: signal is "true";
     attribute mark_debug of WR_RS_S_intl: signal is "true";
-    attribute mark_debug of tc_axi_aclk: signal is "true";
+--    attribute mark_debug of tc_axi_aclk: signal is "true";
 
 
 begin

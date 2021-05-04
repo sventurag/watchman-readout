@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Apr 15 16:55:01 2021
+-- Date        : Sun May  2 21:20:13 2021
 -- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_xbar_3 -prefix
---               base_zynq_xbar_3_ base_zynq_xbar_3_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim
+--               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_3/base_zynq_xbar_3_sim_netlist.vhdl
 -- Design      : base_zynq_xbar_3
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -43,6 +43,8 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr is
     s_axis_tlast : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr : entity is "axis_switch_v1_1_21_arb_rr";
 end base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_arb_rr is
@@ -719,6 +721,8 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder is
     areset_r : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder : entity is "axis_switch_v1_1_21_axisc_arb_responder";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_arb_responder is
@@ -795,6 +799,8 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder is
     s_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     arb_gnt_i : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder : entity is "axis_switch_v1_1_21_axisc_decoder";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_decoder is
@@ -898,6 +904,8 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter is
     s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 );
     aresetn : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter : entity is "axis_switch_v1_1_21_axis_switch_arbiter";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch_arbiter is
@@ -965,6 +973,8 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux is
     areset_r : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux : entity is "axis_switch_v1_1_21_axisc_transfer_mux";
 end base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux;
 
 architecture STRUCTURE of base_zynq_xbar_3_axis_switch_v1_1_21_axisc_transfer_mux is
@@ -1128,6 +1138,8 @@ entity base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch is
   attribute LP_MERGEDOWN_MUX of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 0;
   attribute LP_NUM_SYNCHRONIZER_STAGES : integer;
   attribute LP_NUM_SYNCHRONIZER_STAGES of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is 4;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is "axis_switch_v1_1_21_axis_switch";
   attribute P_DECODER_CONNECTIVITY_ARRAY : string;
   attribute P_DECODER_CONNECTIVITY_ARRAY of base_zynq_xbar_3_axis_switch_v1_1_21_axis_switch : entity is "2'b11";
   attribute P_SINGLE_SLAVE_CONNECTIVITY_ARRAY : string;
@@ -1435,19 +1447,19 @@ architecture STRUCTURE of base_zynq_xbar_3 is
   attribute X_INTERFACE_INFO : string;
   attribute X_INTERFACE_INFO of aclk : signal is "xilinx.com:signal:clock:1.0 CLKIF CLK";
   attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of aclk : signal is "XIL_INTERFACENAME CLKIF, FREQ_HZ 1.25e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, ASSOCIATED_BUSIF M00_AXIS:M01_AXIS:M02_AXIS:M03_AXIS:M04_AXIS:M05_AXIS:M06_AXIS:M07_AXIS:M08_AXIS:M09_AXIS:M10_AXIS:M11_AXIS:M12_AXIS:M13_AXIS:M14_AXIS:M15_AXIS:S00_AXIS:S01_AXIS:S02_AXIS:S03_AXIS:S04_AXIS:S05_AXIS:S06_AXIS:S07_AXIS:S08_AXIS:S09_AXIS:S10_AXIS:S11_AXIS:S12_AXIS:S13_AXIS:S14_AXIS:S15_AXIS, ASSOCIATED_RESET aresetn, INSERT_VIP 0, ASSOCIATED_CLKEN aclken";
+  attribute X_INTERFACE_PARAMETER of aclk : signal is "XIL_INTERFACENAME CLKIF, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, ASSOCIATED_BUSIF M00_AXIS:M01_AXIS:M02_AXIS:M03_AXIS:M04_AXIS:M05_AXIS:M06_AXIS:M07_AXIS:M08_AXIS:M09_AXIS:M10_AXIS:M11_AXIS:M12_AXIS:M13_AXIS:M14_AXIS:M15_AXIS:S00_AXIS:S01_AXIS:S02_AXIS:S03_AXIS:S04_AXIS:S05_AXIS:S06_AXIS:S07_AXIS:S08_AXIS:S09_AXIS:S10_AXIS:S11_AXIS:S12_AXIS:S13_AXIS:S14_AXIS:S15_AXIS, ASSOCIATED_RESET aresetn, INSERT_VIP 0, ASSOCIATED_CLKEN aclken";
   attribute X_INTERFACE_INFO of aresetn : signal is "xilinx.com:signal:reset:1.0 RSTIF RST";
   attribute X_INTERFACE_PARAMETER of aresetn : signal is "XIL_INTERFACENAME RSTIF, POLARITY ACTIVE_LOW, INSERT_VIP 0, TYPE INTERCONNECT";
   attribute X_INTERFACE_INFO of m_axis_tdata : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TDATA";
   attribute X_INTERFACE_INFO of m_axis_tid : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TID";
-  attribute X_INTERFACE_PARAMETER of m_axis_tid : signal is "XIL_INTERFACENAME M00_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of m_axis_tid : signal is "XIL_INTERFACENAME M00_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of m_axis_tlast : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TLAST";
   attribute X_INTERFACE_INFO of m_axis_tready : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TREADY";
   attribute X_INTERFACE_INFO of m_axis_tstrb : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TSTRB";
   attribute X_INTERFACE_INFO of m_axis_tvalid : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TVALID";
   attribute X_INTERFACE_INFO of s_axis_tdata : signal is "xilinx.com:interface:axis:1.0 S00_AXIS TDATA [31:0] [31:0], xilinx.com:interface:axis:1.0 S01_AXIS TDATA [31:0] [63:32]";
   attribute X_INTERFACE_INFO of s_axis_tid : signal is "xilinx.com:interface:axis:1.0 S00_AXIS TID [1:0] [1:0], xilinx.com:interface:axis:1.0 S01_AXIS TID [1:0] [3:2]";
-  attribute X_INTERFACE_PARAMETER of s_axis_tid : signal is "XIL_INTERFACENAME S00_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0, XIL_INTERFACENAME S01_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute X_INTERFACE_PARAMETER of s_axis_tid : signal is "XIL_INTERFACENAME S00_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0, XIL_INTERFACENAME S01_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axis_tlast : signal is "xilinx.com:interface:axis:1.0 S00_AXIS TLAST [0:0] [0:0], xilinx.com:interface:axis:1.0 S01_AXIS TLAST [0:0] [1:1]";
   attribute X_INTERFACE_INFO of s_axis_tready : signal is "xilinx.com:interface:axis:1.0 S00_AXIS TREADY [0:0] [0:0], xilinx.com:interface:axis:1.0 S01_AXIS TREADY [0:0] [1:1]";
   attribute X_INTERFACE_INFO of s_axis_tstrb : signal is "xilinx.com:interface:axis:1.0 S00_AXIS TSTRB [3:0] [3:0], xilinx.com:interface:axis:1.0 S01_AXIS TSTRB [3:0] [7:4]";

@@ -41,10 +41,10 @@ port (
 		SW_nRST_A:	out std_logic;
 		--! @name Reference Clock
 		RefCLK_i1 :		in std_logic;	--! Clock for the TARGETC PLL
-
+        aresetn : in std_logic;
 		--! @name Ports of Axi Slave Bus Interface TC_AXI
-		axi_aclk		: in std_logic;
-		axi_aresetn	: in std_logic;
+		tcA_axi_aclk		: in std_logic;
+		tcA_axi_aresetn	: in std_logic;
 		tcA_axi_awaddr	: in std_logic_vector(C_S_AXI_ADDR_WIDTH-1 downto 0);
 		tcA_axi_awprot	: in std_logic_vector(2 downto 0);
 		tcA_axi_awvalid	: in std_logic;
@@ -420,9 +420,9 @@ begin
 TC_Clock: TC_ClockManagementV3 
 Port Map (
 
-		nrst      =>         axi_aresetn,
+		nrst      =>         aresetn,
 		clk1      =>		    RefCLK_i1,
-		AXI_Clk   =>          axi_aclk,
+		AXI_Clk   =>          RefCLK_i1,
 
 
 		PLL_LOCKED=>		PLL_locked_intl,
@@ -449,8 +449,8 @@ port Map (
 		--! @name Reference Clock
 		RefCLK_i1  =>     RefCLK_i1 ,	--! Clock for the TARGETC PLL
 
-	    	tc_axi_aclk   	 => axi_aclk,      
-		tc_axi_aresetn   => axi_aresetn,
+	    	tc_axi_aclk   	 => tcA_axi_aclk,      
+		tc_axi_aresetn   => tcA_axi_aresetn,
 		tc_axi_awaddr    => tcA_axi_awaddr,
 		tc_axi_awprot    =>tcA_axi_awprot,  
 		tc_axi_awvalid   =>tcA_axi_awvalid,   
@@ -567,8 +567,8 @@ port Map (
 		--! @name Reference Clock
 		RefCLK_i1  =>     RefCLK_i1 ,	--! Clock for the TARGETC PLL
 
-	    	tc_axi_aclk   	 => axi_aclk,      
-		tc_axi_aresetn   => axi_aresetn,
+	    tc_axi_aclk   	 => tcB_axi_aclk,      
+		tc_axi_aresetn   => tcb_axi_aresetn,
 		tc_axi_awaddr    => tcB_axi_awaddr,
 		tc_axi_awprot    =>tcB_axi_awprot,  
 		tc_axi_awvalid   =>tcB_axi_awvalid,   

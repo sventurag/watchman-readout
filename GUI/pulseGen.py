@@ -54,6 +54,9 @@ class pulseGen:
 
     def getWindows(self):
         tc.send_command(7,0,0) # get windows 
+   
+    def closeSocket(self):
+        tc.close_UDP_connection_cmd()
 
     def restart(self):
         tc.send_command(3, 0, 0) # triggerMode 

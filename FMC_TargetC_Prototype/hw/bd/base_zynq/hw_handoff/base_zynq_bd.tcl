@@ -259,7 +259,13 @@ proc create_root_design { parentCell } {
   set SSTIN_N [ create_bd_port -dir O -from 0 -to 0 SSTIN_N ]
   set SSTIN_P [ create_bd_port -dir O -from 0 -to 0 SSTIN_P ]
   set WL_CLK_N [ create_bd_port -dir O -type clk WL_CLK_N ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] $WL_CLK_N
   set WL_CLK_P [ create_bd_port -dir O -type clk WL_CLK_P ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] $WL_CLK_P
 
   # Create instance: Start_digitization_ip_0, and set properties
   set Start_digitization_ip_0 [ create_bd_cell -type ip -vlnv user.org:user:Start_digitization_ip:1.0 Start_digitization_ip_0 ]
@@ -275,6 +281,14 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] [get_bd_pins /TARGETC_2ASICS_0/WL_CLK_N]
+
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] [get_bd_pins /TARGETC_2ASICS_0/WL_CLK_P]
+
   # Create instance: TARGETC_axi_int_0, and set properties
   set TARGETC_axi_int_0 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:1.0 TARGETC_axi_int_0 ]
 
@@ -1309,9 +1323,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_axi_int_1_StreamReady [get_bd_pins TARGETC_2ASICS_0/StreamReady_B] [get_bd_pins TARGETC_axi_int_1/StreamReady]
   connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_1/In1]
   set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets axi_dma_0_s2mm_introut]
-  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins Start_digitization_ip_0/s00_axi_aclk] [get_bd_pins TARGETC_2ASICS_0/RefCLK_i1] [get_bd_pins TARGETC_2ASICS_0/axi_aclk] [get_bd_pins TARGETC_2ASICS_0/tcB_axi_aclk] [get_bd_pins TARGETC_axi_int_0/M_AXIS_ACLK] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ACLK] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S01_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
+  connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins Start_digitization_ip_0/s00_axi_aclk] [get_bd_pins TARGETC_2ASICS_0/RefCLK_i1] [get_bd_pins TARGETC_2ASICS_0/tcA_axi_aclk] [get_bd_pins TARGETC_2ASICS_0/tcB_axi_aclk] [get_bd_pins TARGETC_axi_int_0/M_AXIS_ACLK] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ACLK] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S01_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
-  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins Start_digitization_ip_0/s00_axi_aresetn] [get_bd_pins TARGETC_2ASICS_0/axi_aresetn] [get_bd_pins TARGETC_2ASICS_0/tcB_axi_aresetn] [get_bd_pins TARGETC_axi_int_0/M_AXIS_ARESETN] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ARESETN] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S01_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
+  connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins Start_digitization_ip_0/s00_axi_aresetn] [get_bd_pins TARGETC_2ASICS_0/aresetn] [get_bd_pins TARGETC_2ASICS_0/tcA_axi_aresetn] [get_bd_pins TARGETC_2ASICS_0/tcB_axi_aresetn] [get_bd_pins TARGETC_axi_int_0/M_AXIS_ARESETN] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ARESETN] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S01_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_N [get_bd_ports SSTIN_N] [get_bd_pins util_ds_buf_0/OBUF_DS_N]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_P [get_bd_ports SSTIN_P] [get_bd_pins util_ds_buf_0/OBUF_DS_P]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins TARGETC_2ASICS_0/DO_A] [get_bd_pins xlconcat_0/dout]
@@ -1323,7 +1337,7 @@ proc create_root_design { parentCell } {
   # Create address segments
   assign_bd_address -offset 0x00000000 -range 0x40000000 -target_address_space [get_bd_addr_spaces axi_dma_0/Data_S2MM] [get_bd_addr_segs processing_system7_0/S_AXI_HP0/HP0_DDR_LOWOCM] -force
   assign_bd_address -offset 0x43C00000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs Start_digitization_ip_0/S00_AXI/S00_AXI_reg] -force
-  assign_bd_address -offset 0x60000000 -range 0x20000000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGETC_2ASICS_0/tcA_axi/reg0] -force
+  assign_bd_address -offset 0x60000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGETC_2ASICS_0/tcA_axi/reg0] -force
   assign_bd_address -offset 0x50000000 -range 0x10000000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs TARGETC_2ASICS_0/tcB_axi/reg0] -force
   assign_bd_address -offset 0x40400000 -range 0x00010000 -target_address_space [get_bd_addr_spaces processing_system7_0/Data] [get_bd_addr_segs axi_dma_0/S_AXI_LITE/Reg] -force
 

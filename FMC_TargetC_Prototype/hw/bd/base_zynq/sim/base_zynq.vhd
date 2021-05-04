@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Sun May  2 10:06:11 2021
+--Date        : Mon May  3 14:22:14 2021
 --Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -3008,8 +3008,9 @@ architecture STRUCTURE of base_zynq is
   port (
     SW_nRST_A : out STD_LOGIC;
     RefCLK_i1 : in STD_LOGIC;
-    axi_aclk : in STD_LOGIC;
-    axi_aresetn : in STD_LOGIC;
+    aresetn : in STD_LOGIC;
+    tcA_axi_aclk : in STD_LOGIC;
+    tcA_axi_aresetn : in STD_LOGIC;
     tcA_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
     tcA_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
     tcA_axi_awvalid : in STD_LOGIC;
@@ -3530,9 +3531,9 @@ architecture STRUCTURE of base_zynq is
   attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
   attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
   attribute X_INTERFACE_INFO of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGETC_2ASICS_0_0_WL_CLK_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGETC_2ASICS_0_0_WL_CLK_N, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
   attribute X_INTERFACE_INFO of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGETC_2ASICS_0_0_WL_CLK_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGETC_2ASICS_0_0_WL_CLK_P, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
   attribute X_INTERFACE_INFO of B_DO_10 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_10 DATA";
   attribute X_INTERFACE_PARAMETER of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
   attribute X_INTERFACE_INFO of B_DO_11 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_11 DATA";
@@ -3778,9 +3779,10 @@ TARGETC_2ASICS_0: component base_zynq_TARGETC_2ASICS_0_0
       WS_masterctrl_in_B => Start_digitization_ip_0_startDig_out,
       WS_masterctrl_out_A => NLW_TARGETC_2ASICS_0_WS_masterctrl_out_A_UNCONNECTED,
       WS_masterctrl_out_B => NLW_TARGETC_2ASICS_0_WS_masterctrl_out_B_UNCONNECTED,
-      axi_aclk => processing_system7_0_FCLK_CLK0,
-      axi_aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
+      aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
+      tcA_axi_aclk => processing_system7_0_FCLK_CLK0,
       tcA_axi_araddr(31 downto 0) => ps7_0_axi_periph_M00_AXI_ARADDR(31 downto 0),
+      tcA_axi_aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
       tcA_axi_arprot(2 downto 0) => ps7_0_axi_periph_M00_AXI_ARPROT(2 downto 0),
       tcA_axi_arready => ps7_0_axi_periph_M00_AXI_ARREADY,
       tcA_axi_arvalid => ps7_0_axi_periph_M00_AXI_ARVALID,
