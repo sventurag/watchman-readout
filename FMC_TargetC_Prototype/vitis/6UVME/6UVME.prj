@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="ASCII"?>
-<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="6UVME" location="/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME" platform="/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/base_zynq_wrapper.xpfm" platformUID="xilinx:::0.0(custom)" systemProject="6UVME_system" sysConfig="base_zynq_wrapper" runtime="cpp" cpu="domain_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="b54d23049dff7bb5231248dfe248e388">
-  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.1669140999">
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="6UVME" location="/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME" platform="/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/base_zynq_wrapper/export/base_zynq_wrapper/base_zynq_wrapper.xpfm" platformUID="xilinx:::0.0(custom)" systemProject="6UVME_system" sysConfig="base_zynq_wrapper" runtime="cpp" cpu="domain_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="6be6e0905f5a6babc5535f5070162245">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.882172828">
     <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
     <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
   </configuration>
-  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.1714069530" dirty="true">
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.928675363" dirty="true">
     <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
   </configuration>
-  <template appTemplateName="empty_application"/>
+  <template appTemplateName="hello_world"/>
 </sdkproject:SdkProject>

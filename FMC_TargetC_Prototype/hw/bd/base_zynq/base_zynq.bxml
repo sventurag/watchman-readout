@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="base_zynq" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1620087735"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1620087735"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1620087735"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1620087735"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1620690056"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1620690056"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1620690056"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1620690056"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="ip/base_zynq_processing_system7_0_0/base_zynq_processing_system7_0_0.xci" Type="IP">
         <Instance HierarchyPath="processing_system7_0"/>
@@ -140,8 +140,24 @@
         <UsedIn Val="IMPLEMENTATION"/>
         <UsedIn Val="SIMULATION"/>
       </File>
-      <File Name="ip/base_zynq_TARGETC_2ASICS_0_0/base_zynq_TARGETC_2ASICS_0_0.xci" Type="IP">
-        <Instance HierarchyPath="TARGETC_2ASICS_0"/>
+      <File Name="ip/base_zynq_sstin_signal_0_0/base_zynq_sstin_signal_0_0.xci" Type="IP">
+        <Instance HierarchyPath="sstin_signal_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/base_zynq_TARGETC_system_0_0/base_zynq_TARGETC_system_0_0.xci" Type="IP">
+        <Instance HierarchyPath="TARGETC_system_0"/>
+        <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
+        <Library Name="xil_defaultlib"/>
+        <UsedIn Val="SYNTHESIS"/>
+        <UsedIn Val="IMPLEMENTATION"/>
+        <UsedIn Val="SIMULATION"/>
+      </File>
+      <File Name="ip/base_zynq_TARGETC_system_1_0/base_zynq_TARGETC_system_1_0.xci" Type="IP">
+        <Instance HierarchyPath="TARGETC_system_1"/>
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="true" IsStatusTracked="true"/>
         <Library Name="xil_defaultlib"/>
         <UsedIn Val="SYNTHESIS"/>

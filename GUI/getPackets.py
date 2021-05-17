@@ -2,7 +2,7 @@ import subprocess
 import time
 from datetime import datetime
 import sys
-
+from pulse_analysis import *
 
 def getPackets(nofPackets):
     func_name = "run_tcpdump_on_local_machine - "
@@ -23,5 +23,25 @@ def getPackets(nofPackets):
     p.terminate()
     print(func_name + "end")
 
+
+
+
 nofPackets=sys.argv[1]
+totalWindows=int(sys.argv[2])
+nofChannels=int(sys.argv[3])
+
+# Get packets
 getPackets(nofPackets)
+
+# When the transmission finish, process the packets
+
+dfTarget0, dfTarget1=process_packet_pulseSweep(capture_file_name,totalWindows,nofChannels)
+
+ax0=dfTarget0.plot()
+fig0 = ax0.get_figure()
+fig0.savefig('Target0.png')
+
+ax1=dfTarget1.plot()
+fig1 = ax1.get_figure()
+fig1.savefig('Target1.png')
+

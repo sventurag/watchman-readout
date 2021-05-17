@@ -14,6 +14,7 @@ import os
 import targetc as targetc
 from pulseGen import pulseGen
 import pandas as pd
+
 pg = pulseGen()
 nmbrWindows = 1
 firstWindow= 0
@@ -27,20 +28,20 @@ isel = 2300
 nofTARGETs=2
 pg.isel(isel)
 
-pg.impedanceLoadHz(50)
+# pg.impedanceLoadHz(50)
 pg.pulseSweepInit(channel,nmbrPedestals)
-pg.pulseInit(width)
-#time.sleep(10)
+# pg.pulseInit(width)
+time.sleep(10)
 #wave_gen().Output1(out=True)
-time.sleep(1)
+# time.sleep(1)
 #pg.triggerMode(1000)
 #pg.softTrigger()
 #amplitudes=np.arange(1e-3, 3.5,100e-3) #For dynamic range, charge, cfd, etc
 #amplitudes=np.arange(20, 200,50) #For dynamic range, charge, cfd, etc
 #wave_gen().ncyc(3)
-time.sleep(1)
-pg.pulseAmpl(ampl)
-time.sleep(1)
+#time.sleep(1)
+# pg.pulseAmpl(ampl)
+# time.sleep(1)
 #wave_gen().Query()
 #amplitudes = np.arange(2100,2650,50)
 
@@ -64,7 +65,7 @@ for i in range(0,repetitions,1):
     #rango = list(range(0,128,1)) # for pulse sweep
         
     for i in rango:
-       wave_gen().trigDelay(i*.000000001)
+  #     wave_gen().trigDelay(i*.000000001)
        time.sleep(0.3)
        print("Pos=",i)
       # pg.softTrigger()
@@ -72,7 +73,7 @@ for i in range(0,repetitions,1):
       # tc.send_command(7,0,0) # get windows
        time.sleep(1)
 
-wave_gen().Output1(out=False)
+#wave_gen().Output1(out=False)
 print("end")
 pg.closeSocket()
 

@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Mon May  3 14:22:14 2021
+--Date        : Mon May 10 13:40:55 2021
 --Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -2684,10 +2684,10 @@ entity base_zynq is
     WL_CLK_N : out STD_LOGIC;
     WL_CLK_P : out STD_LOGIC
   );
-  attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=35,numReposBlks=23,numNonXlnxBlks=3,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=1,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=17,da_board_cnt=3,da_clkrst_cnt=15,synth_mode=OOC_per_IP}";
-  attribute HW_HANDOFF : string;
-  attribute HW_HANDOFF of base_zynq : entity is "base_zynq.hwdef";
+  attribute core_generation_info : string;
+  attribute core_generation_info of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=37,numReposBlks=25,numNonXlnxBlks=3,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_board_cnt=3,da_clkrst_cnt=15,synth_mode=OOC_per_IP}";
+  attribute hw_handoff : string;
+  attribute hw_handoff of base_zynq : entity is "base_zynq.hwdef";
 end base_zynq;
 
 architecture STRUCTURE of base_zynq is
@@ -3004,143 +3004,162 @@ architecture STRUCTURE of base_zynq is
     s00_axi_rready : in STD_LOGIC
   );
   end component base_zynq_Start_digitization_ip_0_1;
-  component base_zynq_TARGETC_2ASICS_0_0 is
+  component base_zynq_sstin_signal_0_0 is
   port (
-    SW_nRST_A : out STD_LOGIC;
-    RefCLK_i1 : in STD_LOGIC;
-    aresetn : in STD_LOGIC;
-    tcA_axi_aclk : in STD_LOGIC;
-    tcA_axi_aresetn : in STD_LOGIC;
-    tcA_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcA_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    tcA_axi_awvalid : in STD_LOGIC;
-    tcA_axi_awready : out STD_LOGIC;
-    tcA_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcA_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    tcA_axi_wvalid : in STD_LOGIC;
-    tcA_axi_wready : out STD_LOGIC;
-    tcA_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    tcA_axi_bvalid : out STD_LOGIC;
-    tcA_axi_bready : in STD_LOGIC;
-    tcA_axi_araddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcA_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    tcA_axi_arvalid : in STD_LOGIC;
-    tcA_axi_arready : out STD_LOGIC;
-    tcA_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcA_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    tcA_axi_rvalid : out STD_LOGIC;
-    tcA_axi_rready : in STD_LOGIC;
-    SIN : out STD_LOGIC;
-    SCLK : out STD_LOGIC;
-    PCLK_A : out STD_LOGIC;
-    SHOUT_A : in STD_LOGIC;
-    HSCLK_P_A : out STD_LOGIC;
-    HSCLK_N_A : out STD_LOGIC;
-    WR_RS_S0_A : out STD_LOGIC;
-    WR_RS_S1_A : out STD_LOGIC;
+    nrst : in STD_LOGIC;
+    clk1 : in STD_LOGIC;
+    Timecounter : out STD_LOGIC_VECTOR ( 63 downto 0 );
+    graycnt : out STD_LOGIC_VECTOR ( 59 downto 0 );
+    samplecnt : out STD_LOGIC_VECTOR ( 2 downto 0 );
     WL_CLK_P : out STD_LOGIC;
     WL_CLK_N : out STD_LOGIC;
-    WR_CS_S0_A : out STD_LOGIC;
-    WR_CS_S1_A : out STD_LOGIC;
-    WR_CS_S2_A : out STD_LOGIC;
-    WR_CS_S3_A : out STD_LOGIC;
-    WR_CS_S4_A : out STD_LOGIC;
-    WR_CS_S5_A : out STD_LOGIC;
-    GCC_RESET_A : out STD_LOGIC;
-    RDAD_CLK_A : out STD_LOGIC;
-    RDAD_SIN_A : out STD_LOGIC;
-    RDAD_DIR_A : out STD_LOGIC;
-    SAMPLESEL_ANY_A : out STD_LOGIC;
-    DO_A : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    SS_INCR_A : out STD_LOGIC;
-    DOE_A : out STD_LOGIC;
-    DONE_A : in STD_LOGIC;
-    SS_RESET_A : out STD_LOGIC;
-    REGCLR_A : out STD_LOGIC;
-    SS_LD_SIN_A : out STD_LOGIC;
-    SS_LD_DIR_A : out STD_LOGIC;
-    RAMP_A : out STD_LOGIC;
-    SSTIN : out STD_LOGIC;
-    MONTIMING_P_A : in STD_LOGIC;
-    MONTIMING_N_A : in STD_LOGIC;
-    Cnt_AXIS_DATA_A : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR_A : out STD_LOGIC;
-    TestStream_A : out STD_LOGIC;
-    FIFOvalid_A : out STD_LOGIC;
-    FIFOdata_A : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady_A : in STD_LOGIC;
-    TrigA_A : in STD_LOGIC;
-    TrigB_A : in STD_LOGIC;
-    TrigC_A : in STD_LOGIC;
-    TrigD_A : in STD_LOGIC;
-    WS_masterctrl_in_A : in STD_LOGIC;
-    WS_masterctrl_out_A : out STD_LOGIC;
-    SSVALID_INTR_A : out STD_LOGIC;
-    SW_nRST_B : out STD_LOGIC;
-    tcB_axi_aclk : in STD_LOGIC;
-    tcB_axi_aresetn : in STD_LOGIC;
-    tcB_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcB_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    tcB_axi_awvalid : in STD_LOGIC;
-    tcB_axi_awready : out STD_LOGIC;
-    tcB_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcB_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    tcB_axi_wvalid : in STD_LOGIC;
-    tcB_axi_wready : out STD_LOGIC;
-    tcB_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    tcB_axi_bvalid : out STD_LOGIC;
-    tcB_axi_bready : in STD_LOGIC;
-    tcB_axi_araddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcB_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    tcB_axi_arvalid : in STD_LOGIC;
-    tcB_axi_arready : out STD_LOGIC;
-    tcB_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    tcB_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    tcB_axi_rvalid : out STD_LOGIC;
-    tcB_axi_rready : in STD_LOGIC;
-    PCLK_B : out STD_LOGIC;
-    SHOUT_B : in STD_LOGIC;
-    HSCLK_P_B : out STD_LOGIC;
-    HSCLK_N_B : out STD_LOGIC;
-    WR_RS_S0_B : out STD_LOGIC;
-    WR_RS_S1_B : out STD_LOGIC;
-    WR_CS_S0_B : out STD_LOGIC;
-    WR_CS_S1_B : out STD_LOGIC;
-    WR_CS_S2_B : out STD_LOGIC;
-    WR_CS_S3_B : out STD_LOGIC;
-    WR_CS_S4_B : out STD_LOGIC;
-    WR_CS_S5_B : out STD_LOGIC;
-    GCC_RESET_B : out STD_LOGIC;
-    RDAD_CLK_B : out STD_LOGIC;
-    RDAD_SIN_B : out STD_LOGIC;
-    RDAD_DIR_B : out STD_LOGIC;
-    SAMPLESEL_ANY_B : out STD_LOGIC;
-    DO_B : in STD_LOGIC_VECTOR ( 15 downto 0 );
-    SS_INCR_B : out STD_LOGIC;
-    DOE_B : out STD_LOGIC;
-    DONE_B : in STD_LOGIC;
-    SS_RESET_B : out STD_LOGIC;
-    REGCLR_B : out STD_LOGIC;
-    SS_LD_SIN_B : out STD_LOGIC;
-    SS_LD_DIR_B : out STD_LOGIC;
-    RAMP_B : out STD_LOGIC;
-    MONTIMING_P_B : in STD_LOGIC;
-    MONTIMING_N_B : in STD_LOGIC;
-    Cnt_AXIS_DATA_B : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR_B : out STD_LOGIC;
-    TestStream_B : out STD_LOGIC;
-    FIFOvalid_B : out STD_LOGIC;
-    FIFOdata_B : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady_B : in STD_LOGIC;
-    TrigA_B : in STD_LOGIC;
-    TrigB_B : in STD_LOGIC;
-    TrigC_B : in STD_LOGIC;
-    TrigD_B : in STD_LOGIC;
-    WS_masterctrl_in_B : in STD_LOGIC;
-    WS_masterctrl_out_B : out STD_LOGIC;
-    SSVALID_INTR_B : out STD_LOGIC
+    SSTIN : out STD_LOGIC
   );
-  end component base_zynq_TARGETC_2ASICS_0_0;
+  end component base_zynq_sstin_signal_0_0;
+  component base_zynq_TARGETC_system_0_0 is
+  port (
+    SW_nRST : out STD_LOGIC;
+    aresetn : in STD_LOGIC;
+    RefCLK_i1 : in STD_LOGIC;
+    tc_axi_aclk : in STD_LOGIC;
+    tc_axi_aresetn : in STD_LOGIC;
+    tc_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    tc_axi_awvalid : in STD_LOGIC;
+    tc_axi_awready : out STD_LOGIC;
+    tc_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    tc_axi_wvalid : in STD_LOGIC;
+    tc_axi_wready : out STD_LOGIC;
+    tc_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    tc_axi_bvalid : out STD_LOGIC;
+    tc_axi_bready : in STD_LOGIC;
+    tc_axi_araddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    tc_axi_arvalid : in STD_LOGIC;
+    tc_axi_arready : out STD_LOGIC;
+    tc_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    tc_axi_rvalid : out STD_LOGIC;
+    tc_axi_rready : in STD_LOGIC;
+    SIN : out STD_LOGIC;
+    SCLK : out STD_LOGIC;
+    PCLK : out STD_LOGIC;
+    SHOUT : in STD_LOGIC;
+    HSCLK_P : out STD_LOGIC;
+    HSCLK_N : out STD_LOGIC;
+    WR_RS_S0 : out STD_LOGIC;
+    WR_RS_S1 : out STD_LOGIC;
+    WR_CS_S0 : out STD_LOGIC;
+    WR_CS_S1 : out STD_LOGIC;
+    WR_CS_S2 : out STD_LOGIC;
+    WR_CS_S3 : out STD_LOGIC;
+    WR_CS_S4 : out STD_LOGIC;
+    WR_CS_S5 : out STD_LOGIC;
+    GCC_RESET : out STD_LOGIC;
+    RDAD_CLK : out STD_LOGIC;
+    RDAD_SIN : out STD_LOGIC;
+    RDAD_DIR : out STD_LOGIC;
+    SAMPLESEL_ANY : out STD_LOGIC;
+    D_Out : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    SS_INCR : out STD_LOGIC;
+    DONE : in STD_LOGIC;
+    SS_RESET : out STD_LOGIC;
+    SS_LD_SIN : out STD_LOGIC;
+    SS_LD_DIR : out STD_LOGIC;
+    RAMP : out STD_LOGIC;
+    MONTIMING_P : in STD_LOGIC;
+    MONTIMING_N : in STD_LOGIC;
+    Cnt_AXIS_DATA : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : out STD_LOGIC;
+    TestStream : out STD_LOGIC;
+    FIFOvalid : out STD_LOGIC;
+    FIFOdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : in STD_LOGIC;
+    TrigA : in STD_LOGIC;
+    TrigB : in STD_LOGIC;
+    TrigC : in STD_LOGIC;
+    TrigD : in STD_LOGIC;
+    WS_masterctrl_in : in STD_LOGIC;
+    SSVALID_INTR : out STD_LOGIC;
+    SSTIN : in STD_LOGIC;
+    Timecounter : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    graycnt : in STD_LOGIC_VECTOR ( 59 downto 0 );
+    samplecnt : in STD_LOGIC_VECTOR ( 2 downto 0 )
+  );
+  end component base_zynq_TARGETC_system_0_0;
+  component base_zynq_TARGETC_system_1_0 is
+  port (
+    SW_nRST : out STD_LOGIC;
+    aresetn : in STD_LOGIC;
+    RefCLK_i1 : in STD_LOGIC;
+    tc_axi_aclk : in STD_LOGIC;
+    tc_axi_aresetn : in STD_LOGIC;
+    tc_axi_awaddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    tc_axi_awvalid : in STD_LOGIC;
+    tc_axi_awready : out STD_LOGIC;
+    tc_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    tc_axi_wvalid : in STD_LOGIC;
+    tc_axi_wready : out STD_LOGIC;
+    tc_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    tc_axi_bvalid : out STD_LOGIC;
+    tc_axi_bready : in STD_LOGIC;
+    tc_axi_araddr : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    tc_axi_arvalid : in STD_LOGIC;
+    tc_axi_arready : out STD_LOGIC;
+    tc_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    tc_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    tc_axi_rvalid : out STD_LOGIC;
+    tc_axi_rready : in STD_LOGIC;
+    SIN : out STD_LOGIC;
+    SCLK : out STD_LOGIC;
+    PCLK : out STD_LOGIC;
+    SHOUT : in STD_LOGIC;
+    HSCLK_P : out STD_LOGIC;
+    HSCLK_N : out STD_LOGIC;
+    WR_RS_S0 : out STD_LOGIC;
+    WR_RS_S1 : out STD_LOGIC;
+    WR_CS_S0 : out STD_LOGIC;
+    WR_CS_S1 : out STD_LOGIC;
+    WR_CS_S2 : out STD_LOGIC;
+    WR_CS_S3 : out STD_LOGIC;
+    WR_CS_S4 : out STD_LOGIC;
+    WR_CS_S5 : out STD_LOGIC;
+    GCC_RESET : out STD_LOGIC;
+    RDAD_CLK : out STD_LOGIC;
+    RDAD_SIN : out STD_LOGIC;
+    RDAD_DIR : out STD_LOGIC;
+    SAMPLESEL_ANY : out STD_LOGIC;
+    D_Out : in STD_LOGIC_VECTOR ( 15 downto 0 );
+    SS_INCR : out STD_LOGIC;
+    DONE : in STD_LOGIC;
+    SS_RESET : out STD_LOGIC;
+    SS_LD_SIN : out STD_LOGIC;
+    SS_LD_DIR : out STD_LOGIC;
+    RAMP : out STD_LOGIC;
+    MONTIMING_P : in STD_LOGIC;
+    MONTIMING_N : in STD_LOGIC;
+    Cnt_AXIS_DATA : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : out STD_LOGIC;
+    TestStream : out STD_LOGIC;
+    FIFOvalid : out STD_LOGIC;
+    FIFOdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : in STD_LOGIC;
+    TrigA : in STD_LOGIC;
+    TrigB : in STD_LOGIC;
+    TrigC : in STD_LOGIC;
+    TrigD : in STD_LOGIC;
+    WS_masterctrl_in : in STD_LOGIC;
+    SSVALID_INTR : out STD_LOGIC;
+    SSTIN : in STD_LOGIC;
+    Timecounter : in STD_LOGIC_VECTOR ( 63 downto 0 );
+    graycnt : in STD_LOGIC_VECTOR ( 59 downto 0 );
+    samplecnt : in STD_LOGIC_VECTOR ( 2 downto 0 )
+  );
+  end component base_zynq_TARGETC_system_1_0;
   signal ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal A_DONE_1 : STD_LOGIC;
   signal A_SHOUT_1 : STD_LOGIC;
@@ -3188,63 +3207,10 @@ architecture STRUCTURE of base_zynq is
   signal MONTIMING_N_1 : STD_LOGIC;
   signal MONTIMING_P_1 : STD_LOGIC;
   signal Start_digitization_ip_0_startDig_out : STD_LOGIC;
-  signal TARGETC_2ASICS_0_CNT_CLR_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_CNT_CLR_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_FIFOdata_A : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal TARGETC_2ASICS_0_FIFOdata_B : STD_LOGIC_VECTOR ( 31 downto 0 );
-  signal TARGETC_2ASICS_0_FIFOvalid_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_FIFOvalid_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_GCC_RESET_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_GCC_RESET_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_HSCLK_N_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_HSCLK_N_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_HSCLK_P_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_HSCLK_P_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_PCLK_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_PCLK_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RAMP_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RAMP_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RDAD_CLK_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RDAD_CLK_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RDAD_DIR_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RDAD_DIR_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RDAD_SIN_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_RDAD_SIN_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SAMPLESEL_ANY_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SAMPLESEL_ANY_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SCLK : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SIN : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SSTIN : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_INCR_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_INCR_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_LD_DIR_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_LD_DIR_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_LD_SIN_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_LD_SIN_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_RESET_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SS_RESET_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SW_nRST_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_SW_nRST_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_TestStream_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_TestStream_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WL_CLK_N : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WL_CLK_P : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S0_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S0_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S1_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S1_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S2_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S2_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S3_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S3_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S4_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S4_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S5_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_CS_S5_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_RS_S0_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_RS_S0_B : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_RS_S1_A : STD_LOGIC;
-  signal TARGETC_2ASICS_0_WR_RS_S1_B : STD_LOGIC;
+  attribute MARK_DEBUG : boolean;
+  attribute MARK_DEBUG of Start_digitization_ip_0_startDig_out : signal is std.standard.true;
+  attribute debug : string;
+  attribute debug of Start_digitization_ip_0_startDig_out : signal is "true";
   signal TARGETC_axi_int_0_Cnt_AXIS_DATA : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal TARGETC_axi_int_0_M00_AXIS_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal TARGETC_axi_int_0_M00_AXIS_TID : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -3261,6 +3227,62 @@ architecture STRUCTURE of base_zynq is
   signal TARGETC_axi_int_1_M00_AXIS_TSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal TARGETC_axi_int_1_M00_AXIS_TVALID : STD_LOGIC;
   signal TARGETC_axi_int_1_StreamReady : STD_LOGIC;
+  signal TARGETC_system_0_CNT_CLR : STD_LOGIC;
+  signal TARGETC_system_0_FIFOdata : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal TARGETC_system_0_FIFOvalid : STD_LOGIC;
+  signal TARGETC_system_0_GCC_RESET : STD_LOGIC;
+  signal TARGETC_system_0_HSCLK_N : STD_LOGIC;
+  signal TARGETC_system_0_HSCLK_P : STD_LOGIC;
+  signal TARGETC_system_0_PCLK : STD_LOGIC;
+  signal TARGETC_system_0_RAMP : STD_LOGIC;
+  signal TARGETC_system_0_RDAD_CLK : STD_LOGIC;
+  signal TARGETC_system_0_RDAD_DIR : STD_LOGIC;
+  signal TARGETC_system_0_RDAD_SIN : STD_LOGIC;
+  signal TARGETC_system_0_SAMPLESEL_ANY : STD_LOGIC;
+  signal TARGETC_system_0_SCLK : STD_LOGIC;
+  signal TARGETC_system_0_SIN : STD_LOGIC;
+  signal TARGETC_system_0_SSVALID_INTR : STD_LOGIC;
+  signal TARGETC_system_0_SS_INCR : STD_LOGIC;
+  signal TARGETC_system_0_SS_LD_DIR : STD_LOGIC;
+  signal TARGETC_system_0_SS_LD_SIN : STD_LOGIC;
+  signal TARGETC_system_0_SS_RESET : STD_LOGIC;
+  signal TARGETC_system_0_SW_nRST : STD_LOGIC;
+  signal TARGETC_system_0_TestStream : STD_LOGIC;
+  signal TARGETC_system_0_WR_CS_S0 : STD_LOGIC;
+  signal TARGETC_system_0_WR_CS_S1 : STD_LOGIC;
+  signal TARGETC_system_0_WR_CS_S2 : STD_LOGIC;
+  signal TARGETC_system_0_WR_CS_S3 : STD_LOGIC;
+  signal TARGETC_system_0_WR_CS_S4 : STD_LOGIC;
+  signal TARGETC_system_0_WR_CS_S5 : STD_LOGIC;
+  signal TARGETC_system_0_WR_RS_S0 : STD_LOGIC;
+  signal TARGETC_system_0_WR_RS_S1 : STD_LOGIC;
+  signal TARGETC_system_1_CNT_CLR : STD_LOGIC;
+  signal TARGETC_system_1_FIFOdata : STD_LOGIC_VECTOR ( 31 downto 0 );
+  signal TARGETC_system_1_FIFOvalid : STD_LOGIC;
+  signal TARGETC_system_1_GCC_RESET : STD_LOGIC;
+  signal TARGETC_system_1_HSCLK_N : STD_LOGIC;
+  signal TARGETC_system_1_HSCLK_P : STD_LOGIC;
+  signal TARGETC_system_1_PCLK : STD_LOGIC;
+  signal TARGETC_system_1_RAMP : STD_LOGIC;
+  signal TARGETC_system_1_RDAD_CLK : STD_LOGIC;
+  signal TARGETC_system_1_RDAD_DIR : STD_LOGIC;
+  signal TARGETC_system_1_RDAD_SIN : STD_LOGIC;
+  signal TARGETC_system_1_SAMPLESEL_ANY : STD_LOGIC;
+  signal TARGETC_system_1_SSVALID_INTR : STD_LOGIC;
+  signal TARGETC_system_1_SS_INCR : STD_LOGIC;
+  signal TARGETC_system_1_SS_LD_DIR : STD_LOGIC;
+  signal TARGETC_system_1_SS_LD_SIN : STD_LOGIC;
+  signal TARGETC_system_1_SS_RESET : STD_LOGIC;
+  signal TARGETC_system_1_SW_nRST : STD_LOGIC;
+  signal TARGETC_system_1_TestStream : STD_LOGIC;
+  signal TARGETC_system_1_WR_CS_S0 : STD_LOGIC;
+  signal TARGETC_system_1_WR_CS_S1 : STD_LOGIC;
+  signal TARGETC_system_1_WR_CS_S2 : STD_LOGIC;
+  signal TARGETC_system_1_WR_CS_S3 : STD_LOGIC;
+  signal TARGETC_system_1_WR_CS_S4 : STD_LOGIC;
+  signal TARGETC_system_1_WR_CS_S5 : STD_LOGIC;
+  signal TARGETC_system_1_WR_RS_S0 : STD_LOGIC;
+  signal TARGETC_system_1_WR_RS_S1 : STD_LOGIC;
   signal axi_dma_0_M_AXI_S2MM_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_dma_0_M_AXI_S2MM_AWBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal axi_dma_0_M_AXI_S2MM_AWCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -3278,10 +3300,8 @@ architecture STRUCTURE of base_zynq is
   signal axi_dma_0_M_AXI_S2MM_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_dma_0_M_AXI_S2MM_WVALID : STD_LOGIC;
   signal axi_dma_0_s2mm_introut : STD_LOGIC;
-  attribute DEBUG : string;
-  attribute DEBUG of axi_dma_0_s2mm_introut : signal is "true";
-  attribute MARK_DEBUG : boolean;
   attribute MARK_DEBUG of axi_dma_0_s2mm_introut : signal is std.standard.true;
+  attribute debug of axi_dma_0_s2mm_introut : signal is "true";
   signal axi_interconnect_0_M00_AXI_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_interconnect_0_M00_AXI_AWBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal axi_interconnect_0_M00_AXI_AWCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -3440,6 +3460,12 @@ architecture STRUCTURE of base_zynq is
   signal ps7_0_axi_periph_M03_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal ps7_0_axi_periph_M03_AXI_WVALID : STD_LOGIC;
   signal rst_ps7_0_50M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal sstin_signal_0_SSTIN : STD_LOGIC;
+  signal sstin_signal_0_Timecounter : STD_LOGIC_VECTOR ( 63 downto 0 );
+  signal sstin_signal_0_WL_CLK_N : STD_LOGIC;
+  signal sstin_signal_0_WL_CLK_P : STD_LOGIC;
+  signal sstin_signal_0_graycnt : STD_LOGIC_VECTOR ( 59 downto 0 );
+  signal sstin_signal_0_samplecnt : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal util_ds_buf_0_OBUF_DS_N : STD_LOGIC_VECTOR ( 0 to 0 );
   signal util_ds_buf_0_OBUF_DS_P : STD_LOGIC_VECTOR ( 0 to 0 );
   signal xlconcat_0_dout : STD_LOGIC_VECTOR ( 15 downto 0 );
@@ -3447,16 +3473,10 @@ architecture STRUCTURE of base_zynq is
   signal xlconcat_2_dout : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal xlconstant_0_dout : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal xlconstant_1_dout : STD_LOGIC_VECTOR ( 1 downto 0 );
-  signal NLW_TARGETC_2ASICS_0_DOE_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_DOE_B_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_REGCLR_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_REGCLR_B_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_SSVALID_INTR_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_SSVALID_INTR_B_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_WS_masterctrl_out_A_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGETC_2ASICS_0_WS_masterctrl_out_B_UNCONNECTED : STD_LOGIC;
   signal NLW_TARGETC_axi_int_0_M_AXIS_TDEST_UNCONNECTED : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal NLW_TARGETC_axi_int_1_M_AXIS_TDEST_UNCONNECTED : STD_LOGIC_VECTOR ( 9 downto 0 );
+  signal NLW_TARGETC_system_1_SCLK_UNCONNECTED : STD_LOGIC;
+  signal NLW_TARGETC_system_1_SIN_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dma_0_s2mm_prmry_reset_out_n_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_ARREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_RLAST_UNCONNECTED : STD_LOGIC;
@@ -3477,125 +3497,125 @@ architecture STRUCTURE of base_zynq is
   signal NLW_rst_ps7_0_50M_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_ps7_0_50M_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps7_0_50M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  attribute X_INTERFACE_INFO : string;
-  attribute X_INTERFACE_INFO of A_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.A_SS_RESET RST";
-  attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
-  attribute X_INTERFACE_INFO of B_GCC_RESET : signal is "xilinx.com:signal:data:1.0 DATA.B_GCC_RESET DATA";
-  attribute X_INTERFACE_PARAMETER of B_GCC_RESET : signal is "XIL_INTERFACENAME DATA.B_GCC_RESET, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_HSCLK_N : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_N DATA";
-  attribute X_INTERFACE_PARAMETER of B_HSCLK_N : signal is "XIL_INTERFACENAME DATA.B_HSCLK_N, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_HSCLK_P : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_P DATA";
-  attribute X_INTERFACE_PARAMETER of B_HSCLK_P : signal is "XIL_INTERFACENAME DATA.B_HSCLK_P, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RAMP : signal is "xilinx.com:signal:data:1.0 DATA.B_RAMP DATA";
-  attribute X_INTERFACE_PARAMETER of B_RAMP : signal is "XIL_INTERFACENAME DATA.B_RAMP, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RDAD_CLK : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_CLK DATA";
-  attribute X_INTERFACE_PARAMETER of B_RDAD_CLK : signal is "XIL_INTERFACENAME DATA.B_RDAD_CLK, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RDAD_DIR : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_DIR DATA";
-  attribute X_INTERFACE_PARAMETER of B_RDAD_DIR : signal is "XIL_INTERFACENAME DATA.B_RDAD_DIR, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RDAD_SIN : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_SIN DATA";
-  attribute X_INTERFACE_PARAMETER of B_RDAD_SIN : signal is "XIL_INTERFACENAME DATA.B_RDAD_SIN, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_SAMPLESEL_ANY : signal is "xilinx.com:signal:data:1.0 DATA.B_SAMPLESEL_ANY DATA";
-  attribute X_INTERFACE_PARAMETER of B_SAMPLESEL_ANY : signal is "XIL_INTERFACENAME DATA.B_SAMPLESEL_ANY, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_SS_INCR : signal is "xilinx.com:signal:data:1.0 DATA.B_SS_INCR DATA";
-  attribute X_INTERFACE_PARAMETER of B_SS_INCR : signal is "XIL_INTERFACENAME DATA.B_SS_INCR, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_SS_LD_DIR : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_DIR CLK";
-  attribute X_INTERFACE_PARAMETER of B_SS_LD_DIR : signal is "XIL_INTERFACENAME CLK.B_SS_LD_DIR, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of B_SS_LD_SIN : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_SIN CLK";
-  attribute X_INTERFACE_PARAMETER of B_SS_LD_SIN : signal is "XIL_INTERFACENAME CLK.B_SS_LD_SIN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of B_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.B_SS_RESET RST";
-  attribute X_INTERFACE_PARAMETER of B_SS_RESET : signal is "XIL_INTERFACENAME RST.B_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
-  attribute X_INTERFACE_INFO of B_WR_CS_S0 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S0 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S0 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S0, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S1 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S1 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S1 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S1, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S2 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S2 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S2 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S2, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S3 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S3 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S3 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S3, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S4 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S4 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S4 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S4, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
-  attribute X_INTERFACE_INFO of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
-  attribute X_INTERFACE_INFO of DDR_ck_p : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_P";
-  attribute X_INTERFACE_INFO of DDR_cke : signal is "xilinx.com:interface:ddrx:1.0 DDR CKE";
-  attribute X_INTERFACE_INFO of DDR_cs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CS_N";
-  attribute X_INTERFACE_INFO of DDR_odt : signal is "xilinx.com:interface:ddrx:1.0 DDR ODT";
-  attribute X_INTERFACE_INFO of DDR_ras_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RAS_N";
-  attribute X_INTERFACE_INFO of DDR_reset_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RESET_N";
-  attribute X_INTERFACE_INFO of DDR_we_n : signal is "xilinx.com:interface:ddrx:1.0 DDR WE_N";
-  attribute X_INTERFACE_INFO of FIXED_IO_ddr_vrn : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN";
-  attribute X_INTERFACE_PARAMETER of FIXED_IO_ddr_vrn : signal is "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false";
-  attribute X_INTERFACE_INFO of FIXED_IO_ddr_vrp : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP";
-  attribute X_INTERFACE_INFO of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
-  attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
-  attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
-  attribute X_INTERFACE_INFO of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGETC_2ASICS_0_0_WL_CLK_N, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGETC_2ASICS_0_0_WL_CLK_P, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of B_DO_10 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_10 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_11 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_11 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_11 : signal is "XIL_INTERFACENAME DATA.B_DO_11, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_13 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_13 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_13 : signal is "XIL_INTERFACENAME DATA.B_DO_13, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_14 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_14 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_14 : signal is "XIL_INTERFACENAME DATA.B_DO_14, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_15 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_15 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_15 : signal is "XIL_INTERFACENAME DATA.B_DO_15, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_16 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_16 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_16 : signal is "XIL_INTERFACENAME DATA.B_DO_16, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_3 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_3 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_3 : signal is "XIL_INTERFACENAME DATA.B_DO_3, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_4 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_4 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_4 : signal is "XIL_INTERFACENAME DATA.B_DO_4, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_5 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_5 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_5 : signal is "XIL_INTERFACENAME DATA.B_DO_5, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_6 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_6 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_6 : signal is "XIL_INTERFACENAME DATA.B_DO_6, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_7 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_7 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_7 : signal is "XIL_INTERFACENAME DATA.B_DO_7, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_8 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_8 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_8 : signal is "XIL_INTERFACENAME DATA.B_DO_8, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of B_DO_9 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_9 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_9 : signal is "XIL_INTERFACENAME DATA.B_DO_9, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
-  attribute X_INTERFACE_INFO of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
-  attribute X_INTERFACE_PARAMETER of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
-  attribute X_INTERFACE_INFO of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";
-  attribute X_INTERFACE_INFO of DDR_dm : signal is "xilinx.com:interface:ddrx:1.0 DDR DM";
-  attribute X_INTERFACE_INFO of DDR_dq : signal is "xilinx.com:interface:ddrx:1.0 DDR DQ";
-  attribute X_INTERFACE_INFO of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
-  attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
-  attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
+  attribute x_interface_info : string;
+  attribute x_interface_info of A_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.A_SS_RESET RST";
+  attribute x_interface_parameter : string;
+  attribute x_interface_parameter of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of B_GCC_RESET : signal is "xilinx.com:signal:data:1.0 DATA.B_GCC_RESET DATA";
+  attribute x_interface_parameter of B_GCC_RESET : signal is "XIL_INTERFACENAME DATA.B_GCC_RESET, LAYERED_METADATA undef, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of B_HSCLK_N : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_N DATA";
+  attribute x_interface_parameter of B_HSCLK_N : signal is "XIL_INTERFACENAME DATA.B_HSCLK_N, LAYERED_METADATA undef";
+  attribute x_interface_info of B_HSCLK_P : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_P DATA";
+  attribute x_interface_parameter of B_HSCLK_P : signal is "XIL_INTERFACENAME DATA.B_HSCLK_P, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RAMP : signal is "xilinx.com:signal:data:1.0 DATA.B_RAMP DATA";
+  attribute x_interface_parameter of B_RAMP : signal is "XIL_INTERFACENAME DATA.B_RAMP, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RDAD_CLK : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_CLK DATA";
+  attribute x_interface_parameter of B_RDAD_CLK : signal is "XIL_INTERFACENAME DATA.B_RDAD_CLK, CLK_DOMAIN base_zynq_TARGETC_system_1_0_RDAD_CLK, FREQ_HZ 125000000, LAYERED_METADATA undef, PHASE 0.000";
+  attribute x_interface_info of B_RDAD_DIR : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_DIR DATA";
+  attribute x_interface_parameter of B_RDAD_DIR : signal is "XIL_INTERFACENAME DATA.B_RDAD_DIR, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RDAD_SIN : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_SIN DATA";
+  attribute x_interface_parameter of B_RDAD_SIN : signal is "XIL_INTERFACENAME DATA.B_RDAD_SIN, LAYERED_METADATA undef";
+  attribute x_interface_info of B_SAMPLESEL_ANY : signal is "xilinx.com:signal:data:1.0 DATA.B_SAMPLESEL_ANY DATA";
+  attribute x_interface_parameter of B_SAMPLESEL_ANY : signal is "XIL_INTERFACENAME DATA.B_SAMPLESEL_ANY, LAYERED_METADATA undef";
+  attribute x_interface_info of B_SS_INCR : signal is "xilinx.com:signal:data:1.0 DATA.B_SS_INCR DATA";
+  attribute x_interface_parameter of B_SS_INCR : signal is "XIL_INTERFACENAME DATA.B_SS_INCR, LAYERED_METADATA undef";
+  attribute x_interface_info of B_SS_LD_DIR : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_DIR CLK";
+  attribute x_interface_parameter of B_SS_LD_DIR : signal is "XIL_INTERFACENAME CLK.B_SS_LD_DIR, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of B_SS_LD_SIN : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_SIN CLK";
+  attribute x_interface_parameter of B_SS_LD_SIN : signal is "XIL_INTERFACENAME CLK.B_SS_LD_SIN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of B_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.B_SS_RESET RST";
+  attribute x_interface_parameter of B_SS_RESET : signal is "XIL_INTERFACENAME RST.B_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of B_WR_CS_S0 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S0 DATA";
+  attribute x_interface_parameter of B_WR_CS_S0 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S0, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S1 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S1 DATA";
+  attribute x_interface_parameter of B_WR_CS_S1 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S1, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S2 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S2 DATA";
+  attribute x_interface_parameter of B_WR_CS_S2 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S2, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S3 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S3 DATA";
+  attribute x_interface_parameter of B_WR_CS_S3 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S3, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S4 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S4 DATA";
+  attribute x_interface_parameter of B_WR_CS_S4 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S4, LAYERED_METADATA undef";
+  attribute x_interface_info of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
+  attribute x_interface_info of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
+  attribute x_interface_info of DDR_ck_p : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_P";
+  attribute x_interface_info of DDR_cke : signal is "xilinx.com:interface:ddrx:1.0 DDR CKE";
+  attribute x_interface_info of DDR_cs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CS_N";
+  attribute x_interface_info of DDR_odt : signal is "xilinx.com:interface:ddrx:1.0 DDR ODT";
+  attribute x_interface_info of DDR_ras_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RAS_N";
+  attribute x_interface_info of DDR_reset_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RESET_N";
+  attribute x_interface_info of DDR_we_n : signal is "xilinx.com:interface:ddrx:1.0 DDR WE_N";
+  attribute x_interface_info of FIXED_IO_ddr_vrn : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN";
+  attribute x_interface_parameter of FIXED_IO_ddr_vrn : signal is "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false";
+  attribute x_interface_info of FIXED_IO_ddr_vrp : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP";
+  attribute x_interface_info of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
+  attribute x_interface_info of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
+  attribute x_interface_info of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
+  attribute x_interface_info of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
+  attribute x_interface_parameter of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_sstin_signal_0_0_WL_CLK_N, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
+  attribute x_interface_parameter of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_sstin_signal_0_0_WL_CLK_P, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of B_DO_10 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_10 DATA";
+  attribute x_interface_parameter of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_11 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_11 DATA";
+  attribute x_interface_parameter of B_DO_11 : signal is "XIL_INTERFACENAME DATA.B_DO_11, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_13 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_13 DATA";
+  attribute x_interface_parameter of B_DO_13 : signal is "XIL_INTERFACENAME DATA.B_DO_13, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_14 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_14 DATA";
+  attribute x_interface_parameter of B_DO_14 : signal is "XIL_INTERFACENAME DATA.B_DO_14, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_15 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_15 DATA";
+  attribute x_interface_parameter of B_DO_15 : signal is "XIL_INTERFACENAME DATA.B_DO_15, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_16 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_16 DATA";
+  attribute x_interface_parameter of B_DO_16 : signal is "XIL_INTERFACENAME DATA.B_DO_16, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_3 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_3 DATA";
+  attribute x_interface_parameter of B_DO_3 : signal is "XIL_INTERFACENAME DATA.B_DO_3, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_4 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_4 DATA";
+  attribute x_interface_parameter of B_DO_4 : signal is "XIL_INTERFACENAME DATA.B_DO_4, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_5 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_5 DATA";
+  attribute x_interface_parameter of B_DO_5 : signal is "XIL_INTERFACENAME DATA.B_DO_5, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_6 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_6 DATA";
+  attribute x_interface_parameter of B_DO_6 : signal is "XIL_INTERFACENAME DATA.B_DO_6, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_7 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_7 DATA";
+  attribute x_interface_parameter of B_DO_7 : signal is "XIL_INTERFACENAME DATA.B_DO_7, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_8 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_8 DATA";
+  attribute x_interface_parameter of B_DO_8 : signal is "XIL_INTERFACENAME DATA.B_DO_8, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of B_DO_9 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_9 DATA";
+  attribute x_interface_parameter of B_DO_9 : signal is "XIL_INTERFACENAME DATA.B_DO_9, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_info of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
+  attribute x_interface_parameter of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
+  attribute x_interface_info of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";
+  attribute x_interface_info of DDR_dm : signal is "xilinx.com:interface:ddrx:1.0 DDR DM";
+  attribute x_interface_info of DDR_dq : signal is "xilinx.com:interface:ddrx:1.0 DDR DQ";
+  attribute x_interface_info of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
+  attribute x_interface_info of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
+  attribute x_interface_info of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
 begin
   A_DONE_1 <= A_DONE;
-  A_GCC_RESET <= TARGETC_2ASICS_0_GCC_RESET_A;
-  A_HSCLK_N <= TARGETC_2ASICS_0_HSCLK_N_A;
-  A_HSCLK_P <= TARGETC_2ASICS_0_HSCLK_P_A;
-  A_PCLK <= TARGETC_2ASICS_0_PCLK_A;
-  A_RAMP <= TARGETC_2ASICS_0_RAMP_A;
-  A_RDAD_CLK <= TARGETC_2ASICS_0_RDAD_CLK_A;
-  A_RDAD_DIR <= TARGETC_2ASICS_0_RDAD_DIR_A;
-  A_RDAD_SIN <= TARGETC_2ASICS_0_RDAD_SIN_A;
-  A_SAMPLESEL_ANY <= TARGETC_2ASICS_0_SAMPLESEL_ANY_A;
+  A_GCC_RESET <= TARGETC_system_0_GCC_RESET;
+  A_HSCLK_N <= TARGETC_system_0_HSCLK_N;
+  A_HSCLK_P <= TARGETC_system_0_HSCLK_P;
+  A_PCLK <= TARGETC_system_0_PCLK;
+  A_RAMP <= TARGETC_system_0_RAMP;
+  A_RDAD_CLK <= TARGETC_system_0_RDAD_CLK;
+  A_RDAD_DIR <= TARGETC_system_0_RDAD_DIR;
+  A_RDAD_SIN <= TARGETC_system_0_RDAD_SIN;
+  A_SAMPLESEL_ANY <= TARGETC_system_0_SAMPLESEL_ANY;
   A_SHOUT_1 <= A_SHOUT;
-  A_SS_INCR <= TARGETC_2ASICS_0_SS_INCR_A;
-  A_SS_LD_DIR <= TARGETC_2ASICS_0_SS_LD_DIR_A;
-  A_SS_LD_SIN <= TARGETC_2ASICS_0_SS_LD_SIN_A;
-  A_SS_RESET <= TARGETC_2ASICS_0_SS_RESET_A;
+  A_SS_INCR <= TARGETC_system_0_SS_INCR;
+  A_SS_LD_DIR <= TARGETC_system_0_SS_LD_DIR;
+  A_SS_LD_SIN <= TARGETC_system_0_SS_LD_SIN;
+  A_SS_RESET <= TARGETC_system_0_SS_RESET;
   A_TRIG1_1 <= A_TRIG1;
   A_TRIG2_1 <= A_TRIG2;
   A_TRIG3_1 <= A_TRIG3;
   A_TRIG4_1 <= A_TRIG4;
-  A_WR_CS_S0 <= TARGETC_2ASICS_0_WR_CS_S0_A;
-  A_WR_CS_S1 <= TARGETC_2ASICS_0_WR_CS_S1_A;
-  A_WR_CS_S2 <= TARGETC_2ASICS_0_WR_CS_S2_A;
-  A_WR_CS_S3 <= TARGETC_2ASICS_0_WR_CS_S3_A;
-  A_WR_CS_S4 <= TARGETC_2ASICS_0_WR_CS_S4_A;
-  A_WR_CS_S5 <= TARGETC_2ASICS_0_WR_CS_S5_A;
-  A_WR_RS_S0 <= TARGETC_2ASICS_0_WR_RS_S0_A;
-  A_WR_RS_S1 <= TARGETC_2ASICS_0_WR_RS_S1_A;
+  A_WR_CS_S0 <= TARGETC_system_0_WR_CS_S0;
+  A_WR_CS_S1 <= TARGETC_system_0_WR_CS_S1;
+  A_WR_CS_S2 <= TARGETC_system_0_WR_CS_S2;
+  A_WR_CS_S3 <= TARGETC_system_0_WR_CS_S3;
+  A_WR_CS_S4 <= TARGETC_system_0_WR_CS_S4;
+  A_WR_CS_S5 <= TARGETC_system_0_WR_CS_S5;
+  A_WR_RS_S0 <= TARGETC_system_0_WR_RS_S0;
+  A_WR_RS_S1 <= TARGETC_system_0_WR_RS_S1;
   B_DONE_1 <= B_DONE;
   B_DO_10_1(0) <= B_DO_10(0);
   B_DO_11_1(0) <= B_DO_11(0);
@@ -3612,32 +3632,32 @@ begin
   B_DO_7_1(0) <= B_DO_7(0);
   B_DO_8_1(0) <= B_DO_8(0);
   B_DO_9_1(0) <= B_DO_9(0);
-  B_GCC_RESET <= TARGETC_2ASICS_0_GCC_RESET_B;
-  B_HSCLK_N <= TARGETC_2ASICS_0_HSCLK_N_B;
-  B_HSCLK_P <= TARGETC_2ASICS_0_HSCLK_P_B;
-  B_PCLK <= TARGETC_2ASICS_0_PCLK_B;
-  B_RAMP <= TARGETC_2ASICS_0_RAMP_B;
-  B_RDAD_CLK <= TARGETC_2ASICS_0_RDAD_CLK_B;
-  B_RDAD_DIR <= TARGETC_2ASICS_0_RDAD_DIR_B;
-  B_RDAD_SIN <= TARGETC_2ASICS_0_RDAD_SIN_B;
-  B_SAMPLESEL_ANY <= TARGETC_2ASICS_0_SAMPLESEL_ANY_B;
+  B_GCC_RESET <= TARGETC_system_1_GCC_RESET;
+  B_HSCLK_N <= TARGETC_system_1_HSCLK_N;
+  B_HSCLK_P <= TARGETC_system_1_HSCLK_P;
+  B_PCLK <= TARGETC_system_1_PCLK;
+  B_RAMP <= TARGETC_system_1_RAMP;
+  B_RDAD_CLK <= TARGETC_system_1_RDAD_CLK;
+  B_RDAD_DIR <= TARGETC_system_1_RDAD_DIR;
+  B_RDAD_SIN <= TARGETC_system_1_RDAD_SIN;
+  B_SAMPLESEL_ANY <= TARGETC_system_1_SAMPLESEL_ANY;
   B_SHOUT_1 <= B_SHOUT;
-  B_SS_INCR <= TARGETC_2ASICS_0_SS_INCR_B;
-  B_SS_LD_DIR <= TARGETC_2ASICS_0_SS_LD_DIR_B;
-  B_SS_LD_SIN <= TARGETC_2ASICS_0_SS_LD_SIN_B;
-  B_SS_RESET <= TARGETC_2ASICS_0_SS_RESET_B;
+  B_SS_INCR <= TARGETC_system_1_SS_INCR;
+  B_SS_LD_DIR <= TARGETC_system_1_SS_LD_DIR;
+  B_SS_LD_SIN <= TARGETC_system_1_SS_LD_SIN;
+  B_SS_RESET <= TARGETC_system_1_SS_RESET;
   B_TRIG1_1 <= B_TRIG1;
   B_TRIG2_1 <= B_TRIG2;
   B_TRIG3_1 <= B_TRIG3;
   B_TRIG4_1 <= B_TRIG4;
-  B_WR_CS_S0 <= TARGETC_2ASICS_0_WR_CS_S0_B;
-  B_WR_CS_S1 <= TARGETC_2ASICS_0_WR_CS_S1_B;
-  B_WR_CS_S2 <= TARGETC_2ASICS_0_WR_CS_S2_B;
-  B_WR_CS_S3 <= TARGETC_2ASICS_0_WR_CS_S3_B;
-  B_WR_CS_S4 <= TARGETC_2ASICS_0_WR_CS_S4_B;
-  B_WR_CS_S5 <= TARGETC_2ASICS_0_WR_CS_S5_B;
-  B_WR_RS_S0 <= TARGETC_2ASICS_0_WR_RS_S0_B;
-  B_WR_RS_S1 <= TARGETC_2ASICS_0_WR_RS_S1_B;
+  B_WR_CS_S0 <= TARGETC_system_1_WR_CS_S0;
+  B_WR_CS_S1 <= TARGETC_system_1_WR_CS_S1;
+  B_WR_CS_S2 <= TARGETC_system_1_WR_CS_S2;
+  B_WR_CS_S3 <= TARGETC_system_1_WR_CS_S3;
+  B_WR_CS_S4 <= TARGETC_system_1_WR_CS_S4;
+  B_WR_CS_S5 <= TARGETC_system_1_WR_CS_S5;
+  B_WR_RS_S0 <= TARGETC_system_1_WR_RS_S0;
+  B_WR_RS_S1 <= TARGETC_system_1_WR_RS_S1;
   DO_10_1 <= A_DO_10;
   DO_11_1 <= A_DO_11;
   DO_12_1 <= A_DO_12;
@@ -3656,12 +3676,12 @@ begin
   DO_9_1 <= A_DO_9;
   MONTIMING_N_1 <= MONTIMING_N;
   MONTIMING_P_1 <= MONTIMING_P;
-  SCLK <= TARGETC_2ASICS_0_SCLK;
-  SIN <= TARGETC_2ASICS_0_SIN;
+  SCLK <= TARGETC_system_0_SCLK;
+  SIN <= TARGETC_system_0_SIN;
   SSTIN_N(0) <= util_ds_buf_0_OBUF_DS_N(0);
   SSTIN_P(0) <= util_ds_buf_0_OBUF_DS_P(0);
-  WL_CLK_N <= TARGETC_2ASICS_0_WL_CLK_N;
-  WL_CLK_P <= TARGETC_2ASICS_0_WL_CLK_P;
+  WL_CLK_N <= sstin_signal_0_WL_CLK_N;
+  WL_CLK_P <= sstin_signal_0_WL_CLK_P;
 Start_digitization_ip_0: component base_zynq_Start_digitization_ip_0_1
      port map (
       s00_axi_aclk => processing_system7_0_FCLK_CLK0,
@@ -3687,148 +3707,12 @@ Start_digitization_ip_0: component base_zynq_Start_digitization_ip_0_1
       s00_axi_wvalid => ps7_0_axi_periph_M03_AXI_WVALID,
       startDig_out => Start_digitization_ip_0_startDig_out
     );
-TARGETC_2ASICS_0: component base_zynq_TARGETC_2ASICS_0_0
-     port map (
-      CNT_CLR_A => TARGETC_2ASICS_0_CNT_CLR_A,
-      CNT_CLR_B => TARGETC_2ASICS_0_CNT_CLR_B,
-      Cnt_AXIS_DATA_A(9 downto 0) => TARGETC_axi_int_0_Cnt_AXIS_DATA(9 downto 0),
-      Cnt_AXIS_DATA_B(9 downto 0) => TARGETC_axi_int_1_Cnt_AXIS_DATA(9 downto 0),
-      DOE_A => NLW_TARGETC_2ASICS_0_DOE_A_UNCONNECTED,
-      DOE_B => NLW_TARGETC_2ASICS_0_DOE_B_UNCONNECTED,
-      DONE_A => A_DONE_1,
-      DONE_B => B_DONE_1,
-      DO_A(15 downto 0) => xlconcat_0_dout(15 downto 0),
-      DO_B(15 downto 0) => xlconcat_2_dout(15 downto 0),
-      FIFOdata_A(31 downto 0) => TARGETC_2ASICS_0_FIFOdata_A(31 downto 0),
-      FIFOdata_B(31 downto 0) => TARGETC_2ASICS_0_FIFOdata_B(31 downto 0),
-      FIFOvalid_A => TARGETC_2ASICS_0_FIFOvalid_A,
-      FIFOvalid_B => TARGETC_2ASICS_0_FIFOvalid_B,
-      GCC_RESET_A => TARGETC_2ASICS_0_GCC_RESET_A,
-      GCC_RESET_B => TARGETC_2ASICS_0_GCC_RESET_B,
-      HSCLK_N_A => TARGETC_2ASICS_0_HSCLK_N_A,
-      HSCLK_N_B => TARGETC_2ASICS_0_HSCLK_N_B,
-      HSCLK_P_A => TARGETC_2ASICS_0_HSCLK_P_A,
-      HSCLK_P_B => TARGETC_2ASICS_0_HSCLK_P_B,
-      MONTIMING_N_A => MONTIMING_N_1,
-      MONTIMING_N_B => '0',
-      MONTIMING_P_A => MONTIMING_P_1,
-      MONTIMING_P_B => '0',
-      PCLK_A => TARGETC_2ASICS_0_PCLK_A,
-      PCLK_B => TARGETC_2ASICS_0_PCLK_B,
-      RAMP_A => TARGETC_2ASICS_0_RAMP_A,
-      RAMP_B => TARGETC_2ASICS_0_RAMP_B,
-      RDAD_CLK_A => TARGETC_2ASICS_0_RDAD_CLK_A,
-      RDAD_CLK_B => TARGETC_2ASICS_0_RDAD_CLK_B,
-      RDAD_DIR_A => TARGETC_2ASICS_0_RDAD_DIR_A,
-      RDAD_DIR_B => TARGETC_2ASICS_0_RDAD_DIR_B,
-      RDAD_SIN_A => TARGETC_2ASICS_0_RDAD_SIN_A,
-      RDAD_SIN_B => TARGETC_2ASICS_0_RDAD_SIN_B,
-      REGCLR_A => NLW_TARGETC_2ASICS_0_REGCLR_A_UNCONNECTED,
-      REGCLR_B => NLW_TARGETC_2ASICS_0_REGCLR_B_UNCONNECTED,
-      RefCLK_i1 => processing_system7_0_FCLK_CLK0,
-      SAMPLESEL_ANY_A => TARGETC_2ASICS_0_SAMPLESEL_ANY_A,
-      SAMPLESEL_ANY_B => TARGETC_2ASICS_0_SAMPLESEL_ANY_B,
-      SCLK => TARGETC_2ASICS_0_SCLK,
-      SHOUT_A => A_SHOUT_1,
-      SHOUT_B => B_SHOUT_1,
-      SIN => TARGETC_2ASICS_0_SIN,
-      SSTIN => TARGETC_2ASICS_0_SSTIN,
-      SSVALID_INTR_A => NLW_TARGETC_2ASICS_0_SSVALID_INTR_A_UNCONNECTED,
-      SSVALID_INTR_B => NLW_TARGETC_2ASICS_0_SSVALID_INTR_B_UNCONNECTED,
-      SS_INCR_A => TARGETC_2ASICS_0_SS_INCR_A,
-      SS_INCR_B => TARGETC_2ASICS_0_SS_INCR_B,
-      SS_LD_DIR_A => TARGETC_2ASICS_0_SS_LD_DIR_A,
-      SS_LD_DIR_B => TARGETC_2ASICS_0_SS_LD_DIR_B,
-      SS_LD_SIN_A => TARGETC_2ASICS_0_SS_LD_SIN_A,
-      SS_LD_SIN_B => TARGETC_2ASICS_0_SS_LD_SIN_B,
-      SS_RESET_A => TARGETC_2ASICS_0_SS_RESET_A,
-      SS_RESET_B => TARGETC_2ASICS_0_SS_RESET_B,
-      SW_nRST_A => TARGETC_2ASICS_0_SW_nRST_A,
-      SW_nRST_B => TARGETC_2ASICS_0_SW_nRST_B,
-      StreamReady_A => TARGETC_axi_int_0_StreamReady,
-      StreamReady_B => TARGETC_axi_int_1_StreamReady,
-      TestStream_A => TARGETC_2ASICS_0_TestStream_A,
-      TestStream_B => TARGETC_2ASICS_0_TestStream_B,
-      TrigA_A => A_TRIG1_1,
-      TrigA_B => B_TRIG1_1,
-      TrigB_A => A_TRIG2_1,
-      TrigB_B => B_TRIG2_1,
-      TrigC_A => A_TRIG3_1,
-      TrigC_B => B_TRIG3_1,
-      TrigD_A => A_TRIG4_1,
-      TrigD_B => B_TRIG4_1,
-      WL_CLK_N => TARGETC_2ASICS_0_WL_CLK_N,
-      WL_CLK_P => TARGETC_2ASICS_0_WL_CLK_P,
-      WR_CS_S0_A => TARGETC_2ASICS_0_WR_CS_S0_A,
-      WR_CS_S0_B => TARGETC_2ASICS_0_WR_CS_S0_B,
-      WR_CS_S1_A => TARGETC_2ASICS_0_WR_CS_S1_A,
-      WR_CS_S1_B => TARGETC_2ASICS_0_WR_CS_S1_B,
-      WR_CS_S2_A => TARGETC_2ASICS_0_WR_CS_S2_A,
-      WR_CS_S2_B => TARGETC_2ASICS_0_WR_CS_S2_B,
-      WR_CS_S3_A => TARGETC_2ASICS_0_WR_CS_S3_A,
-      WR_CS_S3_B => TARGETC_2ASICS_0_WR_CS_S3_B,
-      WR_CS_S4_A => TARGETC_2ASICS_0_WR_CS_S4_A,
-      WR_CS_S4_B => TARGETC_2ASICS_0_WR_CS_S4_B,
-      WR_CS_S5_A => TARGETC_2ASICS_0_WR_CS_S5_A,
-      WR_CS_S5_B => TARGETC_2ASICS_0_WR_CS_S5_B,
-      WR_RS_S0_A => TARGETC_2ASICS_0_WR_RS_S0_A,
-      WR_RS_S0_B => TARGETC_2ASICS_0_WR_RS_S0_B,
-      WR_RS_S1_A => TARGETC_2ASICS_0_WR_RS_S1_A,
-      WR_RS_S1_B => TARGETC_2ASICS_0_WR_RS_S1_B,
-      WS_masterctrl_in_A => Start_digitization_ip_0_startDig_out,
-      WS_masterctrl_in_B => Start_digitization_ip_0_startDig_out,
-      WS_masterctrl_out_A => NLW_TARGETC_2ASICS_0_WS_masterctrl_out_A_UNCONNECTED,
-      WS_masterctrl_out_B => NLW_TARGETC_2ASICS_0_WS_masterctrl_out_B_UNCONNECTED,
-      aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
-      tcA_axi_aclk => processing_system7_0_FCLK_CLK0,
-      tcA_axi_araddr(31 downto 0) => ps7_0_axi_periph_M00_AXI_ARADDR(31 downto 0),
-      tcA_axi_aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
-      tcA_axi_arprot(2 downto 0) => ps7_0_axi_periph_M00_AXI_ARPROT(2 downto 0),
-      tcA_axi_arready => ps7_0_axi_periph_M00_AXI_ARREADY,
-      tcA_axi_arvalid => ps7_0_axi_periph_M00_AXI_ARVALID,
-      tcA_axi_awaddr(31 downto 0) => ps7_0_axi_periph_M00_AXI_AWADDR(31 downto 0),
-      tcA_axi_awprot(2 downto 0) => ps7_0_axi_periph_M00_AXI_AWPROT(2 downto 0),
-      tcA_axi_awready => ps7_0_axi_periph_M00_AXI_AWREADY,
-      tcA_axi_awvalid => ps7_0_axi_periph_M00_AXI_AWVALID,
-      tcA_axi_bready => ps7_0_axi_periph_M00_AXI_BREADY,
-      tcA_axi_bresp(1 downto 0) => ps7_0_axi_periph_M00_AXI_BRESP(1 downto 0),
-      tcA_axi_bvalid => ps7_0_axi_periph_M00_AXI_BVALID,
-      tcA_axi_rdata(31 downto 0) => ps7_0_axi_periph_M00_AXI_RDATA(31 downto 0),
-      tcA_axi_rready => ps7_0_axi_periph_M00_AXI_RREADY,
-      tcA_axi_rresp(1 downto 0) => ps7_0_axi_periph_M00_AXI_RRESP(1 downto 0),
-      tcA_axi_rvalid => ps7_0_axi_periph_M00_AXI_RVALID,
-      tcA_axi_wdata(31 downto 0) => ps7_0_axi_periph_M00_AXI_WDATA(31 downto 0),
-      tcA_axi_wready => ps7_0_axi_periph_M00_AXI_WREADY,
-      tcA_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M00_AXI_WSTRB(3 downto 0),
-      tcA_axi_wvalid => ps7_0_axi_periph_M00_AXI_WVALID,
-      tcB_axi_aclk => processing_system7_0_FCLK_CLK0,
-      tcB_axi_araddr(31 downto 0) => ps7_0_axi_periph_M02_AXI_ARADDR(31 downto 0),
-      tcB_axi_aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
-      tcB_axi_arprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_ARPROT(2 downto 0),
-      tcB_axi_arready => ps7_0_axi_periph_M02_AXI_ARREADY,
-      tcB_axi_arvalid => ps7_0_axi_periph_M02_AXI_ARVALID,
-      tcB_axi_awaddr(31 downto 0) => ps7_0_axi_periph_M02_AXI_AWADDR(31 downto 0),
-      tcB_axi_awprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_AWPROT(2 downto 0),
-      tcB_axi_awready => ps7_0_axi_periph_M02_AXI_AWREADY,
-      tcB_axi_awvalid => ps7_0_axi_periph_M02_AXI_AWVALID,
-      tcB_axi_bready => ps7_0_axi_periph_M02_AXI_BREADY,
-      tcB_axi_bresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_BRESP(1 downto 0),
-      tcB_axi_bvalid => ps7_0_axi_periph_M02_AXI_BVALID,
-      tcB_axi_rdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_RDATA(31 downto 0),
-      tcB_axi_rready => ps7_0_axi_periph_M02_AXI_RREADY,
-      tcB_axi_rresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_RRESP(1 downto 0),
-      tcB_axi_rvalid => ps7_0_axi_periph_M02_AXI_RVALID,
-      tcB_axi_wdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_WDATA(31 downto 0),
-      tcB_axi_wready => ps7_0_axi_periph_M02_AXI_WREADY,
-      tcB_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M02_AXI_WSTRB(3 downto 0),
-      tcB_axi_wvalid => ps7_0_axi_periph_M02_AXI_WVALID
-    );
 TARGETC_axi_int_0: component base_zynq_TARGETC_axi_int_0_1
      port map (
-      CNT_CLR => TARGETC_2ASICS_0_CNT_CLR_A,
+      CNT_CLR => TARGETC_system_0_CNT_CLR,
       Cnt_AXIS_DATA(9 downto 0) => TARGETC_axi_int_0_Cnt_AXIS_DATA(9 downto 0),
-      FIFOdata(31 downto 0) => TARGETC_2ASICS_0_FIFOdata_A(31 downto 0),
-      FIFOvalid => TARGETC_2ASICS_0_FIFOvalid_A,
+      FIFOdata(31 downto 0) => TARGETC_system_0_FIFOdata(31 downto 0),
+      FIFOvalid => TARGETC_system_0_FIFOvalid,
       M_AXIS_ACLK => processing_system7_0_FCLK_CLK0,
       M_AXIS_ARESETN => rst_ps7_0_50M_peripheral_aresetn(0),
       M_AXIS_TDATA(31 downto 0) => TARGETC_axi_int_0_M00_AXIS_TDATA(31 downto 0),
@@ -3838,17 +3722,17 @@ TARGETC_axi_int_0: component base_zynq_TARGETC_axi_int_0_1
       M_AXIS_TREADY => TARGETC_axi_int_0_M00_AXIS_TREADY,
       M_AXIS_TSTRB(3 downto 0) => TARGETC_axi_int_0_M00_AXIS_TSTRB(3 downto 0),
       M_AXIS_TVALID => TARGETC_axi_int_0_M00_AXIS_TVALID,
-      SW_nRST => TARGETC_2ASICS_0_SW_nRST_A,
+      SW_nRST => TARGETC_system_0_SW_nRST,
       StreamReady => TARGETC_axi_int_0_StreamReady,
       TID(1 downto 0) => xlconstant_0_dout(1 downto 0),
-      TestStream => TARGETC_2ASICS_0_TestStream_A
+      TestStream => TARGETC_system_0_TestStream
     );
 TARGETC_axi_int_1: component base_zynq_TARGETC_axi_int_0_2
      port map (
-      CNT_CLR => TARGETC_2ASICS_0_CNT_CLR_B,
+      CNT_CLR => TARGETC_system_1_CNT_CLR,
       Cnt_AXIS_DATA(9 downto 0) => TARGETC_axi_int_1_Cnt_AXIS_DATA(9 downto 0),
-      FIFOdata(31 downto 0) => TARGETC_2ASICS_0_FIFOdata_B(31 downto 0),
-      FIFOvalid => TARGETC_2ASICS_0_FIFOvalid_B,
+      FIFOdata(31 downto 0) => TARGETC_system_1_FIFOdata(31 downto 0),
+      FIFOvalid => TARGETC_system_1_FIFOvalid,
       M_AXIS_ACLK => processing_system7_0_FCLK_CLK0,
       M_AXIS_ARESETN => rst_ps7_0_50M_peripheral_aresetn(0),
       M_AXIS_TDATA(31 downto 0) => TARGETC_axi_int_1_M00_AXIS_TDATA(31 downto 0),
@@ -3858,10 +3742,152 @@ TARGETC_axi_int_1: component base_zynq_TARGETC_axi_int_0_2
       M_AXIS_TREADY => TARGETC_axi_int_1_M00_AXIS_TREADY,
       M_AXIS_TSTRB(3 downto 0) => TARGETC_axi_int_1_M00_AXIS_TSTRB(3 downto 0),
       M_AXIS_TVALID => TARGETC_axi_int_1_M00_AXIS_TVALID,
-      SW_nRST => TARGETC_2ASICS_0_SW_nRST_B,
+      SW_nRST => TARGETC_system_1_SW_nRST,
       StreamReady => TARGETC_axi_int_1_StreamReady,
       TID(1 downto 0) => xlconstant_1_dout(1 downto 0),
-      TestStream => TARGETC_2ASICS_0_TestStream_B
+      TestStream => TARGETC_system_1_TestStream
+    );
+TARGETC_system_0: component base_zynq_TARGETC_system_0_0
+     port map (
+      CNT_CLR => TARGETC_system_0_CNT_CLR,
+      Cnt_AXIS_DATA(9 downto 0) => TARGETC_axi_int_0_Cnt_AXIS_DATA(9 downto 0),
+      DONE => A_DONE_1,
+      D_Out(15 downto 0) => xlconcat_0_dout(15 downto 0),
+      FIFOdata(31 downto 0) => TARGETC_system_0_FIFOdata(31 downto 0),
+      FIFOvalid => TARGETC_system_0_FIFOvalid,
+      GCC_RESET => TARGETC_system_0_GCC_RESET,
+      HSCLK_N => TARGETC_system_0_HSCLK_N,
+      HSCLK_P => TARGETC_system_0_HSCLK_P,
+      MONTIMING_N => MONTIMING_N_1,
+      MONTIMING_P => MONTIMING_P_1,
+      PCLK => TARGETC_system_0_PCLK,
+      RAMP => TARGETC_system_0_RAMP,
+      RDAD_CLK => TARGETC_system_0_RDAD_CLK,
+      RDAD_DIR => TARGETC_system_0_RDAD_DIR,
+      RDAD_SIN => TARGETC_system_0_RDAD_SIN,
+      RefCLK_i1 => processing_system7_0_FCLK_CLK0,
+      SAMPLESEL_ANY => TARGETC_system_0_SAMPLESEL_ANY,
+      SCLK => TARGETC_system_0_SCLK,
+      SHOUT => A_SHOUT_1,
+      SIN => TARGETC_system_0_SIN,
+      SSTIN => sstin_signal_0_SSTIN,
+      SSVALID_INTR => TARGETC_system_0_SSVALID_INTR,
+      SS_INCR => TARGETC_system_0_SS_INCR,
+      SS_LD_DIR => TARGETC_system_0_SS_LD_DIR,
+      SS_LD_SIN => TARGETC_system_0_SS_LD_SIN,
+      SS_RESET => TARGETC_system_0_SS_RESET,
+      SW_nRST => TARGETC_system_0_SW_nRST,
+      StreamReady => TARGETC_axi_int_0_StreamReady,
+      TestStream => TARGETC_system_0_TestStream,
+      Timecounter(63 downto 0) => sstin_signal_0_Timecounter(63 downto 0),
+      TrigA => A_TRIG1_1,
+      TrigB => A_TRIG2_1,
+      TrigC => A_TRIG3_1,
+      TrigD => A_TRIG4_1,
+      WR_CS_S0 => TARGETC_system_0_WR_CS_S0,
+      WR_CS_S1 => TARGETC_system_0_WR_CS_S1,
+      WR_CS_S2 => TARGETC_system_0_WR_CS_S2,
+      WR_CS_S3 => TARGETC_system_0_WR_CS_S3,
+      WR_CS_S4 => TARGETC_system_0_WR_CS_S4,
+      WR_CS_S5 => TARGETC_system_0_WR_CS_S5,
+      WR_RS_S0 => TARGETC_system_0_WR_RS_S0,
+      WR_RS_S1 => TARGETC_system_0_WR_RS_S1,
+      WS_masterctrl_in => Start_digitization_ip_0_startDig_out,
+      aresetn => ARESETN_1(0),
+      graycnt(59 downto 0) => sstin_signal_0_graycnt(59 downto 0),
+      samplecnt(2 downto 0) => sstin_signal_0_samplecnt(2 downto 0),
+      tc_axi_aclk => processing_system7_0_FCLK_CLK0,
+      tc_axi_araddr(31 downto 0) => ps7_0_axi_periph_M00_AXI_ARADDR(31 downto 0),
+      tc_axi_aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
+      tc_axi_arprot(2 downto 0) => ps7_0_axi_periph_M00_AXI_ARPROT(2 downto 0),
+      tc_axi_arready => ps7_0_axi_periph_M00_AXI_ARREADY,
+      tc_axi_arvalid => ps7_0_axi_periph_M00_AXI_ARVALID,
+      tc_axi_awaddr(31 downto 0) => ps7_0_axi_periph_M00_AXI_AWADDR(31 downto 0),
+      tc_axi_awprot(2 downto 0) => ps7_0_axi_periph_M00_AXI_AWPROT(2 downto 0),
+      tc_axi_awready => ps7_0_axi_periph_M00_AXI_AWREADY,
+      tc_axi_awvalid => ps7_0_axi_periph_M00_AXI_AWVALID,
+      tc_axi_bready => ps7_0_axi_periph_M00_AXI_BREADY,
+      tc_axi_bresp(1 downto 0) => ps7_0_axi_periph_M00_AXI_BRESP(1 downto 0),
+      tc_axi_bvalid => ps7_0_axi_periph_M00_AXI_BVALID,
+      tc_axi_rdata(31 downto 0) => ps7_0_axi_periph_M00_AXI_RDATA(31 downto 0),
+      tc_axi_rready => ps7_0_axi_periph_M00_AXI_RREADY,
+      tc_axi_rresp(1 downto 0) => ps7_0_axi_periph_M00_AXI_RRESP(1 downto 0),
+      tc_axi_rvalid => ps7_0_axi_periph_M00_AXI_RVALID,
+      tc_axi_wdata(31 downto 0) => ps7_0_axi_periph_M00_AXI_WDATA(31 downto 0),
+      tc_axi_wready => ps7_0_axi_periph_M00_AXI_WREADY,
+      tc_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M00_AXI_WSTRB(3 downto 0),
+      tc_axi_wvalid => ps7_0_axi_periph_M00_AXI_WVALID
+    );
+TARGETC_system_1: component base_zynq_TARGETC_system_1_0
+     port map (
+      CNT_CLR => TARGETC_system_1_CNT_CLR,
+      Cnt_AXIS_DATA(9 downto 0) => TARGETC_axi_int_1_Cnt_AXIS_DATA(9 downto 0),
+      DONE => B_DONE_1,
+      D_Out(15 downto 0) => xlconcat_2_dout(15 downto 0),
+      FIFOdata(31 downto 0) => TARGETC_system_1_FIFOdata(31 downto 0),
+      FIFOvalid => TARGETC_system_1_FIFOvalid,
+      GCC_RESET => TARGETC_system_1_GCC_RESET,
+      HSCLK_N => TARGETC_system_1_HSCLK_N,
+      HSCLK_P => TARGETC_system_1_HSCLK_P,
+      MONTIMING_N => '0',
+      MONTIMING_P => '0',
+      PCLK => TARGETC_system_1_PCLK,
+      RAMP => TARGETC_system_1_RAMP,
+      RDAD_CLK => TARGETC_system_1_RDAD_CLK,
+      RDAD_DIR => TARGETC_system_1_RDAD_DIR,
+      RDAD_SIN => TARGETC_system_1_RDAD_SIN,
+      RefCLK_i1 => processing_system7_0_FCLK_CLK0,
+      SAMPLESEL_ANY => TARGETC_system_1_SAMPLESEL_ANY,
+      SCLK => NLW_TARGETC_system_1_SCLK_UNCONNECTED,
+      SHOUT => B_SHOUT_1,
+      SIN => NLW_TARGETC_system_1_SIN_UNCONNECTED,
+      SSTIN => sstin_signal_0_SSTIN,
+      SSVALID_INTR => TARGETC_system_1_SSVALID_INTR,
+      SS_INCR => TARGETC_system_1_SS_INCR,
+      SS_LD_DIR => TARGETC_system_1_SS_LD_DIR,
+      SS_LD_SIN => TARGETC_system_1_SS_LD_SIN,
+      SS_RESET => TARGETC_system_1_SS_RESET,
+      SW_nRST => TARGETC_system_1_SW_nRST,
+      StreamReady => TARGETC_axi_int_1_StreamReady,
+      TestStream => TARGETC_system_1_TestStream,
+      Timecounter(63 downto 0) => sstin_signal_0_Timecounter(63 downto 0),
+      TrigA => B_TRIG1_1,
+      TrigB => B_TRIG2_1,
+      TrigC => B_TRIG3_1,
+      TrigD => B_TRIG4_1,
+      WR_CS_S0 => TARGETC_system_1_WR_CS_S0,
+      WR_CS_S1 => TARGETC_system_1_WR_CS_S1,
+      WR_CS_S2 => TARGETC_system_1_WR_CS_S2,
+      WR_CS_S3 => TARGETC_system_1_WR_CS_S3,
+      WR_CS_S4 => TARGETC_system_1_WR_CS_S4,
+      WR_CS_S5 => TARGETC_system_1_WR_CS_S5,
+      WR_RS_S0 => TARGETC_system_1_WR_RS_S0,
+      WR_RS_S1 => TARGETC_system_1_WR_RS_S1,
+      WS_masterctrl_in => Start_digitization_ip_0_startDig_out,
+      aresetn => ARESETN_1(0),
+      graycnt(59 downto 0) => sstin_signal_0_graycnt(59 downto 0),
+      samplecnt(2 downto 0) => sstin_signal_0_samplecnt(2 downto 0),
+      tc_axi_aclk => processing_system7_0_FCLK_CLK0,
+      tc_axi_araddr(31 downto 0) => ps7_0_axi_periph_M02_AXI_ARADDR(31 downto 0),
+      tc_axi_aresetn => rst_ps7_0_50M_peripheral_aresetn(0),
+      tc_axi_arprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_ARPROT(2 downto 0),
+      tc_axi_arready => ps7_0_axi_periph_M02_AXI_ARREADY,
+      tc_axi_arvalid => ps7_0_axi_periph_M02_AXI_ARVALID,
+      tc_axi_awaddr(31 downto 0) => ps7_0_axi_periph_M02_AXI_AWADDR(31 downto 0),
+      tc_axi_awprot(2 downto 0) => ps7_0_axi_periph_M02_AXI_AWPROT(2 downto 0),
+      tc_axi_awready => ps7_0_axi_periph_M02_AXI_AWREADY,
+      tc_axi_awvalid => ps7_0_axi_periph_M02_AXI_AWVALID,
+      tc_axi_bready => ps7_0_axi_periph_M02_AXI_BREADY,
+      tc_axi_bresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_BRESP(1 downto 0),
+      tc_axi_bvalid => ps7_0_axi_periph_M02_AXI_BVALID,
+      tc_axi_rdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_RDATA(31 downto 0),
+      tc_axi_rready => ps7_0_axi_periph_M02_AXI_RREADY,
+      tc_axi_rresp(1 downto 0) => ps7_0_axi_periph_M02_AXI_RRESP(1 downto 0),
+      tc_axi_rvalid => ps7_0_axi_periph_M02_AXI_RVALID,
+      tc_axi_wdata(31 downto 0) => ps7_0_axi_periph_M02_AXI_WDATA(31 downto 0),
+      tc_axi_wready => ps7_0_axi_periph_M02_AXI_WREADY,
+      tc_axi_wstrb(3 downto 0) => ps7_0_axi_periph_M02_AXI_WSTRB(3 downto 0),
+      tc_axi_wvalid => ps7_0_axi_periph_M02_AXI_WVALID
     );
 axi_dma_0: component base_zynq_axi_dma_0_0
      port map (
@@ -4237,11 +4263,22 @@ rst_ps7_0_50M: component base_zynq_rst_ps7_0_50M_0
       peripheral_reset(0) => NLW_rst_ps7_0_50M_peripheral_reset_UNCONNECTED(0),
       slowest_sync_clk => processing_system7_0_FCLK_CLK0
     );
+sstin_signal_0: component base_zynq_sstin_signal_0_0
+     port map (
+      SSTIN => sstin_signal_0_SSTIN,
+      Timecounter(63 downto 0) => sstin_signal_0_Timecounter(63 downto 0),
+      WL_CLK_N => sstin_signal_0_WL_CLK_N,
+      WL_CLK_P => sstin_signal_0_WL_CLK_P,
+      clk1 => processing_system7_0_FCLK_CLK0,
+      graycnt(59 downto 0) => sstin_signal_0_graycnt(59 downto 0),
+      nrst => rst_ps7_0_50M_peripheral_aresetn(0),
+      samplecnt(2 downto 0) => sstin_signal_0_samplecnt(2 downto 0)
+    );
 util_ds_buf_0: component base_zynq_util_ds_buf_0_0
      port map (
       OBUF_DS_N(0) => util_ds_buf_0_OBUF_DS_N(0),
       OBUF_DS_P(0) => util_ds_buf_0_OBUF_DS_P(0),
-      OBUF_IN(0) => TARGETC_2ASICS_0_SSTIN
+      OBUF_IN(0) => sstin_signal_0_SSTIN
     );
 xlconcat_0: component base_zynq_xlconcat_0_0
      port map (
@@ -4265,9 +4302,9 @@ xlconcat_0: component base_zynq_xlconcat_0_0
     );
 xlconcat_1: component base_zynq_xlconcat_1_0
      port map (
-      In0(0) => '0',
+      In0(0) => TARGETC_system_0_SSVALID_INTR,
       In1(0) => axi_dma_0_s2mm_introut,
-      In2(0) => '0',
+      In2(0) => TARGETC_system_1_SSVALID_INTR,
       dout(2 downto 0) => xlconcat_1_dout(2 downto 0)
     );
 xlconcat_2: component base_zynq_xlconcat_0_1

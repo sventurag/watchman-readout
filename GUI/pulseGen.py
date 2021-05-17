@@ -13,7 +13,7 @@ tc = targetc.targetc()
 class pulseGen:
 
     def pulseSweepInit(self,channel, nmbrPedestals):
-        wave_gen().Output1(out=False)
+#        wave_gen().Output1(out=False)
         regID = 99
         tc.send_command(8,regID,channel) # channel number
         time.sleep(1)

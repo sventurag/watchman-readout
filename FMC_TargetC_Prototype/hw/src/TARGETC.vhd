@@ -33,9 +33,11 @@ entity TARGETC_system is
 
 
 		SW_nRST:	out std_logic;
+		aresetn : in std_logic;
+
 		--! @name Reference Clock
 		RefCLK_i1 :		in std_logic;	--! Clock for the TARGETC PLL
-		RefCLK_i2 :		in std_logic;	--! Clock for the TARGETC PLL
+--		RefCLK_i2 :		in std_logic;	--! Clock for the TARGETC PLL
 
 		--! @name Ports of Axi Slave Bus Interface TC_AXI
 		tc_axi_aclk		: in std_logic;
@@ -87,17 +89,17 @@ entity TARGETC_system is
 
 		SAMPLESEL_ANY:	out	std_logic;		-- Pin#66
 
-		DO: 			in 	std_logic_vector(15 downto 0);	--Pin#69-70-71-72-73-74-75-76-84-85-86-87-88-89-90-91
+		D_Out: 			in 	std_logic_vector(15 downto 0);	--Pin#69-70-71-72-73-74-75-76-84-85-86-87-88-89-90-91
 
 		SS_INCR:		out	std_logic;		-- Pin#79
 
-		DOE:			out	std_logic;		-- Pin#80
+--		DOE:			out	std_logic;		-- Pin#80
 
 		DONE:			in	std_logic;		-- Pin#94
 
 		SS_RESET:		out	std_logic;		-- Pin#95
 
-		REGCLR: 		out	std_logic;		-- Pin#99
+--		REGCLR: 		out	std_logic;		-- Pin#99
 
 		--mDOE:			in	std_logic;		-- Pin#100
 
@@ -108,7 +110,7 @@ entity TARGETC_system is
 
 --		SSTIN_P:		out std_logic;		-- Pin#125
 --		SSTIN_N:		out std_logic;		-- Pin#126
-        SSTIN :         out std_logic;
+--        SSTIN :         out std_logic;
 
 		MONTIMING_P:	in	std_logic;		-- Pin#118
 		MONTIMING_N:	in	std_logic;		-- Pin#117
@@ -130,29 +132,22 @@ entity TARGETC_system is
 
         -- window storage master control
         WS_masterctrl_in :  in std_logic;
-        WS_masterctrl_out : out std_logic;
+--        WS_masterctrl_out : out std_logic;
         
 		-- Interrupt SIGNALS
 		SSVALID_INTR:	out	std_logic;
 
      -- FROM CLK MANAGEMENT
-
-	    PLL_LOCKED:		in	std_logic;
-
-		ClockBus:		in T_ClockBus;
-
+	SSTIN 		: 	in std_logic;
+--	    PLL_LOCKED:		in	std_logic;
+--
+--		ClockBus:		in T_ClockBus;
+--
 		Timecounter:	in std_logic_vector(63 downto 0);
-		Timestamp:		in T_timestamp
+		--Timestamp:		in T_timestamp
+        graycnt:        std_logic_vector(59 downto 0);
+        samplecnt:      std_logic_vector(2 downto 0)
 
-
---		-- DEBUG OUTPUTs
---		BB1 :	out std_logic;
---		BB2 :	out std_logic;
---		BB3 :	out std_logic;
---		BB4 :	out std_logic;
---		BB5 :	out std_logic
-	
-	
 		
 	);
 	
@@ -171,34 +166,23 @@ architecture arch_imp of TARGETC_system is
 --	-------------------------------------------------------
 
 --	--! Clock Management for the different CLK needed inside the ASIC
---	component TC_ClockManagementV3 is
---	port (
---	-- TARGET C Ports for control and function
---		nrst:			in	std_logic;
---		clk1:			in 	std_logic;	-- Clock for the TARGETC SCLK
---		clk2:			in 	std_logic;	-- Clock for the TARGETC SCLK
+	component TC_ClockManagementV3 is
+	port (
+	-- TARGET C Ports for control and function
+		nrst:			in	std_logic;
+		clk1:			in 	std_logic;	-- Clock for the TARGETC SCLK
+		axi_clk:		in	std_logic;
+		SSTIN:          in  std_logic;
+		PLL_LOCKED:		out	std_logic;
+		ClockBus:		out T_ClockBus;
+        
+		Timecounter:	in std_logic_vector(63 downto 0);
+		graycnt:        in std_logic_vector(59 downto 0);
+		samplecnt:      in std_logic_vector(2 downto 0);
+		Timestamp:		out T_timestamp
 
---		axi_clk:		in	std_logic;
---		WL_CLK_DIV:		in 	std_logic_vector(31 downto 0); -- Clock Divider Through DFF
-
---		PLL_LOCKED:		out	std_logic;
-
---		ClockBus:		out T_ClockBus;
-
---		Timecounter:	out std_logic_vector(63 downto 0);
---		Timestamp:		out T_timestamp;
---		--GrayTimeCnt:	out std_logic_vector(63 downto 0);
-
-
-
---		WL_CLK_P:		out std_logic;		-- Pin#57
---		WL_CLK_N:		out std_logic		-- Pin#58
-
-----		SSTIN_P:		out std_logic;		-- Pin#125
-----		SSTIN_N:		out std_logic		-- Pin#126
-
---	);
---	end component TC_ClockManagementV3;
+	);
+	end component TC_ClockManagementV3;
 
 	--! Communication with PS side through AXI Lite and Control Signals
 	component TC_Control is
@@ -318,7 +302,7 @@ architecture arch_imp of TARGETC_system is
 
 		HSCLK : 			out  STD_LOGIC;
 
-		DO : 			in std_logic_vector(15 downto 0);
+		D_Out : 			in std_logic_vector(15 downto 0);
 		SS_INCR:		out std_logic;
 		SS_RESET:		out std_logic;
 
@@ -458,12 +442,12 @@ architecture arch_imp of TARGETC_system is
 	-------------------------------------------------------
 	-- Signal Declaration
 	-------------------------------------------------------
-
+    
 	signal ClockBus_intl:	T_ClockBus;	--! internal clock signal
 	signal SSTIN_intl : std_logic;
 	signal CtrlBusIn_intl:		T_CtrlBus_IxMS_Intl;
 	signal CtrlBusOut_intl:		T_CtrlBus_OxMS_Intl;
-
+    signal PLL_LOCKED_intl:  std_logic;
 	signal WR_CS_S_intl:	std_logic_vector(5 downto 0);
 	signal WR_RS_S_intl:	std_logic_vector(1 downto 0);
 
@@ -543,10 +527,28 @@ architecture arch_imp of TARGETC_system is
 
 
 begin
-		 CtrlBusIn_intl.PLL_LOCKED <=PLL_LOCKED;		
+		 CtrlBusIn_intl.PLL_LOCKED <=PLL_LOCKED_intl;		
 
-
-	TC_Control_inst : TC_Control
+    TC_Clk_management:  TC_ClockManagementV3
+    port map(
+    
+         
+		nrst      		=>  	aresetn,
+		clk1			=> 	RefCLK_i1,
+		
+		axi_clk 		=> 	tc_axi_aclk,
+		SSTIN          	=> 	SSTIN_intl,
+		PLL_LOCKED		=> 	PLL_LOCKED_intl,
+		ClockBus		=> 	ClockBus_intl,
+		Timecounter	=> Timecounter,
+		graycnt        => graycnt,
+		samplecnt        => samplecnt,
+		Timestamp	    =>Timestamp_intl
+    
+    
+    );
+     
+	TC_Control_inst : TC_Control  
 	port map(
 		AxiBusIn.ACLK		=> tc_axi_aclk,
 		AxiBusIn.ARESETN	=> tc_axi_aresetn,
@@ -579,7 +581,7 @@ begin
 		CtrlBus_IxMS			=> CtrlBusIn_intl
 	);
 
-       WS_masterctrl_out <= CtrlBusOut_intl.WindowStorage; 
+--       WS_masterctrl_out <= CtrlBusOut_intl.WindowStorage; 
 
 
 	TC_SerialRegCtrl_inst : TARGETX_DAC_CONTROL
@@ -677,7 +679,7 @@ begin
 		HSCLK		=> HSCLK_dif,
 
 		-- Data Readout
-		DO 		=> DO,
+		D_Out 		=> D_Out,
 		SS_INCR	=> SS_INCR,
 		SS_RESET => SS_RESET,
 
@@ -766,7 +768,7 @@ begin
 		);
 
 	SAMPLESEL_ANY <= CtrlBusOut_intl.SmplSl_Any;
-	REGCLR <= CtrlBusOut_intl.REGCLR;
+--	REGCLR <= CtrlBusOut_intl.REGCLR;
 
 	WR_RS_S0	<= WR_RS_S_intl(0);
 	WR_RS_S1	<= WR_RS_S_intl(1);
@@ -781,7 +783,6 @@ begin
 	SS_LD_SIN <= '0';
 	SS_LD_DIR <= '0';
 
-	DOE <= '1';
 
 
 	CtrlBusIn_intl.Cnt_AXIS <= Cnt_AXIS_DATA;
@@ -845,7 +846,7 @@ SyncBitCNT_CLR: SyncBit
 
 
 	
- SSTIN <= ClockBus_intl.SSTIN;
+--ClockBus_intl.SSTIN <= SSTIN;
 
 
 

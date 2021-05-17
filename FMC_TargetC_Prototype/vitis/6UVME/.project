@@ -128,12 +128,12 @@
 		<link>
 			<name>src/gpio_ctrl.c</name>
 			<type>1</type>
-			<location>/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/sdk/watchman_final/src/gpio_ctrl.c</location>
+			<locationURI>PARENT-2-PROJECT_LOC/sdk/watchman_final/src/gpio_ctrl.c</locationURI>
 		</link>
 		<link>
 			<name>src/gpio_ctrl.h</name>
 			<type>1</type>
-			<location>/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/sdk/watchman_final/src/gpio_ctrl.h</location>
+			<locationURI>PARENT-2-PROJECT_LOC/sdk/watchman_final/src/gpio_ctrl.h</locationURI>
 		</link>
 		<link>
 			<name>src/iic_DAC_LTC2657.c</name>

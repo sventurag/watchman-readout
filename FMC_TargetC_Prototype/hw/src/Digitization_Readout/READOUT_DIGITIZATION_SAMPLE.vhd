@@ -34,7 +34,7 @@ entity TARGETC_RDAD_WL_SMPL is
 
 	HSCLK : 			out  STD_LOGIC;
 
-	DO : 			in std_logic_vector(15 downto 0);
+	D_Out : 			in std_logic_vector(15 downto 0);
 	SS_INCR:		out std_logic;
 	SS_RESET:		out std_logic;
 
@@ -914,25 +914,25 @@ begin
 						-- SAmple the output of TARGETC
 						if SSBitCnt > 2 then
 
-							CH0_intl(SSBitCnt-3) <= DO(0);
-							CH1_intl(SSBitCnt-3) <= DO(1);
-							CH2_intl(SSBitCnt-3) <= DO(2);
-							CH3_intl(SSBitCnt-3) <= DO(3);
+							CH0_intl(SSBitCnt-3) <= D_Out(0);
+							CH1_intl(SSBitCnt-3) <= D_Out(1);
+							CH2_intl(SSBitCnt-3) <= D_Out(2);
+							CH3_intl(SSBitCnt-3) <= D_Out(3);
 
-							CH4_intl(SSBitCnt-3) <= DO(4);
-							CH5_intl(SSBitCnt-3) <= DO(5);
-							CH6_intl(SSBitCnt-3) <= DO(6);
-							CH7_intl(SSBitCnt-3) <= DO(7);
+							CH4_intl(SSBitCnt-3) <= D_Out(4);
+							CH5_intl(SSBitCnt-3) <= D_Out(5);
+							CH6_intl(SSBitCnt-3) <= D_Out(6);
+							CH7_intl(SSBitCnt-3) <= D_Out(7);
 
-							CH8_intl(SSBitCnt-3) <= DO(8);
-							CH9_intl(SSBitCnt-3) <= DO(9);
-							CH10_intl(SSBitCnt-3) <=DO(10);
-							CH11_intl(SSBitCnt-3) <= DO(11);
+							CH8_intl(SSBitCnt-3) <= D_Out(8);
+							CH9_intl(SSBitCnt-3) <= D_Out(9);
+							CH10_intl(SSBitCnt-3) <=D_Out(10);
+							CH11_intl(SSBitCnt-3) <= D_Out(11);
 
-							CH12_intl(SSBitCnt-3) <= DO(12);
-							CH13_intl(SSBitCnt-3) <= DO(13);
-							CH14_intl(SSBitCnt-3) <= DO(14);
-							CH15_intl(SSBitCnt-3) <= DO(15);
+							CH12_intl(SSBitCnt-3) <= D_Out(12);
+							CH13_intl(SSBitCnt-3) <= D_Out(13);
+							CH14_intl(SSBitCnt-3) <= D_Out(14);
+							CH15_intl(SSBitCnt-3) <= D_Out(15);
 
 						end if;
 
