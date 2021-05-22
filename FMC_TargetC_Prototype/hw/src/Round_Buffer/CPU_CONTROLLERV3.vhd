@@ -228,7 +228,6 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 
 	signal validreal_s, validdata_s, valid_1dly : std_logic;
 	signal LE_intl, LE_intr, TE_intl : std_logic;
-	signal notsamplecnt : std_logic_vector(2 downto 0);
 	signal prev_TimeStamp:	T_Timestamp;
 
 	signal Ctrl_Busy_s : std_logic;
@@ -263,8 +262,6 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 	signal TrigInfo1: std_logic_vector(11 downto 0);
 	signal TrigInfo2: std_logic_vector(11 downto 0);
 
-	signal Delay_UpdateWR : std_logic_vector(3 downto 0);
-	signal counterWR : std_logic_vector(3 downto 0);
 
 
 	-- -------------------------------------------------------------
@@ -279,10 +276,11 @@ architecture Behavioral of CPU_CONTROLLERV3 is
 
 	--attribute DONT_TOUCH of CTRL_CPUBUS : signal is "TRUE";
 
+	attribute mark_debug : string; 
+	attribute mark_debug of CntWindow512 : signal is "true";
 begin
 
 
-	notsamplecnt <= not(TimeStamp.samplecnt(2)) & TimeStamp.samplecnt(1 downto 0);
 
 	-- Process of address change on rising_edge of SSTIN
 	process(ClockBus.CLK125MHz,nrst)	-- Every 64 ns
@@ -290,17 +288,11 @@ begin
 		if nRST = '0' then
 			validData_s <= '0';
 			validReal_s <= '0';
-			counterWR  <= (others=>'0');
 
 
 			RealTimeAddr <= (others => '0');
-			-- Init the CPUs
 			CurAddr_s <= (others => '0');
-		--	RealAddrBit <= (0 => '1', others => '0');
-
-			--OldAddr_intl <= x"FF";
-			--OldAddrBit <= (255 => '1', others => '0');
-
+	
 			Old_Wr_en <= (others => '1');
 			Old_TrigInfo <= (others => '0');
 			CPUTime <= (others=> (others => '0'));
@@ -313,29 +305,14 @@ begin
 
 				case TimeStamp.samplecnt is
 					when "111" => --Time 0
-						--valid <= '0';
 
 						--RealTimeAddr <= NextAddr_intl;
 						if NextValid_in = '1' then
 							validReal_s <= '0';
 							RealTimeAddr <= NextAddr_in;
-		--					RealAddrBit <= (others => '0');
-		--					RealAddrBit(to_integer(unsigned(NextAddr_in))) <= '1';
+
 						end if;
 
-
-						-- CurAddr_s 		<= NextAddr_intl;
-						-- OldAddr_intl 	<= CurAddr_s;
-						--
-						-- OldAddrBit <= (others => '0');
-						-- OldAddrBit(to_integer(unsigned(CurAddr_s))) <= '1';
-						-- --OldAddrBit <= (oldidx => '1', others => '0');
-						--
-						-- RealAddrBit <= (others => '0');
-						-- RealAddrBit(to_integer(unsigned(NextAddr_intl))) <= '1';
-						--RealAddrBit <= (curidx => '1', others => '0');
-
-						--Real Time Information
 						prev_TimeStamp <= TimeStamp;
 						--copy_CPUTime <= prev_TimeStamp;
 
@@ -345,36 +322,17 @@ begin
 					when "000" => --Time 1
 						validReal_s <= '1'; -- After this the data is correct, time to stabilize
 					when "010"	=> --Half way // Falling edge
-				--	when "0001"	=>
 						validData_s <= '0';
 
-						--CurAddr_s 		<= NextAddr_intl;
 						CurAddr_s		<= RealTimeAddr;
 						OldAddr_intl 	<= CurAddr_s;
 
-						--OldAddrBit <= (others => '0');
-						--OldAddrBit(to_integer(unsigned(CurAddr_s))) <= '1';
-						--OldAddrBit <= (oldidx => '1', others => '0');
                     when "011"=>
         --            when "0010"=>
                          
                               updateWR   <= CurAddr_s;   
 
-                         
---                          if counterWR < std_logic_vector(unsigned(Delay_UpdateWR)) then  -- values for CtrlBus_IxSL.Delay_UpdateWR must be 8 to 15 
---                             counterWR <= std_logic_vector(unsigned(Delay_UpdateWR) + 1) ; 
-
---                          else 
---                              counterWR  <= (others=>'0');
-
---                          end if;
-                      
-                        
-
-						--RealAddrBit <= (curidx => '1', others => '0');
-
-						--Copy real time Information
-						--CPUTime <= copy_CPUTime;
+  
 						CPUTime <= prev_TimeStamp;
 						Old_TrigInfo_copy <= Old_TrigInfo;
 

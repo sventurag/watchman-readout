@@ -16,7 +16,7 @@ extern uint32_t  pedestal_0[512][16][32];
 /** @brief Array containing the pedestal correction for every sample TARGETC_1*/
 extern uint32_t  pedestal_1[512][16][32];
 /** @brief Array containing raw data of the whole array */
-extern uint32_t  data_raw[512][16][32];
+extern uint32_t  data_raw_0[512][16][32];
 /** @brief Array containing raw data of the whole array */
 extern uint32_t  data_raw_1[512][16][32];
 /** @brief Flag raised when AXI-DMA has an error */
@@ -261,7 +261,7 @@ int init_pedestals(int* regptr, int targetcID){
 */
 
 
-int get_pedestal(int avg, int nmbrofWindows,int* regptr){
+int get_pedestal(int avg, int nmbrofWindows){
 
 int i,j,k,window,channel,sample;
 
@@ -269,11 +269,11 @@ printf("Arrays Initialization\r\n");
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
-			data_raw[window][channel][sample] = 0;
+			data_raw_0[window][channel][sample] = 0;
 			data_raw_1[window][channel][sample] = 0;
 
      //       usleep(10);
-	//		printf("%d\r\n", data_raw[window][channel][sample]);
+	//		printf("%d\r\n", data_raw_0[window][channel][sample]);
 
 	}
 }
@@ -285,6 +285,8 @@ for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			pedestal_0[window][channel][sample] = 0;
+			pedestal_1[window][channel][sample] = 0;
+
 		//	usleep(10);
 		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
 
@@ -297,7 +299,7 @@ printf("Getting data");
 for (i=0; i<avg; i++ ){
 	for(j=0; j<512; j+=nmbrofWindows){
 
-         if (get_windowsRaw(j,nmbrofWindows,regptr)== XST_SUCCESS);
+         if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
              else { printf("get Windows raw failed\r\n");
     //     usleep(300);
          }
@@ -311,7 +313,7 @@ for (i=0; i<avg; i++ ){
 	 for(window=0; window<512; window++){
 			for(channel=0; channel<16; channel++){
 				for(sample = 0; sample <32;sample++){
-					pedestal_0[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+					pedestal_0[window][channel][sample] = data_raw_0[window][channel][sample] /avg ;
 					pedestal_1[window][channel][sample] = data_raw_1[window][channel][sample] /avg ;
 
 	     		}
@@ -320,7 +322,7 @@ for (i=0; i<avg; i++ ){
 /*
 for (window=0; window< 3; window++){
 	 for(sample = 0; sample <32;sample++){
-	 	printf("%d\r\n",data_raw[window][2][sample]);
+	 	printf("%d\r\n",data_raw_0[window][2][sample]);
 	 }
 	 for(sample = 0; sample <32;sample++){
 	 	printf("%d\r\n",pedestal[window][2][sample]);
@@ -372,7 +374,7 @@ for(window = 0; window< 512; window++ ){
 			pedestal_A[window][channel][sample] = 0;
 			pedestal_B[window][channel][sample] = 0;
             usleep(10);
-	//		printf("%d\r\n", data_raw[window][channel][sample]);
+	//		printf("%d\r\n", data_raw_0[window][channel][sample]);
 
 	}
 }
@@ -383,7 +385,7 @@ for(window = 0; window< 512; window++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_rawA[window][channel][sample] = 0;
             usleep(10);
-	//		printf("%d\r\n", data_raw[window][channel][sample]);
+	//		printf("%d\r\n", data_raw_0[window][channel][sample]);
 
 	}
 }
@@ -394,7 +396,7 @@ for(window = 0; window< 512; window++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_rawB[window][channel][sample] = 0;
             usleep(10);
-	//		printf("%d\r\n", data_raw[window][channel][sample]);
+	//		printf("%d\r\n", data_raw_0[window][channel][sample]);
 
 	}
 }

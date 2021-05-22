@@ -128,7 +128,7 @@
     <spirit:parameter>
       <spirit:name>ARB_ON_MAX_XFERS</spirit:name>
       <spirit:displayName>Arbitrate on maximum number of transfers</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ARB_ON_MAX_XFERS" spirit:order="8" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.ARB_ON_MAX_XFERS" spirit:order="8" spirit:minimum="0" spirit:maximum="1024" spirit:rangeType="long">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -392,7 +392,7 @@
     <spirit:parameter>
       <spirit:name>M00_FIFO_DEPTH</spirit:name>
       <spirit:displayName>Enable Data FIFO on interface M00_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M00_FIFO_DEPTH" spirit:choiceRef="choice_list_aefa1458" spirit:order="1635300">64</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M00_FIFO_DEPTH" spirit:choiceRef="choice_list_aefa1458" spirit:order="1635300">16</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -584,7 +584,7 @@
     <spirit:parameter>
       <spirit:name>M00_FIFO_MODE</spirit:name>
       <spirit:displayName>Enable store-and-forward feature on FIFO of interface M00_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635316">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635316">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -968,7 +968,7 @@
     <spirit:parameter>
       <spirit:name>S00_FIFO_DEPTH</spirit:name>
       <spirit:displayName>Enable Data FIFO on interface S00_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S00_FIFO_DEPTH" spirit:choiceRef="choice_list_aefa1458" spirit:order="1635348">1024</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S00_FIFO_DEPTH" spirit:choiceRef="choice_list_aefa1458" spirit:order="1635348">16</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -980,7 +980,7 @@
     <spirit:parameter>
       <spirit:name>S01_FIFO_DEPTH</spirit:name>
       <spirit:displayName>Enable Data FIFO on interface S01_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S01_FIFO_DEPTH" spirit:choiceRef="choice_list_aefa1458" spirit:order="1635349">1024</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S01_FIFO_DEPTH" spirit:choiceRef="choice_list_aefa1458" spirit:order="1635349">16</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1160,7 +1160,7 @@
     <spirit:parameter>
       <spirit:name>S00_FIFO_MODE</spirit:name>
       <spirit:displayName>Enable store-and-forward feature on FIFO of interface S00_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635364">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635364">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1172,7 +1172,7 @@
     <spirit:parameter>
       <spirit:name>S01_FIFO_MODE</spirit:name>
       <spirit:displayName>Enable store-and-forward feature on FIFO of interface S01_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S01_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635365">0</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S01_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635365">1</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1719,7 +1719,9 @@
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.NUM_MI" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.NUM_SI" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.S00_FIFO_DEPTH" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.S00_FIFO_MODE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.S01_FIFO_DEPTH" xilinx:valueSource="user"/>
+        <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.S01_FIFO_MODE" xilinx:valueSource="user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.SYNCHRONIZATION_STAGES" xilinx:valuePermission="bd_and_user"/>
         <xilinx:configElementInfo xilinx:referenceId="PARAM_VALUE.XBAR_TDATA_NUM_BYTES" xilinx:valuePermission="bd_and_user"/>
       </xilinx:configElementInfos>

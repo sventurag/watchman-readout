@@ -524,10 +524,13 @@ architecture arch_imp of TARGETC_system is
     attribute mark_debug of WR_CS_S_intl: signal is "true";
     attribute mark_debug of WR_RS_S_intl: signal is "true";
 --    attribute mark_debug of tc_axi_aclk: signal is "true";
+--    attribute mark_debug of RefCLK_i1: signal is "true";
+    attribute mark_debug of SSTIN_intl: signal is "true";
 
 
 begin
-		 CtrlBusIn_intl.PLL_LOCKED <=PLL_LOCKED_intl;		
+		 CtrlBusIn_intl.PLL_LOCKED <=PLL_LOCKED_intl;	
+		 SSTIN_intl <= SSTIN;	
 
     TC_Clk_management:  TC_ClockManagementV3
     port map(

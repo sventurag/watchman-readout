@@ -64,8 +64,10 @@ architecture arch_imp of sstin_signal is
 	signal GrayCounter_intl : std_logic_vector(59 downto 0);
 	attribute mark_debug : string;
     attribute mark_debug of SSTIN_intl: signal is "true";
+--    attribute mark_debug of nrst: signal is "true";
+--    attribute mark_debug of clk1: signal is "true";
+--	attribute mark_debug of Timecounter_intl: signal is "true";
 
-	
 
 begin
 	

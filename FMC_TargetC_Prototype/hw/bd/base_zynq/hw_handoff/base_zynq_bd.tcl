@@ -263,7 +263,13 @@ proc create_root_design { parentCell } {
   set SCLK [ create_bd_port -dir O SCLK ]
   set SIN [ create_bd_port -dir O SIN ]
   set SSTIN_N [ create_bd_port -dir O -from 0 -to 0 SSTIN_N ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] $SSTIN_N
   set SSTIN_P [ create_bd_port -dir O -from 0 -to 0 SSTIN_P ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] $SSTIN_P
   set WL_CLK_N [ create_bd_port -dir O -type clk WL_CLK_N ]
   set_property -dict [ list \
    CONFIG.FREQ_HZ {125000000} \
@@ -334,14 +340,16 @@ proc create_root_design { parentCell } {
   set axis_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axis_interconnect:2.1 axis_interconnect_0 ]
   set_property -dict [ list \
    CONFIG.ARB_ALGORITHM {1} \
-   CONFIG.ARB_ON_MAX_XFERS {0} \
+   CONFIG.ARB_ON_MAX_XFERS {1} \
    CONFIG.ARB_ON_TLAST {1} \
-   CONFIG.M00_FIFO_DEPTH {64} \
-   CONFIG.M00_FIFO_MODE {0} \
+   CONFIG.M00_FIFO_DEPTH {16} \
+   CONFIG.M00_FIFO_MODE {1} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {2} \
-   CONFIG.S00_FIFO_DEPTH {1024} \
-   CONFIG.S01_FIFO_DEPTH {1024} \
+   CONFIG.S00_FIFO_DEPTH {16} \
+   CONFIG.S00_FIFO_MODE {1} \
+   CONFIG.S01_FIFO_DEPTH {16} \
+   CONFIG.S01_FIFO_MODE {1} \
  ] $axis_interconnect_0
 
   # Create instance: processing_system7_0, and set properties
@@ -1207,12 +1215,6 @@ proc create_root_design { parentCell } {
    CONFIG.NUM_PORTS {16} \
  ] $xlconcat_0
 
-  # Create instance: xlconcat_1, and set properties
-  set xlconcat_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_1 ]
-  set_property -dict [ list \
-   CONFIG.NUM_PORTS {3} \
- ] $xlconcat_1
-
   # Create instance: xlconcat_2, and set properties
   set xlconcat_2 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_2 ]
   set_property -dict [ list \
@@ -1315,7 +1317,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_system_0_SAMPLESEL_ANY [get_bd_ports A_SAMPLESEL_ANY] [get_bd_pins TARGETC_system_0/SAMPLESEL_ANY]
   connect_bd_net -net TARGETC_system_0_SCLK [get_bd_ports SCLK] [get_bd_pins TARGETC_system_0/SCLK]
   connect_bd_net -net TARGETC_system_0_SIN [get_bd_ports SIN] [get_bd_pins TARGETC_system_0/SIN]
-  connect_bd_net -net TARGETC_system_0_SSVALID_INTR [get_bd_pins TARGETC_system_0/SSVALID_INTR] [get_bd_pins xlconcat_1/In0]
   connect_bd_net -net TARGETC_system_0_SS_INCR [get_bd_ports A_SS_INCR] [get_bd_pins TARGETC_system_0/SS_INCR]
   connect_bd_net -net TARGETC_system_0_SS_LD_DIR [get_bd_ports A_SS_LD_DIR] [get_bd_pins TARGETC_system_0/SS_LD_DIR]
   connect_bd_net -net TARGETC_system_0_SS_LD_SIN [get_bd_ports A_SS_LD_SIN] [get_bd_pins TARGETC_system_0/SS_LD_SIN]
@@ -1342,7 +1343,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_system_1_RDAD_DIR [get_bd_ports B_RDAD_DIR] [get_bd_pins TARGETC_system_1/RDAD_DIR]
   connect_bd_net -net TARGETC_system_1_RDAD_SIN [get_bd_ports B_RDAD_SIN] [get_bd_pins TARGETC_system_1/RDAD_SIN]
   connect_bd_net -net TARGETC_system_1_SAMPLESEL_ANY [get_bd_ports B_SAMPLESEL_ANY] [get_bd_pins TARGETC_system_1/SAMPLESEL_ANY]
-  connect_bd_net -net TARGETC_system_1_SSVALID_INTR [get_bd_pins TARGETC_system_1/SSVALID_INTR] [get_bd_pins xlconcat_1/In2]
   connect_bd_net -net TARGETC_system_1_SS_INCR [get_bd_ports B_SS_INCR] [get_bd_pins TARGETC_system_1/SS_INCR]
   connect_bd_net -net TARGETC_system_1_SS_LD_DIR [get_bd_ports B_SS_LD_DIR] [get_bd_pins TARGETC_system_1/SS_LD_DIR]
   connect_bd_net -net TARGETC_system_1_SS_LD_SIN [get_bd_ports B_SS_LD_SIN] [get_bd_pins TARGETC_system_1/SS_LD_SIN]
@@ -1357,12 +1357,12 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_system_1_WR_CS_S5 [get_bd_ports B_WR_CS_S5] [get_bd_pins TARGETC_system_1/WR_CS_S5]
   connect_bd_net -net TARGETC_system_1_WR_RS_S0 [get_bd_ports B_WR_RS_S0] [get_bd_pins TARGETC_system_1/WR_RS_S0]
   connect_bd_net -net TARGETC_system_1_WR_RS_S1 [get_bd_ports B_WR_RS_S1] [get_bd_pins TARGETC_system_1/WR_RS_S1]
-  connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins xlconcat_1/In1]
-  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets axi_dma_0_s2mm_introut]
+  connect_bd_net -net axi_dma_0_s2mm_introut [get_bd_pins axi_dma_0/s2mm_introut] [get_bd_pins processing_system7_0/IRQ_F2P]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins Start_digitization_ip_0/s00_axi_aclk] [get_bd_pins TARGETC_axi_int_0/M_AXIS_ACLK] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ACLK] [get_bd_pins TARGETC_system_0/RefCLK_i1] [get_bd_pins TARGETC_system_0/tc_axi_aclk] [get_bd_pins TARGETC_system_1/RefCLK_i1] [get_bd_pins TARGETC_system_1/tc_axi_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axis_interconnect_0/ACLK] [get_bd_pins axis_interconnect_0/M00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S00_AXIS_ACLK] [get_bd_pins axis_interconnect_0/S01_AXIS_ACLK] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/M01_ACLK] [get_bd_pins ps7_0_axi_periph/M02_ACLK] [get_bd_pins ps7_0_axi_periph/M03_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_50M/slowest_sync_clk] [get_bd_pins sstin_signal_0/clk1]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_50M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_50M_peripheral_aresetn [get_bd_pins Start_digitization_ip_0/s00_axi_aresetn] [get_bd_pins TARGETC_axi_int_0/M_AXIS_ARESETN] [get_bd_pins TARGETC_axi_int_1/M_AXIS_ARESETN] [get_bd_pins TARGETC_system_0/tc_axi_aresetn] [get_bd_pins TARGETC_system_1/tc_axi_aresetn] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axis_interconnect_0/ARESETN] [get_bd_pins axis_interconnect_0/M00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S00_AXIS_ARESETN] [get_bd_pins axis_interconnect_0/S01_AXIS_ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/M01_ARESETN] [get_bd_pins ps7_0_axi_periph/M02_ARESETN] [get_bd_pins ps7_0_axi_periph/M03_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_50M/peripheral_aresetn] [get_bd_pins sstin_signal_0/nrst]
   connect_bd_net -net sstin_signal_0_SSTIN [get_bd_pins TARGETC_system_0/SSTIN] [get_bd_pins TARGETC_system_1/SSTIN] [get_bd_pins sstin_signal_0/SSTIN] [get_bd_pins util_ds_buf_0/OBUF_IN]
+  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets sstin_signal_0_SSTIN]
   connect_bd_net -net sstin_signal_0_Timecounter [get_bd_pins TARGETC_system_0/Timecounter] [get_bd_pins TARGETC_system_1/Timecounter] [get_bd_pins sstin_signal_0/Timecounter]
   connect_bd_net -net sstin_signal_0_WL_CLK_N [get_bd_ports WL_CLK_N] [get_bd_pins sstin_signal_0/WL_CLK_N]
   connect_bd_net -net sstin_signal_0_WL_CLK_P [get_bd_ports WL_CLK_P] [get_bd_pins sstin_signal_0/WL_CLK_P]
@@ -1371,7 +1371,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net util_ds_buf_0_OBUF_DS_N [get_bd_ports SSTIN_N] [get_bd_pins util_ds_buf_0/OBUF_DS_N]
   connect_bd_net -net util_ds_buf_0_OBUF_DS_P [get_bd_ports SSTIN_P] [get_bd_pins util_ds_buf_0/OBUF_DS_P]
   connect_bd_net -net xlconcat_0_dout [get_bd_pins TARGETC_system_0/D_Out] [get_bd_pins xlconcat_0/dout]
-  connect_bd_net -net xlconcat_1_dout [get_bd_pins processing_system7_0/IRQ_F2P] [get_bd_pins xlconcat_1/dout]
   connect_bd_net -net xlconcat_2_dout [get_bd_pins TARGETC_system_1/D_Out] [get_bd_pins xlconcat_2/dout]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins TARGETC_axi_int_0/TID] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins TARGETC_axi_int_1/TID] [get_bd_pins xlconstant_1/dout]

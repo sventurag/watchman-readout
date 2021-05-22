@@ -45,11 +45,14 @@ extern int channel;
 //extern int  delay_UpdateWR;
 
 /** Raw data for pedestal calculation   */
-extern uint32_t  data_raw[512][16][32];
+extern uint32_t  data_raw_0[512][16][32];
 
 extern uint32_t  data_raw_1[512][16][32];
 
-
+/** @brief Array containing registers of AXI-lite for TARGETC_0 */
+extern int* regptr_0;
+/** @brief Array containing registers of AXI-lite TARGETC_1 */
+extern int* regptr_1;
 
 /****************************************************************************/
 /**
@@ -63,12 +66,12 @@ extern uint32_t  data_raw_1[512][16][32];
 *
 ****************************************************************************/
 
-int PulseSweep(int* regptr){
+int PulseSweep(){
 int rep;
 
 
 	for ( rep =0; rep<1 ; rep++ ){
-		if(PulseRange(regptr)!= XST_SUCCESS){
+		if(PulseRange()!= XST_SUCCESS){
 	       xil_printf("Error in WindowRange \r\n");
 		}
 	//	usleep(150);
@@ -95,14 +98,20 @@ int rep;
 *
 ****************************************************************************/
 
-int PulseRange(int* regptr){
+int PulseRange(){
 int fstWindow;
-ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr);
-ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_0);
+usleep(10);
+ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
+usleep(10);
+ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
+usleep(10);
+ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
+usleep(10);
 
 
 	for (fstWindow=fstWindowValue ; fstWindow<totalWindows ; fstWindow+=nmbrWindows ){
-		if(SendWindows(fstWindow,nmbrWindows, regptr)!= XST_SUCCESS){
+		if(SendWindows(fstWindow,nmbrWindows)!= XST_SUCCESS){
 	       xil_printf("Error in SendWindows \r\n");
 
 		}
@@ -130,7 +139,7 @@ ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
 * @note		-
 *
 ****************************************************************************/
-int SendWindows(int firstWindow, int numWindows, int* regptr){
+int SendWindows(int firstWindow, int numWindows){
 	//int window_start;
 	int timeout;
 	int window,i,j,index;
@@ -163,9 +172,16 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 //	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
    // usleep(10);
 	/* Initiate transfer and measure */
-	regptr[TC_FSTWINDOW_REG] = firstWindow;
-	regptr[TC_NBRWINDOW_REG] = numWindows;
-//	ControlRegisterWrite(SMODE_MASK ,ENABLE);
+	regptr_0[TC_FSTWINDOW_REG] = firstWindow;
+	usleep(1);
+	regptr_0[TC_NBRWINDOW_REG] = numWindows;
+	usleep(1);
+	regptr_1[TC_FSTWINDOW_REG] = firstWindow;
+	usleep(1);
+	regptr_1[TC_NBRWINDOW_REG] = numWindows;
+	usleep(1);
+
+	//	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 //	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
 //	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 //	usleep(1);
@@ -279,7 +295,10 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
+		usleep(1);
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
+
 	}
 
 	free(tmp_ptr);
@@ -297,7 +316,7 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 * @note		-
 *
 ****************************************************************************/
-int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
+int get_windowsRaw(int startWindow, int nmbrofWindows){
 	int window_start;
 		int timeout;
 		int window,i,j;
@@ -323,11 +342,30 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 		XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 
 		/* Initiate transfer and measure */
-		regptr[TC_FSTWINDOW_REG] = startWindow;
-		regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
-		ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
-		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
-//		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
+
+		ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_0);
+		usleep(10);
+		ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
+		usleep(10);
+		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
+		usleep(10);
+		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
+		usleep(10);
+
+		regptr_0[TC_FSTWINDOW_REG] = startWindow;
+		usleep(10);
+
+		regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
+		usleep(10);
+
+		regptr_1[TC_FSTWINDOW_REG] = startWindow;
+		usleep(10);
+
+		regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
+		usleep(10);
+
+
+		//		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 //		usleep(50);
 //		ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 		startDig();
@@ -376,13 +414,32 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 				printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
 				printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
 				printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
+
 				for(j=0; j<32; j++){
 					for(i=0; i<16; i++){
 						printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
 					}
 					printf("\r\n");
 				}
+
+				printf("\r\nwindow = %d\r\n", window);
+				printf("wdo_time_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time_1);
+				printf("PL_spare_1: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare_1);
+				printf("info_1: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info_1);
+				printf("wdo_id_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id_1);
+
+				for(j=0; j<32; j++){
+									for(i=0; i<16; i++){
+										printf("%d\t", (uint)tmp_ptr->data.data_struct.data_1[i][j]);
+										printf("Timeout on window %d: get 20 windows failed!\r\n", window);
+					}
+									printf("\r\n");
+								}
+
+
+
 				printf("Timeout on window %d: get 20 windows failed!\r\n", window);
+				free(tmp_ptr);
 				return XST_FAILURE;
 			}
 			else flag_axidma_rx_done = false;
@@ -391,14 +448,42 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 			/* Test the returned values */
 			if(tmp_ptr->data.data_struct.wdo_id != window){
 				printf("window id is wrong! window = %d | wdo_id = %d\r\n", window, (uint)tmp_ptr->data.data_struct.wdo_id);
+				printf("\r\nwindow = %d\r\n", window);
+					printf("wdo_time: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time);
+					printf("PL_spare: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare);
+					printf("info: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info);
+					printf("wdo_id: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id);
+
+					for(j=0; j<32; j++){
+						for(i=0; i<16; i++){
+							printf("%d\t", (uint)tmp_ptr->data.data_struct.data[i][j]);
+						}
+						printf("\r\n");
+					}
+
+					printf("\r\nwindow = %d\r\n", window);
+					printf("wdo_time_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time_1);
+					printf("PL_spare_1: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare_1);
+					printf("info_1: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info_1);
+					printf("wdo_id_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id_1);
+
+					for(j=0; j<32; j++){
+										for(i=0; i<16; i++){
+											printf("%d\t", (uint)tmp_ptr->data.data_struct.data_1[i][j]);
+										}
+										printf("\r\n");
+									}
+
+				free(tmp_ptr);
 				return XST_FAILURE;
+
 			}
 			else{
 
 
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
-						data_raw[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
+						data_raw_0[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
 						data_raw_1[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data_1[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
 
 						//         if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
@@ -412,7 +497,9 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 
 			}
 			/* Release the DMA */
-			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
+			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
+			usleep(1);
+			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
 		}
 
 		free(tmp_ptr);
@@ -431,7 +518,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 * @note		-
 *
 ****************************************************************************/
-int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
+int get_windows( int startWindow, int nmbrofWindows){
 	int window_start;
 	int timeout;
 	int window,i,j,index;
@@ -462,10 +549,16 @@ int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
 	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
     usleep(10);
 	/* Initiate transfer and measure */
-	regptr[TC_FSTWINDOW_REG] = startWindow;
-	regptr[TC_NBRWINDOW_REG] = nmbrofWindows;
-	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
-	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+	regptr_0[TC_FSTWINDOW_REG] = startWindow;
+	usleep(10);
+	regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
+	usleep(10);
+	regptr_1[TC_FSTWINDOW_REG] = startWindow;
+	usleep(10);
+	regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
+	usleep(10);
+//	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
+//	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
 //	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 //	usleep(50);
 //	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
@@ -563,7 +656,10 @@ int get_windows( int startWindow, int nmbrofWindows,int* regptr ){
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
+		usleep(10);
+		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
+
 	}
 
 	free(tmp_ptr);

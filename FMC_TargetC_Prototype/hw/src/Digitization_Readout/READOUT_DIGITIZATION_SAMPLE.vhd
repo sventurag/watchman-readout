@@ -268,7 +268,7 @@ component SyncBuffer is
     
 --    attribute mark_debug of HSCLK: signal is "true";
 --    attribute mark_debug of SS_CNT_INTL: signal is "true";
---    attribute mark_debug of RAMP: signal is "true";
+    attribute mark_debug of RAMP: signal is "true";
 --    attribute mark_debug of RAMP_CNT: signal is "true";
 --    attribute mark_debug of RDAD_CLK: signal is "true";
 --    attribute mark_debug of RDAD_SIN: signal is "true";

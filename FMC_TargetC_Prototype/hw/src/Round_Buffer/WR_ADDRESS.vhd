@@ -63,6 +63,9 @@ entity WR_ADDRESS is
 	);
 end WR_ADDRESS;
 
+
+
+
 architecture implementation of WR_ADDRESS is
 
 
@@ -430,6 +433,11 @@ signal trigger_intl : std_logic;
 	attribute DONT_TOUCH of PrevAddr_s : signal is "TRUE";
 	attribute DONT_TOUCH of NextValid_s : signal is "TRUE";
 	attribute DONT_TOUCH of PrevValid_s : signal is "TRUE";
+	attribute mark_debug : string; 
+	attribute mark_debug of Bus_intl: signal is "true";
+	attribute mark_debug of RDAD_DataOut: signal is "true";
+
+
 begin
 
 

@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Mon May 10 13:40:55 2021
+--Date        : Fri May 21 17:34:54 2021
 --Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -2685,7 +2685,7 @@ entity base_zynq is
     WL_CLK_P : out STD_LOGIC
   );
   attribute core_generation_info : string;
-  attribute core_generation_info of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=37,numReposBlks=25,numNonXlnxBlks=3,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_board_cnt=3,da_clkrst_cnt=15,synth_mode=OOC_per_IP}";
+  attribute core_generation_info of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=36,numReposBlks=24,numNonXlnxBlks=3,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=19,da_board_cnt=3,da_clkrst_cnt=15,synth_mode=OOC_per_IP}";
   attribute hw_handoff : string;
   attribute hw_handoff of base_zynq : entity is "base_zynq.hwdef";
 end base_zynq;
@@ -2783,7 +2783,7 @@ architecture STRUCTURE of base_zynq is
     S_AXI_HP0_WID : in STD_LOGIC_VECTOR ( 5 downto 0 );
     S_AXI_HP0_WDATA : in STD_LOGIC_VECTOR ( 31 downto 0 );
     S_AXI_HP0_WSTRB : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    IRQ_F2P : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    IRQ_F2P : in STD_LOGIC_VECTOR ( 0 to 0 );
     FCLK_CLK0 : out STD_LOGIC;
     FCLK_RESET0_N : out STD_LOGIC;
     MIO : inout STD_LOGIC_VECTOR ( 53 downto 0 );
@@ -2890,14 +2890,6 @@ architecture STRUCTURE of base_zynq is
     dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
   );
   end component base_zynq_xlconcat_0_0;
-  component base_zynq_xlconcat_1_0 is
-  port (
-    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dout : out STD_LOGIC_VECTOR ( 2 downto 0 )
-  );
-  end component base_zynq_xlconcat_1_0;
   component base_zynq_xlconcat_0_1 is
   port (
     In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -3241,7 +3233,6 @@ architecture STRUCTURE of base_zynq is
   signal TARGETC_system_0_SAMPLESEL_ANY : STD_LOGIC;
   signal TARGETC_system_0_SCLK : STD_LOGIC;
   signal TARGETC_system_0_SIN : STD_LOGIC;
-  signal TARGETC_system_0_SSVALID_INTR : STD_LOGIC;
   signal TARGETC_system_0_SS_INCR : STD_LOGIC;
   signal TARGETC_system_0_SS_LD_DIR : STD_LOGIC;
   signal TARGETC_system_0_SS_LD_SIN : STD_LOGIC;
@@ -3268,7 +3259,6 @@ architecture STRUCTURE of base_zynq is
   signal TARGETC_system_1_RDAD_DIR : STD_LOGIC;
   signal TARGETC_system_1_RDAD_SIN : STD_LOGIC;
   signal TARGETC_system_1_SAMPLESEL_ANY : STD_LOGIC;
-  signal TARGETC_system_1_SSVALID_INTR : STD_LOGIC;
   signal TARGETC_system_1_SS_INCR : STD_LOGIC;
   signal TARGETC_system_1_SS_LD_DIR : STD_LOGIC;
   signal TARGETC_system_1_SS_LD_SIN : STD_LOGIC;
@@ -3300,8 +3290,6 @@ architecture STRUCTURE of base_zynq is
   signal axi_dma_0_M_AXI_S2MM_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_dma_0_M_AXI_S2MM_WVALID : STD_LOGIC;
   signal axi_dma_0_s2mm_introut : STD_LOGIC;
-  attribute MARK_DEBUG of axi_dma_0_s2mm_introut : signal is std.standard.true;
-  attribute debug of axi_dma_0_s2mm_introut : signal is "true";
   signal axi_interconnect_0_M00_AXI_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_interconnect_0_M00_AXI_AWBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal axi_interconnect_0_M00_AXI_AWCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -3461,6 +3449,8 @@ architecture STRUCTURE of base_zynq is
   signal ps7_0_axi_periph_M03_AXI_WVALID : STD_LOGIC;
   signal rst_ps7_0_50M_peripheral_aresetn : STD_LOGIC_VECTOR ( 0 to 0 );
   signal sstin_signal_0_SSTIN : STD_LOGIC;
+  attribute MARK_DEBUG of sstin_signal_0_SSTIN : signal is std.standard.true;
+  attribute debug of sstin_signal_0_SSTIN : signal is "true";
   signal sstin_signal_0_Timecounter : STD_LOGIC_VECTOR ( 63 downto 0 );
   signal sstin_signal_0_WL_CLK_N : STD_LOGIC;
   signal sstin_signal_0_WL_CLK_P : STD_LOGIC;
@@ -3469,14 +3459,15 @@ architecture STRUCTURE of base_zynq is
   signal util_ds_buf_0_OBUF_DS_N : STD_LOGIC_VECTOR ( 0 to 0 );
   signal util_ds_buf_0_OBUF_DS_P : STD_LOGIC_VECTOR ( 0 to 0 );
   signal xlconcat_0_dout : STD_LOGIC_VECTOR ( 15 downto 0 );
-  signal xlconcat_1_dout : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal xlconcat_2_dout : STD_LOGIC_VECTOR ( 15 downto 0 );
   signal xlconstant_0_dout : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal xlconstant_1_dout : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal NLW_TARGETC_axi_int_0_M_AXIS_TDEST_UNCONNECTED : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal NLW_TARGETC_axi_int_1_M_AXIS_TDEST_UNCONNECTED : STD_LOGIC_VECTOR ( 9 downto 0 );
+  signal NLW_TARGETC_system_0_SSVALID_INTR_UNCONNECTED : STD_LOGIC;
   signal NLW_TARGETC_system_1_SCLK_UNCONNECTED : STD_LOGIC;
   signal NLW_TARGETC_system_1_SIN_UNCONNECTED : STD_LOGIC;
+  signal NLW_TARGETC_system_1_SSVALID_INTR_UNCONNECTED : STD_LOGIC;
   signal NLW_axi_dma_0_s2mm_prmry_reset_out_n_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_ARREADY_UNCONNECTED : STD_LOGIC;
   signal NLW_processing_system7_0_S_AXI_HP0_RLAST_UNCONNECTED : STD_LOGIC;
@@ -3771,7 +3762,7 @@ TARGETC_system_0: component base_zynq_TARGETC_system_0_0
       SHOUT => A_SHOUT_1,
       SIN => TARGETC_system_0_SIN,
       SSTIN => sstin_signal_0_SSTIN,
-      SSVALID_INTR => TARGETC_system_0_SSVALID_INTR,
+      SSVALID_INTR => NLW_TARGETC_system_0_SSVALID_INTR_UNCONNECTED,
       SS_INCR => TARGETC_system_0_SS_INCR,
       SS_LD_DIR => TARGETC_system_0_SS_LD_DIR,
       SS_LD_SIN => TARGETC_system_0_SS_LD_SIN,
@@ -3842,7 +3833,7 @@ TARGETC_system_1: component base_zynq_TARGETC_system_1_0
       SHOUT => B_SHOUT_1,
       SIN => NLW_TARGETC_system_1_SIN_UNCONNECTED,
       SSTIN => sstin_signal_0_SSTIN,
-      SSVALID_INTR => TARGETC_system_1_SSVALID_INTR,
+      SSVALID_INTR => NLW_TARGETC_system_1_SSVALID_INTR_UNCONNECTED,
       SS_INCR => TARGETC_system_1_SS_INCR,
       SS_LD_DIR => TARGETC_system_1_SS_LD_DIR,
       SS_LD_SIN => TARGETC_system_1_SS_LD_SIN,
@@ -4031,7 +4022,7 @@ processing_system7_0: component base_zynq_processing_system7_0_0
       GPIO_I(0) => '0',
       GPIO_O(0) => NLW_processing_system7_0_GPIO_O_UNCONNECTED(0),
       GPIO_T(0) => NLW_processing_system7_0_GPIO_T_UNCONNECTED(0),
-      IRQ_F2P(2 downto 0) => xlconcat_1_dout(2 downto 0),
+      IRQ_F2P(0) => axi_dma_0_s2mm_introut,
       MIO(53 downto 0) => FIXED_IO_mio(53 downto 0),
       M_AXI_GP0_ACLK => processing_system7_0_FCLK_CLK0,
       M_AXI_GP0_ARADDR(31 downto 0) => processing_system7_0_M_AXI_GP0_ARADDR(31 downto 0),
@@ -4299,13 +4290,6 @@ xlconcat_0: component base_zynq_xlconcat_0_0
       In8(0) => DO_9_1,
       In9(0) => DO_10_1,
       dout(15 downto 0) => xlconcat_0_dout(15 downto 0)
-    );
-xlconcat_1: component base_zynq_xlconcat_1_0
-     port map (
-      In0(0) => TARGETC_system_0_SSVALID_INTR,
-      In1(0) => axi_dma_0_s2mm_introut,
-      In2(0) => TARGETC_system_1_SSVALID_INTR,
-      dout(2 downto 0) => xlconcat_1_dout(2 downto 0)
     );
 xlconcat_2: component base_zynq_xlconcat_0_1
      port map (

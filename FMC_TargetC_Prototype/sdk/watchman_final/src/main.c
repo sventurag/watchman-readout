@@ -313,8 +313,10 @@ int main()
 
 	// Initialise control register
 	ControlRegisterWrite((int)NULL,INIT, regptr_0);
+	usleep(100000);
 	// software reset PL side
 	ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_0);
+	usleep(100000);
 	// Reset TargetC's registers
 	ControlRegisterWrite(REGCLR_MASK,DISABLE, regptr_0);
 	usleep(100000);
@@ -324,8 +326,10 @@ int main()
 
 	// Initialise control register
 		ControlRegisterWrite((int)NULL,INIT, regptr_1);
+		usleep(100000);
 		// software reset PL side
 		ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1);
+		usleep(100000);
 		// Reset TargetC's registers
 		ControlRegisterWrite(REGCLR_MASK,DISABLE, regptr_1);
 		usleep(100000);
@@ -342,20 +346,22 @@ int main()
 	printf("PL's clock ready\r\n");
 	// Initialize TargetC's registers
 	SetTargetCRegisters(regptr_0);
-//	SetTargetCRegisters(regptr_1);
+	usleep(100000);
+	SetTargetCRegisters(regptr_1);
 
 	printf("sleep to set the debug core\r\n");
+	sleep(1);
+//
+//
+//	// Test pattern
+//	if(test_TPG() == XST_SUCCESS) printf("TestPattern Generator pass!\r\n");
+////	else{
+////		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
+////		return -1;
+////	}
+//    sleep(5);
+//
 
-/*
-	 Test pattern
-	if(test_TPG() == XST_SUCCESS) printf("TestPattern Generator pass!\r\n");
-	else{
-		end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
-		return -1;
-	}
-    sleep(5);
-
-*/
 
 	/* Initialize pedestal
 	if(get_pedestal(50, 1) == XST_SUCCESS) printf("Pedestal initialization pass!\r\n");
@@ -435,23 +441,37 @@ int main()
 				}
 				if(get_transfer_fct_flag && (!stream_flag) && empty_flag){
 					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
+					usleep(1);
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1);
+
 					state_main = GET_TRANSFER_FCT;
 				}
 				if(get_windows_flag && (!stream_flag) && empty_flag){
 					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
+					usleep(1);
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1);
+
 					state_main = GET_WINDOWS;
 				}
 				if(pedestal_flag && (!stream_flag) && empty_flag){
 					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
+					usleep(1);
+					ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1);
+
 					state_main = GET_PEDESTAL;
 				}
 				if(restart_flag){
 								ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
+								usleep(1);
+								ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1);
 								printf("restarting at idle\r\n");
 								state_main = RESTART;
 							}
 				if(get_windows_raw_flag && (!stream_flag) && empty_flag){
 						ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0);
+						usleep(10);
+						ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1);
+
 						state_main = GET_WINDOWS_RAW;
 					}
 				if(dividePedestalsFlag){
@@ -462,18 +482,26 @@ int main()
 				if((!stream_flag)){
 					usleep(100);
 		     		ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_0);
-					ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_0);
+		     		usleep(1);
+					ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_1);
 					usleep(100);
 					state_main = IDLE;
 				}
 
 				ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_0); // mode for selecting the interrupt, 1 for dma
+				usleep(10);
+				ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_1); // mode for selecting the interrupt, 1 for dma
+
 				usleep(100);
 
 				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0); // 0 for test pattern mode, 1 for sample mode (normal mode)
+				usleep(10);
+				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
 				usleep(100);
 
 				ControlRegisterWrite(CPUMODE_MASK,ENABLE, regptr_0); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
+				usleep(10);
+				ControlRegisterWrite(CPUMODE_MASK,ENABLE, regptr_1); // mode trigger, 0 for usermode (cpu mode), 1 for trigger mode
 
 				usleep(100);
 
@@ -504,7 +532,10 @@ int main()
 				XAxiDma_SimpleTransfer_hm((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 			     usleep(100);
 				 ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_0); //  register for starting the round buffer in trigger mode
-			     Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
+				 usleep(10);
+				 ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_1); //  register for starting the round buffer in trigger mode
+
+				 Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 					usleep(100);
 			     xil_printf(" pendingCountBefore: %d \r\n",inboundRingManager.pendingCount);
 			     usleep(100);
@@ -576,7 +607,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS:
-				if(PulseSweep(regptr_0) != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
+				if(PulseSweep() != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
 				return -1;
@@ -595,11 +626,12 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_PEDESTAL:
-				if(get_pedestal(pedestalAvg,nmbrWindowsPed, regptr_0) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);
+				if(get_pedestal(pedestalAvg,nmbrWindowsPed) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);
 				else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get pedestal failed!");
 					return -1;
 				}
+
 				pedestal_flag = false;
 				state_main = IDLE;
 				break;

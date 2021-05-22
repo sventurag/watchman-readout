@@ -20,9 +20,9 @@
 
 /*** Function prototypes *********************************************/
 int init_pedestals(int* regptr, int targetcID);
-int get_pedestal(int avg, int nmbrofWindows,int* regptr);
-int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr); // FIX
-int get_windows(int startWindow, int nmbrofWindows,int* regptr);
+int get_pedestal(int avg, int nmbrofWindows);
+int get_windowsRaw(int startWindow, int nmbrofWindows); // FIX
+int get_windows(int startWindow, int nmbrofWindows);
 
 //int get_15_windows_fct(void);
 void pedestal_triggerMode_init(void);

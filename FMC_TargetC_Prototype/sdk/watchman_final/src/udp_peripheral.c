@@ -390,6 +390,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 					delay_RB = regVal_one_reg;
 					xil_printf("delay_RB = %d\r\n", delay_RB);
 					regptr_0[TC_Delay_RB] = delay_RB;
+					usleep(1);
 					regptr_1[TC_Delay_RB] = delay_RB;
 
 				}
@@ -400,6 +401,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 
 					xil_printf("PEDESTAL_TRIGGER_AVG = %d\r\n", regID_one_reg);
 					regptr_0[PEDESTAL_TRIGGER_AVG] = regVal_one_reg;
+					usleep(1);
 					regptr_1[PEDESTAL_TRIGGER_AVG] = regVal_one_reg;
 				}
 
@@ -477,6 +479,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 				avg = payload[i + 1] * 256 + payload[i + 2];
 				//	pedestal_triggerMode_init(avg);
 				regptr_0[PEDESTAL_TRIGGER_AVG] = avg;
+				usleep(1);
 				regptr_1[PEDESTAL_TRIGGER_AVG] = avg;
 				nbr_avg_ped_triggerMode = avg;
 				usleep(10);
@@ -550,6 +553,7 @@ int setup_udp_settings(ip_addr_t pc_ipaddr) {
 	/* Initialize the regmap for test */
 	for (int i = 0; i < REGMAP_SIZE_UDP; i++)
 		regptr_0[i] = i;
+	usleep(1);
 	for (int i = 0; i < REGMAP_SIZE_UDP; i++)
 		regptr_1[i] = i;
 

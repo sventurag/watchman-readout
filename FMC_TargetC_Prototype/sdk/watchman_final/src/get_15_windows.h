@@ -19,10 +19,13 @@
 #include "xscuwdt.h"
 
 /*** Function prototypes *********************************************/
-int PulseSweep(int* regptr);
-int PulseRange(int* regptr);
-int SendWindows(int firstWindow, int nmbrWindows,int* regptr);
-int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr);
-int get_windows(int startWindow, int nmbrofWindows, int* regptr);
+int PulseSweep(void);
+int PulseRange(void);
+
+int get_windowsRaw(int startWindow, int nmbrofWindows);
+
+int get_windows(int startWindow, int nmbrofWindows);
+
+int SendWindows(int firstWindow, int nmbrWindows);
 
 #endif /* SRC_GET_15_WINDOWS_H_ */

@@ -93,7 +93,7 @@ volatile bool pedestalTriggerModeFlag;
 /** Flag to start division by  nbr_avg_ped_triggerMode */
 volatile bool dividePedestalsFlag;
 /** @brief Array containing raw data of the whole array TARGETC_0 */
-uint32_t  data_raw[512][16][32];
+uint32_t  data_raw_0[512][16][32];
 /** @brief Array containing raw data of the whole array TARGETC_1 */
 uint32_t  data_raw_1[512][16][32];
 /** @brief Array containing raw data of the whole array */
@@ -200,7 +200,8 @@ int init_global_var(void){
 		return XST_FAILURE;
 	}
 	frame_buf_cmd = &frame_buf_cmd_tmp[BUF_HEADER_SIZE];
-	regptr_0 = (int *)XPAR_TARGETC_SYSTEM_1_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_0_BASEADDR;
+	regptr_0 = (int *)XPAR_TARGETC_SYSTEM_0_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_0_BASEADDR;
+	usleep(10);
 	regptr_1 =(int *)XPAR_TARGETC_SYSTEM_1_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_1_BASEADDR;
 
 	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_0[i] = 0;

@@ -155,7 +155,7 @@ module base_zynq_processing_system7_0_0 (
   input bit [5 : 0] S_AXI_HP0_WID,
   input bit [31 : 0] S_AXI_HP0_WDATA,
   input bit [3 : 0] S_AXI_HP0_WSTRB,
-  input bit [2 : 0] IRQ_F2P,
+  input bit [0 : 0] IRQ_F2P,
   output bit_as_bool FCLK_CLK0,
   output bit_as_bool FCLK_RESET0_N,
   output bit [53 : 0] MIO,
@@ -278,7 +278,7 @@ module base_zynq_processing_system7_0_0 (GPIO_I,GPIO_O,GPIO_T,TTC0_WAVE0_OUT,TTC
   input bit [5 : 0] S_AXI_HP0_WID;
   input bit [31 : 0] S_AXI_HP0_WDATA;
   input bit [3 : 0] S_AXI_HP0_WSTRB;
-  input bit [2 : 0] IRQ_F2P;
+  input bit [0 : 0] IRQ_F2P;
   output wire FCLK_CLK0;
   output wire FCLK_RESET0_N;
   inout wire [53 : 0] MIO;
@@ -398,7 +398,7 @@ module base_zynq_processing_system7_0_0 (GPIO_I,GPIO_O,GPIO_T,TTC0_WAVE0_OUT,TTC
   input bit [5 : 0] S_AXI_HP0_WID;
   input bit [31 : 0] S_AXI_HP0_WDATA;
   input bit [3 : 0] S_AXI_HP0_WSTRB;
-  input bit [2 : 0] IRQ_F2P;
+  input bit [0 : 0] IRQ_F2P;
   output wire FCLK_CLK0;
   output wire FCLK_RESET0_N;
   inout wire [53 : 0] MIO;

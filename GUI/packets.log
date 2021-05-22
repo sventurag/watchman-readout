@@ -3,9 +3,37 @@ tcpdump: listening on enx0050b67c1322, link-type EN10MB (Ethernet), capture size
 0 packets received by filter
 0 packets dropped by kernel
 run_tcpdump_on_local_machine - start
-run_tcpdump_on_local_machine - about to create capture with name:/home/salvador/salvador_fork/watchman-readout/GUI/traffic_2021-05-11_13:19:09.pcap
+run_tcpdump_on_local_machine - about to create capture with name:/home/salvador/salvador_fork/watchman-readout/GUI/traffic_2021-05-21_18:06:07.pcap
 run_tcpdump_on_local_machine - end
 Traceback (most recent call last):
-  File "getPackets.py", line 38, in <module>
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 885, in __call__
+    i.__init__(filename, fdesc, magic)
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 1030, in __init__
+    RawPcapReader.__init__(self, filename, fdesc, magic)
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 943, in __init__
+    "Not a pcap capture file (bad magic: %r)" % magic
+scapy.error.Scapy_Exception: Not a pcap capture file (bad magic: b'')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 891, in __call__
+    i.__init__(filename, fdesc, magic)
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 1204, in __init__
+    RawPcapNgReader.__init__(self, filename, fdesc, magic)
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 1092, in __init__
+    "Not a pcapng capture file (bad magic: %r)" % magic
+scapy.error.Scapy_Exception: Not a pcapng capture file (bad magic: b'')
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "getPackets.py", line 40, in <module>
     dfTarget0, dfTarget1=process_packet_pulseSweep(capture_file_name,totalWindows,nofChannels)
-NameError: name 'capture_file_name' is not defined
+  File "/home/salvador/salvador_fork/watchman-readout/GUI/pulse_analysis.py", line 26, in process_packet_pulseSweep
+    scapy_cap = rdpcap(filename)
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 860, in rdpcap
+    with PcapReader(filename) as fdesc:
+  File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 897, in __call__
+    raise Scapy_Exception("Not a supported capture file")
+scapy.error.Scapy_Exception: Not a supported capture file

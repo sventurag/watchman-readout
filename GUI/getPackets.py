@@ -22,6 +22,8 @@ def getPackets(nofPackets):
     time.sleep(num_sec_to_sleep)
     p.terminate()
     print(func_name + "end")
+    return capture_file_name
+
 
 
 
@@ -31,7 +33,7 @@ totalWindows=int(sys.argv[2])
 nofChannels=int(sys.argv[3])
 
 # Get packets
-getPackets(nofPackets)
+capture_file_name =getPackets(nofPackets)
 
 # When the transmission finish, process the packets
 

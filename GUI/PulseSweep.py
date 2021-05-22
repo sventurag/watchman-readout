@@ -69,7 +69,7 @@ for i in range(0,repetitions,1):
        time.sleep(0.3)
        print("Pos=",i)
       # pg.softTrigger()
-       pg.getWindows()
+#       pg.getWindows()
       # tc.send_command(7,0,0) # get windows
        time.sleep(1)
 
