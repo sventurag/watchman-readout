@@ -23,7 +23,7 @@
  *
  ************************************************************* */
 
-void SetTargetCRegisters(int* regptr){
+int SetTargetCRegisters(int* regptr){
 
 	for(int i=0; i<64; i++){
 		WriteRegister(TC_VDLYTUNE_REG + i,	0, regptr);
@@ -90,6 +90,8 @@ void SetTargetCRegisters(int* regptr){
 	WriteRegister(TC_MONTIMING_REG, 128, regptr);		//INIT MonTiming PASS disable
 
 	xil_printf("TragetC's registers initialized!\r\n");
+	return XST_SUCCESS;
+
 }
 
 /****************************************************************************/
@@ -169,7 +171,7 @@ void GetTargetCControl(int * regptr){
 * @note		-
 *
 ****************************************************************************/
-void ControlRegisterWrite(int mask, int actionID,int* regptr){
+int ControlRegisterWrite(int mask, int actionID,int* regptr){
 
 	//int* regptr = XPAR_TARGETC_0_TC_AXI_BASEADDR;
 	if(actionID == ENABLE){
@@ -184,6 +186,8 @@ void ControlRegisterWrite(int mask, int actionID,int* regptr){
 	else{
 		xil_printf("Error:\t%s\r\n\tNo valid argument {ENABLE/DISABLE}",__func__);
 	}
+
+
 
 	//DEBUG
 
@@ -208,6 +212,10 @@ void ControlRegisterWrite(int mask, int actionID,int* regptr){
 	if(regptr[TC_CONTROL_REG] & SWRESET_MASK)	xil_printf("\t SWRESET_MASK");
 	xil_printf("\r\n");
 #endif
+
+	return XST_SUCCESS;
+
+
 }
 
 /****************************************************************************/

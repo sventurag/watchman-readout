@@ -233,10 +233,11 @@ int test_TPG(void){
 	regptr_0[TC_FSTWINDOW_REG] = 0;
 	regptr_0[TC_NBRWINDOW_REG] = 1;
 //	regptr_0[TC_Delay_UpdateWR] = 0;
-
+    usleep(10);
 	/* Initiate the test */
 	regptr_1[TC_FSTWINDOW_REG] = 0;
 	regptr_1[TC_NBRWINDOW_REG] = 1;
+    usleep(10);
 
 //	regptr_1[TC_Delay_UpdateWR] = 0;
 
@@ -245,6 +246,9 @@ int test_TPG(void){
 	usleep(10);
 	WriteRegister(TC_TPG_REG,	0x50A, regptr_1);	// TPG value
 	usleep(10);
+
+
+
 	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_0);
 	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr_0); // Enable mode TestPattern
 	usleep(10);

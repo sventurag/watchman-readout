@@ -584,7 +584,7 @@
     <spirit:parameter>
       <spirit:name>M00_FIFO_MODE</spirit:name>
       <spirit:displayName>Enable store-and-forward feature on FIFO of interface M00_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635316">1</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.M00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635316">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1160,7 +1160,7 @@
     <spirit:parameter>
       <spirit:name>S00_FIFO_MODE</spirit:name>
       <spirit:displayName>Enable store-and-forward feature on FIFO of interface S00_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635364">1</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S00_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635364">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>
@@ -1172,7 +1172,7 @@
     <spirit:parameter>
       <spirit:name>S01_FIFO_MODE</spirit:name>
       <spirit:displayName>Enable store-and-forward feature on FIFO of interface S01_AXIS</spirit:displayName>
-      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S01_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635365">1</spirit:value>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.S01_FIFO_MODE" spirit:choiceRef="choice_pairs_4873554b" spirit:order="1635365">0</spirit:value>
       <spirit:vendorExtensions>
         <xilinx:parameterInfo>
           <xilinx:enablement>

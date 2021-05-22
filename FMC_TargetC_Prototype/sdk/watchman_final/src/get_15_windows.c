@@ -295,9 +295,13 @@ int SendWindows(int firstWindow, int numWindows){
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
-		usleep(1);
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
+		  if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
+			printf("Control register Failed\r\n");
+		}
+		if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+			printf("Control register Failed\r\n");
+		}
+
 
 	}
 
@@ -343,26 +347,14 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 		/* Initiate transfer and measure */
 
-		ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_0);
-		usleep(10);
-		ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
-		usleep(10);
-		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
-		usleep(10);
-		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
-		usleep(10);
 
 		regptr_0[TC_FSTWINDOW_REG] = startWindow;
-		usleep(10);
 
 		regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
-		usleep(10);
 
 		regptr_1[TC_FSTWINDOW_REG] = startWindow;
-		usleep(10);
 
 		regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
-		usleep(10);
 
 
 		//		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
@@ -497,9 +489,14 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 			}
 			/* Release the DMA */
-			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
-			usleep(1);
-			ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
+			  if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
+				printf("Control register Failed\r\n");
+			}
+			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+				printf("Control register Failed\r\n");
+			}
+
+
 		}
 
 		free(tmp_ptr);
@@ -656,9 +653,14 @@ int get_windows( int startWindow, int nmbrofWindows){
 			transfer_data(frame_buf, index);
 		}
 		/* Release the DMA */
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
-		usleep(10);
-		ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
+		  if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
+			printf("Control register Failed\r\n");
+		}
+		if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+			printf("Control register Failed\r\n");
+		}
+
+
 
 	}
 

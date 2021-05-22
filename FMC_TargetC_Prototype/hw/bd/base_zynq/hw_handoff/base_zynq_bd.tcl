@@ -343,13 +343,13 @@ proc create_root_design { parentCell } {
    CONFIG.ARB_ON_MAX_XFERS {1} \
    CONFIG.ARB_ON_TLAST {1} \
    CONFIG.M00_FIFO_DEPTH {16} \
-   CONFIG.M00_FIFO_MODE {1} \
+   CONFIG.M00_FIFO_MODE {0} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {2} \
    CONFIG.S00_FIFO_DEPTH {16} \
-   CONFIG.S00_FIFO_MODE {1} \
+   CONFIG.S00_FIFO_MODE {0} \
    CONFIG.S01_FIFO_DEPTH {16} \
-   CONFIG.S01_FIFO_MODE {1} \
+   CONFIG.S01_FIFO_MODE {0} \
  ] $axis_interconnect_0
 
   # Create instance: processing_system7_0, and set properties

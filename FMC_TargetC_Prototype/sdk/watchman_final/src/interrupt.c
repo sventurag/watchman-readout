@@ -209,9 +209,13 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 	}
 	/* If completion interrupt is asserted, then set RxDone flag */
 	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
-		ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_0);
-		usleep(1);
-		ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_1);
+		if (ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_0) != XST_SUCCESS) {
+			printf("Control register Failed\r\n");
+		}
+		if (ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+			printf("Control register Failed\r\n");
+		}
+
 
 		if(stream_flag || (!empty_flag)){
 
@@ -230,9 +234,16 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 			}
 			XAxiDma_SimpleTransfer_hm((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 		    Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-		  	ControlRegisterWrite(PSBUSY_MASK,DISABLE,  regptr_0);
-		  	usleep(1);
-		  	ControlRegisterWrite(PSBUSY_MASK,DISABLE,  regptr_1);
+
+
+
+
+		    if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
+				printf("Control register Failed\r\n");
+			}
+			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+				printf("Control register Failed\r\n");
+			}
 
 
 			flag_axidma_rx_done = true;

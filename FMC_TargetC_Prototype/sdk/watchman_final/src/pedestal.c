@@ -301,7 +301,7 @@ for (i=0; i<avg; i++ ){
 
          if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
              else { printf("get Windows raw failed\r\n");
-    //     usleep(300);
+         usleep(1);
          }
 
 	}

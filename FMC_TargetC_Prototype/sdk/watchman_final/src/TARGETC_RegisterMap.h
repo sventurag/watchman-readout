@@ -259,10 +259,10 @@
 #define INIT		2
 
 /*** Function prototypes *********************************************/
-void SetTargetCRegisters(int* regptr);
+int SetTargetCRegisters(int* regptr);
 void GetTargetCStatus(int* regptr);
 void GetTargetCControl(int* regptr);
-void ControlRegisterWrite(int mask, int actionID,int* regptr);
+int ControlRegisterWrite(int mask, int actionID,int* regptr);
 void WriteRegister(int regID, int regData,int* regptr);
 void WriteReadBackRegister(int regID, int regData,int* regptr);
 
