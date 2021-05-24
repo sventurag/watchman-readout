@@ -205,6 +205,7 @@ int init_global_var(void){
 	regptr_1 =(int *)XPAR_TARGETC_SYSTEM_1_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_1_BASEADDR;
 
 	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_0[i] = 0;
+	usleep(100);
 	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_1[i] = 0;
     Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
 

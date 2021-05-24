@@ -467,7 +467,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 									}
 
 				free(tmp_ptr);
-				return XST_FAILURE;
+			//	return XST_FAILURE;
 
 			}
 			else{

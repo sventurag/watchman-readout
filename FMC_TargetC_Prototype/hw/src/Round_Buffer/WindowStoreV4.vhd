@@ -341,7 +341,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 
 
 	WriteEn <= 	WriteEn_mult;
-	WdoNumber<= WdoNumber_mult;
+	WdoNumber<= Wdo1;
     Cmd_s<= (others => '0');
 --    Trig <= (others => '0');
 --    counter <= (others => '0');
