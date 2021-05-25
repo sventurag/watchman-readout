@@ -161,12 +161,13 @@ END COMPONENT;
 
 	signal Wdo1:	std_logic_vector(8 downto 0);
     signal WdoNumber:	std_logic_vector(8 downto 0);
+    signal WdoNumber_out:	std_logic_vector(8 downto 0);
 
 	signal CMD_s:	std_logic_vector(10 downto 0);
     signal CMD_s1:	std_logic_vector(10 downto 0);
 
-	signal axi_full_s:	std_logic_vector(3 downto 0);
-	signal axi_empty_s:	std_logic_vector(3 downto 0);
+	signal axi_full_s:	std_logic_vector(2 downto 0);
+	signal axi_empty_s:	std_logic_vector(2 downto 0);
 
 	signal NbrOfPackets_intl : std_logic_vector(7 downto 0);
 	   signal trigger125MHz_s:     std_logic_vector(3 downto 0);
@@ -351,7 +352,7 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
       PORT MAP (
       --  rst => nrst,
         
-        dout => RDAD_DataOut,
+        dout => wdoNumber_out,
         empty => RDAD_Empty,
         rd_en => RDAD_ReadEn,
 --        rd_clk => ClockBus.RDAD_CLK,
@@ -408,22 +409,22 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
  -- FIFO_WdoAddr for  FIFO manager
 
 
-    AXI_WdoAddr_AFIFO : axi_wdo_addr_fifo
-      PORT MAP (
-      --  rst => nrst,
+--    AXI_WdoAddr_AFIFO : axi_wdo_addr_fifo
+--      PORT MAP (
+--      --  rst => nrst,
         
-        dout => AXI_WdoAddr_DataOut,
-        empty => axi_empty_s(2),
-        rd_en => AXI_ReadEn,
---        rd_clk => ClockBus.AXI_CLK,
+--        dout => AXI_WdoAddr_DataOut,
+--        empty => axi_empty_s(2),
+--        rd_en => AXI_ReadEn,
+----        rd_clk => ClockBus.AXI_CLK,
 
         
-        din => WdoNumber,
-        full => axi_full_s(2),
-        wr_en => WriteEn,
-        clk => ClockBus.AXI_CLK
+--        din => WdoNumber,
+--        full => axi_full_s(2),
+--        wr_en => WriteEn,
+--        clk => ClockBus.AXI_CLK
 
-      );
+--      );
     
     
   
@@ -434,13 +435,13 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
     port map (
 
      dout => AXI_TrigInfo_DataOut,
-     empty => axi_empty_s(3),
+     empty => axi_empty_s(2),
      rd_en => AXI_ReadEn,
 --     rd_clk => ClockBus.AXI_CLK,
 
      
      din => TriggerInfo,
-     full => axi_full_s(3),
+     full => axi_full_s(2),
      wr_en => WriteEn,
      clk => ClockBus.AXI_CLK
      );
@@ -448,11 +449,11 @@ multiplex_WdoNumber:	process(ClockBus.CLK125MHz,CtrlBus_IxSL.CPUMode )
 
 
 
-	AXI_empty <= '0' when axi_empty_s = "0000" else '1';
+	AXI_empty <= '0' when axi_empty_s = "000" else '1';
 	NbrOfPackets <= NbrOfPackets_intl;
 	
-	
-	
+	RDAD_DataOut <= WdoNumber_out;
+	AXI_WdoAddr_DataOut <= WdoNumber_out;
 
 	
 end Behavioral;

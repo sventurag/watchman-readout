@@ -16,7 +16,7 @@
 /*** DEFINES *********************************************************/
 /*********************************************************************/
 /** @brief Size of an element given to the DMA for a transfer (32samples * 16ch + header = 518 int32_t)* 2 (TARGETC_0 and TARGETC_1 ) */
-#define SIZE_DATA_ARRAY 	518*2
+#define SIZE_DATA_ARRAY 	1036
 /** @brief SIZE_DATA_ARRAY but in bytes (int32_t is 4 bytes) */
 #define SIZE_DATA_ARRAY_BYT	SIZE_DATA_ARRAY*4
 /** @brief Number of channels per TARGET C*/

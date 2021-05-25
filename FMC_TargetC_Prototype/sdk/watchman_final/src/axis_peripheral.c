@@ -387,7 +387,7 @@ ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
 void startDig(){
 	usleep(10);
 	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 10);
-//	usleep(10);
+	usleep(10);
 	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
 	//usleep(50);
 

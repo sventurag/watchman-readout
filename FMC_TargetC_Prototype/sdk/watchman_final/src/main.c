@@ -317,6 +317,8 @@ int main()
 	if (ControlRegisterWrite((int)NULL,INIT, regptr_0) != XST_SUCCESS) {
 		printf("Control register Failed\r\n");
 	}
+	usleep(100000);
+
 	// software reset PL side
 
 	if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
@@ -339,11 +341,14 @@ int main()
 	}
 
 	/* TC_1 */
+	usleep(100000);
 
 
 	if (ControlRegisterWrite((int)NULL,INIT, regptr_1) != XST_SUCCESS) {
 		printf("Control register Failed\r\n");
 	}
+	usleep(100000);
+
 	// software reset PL side
 
 	if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
@@ -372,6 +377,8 @@ int main()
 			end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
 			return -1;
 		}
+
+		usleep(100000);
 
 		//	 Initialize TargetC's registers
 		if(SetTargetCRegisters(regptr_1) !=XST_SUCCESS){
@@ -686,13 +693,13 @@ int main()
 				break;
 			case GET_PEDESTAL:
 				ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_0);
-		//		usleep(10);
+				usleep(100000);
 				ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
-		//		usleep(10);
+				usleep(100000);
 				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
-		//		usleep(10);
+				usleep(100000);
 				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
-		//		usleep(10);
+				usleep(100000);
 
 
 //				if(get_pedestal(pedestalAvg,nmbrWindowsPed) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);

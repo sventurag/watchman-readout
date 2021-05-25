@@ -356,7 +356,7 @@
 						"ACLK": { "actual": "M_AXIS_ACLK"},
 						"ARESETN": { "actual": "M_AXIS_ARESETN"},
 						"TDATA": { "actual": "M_AXIS_tdata"},
-						"TKEEP": { "actual": "M_AXIS_tkeep[3:0]"},
+						"TKEEP": { "actual": "M_AXIS_tkeep"},
 						"TLAST": { "actual": "M_AXIS_tlast"},
 						"TREADY": { "actual": "M_AXIS_tready"},
 						"TVALID": { "actual": "M_AXIS_tvalid"}
@@ -368,10 +368,10 @@
 						"ACLK": { "actual": "S_AXIS_ACLK"},
 						"ARESETN": { "actual": "S_AXIS_ARESETN"},
 						"TDATA": { "actual": "S_AXIS_tdata"},
-						"TID": { "actual": "S_AXIS_tid[1:0]"},
+						"TID": { "actual": "S_AXIS_tid"},
 						"TLAST": { "actual": "S_AXIS_tlast"},
 						"TREADY": { "actual": "S_AXIS_tready"},
-						"TSTRB": { "actual": "S_AXIS_tstrb[3:0]"},
+						"TSTRB": { "actual": "S_AXIS_tstrb"},
 						"TVALID": { "actual": "S_AXIS_tvalid"}
 					}
 				},
@@ -460,10 +460,10 @@
 						"ACLK": { "actual": "M_AXIS_ACLK"},
 						"ARESETN": { "actual": "M_AXIS_ARESETN"},
 						"TDATA": { "actual": "M_AXIS_tdata"},
-						"TID": { "actual": "M_AXIS_tid[1:0]"},
+						"TID": { "actual": "M_AXIS_tid"},
 						"TLAST": { "actual": "M_AXIS_tlast"},
 						"TREADY": { "actual": "M_AXIS_tready"},
-						"TSTRB": { "actual": "M_AXIS_tstrb[3:0]"},
+						"TSTRB": { "actual": "M_AXIS_tstrb"},
 						"TVALID": { "actual": "M_AXIS_tvalid"}
 					}
 				},
@@ -473,10 +473,10 @@
 						"ACLK": { "actual": "S_AXIS_ACLK"},
 						"ARESETN": { "actual": "S_AXIS_ARESETN"},
 						"TDATA": { "actual": "S_AXIS_tdata"},
-						"TID": { "actual": "S_AXIS_tid[1:0]"},
+						"TID": { "actual": "S_AXIS_tid"},
 						"TLAST": { "actual": "S_AXIS_tlast"},
 						"TREADY": { "actual": "S_AXIS_tready"},
-						"TSTRB": { "actual": "S_AXIS_tstrb[3:0]"},
+						"TSTRB": { "actual": "S_AXIS_tstrb"},
 						"TVALID": { "actual": "S_AXIS_tvalid"}
 					}
 				},
@@ -512,10 +512,10 @@
 						"ACLK": { "actual": "M_AXIS_ACLK"},
 						"ARESETN": { "actual": "M_AXIS_ARESETN"},
 						"TDATA": { "actual": "M_AXIS_tdata"},
-						"TID": { "actual": "M_AXIS_tid[1:0]"},
+						"TID": { "actual": "M_AXIS_tid"},
 						"TLAST": { "actual": "M_AXIS_tlast"},
 						"TREADY": { "actual": "M_AXIS_tready"},
-						"TSTRB": { "actual": "M_AXIS_tstrb[3:0]"},
+						"TSTRB": { "actual": "M_AXIS_tstrb"},
 						"TVALID": { "actual": "M_AXIS_tvalid"}
 					}
 				},
@@ -525,10 +525,10 @@
 						"ACLK": { "actual": "S_AXIS_ACLK"},
 						"ARESETN": { "actual": "S_AXIS_ARESETN"},
 						"TDATA": { "actual": "S_AXIS_tdata"},
-						"TID": { "actual": "S_AXIS_tid[1:0]"},
+						"TID": { "actual": "S_AXIS_tid"},
 						"TLAST": { "actual": "S_AXIS_tlast"},
 						"TREADY": { "actual": "S_AXIS_tready"},
-						"TSTRB": { "actual": "S_AXIS_tstrb[3:0]"},
+						"TSTRB": { "actual": "S_AXIS_tstrb"},
 						"TVALID": { "actual": "S_AXIS_tvalid"}
 					}
 				},

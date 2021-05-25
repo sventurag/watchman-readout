@@ -349,13 +349,17 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 
 		regptr_0[TC_FSTWINDOW_REG] = startWindow;
+		usleep(100000);
 
 		regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
+		usleep(100000);
 
 		regptr_1[TC_FSTWINDOW_REG] = startWindow;
+		usleep(100000);
 
 		regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
 
+		usleep(100000);
 
 		//		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 //		usleep(50);
@@ -492,6 +496,8 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 			  if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 				printf("Control register Failed\r\n");
 			}
+				usleep(100000);
+
 			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
 				printf("Control register Failed\r\n");
 			}
