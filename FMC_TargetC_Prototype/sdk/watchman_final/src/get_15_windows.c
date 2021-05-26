@@ -349,20 +349,20 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 
 
 		regptr_0[TC_FSTWINDOW_REG] = startWindow;
-		usleep(100000);
+//		usleep(100000);
 
 		regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
-		usleep(100000);
+//		usleep(100000);
 
 		regptr_1[TC_FSTWINDOW_REG] = startWindow;
-		usleep(100000);
+//		usleep(100000);
 
 		regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
 
-		usleep(100000);
+//		usleep(100000);
 
 		//		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-//		usleep(50);
+		usleep(50);
 //		ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 		startDig();
 

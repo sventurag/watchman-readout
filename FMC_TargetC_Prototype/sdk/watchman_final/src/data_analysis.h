@@ -91,19 +91,18 @@ typedef struct coordinates_st {
  * @brief Structure of an element of the list which represent a window.
  */
 typedef struct data_axi_st {
-	uint64_t wdo_time; /**< Timestampe of the window */
+	uint64_t wdo_time; /**< Timestamp of the window */
 	uint64_t PL_spare; /**< Spare bits for the development used to return the command send to the round buffer */
 	uint32_t info; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
 	uint32_t wdo_id; /**< ID of the window (0 to 511) */
 	uint32_t data[16][32]; /**< Voltage measured by every sample */
 
-	uint64_t wdo_time_1; /**< Timestampe of the window */
+	uint64_t wdo_time_1; /**< Timestamp of the window */
 	uint64_t PL_spare_1; /**< Spare bits for the development used to return the command send to the round buffer */
 	uint32_t info_1; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
 	uint32_t wdo_id_1; /**< ID of the window (0 to 511) */
 	uint32_t data_1[16][32]; /**< Voltage measured by every sample */
 
-// INCREASE SIZE OF STRUCTURE FOR TWO WINDOWS TARGETC0 and TARGETC1
 } data_axi;
 
 

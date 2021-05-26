@@ -299,10 +299,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {125000000} \
- ] [get_bd_pins /TARGETC_system_0/RDAD_CLK]
-
   # Create instance: TARGETC_system_1, and set properties
   set block_name TARGETC_system
   set block_cell_name TARGETC_system_1
@@ -314,10 +310,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {125000000} \
- ] [get_bd_pins /TARGETC_system_1/RDAD_CLK]
-
   # Create instance: axi_dma_0, and set properties
   set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
   set_property -dict [ list \
@@ -1311,7 +1303,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_system_0_HSCLK_P [get_bd_ports A_HSCLK_P] [get_bd_pins TARGETC_system_0/HSCLK_P]
   connect_bd_net -net TARGETC_system_0_PCLK [get_bd_ports A_PCLK] [get_bd_pins TARGETC_system_0/PCLK]
   connect_bd_net -net TARGETC_system_0_RAMP [get_bd_ports A_RAMP] [get_bd_pins TARGETC_system_0/RAMP]
-  connect_bd_net -net TARGETC_system_0_RDAD_CLK [get_bd_ports A_RDAD_CLK] [get_bd_pins TARGETC_system_0/RDAD_CLK]
+  connect_bd_net -net TARGETC_system_0_RDAD_CLK [get_bd_ports A_RDAD_CLK] [get_bd_pins TARGETC_system_0/RDADCLK]
   connect_bd_net -net TARGETC_system_0_RDAD_DIR [get_bd_ports A_RDAD_DIR] [get_bd_pins TARGETC_system_0/RDAD_DIR]
   connect_bd_net -net TARGETC_system_0_RDAD_SIN [get_bd_ports A_RDAD_SIN] [get_bd_pins TARGETC_system_0/RDAD_SIN]
   connect_bd_net -net TARGETC_system_0_SAMPLESEL_ANY [get_bd_ports A_SAMPLESEL_ANY] [get_bd_pins TARGETC_system_0/SAMPLESEL_ANY]
@@ -1339,7 +1331,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_system_1_HSCLK_P [get_bd_ports B_HSCLK_P] [get_bd_pins TARGETC_system_1/HSCLK_P]
   connect_bd_net -net TARGETC_system_1_PCLK [get_bd_ports B_PCLK] [get_bd_pins TARGETC_system_1/PCLK]
   connect_bd_net -net TARGETC_system_1_RAMP [get_bd_ports B_RAMP] [get_bd_pins TARGETC_system_1/RAMP]
-  connect_bd_net -net TARGETC_system_1_RDAD_CLK [get_bd_ports B_RDAD_CLK] [get_bd_pins TARGETC_system_1/RDAD_CLK]
+  connect_bd_net -net TARGETC_system_1_RDAD_CLK [get_bd_ports B_RDAD_CLK]
   connect_bd_net -net TARGETC_system_1_RDAD_DIR [get_bd_ports B_RDAD_DIR] [get_bd_pins TARGETC_system_1/RDAD_DIR]
   connect_bd_net -net TARGETC_system_1_RDAD_SIN [get_bd_ports B_RDAD_SIN] [get_bd_pins TARGETC_system_1/RDAD_SIN]
   connect_bd_net -net TARGETC_system_1_SAMPLESEL_ANY [get_bd_ports B_SAMPLESEL_ANY] [get_bd_pins TARGETC_system_1/SAMPLESEL_ANY]

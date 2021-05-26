@@ -83,7 +83,7 @@ entity TARGETC_system is
 
 		GCC_RESET:		out	std_logic;		-- Pin#56
 
-		RDAD_CLK:		out	std_logic;		-- Pin#61
+		RDADCLK:		out	std_logic;		-- Pin#61
 		RDAD_SIN:		out	std_logic;		-- Pin#62
 		RDAD_DIR:		out	std_logic;		-- Pin#63
 
@@ -169,7 +169,7 @@ architecture arch_imp of TARGETC_system is
 	component TC_ClockManagementV3 is
 	port (
 	-- TARGET C Ports for control and function
-		nrst:			in	std_logic;
+--		nrst:			in	std_logic;
 		clk1:			in 	std_logic;	-- Clock for the TARGETC SCLK
 		axi_clk:		in	std_logic;
 		SSTIN:          in  std_logic;
@@ -282,7 +282,7 @@ architecture arch_imp of TARGETC_system is
 		ClockBus:		in T_ClockBus;
 		--TimeCounter:	in std_logic_vector(63 downto 0);
 
-		RDAD_CLK:		out	std_logic;		-- Pin#61
+		RDADCLK:		out	std_logic;		-- Pin#61
 		RDAD_SIN:		out	std_logic;		-- Pin#62
 		RDAD_DIR:		out	std_logic;		-- Pin#63
 
@@ -536,7 +536,7 @@ begin
     port map(
     
          
-		nrst      		=>  	aresetn,
+--		nrst      		=>  	aresetn,
 		clk1			=> 	RefCLK_i1,
 		
 		axi_clk 		=> 	tc_axi_aclk,
@@ -662,7 +662,7 @@ begin
 
 		ClockBus	=> ClockBus_intl,
 		--TimeCounter	=> timecounter_intl,
-		RDAD_CLK		=> RDAD_CLK,
+		RDADCLK		=> RDADCLK,
 		RDAD_SIN		=> RDAD_SIN,
 		RDAD_DIR		=> RDAD_DIR,
 

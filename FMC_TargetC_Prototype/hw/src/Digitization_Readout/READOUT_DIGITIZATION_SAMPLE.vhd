@@ -13,7 +13,7 @@ entity TARGETC_RDAD_WL_SMPL is
 	ClockBus:		in T_ClockBus;
 	--TimeCounter:	in std_logic_vector(63 downto 0);
 
-	RDAD_CLK:		out	std_logic;		-- Pin#61
+	RDADCLK:		out	std_logic;		-- Pin#61
 	RDAD_SIN:		out	std_logic;		-- Pin#62
 	RDAD_DIR:		out	std_logic;		-- Pin#63
 
@@ -563,7 +563,7 @@ begin
 	end process;
 
 
-	RDAD_CLK 	<= RDAD_CLK_intl;
+	RDADCLK 	<= RDAD_CLK_intl;
 	RDAD_SIN 	<= RDAD_SIN_intl;
 	RDAD_DIR 	<= RDAD_DIR_intl;
 

@@ -10,7 +10,7 @@ entity TC_ClockManagementV3 is
 
 	port (
 	-- TARGET C Ports for control and function
-		nrst:			in	std_logic;
+--		nrst:			in	std_logic;
 		clk1:			in 	std_logic;	-- Clock for the TARGETC SCLK
 		AXI_Clk:		in	std_logic;
 
@@ -128,7 +128,7 @@ begin
         ClockBus.SCLK     <= clk1;
         ClockBus.HSCLK    <= clk1;
         ClockBus.WL_CLK    <= clk1;
-        ClockBus.RDAD_CLK<= clk1;
+        ClockBus.RDAD_CLK<= AXI_CLK;
         
         ClockBus.CLK125MHz    <= clk1;
         ClockBus.SSTIN    <= SSTIN;

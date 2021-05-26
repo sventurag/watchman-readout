@@ -3,7 +3,7 @@ tcpdump: listening on enx0050b67c1322, link-type EN10MB (Ethernet), capture size
 0 packets received by filter
 0 packets dropped by kernel
 run_tcpdump_on_local_machine - start
-run_tcpdump_on_local_machine - about to create capture with name:/home/salvador/salvador_fork/watchman-readout/GUI/traffic_2021-05-24_19:49:09.pcap
+run_tcpdump_on_local_machine - about to create capture with name:/home/salvador/salvador_fork/watchman-readout/GUI/traffic_2021-05-26_08:29:45.pcap
 run_tcpdump_on_local_machine - end
 Traceback (most recent call last):
   File "/usr/local/lib/python3.6/dist-packages/scapy/utils.py", line 885, in __call__
