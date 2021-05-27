@@ -47,7 +47,7 @@ extern volatile bool flag_while_loop;
 /** @brief Array of flag, one for each PMT */
 extern int flag_axidma_rx[4];
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
+//extern int* regptr;
 /** @brief Flag raised when the user send the command "get transfer function" */
 extern volatile bool get_transfer_fct_flag;
 /** @brief Flag raised when the user send the command "get windows" */
@@ -110,7 +110,7 @@ extern int nmbrWindowsPed;
 
  extern int *regptr_0;
 
- extern int *regptr_1;
+// extern int *regptr_1;
 
 /*********************** Global variables ****************/
 /*********************************************************/
@@ -344,31 +344,31 @@ int main()
 	usleep(100000);
 
 
-	if (ControlRegisterWrite((int)NULL,INIT, regptr_1) != XST_SUCCESS) {
-		printf("Control register Failed\r\n");
-	}
-	usleep(100000);
+//	if (ControlRegisterWrite((int)NULL,INIT, regptr_1) != XST_SUCCESS) {
+//		printf("Control register Failed\r\n");
+//	}
+//	usleep(100000);
 
 	// software reset PL side
 
-	if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-		printf("Control register Failed\r\n");
-	}
+//	if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//		printf("Control register Failed\r\n");
+//	}
 	usleep(100000);
 	// Reset TargetC's registers
-	if (ControlRegisterWrite(REGCLR_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-		printf("Control register Failed\r\n");
-	}
+//	if (ControlRegisterWrite(REGCLR_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//		printf("Control register Failed\r\n");
+//	}
 	usleep(100000);
-	if (ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
-		printf("Control register Failed\r\n");
-	}
+//	if (ControlRegisterWrite(SWRESET_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+//		printf("Control register Failed\r\n");
+//	}
 	usleep(1000);
 
 
-	while((regptr_1[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
-		sleep(1); //sleep 100ms
-	}
+//	while((regptr_1[TC_STATUS_REG] & LOCKED_MASK) != LOCKED_MASK){
+//		sleep(1); //sleep 100ms
+//	}
 
 
 	printf("PL's clock ready\r\n");
@@ -381,10 +381,10 @@ int main()
 		usleep(100000);
 
 		//	 Initialize TargetC's registers
-		if(SetTargetCRegisters(regptr_1) !=XST_SUCCESS){
-			end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
-			return -1;
-		}
+//		if(SetTargetCRegisters(regptr_1) !=XST_SUCCESS){
+//			end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "TestPattern Generator failed!");
+//			return -1;
+//		}
 
 	printf("sleep to set the debug core\r\n");
 	sleep(1);
@@ -480,9 +480,9 @@ int main()
 					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 						printf("Control register Failed\r\n");
 					}
-					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-						printf("Control register Failed\r\n");
-					}
+//					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//						printf("Control register Failed\r\n");
+//					}
 
 
 
@@ -492,9 +492,9 @@ int main()
 					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 						printf("Control register Failed\r\n");
 					}
-					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-						printf("Control register Failed\r\n");
-					}
+//					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//						printf("Control register Failed\r\n");
+//					}
 
 					state_main = GET_WINDOWS;
 				}
@@ -502,18 +502,18 @@ int main()
 					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 						printf("Control register Failed\r\n");
 					}
-					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-						printf("Control register Failed\r\n");
-					}
+//					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//						printf("Control register Failed\r\n");
+//					}
 					state_main = GET_PEDESTAL;
 				}
 				if(restart_flag){
 					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 						printf("Control register Failed\r\n");
 					}
-					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-						printf("Control register Failed\r\n");
-					}
+//					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//						printf("Control register Failed\r\n");
+//					}
 								printf("restarting at idle\r\n");
 								state_main = RESTART;
 							}
@@ -521,9 +521,9 @@ int main()
 					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 						printf("Control register Failed\r\n");
 					}
-					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-						printf("Control register Failed\r\n");
-					}
+//					if (ControlRegisterWrite(CPUMODE_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//						printf("Control register Failed\r\n");
+//					}
 
 						state_main = GET_WINDOWS_RAW;
 					}
@@ -536,9 +536,9 @@ int main()
 					if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 						printf ("Control register Failed\r\n");
 					}
-					if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-						printf("Control register Failed\r\n");
-					}
+//					if (ControlRegisterWrite(SWRESET_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//						printf("Control register Failed\r\n");
+//					}
 
 					state_main = IDLE;
 				}
@@ -546,23 +546,23 @@ int main()
 				if (ControlRegisterWrite(SMODE_MASK,ENABLE, regptr_0) != XST_SUCCESS) {
 					printf("Control register Failed\r\n");
 				}
-				if (ControlRegisterWrite(SMODE_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
-					printf("Control register Failed\r\n");
-				}
+//				if (ControlRegisterWrite(SMODE_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+//					printf("Control register Failed\r\n");
+//				}
 
 				if (ControlRegisterWrite(SS_TPG_MASK,ENABLE, regptr_0) != XST_SUCCESS) {
 					printf("Control register Failed\r\n");
 				}
-				if (ControlRegisterWrite(SS_TPG_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
-					printf("Control register Failed\r\n");
-				}
+//				if (ControlRegisterWrite(SS_TPG_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+//					printf("Control register Failed\r\n");
+//				}
 
 				if (ControlRegisterWrite(CPUMODE_MASK,ENABLE, regptr_0) != XST_SUCCESS) {
 					printf("Control register Failed\r\n");
 				}
-				if (ControlRegisterWrite(CPUMODE_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
-					printf("Control register Failed\r\n");
-				}
+//				if (ControlRegisterWrite(CPUMODE_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+//					printf("Control register Failed\r\n");
+//				}
 
 
 				usleep(100);
@@ -596,9 +596,9 @@ int main()
 			     if (ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_0) != XST_SUCCESS) {   //register for starting the round buffer in trigger mode
 					printf("Control register Failed\r\n");
 			     }
-			     if (ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
-					printf("Control register Failed\r\n");
-			     }
+//			     if (ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+//					printf("Control register Failed\r\n");
+//			     }
 
 
 				 Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
@@ -694,12 +694,12 @@ int main()
 			case GET_PEDESTAL:
 				ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_0);
 				usleep(100000);
-				ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
+//				ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
 				usleep(100000);
 				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
 				usleep(100000);
-				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
-				usleep(100000);
+//				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
+//				usleep(100000);
 
 
 //				if(get_pedestal(pedestalAvg,nmbrWindowsPed) == XST_SUCCESS) printf("Pedestal pass! pedestalAvg= %d,nmbrWindowsPed = %d, \r\n", pedestalAvg, nmbrWindowsPed);

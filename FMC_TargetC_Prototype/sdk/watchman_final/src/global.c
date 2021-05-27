@@ -64,7 +64,7 @@ char* frame_buf_cmd;
 /** @brief Array containing registers of AXI-lite for TARGETC_0 */
 int* regptr_0;
 /** @brief Array containing registers of AXI-lite TARGETC_1 */
-int* regptr_1;
+//int* regptr_1;
 /** @brief Array containing the pedestal correction for every sample */
 uint32_t  pedestal[512][16][32];
 /** @brief Array containing the pedestal correction for every sample TARGETC_0 */
@@ -202,11 +202,12 @@ int init_global_var(void){
 	frame_buf_cmd = &frame_buf_cmd_tmp[BUF_HEADER_SIZE];
 	regptr_0 = (int *)XPAR_TARGETC_SYSTEM_0_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_0_BASEADDR;
 	usleep(10);
-	regptr_1 =(int *)XPAR_TARGETC_SYSTEM_1_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_1_BASEADDR;
+//	regptr_1 =(int *)XPAR_TARGETC_SYSTEM_1_BASEADDR ; //XPAR_TARGETC_INTERFACE_IP_1_BASEADDR;
 
 	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_0[i] = 0;
 	usleep(100);
-	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_1[i] = 0;
+//	for(i = TC_VDLYTUNE_REG; i<= LAST_REGISTER_ADDR; i++) regptr_1[i] = 0;
+
     Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
 
 	return XST_SUCCESS;

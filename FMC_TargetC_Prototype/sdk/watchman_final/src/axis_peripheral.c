@@ -32,7 +32,7 @@ extern XScuWdt WdtScuInstance;
 /** @brief Array containing registers of AXI-lite for TARGETC_0 */
 extern int* regptr_0;
 /** @brief Array containing registers of AXI-lite TARGETC_1 */
-extern int* regptr_1;
+//extern int* regptr_1;
 
 /****************************************************************************/
 /**
@@ -235,8 +235,8 @@ int test_TPG(void){
 //	regptr_0[TC_Delay_UpdateWR] = 0;
     usleep(10);
 	/* Initiate the test */
-	regptr_1[TC_FSTWINDOW_REG] = 0;
-	regptr_1[TC_NBRWINDOW_REG] = 1;
+//	regptr_1[TC_FSTWINDOW_REG] = 0;
+//	regptr_1[TC_NBRWINDOW_REG] = 1;
     usleep(10);
 
 //	regptr_1[TC_Delay_UpdateWR] = 0;
@@ -244,7 +244,7 @@ int test_TPG(void){
 
 	WriteRegister(TC_TPG_REG,	0x50A, regptr_0);	// TPG value
 	usleep(10);
-	WriteRegister(TC_TPG_REG,	0x50A, regptr_1);	// TPG value
+//	WriteRegister(TC_TPG_REG,	0x50A, regptr_1);	// TPG value
 	usleep(10);
 
 
@@ -252,8 +252,8 @@ int test_TPG(void){
 	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_0);
 	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr_0); // Enable mode TestPattern
 	usleep(10);
-	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_1);
-	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr_1); // Enable mode TestPattern
+//	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_1);
+//	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr_1); // Enable mode TestPattern
 	usleep(10);
 	//	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 //	usleep(50);
@@ -333,43 +333,43 @@ int test_TPG(void){
 	}
 
 
-	/* Test the returned values */
-	if((uint16_t)tmp_ptr->data_struct.wdo_id_1 == 0){
-		for(j=0; j<32; j++){
-			for(i=0; i<16; i++){
-				if((uint16_t)tmp_ptr->data_struct.data_1[i][j] != 0x50A){
-					/* Returned values wrong */
-					printf("wdo_time: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_time_1);
-					printf("PL_spare: %d\r\n", (uint16_t)tmp_ptr->data_struct.PL_spare_1);
-					printf("info: 0x%X\r\n", (uint16_t)tmp_ptr->data_struct.info_1);
-					printf("wdo_id: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_id_1);
-					for(j=0; j<32; j++){
-						for(i=0; i<16; i++){
-							printf("%d\t", (uint16_t)tmp_ptr->data_struct.data_1[i][j]);
-						}
-						printf("\r\n");
-					}
-					printf("TPG failed: data_1 wrong!\r\n");
-					return XST_FAILURE;
-				}
-			}
-		}
-	}
-	else{
-		/* Window ID wrong */
-		printf("wdo_time: %d\r\n", (uint)tmp_ptr->data_struct.wdo_time_1);
-		printf("PL_spare: %d\r\n", (uint)tmp_ptr->data_struct.PL_spare_1);
-		printf("info: 0x%X\r\n", (uint16_t)tmp_ptr->data_struct.info_1);
-		printf("wdo_id: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_id_1);
-		for(j=0; j<32; j++){
-			for(i=0; i<16; i++){
-				printf("%d\t", (uint16_t)tmp_ptr->data_struct.data_1[i][j]);
-			}
-			printf("\r\n");
-		}
-		printf("TPG failed: window id_1 wrong!\r\n");
-		return XST_FAILURE;
-	}
+//	/* Test the returned values */
+//	if((uint16_t)tmp_ptr->data_struct.wdo_id_1 == 0){
+//		for(j=0; j<32; j++){
+//			for(i=0; i<16; i++){
+//				if((uint16_t)tmp_ptr->data_struct.data_1[i][j] != 0x50A){
+//					/* Returned values wrong */
+//					printf("wdo_time: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_time_1);
+//					printf("PL_spare: %d\r\n", (uint16_t)tmp_ptr->data_struct.PL_spare_1);
+//					printf("info: 0x%X\r\n", (uint16_t)tmp_ptr->data_struct.info_1);
+//					printf("wdo_id: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_id_1);
+//					for(j=0; j<32; j++){
+//						for(i=0; i<16; i++){
+//							printf("%d\t", (uint16_t)tmp_ptr->data_struct.data_1[i][j]);
+//						}
+//						printf("\r\n");
+//					}
+//					printf("TPG failed: data_1 wrong!\r\n");
+//					return XST_FAILURE;
+//				}
+//			}
+//		}
+//	}
+//	else{
+//		/* Window ID wrong */
+//		printf("wdo_time: %d\r\n", (uint)tmp_ptr->data_struct.wdo_time_1);
+//		printf("PL_spare: %d\r\n", (uint)tmp_ptr->data_struct.PL_spare_1);
+//		printf("info: 0x%X\r\n", (uint16_t)tmp_ptr->data_struct.info_1);
+//		printf("wdo_id: %d\r\n", (uint16_t)tmp_ptr->data_struct.wdo_id_1);
+//		for(j=0; j<32; j++){
+//			for(i=0; i<16; i++){
+//				printf("%d\t", (uint16_t)tmp_ptr->data_struct.data_1[i][j]);
+//			}
+//			printf("\r\n");
+//		}
+//		printf("TPG failed: window id_1 wrong!\r\n");
+//		return XST_FAILURE;
+//	}
 
 
 	free(tmp_ptr);
@@ -377,7 +377,7 @@ int test_TPG(void){
 	/* Release the DMA */
 	ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0);
 usleep(1);
-ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
+//ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
 
 	return XST_SUCCESS;
 }
@@ -387,7 +387,7 @@ ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1);
 void startDig(){
 	usleep(10);
 	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 10);
-	usleep(10);
+	usleep(50);
 	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
 	//usleep(50);
 

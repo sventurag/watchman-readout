@@ -334,13 +334,13 @@ proc create_root_design { parentCell } {
    CONFIG.ARB_ALGORITHM {1} \
    CONFIG.ARB_ON_MAX_XFERS {1} \
    CONFIG.ARB_ON_TLAST {1} \
-   CONFIG.M00_FIFO_DEPTH {16} \
+   CONFIG.M00_FIFO_DEPTH {64} \
    CONFIG.M00_FIFO_MODE {0} \
    CONFIG.NUM_MI {1} \
    CONFIG.NUM_SI {2} \
-   CONFIG.S00_FIFO_DEPTH {16} \
+   CONFIG.S00_FIFO_DEPTH {32} \
    CONFIG.S00_FIFO_MODE {0} \
-   CONFIG.S01_FIFO_DEPTH {16} \
+   CONFIG.S01_FIFO_DEPTH {32} \
    CONFIG.S01_FIFO_MODE {0} \
  ] $axis_interconnect_0
 
@@ -1331,7 +1331,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_system_1_HSCLK_P [get_bd_ports B_HSCLK_P] [get_bd_pins TARGETC_system_1/HSCLK_P]
   connect_bd_net -net TARGETC_system_1_PCLK [get_bd_ports B_PCLK] [get_bd_pins TARGETC_system_1/PCLK]
   connect_bd_net -net TARGETC_system_1_RAMP [get_bd_ports B_RAMP] [get_bd_pins TARGETC_system_1/RAMP]
-  connect_bd_net -net TARGETC_system_1_RDAD_CLK [get_bd_ports B_RDAD_CLK]
+  connect_bd_net -net TARGETC_system_1_RDAD_CLK [get_bd_ports B_RDAD_CLK] [get_bd_pins TARGETC_system_1/RDADCLK]
   connect_bd_net -net TARGETC_system_1_RDAD_DIR [get_bd_ports B_RDAD_DIR] [get_bd_pins TARGETC_system_1/RDAD_DIR]
   connect_bd_net -net TARGETC_system_1_RDAD_SIN [get_bd_ports B_RDAD_SIN] [get_bd_pins TARGETC_system_1/RDAD_SIN]
   connect_bd_net -net TARGETC_system_1_SAMPLESEL_ANY [get_bd_ports B_SAMPLESEL_ANY] [get_bd_pins TARGETC_system_1/SAMPLESEL_ANY]

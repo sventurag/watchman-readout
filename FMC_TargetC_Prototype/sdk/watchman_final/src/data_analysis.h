@@ -16,7 +16,7 @@
 /*** DEFINES *********************************************************/
 /*********************************************************************/
 /** @brief Size of an element given to the DMA for a transfer (32samples * 16ch + header = 518 int32_t)* 2 (TARGETC_0 and TARGETC_1 ) */
-#define SIZE_DATA_ARRAY 	1036
+#define SIZE_DATA_ARRAY 	518 // Just one TC
 /** @brief SIZE_DATA_ARRAY but in bytes (int32_t is 4 bytes) */
 #define SIZE_DATA_ARRAY_BYT	SIZE_DATA_ARRAY*4
 /** @brief Number of channels per TARGET C*/
@@ -96,12 +96,12 @@ typedef struct data_axi_st {
 	uint32_t info; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
 	uint32_t wdo_id; /**< ID of the window (0 to 511) */
 	uint32_t data[16][32]; /**< Voltage measured by every sample */
-
-	uint64_t wdo_time_1; /**< Timestamp of the window */
-	uint64_t PL_spare_1; /**< Spare bits for the development used to return the command send to the round buffer */
-	uint32_t info_1; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
-	uint32_t wdo_id_1; /**< ID of the window (0 to 511) */
-	uint32_t data_1[16][32]; /**< Voltage measured by every sample */
+//
+//	uint64_t wdo_time_1; /**< Timestamp of the window */
+//	uint64_t PL_spare_1; /**< Spare bits for the development used to return the command send to the round buffer */
+//	uint32_t info_1; /**< Information about the window, bits 0-3 TRIG bits | bits 4-7 LAST bits | bits 8-11 TOO_LONG bits (use the defines to access correctly these bits) */
+//	uint32_t wdo_id_1; /**< ID of the window (0 to 511) */
+//	uint32_t data_1[16][32]; /**< Voltage measured by every sample */
 
 } data_axi;
 

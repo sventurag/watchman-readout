@@ -52,7 +52,7 @@ extern uint32_t  data_raw_1[512][16][32];
 /** @brief Array containing registers of AXI-lite for TARGETC_0 */
 extern int* regptr_0;
 /** @brief Array containing registers of AXI-lite TARGETC_1 */
-extern int* regptr_1;
+//extern int* regptr_1;
 
 /****************************************************************************/
 /**
@@ -102,11 +102,11 @@ int PulseRange(){
 int fstWindow;
 ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_0);
 usleep(10);
-ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
+//ControlRegisterWrite(SMODE_MASK ,ENABLE,  regptr_1);
 usleep(10);
 ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
 usleep(10);
-ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
+//ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
 usleep(10);
 
 
@@ -171,22 +171,24 @@ int SendWindows(int firstWindow, int numWindows){
 //	 XAxiDma_SimpleTransfer_hm((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
 //	 Xil_DCacheInvalidateRange((UINTPTR)tmp_ptr->data.data_array, SIZE_DATA_ARRAY_BYT);
    // usleep(10);
+	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr_0);
+	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
 	/* Initiate transfer and measure */
 	regptr_0[TC_FSTWINDOW_REG] = firstWindow;
 	usleep(1);
 	regptr_0[TC_NBRWINDOW_REG] = numWindows;
 	usleep(1);
-	regptr_1[TC_FSTWINDOW_REG] = firstWindow;
-	usleep(1);
-	regptr_1[TC_NBRWINDOW_REG] = numWindows;
+//	regptr_1[TC_FSTWINDOW_REG] = firstWindow;
+//	usleep(1);
+//	regptr_1[TC_NBRWINDOW_REG] = numWindows;
 	usleep(1);
 
 	//	ControlRegisterWrite(SMODE_MASK ,ENABLE);
 //	ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-//	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-//	usleep(1);
-//	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
-	//usleep(1);
+	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr_0);
+	usleep(1);
+	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr_0); // PL side starts on falling edge
+	usleep(1);
 	startDig();
 	for(window =firstWindow ; window<numWindows+firstWindow; window++){
 
@@ -271,18 +273,18 @@ int SendWindows(int firstWindow, int numWindows){
 
 				}
 
-
-				for(int k=0; k<32; k++){
-					/* Pedestal subtraction */
-					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data_1[channel][k]); //-  pedestal_1[window][channel][k]+ offset_avoid_negative);
-
-					frame_buf[index++] = (char)data_tmp;
-				    //printf("int_number = %d\r\n ", (char)(int_number));
-
-					frame_buf[index++] = (char)(data_tmp >> 8);
-					//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
-
-				}
+//
+//				for(int k=0; k<32; k++){
+//					/* Pedestal subtraction */
+//					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data_1[channel][k]); //-  pedestal_1[window][channel][k]+ offset_avoid_negative);
+//
+//					frame_buf[index++] = (char)data_tmp;
+//				    //printf("int_number = %d\r\n ", (char)(int_number));
+//
+//					frame_buf[index++] = (char)(data_tmp >> 8);
+//					//printf("int_number >> 8 = %d\r\n", (char)((int_number >> 8)));
+//
+//				}
 
 
 				//printf("\r\n");
@@ -298,9 +300,9 @@ int SendWindows(int firstWindow, int numWindows){
 		  if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 			printf("Control register Failed\r\n");
 		}
-		if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-			printf("Control register Failed\r\n");
-		}
+//		if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//			printf("Control register Failed\r\n");
+//		}
 
 
 	}
@@ -354,10 +356,10 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 		regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
 //		usleep(100000);
 
-		regptr_1[TC_FSTWINDOW_REG] = startWindow;
-//		usleep(100000);
-
-		regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
+//		regptr_1[TC_FSTWINDOW_REG] = startWindow;
+////		usleep(100000);
+//
+//		regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
 
 //		usleep(100000);
 
@@ -418,19 +420,19 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 					printf("\r\n");
 				}
 
-				printf("\r\nwindow = %d\r\n", window);
-				printf("wdo_time_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time_1);
-				printf("PL_spare_1: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare_1);
-				printf("info_1: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info_1);
-				printf("wdo_id_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id_1);
+//				printf("\r\nwindow = %d\r\n", window);
+//				printf("wdo_time_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time_1);
+//				printf("PL_spare_1: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare_1);
+//				printf("info_1: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info_1);
+//				printf("wdo_id_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id_1);
 
-				for(j=0; j<32; j++){
-									for(i=0; i<16; i++){
-										printf("%d\t", (uint)tmp_ptr->data.data_struct.data_1[i][j]);
-										printf("Timeout on window %d: get 20 windows failed!\r\n", window);
-					}
-									printf("\r\n");
-								}
+//				for(j=0; j<32; j++){
+//									for(i=0; i<16; i++){
+//										printf("%d\t", (uint)tmp_ptr->data.data_struct.data_1[i][j]);
+//										printf("Timeout on window %d: get 20 windows failed!\r\n", window);
+//					}
+//									printf("\r\n");
+//								}
 
 
 
@@ -457,18 +459,18 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 						printf("\r\n");
 					}
 
-					printf("\r\nwindow = %d\r\n", window);
-					printf("wdo_time_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time_1);
-					printf("PL_spare_1: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare_1);
-					printf("info_1: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info_1);
-					printf("wdo_id_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id_1);
+//					printf("\r\nwindow = %d\r\n", window);
+//					printf("wdo_time_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_time_1);
+//					printf("PL_spare_1: %d\r\n", (uint)tmp_ptr->data.data_struct.PL_spare_1);
+//					printf("info_1: 0x%X\r\n", (uint)tmp_ptr->data.data_struct.info_1);
+//					printf("wdo_id_1: %d\r\n", (uint)tmp_ptr->data.data_struct.wdo_id_1);
 
-					for(j=0; j<32; j++){
-										for(i=0; i<16; i++){
-											printf("%d\t", (uint)tmp_ptr->data.data_struct.data_1[i][j]);
-										}
-										printf("\r\n");
-									}
+//					for(j=0; j<32; j++){
+//										for(i=0; i<16; i++){
+//											printf("%d\t", (uint)tmp_ptr->data.data_struct.data_1[i][j]);
+//										}
+//										printf("\r\n");
+//									}
 
 				free(tmp_ptr);
 			//	return XST_FAILURE;
@@ -480,7 +482,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						data_raw_0[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
-						data_raw_1[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data_1[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
+//						data_raw_1[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data_1[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
 
 						//         if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
                 //        	printf("Value= 0");
@@ -498,9 +500,9 @@ int get_windowsRaw(int startWindow, int nmbrofWindows){
 			}
 				usleep(100000);
 
-			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-				printf("Control register Failed\r\n");
-			}
+//			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//				printf("Control register Failed\r\n");
+//			}
 
 
 		}
@@ -556,10 +558,10 @@ int get_windows( int startWindow, int nmbrofWindows){
 	usleep(10);
 	regptr_0[TC_NBRWINDOW_REG] = nmbrofWindows;
 	usleep(10);
-	regptr_1[TC_FSTWINDOW_REG] = startWindow;
-	usleep(10);
-	regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
-	usleep(10);
+//	regptr_1[TC_FSTWINDOW_REG] = startWindow;
+//	usleep(10);
+//	regptr_1[TC_NBRWINDOW_REG] = nmbrofWindows;
+//	usleep(10);
 //	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_0);
 //	ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr_1);
 //	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
@@ -662,9 +664,9 @@ int get_windows( int startWindow, int nmbrofWindows){
 		  if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 			printf("Control register Failed\r\n");
 		}
-		if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-			printf("Control register Failed\r\n");
-		}
+//		if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//			printf("Control register Failed\r\n");
+//		}
 
 
 

@@ -57,7 +57,7 @@ extern data_list* last_element;
 extern InboundRingManager_t inboundRingManager;
 
 extern int * regptr_0;
-extern int * regptr_1;
+//extern int * regptr_1;
 
 /****************************************************************************/
 /**
@@ -212,9 +212,9 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		if (ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_0) != XST_SUCCESS) {
 			printf("Control register Failed\r\n");
 		}
-		if (ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
-			printf("Control register Failed\r\n");
-		}
+//		if (ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_1) != XST_SUCCESS) {
+//			printf("Control register Failed\r\n");
+//		}
 
 
 		if(stream_flag || (!empty_flag)){
@@ -241,9 +241,9 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 		    if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_0) != XST_SUCCESS) {
 				printf("Control register Failed\r\n");
 			}
-			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
-				printf("Control register Failed\r\n");
-			}
+//			if (ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr_1) != XST_SUCCESS) {
+//				printf("Control register Failed\r\n");
+//			}
 
 
 			flag_axidma_rx_done = true;
