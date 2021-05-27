@@ -206,11 +206,11 @@ ARCHITECTURE base_zynq_TARGET_C_TopLevel_Sy_0_1_arch OF base_zynq_TARGET_C_TopLe
     );
   END COMPONENT TARGET_C_TopLevel_System;
   ATTRIBUTE X_CORE_INFO : STRING;
-  ATTRIBUTE X_CORE_INFO OF base_zynq_TARGET_C_TopLevel_Sy_0_1_arch: ARCHITECTURE IS "TARGET_C_TopLevel_System,Vivado 2020.1";
+  ATTRIBUTE X_CORE_INFO OF base_zynq_TARGET_C_TopLevel_Sy_0_1_arch: ARCHITECTURE IS "TARGET_C_TopLevel_System,Vivado 2020.2";
   ATTRIBUTE CHECK_LICENSE_TYPE : STRING;
   ATTRIBUTE CHECK_LICENSE_TYPE OF base_zynq_TARGET_C_TopLevel_Sy_0_1_arch : ARCHITECTURE IS "base_zynq_TARGET_C_TopLevel_Sy_0_1,TARGET_C_TopLevel_System,{}";
   ATTRIBUTE CORE_GENERATION_INFO : STRING;
-  ATTRIBUTE CORE_GENERATION_INFO OF base_zynq_TARGET_C_TopLevel_Sy_0_1_arch: ARCHITECTURE IS "base_zynq_TARGET_C_TopLevel_Sy_0_1,TARGET_C_TopLevel_System,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=TARGET_C_TopLevel_System,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED}";
+  ATTRIBUTE CORE_GENERATION_INFO OF base_zynq_TARGET_C_TopLevel_Sy_0_1_arch: ARCHITECTURE IS "base_zynq_TARGET_C_TopLevel_Sy_0_1,TARGET_C_TopLevel_System,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=module_ref,x_ipName=TARGET_C_TopLevel_System,x_ipVersion=1.0,x_ipCoreRevision=1,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED}";
   ATTRIBUTE IP_DEFINITION_SOURCE : STRING;
   ATTRIBUTE IP_DEFINITION_SOURCE OF base_zynq_TARGET_C_TopLevel_Sy_0_1_arch: ARCHITECTURE IS "module_ref";
   ATTRIBUTE X_INTERFACE_INFO : STRING;

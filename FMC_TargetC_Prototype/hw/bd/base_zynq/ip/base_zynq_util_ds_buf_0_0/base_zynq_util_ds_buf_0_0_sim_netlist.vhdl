@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 17 14:14:29 2021
--- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Thu Apr 22 05:40:08 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_sim_netlist.vhdl
+--               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_sim_netlist.vhdl
 -- Design      : base_zynq_util_ds_buf_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z020clg400-1
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -51,6 +51,7 @@ entity base_zynq_util_ds_buf_0_0_util_ds_buf is
     OBUFDS_GTE5_ADV_I : in STD_LOGIC_VECTOR ( 3 downto 0 );
     OBUFDS_GTE5_ADV_O : out STD_LOGIC_VECTOR ( 0 to 0 );
     OBUFDS_GTE5_ADV_OB : out STD_LOGIC_VECTOR ( 0 to 0 );
+    OBUFDS_GTE5_ADV_RXRECCLKSEL : in STD_LOGIC_VECTOR ( 1 downto 0 );
     OBUFDS_GTE3_CEB : in STD_LOGIC_VECTOR ( 0 to 0 );
     OBUFDS_GTE3_I : in STD_LOGIC_VECTOR ( 0 to 0 );
     OBUFDS_GTE3_O : out STD_LOGIC_VECTOR ( 0 to 0 );
@@ -95,13 +96,16 @@ entity base_zynq_util_ds_buf_0_0_util_ds_buf is
     OBUFDS_GTME5_ADV_I : in STD_LOGIC_VECTOR ( 3 downto 0 );
     OBUFDS_GTME5_ADV_O : out STD_LOGIC_VECTOR ( 0 to 0 );
     OBUFDS_GTME5_ADV_OB : out STD_LOGIC_VECTOR ( 0 to 0 );
+    OBUFDS_GTME5_ADV_RXRECCLKSEL : in STD_LOGIC_VECTOR ( 1 downto 0 );
     BUFG_GT_I : in STD_LOGIC_VECTOR ( 0 to 0 );
     BUFG_GT_CE : in STD_LOGIC_VECTOR ( 0 to 0 );
     BUFG_GT_CEMASK : in STD_LOGIC_VECTOR ( 0 to 0 );
     BUFG_GT_CLR : in STD_LOGIC_VECTOR ( 0 to 0 );
     BUFG_GT_CLRMASK : in STD_LOGIC_VECTOR ( 0 to 0 );
     BUFG_GT_DIV : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    BUFG_GT_O : out STD_LOGIC_VECTOR ( 0 to 0 )
+    BUFG_GT_O : out STD_LOGIC_VECTOR ( 0 to 0 );
+    BUFG_PS_I : in STD_LOGIC_VECTOR ( 0 to 0 );
+    BUFG_PS_O : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
   attribute C_BUFGCE_DIV : integer;
   attribute C_BUFGCE_DIV of base_zynq_util_ds_buf_0_0_util_ds_buf : entity is 1;
@@ -134,6 +138,7 @@ begin
   BUFG_FABRIC_O(0) <= \<const0>\;
   BUFG_GT_O(0) <= \<const0>\;
   BUFG_O(0) <= \<const0>\;
+  BUFG_PS_O(0) <= \<const0>\;
   BUFHCE_O(0) <= \<const0>\;
   BUFH_O(0) <= \<const0>\;
   IBUFDS_GTME5_O(0) <= \<const0>\;
@@ -196,7 +201,7 @@ entity base_zynq_util_ds_buf_0_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of base_zynq_util_ds_buf_0_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of base_zynq_util_ds_buf_0_0 : entity is "util_ds_buf,Vivado 2020.1";
+  attribute x_core_info of base_zynq_util_ds_buf_0_0 : entity is "util_ds_buf,Vivado 2020.2";
 end base_zynq_util_ds_buf_0_0;
 
 architecture STRUCTURE of base_zynq_util_ds_buf_0_0 is
@@ -204,6 +209,7 @@ architecture STRUCTURE of base_zynq_util_ds_buf_0_0 is
   signal NLW_U0_BUFG_FABRIC_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_U0_BUFG_GT_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_U0_BUFG_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal NLW_U0_BUFG_PS_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_U0_BUFHCE_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_U0_BUFH_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_U0_IBUFDS_GTME5_O_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -276,6 +282,8 @@ U0: entity work.base_zynq_util_ds_buf_0_0_util_ds_buf
       BUFG_GT_O(0) => NLW_U0_BUFG_GT_O_UNCONNECTED(0),
       BUFG_I(0) => '0',
       BUFG_O(0) => NLW_U0_BUFG_O_UNCONNECTED(0),
+      BUFG_PS_I(0) => '0',
+      BUFG_PS_O(0) => NLW_U0_BUFG_PS_O_UNCONNECTED(0),
       BUFHCE_CE(0) => '0',
       BUFHCE_I(0) => '0',
       BUFHCE_O(0) => NLW_U0_BUFHCE_O_UNCONNECTED(0),
@@ -322,6 +330,7 @@ U0: entity work.base_zynq_util_ds_buf_0_0_util_ds_buf
       OBUFDS_GTE5_ADV_I(3 downto 0) => B"0000",
       OBUFDS_GTE5_ADV_O(0) => NLW_U0_OBUFDS_GTE5_ADV_O_UNCONNECTED(0),
       OBUFDS_GTE5_ADV_OB(0) => NLW_U0_OBUFDS_GTE5_ADV_OB_UNCONNECTED(0),
+      OBUFDS_GTE5_ADV_RXRECCLKSEL(1 downto 0) => B"00",
       OBUFDS_GTE5_CEB(0) => '0',
       OBUFDS_GTE5_I(0) => '0',
       OBUFDS_GTE5_O(0) => NLW_U0_OBUFDS_GTE5_O_UNCONNECTED(0),
@@ -330,6 +339,7 @@ U0: entity work.base_zynq_util_ds_buf_0_0_util_ds_buf
       OBUFDS_GTME5_ADV_I(3 downto 0) => B"0000",
       OBUFDS_GTME5_ADV_O(0) => NLW_U0_OBUFDS_GTME5_ADV_O_UNCONNECTED(0),
       OBUFDS_GTME5_ADV_OB(0) => NLW_U0_OBUFDS_GTME5_ADV_OB_UNCONNECTED(0),
+      OBUFDS_GTME5_ADV_RXRECCLKSEL(1 downto 0) => B"00",
       OBUFDS_GTME5_CEB(0) => '0',
       OBUFDS_GTME5_I(0) => '0',
       OBUFDS_GTME5_O(0) => NLW_U0_OBUFDS_GTME5_O_UNCONNECTED(0),

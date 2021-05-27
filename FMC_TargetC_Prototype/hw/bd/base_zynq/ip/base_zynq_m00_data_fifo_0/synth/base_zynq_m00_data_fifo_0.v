@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:ip:axis_data_fifo:2.0
-// IP Revision: 3
+// IP Revision: 4
 
-(* X_CORE_INFO = "axis_data_fifo_v2_0_3_top,Vivado 2020.1" *)
-(* CHECK_LICENSE_TYPE = "base_zynq_m00_data_fifo_0,axis_data_fifo_v2_0_3_top,{}" *)
-(* CORE_GENERATION_INFO = "base_zynq_m00_data_fifo_0,axis_data_fifo_v2_0_3_top,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_data_fifo,x_ipVersion=2.0,x_ipCoreRevision=3,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_AXIS_TDATA_WIDTH=32,C_AXIS_TID_WIDTH=2,C_AXIS_TDEST_WIDTH=1,C_AXIS_TUSER_WIDTH=1,C_AXIS_SIGNAL_SET=0b00000000000000000000000000110111,C_FIFO_DEPTH=64,C_FIFO_MODE=1,C_IS_ACLK_ASYNC=0,C_SYNCHRONIZER_STAGE=3,C_ACLKEN_CONV_MODE=0,C_ECC_MODE=0,C_FIFO_MEMORY_TYPE=auto,C_USE_\
+(* X_CORE_INFO = "axis_data_fifo_v2_0_4_top,Vivado 2020.2" *)
+(* CHECK_LICENSE_TYPE = "base_zynq_m00_data_fifo_0,axis_data_fifo_v2_0_4_top,{}" *)
+(* CORE_GENERATION_INFO = "base_zynq_m00_data_fifo_0,axis_data_fifo_v2_0_4_top,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_data_fifo,x_ipVersion=2.0,x_ipCoreRevision=4,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_AXIS_TDATA_WIDTH=32,C_AXIS_TID_WIDTH=2,C_AXIS_TDEST_WIDTH=1,C_AXIS_TUSER_WIDTH=1,C_AXIS_SIGNAL_SET=0b00000000000000000000000000110111,C_FIFO_DEPTH=64,C_FIFO_MODE=1,C_IS_ACLK_ASYNC=0,C_SYNCHRONIZER_STAGE=3,C_ACLKEN_CONV_MODE=0,C_ECC_MODE=0,C_FIFO_MEMORY_TYPE=auto,C_USE_\
 ADV_FEATURES=825503796,C_PROG_EMPTY_THRESH=5,C_PROG_FULL_THRESH=11}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module base_zynq_m00_data_fifo_0 (
@@ -109,13 +109,13 @@ output wire [1 : 0] m_axis_tid;
 output wire [31 : 0] axis_wr_data_count;
 output wire [31 : 0] axis_rd_data_count;
 
-  axis_data_fifo_v2_0_3_top #(
+  axis_data_fifo_v2_0_4_top #(
     .C_FAMILY("zynq"),
     .C_AXIS_TDATA_WIDTH(32),
     .C_AXIS_TID_WIDTH(2),
     .C_AXIS_TDEST_WIDTH(1),
     .C_AXIS_TUSER_WIDTH(1),
-    .C_AXIS_SIGNAL_SET('B00000000000000000000000000110111),
+    .C_AXIS_SIGNAL_SET(32'B00000000000000000000000000110111),
     .C_FIFO_DEPTH(64),
     .C_FIFO_MODE(1),
     .C_IS_ACLK_ASYNC(0),

@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Apr 15 21:07:27 2021
--- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Thu Apr 22 05:45:08 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_s01_data_fifo_0 -prefix
---               base_zynq_s01_data_fifo_0_ base_zynq_s01_data_fifo_0_sim_netlist.vhdl
--- Design      : base_zynq_s01_data_fifo_0
+--               base_zynq_s01_data_fifo_0_ base_zynq_s00_data_fifo_0_sim_netlist.vhdl
+-- Design      : base_zynq_s00_data_fifo_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z020clg400-1
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -1500,14 +1500,6 @@ architecture STRUCTURE of base_zynq_s01_data_fifo_0_xpm_memory_base is
   attribute RTL_RAM_NAME of \gen_wr_a.gen_word_narrow.mem_reg\ : label is "gen_wr_a.gen_word_narrow.mem";
   attribute RTL_RAM_TYPE : string;
   attribute RTL_RAM_TYPE of \gen_wr_a.gen_word_narrow.mem_reg\ : label is "RAM_SDP";
-  attribute bram_addr_begin : integer;
-  attribute bram_addr_begin of \gen_wr_a.gen_word_narrow.mem_reg\ : label is 0;
-  attribute bram_addr_end : integer;
-  attribute bram_addr_end of \gen_wr_a.gen_word_narrow.mem_reg\ : label is 511;
-  attribute bram_slice_begin : integer;
-  attribute bram_slice_begin of \gen_wr_a.gen_word_narrow.mem_reg\ : label is 0;
-  attribute bram_slice_end : integer;
-  attribute bram_slice_end of \gen_wr_a.gen_word_narrow.mem_reg\ : label is 44;
   attribute ram_addr_begin : integer;
   attribute ram_addr_begin of \gen_wr_a.gen_word_narrow.mem_reg\ : label is 0;
   attribute ram_addr_end : integer;
@@ -1905,6 +1897,8 @@ entity base_zynq_s01_data_fifo_0_xpm_fifo_base is
   attribute READ_DATA_WIDTH of base_zynq_s01_data_fifo_0_xpm_fifo_base : entity is 45;
   attribute READ_MODE : integer;
   attribute READ_MODE of base_zynq_s01_data_fifo_0_xpm_fifo_base : entity is 1;
+  attribute READ_MODE_LL : integer;
+  attribute READ_MODE_LL of base_zynq_s01_data_fifo_0_xpm_fifo_base : entity is 1;
   attribute RELATED_CLOCKS : integer;
   attribute RELATED_CLOCKS of base_zynq_s01_data_fifo_0_xpm_fifo_base : entity is 0;
   attribute REMOVE_WR_RD_PROT_LOGIC : integer;
@@ -2681,8 +2675,6 @@ architecture STRUCTURE of base_zynq_s01_data_fifo_0_xpm_fifo_axis is
   attribute INIT of \gaxis_rst_sync.xpm_cdc_sync_rst_inst\ : label is "0";
   attribute INIT_SYNC_FF : integer;
   attribute INIT_SYNC_FF of \gaxis_rst_sync.xpm_cdc_sync_rst_inst\ : label is 1;
-  attribute KEEP_HIERARCHY : string;
-  attribute KEEP_HIERARCHY of \gaxis_rst_sync.xpm_cdc_sync_rst_inst\ : label is "true";
   attribute SIM_ASSERT_CHK of \gaxis_rst_sync.xpm_cdc_sync_rst_inst\ : label is 0;
   attribute VERSION : integer;
   attribute VERSION of \gaxis_rst_sync.xpm_cdc_sync_rst_inst\ : label is 0;
@@ -2740,6 +2732,7 @@ architecture STRUCTURE of base_zynq_s01_data_fifo_0_xpm_fifo_axis is
   attribute FULL_RESET_VALUE of xpm_fifo_base_inst : label is 1;
   attribute FULL_RST_VAL : string;
   attribute FULL_RST_VAL of xpm_fifo_base_inst : label is "1'b1";
+  attribute KEEP_HIERARCHY : string;
   attribute KEEP_HIERARCHY of xpm_fifo_base_inst : label is "soft";
   attribute PE_THRESH_ADJ : integer;
   attribute PE_THRESH_ADJ of xpm_fifo_base_inst : label is 3;
@@ -2768,6 +2761,8 @@ architecture STRUCTURE of base_zynq_s01_data_fifo_0_xpm_fifo_axis is
   attribute READ_DATA_WIDTH of xpm_fifo_base_inst : label is 45;
   attribute READ_MODE : integer;
   attribute READ_MODE of xpm_fifo_base_inst : label is 1;
+  attribute READ_MODE_LL : integer;
+  attribute READ_MODE_LL of xpm_fifo_base_inst : label is 1;
   attribute RELATED_CLOCKS of xpm_fifo_base_inst : label is 0;
   attribute REMOVE_WR_RD_PROT_LOGIC : integer;
   attribute REMOVE_WR_RD_PROT_LOGIC of xpm_fifo_base_inst : label is 0;
@@ -2882,7 +2877,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 library UNISIM;
 use UNISIM.VCOMPONENTS.ALL;
-entity base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top is
+entity base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top is
   port (
     s_axis_aclk : in STD_LOGIC;
     s_axis_aresetn : in STD_LOGIC;
@@ -2919,118 +2914,123 @@ entity base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top is
     dbiterr : out STD_LOGIC
   );
   attribute C_ACLKEN_CONV_MODE : integer;
-  attribute C_ACLKEN_CONV_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
-  attribute C_AXIS_SIGNAL_SET : string;
-  attribute C_AXIS_SIGNAL_SET of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "32'b00000000000000000000000000110111";
+  attribute C_ACLKEN_CONV_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
+  attribute C_AXIS_SIGNAL_SET : integer;
+  attribute C_AXIS_SIGNAL_SET of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 55;
   attribute C_AXIS_TDATA_WIDTH : integer;
-  attribute C_AXIS_TDATA_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 32;
+  attribute C_AXIS_TDATA_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 32;
   attribute C_AXIS_TDEST_WIDTH : integer;
-  attribute C_AXIS_TDEST_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute C_AXIS_TDEST_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute C_AXIS_TID_WIDTH : integer;
-  attribute C_AXIS_TID_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 2;
+  attribute C_AXIS_TID_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 2;
   attribute C_AXIS_TUSER_WIDTH : integer;
-  attribute C_AXIS_TUSER_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute C_AXIS_TUSER_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute C_ECC_MODE : integer;
-  attribute C_ECC_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute C_ECC_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute C_FAMILY : string;
-  attribute C_FAMILY of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "zynq";
+  attribute C_FAMILY of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is "zynq";
   attribute C_FIFO_DEPTH : integer;
-  attribute C_FIFO_DEPTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 32;
+  attribute C_FIFO_DEPTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 32;
   attribute C_FIFO_MEMORY_TYPE : string;
-  attribute C_FIFO_MEMORY_TYPE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "auto";
+  attribute C_FIFO_MEMORY_TYPE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is "auto";
   attribute C_FIFO_MODE : integer;
-  attribute C_FIFO_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute C_FIFO_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute C_IS_ACLK_ASYNC : integer;
-  attribute C_IS_ACLK_ASYNC of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute C_IS_ACLK_ASYNC of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute C_PROG_EMPTY_THRESH : integer;
-  attribute C_PROG_EMPTY_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 5;
+  attribute C_PROG_EMPTY_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 5;
   attribute C_PROG_FULL_THRESH : integer;
-  attribute C_PROG_FULL_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 11;
+  attribute C_PROG_FULL_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 11;
   attribute C_SYNCHRONIZER_STAGE : integer;
-  attribute C_SYNCHRONIZER_STAGE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 3;
+  attribute C_SYNCHRONIZER_STAGE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 3;
   attribute C_USE_ADV_FEATURES : integer;
-  attribute C_USE_ADV_FEATURES of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 825503796;
+  attribute C_USE_ADV_FEATURES of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 825503796;
   attribute G_INDX_SS_TDATA : integer;
-  attribute G_INDX_SS_TDATA of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute G_INDX_SS_TDATA of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute G_INDX_SS_TDEST : integer;
-  attribute G_INDX_SS_TDEST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 6;
+  attribute G_INDX_SS_TDEST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 6;
   attribute G_INDX_SS_TID : integer;
-  attribute G_INDX_SS_TID of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 5;
+  attribute G_INDX_SS_TID of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 5;
   attribute G_INDX_SS_TKEEP : integer;
-  attribute G_INDX_SS_TKEEP of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 3;
+  attribute G_INDX_SS_TKEEP of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 3;
   attribute G_INDX_SS_TLAST : integer;
-  attribute G_INDX_SS_TLAST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 4;
+  attribute G_INDX_SS_TLAST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 4;
   attribute G_INDX_SS_TREADY : integer;
-  attribute G_INDX_SS_TREADY of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute G_INDX_SS_TREADY of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute G_INDX_SS_TSTRB : integer;
-  attribute G_INDX_SS_TSTRB of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 2;
+  attribute G_INDX_SS_TSTRB of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 2;
   attribute G_INDX_SS_TUSER : integer;
-  attribute G_INDX_SS_TUSER of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 7;
+  attribute G_INDX_SS_TUSER of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 7;
   attribute G_MASK_SS_TDATA : integer;
-  attribute G_MASK_SS_TDATA of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 2;
+  attribute G_MASK_SS_TDATA of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 2;
   attribute G_MASK_SS_TDEST : integer;
-  attribute G_MASK_SS_TDEST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 64;
+  attribute G_MASK_SS_TDEST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 64;
   attribute G_MASK_SS_TID : integer;
-  attribute G_MASK_SS_TID of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 32;
+  attribute G_MASK_SS_TID of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 32;
   attribute G_MASK_SS_TKEEP : integer;
-  attribute G_MASK_SS_TKEEP of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 8;
+  attribute G_MASK_SS_TKEEP of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 8;
   attribute G_MASK_SS_TLAST : integer;
-  attribute G_MASK_SS_TLAST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 16;
+  attribute G_MASK_SS_TLAST of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 16;
   attribute G_MASK_SS_TREADY : integer;
-  attribute G_MASK_SS_TREADY of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute G_MASK_SS_TREADY of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute G_MASK_SS_TSTRB : integer;
-  attribute G_MASK_SS_TSTRB of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 4;
+  attribute G_MASK_SS_TSTRB of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 4;
   attribute G_MASK_SS_TUSER : integer;
-  attribute G_MASK_SS_TUSER of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 128;
+  attribute G_MASK_SS_TUSER of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 128;
   attribute G_TASK_SEVERITY_ERR : integer;
-  attribute G_TASK_SEVERITY_ERR of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 2;
+  attribute G_TASK_SEVERITY_ERR of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 2;
   attribute G_TASK_SEVERITY_INFO : integer;
-  attribute G_TASK_SEVERITY_INFO of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute G_TASK_SEVERITY_INFO of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute G_TASK_SEVERITY_WARNING : integer;
-  attribute G_TASK_SEVERITY_WARNING of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute G_TASK_SEVERITY_WARNING of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute LP_CDC_SYNC_STAGES : integer;
-  attribute LP_CDC_SYNC_STAGES of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 3;
+  attribute LP_CDC_SYNC_STAGES of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 3;
   attribute LP_CLOCKING_MODE : string;
-  attribute LP_CLOCKING_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "common_clock";
+  attribute LP_CLOCKING_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is "common_clock";
   attribute LP_ECC_MODE : string;
-  attribute LP_ECC_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "no_ecc";
+  attribute LP_ECC_MODE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is "no_ecc";
   attribute LP_FIFO_DEPTH : integer;
-  attribute LP_FIFO_DEPTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 32;
+  attribute LP_FIFO_DEPTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 32;
   attribute LP_FIFO_MEMORY_TYPE : string;
-  attribute LP_FIFO_MEMORY_TYPE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "auto";
+  attribute LP_FIFO_MEMORY_TYPE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is "auto";
   attribute LP_M_ACLKEN_CAN_TOGGLE : integer;
-  attribute LP_M_ACLKEN_CAN_TOGGLE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute LP_M_ACLKEN_CAN_TOGGLE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute LP_PACKET_FIFO : string;
-  attribute LP_PACKET_FIFO of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is "false";
+  attribute LP_PACKET_FIFO of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is "false";
   attribute LP_PROG_EMPTY_THRESH : integer;
-  attribute LP_PROG_EMPTY_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 5;
+  attribute LP_PROG_EMPTY_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 5;
   attribute LP_PROG_FULL_THRESH : integer;
-  attribute LP_PROG_FULL_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 11;
+  attribute LP_PROG_FULL_THRESH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 11;
   attribute LP_RD_DATA_COUNT_WIDTH : integer;
-  attribute LP_RD_DATA_COUNT_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 6;
+  attribute LP_RD_DATA_COUNT_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 6;
   attribute LP_RELATED_CLOCKS : integer;
-  attribute LP_RELATED_CLOCKS of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute LP_RELATED_CLOCKS of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute LP_S_ACLKEN_CAN_TOGGLE : integer;
-  attribute LP_S_ACLKEN_CAN_TOGGLE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 0;
+  attribute LP_S_ACLKEN_CAN_TOGGLE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 0;
   attribute LP_TDATA_WIDTH : integer;
-  attribute LP_TDATA_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 32;
+  attribute LP_TDATA_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 32;
   attribute LP_TDEST_WIDTH : integer;
-  attribute LP_TDEST_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute LP_TDEST_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute LP_TID_WIDTH : integer;
-  attribute LP_TID_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 2;
+  attribute LP_TID_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 2;
   attribute LP_TUSER_WIDTH : integer;
-  attribute LP_TUSER_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 1;
+  attribute LP_TUSER_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 1;
   attribute LP_USE_ADV_FEATURES : integer;
-  attribute LP_USE_ADV_FEATURES of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 825503796;
+  attribute LP_USE_ADV_FEATURES of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 825503796;
   attribute LP_WR_DATA_COUNT_WIDTH : integer;
-  attribute LP_WR_DATA_COUNT_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top : entity is 6;
-end base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top;
+  attribute LP_WR_DATA_COUNT_WIDTH of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top : entity is 6;
+end base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top;
 
-architecture STRUCTURE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top is
+architecture STRUCTURE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top is
   signal \<const0>\ : STD_LOGIC;
-  signal \<const1>\ : STD_LOGIC;
   signal \^axis_rd_data_count\ : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal \^axis_wr_data_count\ : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal \gen_fifo.xpm_fifo_axis_inst_n_47\ : STD_LOGIC;
+  signal \gen_fifo.xpm_fifo_axis_inst_n_54\ : STD_LOGIC;
+  signal \gen_fifo.xpm_fifo_axis_inst_n_55\ : STD_LOGIC;
+  signal \gen_fifo.xpm_fifo_axis_inst_n_62\ : STD_LOGIC;
+  signal \gen_fifo.xpm_fifo_axis_inst_n_63\ : STD_LOGIC;
+  signal \gen_fifo.xpm_fifo_axis_inst_n_64\ : STD_LOGIC;
   signal \NLW_gen_fifo.xpm_fifo_axis_inst_m_axis_tdest_UNCONNECTED\ : STD_LOGIC_VECTOR ( 0 to 0 );
   signal \NLW_gen_fifo.xpm_fifo_axis_inst_m_axis_tkeep_UNCONNECTED\ : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal \NLW_gen_fifo.xpm_fifo_axis_inst_m_axis_tuser_UNCONNECTED\ : STD_LOGIC_VECTOR ( 0 to 0 );
@@ -3115,6 +3115,8 @@ architecture STRUCTURE of base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top is
   attribute XPM_MODULE : string;
   attribute XPM_MODULE of \gen_fifo.xpm_fifo_axis_inst\ : label is "TRUE";
 begin
+  almost_empty <= \<const0>\;
+  almost_full <= \<const0>\;
   axis_rd_data_count(31) <= \<const0>\;
   axis_rd_data_count(30) <= \<const0>\;
   axis_rd_data_count(29) <= \<const0>\;
@@ -3169,27 +3171,27 @@ begin
   axis_wr_data_count(7) <= \<const0>\;
   axis_wr_data_count(6) <= \<const0>\;
   axis_wr_data_count(5 downto 0) <= \^axis_wr_data_count\(5 downto 0);
+  dbiterr <= \<const0>\;
   m_axis_tdest(0) <= \<const0>\;
-  m_axis_tkeep(3) <= \<const1>\;
-  m_axis_tkeep(2) <= \<const1>\;
-  m_axis_tkeep(1) <= \<const1>\;
-  m_axis_tkeep(0) <= \<const1>\;
+  m_axis_tkeep(3) <= \<const0>\;
+  m_axis_tkeep(2) <= \<const0>\;
+  m_axis_tkeep(1) <= \<const0>\;
+  m_axis_tkeep(0) <= \<const0>\;
   m_axis_tuser(0) <= \<const0>\;
+  prog_empty <= \<const0>\;
+  prog_full <= \<const0>\;
+  sbiterr <= \<const0>\;
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
     );
-VCC: unisim.vcomponents.VCC
-     port map (
-      P => \<const1>\
-    );
 \gen_fifo.xpm_fifo_axis_inst\: entity work.base_zynq_s01_data_fifo_0_xpm_fifo_axis
      port map (
-      almost_empty_axis => almost_empty,
-      almost_full_axis => almost_full,
-      dbiterr_axis => dbiterr,
-      injectdbiterr_axis => injectdbiterr,
-      injectsbiterr_axis => injectsbiterr,
+      almost_empty_axis => \gen_fifo.xpm_fifo_axis_inst_n_62\,
+      almost_full_axis => \gen_fifo.xpm_fifo_axis_inst_n_54\,
+      dbiterr_axis => \gen_fifo.xpm_fifo_axis_inst_n_64\,
+      injectdbiterr_axis => '0',
+      injectsbiterr_axis => '0',
       m_aclk => s_axis_aclk,
       m_axis_tdata(31 downto 0) => m_axis_tdata(31 downto 0),
       m_axis_tdest(0) => \NLW_gen_fifo.xpm_fifo_axis_inst_m_axis_tdest_UNCONNECTED\(0),
@@ -3200,8 +3202,8 @@ VCC: unisim.vcomponents.VCC
       m_axis_tstrb(3 downto 0) => m_axis_tstrb(3 downto 0),
       m_axis_tuser(0) => \NLW_gen_fifo.xpm_fifo_axis_inst_m_axis_tuser_UNCONNECTED\(0),
       m_axis_tvalid => m_axis_tvalid,
-      prog_empty_axis => prog_empty,
-      prog_full_axis => prog_full,
+      prog_empty_axis => \gen_fifo.xpm_fifo_axis_inst_n_55\,
+      prog_full_axis => \gen_fifo.xpm_fifo_axis_inst_n_47\,
       rd_data_count_axis(5 downto 0) => \^axis_rd_data_count\(5 downto 0),
       s_aclk => s_axis_aclk,
       s_aresetn => s_axis_aresetn,
@@ -3214,7 +3216,7 @@ VCC: unisim.vcomponents.VCC
       s_axis_tstrb(3 downto 0) => s_axis_tstrb(3 downto 0),
       s_axis_tuser(0) => '0',
       s_axis_tvalid => s_axis_tvalid,
-      sbiterr_axis => sbiterr,
+      sbiterr_axis => \gen_fifo.xpm_fifo_axis_inst_n_63\,
       wr_data_count_axis(5 downto 0) => \^axis_wr_data_count\(5 downto 0)
     );
 end STRUCTURE;
@@ -3244,27 +3246,32 @@ entity base_zynq_s01_data_fifo_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of base_zynq_s01_data_fifo_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of base_zynq_s01_data_fifo_0 : entity is "base_zynq_s01_data_fifo_0,axis_data_fifo_v2_0_3_top,{}";
+  attribute CHECK_LICENSE_TYPE of base_zynq_s01_data_fifo_0 : entity is "base_zynq_s00_data_fifo_0,axis_data_fifo_v2_0_4_top,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of base_zynq_s01_data_fifo_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of base_zynq_s01_data_fifo_0 : entity is "axis_data_fifo_v2_0_3_top,Vivado 2020.1";
+  attribute X_CORE_INFO of base_zynq_s01_data_fifo_0 : entity is "axis_data_fifo_v2_0_4_top,Vivado 2020.2";
 end base_zynq_s01_data_fifo_0;
 
 architecture STRUCTURE of base_zynq_s01_data_fifo_0 is
+  signal \<const0>\ : STD_LOGIC;
+  signal \^axis_rd_data_count\ : STD_LOGIC_VECTOR ( 5 downto 0 );
+  signal \^axis_wr_data_count\ : STD_LOGIC_VECTOR ( 5 downto 0 );
   signal NLW_inst_almost_empty_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_almost_full_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_dbiterr_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_prog_empty_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_prog_full_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_sbiterr_UNCONNECTED : STD_LOGIC;
+  signal NLW_inst_axis_rd_data_count_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 6 );
+  signal NLW_inst_axis_wr_data_count_UNCONNECTED : STD_LOGIC_VECTOR ( 31 downto 6 );
   signal NLW_inst_m_axis_tdest_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_inst_m_axis_tkeep_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_inst_m_axis_tuser_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute C_ACLKEN_CONV_MODE : integer;
   attribute C_ACLKEN_CONV_MODE of inst : label is 0;
-  attribute C_AXIS_SIGNAL_SET : string;
-  attribute C_AXIS_SIGNAL_SET of inst : label is "32'b00000000000000000000000000110111";
+  attribute C_AXIS_SIGNAL_SET : integer;
+  attribute C_AXIS_SIGNAL_SET of inst : label is 55;
   attribute C_AXIS_TDATA_WIDTH : integer;
   attribute C_AXIS_TDATA_WIDTH of inst : label is 32;
   attribute C_AXIS_TDEST_WIDTH : integer;
@@ -3388,12 +3395,72 @@ architecture STRUCTURE of base_zynq_s01_data_fifo_0 is
   attribute X_INTERFACE_PARAMETER of s_axis_tid : signal is "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axis_tstrb : signal is "xilinx.com:interface:axis:1.0 S_AXIS TSTRB";
 begin
-inst: entity work.base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_3_top
+  axis_rd_data_count(31) <= \<const0>\;
+  axis_rd_data_count(30) <= \<const0>\;
+  axis_rd_data_count(29) <= \<const0>\;
+  axis_rd_data_count(28) <= \<const0>\;
+  axis_rd_data_count(27) <= \<const0>\;
+  axis_rd_data_count(26) <= \<const0>\;
+  axis_rd_data_count(25) <= \<const0>\;
+  axis_rd_data_count(24) <= \<const0>\;
+  axis_rd_data_count(23) <= \<const0>\;
+  axis_rd_data_count(22) <= \<const0>\;
+  axis_rd_data_count(21) <= \<const0>\;
+  axis_rd_data_count(20) <= \<const0>\;
+  axis_rd_data_count(19) <= \<const0>\;
+  axis_rd_data_count(18) <= \<const0>\;
+  axis_rd_data_count(17) <= \<const0>\;
+  axis_rd_data_count(16) <= \<const0>\;
+  axis_rd_data_count(15) <= \<const0>\;
+  axis_rd_data_count(14) <= \<const0>\;
+  axis_rd_data_count(13) <= \<const0>\;
+  axis_rd_data_count(12) <= \<const0>\;
+  axis_rd_data_count(11) <= \<const0>\;
+  axis_rd_data_count(10) <= \<const0>\;
+  axis_rd_data_count(9) <= \<const0>\;
+  axis_rd_data_count(8) <= \<const0>\;
+  axis_rd_data_count(7) <= \<const0>\;
+  axis_rd_data_count(6) <= \<const0>\;
+  axis_rd_data_count(5 downto 0) <= \^axis_rd_data_count\(5 downto 0);
+  axis_wr_data_count(31) <= \<const0>\;
+  axis_wr_data_count(30) <= \<const0>\;
+  axis_wr_data_count(29) <= \<const0>\;
+  axis_wr_data_count(28) <= \<const0>\;
+  axis_wr_data_count(27) <= \<const0>\;
+  axis_wr_data_count(26) <= \<const0>\;
+  axis_wr_data_count(25) <= \<const0>\;
+  axis_wr_data_count(24) <= \<const0>\;
+  axis_wr_data_count(23) <= \<const0>\;
+  axis_wr_data_count(22) <= \<const0>\;
+  axis_wr_data_count(21) <= \<const0>\;
+  axis_wr_data_count(20) <= \<const0>\;
+  axis_wr_data_count(19) <= \<const0>\;
+  axis_wr_data_count(18) <= \<const0>\;
+  axis_wr_data_count(17) <= \<const0>\;
+  axis_wr_data_count(16) <= \<const0>\;
+  axis_wr_data_count(15) <= \<const0>\;
+  axis_wr_data_count(14) <= \<const0>\;
+  axis_wr_data_count(13) <= \<const0>\;
+  axis_wr_data_count(12) <= \<const0>\;
+  axis_wr_data_count(11) <= \<const0>\;
+  axis_wr_data_count(10) <= \<const0>\;
+  axis_wr_data_count(9) <= \<const0>\;
+  axis_wr_data_count(8) <= \<const0>\;
+  axis_wr_data_count(7) <= \<const0>\;
+  axis_wr_data_count(6) <= \<const0>\;
+  axis_wr_data_count(5 downto 0) <= \^axis_wr_data_count\(5 downto 0);
+GND: unisim.vcomponents.GND
+     port map (
+      G => \<const0>\
+    );
+inst: entity work.base_zynq_s01_data_fifo_0_axis_data_fifo_v2_0_4_top
      port map (
       almost_empty => NLW_inst_almost_empty_UNCONNECTED,
       almost_full => NLW_inst_almost_full_UNCONNECTED,
-      axis_rd_data_count(31 downto 0) => axis_rd_data_count(31 downto 0),
-      axis_wr_data_count(31 downto 0) => axis_wr_data_count(31 downto 0),
+      axis_rd_data_count(31 downto 6) => NLW_inst_axis_rd_data_count_UNCONNECTED(31 downto 6),
+      axis_rd_data_count(5 downto 0) => \^axis_rd_data_count\(5 downto 0),
+      axis_wr_data_count(31 downto 6) => NLW_inst_axis_wr_data_count_UNCONNECTED(31 downto 6),
+      axis_wr_data_count(5 downto 0) => \^axis_wr_data_count\(5 downto 0),
       dbiterr => NLW_inst_dbiterr_UNCONNECTED,
       injectdbiterr => '0',
       injectsbiterr => '0',

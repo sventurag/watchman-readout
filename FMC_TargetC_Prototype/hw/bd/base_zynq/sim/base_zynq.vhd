@@ -1,8 +1,8 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Wed Apr 21 10:55:16 2021
---Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+--Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+--Date        : Thu Apr 22 20:42:35 2021
+--Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
 --Purpose     : IP block netlist
@@ -1705,7 +1705,7 @@ entity base_zynq_ps7_0_axi_periph_1 is
 end base_zynq_ps7_0_axi_periph_1;
 
 architecture STRUCTURE of base_zynq_ps7_0_axi_periph_1 is
-  component base_zynq_xbar_0 is
+  component base_zynq_xbar_4 is
   port (
     aclk : in STD_LOGIC;
     aresetn : in STD_LOGIC;
@@ -1748,7 +1748,7 @@ architecture STRUCTURE of base_zynq_ps7_0_axi_periph_1 is
     m_axi_rvalid : in STD_LOGIC_VECTOR ( 2 downto 0 );
     m_axi_rready : out STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  end component base_zynq_xbar_0;
+  end component base_zynq_xbar_4;
   signal M00_ACLK_1 : STD_LOGIC;
   signal M00_ARESETN_1 : STD_LOGIC;
   signal M01_ACLK_1 : STD_LOGIC;
@@ -2223,7 +2223,7 @@ s00_couplers: entity work.s00_couplers_imp_1JB4A1T
       S_AXI_wstrb(3 downto 0) => ps7_0_axi_periph_to_s00_couplers_WSTRB(3 downto 0),
       S_AXI_wvalid => ps7_0_axi_periph_to_s00_couplers_WVALID
     );
-xbar: component base_zynq_xbar_0
+xbar: component base_zynq_xbar_4
      port map (
       aclk => ps7_0_axi_periph_ACLK_net,
       aresetn => ps7_0_axi_periph_ARESETN_net,
@@ -2434,6 +2434,94 @@ entity base_zynq is
 end base_zynq;
 
 architecture STRUCTURE of base_zynq is
+  component base_zynq_TARGETC_axi_int_0_1 is
+  port (
+    SW_nRST : in STD_LOGIC;
+    TestStream : in STD_LOGIC;
+    FIFOvalid : in STD_LOGIC;
+    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : out STD_LOGIC;
+    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : in STD_LOGIC;
+    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_ACLK : in STD_LOGIC;
+    M_AXIS_ARESETN : in STD_LOGIC;
+    M_AXIS_TVALID : out STD_LOGIC;
+    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    M_AXIS_TLAST : out STD_LOGIC;
+    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_TREADY : in STD_LOGIC
+  );
+  end component base_zynq_TARGETC_axi_int_0_1;
+  component base_zynq_TARGETC_axi_int_0_2 is
+  port (
+    SW_nRST : in STD_LOGIC;
+    TestStream : in STD_LOGIC;
+    FIFOvalid : in STD_LOGIC;
+    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : out STD_LOGIC;
+    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : in STD_LOGIC;
+    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_ACLK : in STD_LOGIC;
+    M_AXIS_ARESETN : in STD_LOGIC;
+    M_AXIS_TVALID : out STD_LOGIC;
+    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    M_AXIS_TLAST : out STD_LOGIC;
+    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_TREADY : in STD_LOGIC
+  );
+  end component base_zynq_TARGETC_axi_int_0_2;
+  component base_zynq_axi_dma_0_0 is
+  port (
+    s_axi_lite_aclk : in STD_LOGIC;
+    m_axi_s2mm_aclk : in STD_LOGIC;
+    axi_resetn : in STD_LOGIC;
+    s_axi_lite_awvalid : in STD_LOGIC;
+    s_axi_lite_awready : out STD_LOGIC;
+    s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    s_axi_lite_wvalid : in STD_LOGIC;
+    s_axi_lite_wready : out STD_LOGIC;
+    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_lite_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s_axi_lite_bvalid : out STD_LOGIC;
+    s_axi_lite_bready : in STD_LOGIC;
+    s_axi_lite_arvalid : in STD_LOGIC;
+    s_axi_lite_arready : out STD_LOGIC;
+    s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
+    s_axi_lite_rvalid : out STD_LOGIC;
+    s_axi_lite_rready : in STD_LOGIC;
+    s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axi_lite_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_s2mm_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
+    m_axi_s2mm_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_s2mm_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
+    m_axi_s2mm_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_s2mm_awvalid : out STD_LOGIC;
+    m_axi_s2mm_awready : in STD_LOGIC;
+    m_axi_s2mm_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    m_axi_s2mm_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    m_axi_s2mm_wlast : out STD_LOGIC;
+    m_axi_s2mm_wvalid : out STD_LOGIC;
+    m_axi_s2mm_wready : in STD_LOGIC;
+    m_axi_s2mm_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    m_axi_s2mm_bvalid : in STD_LOGIC;
+    m_axi_s2mm_bready : out STD_LOGIC;
+    s2mm_prmry_reset_out_n : out STD_LOGIC;
+    s_axis_s2mm_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s_axis_s2mm_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s_axis_s2mm_tvalid : in STD_LOGIC;
+    s_axis_s2mm_tready : out STD_LOGIC;
+    s_axis_s2mm_tlast : in STD_LOGIC;
+    s2mm_introut : out STD_LOGIC
+  );
+  end component base_zynq_axi_dma_0_0;
   component base_zynq_processing_system7_0_0 is
   port (
     TTC0_WAVE0_OUT : out STD_LOGIC;
@@ -2549,52 +2637,6 @@ architecture STRUCTURE of base_zynq is
     PS_PORB : inout STD_LOGIC
   );
   end component base_zynq_processing_system7_0_0;
-  component base_zynq_axi_dma_0_0 is
-  port (
-    s_axi_lite_aclk : in STD_LOGIC;
-    m_axi_s2mm_aclk : in STD_LOGIC;
-    axi_resetn : in STD_LOGIC;
-    s_axi_lite_awvalid : in STD_LOGIC;
-    s_axi_lite_awready : out STD_LOGIC;
-    s_axi_lite_awaddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    s_axi_lite_wvalid : in STD_LOGIC;
-    s_axi_lite_wready : out STD_LOGIC;
-    s_axi_lite_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s_axi_lite_bvalid : out STD_LOGIC;
-    s_axi_lite_bready : in STD_LOGIC;
-    s_axi_lite_arvalid : in STD_LOGIC;
-    s_axi_lite_arready : out STD_LOGIC;
-    s_axi_lite_araddr : in STD_LOGIC_VECTOR ( 9 downto 0 );
-    s_axi_lite_rvalid : out STD_LOGIC;
-    s_axi_lite_rready : in STD_LOGIC;
-    s_axi_lite_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axi_lite_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_awaddr : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_s2mm_awlen : out STD_LOGIC_VECTOR ( 7 downto 0 );
-    m_axi_s2mm_awsize : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_s2mm_awburst : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_awprot : out STD_LOGIC_VECTOR ( 2 downto 0 );
-    m_axi_s2mm_awcache : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_s2mm_awvalid : out STD_LOGIC;
-    m_axi_s2mm_awready : in STD_LOGIC;
-    m_axi_s2mm_wdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    m_axi_s2mm_wstrb : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    m_axi_s2mm_wlast : out STD_LOGIC;
-    m_axi_s2mm_wvalid : out STD_LOGIC;
-    m_axi_s2mm_wready : in STD_LOGIC;
-    m_axi_s2mm_bresp : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    m_axi_s2mm_bvalid : in STD_LOGIC;
-    m_axi_s2mm_bready : out STD_LOGIC;
-    s2mm_prmry_reset_out_n : out STD_LOGIC;
-    s_axis_s2mm_tdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s_axis_s2mm_tkeep : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s_axis_s2mm_tvalid : in STD_LOGIC;
-    s_axis_s2mm_tready : out STD_LOGIC;
-    s_axis_s2mm_tlast : in STD_LOGIC;
-    s2mm_introut : out STD_LOGIC
-  );
-  end component base_zynq_axi_dma_0_0;
   component base_zynq_rst_ps7_0_50M_0 is
   port (
     slowest_sync_clk : in STD_LOGIC;
@@ -2609,6 +2651,13 @@ architecture STRUCTURE of base_zynq is
     peripheral_aresetn : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
   end component base_zynq_rst_ps7_0_50M_0;
+  component base_zynq_util_ds_buf_0_0 is
+  port (
+    OBUF_IN : in STD_LOGIC_VECTOR ( 0 to 0 );
+    OBUF_DS_P : out STD_LOGIC_VECTOR ( 0 to 0 );
+    OBUF_DS_N : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component base_zynq_util_ds_buf_0_0;
   component base_zynq_xlconcat_0_0 is
   port (
     In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2630,14 +2679,6 @@ architecture STRUCTURE of base_zynq is
     dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
   );
   end component base_zynq_xlconcat_0_0;
-  component base_zynq_xlconcat_1_0 is
-  port (
-    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    In2 : in STD_LOGIC_VECTOR ( 0 to 0 );
-    dout : out STD_LOGIC_VECTOR ( 2 downto 0 )
-  );
-  end component base_zynq_xlconcat_1_0;
   component base_zynq_xlconcat_0_1 is
   port (
     In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
@@ -2659,55 +2700,14 @@ architecture STRUCTURE of base_zynq is
     dout : out STD_LOGIC_VECTOR ( 15 downto 0 )
   );
   end component base_zynq_xlconcat_0_1;
-  component base_zynq_util_ds_buf_0_0 is
+  component base_zynq_xlconcat_1_0 is
   port (
-    OBUF_IN : in STD_LOGIC_VECTOR ( 0 to 0 );
-    OBUF_DS_P : out STD_LOGIC_VECTOR ( 0 to 0 );
-    OBUF_DS_N : out STD_LOGIC_VECTOR ( 0 to 0 )
+    In0 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In1 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    In2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    dout : out STD_LOGIC_VECTOR ( 2 downto 0 )
   );
-  end component base_zynq_util_ds_buf_0_0;
-  component base_zynq_TARGETC_axi_int_0_1 is
-  port (
-    SW_nRST : in STD_LOGIC;
-    TestStream : in STD_LOGIC;
-    FIFOvalid : in STD_LOGIC;
-    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady : out STD_LOGIC;
-    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR : in STD_LOGIC;
-    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_ACLK : in STD_LOGIC;
-    M_AXIS_ARESETN : in STD_LOGIC;
-    M_AXIS_TVALID : out STD_LOGIC;
-    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    M_AXIS_TLAST : out STD_LOGIC;
-    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_TREADY : in STD_LOGIC
-  );
-  end component base_zynq_TARGETC_axi_int_0_1;
-  component base_zynq_TARGETC_axi_int_0_2 is
-  port (
-    SW_nRST : in STD_LOGIC;
-    TestStream : in STD_LOGIC;
-    FIFOvalid : in STD_LOGIC;
-    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady : out STD_LOGIC;
-    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR : in STD_LOGIC;
-    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_ACLK : in STD_LOGIC;
-    M_AXIS_ARESETN : in STD_LOGIC;
-    M_AXIS_TVALID : out STD_LOGIC;
-    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    M_AXIS_TLAST : out STD_LOGIC;
-    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_TREADY : in STD_LOGIC
-  );
-  end component base_zynq_TARGETC_axi_int_0_2;
+  end component base_zynq_xlconcat_1_0;
   component base_zynq_xlconstant_0_0 is
   port (
     dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
@@ -3212,7 +3212,7 @@ architecture STRUCTURE of base_zynq is
   attribute x_interface_parameter : string;
   attribute x_interface_parameter of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
   attribute x_interface_info of B_GCC_RESET : signal is "xilinx.com:signal:data:1.0 DATA.B_GCC_RESET DATA";
-  attribute x_interface_parameter of B_GCC_RESET : signal is "XIL_INTERFACENAME DATA.B_GCC_RESET, LAYERED_METADATA undef, POLARITY ACTIVE_LOW";
+  attribute x_interface_parameter of B_GCC_RESET : signal is "XIL_INTERFACENAME DATA.B_GCC_RESET, LAYERED_METADATA undef";
   attribute x_interface_info of B_HSCLK_N : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_N DATA";
   attribute x_interface_parameter of B_HSCLK_N : signal is "XIL_INTERFACENAME DATA.B_HSCLK_N, LAYERED_METADATA undef";
   attribute x_interface_info of B_HSCLK_P : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_P DATA";
@@ -3220,7 +3220,7 @@ architecture STRUCTURE of base_zynq is
   attribute x_interface_info of B_RAMP : signal is "xilinx.com:signal:data:1.0 DATA.B_RAMP DATA";
   attribute x_interface_parameter of B_RAMP : signal is "XIL_INTERFACENAME DATA.B_RAMP, LAYERED_METADATA undef";
   attribute x_interface_info of B_RDAD_CLK : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_CLK DATA";
-  attribute x_interface_parameter of B_RDAD_CLK : signal is "XIL_INTERFACENAME DATA.B_RDAD_CLK, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_1_RDAD_CLK, FREQ_HZ 100000000, LAYERED_METADATA undef, PHASE 0.000";
+  attribute x_interface_parameter of B_RDAD_CLK : signal is "XIL_INTERFACENAME DATA.B_RDAD_CLK, LAYERED_METADATA undef";
   attribute x_interface_info of B_RDAD_DIR : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_DIR DATA";
   attribute x_interface_parameter of B_RDAD_DIR : signal is "XIL_INTERFACENAME DATA.B_RDAD_DIR, LAYERED_METADATA undef";
   attribute x_interface_info of B_RDAD_SIN : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_SIN DATA";
@@ -3265,31 +3265,31 @@ architecture STRUCTURE of base_zynq is
   attribute x_interface_info of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
   attribute x_interface_parameter of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
   attribute x_interface_info of B_DO_10 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_10 DATA";
-  attribute x_interface_parameter of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_11 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_11 DATA";
-  attribute x_interface_parameter of B_DO_11 : signal is "XIL_INTERFACENAME DATA.B_DO_11, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_11 : signal is "XIL_INTERFACENAME DATA.B_DO_11, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_13 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_13 DATA";
-  attribute x_interface_parameter of B_DO_13 : signal is "XIL_INTERFACENAME DATA.B_DO_13, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_13 : signal is "XIL_INTERFACENAME DATA.B_DO_13, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_14 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_14 DATA";
-  attribute x_interface_parameter of B_DO_14 : signal is "XIL_INTERFACENAME DATA.B_DO_14, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_14 : signal is "XIL_INTERFACENAME DATA.B_DO_14, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_15 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_15 DATA";
-  attribute x_interface_parameter of B_DO_15 : signal is "XIL_INTERFACENAME DATA.B_DO_15, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_15 : signal is "XIL_INTERFACENAME DATA.B_DO_15, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_16 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_16 DATA";
-  attribute x_interface_parameter of B_DO_16 : signal is "XIL_INTERFACENAME DATA.B_DO_16, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_16 : signal is "XIL_INTERFACENAME DATA.B_DO_16, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_3 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_3 DATA";
-  attribute x_interface_parameter of B_DO_3 : signal is "XIL_INTERFACENAME DATA.B_DO_3, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_3 : signal is "XIL_INTERFACENAME DATA.B_DO_3, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_4 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_4 DATA";
-  attribute x_interface_parameter of B_DO_4 : signal is "XIL_INTERFACENAME DATA.B_DO_4, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_4 : signal is "XIL_INTERFACENAME DATA.B_DO_4, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_5 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_5 DATA";
-  attribute x_interface_parameter of B_DO_5 : signal is "XIL_INTERFACENAME DATA.B_DO_5, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_5 : signal is "XIL_INTERFACENAME DATA.B_DO_5, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_6 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_6 DATA";
-  attribute x_interface_parameter of B_DO_6 : signal is "XIL_INTERFACENAME DATA.B_DO_6, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_6 : signal is "XIL_INTERFACENAME DATA.B_DO_6, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_7 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_7 DATA";
-  attribute x_interface_parameter of B_DO_7 : signal is "XIL_INTERFACENAME DATA.B_DO_7, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_7 : signal is "XIL_INTERFACENAME DATA.B_DO_7, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_8 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_8 DATA";
-  attribute x_interface_parameter of B_DO_8 : signal is "XIL_INTERFACENAME DATA.B_DO_8, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_8 : signal is "XIL_INTERFACENAME DATA.B_DO_8, LAYERED_METADATA undef";
   attribute x_interface_info of B_DO_9 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_9 DATA";
-  attribute x_interface_parameter of B_DO_9 : signal is "XIL_INTERFACENAME DATA.B_DO_9, LAYERED_METADATA undef, PortType data, PortType.PROP_SRC false";
+  attribute x_interface_parameter of B_DO_9 : signal is "XIL_INTERFACENAME DATA.B_DO_9, LAYERED_METADATA undef";
   attribute x_interface_info of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
   attribute x_interface_parameter of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
   attribute x_interface_info of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";

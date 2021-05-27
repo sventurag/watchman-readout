@@ -1,8 +1,8 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Wed Apr 21 10:55:17 2021
---Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+--Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+--Date        : Thu Apr 22 20:42:36 2021
+--Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
 --Purpose     : IP block netlist

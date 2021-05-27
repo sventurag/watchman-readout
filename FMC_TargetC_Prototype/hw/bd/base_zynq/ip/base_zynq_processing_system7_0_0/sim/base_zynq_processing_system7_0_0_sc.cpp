@@ -119,6 +119,12 @@ base_zynq_processing_system7_0_0_sc::base_zynq_processing_system7_0_0_sc(const s
     model_param_props.addString("C_PACKAGE_NAME", "clg400");
 
   mp_impl = new processing_system7_v5_5_tlm("inst", model_param_props);
+
+  // initialize AXI sockets
+  M_AXI_GP0_rd_socket = mp_impl->M_AXI_GP0_rd_socket;
+  M_AXI_GP0_wr_socket = mp_impl->M_AXI_GP0_wr_socket;
+  S_AXI_HP0_rd_socket = mp_impl->S_AXI_HP0_rd_socket;
+  S_AXI_HP0_wr_socket = mp_impl->S_AXI_HP0_wr_socket;
 }
 
 base_zynq_processing_system7_0_0_sc::~base_zynq_processing_system7_0_0_sc()

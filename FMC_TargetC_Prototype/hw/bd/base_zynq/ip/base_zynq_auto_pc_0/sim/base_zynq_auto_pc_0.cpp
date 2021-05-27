@@ -159,6 +159,9 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_impl->target_rd_socket->bind(mp_S_AXI_rd_socket_stub->initiator_socket);
     mp_impl->target_wr_socket->bind(*(mp_S_AXI_transactor->wr_socket));
   }
+  else
+  {
+  }
 
   // configure 'M_AXI' transactor
 
@@ -237,6 +240,9 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
 
     mp_impl->initiator_rd_socket->bind(mp_M_AXI_rd_socket_stub->target_socket);
     mp_impl->initiator_wr_socket->bind(*(mp_M_AXI_transactor->wr_socket));
+  }
+  else
+  {
   }
 
 }
@@ -345,6 +351,9 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_impl->target_rd_socket->bind(mp_S_AXI_rd_socket_stub->initiator_socket);
     mp_impl->target_wr_socket->bind(*(mp_S_AXI_transactor->wr_socket));
   }
+  else
+  {
+  }
 
   // configure 'M_AXI' transactor
 
@@ -423,6 +432,9 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
 
     mp_impl->initiator_rd_socket->bind(mp_M_AXI_rd_socket_stub->target_socket);
     mp_impl->initiator_wr_socket->bind(*(mp_M_AXI_transactor->wr_socket));
+  }
+  else
+  {
   }
 
 }
@@ -531,6 +543,9 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_impl->target_rd_socket->bind(mp_S_AXI_rd_socket_stub->initiator_socket);
     mp_impl->target_wr_socket->bind(*(mp_S_AXI_transactor->wr_socket));
   }
+  else
+  {
+  }
 
   // configure 'M_AXI' transactor
 
@@ -610,6 +625,9 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_impl->initiator_rd_socket->bind(mp_M_AXI_rd_socket_stub->target_socket);
     mp_impl->initiator_wr_socket->bind(*(mp_M_AXI_transactor->wr_socket));
   }
+  else
+  {
+  }
 
 }
 
@@ -631,6 +649,7 @@ base_zynq_auto_pc_0::base_zynq_auto_pc_0(const sc_core::sc_module_name& nm) : ba
   mp_M_AXI_transactor = NULL;
   mp_m_axi_awlen_converter = NULL;
   mp_m_axi_awlock_converter = NULL;
+
   // Instantiate Socket Stubs
   mp_S_AXI_rd_socket_stub = NULL;
   mp_M_AXI_rd_socket_stub = NULL;
@@ -695,7 +714,6 @@ base_zynq_auto_pc_0::base_zynq_auto_pc_0(const sc_core::sc_module_name& nm) : ba
   mp_S_AXI_transactor->BREADY(s_axi_bready);
   mp_S_AXI_transactor->CLK(aclk);
   mp_S_AXI_transactor->RST(aresetn);
-
   // configure M_AXI_transactor
     xsc::common_cpp::properties M_AXI_transactor_param_props;
     M_AXI_transactor_param_props.addLong("DATA_WIDTH", "32");
@@ -759,7 +777,6 @@ base_zynq_auto_pc_0::base_zynq_auto_pc_0(const sc_core::sc_module_name& nm) : ba
   mp_M_AXI_transactor->CLK(aclk);
   mp_M_AXI_transactor->RST(aresetn);
 
-
   // initialize transactors stubs
   S_AXI_transactor_target_wr_socket_stub = nullptr;
   M_AXI_transactor_initiator_wr_socket_stub = nullptr;
@@ -774,6 +791,7 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_S_AXI_rd_socket_stub = new xtlm::xtlm_aximm_initiator_stub("rd_socket", 0);
     mp_impl->target_rd_socket->bind(mp_S_AXI_rd_socket_stub->initiator_socket);
     mp_impl->target_wr_socket->bind(*(mp_S_AXI_transactor->wr_socket));
+  
   }
   else
   {
@@ -788,6 +806,7 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_M_AXI_rd_socket_stub = new xtlm::xtlm_aximm_target_stub("rd_socket", 0);
     mp_impl->initiator_rd_socket->bind(mp_M_AXI_rd_socket_stub->target_socket);
     mp_impl->initiator_wr_socket->bind(*(mp_M_AXI_transactor->wr_socket));
+  
   }
   else
   {
@@ -816,6 +835,7 @@ base_zynq_auto_pc_0::base_zynq_auto_pc_0(const sc_core::sc_module_name& nm) : ba
   mp_M_AXI_transactor = NULL;
   mp_m_axi_awlen_converter = NULL;
   mp_m_axi_awlock_converter = NULL;
+
   // Instantiate Socket Stubs
   mp_S_AXI_rd_socket_stub = NULL;
   mp_M_AXI_rd_socket_stub = NULL;
@@ -880,7 +900,6 @@ base_zynq_auto_pc_0::base_zynq_auto_pc_0(const sc_core::sc_module_name& nm) : ba
   mp_S_AXI_transactor->BREADY(s_axi_bready);
   mp_S_AXI_transactor->CLK(aclk);
   mp_S_AXI_transactor->RST(aresetn);
-
   // configure M_AXI_transactor
     xsc::common_cpp::properties M_AXI_transactor_param_props;
     M_AXI_transactor_param_props.addLong("DATA_WIDTH", "32");
@@ -944,7 +963,6 @@ base_zynq_auto_pc_0::base_zynq_auto_pc_0(const sc_core::sc_module_name& nm) : ba
   mp_M_AXI_transactor->CLK(aclk);
   mp_M_AXI_transactor->RST(aresetn);
 
-
   // initialize transactors stubs
   S_AXI_transactor_target_wr_socket_stub = nullptr;
   M_AXI_transactor_initiator_wr_socket_stub = nullptr;
@@ -959,6 +977,7 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_S_AXI_rd_socket_stub = new xtlm::xtlm_aximm_initiator_stub("rd_socket", 0);
     mp_impl->target_rd_socket->bind(mp_S_AXI_rd_socket_stub->initiator_socket);
     mp_impl->target_wr_socket->bind(*(mp_S_AXI_transactor->wr_socket));
+  
   }
   else
   {
@@ -973,6 +992,7 @@ void base_zynq_auto_pc_0::before_end_of_elaboration()
     mp_M_AXI_rd_socket_stub = new xtlm::xtlm_aximm_target_stub("rd_socket", 0);
     mp_impl->initiator_rd_socket->bind(mp_M_AXI_rd_socket_stub->target_socket);
     mp_impl->initiator_wr_socket->bind(*(mp_M_AXI_transactor->wr_socket));
+  
   }
   else
   {

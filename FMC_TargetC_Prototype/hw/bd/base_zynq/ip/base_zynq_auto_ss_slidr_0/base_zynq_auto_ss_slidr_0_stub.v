@@ -1,19 +1,19 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Apr 15 11:08:35 2021
-// Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+// Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+// Date        : Thu Apr 22 05:46:18 2021
+// Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode synth_stub -rename_top base_zynq_auto_ss_slidr_0 -prefix
 //               base_zynq_auto_ss_slidr_0_ base_zynq_auto_ss_slidr_0_stub.v
 // Design      : base_zynq_auto_ss_slidr_0
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7z020clg400-1
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "top_base_zynq_auto_ss_slidr_0,Vivado 2020.1" *)
+(* X_CORE_INFO = "top_base_zynq_auto_ss_slidr_0,Vivado 2020.2" *)
 module base_zynq_auto_ss_slidr_0(aclk, aresetn, s_axis_tvalid, s_axis_tready, 
   s_axis_tdata, s_axis_tstrb, s_axis_tkeep, s_axis_tlast, s_axis_tid, m_axis_tvalid, 
   m_axis_tready, m_axis_tdata, m_axis_tkeep, m_axis_tlast)

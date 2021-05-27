@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:ip:axis_subset_converter:1.1
-// IP Revision: 21
+// IP Revision: 22
 
-(* X_CORE_INFO = "top_base_zynq_auto_ss_slidr_0,Vivado 2020.1" *)
+(* X_CORE_INFO = "top_base_zynq_auto_ss_slidr_0,Vivado 2020.2" *)
 (* CHECK_LICENSE_TYPE = "base_zynq_auto_ss_slidr_0,top_base_zynq_auto_ss_slidr_0,{}" *)
-(* CORE_GENERATION_INFO = "base_zynq_auto_ss_slidr_0,top_base_zynq_auto_ss_slidr_0,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_subset_converter,x_ipVersion=1.1,x_ipCoreRevision=21,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_S_AXIS_TDATA_WIDTH=32,C_S_AXIS_TID_WIDTH=2,C_S_AXIS_TDEST_WIDTH=1,C_S_AXIS_TUSER_WIDTH=1,C_S_AXIS_SIGNAL_SET=0b00000000000000000000000000111111,C_M_AXIS_TDATA_WIDTH=32,C_M_AXIS_TID_WIDTH=1,C_M_AXIS_TDEST_WIDTH=1,C_M_AXIS_SIGNAL_SET=0b00000000000000000000000\
+(* CORE_GENERATION_INFO = "base_zynq_auto_ss_slidr_0,top_base_zynq_auto_ss_slidr_0,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axis_subset_converter,x_ipVersion=1.1,x_ipCoreRevision=22,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_S_AXIS_TDATA_WIDTH=32,C_S_AXIS_TID_WIDTH=2,C_S_AXIS_TDEST_WIDTH=1,C_S_AXIS_TUSER_WIDTH=1,C_S_AXIS_SIGNAL_SET=0b00000000000000000000000000111111,C_M_AXIS_TDATA_WIDTH=32,C_M_AXIS_TID_WIDTH=1,C_M_AXIS_TDEST_WIDTH=1,C_M_AXIS_SIGNAL_SET=0b00000000000000000000000\
 000011011,C_M_AXIS_TUSER_WIDTH=1,C_DEFAULT_TLAST=0}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module base_zynq_auto_ss_slidr_0 (
@@ -111,11 +111,11 @@ output wire m_axis_tlast;
     .C_S_AXIS_TID_WIDTH(2),
     .C_S_AXIS_TDEST_WIDTH(1),
     .C_S_AXIS_TUSER_WIDTH(1),
-    .C_S_AXIS_SIGNAL_SET('B00000000000000000000000000111111),
+    .C_S_AXIS_SIGNAL_SET(32'B00000000000000000000000000111111),
     .C_M_AXIS_TDATA_WIDTH(32),
     .C_M_AXIS_TID_WIDTH(1),
     .C_M_AXIS_TDEST_WIDTH(1),
-    .C_M_AXIS_SIGNAL_SET('B00000000000000000000000000011011),
+    .C_M_AXIS_SIGNAL_SET(32'B00000000000000000000000000011011),
     .C_M_AXIS_TUSER_WIDTH(1),
     .C_DEFAULT_TLAST(0)
   ) inst (

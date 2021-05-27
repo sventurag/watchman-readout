@@ -190,7 +190,7 @@ end if;
  
  
  
-read_sm:  process(clk,RST)
+read_sm:  process(clk,RST, mode)
 variable offset_v: integer ;
   begin 
  

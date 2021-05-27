@@ -1,18 +1,18 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Wed Feb 17 14:14:29 2021
-// Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+// Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+// Date        : Thu Apr 22 05:40:08 2021
+// Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode funcsim
-//               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_sim_netlist.v
+//               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_sim_netlist.v
 // Design      : base_zynq_util_ds_buf_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7z020clg400-1
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "base_zynq_util_ds_buf_0_0,util_ds_buf,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "util_ds_buf,Vivado 2020.1" *) 
+(* CHECK_LICENSE_TYPE = "base_zynq_util_ds_buf_0_0,util_ds_buf,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "util_ds_buf,Vivado 2020.2" *) 
 (* NotValidForBitStream *)
 module base_zynq_util_ds_buf_0_0
    (OBUF_IN,
@@ -29,6 +29,7 @@ module base_zynq_util_ds_buf_0_0
   wire [0:0]NLW_U0_BUFG_FABRIC_O_UNCONNECTED;
   wire [0:0]NLW_U0_BUFG_GT_O_UNCONNECTED;
   wire [0:0]NLW_U0_BUFG_O_UNCONNECTED;
+  wire [0:0]NLW_U0_BUFG_PS_O_UNCONNECTED;
   wire [0:0]NLW_U0_BUFHCE_O_UNCONNECTED;
   wire [0:0]NLW_U0_BUFH_O_UNCONNECTED;
   wire [0:0]NLW_U0_IBUFDS_GTME5_O_UNCONNECTED;
@@ -85,6 +86,8 @@ module base_zynq_util_ds_buf_0_0
         .BUFG_GT_O(NLW_U0_BUFG_GT_O_UNCONNECTED[0]),
         .BUFG_I(1'b0),
         .BUFG_O(NLW_U0_BUFG_O_UNCONNECTED[0]),
+        .BUFG_PS_I(1'b0),
+        .BUFG_PS_O(NLW_U0_BUFG_PS_O_UNCONNECTED[0]),
         .BUFHCE_CE(1'b0),
         .BUFHCE_I(1'b0),
         .BUFHCE_O(NLW_U0_BUFHCE_O_UNCONNECTED[0]),
@@ -131,6 +134,7 @@ module base_zynq_util_ds_buf_0_0
         .OBUFDS_GTE5_ADV_I({1'b0,1'b0,1'b0,1'b0}),
         .OBUFDS_GTE5_ADV_O(NLW_U0_OBUFDS_GTE5_ADV_O_UNCONNECTED[0]),
         .OBUFDS_GTE5_ADV_OB(NLW_U0_OBUFDS_GTE5_ADV_OB_UNCONNECTED[0]),
+        .OBUFDS_GTE5_ADV_RXRECCLKSEL({1'b0,1'b0}),
         .OBUFDS_GTE5_CEB(1'b0),
         .OBUFDS_GTE5_I(1'b0),
         .OBUFDS_GTE5_O(NLW_U0_OBUFDS_GTE5_O_UNCONNECTED[0]),
@@ -139,6 +143,7 @@ module base_zynq_util_ds_buf_0_0
         .OBUFDS_GTME5_ADV_I({1'b0,1'b0,1'b0,1'b0}),
         .OBUFDS_GTME5_ADV_O(NLW_U0_OBUFDS_GTME5_ADV_O_UNCONNECTED[0]),
         .OBUFDS_GTME5_ADV_OB(NLW_U0_OBUFDS_GTME5_ADV_OB_UNCONNECTED[0]),
+        .OBUFDS_GTME5_ADV_RXRECCLKSEL({1'b0,1'b0}),
         .OBUFDS_GTME5_CEB(1'b0),
         .OBUFDS_GTME5_I(1'b0),
         .OBUFDS_GTME5_O(NLW_U0_OBUFDS_GTME5_O_UNCONNECTED[0]),
@@ -197,6 +202,7 @@ module base_zynq_util_ds_buf_0_0_util_ds_buf
     OBUFDS_GTE5_ADV_I,
     OBUFDS_GTE5_ADV_O,
     OBUFDS_GTE5_ADV_OB,
+    OBUFDS_GTE5_ADV_RXRECCLKSEL,
     OBUFDS_GTE3_CEB,
     OBUFDS_GTE3_I,
     OBUFDS_GTE3_O,
@@ -241,13 +247,16 @@ module base_zynq_util_ds_buf_0_0_util_ds_buf
     OBUFDS_GTME5_ADV_I,
     OBUFDS_GTME5_ADV_O,
     OBUFDS_GTME5_ADV_OB,
+    OBUFDS_GTME5_ADV_RXRECCLKSEL,
     BUFG_GT_I,
     BUFG_GT_CE,
     BUFG_GT_CEMASK,
     BUFG_GT_CLR,
     BUFG_GT_CLRMASK,
     BUFG_GT_DIV,
-    BUFG_GT_O);
+    BUFG_GT_O,
+    BUFG_PS_I,
+    BUFG_PS_O);
   input [0:0]IBUF_DS_P;
   input [0:0]IBUF_DS_N;
   output [0:0]IBUF_OUT;
@@ -283,6 +292,7 @@ module base_zynq_util_ds_buf_0_0_util_ds_buf
   input [3:0]OBUFDS_GTE5_ADV_I;
   output [0:0]OBUFDS_GTE5_ADV_O;
   output [0:0]OBUFDS_GTE5_ADV_OB;
+  input [1:0]OBUFDS_GTE5_ADV_RXRECCLKSEL;
   input [0:0]OBUFDS_GTE3_CEB;
   input [0:0]OBUFDS_GTE3_I;
   output [0:0]OBUFDS_GTE3_O;
@@ -327,6 +337,7 @@ module base_zynq_util_ds_buf_0_0_util_ds_buf
   input [3:0]OBUFDS_GTME5_ADV_I;
   output [0:0]OBUFDS_GTME5_ADV_O;
   output [0:0]OBUFDS_GTME5_ADV_OB;
+  input [1:0]OBUFDS_GTME5_ADV_RXRECCLKSEL;
   input [0:0]BUFG_GT_I;
   input [0:0]BUFG_GT_CE;
   input [0:0]BUFG_GT_CEMASK;
@@ -334,6 +345,8 @@ module base_zynq_util_ds_buf_0_0_util_ds_buf
   input [0:0]BUFG_GT_CLRMASK;
   input [2:0]BUFG_GT_DIV;
   output [0:0]BUFG_GT_O;
+  input [0:0]BUFG_PS_I;
+  output [0:0]BUFG_PS_O;
 
   wire \<const0> ;
   wire [0:0]OBUF_DS_N;
@@ -344,6 +357,7 @@ module base_zynq_util_ds_buf_0_0_util_ds_buf
   assign BUFG_FABRIC_O[0] = IOBUF_DS_P[0];
   assign BUFG_GT_O[0] = IOBUF_DS_P[0];
   assign BUFG_O[0] = IOBUF_DS_P[0];
+  assign BUFG_PS_O[0] = IOBUF_DS_P[0];
   assign BUFHCE_O[0] = IOBUF_DS_P[0];
   assign BUFH_O[0] = IOBUF_DS_P[0];
   assign IBUFDS_GTME5_O[0] = IOBUF_DS_P[0];

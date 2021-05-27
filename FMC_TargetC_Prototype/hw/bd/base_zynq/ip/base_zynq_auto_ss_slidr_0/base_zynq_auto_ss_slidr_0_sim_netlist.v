@@ -1,18 +1,18 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Apr 15 11:08:35 2021
-// Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+// Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+// Date        : Thu Apr 22 05:46:18 2021
+// Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top base_zynq_auto_ss_slidr_0 -prefix
 //               base_zynq_auto_ss_slidr_0_ base_zynq_auto_ss_slidr_0_sim_netlist.v
 // Design      : base_zynq_auto_ss_slidr_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7z020clg400-1
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "base_zynq_auto_ss_slidr_0,top_base_zynq_auto_ss_slidr_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "top_base_zynq_auto_ss_slidr_0,Vivado 2020.1" *) 
+(* CHECK_LICENSE_TYPE = "base_zynq_auto_ss_slidr_0,top_base_zynq_auto_ss_slidr_0,{}" *) (* DowngradeIPIdentifiedWarnings = "yes" *) (* X_CORE_INFO = "top_base_zynq_auto_ss_slidr_0,Vivado 2020.2" *) 
 (* NotValidForBitStream *)
 module base_zynq_auto_ss_slidr_0
    (aclk,
@@ -44,19 +44,15 @@ module base_zynq_auto_ss_slidr_0
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TKEEP" *) output [3:0]m_axis_tkeep;
   (* X_INTERFACE_INFO = "xilinx.com:interface:axis:1.0 M_AXIS TLAST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME M_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 0, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 0, HAS_TKEEP 1, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *) output m_axis_tlast;
 
-  wire aclk;
-  wire aresetn;
   wire [31:0]m_axis_tdata;
   wire [3:0]m_axis_tkeep;
   wire m_axis_tlast;
   wire m_axis_tready;
   wire m_axis_tvalid;
   wire [31:0]s_axis_tdata;
-  wire [1:0]s_axis_tid;
   wire [3:0]s_axis_tkeep;
   wire s_axis_tlast;
   wire s_axis_tready;
-  wire [3:0]s_axis_tstrb;
   wire s_axis_tvalid;
   wire NLW_inst_sparse_tkeep_removed_UNCONNECTED;
   wire NLW_inst_transfer_dropped_UNCONNECTED;
@@ -67,12 +63,12 @@ module base_zynq_auto_ss_slidr_0
 
   (* C_DEFAULT_TLAST = "0" *) 
   (* C_FAMILY = "zynq" *) 
-  (* C_M_AXIS_SIGNAL_SET = "32'b00000000000000000000000000011011" *) 
+  (* C_M_AXIS_SIGNAL_SET = "27" *) 
   (* C_M_AXIS_TDATA_WIDTH = "32" *) 
   (* C_M_AXIS_TDEST_WIDTH = "1" *) 
   (* C_M_AXIS_TID_WIDTH = "1" *) 
   (* C_M_AXIS_TUSER_WIDTH = "1" *) 
-  (* C_S_AXIS_SIGNAL_SET = "32'b00000000000000000000000000111111" *) 
+  (* C_S_AXIS_SIGNAL_SET = "63" *) 
   (* C_S_AXIS_TDATA_WIDTH = "32" *) 
   (* C_S_AXIS_TDEST_WIDTH = "1" *) 
   (* C_S_AXIS_TID_WIDTH = "2" *) 
@@ -97,9 +93,9 @@ module base_zynq_auto_ss_slidr_0
   (* G_TASK_SEVERITY_INFO = "0" *) 
   (* G_TASK_SEVERITY_WARNING = "1" *) 
   base_zynq_auto_ss_slidr_0_top_base_zynq_auto_ss_slidr_0 inst
-       (.aclk(aclk),
+       (.aclk(1'b0),
         .aclken(1'b1),
-        .aresetn(aresetn),
+        .aresetn(1'b0),
         .m_axis_tdata(m_axis_tdata),
         .m_axis_tdest(NLW_inst_m_axis_tdest_UNCONNECTED[0]),
         .m_axis_tid(NLW_inst_m_axis_tid_UNCONNECTED[0]),
@@ -111,20 +107,20 @@ module base_zynq_auto_ss_slidr_0
         .m_axis_tvalid(m_axis_tvalid),
         .s_axis_tdata(s_axis_tdata),
         .s_axis_tdest(1'b0),
-        .s_axis_tid(s_axis_tid),
+        .s_axis_tid({1'b0,1'b0}),
         .s_axis_tkeep(s_axis_tkeep),
         .s_axis_tlast(s_axis_tlast),
         .s_axis_tready(s_axis_tready),
-        .s_axis_tstrb(s_axis_tstrb),
+        .s_axis_tstrb({1'b0,1'b0,1'b0,1'b0}),
         .s_axis_tuser(1'b0),
         .s_axis_tvalid(s_axis_tvalid),
         .sparse_tkeep_removed(NLW_inst_sparse_tkeep_removed_UNCONNECTED),
         .transfer_dropped(NLW_inst_transfer_dropped_UNCONNECTED));
 endmodule
 
-(* C_DEFAULT_TLAST = "0" *) (* C_FAMILY = "zynq" *) (* C_M_AXIS_SIGNAL_SET = "32'b00000000000000000000000000011011" *) 
+(* C_DEFAULT_TLAST = "0" *) (* C_FAMILY = "zynq" *) (* C_M_AXIS_SIGNAL_SET = "27" *) 
 (* C_M_AXIS_TDATA_WIDTH = "32" *) (* C_M_AXIS_TDEST_WIDTH = "1" *) (* C_M_AXIS_TID_WIDTH = "1" *) 
-(* C_M_AXIS_TUSER_WIDTH = "1" *) (* C_S_AXIS_SIGNAL_SET = "32'b00000000000000000000000000111111" *) (* C_S_AXIS_TDATA_WIDTH = "32" *) 
+(* C_M_AXIS_TUSER_WIDTH = "1" *) (* C_S_AXIS_SIGNAL_SET = "63" *) (* C_S_AXIS_TDATA_WIDTH = "32" *) 
 (* C_S_AXIS_TDEST_WIDTH = "1" *) (* C_S_AXIS_TID_WIDTH = "2" *) (* C_S_AXIS_TUSER_WIDTH = "1" *) 
 (* G_INDX_SS_TDATA = "1" *) (* G_INDX_SS_TDEST = "6" *) (* G_INDX_SS_TID = "5" *) 
 (* G_INDX_SS_TKEEP = "3" *) (* G_INDX_SS_TLAST = "4" *) (* G_INDX_SS_TREADY = "0" *) 

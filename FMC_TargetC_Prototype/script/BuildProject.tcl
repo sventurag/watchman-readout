@@ -8,11 +8,12 @@
 # Parameters
 
 # Project Name Definition
-set ProjectName "FMC_TARGETC_Prototype"
+set ProjectName "HMBcalReadoutTARGETC"
 
 # Set the reference directory for source file relative paths (by default the value is script directory path)
 set origin_dir "../"
 set origin_proj_dir "${origin_dir}/XilinxBuild/"
+
 set ip_repository "${origin_dir}/ip_repo/"
 
 #*****************************************************************************************
@@ -44,22 +45,12 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
   create_fileset -srcset sources_1
 }
 
-# Set IP repository paths
-#import_ip{
-# ${ip_repository}/axi_cmd_fifo_11W_5D.xcix\
-# ${ip_repository}/axi_time_fifo_64W_32D.xcix\
-# ${ip_repository}/axi_trig_afifo_12W_32D\
-# ${ip_repository}/axi_wdo_addr_fifo.xcix\
-# ${ip_repository}/dig_sto_fifo_9W_16D.xcix\
-# ${ip_repository}/trig0_fifo_10W_16D_1.xcix
-#}
- 
+
+
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/hw/src/98_Basic_Component/CNT_EN.vhdl"]\
  [file normalize "${origin_dir}/hw/src/98_Basic_Component/SyncBit.vhd"]\
  [file normalize "${origin_dir}/hw/src/98_Basic_Component/SyncBuffer.vhd"]\
- [file normalize "${origin_dir}/hw/src/98_Basic_Component/iobuf.vhd"]\
  [file normalize "${origin_dir}/hw/src/98_Basic_Component/clockcrossing_Buffer.vhd"]\
  [file normalize "${origin_dir}/hw/src/98_Basic_Component/fifo.vhdl"]\
  [file normalize "${origin_dir}/hw/src/98_Basic_Component/counter.vhdl"]\
@@ -78,20 +69,18 @@ set files [list \
  [file normalize "${origin_dir}/hw/src/Round_Buffer/WindowStoreV4.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/CPU_CONTROLLERV3.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/RoundBufferV6.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/TRIGGER_CONTROLLER.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/SingleTrigger.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/LookupTable_LE.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/circularBuffer.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/DummyTrigger.vhd"]\
+ [file normalize "${origin_dir}/hw/src/Round_Buffer/pedestalTrigger.vhd"]\
  [file normalize "${origin_dir}/hw/src/TargetC_Control/TARGETC_Control.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayEncoder.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayDecoder.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/nextAddressCnt.vhd"]\
  [file normalize "${origin_dir}/hw/src/98_Basic_Component/clockcrossing_Buffer.vhd"]\
  [file normalize "${origin_dir}/hw/src/99_Packages/WindowCPU_pkg.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/BlockDelay.vhd"]\
+ 
+]
 
-] 
+
 add_files -norecurse -fileset $obj $files
 
 update_compile_order -fileset sources_1

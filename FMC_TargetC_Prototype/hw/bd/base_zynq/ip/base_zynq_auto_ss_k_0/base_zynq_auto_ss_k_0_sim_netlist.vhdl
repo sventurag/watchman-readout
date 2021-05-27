@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Apr 15 11:08:21 2021
--- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Thu Apr 22 05:45:12 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_auto_ss_k_0 -prefix
 --               base_zynq_auto_ss_k_0_ base_zynq_auto_ss_k_0_sim_netlist.vhdl
 -- Design      : base_zynq_auto_ss_k_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z020clg400-1
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -44,8 +44,8 @@ entity base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 is
   attribute C_DEFAULT_TLAST of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 0;
   attribute C_FAMILY : string;
   attribute C_FAMILY of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is "zynq";
-  attribute C_M_AXIS_SIGNAL_SET : string;
-  attribute C_M_AXIS_SIGNAL_SET of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is "32'b00000000000000000000000000111111";
+  attribute C_M_AXIS_SIGNAL_SET : integer;
+  attribute C_M_AXIS_SIGNAL_SET of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 63;
   attribute C_M_AXIS_TDATA_WIDTH : integer;
   attribute C_M_AXIS_TDATA_WIDTH of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 32;
   attribute C_M_AXIS_TDEST_WIDTH : integer;
@@ -54,8 +54,8 @@ entity base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 is
   attribute C_M_AXIS_TID_WIDTH of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 2;
   attribute C_M_AXIS_TUSER_WIDTH : integer;
   attribute C_M_AXIS_TUSER_WIDTH of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 1;
-  attribute C_S_AXIS_SIGNAL_SET : string;
-  attribute C_S_AXIS_SIGNAL_SET of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is "32'b00000000000000000000000000110111";
+  attribute C_S_AXIS_SIGNAL_SET : integer;
+  attribute C_S_AXIS_SIGNAL_SET of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 55;
   attribute C_S_AXIS_TDATA_WIDTH : integer;
   attribute C_S_AXIS_TDATA_WIDTH of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 : entity is 32;
   attribute C_S_AXIS_TDEST_WIDTH : integer;
@@ -106,7 +106,6 @@ end base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0;
 
 architecture STRUCTURE of base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0 is
   signal \<const0>\ : STD_LOGIC;
-  signal \<const1>\ : STD_LOGIC;
   signal \^m_axis_tready\ : STD_LOGIC;
   signal \^s_axis_tdata\ : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal \^s_axis_tid\ : STD_LOGIC_VECTOR ( 1 downto 0 );
@@ -123,10 +122,10 @@ begin
   m_axis_tdata(31 downto 0) <= \^s_axis_tdata\(31 downto 0);
   m_axis_tdest(0) <= \<const0>\;
   m_axis_tid(1 downto 0) <= \^s_axis_tid\(1 downto 0);
-  m_axis_tkeep(3) <= \<const1>\;
-  m_axis_tkeep(2) <= \<const1>\;
-  m_axis_tkeep(1) <= \<const1>\;
-  m_axis_tkeep(0) <= \<const1>\;
+  m_axis_tkeep(3) <= \<const0>\;
+  m_axis_tkeep(2) <= \<const0>\;
+  m_axis_tkeep(1) <= \<const0>\;
+  m_axis_tkeep(0) <= \<const0>\;
   m_axis_tlast <= \^s_axis_tlast\;
   m_axis_tstrb(3 downto 0) <= \^s_axis_tstrb\(3 downto 0);
   m_axis_tuser(0) <= \<const0>\;
@@ -137,10 +136,6 @@ begin
 GND: unisim.vcomponents.GND
      port map (
       G => \<const0>\
-    );
-VCC: unisim.vcomponents.VCC
-     port map (
-      P => \<const1>\
     );
 end STRUCTURE;
 library IEEE;
@@ -172,20 +167,22 @@ entity base_zynq_auto_ss_k_0 is
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of base_zynq_auto_ss_k_0 : entity is "yes";
   attribute X_CORE_INFO : string;
-  attribute X_CORE_INFO of base_zynq_auto_ss_k_0 : entity is "top_base_zynq_auto_ss_k_0,Vivado 2020.1";
+  attribute X_CORE_INFO of base_zynq_auto_ss_k_0 : entity is "top_base_zynq_auto_ss_k_0,Vivado 2020.2";
 end base_zynq_auto_ss_k_0;
 
 architecture STRUCTURE of base_zynq_auto_ss_k_0 is
+  signal \<const1>\ : STD_LOGIC;
   signal NLW_inst_sparse_tkeep_removed_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_transfer_dropped_UNCONNECTED : STD_LOGIC;
   signal NLW_inst_m_axis_tdest_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
+  signal NLW_inst_m_axis_tkeep_UNCONNECTED : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal NLW_inst_m_axis_tuser_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   attribute C_DEFAULT_TLAST : integer;
   attribute C_DEFAULT_TLAST of inst : label is 0;
   attribute C_FAMILY : string;
   attribute C_FAMILY of inst : label is "zynq";
-  attribute C_M_AXIS_SIGNAL_SET : string;
-  attribute C_M_AXIS_SIGNAL_SET of inst : label is "32'b00000000000000000000000000111111";
+  attribute C_M_AXIS_SIGNAL_SET : integer;
+  attribute C_M_AXIS_SIGNAL_SET of inst : label is 63;
   attribute C_M_AXIS_TDATA_WIDTH : integer;
   attribute C_M_AXIS_TDATA_WIDTH of inst : label is 32;
   attribute C_M_AXIS_TDEST_WIDTH : integer;
@@ -194,8 +191,8 @@ architecture STRUCTURE of base_zynq_auto_ss_k_0 is
   attribute C_M_AXIS_TID_WIDTH of inst : label is 2;
   attribute C_M_AXIS_TUSER_WIDTH : integer;
   attribute C_M_AXIS_TUSER_WIDTH of inst : label is 1;
-  attribute C_S_AXIS_SIGNAL_SET : string;
-  attribute C_S_AXIS_SIGNAL_SET of inst : label is "32'b00000000000000000000000000110111";
+  attribute C_S_AXIS_SIGNAL_SET : integer;
+  attribute C_S_AXIS_SIGNAL_SET of inst : label is 55;
   attribute C_S_AXIS_TDATA_WIDTH : integer;
   attribute C_S_AXIS_TDATA_WIDTH of inst : label is 32;
   attribute C_S_AXIS_TDEST_WIDTH : integer;
@@ -264,15 +261,23 @@ architecture STRUCTURE of base_zynq_auto_ss_k_0 is
   attribute X_INTERFACE_PARAMETER of s_axis_tid : signal is "XIL_INTERFACENAME S_AXIS, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute X_INTERFACE_INFO of s_axis_tstrb : signal is "xilinx.com:interface:axis:1.0 S_AXIS TSTRB";
 begin
+  m_axis_tkeep(3) <= \<const1>\;
+  m_axis_tkeep(2) <= \<const1>\;
+  m_axis_tkeep(1) <= \<const1>\;
+  m_axis_tkeep(0) <= \<const1>\;
+VCC: unisim.vcomponents.VCC
+     port map (
+      P => \<const1>\
+    );
 inst: entity work.base_zynq_auto_ss_k_0_top_base_zynq_auto_ss_k_0
      port map (
-      aclk => aclk,
+      aclk => '0',
       aclken => '1',
-      aresetn => aresetn,
+      aresetn => '0',
       m_axis_tdata(31 downto 0) => m_axis_tdata(31 downto 0),
       m_axis_tdest(0) => NLW_inst_m_axis_tdest_UNCONNECTED(0),
       m_axis_tid(1 downto 0) => m_axis_tid(1 downto 0),
-      m_axis_tkeep(3 downto 0) => m_axis_tkeep(3 downto 0),
+      m_axis_tkeep(3 downto 0) => NLW_inst_m_axis_tkeep_UNCONNECTED(3 downto 0),
       m_axis_tlast => m_axis_tlast,
       m_axis_tready => m_axis_tready,
       m_axis_tstrb(3 downto 0) => m_axis_tstrb(3 downto 0),

@@ -1,13 +1,13 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Wed Feb 17 14:14:28 2021
--- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Thu Apr 22 05:40:08 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_stub.vhdl
+--               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_stub.vhdl
 -- Design      : base_zynq_util_ds_buf_0_0
 -- Purpose     : Stub declaration of top-level module interface
--- Device      : xc7z020clg400-1
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -27,6 +27,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "OBUF_IN[0:0],OBUF_DS_P[0:0],OBUF_DS_N[0:0]";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "util_ds_buf,Vivado 2020.1";
+attribute x_core_info of stub : architecture is "util_ds_buf,Vivado 2020.2";
 begin
 end;

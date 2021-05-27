@@ -1,14 +1,14 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Oct 15 11:37:45 2020
--- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_rst_ps7_0_50M_0 -prefix
---               base_zynq_rst_ps7_0_50M_0_ base_zynq_rst_ps7_0_50M_0_sim_netlist.vhdl
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Thu Apr 22 05:42:09 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
+-- Command     : write_vhdl -force -mode funcsim
+--               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_rst_ps7_0_50M_0/base_zynq_rst_ps7_0_50M_0_sim_netlist.vhdl
 -- Design      : base_zynq_rst_ps7_0_50M_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
--- Device      : xc7z020clg400-1
+-- Device      : xc7z010clg400-1
 -- --------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -25,6 +25,8 @@ entity base_zynq_rst_ps7_0_50M_0_cdc_sync is
     aux_reset_in : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_cdc_sync : entity is "cdc_sync";
 end base_zynq_rst_ps7_0_50M_0_cdc_sync;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_cdc_sync is
@@ -235,6 +237,8 @@ entity base_zynq_rst_ps7_0_50M_0_upcnt_n is
     seq_cnt_en : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_upcnt_n : entity is "upcnt_n";
 end base_zynq_rst_ps7_0_50M_0_upcnt_n;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_upcnt_n is
@@ -399,6 +403,8 @@ entity base_zynq_rst_ps7_0_50M_0_lpf is
     ext_reset_in : in STD_LOGIC;
     aux_reset_in : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_lpf : entity is "lpf";
 end base_zynq_rst_ps7_0_50M_0_lpf;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_lpf is
@@ -585,6 +591,8 @@ entity base_zynq_rst_ps7_0_50M_0_sequence_psr is
     lpf_int : in STD_LOGIC;
     slowest_sync_clk : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_sequence_psr : entity is "sequence_psr";
 end base_zynq_rst_ps7_0_50M_0_sequence_psr;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_sequence_psr is
@@ -923,6 +931,8 @@ entity base_zynq_rst_ps7_0_50M_0_proc_sys_reset is
   attribute C_NUM_PERP_ARESETN of base_zynq_rst_ps7_0_50M_0_proc_sys_reset : entity is 1;
   attribute C_NUM_PERP_RST : integer;
   attribute C_NUM_PERP_RST of base_zynq_rst_ps7_0_50M_0_proc_sys_reset : entity is 1;
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_rst_ps7_0_50M_0_proc_sys_reset : entity is "proc_sys_reset";
 end base_zynq_rst_ps7_0_50M_0_proc_sys_reset;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0_proc_sys_reset is
@@ -1053,7 +1063,7 @@ entity base_zynq_rst_ps7_0_50M_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of base_zynq_rst_ps7_0_50M_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of base_zynq_rst_ps7_0_50M_0 : entity is "proc_sys_reset,Vivado 2020.1";
+  attribute x_core_info of base_zynq_rst_ps7_0_50M_0 : entity is "proc_sys_reset,Vivado 2020.2";
 end base_zynq_rst_ps7_0_50M_0;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0 is

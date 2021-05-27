@@ -1,19 +1,19 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Thu Apr 15 16:55:02 2021
-// Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+// Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+// Date        : Thu Apr 22 05:47:21 2021
+// Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode synth_stub
-//               /home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_3/base_zynq_xbar_3_stub.v
+//               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_3/base_zynq_xbar_3_stub.v
 // Design      : base_zynq_xbar_3
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7z020clg400-1
+// Device      : xc7z010clg400-1
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* X_CORE_INFO = "axis_switch_v1_1_21_axis_switch,Vivado 2020.1" *)
+(* X_CORE_INFO = "axis_switch_v1_1_22_axis_switch,Vivado 2020.2" *)
 module base_zynq_xbar_3(aclk, aresetn, s_axis_tvalid, s_axis_tready, 
   s_axis_tdata, s_axis_tstrb, s_axis_tlast, s_axis_tid, m_axis_tvalid, m_axis_tready, 
   m_axis_tdata, m_axis_tstrb, m_axis_tlast, m_axis_tid, s_req_suppress, s_decode_err)

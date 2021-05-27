@@ -122,6 +122,9 @@ public:
   sc_core::sc_in< bool > m_axi_bvalid;
   sc_core::sc_out< bool > m_axi_bready;
 
+  // Dummy Signals for IP Ports
+
+
 protected:
 
   virtual void before_end_of_elaboration();
@@ -197,6 +200,9 @@ public:
   sc_core::sc_in< bool > m_axi_bvalid;
   sc_core::sc_out< bool > m_axi_bready;
 
+  // Dummy Signals for IP Ports
+
+
 protected:
 
   virtual void before_end_of_elaboration();
@@ -271,6 +277,9 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<2> > m_axi_bresp;
   sc_core::sc_in< bool > m_axi_bvalid;
   sc_core::sc_out< bool > m_axi_bready;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 
@@ -348,6 +357,9 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<2> > m_axi_bresp;
   sc_core::sc_in< bool > m_axi_bvalid;
   sc_core::sc_out< bool > m_axi_bready;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 
@@ -431,6 +443,9 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<2> > m_axi_bresp;
   sc_core::sc_in< bool > m_axi_bvalid;
   sc_core::sc_out< bool > m_axi_bready;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 

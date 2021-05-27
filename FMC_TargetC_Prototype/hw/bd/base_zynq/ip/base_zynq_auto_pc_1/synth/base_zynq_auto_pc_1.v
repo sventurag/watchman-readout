@@ -48,11 +48,11 @@
 
 
 // IP VLNV: xilinx.com:ip:axi_protocol_converter:2.1
-// IP Revision: 21
+// IP Revision: 22
 
-(* X_CORE_INFO = "axi_protocol_converter_v2_1_21_axi_protocol_converter,Vivado 2020.1" *)
-(* CHECK_LICENSE_TYPE = "base_zynq_auto_pc_1,axi_protocol_converter_v2_1_21_axi_protocol_converter,{}" *)
-(* CORE_GENERATION_INFO = "base_zynq_auto_pc_1,axi_protocol_converter_v2_1_21_axi_protocol_converter,{x_ipProduct=Vivado 2020.1,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_protocol_converter,x_ipVersion=2.1,x_ipCoreRevision=21,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_M_AXI_PROTOCOL=2,C_S_AXI_PROTOCOL=1,C_IGNORE_ID=0,C_AXI_ID_WIDTH=12,C_AXI_ADDR_WIDTH=32,C_AXI_DATA_WIDTH=32,C_AXI_SUPPORTS_WRITE=1,C_AXI_SUPPORTS_READ=1,C_AXI_SUPPORTS_USER_SIGNALS=0,C_AXI_AWUSER_WIDTH=1,C_AXI_ARUSER_WIDTH=1,C_AXI_WUSER_W\
+(* X_CORE_INFO = "axi_protocol_converter_v2_1_22_axi_protocol_converter,Vivado 2020.2" *)
+(* CHECK_LICENSE_TYPE = "base_zynq_auto_pc_1,axi_protocol_converter_v2_1_22_axi_protocol_converter,{}" *)
+(* CORE_GENERATION_INFO = "base_zynq_auto_pc_1,axi_protocol_converter_v2_1_22_axi_protocol_converter,{x_ipProduct=Vivado 2020.2,x_ipVendor=xilinx.com,x_ipLibrary=ip,x_ipName=axi_protocol_converter,x_ipVersion=2.1,x_ipCoreRevision=22,x_ipLanguage=VHDL,x_ipSimLanguage=MIXED,C_FAMILY=zynq,C_M_AXI_PROTOCOL=2,C_S_AXI_PROTOCOL=1,C_IGNORE_ID=0,C_AXI_ID_WIDTH=12,C_AXI_ADDR_WIDTH=32,C_AXI_DATA_WIDTH=32,C_AXI_SUPPORTS_WRITE=1,C_AXI_SUPPORTS_READ=1,C_AXI_SUPPORTS_USER_SIGNALS=0,C_AXI_AWUSER_WIDTH=1,C_AXI_ARUSER_WIDTH=1,C_AXI_WUSER_W\
 IDTH=1,C_AXI_RUSER_WIDTH=1,C_AXI_BUSER_WIDTH=1,C_TRANSLATION_MODE=2}" *)
 (* DowngradeIPIdentifiedWarnings = "yes" *)
 module base_zynq_auto_pc_1 (
@@ -242,7 +242,7 @@ DS 4, NUM_WRITE_THREADS 4, RUSER_BITS_PER_BYTE 0, WUSER_BITS_PER_BYTE 0, INSERT_
 (* X_INTERFACE_INFO = "xilinx.com:interface:aximm:1.0 M_AXI RREADY" *)
 output wire m_axi_rready;
 
-  axi_protocol_converter_v2_1_21_axi_protocol_converter #(
+  axi_protocol_converter_v2_1_22_axi_protocol_converter #(
     .C_FAMILY("zynq"),
     .C_M_AXI_PROTOCOL(2),
     .C_S_AXI_PROTOCOL(1),
