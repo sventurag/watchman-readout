@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
---Date        : Fri May 28 08:12:06 2021
+--Date        : Mon May 31 18:19:11 2021
 --Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -2434,48 +2434,6 @@ entity base_zynq is
 end base_zynq;
 
 architecture STRUCTURE of base_zynq is
-  component base_zynq_TARGETC_axi_int_0_1 is
-  port (
-    SW_nRST : in STD_LOGIC;
-    TestStream : in STD_LOGIC;
-    FIFOvalid : in STD_LOGIC;
-    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady : out STD_LOGIC;
-    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR : in STD_LOGIC;
-    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_ACLK : in STD_LOGIC;
-    M_AXIS_ARESETN : in STD_LOGIC;
-    M_AXIS_TVALID : out STD_LOGIC;
-    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    M_AXIS_TLAST : out STD_LOGIC;
-    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_TREADY : in STD_LOGIC
-  );
-  end component base_zynq_TARGETC_axi_int_0_1;
-  component base_zynq_TARGETC_axi_int_0_2 is
-  port (
-    SW_nRST : in STD_LOGIC;
-    TestStream : in STD_LOGIC;
-    FIFOvalid : in STD_LOGIC;
-    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    StreamReady : out STD_LOGIC;
-    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    CNT_CLR : in STD_LOGIC;
-    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_ACLK : in STD_LOGIC;
-    M_AXIS_ARESETN : in STD_LOGIC;
-    M_AXIS_TVALID : out STD_LOGIC;
-    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
-    M_AXIS_TLAST : out STD_LOGIC;
-    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    M_AXIS_TREADY : in STD_LOGIC
-  );
-  end component base_zynq_TARGETC_axi_int_0_2;
   component base_zynq_axi_dma_0_0 is
   port (
     s_axi_lite_aclk : in STD_LOGIC;
@@ -2876,6 +2834,48 @@ architecture STRUCTURE of base_zynq is
     SSVALID_INTR : out STD_LOGIC
   );
   end component base_zynq_TARGET_C_TopLevel_Sy_0_1;
+  component base_zynq_TARGETC_axi_int_0_1 is
+  port (
+    SW_nRST : in STD_LOGIC;
+    TestStream : in STD_LOGIC;
+    FIFOvalid : in STD_LOGIC;
+    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : out STD_LOGIC;
+    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : in STD_LOGIC;
+    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_ACLK : in STD_LOGIC;
+    M_AXIS_ARESETN : in STD_LOGIC;
+    M_AXIS_TVALID : out STD_LOGIC;
+    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    M_AXIS_TLAST : out STD_LOGIC;
+    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_TREADY : in STD_LOGIC
+  );
+  end component base_zynq_TARGETC_axi_int_0_1;
+  component base_zynq_TARGETC_axi_int_0_2 is
+  port (
+    SW_nRST : in STD_LOGIC;
+    TestStream : in STD_LOGIC;
+    FIFOvalid : in STD_LOGIC;
+    FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    StreamReady : out STD_LOGIC;
+    Cnt_AXIS_DATA : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    CNT_CLR : in STD_LOGIC;
+    TID : in STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_ACLK : in STD_LOGIC;
+    M_AXIS_ARESETN : in STD_LOGIC;
+    M_AXIS_TVALID : out STD_LOGIC;
+    M_AXIS_TDATA : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    M_AXIS_TSTRB : out STD_LOGIC_VECTOR ( 3 downto 0 );
+    M_AXIS_TDEST : out STD_LOGIC_VECTOR ( 9 downto 0 );
+    M_AXIS_TLAST : out STD_LOGIC;
+    M_AXIS_TID : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    M_AXIS_TREADY : in STD_LOGIC
+  );
+  end component base_zynq_TARGETC_axi_int_0_2;
   signal ARESETN_1 : STD_LOGIC_VECTOR ( 0 to 0 );
   signal B_DONE_1 : STD_LOGIC;
   signal B_DO_10_1 : STD_LOGIC_VECTOR ( 0 to 0 );

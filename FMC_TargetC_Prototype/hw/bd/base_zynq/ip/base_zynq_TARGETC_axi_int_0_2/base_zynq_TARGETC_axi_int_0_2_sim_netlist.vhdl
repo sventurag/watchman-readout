@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Thu May 27 10:34:47 2021
+-- Date        : Mon May 31 18:21:38 2021
 -- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGETC_axi_int_0_2/base_zynq_TARGETC_axi_int_0_2_sim_netlist.vhdl
--- Design      : base_zynq_TARGETC_axi_int_0_2
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_TARGETC_axi_int_0_2 -prefix
+--               base_zynq_TARGETC_axi_int_0_2_ base_zynq_TARGETC_axi_int_0_1_sim_netlist.vhdl
+-- Design      : base_zynq_TARGETC_axi_int_0_1
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -30,8 +30,6 @@ entity base_zynq_TARGETC_axi_int_0_2_axistream is
     FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     CNT_CLR : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_TARGETC_axi_int_0_2_axistream : entity is "axistream";
 end base_zynq_TARGETC_axi_int_0_2_axistream;
 
 architecture STRUCTURE of base_zynq_TARGETC_axi_int_0_2_axistream is
@@ -2812,11 +2810,11 @@ entity base_zynq_TARGETC_axi_int_0_2 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of base_zynq_TARGETC_axi_int_0_2 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of base_zynq_TARGETC_axi_int_0_2 : entity is "base_zynq_TARGETC_axi_int_0_2,axistream,{}";
+  attribute CHECK_LICENSE_TYPE of base_zynq_TARGETC_axi_int_0_2 : entity is "base_zynq_TARGETC_axi_int_0_1,axistream,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of base_zynq_TARGETC_axi_int_0_2 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of base_zynq_TARGETC_axi_int_0_2 : entity is "axistream,Vivado 2020.1";
+  attribute x_core_info of base_zynq_TARGETC_axi_int_0_2 : entity is "axistream,Vivado 2020.2";
 end base_zynq_TARGETC_axi_int_0_2;
 
 architecture STRUCTURE of base_zynq_TARGETC_axi_int_0_2 is
@@ -2826,13 +2824,13 @@ architecture STRUCTURE of base_zynq_TARGETC_axi_int_0_2 is
   attribute x_interface_info : string;
   attribute x_interface_info of M_AXIS_ACLK : signal is "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK";
   attribute x_interface_parameter : string;
-  attribute x_interface_parameter of M_AXIS_ACLK : signal is "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_RESET M_AXIS_ARESETN, ASSOCIATED_BUSIF M00_AXIS, FREQ_HZ 1.25e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
+  attribute x_interface_parameter of M_AXIS_ACLK : signal is "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_RESET M_AXIS_ARESETN, ASSOCIATED_BUSIF M00_AXIS, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0";
   attribute x_interface_info of M_AXIS_ARESETN : signal is "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST";
   attribute x_interface_parameter of M_AXIS_ARESETN : signal is "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   attribute x_interface_info of M_AXIS_TLAST : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TLAST";
   attribute x_interface_info of M_AXIS_TREADY : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TREADY";
   attribute x_interface_info of M_AXIS_TVALID : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TVALID";
-  attribute x_interface_parameter of M_AXIS_TVALID : signal is "XIL_INTERFACENAME M00_AXIS, WIZ_DATA_WIDTH 32, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
+  attribute x_interface_parameter of M_AXIS_TVALID : signal is "XIL_INTERFACENAME M00_AXIS, WIZ_DATA_WIDTH 32, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 125000000, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0";
   attribute x_interface_info of M_AXIS_TDATA : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TDATA";
   attribute x_interface_info of M_AXIS_TID : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TID";
   attribute x_interface_info of M_AXIS_TSTRB : signal is "xilinx.com:interface:axis:1.0 M00_AXIS TSTRB";

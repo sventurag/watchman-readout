@@ -262,10 +262,10 @@ proc create_root_design { parentCell } {
   set WL_CLK_P [ create_bd_port -dir O -from 0 -to 0 -type clk WL_CLK_P ]
 
   # Create instance: TARGETC_axi_int_0, and set properties
-  set TARGETC_axi_int_0 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:1.0 TARGETC_axi_int_0 ]
+  set TARGETC_axi_int_0 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:2.0 TARGETC_axi_int_0 ]
 
   # Create instance: TARGETC_axi_int_1, and set properties
-  set TARGETC_axi_int_1 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:1.0 TARGETC_axi_int_1 ]
+  set TARGETC_axi_int_1 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:2.0 TARGETC_axi_int_1 ]
 
   # Create instance: TARGET_C_TopLevel_Sy_0, and set properties
   set block_name TARGET_C_TopLevel_System
