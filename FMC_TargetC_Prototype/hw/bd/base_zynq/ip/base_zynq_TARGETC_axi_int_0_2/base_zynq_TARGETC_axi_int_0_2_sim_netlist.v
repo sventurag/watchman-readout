@@ -1,17 +1,108 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
-// Date        : Fri Feb 26 15:27:40 2021
-// Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
-// Command     : write_verilog -force -mode funcsim -rename_top base_zynq_TARGETC_axi_int_0_2 -prefix
-//               base_zynq_TARGETC_axi_int_0_2_ base_zynq_TARGETC_axi_int_0_1_sim_netlist.v
-// Design      : base_zynq_TARGETC_axi_int_0_1
+// Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+// Date        : Thu May 27 10:34:47 2021
+// Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
+// Command     : write_verilog -force -mode funcsim
+//               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGETC_axi_int_0_2/base_zynq_TARGETC_axi_int_0_2_sim_netlist.v
+// Design      : base_zynq_TARGETC_axi_int_0_2
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
 // Device      : xc7z020clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
+(* CHECK_LICENSE_TYPE = "base_zynq_TARGETC_axi_int_0_2,axistream,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axistream,Vivado 2020.1" *) 
+(* NotValidForBitStream *)
+module base_zynq_TARGETC_axi_int_0_2
+   (SW_nRST,
+    TestStream,
+    FIFOvalid,
+    FIFOdata,
+    StreamReady,
+    Cnt_AXIS_DATA,
+    CNT_CLR,
+    TID,
+    M_AXIS_ACLK,
+    M_AXIS_ARESETN,
+    M_AXIS_TVALID,
+    M_AXIS_TDATA,
+    M_AXIS_TSTRB,
+    M_AXIS_TDEST,
+    M_AXIS_TLAST,
+    M_AXIS_TID,
+    M_AXIS_TREADY);
+  input SW_nRST;
+  input TestStream;
+  input FIFOvalid;
+  input [31:0]FIFOdata;
+  output StreamReady;
+  output [9:0]Cnt_AXIS_DATA;
+  input CNT_CLR;
+  input [1:0]TID;
+  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_RESET M_AXIS_ARESETN, ASSOCIATED_BUSIF M00_AXIS, FREQ_HZ 1.25e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input M_AXIS_ACLK;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input M_AXIS_ARESETN;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TVALID" *) (* x_interface_parameter = "XIL_INTERFACENAME M00_AXIS, WIZ_DATA_WIDTH 32, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *) output M_AXIS_TVALID;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TDATA" *) output [31:0]M_AXIS_TDATA;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TSTRB" *) output [3:0]M_AXIS_TSTRB;
+  output [9:0]M_AXIS_TDEST;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TLAST" *) output M_AXIS_TLAST;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TID" *) output [1:0]M_AXIS_TID;
+  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TREADY" *) input M_AXIS_TREADY;
+
+  wire \<const0> ;
+  wire \<const1> ;
+  wire CNT_CLR;
+  wire [9:0]Cnt_AXIS_DATA;
+  wire [31:0]FIFOdata;
+  wire FIFOvalid;
+  wire M_AXIS_ACLK;
+  wire M_AXIS_ARESETN;
+  wire [31:0]M_AXIS_TDATA;
+  wire M_AXIS_TLAST;
+  wire M_AXIS_TREADY;
+  wire M_AXIS_TVALID;
+  wire SW_nRST;
+  wire StreamReady;
+  wire [1:0]TID;
+  wire TestStream;
+
+  assign M_AXIS_TDEST[9] = \<const0> ;
+  assign M_AXIS_TDEST[8] = \<const0> ;
+  assign M_AXIS_TDEST[7] = \<const0> ;
+  assign M_AXIS_TDEST[6] = \<const0> ;
+  assign M_AXIS_TDEST[5] = \<const0> ;
+  assign M_AXIS_TDEST[4] = \<const0> ;
+  assign M_AXIS_TDEST[3] = \<const0> ;
+  assign M_AXIS_TDEST[2] = \<const0> ;
+  assign M_AXIS_TDEST[1] = \<const0> ;
+  assign M_AXIS_TDEST[0] = \<const0> ;
+  assign M_AXIS_TID[1:0] = TID;
+  assign M_AXIS_TSTRB[3] = \<const1> ;
+  assign M_AXIS_TSTRB[2] = \<const1> ;
+  assign M_AXIS_TSTRB[1] = \<const1> ;
+  assign M_AXIS_TSTRB[0] = \<const1> ;
+  GND GND
+       (.G(\<const0> ));
+  base_zynq_TARGETC_axi_int_0_2_axistream U0
+       (.CNT_CLR(CNT_CLR),
+        .FIFOdata(FIFOdata),
+        .FIFOvalid(FIFOvalid),
+        .M_AXIS_ACLK(M_AXIS_ACLK),
+        .M_AXIS_ARESETN(M_AXIS_ARESETN),
+        .M_AXIS_TDATA(M_AXIS_TDATA),
+        .M_AXIS_TLAST(M_AXIS_TLAST),
+        .M_AXIS_TREADY(M_AXIS_TREADY),
+        .M_AXIS_TVALID(M_AXIS_TVALID),
+        .Q(Cnt_AXIS_DATA),
+        .SW_nRST(SW_nRST),
+        .StreamReady(StreamReady),
+        .TestStream(TestStream));
+  VCC VCC
+       (.P(\<const1> ));
+endmodule
+
+(* ORIG_REF_NAME = "axistream" *) 
 module base_zynq_TARGETC_axi_int_0_2_axistream
    (Q,
     StreamReady,
@@ -2076,96 +2167,6 @@ module base_zynq_TARGETC_axi_int_0_2_axistream
         .D(p_0_in),
         .Q(\tx_state_reg_n_0_[1] ),
         .R(1'b0));
-endmodule
-
-(* CHECK_LICENSE_TYPE = "base_zynq_TARGETC_axi_int_0_1,axistream,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "axistream,Vivado 2020.1" *) 
-(* NotValidForBitStream *)
-module base_zynq_TARGETC_axi_int_0_2
-   (SW_nRST,
-    TestStream,
-    FIFOvalid,
-    FIFOdata,
-    StreamReady,
-    Cnt_AXIS_DATA,
-    CNT_CLR,
-    TID,
-    M_AXIS_ACLK,
-    M_AXIS_ARESETN,
-    M_AXIS_TVALID,
-    M_AXIS_TDATA,
-    M_AXIS_TSTRB,
-    M_AXIS_TDEST,
-    M_AXIS_TLAST,
-    M_AXIS_TID,
-    M_AXIS_TREADY);
-  input SW_nRST;
-  input TestStream;
-  input FIFOvalid;
-  input [31:0]FIFOdata;
-  output StreamReady;
-  output [9:0]Cnt_AXIS_DATA;
-  input CNT_CLR;
-  input [1:0]TID;
-  (* x_interface_info = "xilinx.com:signal:clock:1.0 M_AXIS_ACLK CLK" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ACLK, ASSOCIATED_RESET M_AXIS_ARESETN, ASSOCIATED_BUSIF M00_AXIS, FREQ_HZ 1.25e+08, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, INSERT_VIP 0" *) input M_AXIS_ACLK;
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 M_AXIS_ARESETN RST" *) (* x_interface_parameter = "XIL_INTERFACENAME M_AXIS_ARESETN, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input M_AXIS_ARESETN;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TVALID" *) (* x_interface_parameter = "XIL_INTERFACENAME M00_AXIS, WIZ_DATA_WIDTH 32, TDATA_NUM_BYTES 4, TDEST_WIDTH 0, TID_WIDTH 2, TUSER_WIDTH 0, HAS_TREADY 1, HAS_TSTRB 1, HAS_TKEEP 0, HAS_TLAST 1, FREQ_HZ 1.25e+08, PHASE 0.000, CLK_DOMAIN base_zynq_processing_system7_0_0_FCLK_CLK0, LAYERED_METADATA undef, INSERT_VIP 0" *) output M_AXIS_TVALID;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TDATA" *) output [31:0]M_AXIS_TDATA;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TSTRB" *) output [3:0]M_AXIS_TSTRB;
-  output [9:0]M_AXIS_TDEST;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TLAST" *) output M_AXIS_TLAST;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TID" *) output [1:0]M_AXIS_TID;
-  (* x_interface_info = "xilinx.com:interface:axis:1.0 M00_AXIS TREADY" *) input M_AXIS_TREADY;
-
-  wire \<const0> ;
-  wire \<const1> ;
-  wire CNT_CLR;
-  wire [9:0]Cnt_AXIS_DATA;
-  wire [31:0]FIFOdata;
-  wire FIFOvalid;
-  wire M_AXIS_ACLK;
-  wire M_AXIS_ARESETN;
-  wire [31:0]M_AXIS_TDATA;
-  wire M_AXIS_TLAST;
-  wire M_AXIS_TREADY;
-  wire M_AXIS_TVALID;
-  wire SW_nRST;
-  wire StreamReady;
-  wire [1:0]TID;
-  wire TestStream;
-
-  assign M_AXIS_TDEST[9] = \<const0> ;
-  assign M_AXIS_TDEST[8] = \<const0> ;
-  assign M_AXIS_TDEST[7] = \<const0> ;
-  assign M_AXIS_TDEST[6] = \<const0> ;
-  assign M_AXIS_TDEST[5] = \<const0> ;
-  assign M_AXIS_TDEST[4] = \<const0> ;
-  assign M_AXIS_TDEST[3] = \<const0> ;
-  assign M_AXIS_TDEST[2] = \<const0> ;
-  assign M_AXIS_TDEST[1] = \<const0> ;
-  assign M_AXIS_TDEST[0] = \<const0> ;
-  assign M_AXIS_TID[1:0] = TID;
-  assign M_AXIS_TSTRB[3] = \<const1> ;
-  assign M_AXIS_TSTRB[2] = \<const1> ;
-  assign M_AXIS_TSTRB[1] = \<const1> ;
-  assign M_AXIS_TSTRB[0] = \<const1> ;
-  GND GND
-       (.G(\<const0> ));
-  base_zynq_TARGETC_axi_int_0_2_axistream U0
-       (.CNT_CLR(CNT_CLR),
-        .FIFOdata(FIFOdata),
-        .FIFOvalid(FIFOvalid),
-        .M_AXIS_ACLK(M_AXIS_ACLK),
-        .M_AXIS_ARESETN(M_AXIS_ARESETN),
-        .M_AXIS_TDATA(M_AXIS_TDATA),
-        .M_AXIS_TLAST(M_AXIS_TLAST),
-        .M_AXIS_TREADY(M_AXIS_TREADY),
-        .M_AXIS_TVALID(M_AXIS_TVALID),
-        .Q(Cnt_AXIS_DATA),
-        .SW_nRST(SW_nRST),
-        .StreamReady(StreamReady),
-        .TestStream(TestStream));
-  VCC VCC
-       (.P(\<const1> ));
 endmodule
 `ifndef GLBL
 `define GLBL

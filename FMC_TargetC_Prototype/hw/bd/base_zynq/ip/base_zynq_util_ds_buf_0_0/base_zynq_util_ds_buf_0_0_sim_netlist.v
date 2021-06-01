@@ -1,14 +1,14 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Thu Apr 22 05:40:08 2021
+// Date        : Thu May 27 11:51:12 2021
 // Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
-// Command     : write_verilog -force -mode funcsim
-//               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_util_ds_buf_0_0/base_zynq_util_ds_buf_0_0_sim_netlist.v
+// Command     : write_verilog -force -mode funcsim -rename_top base_zynq_util_ds_buf_0_0 -prefix
+//               base_zynq_util_ds_buf_0_0_ base_zynq_util_ds_buf_0_0_sim_netlist.v
 // Design      : base_zynq_util_ds_buf_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
-// Device      : xc7z010clg400-1
+// Device      : xc7z020clg400-1
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
@@ -165,7 +165,7 @@ endmodule
 
 (* C_BUFGCE_DIV = "1" *) (* C_BUFG_GT_SYNC = "0" *) (* C_BUF_TYPE = "OBUFDS" *) 
 (* C_OBUFDS_GTE5_ADV = "2'b00" *) (* C_REFCLK_ICNTL_TX = "5'b00000" *) (* C_SIM_DEVICE = "VERSAL_AI_CORE_ES1" *) 
-(* C_SIZE = "1" *) (* ORIG_REF_NAME = "util_ds_buf" *) 
+(* C_SIZE = "1" *) 
 module base_zynq_util_ds_buf_0_0_util_ds_buf
    (IBUF_DS_P,
     IBUF_DS_N,

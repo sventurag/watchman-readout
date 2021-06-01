@@ -41,8 +41,7 @@ entity TC_ClockManagementV3 is
 		HSCLK_P:		out std_logic;		-- Pin#43
 		HSCLK_N:		out std_logic;		-- Pin#44
 
-		WL_CLK_P:		out std_logic;		-- Pin#57
-		WL_CLK_N:		out std_logic		-- Pin#58
+		WLCLK:		out std_logic		-- Pin#58
 
 --		SSTIN_P:		out std_logic;		-- Pin#125
 --		SSTIN_N:		out std_logic		-- Pin#126
@@ -394,18 +393,18 @@ begin
 --		I	=> SSTIN_intl
 --	);
 	
+WLCLK <= AXI_CLK;
 
+--	OBUFDF_WL_CLK : OBUFDS
+--	generic map(
+--		IOSTANDARD  => "LVDS_25"
+--	)
+--	port map(
+--		O	=> WL_CLK_P,
+--		OB	=> WL_CLK_N,
 
-	OBUFDF_WL_CLK : OBUFDS
-	generic map(
-		IOSTANDARD  => "LVDS_25"
-	)
-	port map(
-		O	=> WL_CLK_P,
-		OB	=> WL_CLK_N,
-
-		I	=> AXI_CLK
-	);
+--		I	=> AXI_CLK
+--	);
 
 	OBUFDF_HSCLK : OBUFDS
 	generic map(

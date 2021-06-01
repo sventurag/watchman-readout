@@ -1,13 +1,13 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Thu Apr 22 05:40:17 2021
+// Date        : Thu May 27 11:51:16 2021
 // Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
-// Command     : write_verilog -force -mode synth_stub
-//               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_processing_system7_0_0/base_zynq_processing_system7_0_0_stub.v
+// Command     : write_verilog -force -mode synth_stub -rename_top base_zynq_processing_system7_0_0 -prefix
+//               base_zynq_processing_system7_0_0_ base_zynq_processing_system7_0_0_stub.v
 // Design      : base_zynq_processing_system7_0_0
 // Purpose     : Stub declaration of top-level module interface
-// Device      : xc7z010clg400-1
+// Device      : xc7z020clg400-1
 // --------------------------------------------------------------------------------
 
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.

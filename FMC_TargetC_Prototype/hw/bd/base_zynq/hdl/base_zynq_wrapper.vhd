@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
---Date        : Thu Apr 22 20:42:36 2021
+--Date        : Fri May 28 08:12:06 2021
 --Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
@@ -126,8 +126,8 @@ entity base_zynq_wrapper is
     SIN : out STD_LOGIC;
     SSTIN_N : out STD_LOGIC_VECTOR ( 0 to 0 );
     SSTIN_P : out STD_LOGIC_VECTOR ( 0 to 0 );
-    WL_CLK_N : out STD_LOGIC;
-    WL_CLK_P : out STD_LOGIC
+    WL_CLK_N : out STD_LOGIC_VECTOR ( 0 to 0 );
+    WL_CLK_P : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
 end base_zynq_wrapper;
 
@@ -164,8 +164,8 @@ architecture STRUCTURE of base_zynq_wrapper is
     A_WR_CS_S4 : out STD_LOGIC;
     A_WR_CS_S5 : out STD_LOGIC;
     A_GCC_RESET : out STD_LOGIC;
-    WL_CLK_P : out STD_LOGIC;
-    WL_CLK_N : out STD_LOGIC;
+    WL_CLK_P : out STD_LOGIC_VECTOR ( 0 to 0 );
+    WL_CLK_N : out STD_LOGIC_VECTOR ( 0 to 0 );
     A_RDAD_CLK : out STD_LOGIC;
     A_RDAD_SIN : out STD_LOGIC;
     A_RDAD_DIR : out STD_LOGIC;
@@ -367,7 +367,7 @@ base_zynq_i: component base_zynq
       SIN => SIN,
       SSTIN_N(0) => SSTIN_N(0),
       SSTIN_P(0) => SSTIN_P(0),
-      WL_CLK_N => WL_CLK_N,
-      WL_CLK_P => WL_CLK_P
+      WL_CLK_N(0) => WL_CLK_N(0),
+      WL_CLK_P(0) => WL_CLK_P(0)
     );
 end STRUCTURE;

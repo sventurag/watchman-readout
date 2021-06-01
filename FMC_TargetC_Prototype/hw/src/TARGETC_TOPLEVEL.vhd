@@ -79,8 +79,8 @@ entity TARGET_C_TopLevel_System is
 
 		GCC_RESET:		out	std_logic;		-- Pin#56
 
-		WL_CLK_P:		out std_logic;		-- Pin#58
-		WL_CLK_N:		out std_logic;		-- Pin#57
+		WLCLK:		out std_logic;		-- Pin#58
+--		WL_CLK_N:		out std_logic;		-- Pin#57
 
 		RDAD_CLK:		out	std_logic;		-- Pin#61
 		RDAD_SIN:		out	std_logic;		-- Pin#62
@@ -188,8 +188,8 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		HSCLK_P:		out std_logic;		-- Pin#43
 		HSCLK_N:		out std_logic;		-- Pin#44
 
-		WL_CLK_P:		out std_logic;		-- Pin#57
-		WL_CLK_N:		out std_logic		-- Pin#58
+		WLCLK:		out std_logic		-- Pin#57
+--		WL_CLK_N:		out std_logic		-- Pin#58
 
 --		SSTIN_P:		out std_logic;		-- Pin#125
 --		SSTIN_N:		out std_logic		-- Pin#126
@@ -555,8 +555,8 @@ begin
 		HSCLK_P 		=> HSCLK_P,
 		HSCLK_N 		=> HSCLK_N,
 
-		WL_CLK_P 		=> WL_CLK_P,
-		WL_CLK_N 		=> WL_CLK_N
+		WLCLK		=> WLCLK
+--		WL_CLK_N 		=> WL_CLK_N
 
 --		SSTIN_P 		=> SSTIN_P,
 --		SSTIN_N 		=> SSTIN_N

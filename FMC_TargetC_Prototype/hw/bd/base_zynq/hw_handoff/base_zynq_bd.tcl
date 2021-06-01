@@ -50,7 +50,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 set list_projs [get_projects -quiet]
 if { $list_projs eq "" } {
-   create_project project_1 myproj -part xc7z010clg400-1
+   create_project project_1 myproj -part xc7z020clg400-1
 }
 
 
@@ -258,8 +258,8 @@ proc create_root_design { parentCell } {
   set SIN [ create_bd_port -dir O SIN ]
   set SSTIN_N [ create_bd_port -dir O -from 0 -to 0 SSTIN_N ]
   set SSTIN_P [ create_bd_port -dir O -from 0 -to 0 SSTIN_P ]
-  set WL_CLK_N [ create_bd_port -dir O -type clk WL_CLK_N ]
-  set WL_CLK_P [ create_bd_port -dir O -type clk WL_CLK_P ]
+  set WL_CLK_N [ create_bd_port -dir O -from 0 -to 0 -type clk WL_CLK_N ]
+  set WL_CLK_P [ create_bd_port -dir O -from 0 -to 0 -type clk WL_CLK_P ]
 
   # Create instance: TARGETC_axi_int_0, and set properties
   set TARGETC_axi_int_0 [ create_bd_cell -type ip -vlnv user.org:user:TARGETC_axi_int:1.0 TARGETC_axi_int_0 ]
@@ -278,6 +278,10 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] [get_bd_pins /TARGET_C_TopLevel_Sy_0/RDAD_CLK]
+
   # Create instance: TARGET_C_TopLevel_Sy_1, and set properties
   set block_name TARGET_C_TopLevel_System
   set block_cell_name TARGET_C_TopLevel_Sy_1
@@ -289,6 +293,10 @@ proc create_root_design { parentCell } {
      return 1
    }
   
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {125000000} \
+ ] [get_bd_pins /TARGET_C_TopLevel_Sy_1/RDAD_CLK]
+
   # Create instance: axi_dma_0, and set properties
   set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
   set_property -dict [ list \
@@ -1158,6 +1166,12 @@ proc create_root_design { parentCell } {
    CONFIG.C_BUF_TYPE {OBUFDS} \
  ] $util_ds_buf_0
 
+  # Create instance: util_ds_buf_1, and set properties
+  set util_ds_buf_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:util_ds_buf:2.1 util_ds_buf_1 ]
+  set_property -dict [ list \
+   CONFIG.C_BUF_TYPE {OBUFDS} \
+ ] $util_ds_buf_1
+
   # Create instance: xlconcat_0, and set properties
   set xlconcat_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 xlconcat_0 ]
   set_property -dict [ list \
@@ -1281,8 +1295,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SS_RESET [get_bd_ports A_SS_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/SS_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_SW_nRST [get_bd_pins TARGETC_axi_int_0/SW_nRST] [get_bd_pins TARGET_C_TopLevel_Sy_0/SW_nRST]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_TestStream [get_bd_pins TARGETC_axi_int_0/TestStream] [get_bd_pins TARGET_C_TopLevel_Sy_0/TestStream]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_N [get_bd_ports WL_CLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/WL_CLK_N]
-  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_P [get_bd_ports WL_CLK_P] [get_bd_pins TARGET_C_TopLevel_Sy_0/WL_CLK_P]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WLCLK [get_bd_pins TARGET_C_TopLevel_Sy_0/WLCLK] [get_bd_pins util_ds_buf_1/OBUF_IN]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_N [get_bd_ports WL_CLK_N] [get_bd_pins util_ds_buf_1/OBUF_DS_N]
+  connect_bd_net -net TARGET_C_TopLevel_Sy_0_WL_CLK_P [get_bd_ports WL_CLK_P] [get_bd_pins util_ds_buf_1/OBUF_DS_P]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S0 [get_bd_ports A_WR_CS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S0]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S1 [get_bd_ports A_WR_CS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S1]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_CS_S2 [get_bd_ports A_WR_CS_S2] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_CS_S2]

@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Fri Feb 26 15:27:40 2021
--- Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
--- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_TARGETC_axi_int_0_2 -prefix
---               base_zynq_TARGETC_axi_int_0_2_ base_zynq_TARGETC_axi_int_0_1_sim_netlist.vhdl
--- Design      : base_zynq_TARGETC_axi_int_0_1
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Thu May 27 10:34:47 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
+-- Command     : write_vhdl -force -mode funcsim
+--               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGETC_axi_int_0_2/base_zynq_TARGETC_axi_int_0_2_sim_netlist.vhdl
+-- Design      : base_zynq_TARGETC_axi_int_0_2
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -30,6 +30,8 @@ entity base_zynq_TARGETC_axi_int_0_2_axistream is
     FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     CNT_CLR : in STD_LOGIC
   );
+  attribute ORIG_REF_NAME : string;
+  attribute ORIG_REF_NAME of base_zynq_TARGETC_axi_int_0_2_axistream : entity is "axistream";
 end base_zynq_TARGETC_axi_int_0_2_axistream;
 
 architecture STRUCTURE of base_zynq_TARGETC_axi_int_0_2_axistream is
@@ -2810,7 +2812,7 @@ entity base_zynq_TARGETC_axi_int_0_2 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of base_zynq_TARGETC_axi_int_0_2 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of base_zynq_TARGETC_axi_int_0_2 : entity is "base_zynq_TARGETC_axi_int_0_1,axistream,{}";
+  attribute CHECK_LICENSE_TYPE of base_zynq_TARGETC_axi_int_0_2 : entity is "base_zynq_TARGETC_axi_int_0_2,axistream,{}";
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of base_zynq_TARGETC_axi_int_0_2 : entity is "yes";
   attribute x_core_info : string;
