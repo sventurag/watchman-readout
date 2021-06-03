@@ -20,19 +20,23 @@ nmbrWindows = 1
 firstWindow= 0
 totalWindows = int(sys.argv[1])
 repetitions=int(sys.argv[2])
-nmbrPedestals = 10
-channel = 6
+pedestalsON=int(sys.argv[3])
+channel = 5
 width = 10e-9
 ampl = 1 
-isel = 500
+isel = 2300
 nofTARGETs=2
 pg.isel(isel)
 wave_gen().Output1(out=False)
+nmbrPedestals=10
 
-# pg.impedanceLoadHz(50)
-pg.pulseSweepInit(channel,nmbrPedestals)
 # pg.pulseInit(width)
-time.sleep(30)
+
+pg.channel(channel)
+# pg.impedanceLoadHz(50)
+if (pedestalsON==1):
+    pg.pedestals(nmbrPedestals)
+    time.sleep(30)
 pg.windows(nmbrWindows, firstWindow, totalWindows)
 wave_gen().Output1(out=True)
 # time.sleep(1)
@@ -75,8 +79,11 @@ for i in range(0,repetitions,1):
       # tc.send_command(7,0,0) # get windows
        time.sleep(1)
 
-wave_gen().Output1(out=False)
 print("end")
-time.sleep(10)
+if (pedestalsON==1):
+    time.sleep(20)
+else:
+    time.sleep(5)
+wave_gen().Output1(out=False)
 pg.closeSocket()
 

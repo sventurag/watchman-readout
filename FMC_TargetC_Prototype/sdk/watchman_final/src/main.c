@@ -563,7 +563,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS:
-				xil_printf("Getting windows\r\n");
+//				xil_printf("Getting windows\r\n");
 				if(PulseSweep(regptr_0) != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");

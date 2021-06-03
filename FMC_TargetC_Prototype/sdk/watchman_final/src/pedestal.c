@@ -292,7 +292,7 @@ for(window = 0; window< 512; window++ ){
 };
 
 
-printf("Getting data");
+//printf("Getting data");
 for (i=0; i<avg; i++ ){
 	for(j=0; j<512; j+=nmbrofWindows){
 

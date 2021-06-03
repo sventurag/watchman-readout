@@ -331,7 +331,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 			break;
 		case 7: // get 15 windows
 			if (start + 4 == end) {
-					xil_printf("Command get_15_windows received\r\n");
+//					xil_printf("Command get_15_windows received\r\n");
 							i = 0;
 				//		nmbrWindows = payload[i];
 				//		fstWindowValue = payload[i+1]*256 + payload[i+2];

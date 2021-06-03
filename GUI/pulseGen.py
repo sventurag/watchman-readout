@@ -12,11 +12,13 @@ tc = targetc.targetc()
 
 class pulseGen:
 
-    def pulseSweepInit(self,channel, nmbrPedestals):
-#        wave_gen().Output1(out=False)
+    def channel(self, channel):
         regID = 99
         tc.send_command(8,regID,channel) # channel number
-        time.sleep(1)
+        
+    def pedestals(self, nmbrPedestals):
+#        wave_gen().Output1(out=False)
+        #time.sleep(1)
         tc.send_command(9,nmbrPedestals,1) # Pedestals, third parameter is the window number increment
 
     def pulseInit(self,width):

@@ -4,7 +4,7 @@ from datetime import datetime
 import sys
 from pulse_analysis import *
 
-def getPackets(nofPackets):
+def getPackets(nofPackets, pedestalsON):
     func_name = "run_tcpdump_on_local_machine - "
     print(func_name + "start")
     interface_name = "enx0050b67c1322"
@@ -19,7 +19,10 @@ def getPackets(nofPackets):
                           "-w", capture_file_name,
                           "-c", nofPackets],
                          stdout=subprocess.PIPE)
-    time.sleep(num_sec_to_sleep)
+    if (pedestalsON==1):
+        time.sleep(num_sec_to_sleep)
+    else:
+        time.sleep(5)
     p.terminate()
     print(func_name + "end")
     return capture_file_name
@@ -31,16 +34,16 @@ def getPackets(nofPackets):
 nofPackets=sys.argv[1]
 totalWindows=int(sys.argv[2])
 nofChannels=int(sys.argv[3])
-
+pedestalsON=int(sys.argv[4])
 # Get packets
-capture_file_name =getPackets(nofPackets)
+capture_file_name =getPackets(nofPackets, pedestalsON)
 
 # When the transmission finish, process the packets
 
 dfTarget0, dfTarget1=process_packet_pulseSweep(capture_file_name,totalWindows,nofChannels)
 dfTarget0 = dfTarget0-200.
 ax0=dfTarget0.plot()
-#ax0.set_ylim(180,220)
+#ax0.set_ylim(-10,10)
 fig0 = ax0.get_figure()
 fig0.savefig('Target0.png')
 
