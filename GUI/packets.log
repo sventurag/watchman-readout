@@ -1,14 +1,14 @@
 tcpdump: listening on enx0050b67c1322, link-type EN10MB (Ethernet), capture size 262144 bytes
-20 packets captured
-20 packets received by filter
+16 packets captured
+18 packets received by filter
 0 packets dropped by kernel
 run_tcpdump_on_local_machine - start
-run_tcpdump_on_local_machine - about to create capture with name:/home/salvador/github/watchman-readout/GUI/traffic_2021-06-03_03:12:08.pcap
+run_tcpdump_on_local_machine - about to create capture with name:/home/salvador/github/watchman-readout/GUI/traffic_2021-06-03_11:12:51.pcap
 run_tcpdump_on_local_machine - end
-[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-[array([310, 311, 307, 309, 299, 289, 234, 213, 168, 151, 142, 134, 134,
-       129, 128, 127, 121, 129, 124, 130, 125, 122, 129, 117, 134, 122,
-       139, 158, 200, 234, 287, 292], dtype=uint16)]
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+[array([192, 181, 195, 179, 188, 187, 178, 192, 181, 192, 184, 185, 190,
+       178, 189, 179, 187, 191, 182, 193, 181, 194, 195, 195, 204, 202,
+       212, 211, 215, 214, 215, 225], dtype=uint16)]
 [array([ 1124,    32,  1124,     0,  1260,     2, 17524,     4,  1600,
            0,  1380,     0,  3168,     2,   100,    64,  1636, 32896,
         1124,     0,  1124, 32800,  4192,    64,  3236,   552,  1125,
