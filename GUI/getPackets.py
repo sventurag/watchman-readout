@@ -38,9 +38,9 @@ capture_file_name =getPackets(nofPackets)
 # When the transmission finish, process the packets
 
 dfTarget0, dfTarget1=process_packet_pulseSweep(capture_file_name,totalWindows,nofChannels)
-
+dfTarget0 = dfTarget0-200.
 ax0=dfTarget0.plot()
-ax0.set_ylim(180,220)
+#ax0.set_ylim(180,220)
 fig0 = ax0.get_figure()
 fig0.savefig('Target0.png')
 
