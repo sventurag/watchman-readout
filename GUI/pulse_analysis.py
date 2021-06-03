@@ -19,7 +19,7 @@ def bin2dec(pkt):
     return payload
 
 
-def process_packet_pulseSweep(filename,channel,nmbrWin, nofChannels):
+def process_packet_pulseSweep(filename,nmbrWin, nofChannels):
     nofTargets=2 # number of digitizers
     windowSize=32 #number of samples per window
     nofSamplesPerPacket= nofTargets*windowSize*num_channels

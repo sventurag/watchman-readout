@@ -13,11 +13,11 @@ tc = targetc.targetc()
 class pulseGen:
 
     def pulseSweepInit(self,channel, nmbrPedestals):
-        wave_gen().Output1(out=False)
+#        wave_gen().Output1(out=False)
         regID = 99
         tc.send_command(8,regID,channel) # channel number
         time.sleep(1)
-        tc.send_command(9,100,1) # Pedestals
+        tc.send_command(9,100,1) # Pedestals, third parameter is the window number increment
 
     def pulseInit(self,width):
                 
@@ -54,6 +54,9 @@ class pulseGen:
 
     def getWindows(self):
         tc.send_command(7,0,0) # get windows 
+   
+    def closeSocket(self):
+        tc.close_UDP_connection_cmd()
 
     def restart(self):
         tc.send_command(3, 0, 0) # triggerMode 

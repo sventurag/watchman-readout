@@ -18,38 +18,44 @@ import pandas as pd
 pg = pulseGen()
 nmbrWindows = 1
 firstWindow= 0
-totalWindows = 8
+totalWindows = int(sys.argv[1])
+repetitions=int(sys.argv[2])
 nmbrPedestals = 100
 channel = 6
 width = 10e-9
 ampl = 1 
 isel = 2300
-
+nofTARGETs=2
 pg.isel(isel)
-time.sleep(1)
-pg.windows(nmbrWindows,firstWindow,totalWindows)
-pg.impedanceLoadHz(50)
+
+# pg.impedanceLoadHz(50)
 pg.pulseSweepInit(channel,nmbrPedestals)
-pg.pulseInit(width)
+# pg.pulseInit(width)
 time.sleep(10)
 #wave_gen().Output1(out=True)
-time.sleep(1)
+# time.sleep(1)
 #pg.triggerMode(1000)
 #pg.softTrigger()
 #amplitudes=np.arange(1e-3, 3.5,100e-3) #For dynamic range, charge, cfd, etc
 #amplitudes=np.arange(20, 200,50) #For dynamic range, charge, cfd, etc
 #wave_gen().ncyc(3)
-time.sleep(1)
-pg.pulseAmpl(ampl)
-time.sleep(1)
+#time.sleep(1)
+# pg.pulseAmpl(ampl)
+# time.sleep(1)
 #wave_gen().Query()
 #amplitudes = np.arange(2100,2650,50)
-amplitudes= np.arange(0.5,2 ,2)
-repeticiones = list( range(0,2,1)   )
 
-#amplitudes=list(range(2100,2900,20))
+amplitudes= np.arange(0.5,2 ,2)
+#repetitions =1 
+
+nofPackets= totalWindows*nmbrWindows*repetitions*len(amplitudes)*nofTARGETs
+print("nofPackets Python")
+print(nofPackets)
+
+
 rango = list((range(100,110,100)))  # number of steps in delay values for the waveformigenerator For dynamic range, charge, cfd, etc
-for item in repeticiones:
+
+for i in range(0,repetitions,1):
    # print("Amp=",item)
    # pg.pulseAmpl(item)
 #    wave_gen().loadHz(item)
@@ -59,16 +65,15 @@ for item in repeticiones:
     #rango = list(range(0,128,1)) # for pulse sweep
         
     for i in rango:
-       wave_gen().trigDelay(i*.000000001)
+  #     wave_gen().trigDelay(i*.000000001)
        time.sleep(0.3)
        print("Pos=",i)
       # pg.softTrigger()
-       pg.getWindows()
+#       pg.getWindows()
       # tc.send_command(7,0,0) # get windows
        time.sleep(1)
 
-wave_gen().Output1(out=False)
+#wave_gen().Output1(out=False)
 print("end")
+pg.closeSocket()
 
-#plot_pulse(fileToSave,10,1)
-#plt.show()
