@@ -14,7 +14,6 @@ from waveform_gen_33600 import wave_gen
 import os
 from tempfile import TemporaryFile
 #from plotPulse import plot_pulse
-from waiting import wait
 class targetc():
 
     def __init__(self):

@@ -144,7 +144,7 @@ typedef enum dma_stm_enum{
 
 
 /*** Function prototypes *********************************************/
-void end_main(clean_state_en state, char* error_txt);
+void end_main(clean_state_en, char* error_txt);
 void updateInboundCircBuffer();
 void restart(void);
 int s;

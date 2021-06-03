@@ -4,7 +4,7 @@
 Functions for controlling the waveform generator 33600a
 based on https://github.com/samdejong86/Agilent33600
 """
-import visa
+import pyvisa as visa
 import time
 
 class wave_gen(object):
