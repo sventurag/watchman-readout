@@ -17,7 +17,7 @@ class pulseGen:
         regID = 99
         tc.send_command(8,regID,channel) # channel number
         time.sleep(1)
-        tc.send_command(9,100,1) # Pedestals, third parameter is the window number increment
+        tc.send_command(9,nmbrPedestals,1) # Pedestals, third parameter is the window number increment
 
     def pulseInit(self,width):
                 
@@ -36,13 +36,13 @@ class pulseGen:
         regID = 151
         regValue = 4
         tc.send_command(8,regID,firstWindow) # first window
-        time.sleep(1)
+#        time.sleep(1)
         regID = 152
         tc.send_command(8, regID, nmbrWindows) # nmbrWindows
-        time.sleep(1)
+ #       time.sleep(1)
         regID = 98
         tc.send_command(8,regID,totalWindows) # total windows
-        time.sleep(1)
+  #      time.sleep(1)
 
     def setFreq(self,frequency):
         print("{:.9f}".format(frequency))

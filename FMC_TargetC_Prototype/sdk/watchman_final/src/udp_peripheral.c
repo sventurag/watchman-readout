@@ -331,8 +331,8 @@ int command_parser(struct pbuf *p, char* return_buf) {
 			break;
 		case 7: // get 15 windows
 			if (start + 4 == end) {
-				//	xil_printf("Command get_15_windows received\r\n");
-				//				i = 4;
+					xil_printf("Command get_15_windows received\r\n");
+							i = 0;
 				//		nmbrWindows = payload[i];
 				//		fstWindowValue = payload[i+1]*256 + payload[i+2];
 
@@ -346,6 +346,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 
 				return 6;
 			} else
+				xil_printf("%d,%d\r\n",payload[i], payload[i+1] + payload[i+2] +payload[i+3]);
 				return -1;
 			break;
 		case 8: // cmd write ONE reg.
@@ -362,7 +363,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 
 				} else if ((regID_one_reg == TC_NBRWINDOW_REG)) {
 					nmbrWindows = regVal_one_reg;
-					//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+					xil_printf("NMBRWINDOWS = %d\r\n", nmbrWindows);
 
 				} else if ((regID_one_reg == TC_Delay_UpdateWR)) {
 					delay_UpdateWR = regVal_one_reg;
@@ -378,7 +379,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 
 				else if ((regID_one_reg == TOTAL_WINDOWS)) {
 					totalWindows = regVal_one_reg;
-					//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+					xil_printf("Totalwindows = %d\r\n", totalWindows);
 
 				} else if ((regID_one_reg == CHANNEL2SEND)) {
 					channel = regVal_one_reg;
@@ -417,7 +418,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 		case 9:	// Pedestal
 			if (start + 4 + 2 == end) {
 				i = 4;
-				pedestalAvg = payload[i];
+				pedestalAvg = payload[i]*32;
 				nmbrWindowsPed = payload[i + 1];
 				xil_printf("pedestaAvg = %d\r\n", pedestalAvg);
 				xil_printf("pedestalNmbrWindows = %d\r\n", nmbrWindowsPed);

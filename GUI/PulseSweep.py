@@ -20,18 +20,19 @@ nmbrWindows = 1
 firstWindow= 0
 totalWindows = int(sys.argv[1])
 repetitions=int(sys.argv[2])
-nmbrPedestals = 100
-channel = 6
+nmbrPedestals = 10
+channel = 3
 width = 10e-9
 ampl = 1 
-isel = 2300
+isel = 2500
 nofTARGETs=2
 pg.isel(isel)
 
 # pg.impedanceLoadHz(50)
 pg.pulseSweepInit(channel,nmbrPedestals)
 # pg.pulseInit(width)
-time.sleep(10)
+time.sleep(30)
+pg.windows(nmbrWindows, firstWindow, totalWindows)
 #wave_gen().Output1(out=True)
 # time.sleep(1)
 #pg.triggerMode(1000)
@@ -69,11 +70,12 @@ for i in range(0,repetitions,1):
        time.sleep(0.3)
        print("Pos=",i)
       # pg.softTrigger()
-#       pg.getWindows()
+       pg.getWindows()
       # tc.send_command(7,0,0) # get windows
        time.sleep(1)
 
 #wave_gen().Output1(out=False)
 print("end")
+time.sleep(10)
 pg.closeSocket()
 

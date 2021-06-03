@@ -147,6 +147,8 @@ class targetc():
 
 
        if(self.cmd[comando] == 'get_windows'):
+          print('Sending get_windows command')
+
    #       payload.append(param1)
    #       payload.append(int(param2 / 256)) 
    #       payload.append(int(param2 % 256))

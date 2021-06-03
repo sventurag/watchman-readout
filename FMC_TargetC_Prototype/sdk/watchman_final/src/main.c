@@ -370,7 +370,7 @@ int main()
 */
 	//get_pedestal(100,4);
 	flag_while_loop = true;
-	pedestal_triggerMode_init();
+//	pedestal_triggerMode_init();
 	usleep(100);
 	printf("Start while loop\r\n");
 	while (run_flag){
@@ -563,6 +563,7 @@ int main()
 				state_main = IDLE;
 				break;
 			case GET_WINDOWS:
+				xil_printf("Getting windows\r\n");
 				if(PulseSweep(regptr_0) != XST_SUCCESS){// printf("Get a 15 windows pass!\r\n");
 				//else{
 					end_main(GLOBAL_VAR | LOG_FILE | INTERRUPT | UDP, "Get a 15 windows failed!");
@@ -589,6 +590,7 @@ int main()
 				}
 				pedestal_flag = false;
 				state_main = IDLE;
+				xil_printf("exiting pedestal mode\r\n");
 				break;
 			case DIVIDE_PEDESTALS:
 			    if(dividePedestalsFlag) {

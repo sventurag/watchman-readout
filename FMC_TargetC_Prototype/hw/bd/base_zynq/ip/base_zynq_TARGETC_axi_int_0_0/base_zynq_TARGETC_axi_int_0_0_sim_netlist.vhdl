@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Mon May 31 19:22:16 2021
+-- Date        : Mon May 31 19:22:15 2021
 -- Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGETC_axi_int_0_0/base_zynq_TARGETC_axi_int_0_0_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_TARGETC_axi_int_0_0 -prefix
+--               base_zynq_TARGETC_axi_int_0_0_ base_zynq_TARGETC_axi_int_0_0_sim_netlist.vhdl
 -- Design      : base_zynq_TARGETC_axi_int_0_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -30,8 +30,6 @@ entity base_zynq_TARGETC_axi_int_0_0_axistream is
     FIFOdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
     CNT_CLR : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_TARGETC_axi_int_0_0_axistream : entity is "axistream";
 end base_zynq_TARGETC_axi_int_0_0_axistream;
 
 architecture STRUCTURE of base_zynq_TARGETC_axi_int_0_0_axistream is

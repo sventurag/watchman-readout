@@ -131,6 +131,7 @@ ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
 *
 ****************************************************************************/
 int SendWindows(int firstWindow, int numWindows, int* regptr){
+//	xil_printf("Send windows\r\n");
 	//int window_start;
 	int timeout;
 	int window,i,j,index;
@@ -225,8 +226,9 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 			return XST_FAILURE;
 		}
 		else flag_axidma_rx_done = false;
-  //      xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr-> data.data_struct.wdo_id );
+//       xil_printf("wdo_id=%d \r\n", (uint16_t)tmp_ptr-> data.data_struct.wdo_id );
 
+		//
 		/* Test the returned values */
 		if(tmp_ptr->data.data_struct.wdo_id != window){
 			printf("window id is wrong! window = %d | wdo_id = %d\r\n", window, (uint)tmp_ptr->data.data_struct.wdo_id);
