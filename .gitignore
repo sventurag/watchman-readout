@@ -39,3 +39,5 @@ GUI/*data/
 GUI/*.spyproject/
 GUI/.vscode
 GUI/pulseSweep.ipynb
+
+GUI/Target0_1280avg.png

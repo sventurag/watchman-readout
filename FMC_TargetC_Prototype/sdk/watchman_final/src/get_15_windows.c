@@ -329,7 +329,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 		ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
 		ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
 		ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
-		usleep(50);
+		usleep(1);
 		ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 		for(window =window_start ; window<nmbrofWindows+window_start; window++){
@@ -359,7 +359,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 					return XST_FAILURE;
 				}
 
-				usleep(50);
+				usleep(1);
 				timeout--;
 			}while(timeout && !flag_axidma_rx_done);
 
@@ -399,7 +399,7 @@ int get_windowsRaw(int startWindow, int nmbrofWindows,int* regptr){
 				for(i=0; i<16; i++){
 					for(j=0; j<32; j++){
 						data_raw[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
-						data_raw_1[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data_1[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
+					//	data_raw_1[window][i][j] += (uint32_t)(tmp_ptr->data.data_struct.data_1[i][j]);// + VPED_DIGITAL - pedestal[window][i][j]);
 
 						//         if ((uint16_t)(tmp_ptr->data.data_struct.data[i][j]) == 0){
                 //        	printf("Value= 0");
