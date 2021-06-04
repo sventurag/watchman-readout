@@ -11,7 +11,7 @@ def getPackets(nofPackets, pedestalsON):
     portnmbr ="8"
     curr_time = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
     capture_file_name = "/home/salvador/github/watchman-readout/GUI/traffic_" + curr_time + ".pcap"
-    num_sec_to_sleep = 640
+    num_sec_to_sleep = 30
     print(func_name + "about to create capture with name:" + capture_file_name)
     p = subprocess.Popen(["tcpdump",
                           "-ni", interface_name,

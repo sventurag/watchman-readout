@@ -25,11 +25,13 @@ channel=int(sys.argv[4])
 
 width = 10e-9
 ampl = 1 
-isel = 2300
+
+isel = 2000
+
 nofTARGETs=2
 pg.isel(isel)
 wave_gen().Output1(out=False)
-nmbrPedestals=40
+nmbrPedestals=10
 
 # pg.pulseInit(width)
 
@@ -37,7 +39,7 @@ pg.channel(channel)
 # pg.impedanceLoadHz(50)
 if (pedestalsON==1):
     pg.pedestals(nmbrPedestals)
-    time.sleep(500)
+    time.sleep(30)
 pg.windows(nmbrWindows, firstWindow, totalWindows)
 wave_gen().Output1(out=True)
 # time.sleep(1)
@@ -82,7 +84,7 @@ for i in range(0,repetitions,1):
 
 print("end")
 if (pedestalsON==1):
-    time.sleep(20)
+    time.sleep(10)
 else:
     time.sleep(5)
 wave_gen().Output1(out=False)
