@@ -26,7 +26,7 @@ channel=int(sys.argv[4])
 width = 10e-9
 ampl = 1 
 
-isel = 2000
+isel = 2300
 
 nofTARGETs=2
 pg.isel(isel)
