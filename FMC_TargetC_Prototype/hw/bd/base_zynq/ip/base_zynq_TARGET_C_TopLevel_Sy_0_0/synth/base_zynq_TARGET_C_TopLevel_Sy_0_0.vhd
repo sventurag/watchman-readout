@@ -123,7 +123,10 @@ ENTITY base_zynq_TARGET_C_TopLevel_Sy_0_0 IS
     TrigD : IN STD_LOGIC;
     WS_masterctrl_in : IN STD_LOGIC;
     WS_masterctrl_out : OUT STD_LOGIC;
-    SSVALID_INTR : OUT STD_LOGIC
+    SSVALID_INTR : OUT STD_LOGIC;
+    hmb_trigger : IN STD_LOGIC;
+    delay_trigger : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+    sstin_updateBit : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
   );
 END base_zynq_TARGET_C_TopLevel_Sy_0_0;
 
@@ -200,7 +203,10 @@ ARCHITECTURE base_zynq_TARGET_C_TopLevel_Sy_0_0_arch OF base_zynq_TARGET_C_TopLe
       TrigD : IN STD_LOGIC;
       WS_masterctrl_in : IN STD_LOGIC;
       WS_masterctrl_out : OUT STD_LOGIC;
-      SSVALID_INTR : OUT STD_LOGIC
+      SSVALID_INTR : OUT STD_LOGIC;
+      hmb_trigger : IN STD_LOGIC;
+      delay_trigger : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      sstin_updateBit : IN STD_LOGIC_VECTOR(2 DOWNTO 0)
     );
   END COMPONENT TARGET_C_TopLevel_System;
   ATTRIBUTE X_CORE_INFO : STRING;
@@ -317,6 +323,9 @@ BEGIN
       TrigD => TrigD,
       WS_masterctrl_in => WS_masterctrl_in,
       WS_masterctrl_out => WS_masterctrl_out,
-      SSVALID_INTR => SSVALID_INTR
+      SSVALID_INTR => SSVALID_INTR,
+      hmb_trigger => hmb_trigger,
+      delay_trigger => delay_trigger,
+      sstin_updateBit => sstin_updateBit
     );
 END base_zynq_TARGET_C_TopLevel_Sy_0_0_arch;

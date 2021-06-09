@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Mon May 31 19:24:36 2021
+-- Date        : Mon May 31 19:24:35 2021
 -- Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
--- Command     : write_vhdl -force -mode funcsim
---               /home/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_xbar_7/base_zynq_xbar_7_sim_netlist.vhdl
+-- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_xbar_7 -prefix
+--               base_zynq_xbar_7_ base_zynq_xbar_7_sim_netlist.vhdl
 -- Design      : base_zynq_xbar_7
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -42,8 +42,6 @@ entity base_zynq_xbar_7_axis_switch_v1_1_22_arb_rr is
     s_axis_tlast : in STD_LOGIC_VECTOR ( 1 downto 0 );
     s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_7_axis_switch_v1_1_22_arb_rr : entity is "axis_switch_v1_1_22_arb_rr";
 end base_zynq_xbar_7_axis_switch_v1_1_22_arb_rr;
 
 architecture STRUCTURE of base_zynq_xbar_7_axis_switch_v1_1_22_arb_rr is
@@ -679,8 +677,6 @@ entity base_zynq_xbar_7_axis_switch_v1_1_22_axisc_arb_responder is
     areset : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_7_axis_switch_v1_1_22_axisc_arb_responder : entity is "axis_switch_v1_1_22_axisc_arb_responder";
 end base_zynq_xbar_7_axis_switch_v1_1_22_axisc_arb_responder;
 
 architecture STRUCTURE of base_zynq_xbar_7_axis_switch_v1_1_22_axisc_arb_responder is
@@ -754,8 +750,6 @@ entity base_zynq_xbar_7_axis_switch_v1_1_22_axisc_decoder is
     s_axis_tvalid : in STD_LOGIC_VECTOR ( 0 to 0 );
     arb_gnt_i : in STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_7_axis_switch_v1_1_22_axisc_decoder : entity is "axis_switch_v1_1_22_axisc_decoder";
 end base_zynq_xbar_7_axis_switch_v1_1_22_axisc_decoder;
 
 architecture STRUCTURE of base_zynq_xbar_7_axis_switch_v1_1_22_axisc_decoder is
@@ -857,8 +851,6 @@ entity base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch_arbiter is
     s_axis_tid : in STD_LOGIC_VECTOR ( 3 downto 0 );
     aresetn : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch_arbiter : entity is "axis_switch_v1_1_22_axis_switch_arbiter";
 end base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch_arbiter;
 
 architecture STRUCTURE of base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch_arbiter is
@@ -924,8 +916,6 @@ entity base_zynq_xbar_7_axis_switch_v1_1_22_axisc_transfer_mux is
     areset : in STD_LOGIC;
     aclk : in STD_LOGIC
   );
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_7_axis_switch_v1_1_22_axisc_transfer_mux : entity is "axis_switch_v1_1_22_axisc_transfer_mux";
 end base_zynq_xbar_7_axis_switch_v1_1_22_axisc_transfer_mux;
 
 architecture STRUCTURE of base_zynq_xbar_7_axis_switch_v1_1_22_axisc_transfer_mux is
@@ -1088,8 +1078,6 @@ entity base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch is
   attribute LP_MERGEDOWN_MUX of base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch : entity is 0;
   attribute LP_NUM_SYNCHRONIZER_STAGES : integer;
   attribute LP_NUM_SYNCHRONIZER_STAGES of base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch : entity is 4;
-  attribute ORIG_REF_NAME : string;
-  attribute ORIG_REF_NAME of base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch : entity is "axis_switch_v1_1_22_axis_switch";
   attribute P_DECODER_CONNECTIVITY_ARRAY : string;
   attribute P_DECODER_CONNECTIVITY_ARRAY of base_zynq_xbar_7_axis_switch_v1_1_22_axis_switch : entity is "2'b11";
   attribute P_SINGLE_SLAVE_CONNECTIVITY_ARRAY : string;
