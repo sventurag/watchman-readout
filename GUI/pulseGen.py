@@ -70,10 +70,10 @@ class pulseGen:
         tc.send_command(8, regID, nmbrCycles)
         time.sleep(1)
 
-    def triggerMode(self,nmbrBursts):
-        wave_gen().bursSettings(nmbrBursts)
-        time.sleep(1)
-        #tc.send_command(3, 0, 0) # triggerMode 
+    def triggerMode(self):
+       # wave_gen().bursSettings(nmbrBursts)
+       # time.sleep(1)
+        tc.send_command(3, 0, 0) # triggerMode 
         #time.sleep(1)
     
     def triggerMode_exit(self):
