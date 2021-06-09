@@ -372,7 +372,11 @@ int main()
 	flag_while_loop = true;
 //	pedestal_triggerMode_init();
 	usleep(100);
+	int pedestal_Avg=100;
+	int nmbr_Windows_Ped=1;
+	if(get_pedestal(pedestal_Avg,nmbr_Windows_Ped, regptr_0) == XST_SUCCESS) printf("Pedestal pass! pedestal_Avg= %d,nmbrWindows_Ped = %d, \r\n", pedestal_Avg, nmbr_Windows_Ped);
 	printf("Start while loop\r\n");
+
 	while (run_flag){
 		/* Simulate a infinity loop to trigger the watchdog  */
 		if(simul_err_watchdog_flag){
@@ -497,7 +501,9 @@ int main()
 			     usleep(100);
 				printf("after inboundRingManager print, starting while loop \r\n");
 				 usleep(100);
-
+                 int i;
+                 int trigger_freq=10000;
+                 bool trigger_flag;
 			//	 XTime_GetTime(&tStart);
 				 while(stream_flag) {
 						if(inboundRingManager.pendingCount > 0) {
@@ -537,6 +543,17 @@ int main()
 //
 //					    	}
 //							printf("inboundRingManager.pendingCount %d \r\n", (uint16_t)(inboundRingManager.pendingCount));
+                            if (!trigger_flag){
+							if (i==trigger_freq){
+								trigger();
+								trigger_flag=1;
+								i=0;
+							}
+							else {
+								 i++;
+							}
+
+                            }
 
 						}
 
