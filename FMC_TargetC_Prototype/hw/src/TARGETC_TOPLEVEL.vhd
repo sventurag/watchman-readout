@@ -134,8 +134,12 @@ entity TARGET_C_TopLevel_System is
         WS_masterctrl_out : out std_logic;
         
 		-- Interrupt SIGNALS
-		SSVALID_INTR:	out	std_logic
+		SSVALID_INTR:	out	std_logic;
 
+ --signals for the HMB roundbuffer
+         hmb_trigger :    in std_logic;
+        delay_trigger:    in std_logic_vector(3 downto 0);
+        sstin_updateBit:   in std_logic_vector(2 downto 0) 
 
 
 --		-- DEBUG OUTPUTs
@@ -276,6 +280,11 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		    DIG_Full	: out	std_logic;
 		    DIG_DataIn	: in	std_logic_vector(8 downto 0);
 		    DIG_WriteEn	: in	std_logic;
+		   
+            --signals for the HMB roundbuffer
+            hmb_trigger:  in std_logic;
+          delay_trigger:    in std_logic_vector(3 downto 0);
+            sstin_updateBit:   in std_logic_vector(2 downto 0); 		   		   
 		   
 	    -- Signal for trigger the acquisition for debugging
 		    address_is_zero_out : out std_logic
@@ -660,8 +669,19 @@ begin
 			DIG_DataIn	=> DIG_DataIn_intl,
 			DIG_WriteEn	=> DIG_WriteEn_intl,
 			
+			
+			 --signals for the HMB roundbuffer
+			 hmb_trigger => hmb_trigger,
+        delay_trigger => delay_trigger,
+        sstin_updateBit => sstin_updateBit, 
+			
+			
+			
 	  -- Signal for trigger the acquisition for debugging
             address_is_zero_out => address_is_zero_intl
+            
+            
+            
 		);
 
 	TC_RDAD_WL_SS :	 TARGETC_RDAD_WL_SMPL

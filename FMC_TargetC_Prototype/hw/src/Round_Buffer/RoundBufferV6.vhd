@@ -55,10 +55,13 @@ entity RoundBufferV6 is
 	    DIG_Full	: out	std_logic;
 	    DIG_DataIn	: in	std_logic_vector(8 downto 0);
 	    DIG_WriteEn	: in	std_logic;
-	    
+	    --signals for the HMB roundbuffer
+	    hmb_trigger : std_logic;
+        delay_trigger:    in std_logic_vector(3 downto 0);
+        sstin_updateBit:   in std_logic_vector(2 downto 0); 
 	    -- Signal for trigger the acquisition for debugging
 	    address_is_zero_out : out std_logic
-
+	    
 	    
 	);
 end RoundBufferV6;
@@ -84,7 +87,42 @@ architecture implementation of RoundBufferV6 is
 
 
 
-component circularBuffer is
+--component circularBuffer is
+
+--    port (
+    
+--  clk :            in  std_logic;
+--  RST :             in  std_logic;  
+--  trigger :         in std_logic;
+--  full_fifo :        in std_logic;          
+--   mode:     in std_logic; 
+-- -- ptr_window :      out std_logic_vector(8 downto 0);
+-- -- sstin :           out std_logic;
+----   wr:     out unsigned(8 downto 0);
+--  enable_write :    out std_logic;
+--  TriggerInfo : out std_logic_vector(11 downto 0);
+--   -- enable_write_fifo :    out std_logic;
+
+----  counter :          out std_logic_vector(2 downto 0);        
+  
+--  RD_add:           out std_logic_vector(8 downto 0);
+--  --  RD_add_fifo:           out std_logic_vector(8 downto 0);
+
+            
+--  WR_RS:            out std_logic_vector(1 downto 0);
+
+--  WR_CS:            out std_logic_vector(5 downto 0);
+--  delay_trigger:    in std_logic_vector(3 downto 0);
+--    sstin :        in std_logic_vector(2 downto 0)
+
+  
+
+--);
+--end component circularBuffer;
+
+
+component HMB_roundBuffer is
+
 
     port (
     
@@ -92,30 +130,22 @@ component circularBuffer is
   RST :             in  std_logic;  
   trigger :         in std_logic;
   full_fifo :        in std_logic;          
-   mode:     in std_logic; 
- -- ptr_window :      out std_logic_vector(8 downto 0);
- -- sstin :           out std_logic;
---   wr:     out unsigned(8 downto 0);
+  mode:             in std_logic;
   enable_write :    out std_logic;
-  TriggerInfo : out std_logic_vector(11 downto 0);
-   -- enable_write_fifo :    out std_logic;
-
---  counter :          out std_logic_vector(2 downto 0);        
-  
+  TriggerInfo :    out std_logic_vector(11 downto 0);
   RD_add:           out std_logic_vector(8 downto 0);
-  --  RD_add_fifo:           out std_logic_vector(8 downto 0);
-
-            
   WR_RS:            out std_logic_vector(1 downto 0);
-
   WR_CS:            out std_logic_vector(5 downto 0);
   delay_trigger:    in std_logic_vector(3 downto 0);
-    sstin :        in std_logic_vector(2 downto 0)
-
+  sstin_cntr:            in std_logic_vector(2 downto 0);
+  sstin_updateBit:   in std_logic_vector(2 downto 0) -- To control the cycle number where the address are updated
+  
   
 
+   
 );
-end component circularBuffer;
+
+end component HMB_roundBuffer;
 
 
 
@@ -449,31 +479,58 @@ begin
 
 
 
-circBuffer: circularBuffer 
+--circBuffer: circularBuffer 
 
-    port map(
+--    port map(
     
-  clk    =>          ClockBus.CLK125MHz  ,
-  RST    =>             nrst,  
-  trigger   =>        trigger_intl ,
-  full_fifo   =>      RDAD_Full_s  ,    
-  mode =>     CtrlBus_IxSL.WindowStorage,       
-  enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
+--  clk    =>          ClockBus.CLK125MHz  ,
+--  RST    =>             nrst,  
+--  trigger   =>        trigger_intl ,
+--  full_fifo   =>      RDAD_Full_s  ,    
+--  mode =>     CtrlBus_IxSL.WindowStorage,       
+--  enable_write  =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
+--  TriggerInfo => TriggerInfo_i,
+-- --   enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
+
+--  RD_add    =>          RDAD_Data_s ,
+-- --   RD_add_fifo    =>          RDAD_Data_fifo_s ,
+
+--  WR_RS    =>           WR_RS_S_trig,
+--  WR_CS   =>            WR_CS_S_trig,
+--  delay_trigger => delay_trigger_intl,
+--  sstin =>         Timestamp.samplecnt
+-- -- ptr_window   =>         ,
+--  -- sstin =>           out std_logic,
+-- --   wr=>     out unsigned(8 downto 0);
+-- --  counter   =>          out std_logic_vector(2 downto 0),
+--);
+
+
+
+HMBroundBuff : HMB_roundBuffer
+
+    port map (
+    
+  clk =>          ClockBus.CLK125MHz  ,
+  RST  =>             nrst,  
+  trigger    =>        hmb_trigger ,
+  full_fifo  =>      RDAD_Full_s  ,         
+  mode=>     CtrlBus_IxSL.WindowStorage,  
+  enable_write =>   RDAD_WrEn_s ,  -- For fifo to pass RD_ADD
   TriggerInfo => TriggerInfo_i,
- --   enable_write_fifo  =>   RDAD_WrEn_fifo_s ,  -- For fifo to pass RD_ADD
+  RD_add  =>          RDAD_Data_s ,
+  WR_RS =>           WR_RS_S_trig,
+  WR_CS =>            WR_CS_S_trig,
+  sstin_cntr =>          Timestamp.samplecnt,
+  delay_trigger => delay_trigger,
+  sstin_updateBit => sstin_updateBit
 
-  RD_add    =>          RDAD_Data_s ,
- --   RD_add_fifo    =>          RDAD_Data_fifo_s ,
-
-  WR_RS    =>           WR_RS_S_trig,
-  WR_CS   =>            WR_CS_S_trig,
-  delay_trigger => delay_trigger_intl,
-  sstin =>         Timestamp.samplecnt
- -- ptr_window   =>         ,
-  -- sstin =>           out std_logic,
- --   wr=>     out unsigned(8 downto 0);
- --  counter   =>          out std_logic_vector(2 downto 0),
+   
 );
+
+
+
+
 
 
 SyncBitNrst: SyncBit

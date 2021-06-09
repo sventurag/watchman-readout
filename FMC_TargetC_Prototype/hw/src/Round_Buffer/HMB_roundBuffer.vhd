@@ -31,17 +31,17 @@ entity HMB_roundBuffer is
   clk :            in  std_logic;
   RST :             in  std_logic;  
   trigger :         in std_logic;
-  delay_trigger:    in std_logic_vector(3 downto 0);
-  sstin_cntr:            in std_logic_vector(2 downto 0);
-  sstin_updateBit:   in std_logic_vector(2 downto 0);
   full_fifo :        in std_logic;          
   mode:             in std_logic;
   enable_write :    out std_logic;
   TriggerInfo :    out std_logic_vector(11 downto 0);
   RD_add:           out std_logic_vector(8 downto 0);
   WR_RS:            out std_logic_vector(1 downto 0);
-  WR_CS:            out std_logic_vector(5 downto 0)
-  
+  WR_CS:            out std_logic_vector(5 downto 0);
+  delay_trigger:    in std_logic_vector(3 downto 0);
+  sstin_updateBit:   in std_logic_vector(2 downto 0); -- To control the cycle number where the address are updated
+  sstin_cntr:            in std_logic_vector(2 downto 0)
+
 
    
 );
@@ -102,21 +102,21 @@ attribute fsm_encoding of stm_circularBuffer   : signal is "sequential";
 begin
   
 
-sstinCnt: counter
-generic map(NBITS=> 3)
- port map (
-        CLK =>  clk,
-        RST =>  RST,
-        Q   =>  sstin_cntr_intl
+--sstinCnt: counter
+--generic map(NBITS=> 3)
+-- port map (
+--        CLK =>  clk,
+--        RST =>  RST,
+--        Q   =>  sstin_cntr_intl
         
-        );
+--        );
     
 
   ----------------------------------
   -- State machine forsstin_cntr_intl handling the trigger and to generate the 
   -- wr/read addresses (signals WR_CS, WR_RS, RD_add and fifo_wr_en_intl). 
   
- p_sm:  process(clk,RST, mode,trigger_intl, full_fifo,sstin_cntr_intl)
+ p_sm:  process(clk,RST, mode,trigger_intl, full_fifo,sstin_cntr)
 variable offset_v: integer ;
   begin 
  
@@ -128,7 +128,7 @@ if (RST = '0') or (mode='0') then
        if rising_edge(clk) then
        case stm_circularBuffer is
        when start =>
-            if (mode = '1') and (sstin_cntr_intl=sstin_updateBit)  then
+            if (mode = '1') and (sstin_cntr=sstin_updateBit)  then
  
                 stm_circularBuffer <= roundbuffer_st ;
             else
@@ -137,7 +137,7 @@ if (RST = '0') or (mode='0') then
     
     when roundbuffer_st =>
 	    	if (trigger_intl='0') then
-					if (sstin_cntr_intl=sstin_updateBit) then
+					if (sstin_cntr=sstin_updateBit) then
 						if (unsigned (wr_intl) < 20) then
 							wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
 							stm_circularBuffer <= roundbuffer_st;
@@ -163,7 +163,7 @@ if (RST = '0') or (mode='0') then
    
    when out_roundbuffer_st =>
 
-	   if (sstin_cntr_intl=sstin_updateBit) then
+	   if (sstin_cntr=sstin_updateBit) then
 	   
 		   if (unsigned (wr_intl) < 128) then   
 --			   rd_add_intl <=  to_integer(unsigned(wr_intl)) - to_integer(unsigned(delay_trigger));
@@ -216,7 +216,7 @@ if (RST = '0') or (mode='0') then
 				
 		when read_address_st =>
 	  	
-			if (sstin_cntr_intl=sstin_updateBit) then
+			if (sstin_cntr=sstin_updateBit) then
 	
 				if ((rd_add_intl - offset_v) < 256) then
 					rd_add_intl <=  (to_integer(unsigned(wr_intl)) - to_integer(unsigned(delay_trigger))) +offset_v;
