@@ -44,6 +44,7 @@ architecture sim of circular_buffer_tb is
   signal WR_RS : std_logic_vector(1 downto 0);
   signal WR_CS : std_logic_vector(5 downto 0);
   signal RD_add: std_logic_vector(8 downto 0);
+  signal TriggerInfo: std_logic_vector(11 downto 0);
 --  signal trigger_intl: std_logic:='0';
 --  signal sstin_cntr_intl: std_logic_vector(2 downto 0):="000";
  -- signal RD_add_fifo: std_logic;
@@ -51,21 +52,22 @@ architecture sim of circular_buffer_tb is
 begin
 
  -- DUT : entity work.circular_buffer(circ)
-  DUT : entity work.HMB_roundBuffer(structure)
+  DUT : entity work.HMB_roundBufferTopTest(structure)
 
     port map (
       clk => clk,
       rst => rst,
       trigger => trigger,
-      delay_trigger => delay_trigger,
       full_fifo => full_fifo,
-      sstin_cntr => sstin_cntr,
-      sstin_updateBit => sstin_updateBit,
-      enable_write=> enable_write,
       mode => mode,
+      enable_write=> enable_write,
+      TriggerInfo => TriggerInfo,
       RD_add => RD_add,
       WR_RS => WR_RS,
-      WR_CS => WR_CS
+      WR_CS => WR_CS,
+      delay_trigger => delay_trigger,
+      sstin_updateBit => sstin_updateBit
+
     );
 
     clk <= not clk after clock_period / 2;
@@ -80,12 +82,12 @@ begin
       wait until rising_edge(clk);
      -- sstin_cntr <= "011";
       
-      wait for 48 * clock_period;
+      wait for 30 * clock_period;
     --  sstin_cntr <= "000";
       
       trigger <= '1';
       
-      wait for 1 * clock_period;
+      wait for 10 * clock_period;
   --    sstin_cntr <= "011";
       
       trigger<= '0';
