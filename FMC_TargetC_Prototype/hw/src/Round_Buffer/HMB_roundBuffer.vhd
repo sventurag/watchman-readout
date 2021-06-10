@@ -51,17 +51,7 @@ end HMB_roundBuffer;
 architecture structure of HMB_roundBuffer is
  
 
-component counter
-generic(
-        NBITS: integer := 3
-        );
-port (
-        CLK:    in std_logic;
-        RST:    in std_logic;
-        Q:      out std_logic_vector (NBITS-1 downto 0)
-        );
-    
-end component;
+
 
 signal  wr_intl:         std_logic_vector(7 downto 0);
 signal fifo_wr_en_intl: std_logic;
@@ -196,6 +186,9 @@ variable offset_v: integer ;
  
 if (RST = '0') or (mode='0') then
         offset_v := 0 ;
+	 	fifo_wr_en_intl <= '0';
+	 	rd_add_intl  <= 0;
+
 
    else 
        if rising_edge(clk) then
@@ -211,25 +204,32 @@ if (RST = '0') or (mode='0') then
 				end if;
 				
  		when first_window_offset_st =>  			
-				offset_v := to_integer(unsigned(wr_intl));
+				offset_v := to_integer(unsigned(wr_intl & '0'))- to_integer(unsigned(delay_trigger));
+				rd_add_intl <= to_integer(unsigned(wr_intl & '0')) - to_integer(unsigned(delay_trigger)) - 1 ;
+--				fifo_wr_en_intl <= '1';
 				stm_read <= read_address_st;
-				
+
 		when read_address_st =>
 	  	
-			if (sstin_cntr=sstin_updateBit) then
+			if ( (sstin_cntr="100") or (sstin_cntr= "000")  ) then
 	
-				if ((rd_add_intl - offset_v) < 256) then
-					rd_add_intl <=  (to_integer(unsigned(wr_intl)) - to_integer(unsigned(delay_trigger))) +offset_v;
+				if ( (rd_add_intl) < (64 + offset_v  ) ) then
+					rd_add_intl <= rd_add_intl + 1 ;
 					fifo_wr_en_intl <= '1';
 					stm_read <=read_address_st;
 					
 				else
+					fifo_wr_en_intl <= '0';
+				    rd_add_intl  <= 0;
 					stm_read<= idle_st;
+
 				end if;
 				
 			else
+		      	fifo_wr_en_intl <= '0';
 		      	stm_read <=read_address_st;
-                fifo_wr_en_intl <= '0';
+                
+                
                 
         	end if;
      end case;
