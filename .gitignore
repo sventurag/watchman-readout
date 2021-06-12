@@ -49,3 +49,7 @@ GUI/Target0.png
 GUI/Target1.png
 
 GUI/packets.log
+
+*.png
+
+*.log

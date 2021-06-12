@@ -1,21 +1,0 @@
-2020-10-16T17:55:01.52094300255-17:55:01 **** Build of configuration Debug for project watchman_final ****
-000-make all 
-000-make --no-print-directory pre-build
-000-a9-linaro-pre-build-step
-000- 
-000-make --no-print-directory main-build
-000-Building file: ../src/TARGETC_RegisterMap.c
-000-Invoking: ARM v7 gcc compiler
-000-arm-none-eabi-gcc -Wall -O0 -g3 -I"/home/salvador/salvador_fork/watchman-readout/FMC_TargetC_Prototype/vitis/6UVME_board/ps7_cortexa9_0/standalone_domain/bsp/ps7_cortexa9_0" -c -fmessage-length=0 -MT"src/TARGETC_RegisterMap.o" -mcpu=cortex-a9 -mfpu=vfpv3 -mfloat-abi=hard -MMD -MP -MF"src/TARGETC_RegisterMap.d" -MT"src/TARGETC_RegisterMap.o" -o "src/TARGETC_RegisterMap.o" "../src/TARGETC_RegisterMap.c"
-000-In file included from ../src/TARGETC_RegisterMap.c:8:
-000/watchman_final/src/TARGETC_RegisterMap.h12-1-1fatal error: xil_printf.h: No such file or directory2-../src/TARGETC_RegisterMap.h:12:10: fatal error: xil_printf.h: No such file or directory
-000-   12 | #include "xil_printf.h"
-000-      |          ^~~~~~~~~~~~~~
-000-compilation terminated.
-000/watchman_final/Debug/src/subdir.mk84-1-1recipe for target 'src/TARGETC_RegisterMap.o' failed2-src/subdir.mk:84: recipe for target 'src/TARGETC_RegisterMap.o' failed
-000/watchman_final/Debug/makefile33-1-1recipe for target 'all' failed2-makefile:33: recipe for target 'all' failed
-000/watchman_final0-1-1make[1]: *** [src/TARGETC_RegisterMap.o] Error 12-make[1]: *** [src/TARGETC_RegisterMap.o] Error 1
-000/watchman_final0-1-1make: *** [all] Error 22-make: *** [all] Error 2
-00255-
-17:55:02 Build Finished (took 680ms)
-
