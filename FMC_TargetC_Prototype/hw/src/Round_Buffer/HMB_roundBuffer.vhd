@@ -128,7 +128,7 @@ if (RST = '0') or (mode='0') then
     when roundbuffer_st =>
 	    	if (trigger_intl='0') then
 					if (sstin_cntr=sstin_updateBit) then
-						if (unsigned (wr_intl) < 20) then
+						if (unsigned (wr_intl) < 5) then
 							wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
 							stm_circularBuffer <= roundbuffer_st;
 						else
@@ -155,7 +155,7 @@ if (RST = '0') or (mode='0') then
 
 	   if (sstin_cntr=sstin_updateBit) then
 	   
-		   if (unsigned (wr_intl) < 128) then   
+		   if (unsigned (wr_intl) < 255) then   
 --			   rd_add_intl <=  to_integer(unsigned(wr_intl)) - to_integer(unsigned(delay_trigger));
 --			   fifo_wr_en_intl <= '1';
 			   wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
