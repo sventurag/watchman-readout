@@ -19,7 +19,7 @@ def getPacketsTrigMode(nofPackets):
                           "-w", capture_file_name,
                           "-c", nofPackets],
                          stdout=subprocess.PIPE)
-    time.sleep(50)
+    time.sleep(20)
     p.terminate()
     print(func_name + "end")
     return capture_file_name
@@ -31,6 +31,9 @@ nofPackets=sys.argv[1]
 totalWindows=int(sys.argv[2])
 nofChannels=int(sys.argv[3])
 # Get packets
+#capture_file_name="/home/salvador/github/watchman-readout/GUI/traffic.pcap"
+
+#sudo tcpdump -ni enx0050b67c1322  udp port 8  -w capture_file_name -c 1
 capture_file_name =getPacketsTrigMode(nofPackets)
 # When the transmission finish, process the packets
 

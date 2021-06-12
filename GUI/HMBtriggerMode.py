@@ -11,10 +11,10 @@ pg = pulseGen()
 #    tc.send_command(11,0,0) #restartAll
 #
 
+print('send trigger mode command')
+#channel=int(sys.argv[1])
 
-channel=int(sys.argv[1])
-
-pg.channel(channel)
+#pg.channel(channel)
 
 pg.triggerMode()
 

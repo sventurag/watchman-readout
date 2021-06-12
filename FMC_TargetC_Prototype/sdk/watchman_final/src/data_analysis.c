@@ -177,8 +177,9 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
  data_axi *Data2send = data_to_send -> procPointer;
  uint16_t data_tmp;
  int window, sample, window_order;
+ int i, j;
  int offset_avoid_negative = 200;
- int channelToSend=2;
+ int channelToSend=5;
  window = Data2send->wdo_id;
 // window_order = Data2send-> info;
 // xil_printf("windowNumber:%d \r\n",window);
@@ -195,7 +196,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 		//		for(i=0; i<16; i++){
 					for(sample = 0; sample <32; sample++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t)  (Data2send->data[channelToSend][sample] - pedestal_0[window][channelToSend][sample]+ offset_avoid_negative);
+						data_tmp = (uint16_t)  (Data2send->data[channelToSend][sample]- pedestal_0[window][channelToSend][sample]+ offset_avoid_negative );
 //						data_tmp = (uint16_t)  (Data2send->data[15][sample]); //-  pedestal_A[window][15][sample]+ offset_avoid_negative);
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
@@ -206,7 +207,7 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 
 					for(sample = 0; sample <32; sample++){
 						/* Pedestal subtraction */
-						data_tmp = (uint16_t)  (Data2send->data_1[channelToSend][sample] - pedestal_1[window][channelToSend][sample]+ offset_avoid_negative);
+						data_tmp = (uint16_t)  (Data2send->data_1[channelToSend][sample]); //- pedestal_1[window][channelToSend][sample]+ offset_avoid_negative);
 //						data_tmp = (uint16_t)  (Data2send->data[15][sample]); //-  pedestal_A[window][15][sample]+ offset_avoid_negative);
 						frame_buf[index++] = (char)data_tmp;
 					    //xil_printf("int_number = %d\r\n ", (char)(int_number));
@@ -225,8 +226,22 @@ void udp_transfer_WM( volatile InboundRingManager_t *data_to_send )
 			//	xil_printf("%d\r\n", index);
 				transfer_data(frame_buf, index);
 			//	sleep(5);
-
-
+				free(Data2send);
+//
+//				if (window==40){
+//					printf("\r\nwindow = %d\r\n", window);
+//								xil_printf("wdo_time: %d\r\n", (uint)window);
+//								xil_printf("PL_spare: %d\r\n", (uint)Data2send->PL_spare);
+//								xil_printf("info: 0x%X\r\n", (uint)Data2send->info);
+//								for(j=0; j<32; j++){
+//									for(i=0; i<16; i++){
+//										xil_printf("%d\t", (uint)Data2send->data_1[i][j]);
+//									}
+//									printf("\r\n");
+//
+//				}
+//
+//				}
 }
 
 
