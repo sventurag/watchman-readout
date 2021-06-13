@@ -213,7 +213,7 @@ if (RST = '0') or (mode='0') then
 	  	
 			if ( (sstin_cntr="100") or (sstin_cntr= "000")  ) then
 	
-				if ( (rd_add_intl) < (64 + offset_v  ) ) then
+				if ( (rd_add_intl) < (31 + offset_v  ) ) then
 					rd_add_intl <= rd_add_intl + 1 ;
 					fifo_wr_en_intl <= '1';
 					stm_read <=read_address_st;
