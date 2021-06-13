@@ -57,7 +57,7 @@ signal  wr_intl:         std_logic_vector(7 downto 0);
 signal fifo_wr_en_intl: std_logic;
 signal trigger_intl:  std_logic:='0';
 
-type stmachine is (start ,roundBuffer_st, out_roundbuffer_st);
+type stmachine is (start ,roundBuffer_st, out_roundbuffer_st,wait_for_dig);
 signal stm_circularBuffer: stmachine;
 
 type stmachine_read is (idle_st ,first_window_offset_st , read_address_st);
@@ -67,7 +67,7 @@ signal stm_read: stmachine_read;
 signal long_pulse_sig: std_logic;
 signal cnt_wr_en: std_logic_vector(3 downto 0);
 signal rd_add_intl: integer; -- unsigned(7 downto 0); 
-
+signal wait_cntr: std_logic_vector(17 downto 0);
 attribute mark_debug : string;
 type longPulse_type is(
    IDLE,
@@ -113,6 +113,9 @@ variable offset_v: integer ;
 if (RST = '0') or (mode='0') then
 --        rd_add_intl <= 0;
         wr_intl <= (others=>'0');
+	   	wait_cntr <=(others=>'0');
+
+        
 --        fifo_wr_en_intl <= '0';
    else 
        if rising_edge(clk) then
@@ -162,14 +165,36 @@ if (RST = '0') or (mode='0') then
 			   stm_circularBuffer <= out_roundbuffer_st;
 
 		   else
-			   wr_intl <= (others => '0');
-			   stm_circularBuffer <= roundbuffer_st;
+		   	    wr_intl <= X"FF"; -- 255
+			   --wr_intl <= (others => '0');
+			   stm_circularBuffer <= wait_for_dig;
 --			   fifo_wr_en_intl <= '0';
 		   end if;
 	   else
 		  stm_circularBuffer   <= out_roundbuffer_st;
 --		  fifo_wr_en_intl <= '0';
 		  end if;
+		  
+		  
+	when wait_for_dig=>
+	
+	   if (sstin_cntr=sstin_updateBit) then
+	   		if (wait_cntr< X"3FFF") then
+	   			wait_cntr <= std_logic_vector (unsigned( wait_cntr) + 1);
+	   			stm_circularBuffer <= wait_for_dig;
+	   		    wr_intl <= X"FF"; --255
+
+	   		else
+	   			wait_cntr <=(others=>'0');
+	   			wr_intl <= (others => '0');
+	   			stm_circularBuffer <= roundbuffer_st;
+
+	   		end if;
+	   		
+		  
+		  end if;
+		  
+		  
 end case;
 end if;
 end if;
@@ -213,7 +238,7 @@ if (RST = '0') or (mode='0') then
 	  	
 			if ( (sstin_cntr="100") or (sstin_cntr= "000")  ) then
 	
-				if ( (rd_add_intl) < (64 + offset_v  ) ) then
+				if ( (rd_add_intl) < (31 + offset_v  ) ) then
 					rd_add_intl <= rd_add_intl + 1 ;
 					fifo_wr_en_intl <= '1';
 					stm_read <=read_address_st;
