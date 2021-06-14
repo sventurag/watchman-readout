@@ -59,6 +59,7 @@ def process_packet_pulseSweep(filename,nmbrWin, nofChannels):
     ax0=df_0.plot()
   #  ax0.set_ylim(-100,100)
     ax0.set_title("{}".format(window_numbers), fontsize=5)
+    ax0.grid(linewidth=2)
     #ax0.set_xlim(127,(32*totalWindows)-1)
     plt.show()
     fig0 = ax0.get_figure()
