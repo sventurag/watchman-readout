@@ -60,7 +60,7 @@ signal trigger_intl:  std_logic:='0';
 type stmachine is (start ,roundBuffer_st, out_roundbuffer_st,wait_for_dig);
 signal stm_circularBuffer: stmachine;
 
-type stmachine_read is (idle_st ,first_window_offset_st , read_address_st);
+type stmachine_read is (idle_st ,first_window_offset_st , wait_wr_process ,read_address_st);
 signal stm_read: stmachine_read;
 
 
@@ -76,6 +76,7 @@ type longPulse_type is(
 
 signal longpulse_stm : longpulse_type := IDLE;
 signal sstin_cntr_intl: std_logic_vector(2 downto 0);
+signal wait_wr_cntr: std_logic_vector(2 downto 0);
 
 --attribute mark_debug of subBuffer_triggered: signal is "true";
 --attribute mark_debug of trigger: signal is "true";
@@ -151,7 +152,7 @@ if (RST = '0') or (mode='0') then
 --					   stm_circularBuffer <= out_roundbuffer_st;
 			--		      if (unsigned (wr_intl) < 255) then   
 --			  
-							   wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
+--							   wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
 			  				   stm_circularBuffer <= out_roundbuffer_st;
 			 -- 				end if;
 			  		
@@ -220,7 +221,7 @@ if (RST = '0') or (mode='0') then
         offset_v := 0 ;
 	 	fifo_wr_en_intl <= '0';
 	 	rd_add_intl  <= 0;
-
+wait_wr_cntr<= (others => '0');
 
    else 
        if rising_edge(clk) then
@@ -239,7 +240,23 @@ if (RST = '0') or (mode='0') then
 				offset_v := to_integer(unsigned(wr_intl & '0'))- to_integer(unsigned(delay_trigger));
 				rd_add_intl <= to_integer(unsigned(wr_intl & '0')) - to_integer(unsigned(delay_trigger)) - 1 ;
 --				fifo_wr_en_intl <= '1';
-				stm_read <= read_address_st;
+				stm_read <= wait_wr_process;
+				
+		when wait_wr_process =>
+				if ( (sstin_cntr="100") or (sstin_cntr= "000")  ) then
+					if (unsigned(wait_wr_cntr) < 3 ) then
+						wait_wr_cntr <= std_logic_vector (unsigned( wait_wr_cntr) + 1);
+						stm_read <= wait_wr_process;
+					else
+						wait_wr_cntr <= (others=>'0');
+						stm_read <= read_address_st;
+					end if;
+						
+				else 
+					stm_read <= wait_wr_process;
+								
+				end if;
+	
 
 		when read_address_st =>
 	  	
