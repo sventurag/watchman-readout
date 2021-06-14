@@ -148,7 +148,14 @@ if (RST = '0') or (mode='0') then
 		--			   rd_add_intl <= wr_intl - delay_trigger ;
 --					   fifo_wr_en_intl <= '1';
 --					   wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
-					   stm_circularBuffer <= out_roundbuffer_st;
+--					   stm_circularBuffer <= out_roundbuffer_st;
+			--		      if (unsigned (wr_intl) < 255) then   
+--			  
+							   wr_intl <= std_logic_vector(unsigned(wr_intl) + 1);
+			  				   stm_circularBuffer <= out_roundbuffer_st;
+			 -- 				end if;
+			  		
+					   
 		   end if;
    
    

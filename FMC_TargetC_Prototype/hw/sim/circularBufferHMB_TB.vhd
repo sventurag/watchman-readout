@@ -82,7 +82,7 @@ begin
       wait until rising_edge(clk);
      -- sstin_cntr <= "011";
       
-      wait for 30 * clock_period;
+      wait for 500 * clock_period;
     --  sstin_cntr <= "000";
       
       trigger <= '1';
