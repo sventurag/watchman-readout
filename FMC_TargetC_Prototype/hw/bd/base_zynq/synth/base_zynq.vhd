@@ -1,7 +1,7 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
---Date        : Mon Jun 14 09:31:32 2021
+--Date        : Thu Jul  1 09:23:07 2021
 --Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
@@ -2684,10 +2684,10 @@ entity base_zynq is
     WL_CLK_N : out STD_LOGIC_VECTOR ( 0 to 0 );
     WL_CLK_P : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
-  attribute CORE_GENERATION_INFO : string;
-  attribute CORE_GENERATION_INFO of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=40,numReposBlks=28,numNonXlnxBlks=3,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=10,da_board_cnt=3,da_clkrst_cnt=9,synth_mode=OOC_per_IP}";
-  attribute HW_HANDOFF : string;
-  attribute HW_HANDOFF of base_zynq : entity is "base_zynq.hwdef";
+  attribute core_generation_info : string;
+  attribute core_generation_info of base_zynq : entity is "base_zynq,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=base_zynq,x_ipVersion=1.00.a,x_ipLanguage=VHDL,numBlks=40,numReposBlks=28,numNonXlnxBlks=3,numHierBlks=12,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=2,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=10,da_board_cnt=3,da_clkrst_cnt=9,synth_mode=OOC_per_IP}";
+  attribute hw_handoff : string;
+  attribute hw_handoff of base_zynq : entity is "base_zynq.hwdef";
 end base_zynq;
 
 architecture STRUCTURE of base_zynq is
@@ -3071,10 +3071,8 @@ architecture STRUCTURE of base_zynq is
     SAMPLESEL_ANY : out STD_LOGIC;
     DO : in STD_LOGIC_VECTOR ( 15 downto 0 );
     SS_INCR : out STD_LOGIC;
-    DOE : out STD_LOGIC;
     DONE : in STD_LOGIC;
     SS_RESET : out STD_LOGIC;
-    REGCLR : out STD_LOGIC;
     SS_LD_SIN : out STD_LOGIC;
     SS_LD_DIR : out STD_LOGIC;
     RAMP : out STD_LOGIC;
@@ -3147,10 +3145,8 @@ architecture STRUCTURE of base_zynq is
     SAMPLESEL_ANY : out STD_LOGIC;
     DO : in STD_LOGIC_VECTOR ( 15 downto 0 );
     SS_INCR : out STD_LOGIC;
-    DOE : out STD_LOGIC;
     DONE : in STD_LOGIC;
     SS_RESET : out STD_LOGIC;
-    REGCLR : out STD_LOGIC;
     SS_LD_SIN : out STD_LOGIC;
     SS_LD_DIR : out STD_LOGIC;
     RAMP : out STD_LOGIC;
@@ -3236,10 +3232,6 @@ architecture STRUCTURE of base_zynq is
   signal TARGETC_axi_int_1_StreamReady : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_0_CNT_CLR : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_0_FIFOdata : STD_LOGIC_VECTOR ( 31 downto 0 );
-  attribute DEBUG : string;
-  attribute DEBUG of TARGET_C_TopLevel_Sy_0_FIFOdata : signal is "true";
-  attribute MARK_DEBUG : boolean;
-  attribute MARK_DEBUG of TARGET_C_TopLevel_Sy_0_FIFOdata : signal is std.standard.true;
   signal TARGET_C_TopLevel_Sy_0_FIFOvalid : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_0_GCC_RESET : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_0_HSCLK_N : STD_LOGIC;
@@ -3272,12 +3264,8 @@ architecture STRUCTURE of base_zynq is
   signal TARGET_C_TopLevel_Sy_0_WR_RS_S0 : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_0_WR_RS_S1 : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_0_WS_masterctrl_out : STD_LOGIC;
-  attribute DEBUG of TARGET_C_TopLevel_Sy_0_WS_masterctrl_out : signal is "true";
-  attribute MARK_DEBUG of TARGET_C_TopLevel_Sy_0_WS_masterctrl_out : signal is std.standard.true;
   signal TARGET_C_TopLevel_Sy_1_CNT_CLR : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_1_FIFOdata : STD_LOGIC_VECTOR ( 31 downto 0 );
-  attribute DEBUG of TARGET_C_TopLevel_Sy_1_FIFOdata : signal is "true";
-  attribute MARK_DEBUG of TARGET_C_TopLevel_Sy_1_FIFOdata : signal is std.standard.true;
   signal TARGET_C_TopLevel_Sy_1_FIFOvalid : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_1_GCC_RESET : STD_LOGIC;
   signal TARGET_C_TopLevel_Sy_1_HSCLK_N : STD_LOGIC;
@@ -3324,8 +3312,10 @@ architecture STRUCTURE of base_zynq is
   signal axi_dma_0_M_AXI_S2MM_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_dma_0_M_AXI_S2MM_WVALID : STD_LOGIC;
   signal axi_dma_0_s2mm_introut : STD_LOGIC;
-  attribute DEBUG of axi_dma_0_s2mm_introut : signal is "true";
+  attribute MARK_DEBUG : boolean;
   attribute MARK_DEBUG of axi_dma_0_s2mm_introut : signal is std.standard.true;
+  attribute debug : string;
+  attribute debug of axi_dma_0_s2mm_introut : signal is "true";
   signal axi_interconnect_0_M00_AXI_AWADDR : STD_LOGIC_VECTOR ( 31 downto 0 );
   signal axi_interconnect_0_M00_AXI_AWBURST : STD_LOGIC_VECTOR ( 1 downto 0 );
   signal axi_interconnect_0_M00_AXI_AWCACHE : STD_LOGIC_VECTOR ( 3 downto 0 );
@@ -3345,20 +3335,10 @@ architecture STRUCTURE of base_zynq is
   signal axi_interconnect_0_M00_AXI_WSTRB : STD_LOGIC_VECTOR ( 3 downto 0 );
   signal axi_interconnect_0_M00_AXI_WVALID : STD_LOGIC;
   signal axis_interconnect_0_M00_AXIS_TDATA : STD_LOGIC_VECTOR ( 31 downto 0 );
-  attribute DEBUG of axis_interconnect_0_M00_AXIS_TDATA : signal is "true";
-  attribute MARK_DEBUG of axis_interconnect_0_M00_AXIS_TDATA : signal is std.standard.true;
   signal axis_interconnect_0_M00_AXIS_TKEEP : STD_LOGIC_VECTOR ( 3 downto 0 );
-  attribute DEBUG of axis_interconnect_0_M00_AXIS_TKEEP : signal is "true";
-  attribute MARK_DEBUG of axis_interconnect_0_M00_AXIS_TKEEP : signal is std.standard.true;
   signal axis_interconnect_0_M00_AXIS_TLAST : STD_LOGIC;
-  attribute DEBUG of axis_interconnect_0_M00_AXIS_TLAST : signal is "true";
-  attribute MARK_DEBUG of axis_interconnect_0_M00_AXIS_TLAST : signal is std.standard.true;
   signal axis_interconnect_0_M00_AXIS_TREADY : STD_LOGIC;
-  attribute DEBUG of axis_interconnect_0_M00_AXIS_TREADY : signal is "true";
-  attribute MARK_DEBUG of axis_interconnect_0_M00_AXIS_TREADY : signal is std.standard.true;
   signal axis_interconnect_0_M00_AXIS_TVALID : STD_LOGIC;
-  attribute DEBUG of axis_interconnect_0_M00_AXIS_TVALID : signal is "true";
-  attribute MARK_DEBUG of axis_interconnect_0_M00_AXIS_TVALID : signal is std.standard.true;
   signal processing_system7_0_DDR_ADDR : STD_LOGIC_VECTOR ( 14 downto 0 );
   signal processing_system7_0_DDR_BA : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal processing_system7_0_DDR_CAS_N : STD_LOGIC;
@@ -3506,10 +3486,6 @@ architecture STRUCTURE of base_zynq is
   signal xlconstant_4_dout : STD_LOGIC_VECTOR ( 2 downto 0 );
   signal NLW_TARGETC_axi_int_0_M_AXIS_TDEST_UNCONNECTED : STD_LOGIC_VECTOR ( 9 downto 0 );
   signal NLW_TARGETC_axi_int_1_M_AXIS_TDEST_UNCONNECTED : STD_LOGIC_VECTOR ( 9 downto 0 );
-  signal NLW_TARGET_C_TopLevel_Sy_0_DOE_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGET_C_TopLevel_Sy_0_REGCLR_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGET_C_TopLevel_Sy_1_DOE_UNCONNECTED : STD_LOGIC;
-  signal NLW_TARGET_C_TopLevel_Sy_1_REGCLR_UNCONNECTED : STD_LOGIC;
   signal NLW_TARGET_C_TopLevel_Sy_1_SCLK_UNCONNECTED : STD_LOGIC;
   signal NLW_TARGET_C_TopLevel_Sy_1_SIN_UNCONNECTED : STD_LOGIC;
   signal NLW_TARGET_C_TopLevel_Sy_1_SSTIN_UNCONNECTED : STD_LOGIC;
@@ -3533,97 +3509,97 @@ architecture STRUCTURE of base_zynq is
   signal NLW_rst_ps7_0_50M_mb_reset_UNCONNECTED : STD_LOGIC;
   signal NLW_rst_ps7_0_50M_bus_struct_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
   signal NLW_rst_ps7_0_50M_peripheral_reset_UNCONNECTED : STD_LOGIC_VECTOR ( 0 to 0 );
-  attribute X_INTERFACE_INFO : string;
-  attribute X_INTERFACE_INFO of A_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.A_SS_RESET RST";
-  attribute X_INTERFACE_PARAMETER : string;
-  attribute X_INTERFACE_PARAMETER of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
-  attribute X_INTERFACE_INFO of B_GCC_RESET : signal is "xilinx.com:signal:data:1.0 DATA.B_GCC_RESET DATA";
-  attribute X_INTERFACE_PARAMETER of B_GCC_RESET : signal is "XIL_INTERFACENAME DATA.B_GCC_RESET, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_HSCLK_N : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_N DATA";
-  attribute X_INTERFACE_PARAMETER of B_HSCLK_N : signal is "XIL_INTERFACENAME DATA.B_HSCLK_N, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_HSCLK_P : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_P DATA";
-  attribute X_INTERFACE_PARAMETER of B_HSCLK_P : signal is "XIL_INTERFACENAME DATA.B_HSCLK_P, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RAMP : signal is "xilinx.com:signal:data:1.0 DATA.B_RAMP DATA";
-  attribute X_INTERFACE_PARAMETER of B_RAMP : signal is "XIL_INTERFACENAME DATA.B_RAMP, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RDAD_CLK : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_CLK DATA";
-  attribute X_INTERFACE_PARAMETER of B_RDAD_CLK : signal is "XIL_INTERFACENAME DATA.B_RDAD_CLK, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RDAD_DIR : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_DIR DATA";
-  attribute X_INTERFACE_PARAMETER of B_RDAD_DIR : signal is "XIL_INTERFACENAME DATA.B_RDAD_DIR, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_RDAD_SIN : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_SIN DATA";
-  attribute X_INTERFACE_PARAMETER of B_RDAD_SIN : signal is "XIL_INTERFACENAME DATA.B_RDAD_SIN, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_SAMPLESEL_ANY : signal is "xilinx.com:signal:data:1.0 DATA.B_SAMPLESEL_ANY DATA";
-  attribute X_INTERFACE_PARAMETER of B_SAMPLESEL_ANY : signal is "XIL_INTERFACENAME DATA.B_SAMPLESEL_ANY, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_SS_INCR : signal is "xilinx.com:signal:data:1.0 DATA.B_SS_INCR DATA";
-  attribute X_INTERFACE_PARAMETER of B_SS_INCR : signal is "XIL_INTERFACENAME DATA.B_SS_INCR, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_SS_LD_DIR : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_DIR CLK";
-  attribute X_INTERFACE_PARAMETER of B_SS_LD_DIR : signal is "XIL_INTERFACENAME CLK.B_SS_LD_DIR, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of B_SS_LD_SIN : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_SIN CLK";
-  attribute X_INTERFACE_PARAMETER of B_SS_LD_SIN : signal is "XIL_INTERFACENAME CLK.B_SS_LD_SIN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of B_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.B_SS_RESET RST";
-  attribute X_INTERFACE_PARAMETER of B_SS_RESET : signal is "XIL_INTERFACENAME RST.B_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
-  attribute X_INTERFACE_INFO of B_WR_CS_S0 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S0 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S0 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S0, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S1 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S1 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S1 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S1, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S2 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S2 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S2 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S2, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S3 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S3 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S3 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S3, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_WR_CS_S4 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S4 DATA";
-  attribute X_INTERFACE_PARAMETER of B_WR_CS_S4 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S4, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
-  attribute X_INTERFACE_INFO of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
-  attribute X_INTERFACE_INFO of DDR_ck_p : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_P";
-  attribute X_INTERFACE_INFO of DDR_cke : signal is "xilinx.com:interface:ddrx:1.0 DDR CKE";
-  attribute X_INTERFACE_INFO of DDR_cs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CS_N";
-  attribute X_INTERFACE_INFO of DDR_odt : signal is "xilinx.com:interface:ddrx:1.0 DDR ODT";
-  attribute X_INTERFACE_INFO of DDR_ras_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RAS_N";
-  attribute X_INTERFACE_INFO of DDR_reset_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RESET_N";
-  attribute X_INTERFACE_INFO of DDR_we_n : signal is "xilinx.com:interface:ddrx:1.0 DDR WE_N";
-  attribute X_INTERFACE_INFO of FIXED_IO_ddr_vrn : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN";
-  attribute X_INTERFACE_PARAMETER of FIXED_IO_ddr_vrn : signal is "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false";
-  attribute X_INTERFACE_INFO of FIXED_IO_ddr_vrp : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP";
-  attribute X_INTERFACE_INFO of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
-  attribute X_INTERFACE_INFO of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
-  attribute X_INTERFACE_INFO of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
-  attribute X_INTERFACE_INFO of B_DO_10 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_10 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_11 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_11 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_11 : signal is "XIL_INTERFACENAME DATA.B_DO_11, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_13 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_13 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_13 : signal is "XIL_INTERFACENAME DATA.B_DO_13, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_14 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_14 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_14 : signal is "XIL_INTERFACENAME DATA.B_DO_14, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_15 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_15 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_15 : signal is "XIL_INTERFACENAME DATA.B_DO_15, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_16 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_16 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_16 : signal is "XIL_INTERFACENAME DATA.B_DO_16, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_3 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_3 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_3 : signal is "XIL_INTERFACENAME DATA.B_DO_3, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_4 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_4 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_4 : signal is "XIL_INTERFACENAME DATA.B_DO_4, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_5 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_5 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_5 : signal is "XIL_INTERFACENAME DATA.B_DO_5, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_6 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_6 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_6 : signal is "XIL_INTERFACENAME DATA.B_DO_6, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_7 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_7 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_7 : signal is "XIL_INTERFACENAME DATA.B_DO_7, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_8 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_8 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_8 : signal is "XIL_INTERFACENAME DATA.B_DO_8, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of B_DO_9 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_9 DATA";
-  attribute X_INTERFACE_PARAMETER of B_DO_9 : signal is "XIL_INTERFACENAME DATA.B_DO_9, LAYERED_METADATA undef";
-  attribute X_INTERFACE_INFO of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
-  attribute X_INTERFACE_PARAMETER of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
-  attribute X_INTERFACE_INFO of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";
-  attribute X_INTERFACE_INFO of DDR_dm : signal is "xilinx.com:interface:ddrx:1.0 DDR DM";
-  attribute X_INTERFACE_INFO of DDR_dq : signal is "xilinx.com:interface:ddrx:1.0 DDR DQ";
-  attribute X_INTERFACE_INFO of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
-  attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
-  attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
-  attribute X_INTERFACE_INFO of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_util_ds_buf_1_0_OBUF_DS_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
-  attribute X_INTERFACE_INFO of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_util_ds_buf_1_0_OBUF_DS_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info : string;
+  attribute x_interface_info of A_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.A_SS_RESET RST";
+  attribute x_interface_parameter : string;
+  attribute x_interface_parameter of A_SS_RESET : signal is "XIL_INTERFACENAME RST.A_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of B_GCC_RESET : signal is "xilinx.com:signal:data:1.0 DATA.B_GCC_RESET DATA";
+  attribute x_interface_parameter of B_GCC_RESET : signal is "XIL_INTERFACENAME DATA.B_GCC_RESET, LAYERED_METADATA undef";
+  attribute x_interface_info of B_HSCLK_N : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_N DATA";
+  attribute x_interface_parameter of B_HSCLK_N : signal is "XIL_INTERFACENAME DATA.B_HSCLK_N, LAYERED_METADATA undef";
+  attribute x_interface_info of B_HSCLK_P : signal is "xilinx.com:signal:data:1.0 DATA.B_HSCLK_P DATA";
+  attribute x_interface_parameter of B_HSCLK_P : signal is "XIL_INTERFACENAME DATA.B_HSCLK_P, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RAMP : signal is "xilinx.com:signal:data:1.0 DATA.B_RAMP DATA";
+  attribute x_interface_parameter of B_RAMP : signal is "XIL_INTERFACENAME DATA.B_RAMP, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RDAD_CLK : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_CLK DATA";
+  attribute x_interface_parameter of B_RDAD_CLK : signal is "XIL_INTERFACENAME DATA.B_RDAD_CLK, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RDAD_DIR : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_DIR DATA";
+  attribute x_interface_parameter of B_RDAD_DIR : signal is "XIL_INTERFACENAME DATA.B_RDAD_DIR, LAYERED_METADATA undef";
+  attribute x_interface_info of B_RDAD_SIN : signal is "xilinx.com:signal:data:1.0 DATA.B_RDAD_SIN DATA";
+  attribute x_interface_parameter of B_RDAD_SIN : signal is "XIL_INTERFACENAME DATA.B_RDAD_SIN, LAYERED_METADATA undef";
+  attribute x_interface_info of B_SAMPLESEL_ANY : signal is "xilinx.com:signal:data:1.0 DATA.B_SAMPLESEL_ANY DATA";
+  attribute x_interface_parameter of B_SAMPLESEL_ANY : signal is "XIL_INTERFACENAME DATA.B_SAMPLESEL_ANY, LAYERED_METADATA undef";
+  attribute x_interface_info of B_SS_INCR : signal is "xilinx.com:signal:data:1.0 DATA.B_SS_INCR DATA";
+  attribute x_interface_parameter of B_SS_INCR : signal is "XIL_INTERFACENAME DATA.B_SS_INCR, LAYERED_METADATA undef";
+  attribute x_interface_info of B_SS_LD_DIR : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_DIR CLK";
+  attribute x_interface_parameter of B_SS_LD_DIR : signal is "XIL_INTERFACENAME CLK.B_SS_LD_DIR, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of B_SS_LD_SIN : signal is "xilinx.com:signal:clock:1.0 CLK.B_SS_LD_SIN CLK";
+  attribute x_interface_parameter of B_SS_LD_SIN : signal is "XIL_INTERFACENAME CLK.B_SS_LD_SIN, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of B_SS_RESET : signal is "xilinx.com:signal:reset:1.0 RST.B_SS_RESET RST";
+  attribute x_interface_parameter of B_SS_RESET : signal is "XIL_INTERFACENAME RST.B_SS_RESET, INSERT_VIP 0, POLARITY ACTIVE_LOW";
+  attribute x_interface_info of B_WR_CS_S0 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S0 DATA";
+  attribute x_interface_parameter of B_WR_CS_S0 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S0, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S1 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S1 DATA";
+  attribute x_interface_parameter of B_WR_CS_S1 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S1, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S2 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S2 DATA";
+  attribute x_interface_parameter of B_WR_CS_S2 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S2, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S3 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S3 DATA";
+  attribute x_interface_parameter of B_WR_CS_S3 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S3, LAYERED_METADATA undef";
+  attribute x_interface_info of B_WR_CS_S4 : signal is "xilinx.com:signal:data:1.0 DATA.B_WR_CS_S4 DATA";
+  attribute x_interface_parameter of B_WR_CS_S4 : signal is "XIL_INTERFACENAME DATA.B_WR_CS_S4, LAYERED_METADATA undef";
+  attribute x_interface_info of DDR_cas_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CAS_N";
+  attribute x_interface_info of DDR_ck_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_N";
+  attribute x_interface_info of DDR_ck_p : signal is "xilinx.com:interface:ddrx:1.0 DDR CK_P";
+  attribute x_interface_info of DDR_cke : signal is "xilinx.com:interface:ddrx:1.0 DDR CKE";
+  attribute x_interface_info of DDR_cs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR CS_N";
+  attribute x_interface_info of DDR_odt : signal is "xilinx.com:interface:ddrx:1.0 DDR ODT";
+  attribute x_interface_info of DDR_ras_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RAS_N";
+  attribute x_interface_info of DDR_reset_n : signal is "xilinx.com:interface:ddrx:1.0 DDR RESET_N";
+  attribute x_interface_info of DDR_we_n : signal is "xilinx.com:interface:ddrx:1.0 DDR WE_N";
+  attribute x_interface_info of FIXED_IO_ddr_vrn : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRN";
+  attribute x_interface_parameter of FIXED_IO_ddr_vrn : signal is "XIL_INTERFACENAME FIXED_IO, CAN_DEBUG false";
+  attribute x_interface_info of FIXED_IO_ddr_vrp : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO DDR_VRP";
+  attribute x_interface_info of FIXED_IO_ps_clk : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_CLK";
+  attribute x_interface_info of FIXED_IO_ps_porb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB";
+  attribute x_interface_info of FIXED_IO_ps_srstb : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB";
+  attribute x_interface_info of B_DO_10 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_10 DATA";
+  attribute x_interface_parameter of B_DO_10 : signal is "XIL_INTERFACENAME DATA.B_DO_10, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_11 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_11 DATA";
+  attribute x_interface_parameter of B_DO_11 : signal is "XIL_INTERFACENAME DATA.B_DO_11, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_13 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_13 DATA";
+  attribute x_interface_parameter of B_DO_13 : signal is "XIL_INTERFACENAME DATA.B_DO_13, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_14 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_14 DATA";
+  attribute x_interface_parameter of B_DO_14 : signal is "XIL_INTERFACENAME DATA.B_DO_14, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_15 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_15 DATA";
+  attribute x_interface_parameter of B_DO_15 : signal is "XIL_INTERFACENAME DATA.B_DO_15, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_16 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_16 DATA";
+  attribute x_interface_parameter of B_DO_16 : signal is "XIL_INTERFACENAME DATA.B_DO_16, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_3 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_3 DATA";
+  attribute x_interface_parameter of B_DO_3 : signal is "XIL_INTERFACENAME DATA.B_DO_3, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_4 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_4 DATA";
+  attribute x_interface_parameter of B_DO_4 : signal is "XIL_INTERFACENAME DATA.B_DO_4, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_5 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_5 DATA";
+  attribute x_interface_parameter of B_DO_5 : signal is "XIL_INTERFACENAME DATA.B_DO_5, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_6 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_6 DATA";
+  attribute x_interface_parameter of B_DO_6 : signal is "XIL_INTERFACENAME DATA.B_DO_6, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_7 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_7 DATA";
+  attribute x_interface_parameter of B_DO_7 : signal is "XIL_INTERFACENAME DATA.B_DO_7, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_8 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_8 DATA";
+  attribute x_interface_parameter of B_DO_8 : signal is "XIL_INTERFACENAME DATA.B_DO_8, LAYERED_METADATA undef";
+  attribute x_interface_info of B_DO_9 : signal is "xilinx.com:signal:data:1.0 DATA.B_DO_9 DATA";
+  attribute x_interface_parameter of B_DO_9 : signal is "XIL_INTERFACENAME DATA.B_DO_9, LAYERED_METADATA undef";
+  attribute x_interface_info of DDR_addr : signal is "xilinx.com:interface:ddrx:1.0 DDR ADDR";
+  attribute x_interface_parameter of DDR_addr : signal is "XIL_INTERFACENAME DDR, AXI_ARBITRATION_SCHEME TDM, BURST_LENGTH 8, CAN_DEBUG false, CAS_LATENCY 11, CAS_WRITE_LATENCY 11, CS_ENABLED true, DATA_MASK_ENABLED true, DATA_WIDTH 8, MEMORY_TYPE COMPONENTS, MEM_ADDR_MAP ROW_COLUMN_BANK, SLOT Single, TIMEPERIOD_PS 1250";
+  attribute x_interface_info of DDR_ba : signal is "xilinx.com:interface:ddrx:1.0 DDR BA";
+  attribute x_interface_info of DDR_dm : signal is "xilinx.com:interface:ddrx:1.0 DDR DM";
+  attribute x_interface_info of DDR_dq : signal is "xilinx.com:interface:ddrx:1.0 DDR DQ";
+  attribute x_interface_info of DDR_dqs_n : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_N";
+  attribute x_interface_info of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
+  attribute x_interface_info of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
+  attribute x_interface_info of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
+  attribute x_interface_parameter of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_util_ds_buf_1_0_OBUF_DS_N, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute x_interface_info of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
+  attribute x_interface_parameter of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_util_ds_buf_1_0_OBUF_DS_P, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
 begin
   A_GCC_RESET <= TARGET_C_TopLevel_Sy_0_GCC_RESET;
   A_HSCLK_N <= TARGET_C_TopLevel_Sy_0_HSCLK_N;
@@ -3788,7 +3764,6 @@ TARGET_C_TopLevel_Sy_0: component base_zynq_TARGET_C_TopLevel_Sy_0_0
       CNT_CLR => TARGET_C_TopLevel_Sy_0_CNT_CLR,
       Cnt_AXIS_DATA(9 downto 0) => TARGETC_axi_int_0_Cnt_AXIS_DATA(9 downto 0),
       DO(15 downto 0) => xlconcat_0_dout(15 downto 0),
-      DOE => NLW_TARGET_C_TopLevel_Sy_0_DOE_UNCONNECTED,
       DONE => DONE_1,
       FIFOdata(31 downto 0) => TARGET_C_TopLevel_Sy_0_FIFOdata(31 downto 0),
       FIFOvalid => TARGET_C_TopLevel_Sy_0_FIFOvalid,
@@ -3802,7 +3777,6 @@ TARGET_C_TopLevel_Sy_0: component base_zynq_TARGET_C_TopLevel_Sy_0_0
       RDAD_CLK => TARGET_C_TopLevel_Sy_0_RDAD_CLK,
       RDAD_DIR => TARGET_C_TopLevel_Sy_0_RDAD_DIR,
       RDAD_SIN => TARGET_C_TopLevel_Sy_0_RDAD_SIN,
-      REGCLR => NLW_TARGET_C_TopLevel_Sy_0_REGCLR_UNCONNECTED,
       RefCLK_i1 => processing_system7_0_FCLK_CLK0,
       RefCLK_i2 => processing_system7_0_FCLK_CLK0,
       SAMPLESEL_ANY => TARGET_C_TopLevel_Sy_0_SAMPLESEL_ANY,
@@ -3863,7 +3837,6 @@ TARGET_C_TopLevel_Sy_1: component base_zynq_TARGET_C_TopLevel_Sy_1_6
       CNT_CLR => TARGET_C_TopLevel_Sy_1_CNT_CLR,
       Cnt_AXIS_DATA(9 downto 0) => TARGETC_axi_int_1_Cnt_AXIS_DATA(9 downto 0),
       DO(15 downto 0) => xlconcat_2_dout(15 downto 0),
-      DOE => NLW_TARGET_C_TopLevel_Sy_1_DOE_UNCONNECTED,
       DONE => B_DONE_1,
       FIFOdata(31 downto 0) => TARGET_C_TopLevel_Sy_1_FIFOdata(31 downto 0),
       FIFOvalid => TARGET_C_TopLevel_Sy_1_FIFOvalid,
@@ -3877,7 +3850,6 @@ TARGET_C_TopLevel_Sy_1: component base_zynq_TARGET_C_TopLevel_Sy_1_6
       RDAD_CLK => TARGET_C_TopLevel_Sy_1_RDAD_CLK,
       RDAD_DIR => TARGET_C_TopLevel_Sy_1_RDAD_DIR,
       RDAD_SIN => TARGET_C_TopLevel_Sy_1_RDAD_SIN,
-      REGCLR => NLW_TARGET_C_TopLevel_Sy_1_REGCLR_UNCONNECTED,
       RefCLK_i1 => processing_system7_0_FCLK_CLK0,
       RefCLK_i2 => processing_system7_0_FCLK_CLK0,
       SAMPLESEL_ANY => TARGET_C_TopLevel_Sy_1_SAMPLESEL_ANY,

@@ -6,8 +6,9 @@
 #ISEL
 #For nonused ports in TARGETC
 set_property IO_BUFFER_TYPE none [get_ports unused_port_name]
-#set_property PULLUP true [get_ports SDA]
-#set_property PULLUP true [get_ports SCL]
+
+
+
 #### #### #### #### #### #### #### #### #### #### #### ####
 # PACKAGE_PIN
 #### #### #### #### #### #### #### #### #### #### #### ####
@@ -283,5 +284,5 @@ set_property IOSTANDARD LVCMOS25 [get_ports {B_DO_8[0]}]
 
 
 #set_property IOB TRUE [all_inputs]
-#set_property IOB TRUE [all_outputs]
+set_property IOB TRUE [all_outputs]
 

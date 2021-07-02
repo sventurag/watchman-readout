@@ -329,7 +329,7 @@ int main()
 	printf("PL's clock ready\r\n");
 	// Initialize TargetC's registers
 	SetTargetCRegisters(regptr_0);
-	SetTargetCRegisters(regptr_1);
+	//SetTargetCRegisters(regptr_1);
 
 	printf("sleep to set the debug core\r\n");
 

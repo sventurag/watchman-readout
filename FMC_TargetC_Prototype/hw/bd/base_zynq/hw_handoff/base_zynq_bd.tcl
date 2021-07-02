@@ -296,10 +296,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {125000000} \
- ] [get_bd_pins /TARGET_C_TopLevel_Sy_1/RDAD_CLK]
-
   # Create instance: axi_dma_0, and set properties
   set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
   set_property -dict [ list \
@@ -1232,7 +1228,6 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net axi_dma_0_M_AXI_S2MM [get_bd_intf_pins axi_dma_0/M_AXI_S2MM] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
   connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins processing_system7_0/S_AXI_HP0]
   connect_bd_intf_net -intf_net axis_interconnect_0_M00_AXIS [get_bd_intf_pins axi_dma_0/S_AXIS_S2MM] [get_bd_intf_pins axis_interconnect_0/M00_AXIS]
-  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_intf_nets axis_interconnect_0_M00_AXIS]
   connect_bd_intf_net -intf_net processing_system7_0_DDR [get_bd_intf_ports DDR] [get_bd_intf_pins processing_system7_0/DDR]
   connect_bd_intf_net -intf_net processing_system7_0_FIXED_IO [get_bd_intf_ports FIXED_IO] [get_bd_intf_pins processing_system7_0/FIXED_IO]
   connect_bd_intf_net -intf_net processing_system7_0_M_AXI_GP0 [get_bd_intf_pins processing_system7_0/M_AXI_GP0] [get_bd_intf_pins ps7_0_axi_periph/S00_AXI]
@@ -1292,7 +1287,6 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGETC_axi_int_1_StreamReady [get_bd_pins TARGETC_axi_int_1/StreamReady] [get_bd_pins TARGET_C_TopLevel_Sy_1/StreamReady]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_CNT_CLR [get_bd_pins TARGETC_axi_int_0/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_0/CNT_CLR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOdata [get_bd_pins TARGETC_axi_int_0/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOdata]
-  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets TARGET_C_TopLevel_Sy_0_FIFOdata]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_FIFOvalid [get_bd_pins TARGETC_axi_int_0/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_0/FIFOvalid]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_GCC_RESET [get_bd_ports A_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_0/GCC_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_HSCLK_N [get_bd_ports A_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_0/HSCLK_N]
@@ -1325,10 +1319,8 @@ proc create_root_design { parentCell } {
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S0 [get_bd_ports A_WR_RS_S0] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S0]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WR_RS_S1 [get_bd_ports A_WR_RS_S1] [get_bd_pins TARGET_C_TopLevel_Sy_0/WR_RS_S1]
   connect_bd_net -net TARGET_C_TopLevel_Sy_0_WS_masterctrl_out [get_bd_pins TARGET_C_TopLevel_Sy_0/WS_masterctrl_out] [get_bd_pins TARGET_C_TopLevel_Sy_1/WS_masterctrl_in]
-  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets TARGET_C_TopLevel_Sy_0_WS_masterctrl_out]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_CNT_CLR [get_bd_pins TARGETC_axi_int_1/CNT_CLR] [get_bd_pins TARGET_C_TopLevel_Sy_1/CNT_CLR]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOdata [get_bd_pins TARGETC_axi_int_1/FIFOdata] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOdata]
-  set_property HDL_ATTRIBUTE.DEBUG {true} [get_bd_nets TARGET_C_TopLevel_Sy_1_FIFOdata]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_FIFOvalid [get_bd_pins TARGETC_axi_int_1/FIFOvalid] [get_bd_pins TARGET_C_TopLevel_Sy_1/FIFOvalid]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_GCC_RESET [get_bd_ports B_GCC_RESET] [get_bd_pins TARGET_C_TopLevel_Sy_1/GCC_RESET]
   connect_bd_net -net TARGET_C_TopLevel_Sy_1_HSCLK_N [get_bd_ports B_HSCLK_N] [get_bd_pins TARGET_C_TopLevel_Sy_1/HSCLK_N]
