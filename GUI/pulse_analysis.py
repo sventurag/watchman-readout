@@ -54,7 +54,7 @@ def process_packet_pulseSweep(filename,nmbrWin, nofChannels):
     print(targets_data[0])
     print(targets_data[1])
 
-    df_0 = df_0-195.
+    # df_0 = df_0-195.
     
     ax0=df_0.plot()
   #  ax0.set_ylim(-100,100)

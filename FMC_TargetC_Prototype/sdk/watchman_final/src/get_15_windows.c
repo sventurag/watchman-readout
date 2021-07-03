@@ -247,6 +247,7 @@ int SendWindows(int firstWindow, int numWindows, int* regptr){
 				for(j=0; j<32; j++){
 					/* Pedestal subtraction */
 					data_tmp = (uint16_t) (tmp_ptr->data.data_struct.data[channel][j]-  pedestal_0[window][channel][j]+ offset_avoid_negative);
+//					data_tmp = (uint16_t) (pedestal_0[window][channel][j]);
 
 					frame_buf[index++] = (char)data_tmp;
 				    //printf("int_number = %d\r\n ", (char)(int_number));

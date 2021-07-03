@@ -1,0 +1,22 @@
+#!/bin/bash -i
+cd /home/salvador/github/watchman-readout/GUI
+#nofPackets=$1
+#channel=$2
+totalWindows=$nofPackets
+nofWindowsStep=1
+nofAmplStep=1
+nofTARGETs=2
+nofChannels=1
+nofpackets=33
+file_name="/home/salvador/github/watchman-readout/GUI/traffic.pcap"
+
+tcpdump -ni enx0050b67c1322  udp port 8  -w  $file_name -c 32 &>packets.log &
+
+#python3.8 listenPacketsTrig.py $nofPackets $totalWindows $nofChannels&> packets.log &
+
+python3.8 HMBtriggerMode.py &>triggercmd.log &
+
+
+python3.8 listenPacketsTrig.py $file_name $nofpackets
+
+

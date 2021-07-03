@@ -16,7 +16,7 @@ from pulseGen import pulseGen
 import pandas as pd
 
 pg = pulseGen()
-nmbrWindows =3
+nmbrWindows =1
 firstWindow= 0
 totalWindows = int(sys.argv[1])
 repetitions=int(sys.argv[2])
@@ -30,8 +30,8 @@ isel = 2300
 
 nofTARGETs=2
 pg.isel(isel)
-wave_gen().Output1(out=False)
-nmbrPedestals=160
+#wave_gen().Output1(out=False)
+nmbrPedestals=4
 
 # pg.pulseInit(width)
 
@@ -39,9 +39,9 @@ pg.channel(channel)
 # pg.impedanceLoadHz(50)
 if (pedestalsON==1):
     pg.pedestals(nmbrPedestals)
-    time.sleep(130*3)
+    time.sleep(10)
 pg.windows(nmbrWindows, firstWindow, totalWindows)
-wave_gen().Output1(out=True)
+#wave_gen().Output1(out=True)
 # time.sleep(1)
 #pg.triggerMode(1000)
 #pg.softTrigger()
@@ -87,6 +87,6 @@ if (pedestalsON==1):
     time.sleep(10)
 else:
     time.sleep(5)
-wave_gen().Output1(out=False)
+#wave_gen().Output1(out=False)
 pg.closeSocket()
 

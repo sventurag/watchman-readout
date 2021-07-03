@@ -383,7 +383,7 @@ int command_parser(struct pbuf *p, char* return_buf) {
 
 				} else if ((regID_one_reg == CHANNEL2SEND)) {
 					channel = regVal_one_reg;
-					//xil_printf("NMBRWINDOWS = %d\r\n", regID_one_reg);
+					xil_printf("channel = %d\r\n", regVal_one_reg);
 
 				}
 

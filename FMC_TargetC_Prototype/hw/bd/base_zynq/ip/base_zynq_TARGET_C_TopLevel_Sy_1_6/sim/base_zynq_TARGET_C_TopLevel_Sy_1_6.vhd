@@ -94,7 +94,7 @@ ENTITY base_zynq_TARGET_C_TopLevel_Sy_1_6 IS
     WR_CS_S4 : OUT STD_LOGIC;
     WR_CS_S5 : OUT STD_LOGIC;
     GCC_RESET : OUT STD_LOGIC;
-    WLCLK : OUT STD_LOGIC;
+    WL_CLK : OUT STD_LOGIC;
     RDAD_CLK : OUT STD_LOGIC;
     RDAD_SIN : OUT STD_LOGIC;
     RDAD_DIR : OUT STD_LOGIC;
@@ -119,8 +119,6 @@ ENTITY base_zynq_TARGET_C_TopLevel_Sy_1_6 IS
     TrigB : IN STD_LOGIC;
     TrigC : IN STD_LOGIC;
     TrigD : IN STD_LOGIC;
-    WS_masterctrl_in : IN STD_LOGIC;
-    WS_masterctrl_out : OUT STD_LOGIC;
     SSVALID_INTR : OUT STD_LOGIC;
     hmb_trigger : IN STD_LOGIC;
     delay_trigger : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -172,7 +170,7 @@ ARCHITECTURE base_zynq_TARGET_C_TopLevel_Sy_1_6_arch OF base_zynq_TARGET_C_TopLe
       WR_CS_S4 : OUT STD_LOGIC;
       WR_CS_S5 : OUT STD_LOGIC;
       GCC_RESET : OUT STD_LOGIC;
-      WLCLK : OUT STD_LOGIC;
+      WL_CLK : OUT STD_LOGIC;
       RDAD_CLK : OUT STD_LOGIC;
       RDAD_SIN : OUT STD_LOGIC;
       RDAD_DIR : OUT STD_LOGIC;
@@ -197,8 +195,6 @@ ARCHITECTURE base_zynq_TARGET_C_TopLevel_Sy_1_6_arch OF base_zynq_TARGET_C_TopLe
       TrigB : IN STD_LOGIC;
       TrigC : IN STD_LOGIC;
       TrigD : IN STD_LOGIC;
-      WS_masterctrl_in : IN STD_LOGIC;
-      WS_masterctrl_out : OUT STD_LOGIC;
       SSVALID_INTR : OUT STD_LOGIC;
       hmb_trigger : IN STD_LOGIC;
       delay_trigger : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
@@ -215,6 +211,8 @@ ARCHITECTURE base_zynq_TARGET_C_TopLevel_Sy_1_6_arch OF base_zynq_TARGET_C_TopLe
   ATTRIBUTE X_INTERFACE_INFO OF SS_RESET: SIGNAL IS "xilinx.com:signal:reset:1.0 SS_RESET RST";
   ATTRIBUTE X_INTERFACE_PARAMETER OF RDAD_CLK: SIGNAL IS "XIL_INTERFACENAME RDAD_CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_1_6_RDAD_CLK, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF RDAD_CLK: SIGNAL IS "xilinx.com:signal:clock:1.0 RDAD_CLK CLK";
+  ATTRIBUTE X_INTERFACE_PARAMETER OF WL_CLK: SIGNAL IS "XIL_INTERFACENAME WL_CLK, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, PHASE 0.000, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_1_6_WL_CLK, INSERT_VIP 0";
+  ATTRIBUTE X_INTERFACE_INFO OF WL_CLK: SIGNAL IS "xilinx.com:signal:clock:1.0 WL_CLK CLK";
   ATTRIBUTE X_INTERFACE_PARAMETER OF GCC_RESET: SIGNAL IS "XIL_INTERFACENAME GCC_RESET, POLARITY ACTIVE_LOW, INSERT_VIP 0";
   ATTRIBUTE X_INTERFACE_INFO OF GCC_RESET: SIGNAL IS "xilinx.com:signal:reset:1.0 GCC_RESET RST";
   ATTRIBUTE X_INTERFACE_INFO OF tc_axi_rready: SIGNAL IS "xilinx.com:interface:aximm:1.0 tc_axi RREADY";
@@ -284,7 +282,7 @@ BEGIN
       WR_CS_S4 => WR_CS_S4,
       WR_CS_S5 => WR_CS_S5,
       GCC_RESET => GCC_RESET,
-      WLCLK => WLCLK,
+      WL_CLK => WL_CLK,
       RDAD_CLK => RDAD_CLK,
       RDAD_SIN => RDAD_SIN,
       RDAD_DIR => RDAD_DIR,
@@ -309,8 +307,6 @@ BEGIN
       TrigB => TrigB,
       TrigC => TrigC,
       TrigD => TrigD,
-      WS_masterctrl_in => WS_masterctrl_in,
-      WS_masterctrl_out => WS_masterctrl_out,
       SSVALID_INTR => SSVALID_INTR,
       hmb_trigger => hmb_trigger,
       delay_trigger => delay_trigger,

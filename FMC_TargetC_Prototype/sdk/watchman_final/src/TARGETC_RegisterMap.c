@@ -62,7 +62,7 @@ void SetTargetCRegisters(int* regptr){
 	WriteRegister(TC_SBBIAS_REG,	0x78E, regptr);
 	WriteRegister(TC_VDISCH_REG,	0, regptr);
 	//WriteRegister(TC_ISEL_REG,		2600);
-	WriteRegister(TC_ISEL_REG,	2100, regptr);	// 2300 good for Vped around 512
+	WriteRegister(TC_ISEL_REG,	2300, regptr);	// 2300 good for Vped around 512
 
 	WriteRegister(TC_DBBIAS_REG,	0x690, regptr);
 
@@ -77,7 +77,7 @@ void SetTargetCRegisters(int* regptr){
 	xil_printf("Turning DLL ON \r\n");
 	WriteRegister(TC_QBIAS_REG,	0, regptr);// 1,300 Meeting 07/02/2019
 	WriteRegister(TC_VANBUFF_REG,	1042, regptr);	// 1,300 Meeting 07/02/2019, 1062  0x44C
-	sleep(1);
+	sleep(10);
 
 	WriteRegister(TC_QBIAS_REG,	1500, regptr);    // 1300, // 1,300 Meeting 07/02/2019 0x426// stable at 528, 08/20/2019
 	WriteRegister(TC_VANBUFF_REG,	0, regptr);	// // 1,300 Meeting 07/02/2019

@@ -79,7 +79,7 @@ entity TARGET_C_TopLevel_System is
 
 		GCC_RESET:		out	std_logic;		-- Pin#56
 
-		WLCLK:		out std_logic;		-- Pin#58
+		WL_CLK:		out std_logic;		-- Pin#58
 --		WL_CLK_N:		out std_logic;		-- Pin#57
 
 		RDAD_CLK:		out	std_logic;		-- Pin#61
@@ -92,13 +92,13 @@ entity TARGET_C_TopLevel_System is
 
 		SS_INCR:		out	std_logic;		-- Pin#79
 
-		DOE:			out	std_logic;		-- Pin#80
+		--DOE:			out	std_logic;		-- Pin#80
 
 		DONE:			in	std_logic;		-- Pin#94
 
 		SS_RESET:		out	std_logic;		-- Pin#95
 
-		REGCLR: 		out	std_logic;		-- Pin#99
+		--REGCLR: 		out	std_logic;		-- Pin#99
 
 		--mDOE:			in	std_logic;		-- Pin#100
 
@@ -130,8 +130,8 @@ entity TARGET_C_TopLevel_System is
 		TrigD :			in std_logic;
 
         -- window storage master control
-        WS_masterctrl_in :  in std_logic;
-        WS_masterctrl_out : out std_logic;
+--        WS_masterctrl_in :  in std_logic;
+--        WS_masterctrl_out : out std_logic;
         
 		-- Interrupt SIGNALS
 		SSVALID_INTR:	out	std_logic;
@@ -210,7 +210,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		AxiBusOut:		out AXI_Lite_Outputs;
 
 		ClockBus:		in T_ClockBus;
-        WS_master_ctrl:   in std_logic;
+--        WS_master_ctrl:   in std_logic;
 		CtrlBus_OxMS:		out T_CtrlBus_OxMS;
 		CtrlBus_IxMS:		in 	T_CtrlBus_IxMS
 	);
@@ -527,7 +527,6 @@ architecture arch_imp of TARGET_C_TopLevel_System is
     
     signal address_is_zero_intl :  std_logic;
     signal cnt_clr_intl :  std_logic;
-    signal WS_master_ctrl_intl:  std_logic;
 	-- -------------------------------------------------------------
 	-- Constraints on Signals
 	-- -------------------------------------------------------------
@@ -564,7 +563,7 @@ begin
 		HSCLK_P 		=> HSCLK_P,
 		HSCLK_N 		=> HSCLK_N,
 
-		WLCLK		=> WLCLK
+		WLCLK		=> WL_CLK
 --		WL_CLK_N 		=> WL_CLK_N
 
 --		SSTIN_P 		=> SSTIN_P,
@@ -599,12 +598,12 @@ begin
         
 		ClockBus			=> ClockBus_intl,
 
-        WS_master_ctrl      => WS_masterctrl_in,
+--        WS_master_ctrl      => WS_masterctrl_in,
 		CtrlBus_OxMS			=> CtrlBusOut_intl,
 		CtrlBus_IxMS			=> CtrlBusIn_intl
 	);
 
-       WS_masterctrl_out <= CtrlBusOut_intl.WindowStorage; 
+--       WS_masterctrl_out <= CtrlBusOut_intl.WindowStorage; 
 
 
 	TC_SerialRegCtrl_inst : TARGETX_DAC_CONTROL
@@ -802,7 +801,7 @@ begin
 		);
 
 	SAMPLESEL_ANY <= CtrlBusOut_intl.SmplSl_Any;
-	REGCLR <= CtrlBusOut_intl.REGCLR;
+	--REGCLR <= CtrlBusOut_intl.REGCLR;
 
 	WR_RS_S0	<= WR_RS_S_intl(0);
 	WR_RS_S1	<= WR_RS_S_intl(1);
@@ -817,7 +816,7 @@ begin
 	SS_LD_SIN <= '0';
 	SS_LD_DIR <= '0';
 
-	DOE <= '1';
+	--DOE <= '1';
 
 
 	CtrlBusIn_intl.Cnt_AXIS <= Cnt_AXIS_DATA;
