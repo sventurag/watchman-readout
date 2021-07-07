@@ -1,7 +1,7 @@
 #ifndef IP_BASE_ZYNQ_PROCESSING_SYSTEM7_0_0_H_
 #define IP_BASE_ZYNQ_PROCESSING_SYSTEM7_0_0_H_
 
-// (c) Copyright 1995-2020 Xilinx, Inc. All rights reserved.
+// (c) Copyright 1995-2021 Xilinx, Inc. All rights reserved.
 // 
 // This file contains confidential and proprietary information
 // of Xilinx, Inc. and is protected under U.S. and
@@ -167,7 +167,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP0_WID;
   sc_core::sc_in< sc_dt::sc_bv<32> > S_AXI_HP0_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<4> > S_AXI_HP0_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<3> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_RESET0_N;
   sc_core::sc_out< sc_dt::sc_bv<54> > MIO;
@@ -191,6 +191,9 @@ public:
   sc_core::sc_out< bool > PS_SRSTB;
   sc_core::sc_out< bool > PS_CLK;
   sc_core::sc_out< bool > PS_PORB;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 
@@ -322,7 +325,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP0_WID;
   sc_core::sc_in< sc_dt::sc_bv<32> > S_AXI_HP0_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<4> > S_AXI_HP0_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<3> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_RESET0_N;
   sc_core::sc_out< sc_dt::sc_bv<54> > MIO;
@@ -346,6 +349,9 @@ public:
   sc_core::sc_out< bool > PS_SRSTB;
   sc_core::sc_out< bool > PS_CLK;
   sc_core::sc_out< bool > PS_PORB;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 
@@ -477,7 +483,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP0_WID;
   sc_core::sc_in< sc_dt::sc_bv<32> > S_AXI_HP0_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<4> > S_AXI_HP0_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<3> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_RESET0_N;
   sc_core::sc_out< sc_dt::sc_bv<54> > MIO;
@@ -501,6 +507,9 @@ public:
   sc_core::sc_out< bool > PS_SRSTB;
   sc_core::sc_out< bool > PS_CLK;
   sc_core::sc_out< bool > PS_PORB;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 
@@ -636,7 +645,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP0_WID;
   sc_core::sc_in< sc_dt::sc_bv<32> > S_AXI_HP0_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<4> > S_AXI_HP0_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<3> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_RESET0_N;
   sc_core::sc_out< sc_dt::sc_bv<54> > MIO;
@@ -660,6 +669,9 @@ public:
   sc_core::sc_out< bool > PS_SRSTB;
   sc_core::sc_out< bool > PS_CLK;
   sc_core::sc_out< bool > PS_PORB;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 
@@ -803,7 +815,7 @@ public:
   sc_core::sc_in< sc_dt::sc_bv<6> > S_AXI_HP0_WID;
   sc_core::sc_in< sc_dt::sc_bv<32> > S_AXI_HP0_WDATA;
   sc_core::sc_in< sc_dt::sc_bv<4> > S_AXI_HP0_WSTRB;
-  sc_core::sc_in< sc_dt::sc_bv<2> > IRQ_F2P;
+  sc_core::sc_in< sc_dt::sc_bv<3> > IRQ_F2P;
   sc_core::sc_out< bool > FCLK_CLK0;
   sc_core::sc_out< bool > FCLK_RESET0_N;
   sc_core::sc_out< sc_dt::sc_bv<54> > MIO;
@@ -827,6 +839,9 @@ public:
   sc_core::sc_out< bool > PS_SRSTB;
   sc_core::sc_out< bool > PS_CLK;
   sc_core::sc_out< bool > PS_PORB;
+
+  // Dummy Signals for IP Ports
+
 
 protected:
 

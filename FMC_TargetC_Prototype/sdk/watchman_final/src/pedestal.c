@@ -10,11 +10,15 @@
 /**************** Extern global variables ****************/
 /*********************************************************/
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
-/** @brief Array containing the pedestal correction for every sample */
-extern uint32_t  pedestal[512][16][32];
+//extern int* regptr;
+/** @brief Array containing the pedestal correction for every sample TARGETC_0 */
+extern uint32_t  pedestal_0[512][16][32];
+/** @brief Array containing the pedestal correction for every sample TARGETC_1*/
+extern uint32_t  pedestal_1[512][16][32];
 /** @brief Array containing raw data of the whole array */
 extern uint32_t  data_raw[512][16][32];
+/** @brief Array containing raw data of the whole array */
+extern uint32_t  data_raw_1[512][16][32];
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -70,7 +74,7 @@ int cnt_average;
 * @note		-
 *
 ****************************************************************************/
-int init_pedestals(void){
+int init_pedestals(int* regptr, int targetcID){
 
 	uint64_t sqr_val[4][16][32];
 	//double rms[4][16][32];
@@ -112,11 +116,11 @@ int init_pedestals(void){
 				regptr[TC_FSTWINDOW_REG] = window;
 				regptr[TC_NBRWINDOW_REG] = 1;
 				regptr[TC_Delay_UpdateWR] = 0;
-				ControlRegisterWrite(SMODE_MASK ,ENABLE);
-				ControlRegisterWrite(SS_TPG_MASK ,ENABLE);
-				ControlRegisterWrite(WINDOW_MASK,ENABLE);
+				ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+				ControlRegisterWrite(SS_TPG_MASK ,ENABLE, regptr);
+				ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 				usleep(50);
-				ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+				ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 				/* Wait on DMA transfer to be done */
 				timeout = 200000; // 10sec
@@ -182,22 +186,38 @@ int init_pedestals(void){
 					}
 				}
 				/* Release the DMA */
-				ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+				ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 			}
 		}
 
 		//window = window_index;
 		for(pair=0; pair<nmbrwindows; pair++){
 			window = window_index + pair;
-			for(i=0; i<16; i++){
-				for(j=0; j<32; j++){
-					/* Divide the average by avg to have the pedestal value */
-					pedestal[window][i][j]= data[pair][i][j]/avg;
-					sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
-				//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
-					//printf("%d, ",pedestal[window][i][j]);
-				}
+			if (!targetcID){
+				for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Divide the average by avg to have the pedestal value */
+						pedestal_0[window][i][j]= data[pair][i][j]/avg;
+						sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
+					//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
+						//printf("%d, ",pedestal[window][i][j]);
+					}
 			}
+
+			}
+
+			else{
+				for(i=0; i<16; i++){
+					for(j=0; j<32; j++){
+						/* Divide the average by avg to have the pedestal value */
+						pedestal_1[window][i][j]= data[pair][i][j]/avg;
+						sqr_val[pair][i][j] = sqr_val[pair][i][j]/avg;
+					//	rms[pair][i][j] = sqrt(sqr_val[pair][i][j] - (pedestal[window][i][j]*pedestal[window][i][j]));
+						//printf("%d, ",pedestal[window][i][j]);
+					}
+					}
+			}
+
 //			if(window == 0){
 //				printf("RMS values\r\n");
 //				for(j=0; j<32; j++){
@@ -211,7 +231,7 @@ int init_pedestals(void){
 	for (ped_channel = 0; ped_channel <16; ped_channel++ ){
         printf("channel = %d,", ped_channel);
 		for (ped_sample=0; ped_sample<32; ped_sample++ ){
-			printf("%d,",pedestal[0][ped_channel][ped_sample]);
+			printf("%d,",pedestal_0[0][ped_channel][ped_sample]);
 
 		}
 		printf("\r\n");
@@ -240,7 +260,7 @@ int init_pedestals(void){
 */
 
 
-int get_pedestal(int avg, int nmbrofWindows){
+int get_pedestal(int avg, int nmbrofWindows,int* regptr){
 
 int i,j,k,window,channel,sample;
 
@@ -249,6 +269,8 @@ for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
 			data_raw[window][channel][sample] = 0;
+			data_raw_1[window][channel][sample] = 0;
+
      //       usleep(10);
 	//		printf("%d\r\n", data_raw[window][channel][sample]);
 
@@ -261,7 +283,7 @@ for(window = 0; window< 512; window++ ){
 for(window = 0; window< 512; window++ ){
 	for(channel = 0; channel< 16; channel++ ){
 		for(sample = 0; sample< 32; sample++ ){
-			pedestal[window][channel][sample] = 0;
+			pedestal_0[window][channel][sample] = 0;
 		//	usleep(10);
 		//	printf("%.2f\r\n", pedestal[window][channel][sample]);
 
@@ -270,12 +292,11 @@ for(window = 0; window< 512; window++ ){
 };
 
 
-printf("Getting data");
-
+//printf("Getting data");
 for (i=0; i<avg; i++ ){
 	for(j=0; j<512; j+=nmbrofWindows){
 
-         if (get_windowsRaw(j,nmbrofWindows)== XST_SUCCESS);
+         if (get_windowsRaw(j,nmbrofWindows,regptr)== XST_SUCCESS);
              else { printf("get Windows raw failed\r\n");
     //     usleep(300);
          }
@@ -289,7 +310,8 @@ for (i=0; i<avg; i++ ){
 	 for(window=0; window<512; window++){
 			for(channel=0; channel<16; channel++){
 				for(sample = 0; sample <32;sample++){
-					pedestal[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+					pedestal_0[window][channel][sample] = data_raw[window][channel][sample] /avg ;
+					pedestal_1[window][channel][sample] = data_raw_1[window][channel][sample] /avg ;
 
 	     		}
 	     	}

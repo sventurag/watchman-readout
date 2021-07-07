@@ -337,6 +337,11 @@ COMPONENT trig0_fifo_10W_16D
 
 	attribute DONT_TOUCH of Trig_OldAddr_intl : signal is "TRUE";
 	attribute DONT_TOUCH of Ctrl_OldAddr_intl : signal is "TRUE";
+	attribute mark_debug : string;
+	attribute mark_debug of ClockBus : signal is "TRUE";
+	attribute mark_debug of nRST : signal is "TRUE";
+	attribute mark_debug of TimeStamp : signal is "TRUE";
+
 	--attribute DONT_TOUCH of OldAddr_intl : signal is "TRUE";
 	--attribute DONT_TOUCH of CntWindow512 : signal is "TRUE";
 

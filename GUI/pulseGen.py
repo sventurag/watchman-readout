@@ -12,12 +12,14 @@ tc = targetc.targetc()
 
 class pulseGen:
 
-    def pulseSweepInit(self,channel, nmbrPedestals):
-        wave_gen().Output1(out=False)
+    def channel(self, channel):
         regID = 99
         tc.send_command(8,regID,channel) # channel number
-        time.sleep(1)
-        tc.send_command(9,100,1) # Pedestals
+        
+    def pedestals(self, nmbrPedestals):
+#        wave_gen().Output1(out=False)
+        #time.sleep(1)
+        tc.send_command(9,nmbrPedestals,1) # Pedestals, third parameter is the window number increment
 
     def pulseInit(self,width):
                 
@@ -36,13 +38,13 @@ class pulseGen:
         regID = 151
         regValue = 4
         tc.send_command(8,regID,firstWindow) # first window
-        time.sleep(1)
+#        time.sleep(1)
         regID = 152
         tc.send_command(8, regID, nmbrWindows) # nmbrWindows
-        time.sleep(1)
+ #       time.sleep(1)
         regID = 98
         tc.send_command(8,regID,totalWindows) # total windows
-        time.sleep(1)
+  #      time.sleep(1)
 
     def setFreq(self,frequency):
         print("{:.9f}".format(frequency))
@@ -54,6 +56,9 @@ class pulseGen:
 
     def getWindows(self):
         tc.send_command(7,0,0) # get windows 
+   
+    def closeSocket(self):
+        tc.close_UDP_connection_cmd()
 
     def restart(self):
         tc.send_command(3, 0, 0) # triggerMode 
@@ -65,10 +70,10 @@ class pulseGen:
         tc.send_command(8, regID, nmbrCycles)
         time.sleep(1)
 
-    def triggerMode(self,nmbrBursts):
-        wave_gen().bursSettings(nmbrBursts)
-        time.sleep(1)
-        #tc.send_command(3, 0, 0) # triggerMode 
+    def triggerMode(self):
+       # wave_gen().bursSettings(nmbrBursts)
+       # time.sleep(1)
+        tc.send_command(3, 0, 0) # triggerMode 
         #time.sleep(1)
     
     def triggerMode_exit(self):

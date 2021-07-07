@@ -19,7 +19,7 @@
 #include "xscuwdt.h"
 
 /*** Function prototypes *********************************************/
-int send_data_transfer_fct(void);
+int send_data_transfer_fct(int* regptr);
 
 
 #endif /* SRC_GET_TRANSFER_FCT_H_ */

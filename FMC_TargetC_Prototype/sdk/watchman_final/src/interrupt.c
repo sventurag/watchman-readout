@@ -56,6 +56,7 @@ extern data_list* last_element;
 /* data structure from PL */
 extern InboundRingManager_t inboundRingManager;
 
+extern int * regptr_0;
 /****************************************************************************/
 /**
 * @brief	Callback for assertion
@@ -206,7 +207,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 	}
 	/* If completion interrupt is asserted, then set RxDone flag */
 	if ((IrqStatus & XAXIDMA_IRQ_IOC_MASK)) {
-		ControlRegisterWrite(PSBUSY_MASK,ENABLE);
+		ControlRegisterWrite(PSBUSY_MASK,ENABLE, regptr_0);
 		if(stream_flag || (!empty_flag)){
 
 			if (inboundRingManager.pendingCount > INBOUND_RING_BUFFER_LENGTH_IN_PACKETS) {
@@ -224,7 +225,7 @@ void axidma_rx_callback(XAxiDma* AxiDmaInst){
 			}
 			XAxiDma_SimpleTransfer_hm((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
 		    Xil_DCacheInvalidateRange((UINTPTR)inboundRingManager.writePointer , SIZE_DATA_ARRAY_BYT);
-		  	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+		  	ControlRegisterWrite(PSBUSY_MASK,DISABLE,  regptr_0);
 
 
 			flag_axidma_rx_done = true;

@@ -220,7 +220,7 @@ processing_system7_v5_5_tlm :: processing_system7_v5_5_tlm (sc_core::sc_module_n
 
         //instantiating XTLM2TLM bridge and stiching it between 
         //S_AXI_HP0_wr_socket/rd_socket sockets to s_axi_hp[0] target socket of Zynq Qemu tlm wrapper
-        S_AXI_HP0_buff = new zynq_tlm::xsc_xtlm_aximm_tran_buffer("S_AXI_HP0_buff");
+        S_AXI_HP0_buff = new xtlm::xtlm_aximm_fifo("S_AXI_HP0_buff");
         S_AXI_HP0_rd_socket->bind(*S_AXI_HP0_buff->in_rd_socket);
         S_AXI_HP0_wr_socket->bind(*S_AXI_HP0_buff->in_wr_socket);
         S_AXI_HP0_buff->out_wr_socket->bind(*S_AXI_HP0_xtlm_brdg.wr_socket);

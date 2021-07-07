@@ -79,8 +79,8 @@ entity TARGET_C_TopLevel_System is
 
 		GCC_RESET:		out	std_logic;		-- Pin#56
 
-		WL_CLK_P:		out std_logic;		-- Pin#58
-		WL_CLK_N:		out std_logic;		-- Pin#57
+		WL_CLK:		out std_logic;		-- Pin#58
+--		WL_CLK_N:		out std_logic;		-- Pin#57
 
 		RDAD_CLK:		out	std_logic;		-- Pin#61
 		RDAD_SIN:		out	std_logic;		-- Pin#62
@@ -92,13 +92,13 @@ entity TARGET_C_TopLevel_System is
 
 		SS_INCR:		out	std_logic;		-- Pin#79
 
-		DOE:			out	std_logic;		-- Pin#80
+		--DOE:			out	std_logic;		-- Pin#80
 
 		DONE:			in	std_logic;		-- Pin#94
 
 		SS_RESET:		out	std_logic;		-- Pin#95
 
-		REGCLR: 		out	std_logic;		-- Pin#99
+		--REGCLR: 		out	std_logic;		-- Pin#99
 
 		--mDOE:			in	std_logic;		-- Pin#100
 
@@ -107,8 +107,9 @@ entity TARGET_C_TopLevel_System is
 
 		RAMP:			out	std_logic;		-- Pin#108
 
-		SSTIN_P:		out std_logic;		-- Pin#125
-		SSTIN_N:		out std_logic;		-- Pin#126
+--		SSTIN_P:		out std_logic;		-- Pin#125
+--		SSTIN_N:		out std_logic;		-- Pin#126
+        SSTIN :         out std_logic;
 
 		MONTIMING_P:	in	std_logic;		-- Pin#118
 		MONTIMING_N:	in	std_logic;		-- Pin#117
@@ -128,17 +129,25 @@ entity TARGET_C_TopLevel_System is
 		TrigC :			in std_logic;
 		TrigD :			in std_logic;
 
+        -- window storage master control
+--        WS_masterctrl_in :  in std_logic;
+--        WS_masterctrl_out : out std_logic;
+        
 		-- Interrupt SIGNALS
 		SSVALID_INTR:	out	std_logic;
 
+ --signals for the HMB roundbuffer
+         hmb_trigger :    in std_logic;
+        delay_trigger:    in std_logic_vector(3 downto 0);
+        sstin_updateBit:   in std_logic_vector(2 downto 0) 
 
 
-		-- DEBUG OUTPUTs
-		BB1 :	out std_logic;
-		BB2 :	out std_logic;
-		BB3 :	out std_logic;
-		BB4 :	out std_logic;
-		BB5 :	out std_logic
+--		-- DEBUG OUTPUTs
+--		BB1 :	out std_logic;
+--		BB2 :	out std_logic;
+--		BB3 :	out std_logic;
+--		BB4 :	out std_logic;
+--		BB5 :	out std_logic
 	
 	
 		
@@ -183,11 +192,11 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		HSCLK_P:		out std_logic;		-- Pin#43
 		HSCLK_N:		out std_logic;		-- Pin#44
 
-		WL_CLK_P:		out std_logic;		-- Pin#57
-		WL_CLK_N:		out std_logic;		-- Pin#58
+		WLCLK:		out std_logic		-- Pin#57
+--		WL_CLK_N:		out std_logic		-- Pin#58
 
-		SSTIN_P:		out std_logic;		-- Pin#125
-		SSTIN_N:		out std_logic		-- Pin#126
+--		SSTIN_P:		out std_logic;		-- Pin#125
+--		SSTIN_N:		out std_logic		-- Pin#126
 
 	);
 	end component TC_ClockManagementV3;
@@ -201,7 +210,7 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		AxiBusOut:		out AXI_Lite_Outputs;
 
 		ClockBus:		in T_ClockBus;
-
+--        WS_master_ctrl:   in std_logic;
 		CtrlBus_OxMS:		out T_CtrlBus_OxMS;
 		CtrlBus_IxMS:		in 	T_CtrlBus_IxMS
 	);
@@ -271,6 +280,11 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 		    DIG_Full	: out	std_logic;
 		    DIG_DataIn	: in	std_logic_vector(8 downto 0);
 		    DIG_WriteEn	: in	std_logic;
+		   
+            --signals for the HMB roundbuffer
+            hmb_trigger:  in std_logic;
+          delay_trigger:    in std_logic_vector(3 downto 0);
+            sstin_updateBit:   in std_logic_vector(2 downto 0); 		   		   
 		   
 	    -- Signal for trigger the acquisition for debugging
 		    address_is_zero_out : out std_logic
@@ -522,7 +536,8 @@ architecture arch_imp of TARGET_C_TopLevel_System is
 	attribute mark_debug : string; 
     attribute mark_debug of WR_CS_S_intl: signal is "true";
     attribute mark_debug of WR_RS_S_intl: signal is "true";
-
+    attribute mark_debug of tc_axi_aclk: signal is "true";
+    attribute mark_debug of tc_axi_aresetn: signal is "true";
 begin
 
 
@@ -548,11 +563,11 @@ begin
 		HSCLK_P 		=> HSCLK_P,
 		HSCLK_N 		=> HSCLK_N,
 
-		WL_CLK_P 		=> WL_CLK_P,
-		WL_CLK_N 		=> WL_CLK_N,
+		WLCLK		=> WL_CLK
+--		WL_CLK_N 		=> WL_CLK_N
 
-		SSTIN_P 		=> SSTIN_P,
-		SSTIN_N 		=> SSTIN_N
+--		SSTIN_P 		=> SSTIN_P,
+--		SSTIN_N 		=> SSTIN_N
 	);
 
 	TC_Control_inst : TC_Control
@@ -580,12 +595,16 @@ begin
 		AxiBusOut.RRESP		=> tc_axi_rresp,
 		AxiBusOut.RVALID	=> tc_axi_rvalid,
 		AxiBusOut.intr		=> tc_axi_intr,
-
+        
 		ClockBus			=> ClockBus_intl,
 
+--        WS_master_ctrl      => WS_masterctrl_in,
 		CtrlBus_OxMS			=> CtrlBusOut_intl,
 		CtrlBus_IxMS			=> CtrlBusIn_intl
 	);
+
+--       WS_masterctrl_out <= CtrlBusOut_intl.WindowStorage; 
+
 
 	TC_SerialRegCtrl_inst : TARGETX_DAC_CONTROL
 		generic map(
@@ -649,8 +668,19 @@ begin
 			DIG_DataIn	=> DIG_DataIn_intl,
 			DIG_WriteEn	=> DIG_WriteEn_intl,
 			
+			
+			 --signals for the HMB roundbuffer
+			 hmb_trigger => hmb_trigger,
+        delay_trigger => delay_trigger,
+        sstin_updateBit => sstin_updateBit, 
+			
+			
+			
 	  -- Signal for trigger the acquisition for debugging
             address_is_zero_out => address_is_zero_intl
+            
+            
+            
 		);
 
 	TC_RDAD_WL_SS :	 TARGETC_RDAD_WL_SMPL
@@ -771,7 +801,7 @@ begin
 		);
 
 	SAMPLESEL_ANY <= CtrlBusOut_intl.SmplSl_Any;
-	REGCLR <= CtrlBusOut_intl.REGCLR;
+	--REGCLR <= CtrlBusOut_intl.REGCLR;
 
 	WR_RS_S0	<= WR_RS_S_intl(0);
 	WR_RS_S1	<= WR_RS_S_intl(1);
@@ -786,7 +816,7 @@ begin
 	SS_LD_SIN <= '0';
 	SS_LD_DIR <= '0';
 
-	DOE <= '1';
+	--DOE <= '1';
 
 
 	CtrlBusIn_intl.Cnt_AXIS <= Cnt_AXIS_DATA;
@@ -848,39 +878,39 @@ SyncBitCNT_CLR: SyncBit
 	TestStream <= CtrlBusOut_intl.TestStream;
 
 
- -- Debug pins
+ -- Debug pins for FMC board
 
 -- For triggering a signal every time WR_CS and WR_RS are equal to zero 
 
 
 -- Debug pins
 
-process (WR_CS_S_intl, WR_RS_S_intl)
-begin
-      if (WR_CS_S_intl = "000000" and WR_RS_S_intl= "00") then
-              BB2 <= '0';
-      else
-              BB2 <= '1';
-      end if;
-end process;
-
-
---process (address_is_zero_intl)
+--process (WR_CS_S_intl, WR_RS_S_intl)
 --begin
---	if (address_is_zero_intl = '1' ) then
---		BB5 <= '0';
-----		BB2 <= '0';
---	else
---		BB5 <= '1';
---	--	BB2 <= '1';
---	end if;
+--      if (WR_CS_S_intl = "000000" and WR_RS_S_intl= "00") then
+--              BB2 <= '0';
+--      else
+--              BB2 <= '1';
+--      end if;
 --end process;
 
+
+----process (address_is_zero_intl)
+----begin
+----	if (address_is_zero_intl = '1' ) then
+----		BB5 <= '0';
+------		BB2 <= '0';
+----	else
+----		BB5 <= '1';
+----	--	BB2 <= '1';
+----	end if;
+----end process;
+
 	
-	BB5 <= ClockBus_intl.SSTIN;
-   -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
-	BB4 <= CtrlBusIn_intl.SSvalid;
-	BB3 <= MONTIMING_inverted;
+ SSTIN <= ClockBus_intl.SSTIN;
+--   -- BB2 <= CtrlBusIn_intl.RAMP_CNT;
+--	BB4 <= CtrlBusIn_intl.SSvalid;
+--	BB3 <= MONTIMING_inverted;
 
 
 

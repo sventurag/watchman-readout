@@ -1,8 +1,8 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
---Date        : Mon Jan 11 19:14:23 2021
---Host        : watchman running 64-bit Ubuntu 18.04.5 LTS
+--Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+--Date        : Tue Jul  6 10:27:15 2021
+--Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq_wrapper.bd
 --Design      : base_zynq_wrapper
 --Purpose     : IP block netlist
@@ -56,6 +56,49 @@ entity base_zynq_wrapper is
     A_WR_CS_S5 : out STD_LOGIC;
     A_WR_RS_S0 : out STD_LOGIC;
     A_WR_RS_S1 : out STD_LOGIC;
+    B_DONE : in STD_LOGIC;
+    B_DO_1 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_10 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_11 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_12 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_13 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_14 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_15 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_16 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_3 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_4 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_5 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_6 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_7 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_8 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_9 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_GCC_RESET : out STD_LOGIC;
+    B_HSCLK_N : out STD_LOGIC;
+    B_HSCLK_P : out STD_LOGIC;
+    B_PCLK : out STD_LOGIC;
+    B_RAMP : out STD_LOGIC;
+    B_RDAD_CLK : out STD_LOGIC;
+    B_RDAD_DIR : out STD_LOGIC;
+    B_RDAD_SIN : out STD_LOGIC;
+    B_SAMPLESEL_ANY : out STD_LOGIC;
+    B_SHOUT : in STD_LOGIC;
+    B_SS_INCR : out STD_LOGIC;
+    B_SS_LD_DIR : out STD_LOGIC;
+    B_SS_LD_SIN : out STD_LOGIC;
+    B_SS_RESET : out STD_LOGIC;
+    B_TRIG1 : in STD_LOGIC;
+    B_TRIG2 : in STD_LOGIC;
+    B_TRIG3 : in STD_LOGIC;
+    B_TRIG4 : in STD_LOGIC;
+    B_WR_CS_S0 : out STD_LOGIC;
+    B_WR_CS_S1 : out STD_LOGIC;
+    B_WR_CS_S2 : out STD_LOGIC;
+    B_WR_CS_S3 : out STD_LOGIC;
+    B_WR_CS_S4 : out STD_LOGIC;
+    B_WR_CS_S5 : out STD_LOGIC;
+    B_WR_RS_S0 : out STD_LOGIC;
+    B_WR_RS_S1 : out STD_LOGIC;
     DDR_addr : inout STD_LOGIC_VECTOR ( 14 downto 0 );
     DDR_ba : inout STD_LOGIC_VECTOR ( 2 downto 0 );
     DDR_cas_n : inout STD_LOGIC;
@@ -81,10 +124,10 @@ entity base_zynq_wrapper is
     MONTIMING_P : in STD_LOGIC;
     SCLK : out STD_LOGIC;
     SIN : out STD_LOGIC;
-    SSTIN_N : out STD_LOGIC;
-    SSTIN_P : out STD_LOGIC;
-    WL_CLK_N : out STD_LOGIC;
-    WL_CLK_P : out STD_LOGIC
+    SSTIN_N : out STD_LOGIC_VECTOR ( 0 to 0 );
+    SSTIN_P : out STD_LOGIC_VECTOR ( 0 to 0 );
+    WL_CLK_N : out STD_LOGIC_VECTOR ( 0 to 0 );
+    WL_CLK_P : out STD_LOGIC_VECTOR ( 0 to 0 )
   );
 end base_zynq_wrapper;
 
@@ -121,8 +164,8 @@ architecture STRUCTURE of base_zynq_wrapper is
     A_WR_CS_S4 : out STD_LOGIC;
     A_WR_CS_S5 : out STD_LOGIC;
     A_GCC_RESET : out STD_LOGIC;
-    WL_CLK_P : out STD_LOGIC;
-    WL_CLK_N : out STD_LOGIC;
+    WL_CLK_P : out STD_LOGIC_VECTOR ( 0 to 0 );
+    WL_CLK_N : out STD_LOGIC_VECTOR ( 0 to 0 );
     A_RDAD_CLK : out STD_LOGIC;
     A_RDAD_SIN : out STD_LOGIC;
     A_RDAD_DIR : out STD_LOGIC;
@@ -132,8 +175,8 @@ architecture STRUCTURE of base_zynq_wrapper is
     A_SS_LD_SIN : out STD_LOGIC;
     A_SS_LD_DIR : out STD_LOGIC;
     A_RAMP : out STD_LOGIC;
-    SSTIN_P : out STD_LOGIC;
-    SSTIN_N : out STD_LOGIC;
+    SSTIN_P : out STD_LOGIC_VECTOR ( 0 to 0 );
+    SSTIN_N : out STD_LOGIC_VECTOR ( 0 to 0 );
     MONTIMING_P : in STD_LOGIC;
     A_DONE : in STD_LOGIC;
     A_SHOUT : in STD_LOGIC;
@@ -142,12 +185,49 @@ architecture STRUCTURE of base_zynq_wrapper is
     A_TRIG2 : in STD_LOGIC;
     A_TRIG3 : in STD_LOGIC;
     A_TRIG4 : in STD_LOGIC;
-    FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
-    FIXED_IO_ddr_vrn : inout STD_LOGIC;
-    FIXED_IO_ddr_vrp : inout STD_LOGIC;
-    FIXED_IO_ps_srstb : inout STD_LOGIC;
-    FIXED_IO_ps_clk : inout STD_LOGIC;
-    FIXED_IO_ps_porb : inout STD_LOGIC;
+    B_HSCLK_P : out STD_LOGIC;
+    B_HSCLK_N : out STD_LOGIC;
+    B_TRIG1 : in STD_LOGIC;
+    B_TRIG2 : in STD_LOGIC;
+    B_TRIG3 : in STD_LOGIC;
+    B_TRIG4 : in STD_LOGIC;
+    B_SHOUT : in STD_LOGIC;
+    B_DONE : in STD_LOGIC;
+    B_WR_RS_S0 : out STD_LOGIC;
+    B_WR_RS_S1 : out STD_LOGIC;
+    B_WR_CS_S0 : out STD_LOGIC;
+    B_WR_CS_S1 : out STD_LOGIC;
+    B_WR_CS_S2 : out STD_LOGIC;
+    B_WR_CS_S3 : out STD_LOGIC;
+    B_WR_CS_S4 : out STD_LOGIC;
+    B_WR_CS_S5 : out STD_LOGIC;
+    B_GCC_RESET : out STD_LOGIC;
+    B_RDAD_CLK : out STD_LOGIC;
+    B_RDAD_SIN : out STD_LOGIC;
+    B_RDAD_DIR : out STD_LOGIC;
+    B_SAMPLESEL_ANY : out STD_LOGIC;
+    B_SS_INCR : out STD_LOGIC;
+    B_SS_RESET : out STD_LOGIC;
+    B_DO_1 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_2 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_3 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_4 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_5 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_6 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_7 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_8 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_9 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_10 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_11 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_12 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_13 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_14 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_15 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_DO_16 : in STD_LOGIC_VECTOR ( 0 to 0 );
+    B_RAMP : out STD_LOGIC;
+    B_SS_LD_SIN : out STD_LOGIC;
+    B_SS_LD_DIR : out STD_LOGIC;
+    B_PCLK : out STD_LOGIC;
     DDR_cas_n : inout STD_LOGIC;
     DDR_cke : inout STD_LOGIC;
     DDR_ck_n : inout STD_LOGIC;
@@ -162,7 +242,13 @@ architecture STRUCTURE of base_zynq_wrapper is
     DDR_dm : inout STD_LOGIC_VECTOR ( 3 downto 0 );
     DDR_dq : inout STD_LOGIC_VECTOR ( 31 downto 0 );
     DDR_dqs_n : inout STD_LOGIC_VECTOR ( 3 downto 0 );
-    DDR_dqs_p : inout STD_LOGIC_VECTOR ( 3 downto 0 )
+    DDR_dqs_p : inout STD_LOGIC_VECTOR ( 3 downto 0 );
+    FIXED_IO_mio : inout STD_LOGIC_VECTOR ( 53 downto 0 );
+    FIXED_IO_ddr_vrn : inout STD_LOGIC;
+    FIXED_IO_ddr_vrp : inout STD_LOGIC;
+    FIXED_IO_ps_srstb : inout STD_LOGIC;
+    FIXED_IO_ps_clk : inout STD_LOGIC;
+    FIXED_IO_ps_porb : inout STD_LOGIC
   );
   end component base_zynq;
 begin
@@ -211,6 +297,49 @@ base_zynq_i: component base_zynq
       A_WR_CS_S5 => A_WR_CS_S5,
       A_WR_RS_S0 => A_WR_RS_S0,
       A_WR_RS_S1 => A_WR_RS_S1,
+      B_DONE => B_DONE,
+      B_DO_1(0) => B_DO_1(0),
+      B_DO_10(0) => B_DO_10(0),
+      B_DO_11(0) => B_DO_11(0),
+      B_DO_12(0) => B_DO_12(0),
+      B_DO_13(0) => B_DO_13(0),
+      B_DO_14(0) => B_DO_14(0),
+      B_DO_15(0) => B_DO_15(0),
+      B_DO_16(0) => B_DO_16(0),
+      B_DO_2(0) => B_DO_2(0),
+      B_DO_3(0) => B_DO_3(0),
+      B_DO_4(0) => B_DO_4(0),
+      B_DO_5(0) => B_DO_5(0),
+      B_DO_6(0) => B_DO_6(0),
+      B_DO_7(0) => B_DO_7(0),
+      B_DO_8(0) => B_DO_8(0),
+      B_DO_9(0) => B_DO_9(0),
+      B_GCC_RESET => B_GCC_RESET,
+      B_HSCLK_N => B_HSCLK_N,
+      B_HSCLK_P => B_HSCLK_P,
+      B_PCLK => B_PCLK,
+      B_RAMP => B_RAMP,
+      B_RDAD_CLK => B_RDAD_CLK,
+      B_RDAD_DIR => B_RDAD_DIR,
+      B_RDAD_SIN => B_RDAD_SIN,
+      B_SAMPLESEL_ANY => B_SAMPLESEL_ANY,
+      B_SHOUT => B_SHOUT,
+      B_SS_INCR => B_SS_INCR,
+      B_SS_LD_DIR => B_SS_LD_DIR,
+      B_SS_LD_SIN => B_SS_LD_SIN,
+      B_SS_RESET => B_SS_RESET,
+      B_TRIG1 => B_TRIG1,
+      B_TRIG2 => B_TRIG2,
+      B_TRIG3 => B_TRIG3,
+      B_TRIG4 => B_TRIG4,
+      B_WR_CS_S0 => B_WR_CS_S0,
+      B_WR_CS_S1 => B_WR_CS_S1,
+      B_WR_CS_S2 => B_WR_CS_S2,
+      B_WR_CS_S3 => B_WR_CS_S3,
+      B_WR_CS_S4 => B_WR_CS_S4,
+      B_WR_CS_S5 => B_WR_CS_S5,
+      B_WR_RS_S0 => B_WR_RS_S0,
+      B_WR_RS_S1 => B_WR_RS_S1,
       DDR_addr(14 downto 0) => DDR_addr(14 downto 0),
       DDR_ba(2 downto 0) => DDR_ba(2 downto 0),
       DDR_cas_n => DDR_cas_n,
@@ -236,9 +365,9 @@ base_zynq_i: component base_zynq
       MONTIMING_P => MONTIMING_P,
       SCLK => SCLK,
       SIN => SIN,
-      SSTIN_N => SSTIN_N,
-      SSTIN_P => SSTIN_P,
-      WL_CLK_N => WL_CLK_N,
-      WL_CLK_P => WL_CLK_P
+      SSTIN_N(0) => SSTIN_N(0),
+      SSTIN_P(0) => SSTIN_P(0),
+      WL_CLK_N(0) => WL_CLK_N(0),
+      WL_CLK_P(0) => WL_CLK_P(0)
     );
 end STRUCTURE;

@@ -1,0 +1,16 @@
+#!/bin/bash -i
+cd /home/salvador/github/watchman-readout/GUI
+totalWindows=$1
+repetitions=$2
+pedestalON=$3
+channel=$4
+nofWindowsStep=1
+nofAmplStep=1
+nofTARGETs=2
+nofChannels=1
+let nofPackets=$totalWindows\*$nofWindowsStep\*$repetitions\*$nofAmplStep;
+echo "nofPackets"
+echo $nofPackets
+python3.8 getPackets.py $nofPackets $totalWindows $nofChannels $pedestalON&> packets.log &
+python3.8 PulseSweep.py $totalWindows $repetitions $pedestalON $channel
+#python3.8 HMBtriggerMode.py $channel

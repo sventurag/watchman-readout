@@ -18,6 +18,9 @@ set_false_path -from [get_clocks *] -to [get_pins -hierarchical -filter Name=~*D
 set_property DIFF_TERM TRUE [get_ports MONTIMING_N]
 set_property DIFF_TERM TRUE [get_ports MONTIMING_P]
 
+set_false_path  -from [get_pins base_zynq_i/processing_system7_0/inst/PS7_i/MAXIGP0ACLK] -to [get_pins -filter Name=~*/CE -of [get_cells -hier -filter {name=~*/TCReg*}]]
+
+
 
 
 

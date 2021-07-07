@@ -41,11 +41,10 @@ entity TC_ClockManagementV3 is
 		HSCLK_P:		out std_logic;		-- Pin#43
 		HSCLK_N:		out std_logic;		-- Pin#44
 
-		WL_CLK_P:		out std_logic;		-- Pin#57
-		WL_CLK_N:		out std_logic;		-- Pin#58
+		WLCLK:		out std_logic		-- Pin#58
 
-		SSTIN_P:		out std_logic;		-- Pin#125
-		SSTIN_N:		out std_logic		-- Pin#126
+--		SSTIN_P:		out std_logic;		-- Pin#125
+--		SSTIN_N:		out std_logic		-- Pin#126
 
 	);
 end TC_ClockManagementV3;
@@ -158,8 +157,9 @@ architecture arch_imp of TC_ClockManagementV3 is
 	
 	attribute mark_debug : string;
     attribute mark_debug of SSTIN_intl: signal is "true";
+	attribute mark_debug of AXI_CLK : signal is "TRUE";
+	attribute mark_debug of nrst : signal is "TRUE";
 
-	
 
 begin
 
@@ -382,29 +382,29 @@ begin
 
 	SSTIN_intl	<= not Timecounter_intl(2);
 
-	OBUFDF_SSTIN : OBUFDS
-	generic map(
-		IOSTANDARD  => "BLVDS_25"
-	)
-	port map(
-		O	=> SSTIN_P,
-		OB	=> SSTIN_N,
+--	OBUFDF_SSTIN : OBUFDS
+--	generic map(
+--		IOSTANDARD  => "BLVDS_25"
+--	)
+--	port map(
+--		O	=> SSTIN_P,
+--		OB	=> SSTIN_N,
 
-		I	=> SSTIN_intl
-	);
+--		I	=> SSTIN_intl
+--	);
 	
+WLCLK <= AXI_CLK;
 
+--	OBUFDF_WL_CLK : OBUFDS
+--	generic map(
+--		IOSTANDARD  => "LVDS_25"
+--	)
+--	port map(
+--		O	=> WL_CLK_P,
+--		OB	=> WL_CLK_N,
 
-	OBUFDF_WL_CLK : OBUFDS
-	generic map(
-		IOSTANDARD  => "LVDS_25"
-	)
-	port map(
-		O	=> WL_CLK_P,
-		OB	=> WL_CLK_N,
-
-		I	=> AXI_CLK
-	);
+--		I	=> AXI_CLK
+--	);
 
 	OBUFDF_HSCLK : OBUFDS
 	generic map(

@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Oct 15 11:37:45 2020
--- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Mon May 31 19:22:14 2021
+-- Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub -rename_top base_zynq_rst_ps7_0_50M_0 -prefix
 --               base_zynq_rst_ps7_0_50M_0_ base_zynq_rst_ps7_0_50M_0_stub.vhdl
 -- Design      : base_zynq_rst_ps7_0_50M_0
@@ -34,6 +34,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "slowest_sync_clk,ext_reset_in,aux_reset_in,mb_debug_sys_rst,dcm_locked,mb_reset,bus_struct_reset[0:0],peripheral_reset[0:0],interconnect_aresetn[0:0],peripheral_aresetn[0:0]";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "proc_sys_reset,Vivado 2020.1";
+attribute x_core_info of stub : architecture is "proc_sys_reset,Vivado 2020.2";
 begin
 end;

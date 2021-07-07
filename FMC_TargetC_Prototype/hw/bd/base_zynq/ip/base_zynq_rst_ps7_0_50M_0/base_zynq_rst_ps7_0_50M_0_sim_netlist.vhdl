@@ -1,8 +1,8 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2020.1 (lin64) Build 2902540 Wed May 27 19:54:35 MDT 2020
--- Date        : Thu Oct 15 11:37:45 2020
--- Host        : watchman running 64-bit Ubuntu 18.04.4 LTS
+-- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
+-- Date        : Mon May 31 19:22:15 2021
+-- Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_rst_ps7_0_50M_0 -prefix
 --               base_zynq_rst_ps7_0_50M_0_ base_zynq_rst_ps7_0_50M_0_sim_netlist.vhdl
 -- Design      : base_zynq_rst_ps7_0_50M_0
@@ -1053,7 +1053,7 @@ entity base_zynq_rst_ps7_0_50M_0 is
   attribute downgradeipidentifiedwarnings : string;
   attribute downgradeipidentifiedwarnings of base_zynq_rst_ps7_0_50M_0 : entity is "yes";
   attribute x_core_info : string;
-  attribute x_core_info of base_zynq_rst_ps7_0_50M_0 : entity is "proc_sys_reset,Vivado 2020.1";
+  attribute x_core_info of base_zynq_rst_ps7_0_50M_0 : entity is "proc_sys_reset,Vivado 2020.2";
 end base_zynq_rst_ps7_0_50M_0;
 
 architecture STRUCTURE of base_zynq_rst_ps7_0_50M_0 is

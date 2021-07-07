@@ -16,7 +16,7 @@ extern data_list* last_element;
 /** @brief Buffer used to send the data (50 bytes above it reserved for protocol header) */
 extern char* frame_buf;
 /** @brief Array containing registers of AXI-lite */
-extern int* regptr;
+//extern int* regptr;
 /** @brief Flag raised when AXI-DMA has an error */
 extern volatile bool flag_axidma_error;
 /** @brief Flag raised when AXI-DMA has finished an transfer, in OnDemand mode */
@@ -210,7 +210,7 @@ void dma_received_data(int pmt){
 * @note		-
 *
 ****************************************************************************/
-int test_TPG(void){
+int test_TPG(int* regptr){
 	int timeout,i,j;
 
 	/* Create an element for the DMA */
@@ -230,13 +230,13 @@ int test_TPG(void){
 	regptr[TC_NBRWINDOW_REG] = 1;
 	regptr[TC_Delay_UpdateWR] = 0;
 
-	WriteRegister(TC_TPG_REG,	0x50A);	// TPG value
+	WriteRegister(TC_TPG_REG,	0x50A, regptr);	// TPG value
 
-	ControlRegisterWrite(SMODE_MASK ,ENABLE);
-	ControlRegisterWrite(SS_TPG_MASK ,DISABLE); // Enable mode TestPattern
-	ControlRegisterWrite(WINDOW_MASK,ENABLE);
+	ControlRegisterWrite(SMODE_MASK ,ENABLE, regptr);
+	ControlRegisterWrite(SS_TPG_MASK ,DISABLE, regptr); // Enable mode TestPattern
+	ControlRegisterWrite(WINDOW_MASK,ENABLE, regptr);
 	usleep(50);
-	ControlRegisterWrite(WINDOW_MASK,DISABLE); // PL side starts on falling edge
+	ControlRegisterWrite(WINDOW_MASK,DISABLE, regptr); // PL side starts on falling edge
 
 	/* Wait on DMA transfer to be done */
 	timeout = 200000; // Timeout of 10 sec
@@ -313,9 +313,16 @@ int test_TPG(void){
 	free(tmp_ptr);
 
 	/* Release the DMA */
-	ControlRegisterWrite(PSBUSY_MASK,DISABLE);
+	ControlRegisterWrite(PSBUSY_MASK,DISABLE, regptr);
 
 	return XST_SUCCESS;
 }
 
 
+void trigger(){
+//	usleep(1);
+	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 10);
+	usleep(1);
+	Xil_Out32(XPAR_START_DIGITIZATION_IP_0_S00_AXI_BASEADDR, (u32) 0);
+	//usleep(50);
+}
