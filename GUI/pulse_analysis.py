@@ -54,16 +54,16 @@ def process_packet_pulseSweep(filename,nmbrWin, nofChannels):
     print(targets_data[0])
     print(targets_data[1])
 
-    # df_0 = df_0-195.
+    df_0 = df_0-200.
     
     ax0=df_0.plot()
-  #  ax0.set_ylim(-100,100)
+    ax0.set_ylim(-20,20)
     ax0.set_title("{}".format(window_numbers), fontsize=5)
     ax0.grid(linewidth=2)
     #ax0.set_xlim(127,(32*totalWindows)-1)
     plt.show()
     fig0 = ax0.get_figure()
-    fig0.savefig('Target0.png')
+    fig0.savefig('Target0_.png')
     
     ax1=df_1.plot()
     fig1 = ax1.get_figure()

@@ -44,8 +44,8 @@ dfTarget0, dfTarget1=process_packet_pulseSweep(capture_file_name,totalWindows,no
 dfTarget0 = dfTarget0-200.
 
 ax0=dfTarget0.plot()
-ax0.set_ylim(-10,150)
-# ax0.set_xlim(127,(32*totalWindows)-1)
+ax0.set_ylim(-20,20)
+#ax0.set_xlim(127,(32*totalWindows)-1)
 fig0 = ax0.get_figure()
 fig0.savefig('Target0.png')
 

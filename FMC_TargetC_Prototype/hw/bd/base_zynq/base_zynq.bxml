@@ -2,10 +2,10 @@
 <Root MajorVersion="0" MinorVersion="39">
   <CompositeFile CompositeFileTopName="base_zynq" CanBeSetAsTop="false" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1625302862"/>
-    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1625302862"/>
-    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1625302862"/>
-    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1625302862"/>
+    <Generation Name="SYNTHESIS" State="GENERATED" Timestamp="1625603237"/>
+    <Generation Name="IMPLEMENTATION" State="GENERATED" Timestamp="1625603237"/>
+    <Generation Name="SIMULATION" State="GENERATED" Timestamp="1625603237"/>
+    <Generation Name="HW_HANDOFF" State="GENERATED" Timestamp="1625603237"/>
     <FileCollection Name="SOURCES" Type="SOURCES">
       <File Name="synth/base_zynq.vhd" Type="VHDL">
         <Properties IsEditable="false" IsVisible="true" Timestamp="0" IsTrackable="false" IsStatusTracked="false"/>
