@@ -1,11 +1,11 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Mon May 31 19:24:48 2021
--- Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
+-- Date        : Thu May 27 11:53:54 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode funcsim -rename_top base_zynq_s00_data_fifo_0 -prefix
---               base_zynq_s00_data_fifo_0_ base_zynq_s01_data_fifo_0_sim_netlist.vhdl
--- Design      : base_zynq_s01_data_fifo_0
+--               base_zynq_s00_data_fifo_0_ base_zynq_s00_data_fifo_0_sim_netlist.vhdl
+-- Design      : base_zynq_s00_data_fifo_0
 -- Purpose     : This VHDL netlist is a functional simulation representation of the design and should not be modified or
 --               synthesized. This netlist cannot be used for SDF annotated simulation.
 -- Device      : xc7z020clg400-1
@@ -3246,7 +3246,7 @@ entity base_zynq_s00_data_fifo_0 is
   attribute NotValidForBitStream : boolean;
   attribute NotValidForBitStream of base_zynq_s00_data_fifo_0 : entity is true;
   attribute CHECK_LICENSE_TYPE : string;
-  attribute CHECK_LICENSE_TYPE of base_zynq_s00_data_fifo_0 : entity is "base_zynq_s01_data_fifo_0,axis_data_fifo_v2_0_4_top,{}";
+  attribute CHECK_LICENSE_TYPE of base_zynq_s00_data_fifo_0 : entity is "base_zynq_s00_data_fifo_0,axis_data_fifo_v2_0_4_top,{}";
   attribute DowngradeIPIdentifiedWarnings : string;
   attribute DowngradeIPIdentifiedWarnings of base_zynq_s00_data_fifo_0 : entity is "yes";
   attribute X_CORE_INFO : string;

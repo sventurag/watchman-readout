@@ -1,8 +1,8 @@
 --Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
---Date        : Tue Jul  6 10:27:15 2021
---Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
+--Date        : Wed Jul  7 11:24:21 2021
+--Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 --Command     : generate_target base_zynq.bd
 --Design      : base_zynq
 --Purpose     : IP block netlist
@@ -2933,6 +2933,49 @@ architecture STRUCTURE of base_zynq is
     dout : out STD_LOGIC_VECTOR ( 1 downto 0 )
   );
   end component base_zynq_xlconstant_1_6;
+  component base_zynq_xlconstant_3_0 is
+  port (
+    dout : out STD_LOGIC_VECTOR ( 3 downto 0 )
+  );
+  end component base_zynq_xlconstant_3_0;
+  component base_zynq_xlconstant_4_0 is
+  port (
+    dout : out STD_LOGIC_VECTOR ( 2 downto 0 )
+  );
+  end component base_zynq_xlconstant_4_0;
+  component base_zynq_util_ds_buf_1_1 is
+  port (
+    OBUF_IN : in STD_LOGIC_VECTOR ( 0 to 0 );
+    OBUF_DS_P : out STD_LOGIC_VECTOR ( 0 to 0 );
+    OBUF_DS_N : out STD_LOGIC_VECTOR ( 0 to 0 )
+  );
+  end component base_zynq_util_ds_buf_1_1;
+  component base_zynq_Start_digitization_ip_0_0 is
+  port (
+    startDig_out : out STD_LOGIC;
+    s00_axi_aclk : in STD_LOGIC;
+    s00_axi_aresetn : in STD_LOGIC;
+    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_awvalid : in STD_LOGIC;
+    s00_axi_awready : out STD_LOGIC;
+    s00_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_wvalid : in STD_LOGIC;
+    s00_axi_wready : out STD_LOGIC;
+    s00_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_bvalid : out STD_LOGIC;
+    s00_axi_bready : in STD_LOGIC;
+    s00_axi_araddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    s00_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
+    s00_axi_arvalid : in STD_LOGIC;
+    s00_axi_arready : out STD_LOGIC;
+    s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
+    s00_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
+    s00_axi_rvalid : out STD_LOGIC;
+    s00_axi_rready : in STD_LOGIC
+  );
+  end component base_zynq_Start_digitization_ip_0_0;
   component base_zynq_TARGETC_axi_int_0_0 is
   port (
     SW_nRST : in STD_LOGIC;
@@ -2975,49 +3018,6 @@ architecture STRUCTURE of base_zynq is
     M_AXIS_TREADY : in STD_LOGIC
   );
   end component base_zynq_TARGETC_axi_int_1_0;
-  component base_zynq_xlconstant_3_0 is
-  port (
-    dout : out STD_LOGIC_VECTOR ( 3 downto 0 )
-  );
-  end component base_zynq_xlconstant_3_0;
-  component base_zynq_xlconstant_4_0 is
-  port (
-    dout : out STD_LOGIC_VECTOR ( 2 downto 0 )
-  );
-  end component base_zynq_xlconstant_4_0;
-  component base_zynq_Start_digitization_ip_0_0 is
-  port (
-    startDig_out : out STD_LOGIC;
-    s00_axi_aclk : in STD_LOGIC;
-    s00_axi_aresetn : in STD_LOGIC;
-    s00_axi_awaddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_awprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_awvalid : in STD_LOGIC;
-    s00_axi_awready : out STD_LOGIC;
-    s00_axi_wdata : in STD_LOGIC_VECTOR ( 31 downto 0 );
-    s00_axi_wstrb : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_wvalid : in STD_LOGIC;
-    s00_axi_wready : out STD_LOGIC;
-    s00_axi_bresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s00_axi_bvalid : out STD_LOGIC;
-    s00_axi_bready : in STD_LOGIC;
-    s00_axi_araddr : in STD_LOGIC_VECTOR ( 3 downto 0 );
-    s00_axi_arprot : in STD_LOGIC_VECTOR ( 2 downto 0 );
-    s00_axi_arvalid : in STD_LOGIC;
-    s00_axi_arready : out STD_LOGIC;
-    s00_axi_rdata : out STD_LOGIC_VECTOR ( 31 downto 0 );
-    s00_axi_rresp : out STD_LOGIC_VECTOR ( 1 downto 0 );
-    s00_axi_rvalid : out STD_LOGIC;
-    s00_axi_rready : in STD_LOGIC
-  );
-  end component base_zynq_Start_digitization_ip_0_0;
-  component base_zynq_util_ds_buf_0_1 is
-  port (
-    OBUF_IN : in STD_LOGIC_VECTOR ( 0 to 0 );
-    OBUF_DS_P : out STD_LOGIC_VECTOR ( 0 to 0 );
-    OBUF_DS_N : out STD_LOGIC_VECTOR ( 0 to 0 )
-  );
-  end component base_zynq_util_ds_buf_0_1;
   component base_zynq_TARGET_C_TopLevel_Sy_0_0 is
   port (
     SW_nRST : out STD_LOGIC;
@@ -3585,9 +3585,9 @@ architecture STRUCTURE of base_zynq is
   attribute X_INTERFACE_INFO of DDR_dqs_p : signal is "xilinx.com:interface:ddrx:1.0 DDR DQS_P";
   attribute X_INTERFACE_INFO of FIXED_IO_mio : signal is "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO MIO";
   attribute X_INTERFACE_INFO of WL_CLK_N : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_N CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of WL_CLK_N : signal is "XIL_INTERFACENAME CLK.WL_CLK_N, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
   attribute X_INTERFACE_INFO of WL_CLK_P : signal is "xilinx.com:signal:clock:1.0 CLK.WL_CLK_P CLK";
-  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK, FREQ_HZ 125000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
+  attribute X_INTERFACE_PARAMETER of WL_CLK_P : signal is "XIL_INTERFACENAME CLK.WL_CLK_P, CLK_DOMAIN base_zynq_TARGET_C_TopLevel_Sy_0_0_WL_CLK, FREQ_HZ 100000000, FREQ_TOLERANCE_HZ 0, INSERT_VIP 0, PHASE 0.000";
 begin
   A_GCC_RESET <= TARGET_C_TopLevel_Sy_0_GCC_RESET;
   A_HSCLK_N <= TARGET_C_TopLevel_Sy_0_HSCLK_N;
@@ -4266,7 +4266,7 @@ util_ds_buf_0: component base_zynq_util_ds_buf_0_0
       OBUF_DS_P(0) => util_ds_buf_0_OBUF_DS_P(0),
       OBUF_IN(0) => TARGET_C_TopLevel_Sy_0_SSTIN
     );
-util_ds_buf_1: component base_zynq_util_ds_buf_0_1
+util_ds_buf_1: component base_zynq_util_ds_buf_1_1
      port map (
       OBUF_DS_N(0) => util_ds_buf_1_OBUF_DS_N(0),
       OBUF_DS_P(0) => util_ds_buf_1_OBUF_DS_P(0),

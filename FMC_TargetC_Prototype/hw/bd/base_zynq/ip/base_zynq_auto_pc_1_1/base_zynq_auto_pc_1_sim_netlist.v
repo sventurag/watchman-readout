@@ -1,8 +1,8 @@
 // Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
-// Date        : Mon May 31 19:25:20 2021
-// Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
+// Date        : Thu May 27 11:55:19 2021
+// Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 // Command     : write_verilog -force -mode funcsim -rename_top base_zynq_auto_pc_1 -prefix
 //               base_zynq_auto_pc_1_ base_zynq_auto_pc_1_sim_netlist.v
 // Design      : base_zynq_auto_pc_1

@@ -1,10 +1,10 @@
 -- Copyright 1986-2020 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2020.2 (lin64) Build 3064766 Wed Nov 18 09:12:47 MST 2020
--- Date        : Fri Jul  2 14:10:25 2021
--- Host        : flacaVivado running 64-bit Ubuntu 20.04.2 LTS
+-- Date        : Wed Jul  7 11:32:03 2021
+-- Host        : idlab2 running 64-bit Ubuntu 20.04.2 LTS
 -- Command     : write_vhdl -force -mode synth_stub
---               /home/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGET_C_TopLevel_Sy_1_6/base_zynq_TARGET_C_TopLevel_Sy_1_6_stub.vhdl
+--               /home2/salvador/github/watchman-readout/FMC_TargetC_Prototype/hw/bd/base_zynq/ip/base_zynq_TARGET_C_TopLevel_Sy_1_6/base_zynq_TARGET_C_TopLevel_Sy_1_6_stub.vhdl
 -- Design      : base_zynq_TARGET_C_TopLevel_Sy_1_6
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7z020clg400-1

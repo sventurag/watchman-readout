@@ -281,14 +281,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {125000000} \
- ] [get_bd_pins /TARGET_C_TopLevel_Sy_0/RDAD_CLK]
-
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {125000000} \
- ] [get_bd_pins /TARGET_C_TopLevel_Sy_0/WL_CLK]
-
   # Create instance: TARGET_C_TopLevel_Sy_1, and set properties
   set block_name TARGET_C_TopLevel_System
   set block_cell_name TARGET_C_TopLevel_Sy_1
@@ -300,10 +292,6 @@ proc create_root_design { parentCell } {
      return 1
    }
   
-  set_property -dict [ list \
-   CONFIG.FREQ_HZ {125000000} \
- ] [get_bd_pins /TARGET_C_TopLevel_Sy_1/WL_CLK]
-
   # Create instance: axi_dma_0, and set properties
   set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
   set_property -dict [ list \
