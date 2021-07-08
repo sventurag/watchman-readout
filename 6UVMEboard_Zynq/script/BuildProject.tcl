@@ -69,7 +69,7 @@ set files [list \
  [file normalize "${origin_dir}/hw/src/Round_Buffer/WindowStoreV4.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/CPU_CONTROLLERV3.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/RoundBufferV6.vhd"]\
- [file normalize "${origin_dir}/hw/src/Round_Buffer/circularBuffer.vhd"]\
+ [file normalize "${origin_dir}/hw/src/Round_Buffer/HMB_roundBuffer.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/pedestalTrigger.vhd"]\
  [file normalize "${origin_dir}/hw/src/TargetC_Control/TARGETC_Control.vhd"]\
  [file normalize "${origin_dir}/hw/src/Round_Buffer/GrayEncoder.vhd"]\
